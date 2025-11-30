@@ -1,0 +1,214 @@
+[Parallel](/)
+
+[About](/about) [About](https://parallel.ai/about) [Pricing](/pricing) [Pricing](https://parallel.ai/pricing) [Careers](https://jobs.ashbyhq.com/parallel) [Careers](https://jobs.ashbyhq.com/parallel) [Blog](/blog) [Blog](https://parallel.ai/blog) [Docs](https://docs.parallel.ai/home) [Docs](https://docs.parallel.ai/home)
+
+Start Building P [Start Building]
+
+Menu [Menu]
+
+Human Machine
+
+# \# A state-of-the-art search API purpose-built for agents
+
+The Parallel Search MCP Server offers an easy to integrate, state-of-the-art, web search solution for AI agents. Built on the same search infrastructure that powers Parallel’s Task API and Search API, it demonstrates superior performance while being up to 50% cheaper than LLM-native web search implementations - establishing a new price-performance frontier for AI agent web access.
+
+Tags: [Benchmarks](/blog?tag=benchmarks)
+
+Reading time: 3 min
+
+## \## **\*\* Rethinking web search for AI agents \*\***
+
+Mainstream search engines are designed for human browsing patterns - keyword queries, short snippets designed to drive clicks, and ad-optimized layouts - rather than the information-dense passages AI agents need to reason effectively.
+
+When building our higher-level [Task API](https://parallel.ai/blog/parallel-task-api) [Task API]($https://parallel.ai/blog/parallel-task-api) , we recognized this mismatch early and built our own Search API purpose-built for AI agents. The Parallel Search API accepts broader declarative task objectives beyond simple keyword queries, allowing for more complex searches. It also manages agent context by returning the most relevant dense excerpts in an LLM-friendly format, instead of incomplete snippets or full-page text. For agentic pipelines, this translates to fewer input tokens (reduced cost), better signal-to-noise to reason over (improved quality), and research that concludes in fewer steps (lower end-to-end latency).
+
+**\*\* The result: \*\*** a simple one-shot interface for agent web access. This replaces multi-step search/scrape/extract/rerank pipelines that increase latency, inflate token costs, and introduce failure points that break agent workflows.
+
+## \## **\*\* Leading performance at the lowest cost \*\***
+
+To evaluate real-world performance of the Parallel Search MCP Server, we created the WISER-Search benchmark which blends WISER-Fresh (queries requiring the freshest data from the web) and WISER-Atomic (hard real-world business queries). This combination reflects the challenges AI agents face in production environments across breaking news, financial data, technical documentation, and competitive intelligence.
+
+Sample questions include:
+
+### WISER-Fresh
+
+* \- Which automaker signed today’s major chip‑supply deal with Samsung Electronics?
+* \- Which HR software firm did EQT agree to buy today?
+* \- How many shares does Firefly Aerospace plan to offer in its IPO filing?
+* \- Which Azerbaijani energy firm signed Ukraine’s first Transbalkan gas deal?
+* \- What revenue range did Audi forecast after cutting its guidance in July 2025?
+
+### WISER-Atomic
+
+* \- In fiscal year 2024, what percentage of Salesforce's subscription and support revenue came from the segment that includes its Tableau acquisition, and how does this compare to the company's overall CRM market share in 2023? Please share all of your factual findings that helped you answer the question, in your final answer.
+* \- According to the International Debt Statistics 2023 by the World Bank, calculate the average Foreign Direct Investment amount (in millions of USD) for Sri Lanka,Turkmenistan, and Niger in 2019. Round your answer to two decimal places.
+* \- Navigate to the website http://www.flightaware.com. This is the main domain for the target company. Once you are on their website, locate their careers or jobs page. Print the careers page URL.
+
+Results on the blended WISER-Search benchmark, comparing three different web search solutions (Parallel MCP server, Exa MCP server/tool calling, native web search) across four different LLMs (GPT 4.1, O4-mini, O3, Claude Sonnet 4), are shown below.
+
+WISER-Search
+
+COST (CPM)
+
+ACCURACY (%)
+
+Loading chart...
+
+CPM: USD per 1000 requests. Cost is shown on a Linear scale.
+
+Parallel
+
+Native
+
+Exa
+
+BrowseComp benchmark analysis: CPM: USD per 1000 requests. Cost is shown on a Linear scale. . Evaluation shows Parallel's enterprise deep research API for AI agents achieving up to 48% accuracy, outperforming GPT-4 browsing (1%), Claude search (6%), Exa (14%), and Perplexity (8%). Enterprise-grade structured deep research performance across Cost (CPM) and Accuracy (%). State-of-the-art enterprise deep research API with structured data extraction built for ChatGPT deep research and complex multi-hop AI agent workflows.
+
+### \### About this benchmark
+
+This benchmark, created by Parallel, blends WISER-Fresh and WISER-Atomic. WISER-Fresh is a set of 76 queries requiring the freshest data from the web, generated by Parallel with o3 pro. WISER-Atomic is a set of 120 hard real-world business queries, based on use cases from Parallel customers.
+
+### \### Distribution
+
+40% WISER-Fresh  
+60% WISER-Atomic
+
+## \### Search MCP Benchmark
+
+```
+| Series    | Model                      | Cost (CPM) | Accuracy (%) |
+| --------- | -------------------------- | ---------- | ------------ |
+| Parallel  | GPT 4.1 w/ Prll Search MCP | 21         | 74.9         |
+| Parallel  | o4 mini / Prll Search MCP  | 90         | 82.14        |
+| Parallel  | o3 / Prll Search MCP       | 192        | 80.61        |
+| Parallel  | sonnet 4 / Prll Search MCP | 92         | 78.57        |
+| Native    | GPT 4.1 w/ Native Search   | 27         | 70           |
+| Native    | o4 mini w/ Native Search   | 190        | 77           |
+| Native    | o3 w/ Native Search        | 351        | 79.08        |
+| Native    | sonnet 4 w/ Native Search  | 122        | 68.83        |
+| Exa       | GPT 4.1 w/ Exa Search MCP  | 40         | 58.67        |
+| Exa       | o4 mini w/ Exa Search MCP  | 199        | 61.73        |
+| Exa       | o3 w/ Exa Search MCP       | 342        | 56.12        |
+| Exa       | sonnet 4 w/ Exa Search MCP | 140        | 67.13        |
+```
+
+CPM: USD per 1000 requests. Cost is shown on a Linear scale.
+
+### \### About this benchmark
+
+This benchmark, created by Parallel, blends WISER-Fresh and WISER-Atomic. WISER-Fresh is a set of 76 queries requiring the freshest data from the web, generated by Parallel with o3 pro. WISER-Atomic is a set of 120 hard real-world business queries, based on use cases from Parallel customers.
+
+### \### Distribution
+
+40% WISER-Fresh  
+60% WISER-Atomic
+
+**\*\* The results show that agents using Parallel Search MCP achieve superior accuracy at up to 50% lower total cost \*\*** when compared to agents using native web search implementations. Agentic workflows using the Parallel Search MCP conduct fewer tool calls and receive denser excerpts to reason on. As a result, the total cost (Search API cost + LLM cost) and latency are meaningfully reduced, while producing higher quality results.
+
+## \## **\*\* Easily replace LLM native search with Parallel Search MCP \*\***
+
+If you're building an AI agent that needs web access, the Parallel Search MCP Server is easy to integrate with any MCP-aware LLM. Simply change one parameter and see immediate results.
+
+[]( )
+
+![Example of replacing OpenAI Native Search with Parallel Search MCP](https://cdn.sanity.io/images/5hzduz3y/production/d0cf62816792b6e5b5d39c923518df9b87a64fa6-2414x1555.png)
+
+Start building with state-of-the-art web search purpose-built for agents today. Get started in our [Developer Platform](https://platform.parallel.ai/play/search) [Developer Platform]($https://platform.parallel.ai/play/search) or dive directly into [Documentation](https://docs.parallel.ai/features/remote-mcp) [Documentation]($https://docs.parallel.ai/features/remote-mcp) .
+
+## \## **\*\* Methodology \*\***
+
+**\*\* Benchmark details \*\*** : All tests were conducted on a dataset spanning real-world scenarios including breaking news, financial data, technical documentation, and competitive intelligence queries. The dataset is a combination of WISER-Fresh (76 easily verifiable questions based on events on a current day, generated by OpenAI o3 pro) and WISER-Atomic (120 questions based on real world use cases from Parallel customers).
+
+**\*\* Evaluation \*\*** : Responses were evaluated using standardized LLM evaluators measuring accuracy against verified ground truth answers.
+
+**\*\* Cost calculation \*\*** : Cost reflects the average cost per query across all questions run. This cost includes both the search API call and LLM token cost.
+
+**\*\* Testing dates \*\*** : WISER-Fresh data was generated on July 28th, 2025 and testing was conducted within 24 hrs of dataset generation. WISER-Atomic testing was conducted from July 28th, 2025 to July 29th, 2025.
+
+By Parallel
+
+July 31, 2025
+
+### \## Related Posts 27
+
+[### \- [ How Lindy brings state-of-the-art web research to automation flows ] (https://parallel.ai/blog/case-study-lindy) Tags: [Case Study](/blog?tag=case-study) Reading time: 3 min](/blog/case-study-lindy)
+
+[### \- [ Introducing the Parallel Task MCP Server ] (https://parallel.ai/blog/parallel-task-mcp-server) Tags: [Product Release](/blog?tag=product-release) Reading time: 4 min](/blog/parallel-task-mcp-server)
+
+[### \- [ Introducing the Core2x Processor for improved compute control on the Task API ] (https://parallel.ai/blog/core2x-processor) Tags: [Product Release](/blog?tag=product-release) Reading time: 2 min](/blog/core2x-processor)
+
+[### \- [ How Day AI merges private and public data for business intelligence ] (https://parallel.ai/blog/case-study-day-ai) Tags: [Case Study](/blog?tag=case-study) Reading time: 4 min](/blog/case-study-day-ai)
+
+[### \- [ Full Basis framework for all Task API Processors ] (https://parallel.ai/blog/full-basis-framework-for-task-api) Tags: [Product Release](/blog?tag=product-release) Reading time: 2 min](/blog/full-basis-framework-for-task-api)
+
+[### \- [ Building a real-time streaming task manager with Parallel ] (https://parallel.ai/blog/cookbook-sse-task-manager-with-parallel) Tags: [Cookbook](/blog?tag=cookbook) Reading time: 5 min](/blog/cookbook-sse-task-manager-with-parallel)
+
+[### \- [ How Gumloop built a new AI automation framework with web intelligence as a core node ] (https://parallel.ai/blog/case-study-gumloop) Tags: [Case Study](/blog?tag=case-study) Reading time: 3 min](/blog/case-study-gumloop)
+
+[### \- [ Introducing the TypeScript SDK ] (https://parallel.ai/blog/typescript-sdk) Tags: [Product Release](/blog?tag=product-release) Reading time: 1 min](/blog/typescript-sdk)
+
+[### \- [ Building a serverless competitive intelligence platform with MCP + Task API ] (https://parallel.ai/blog/cookbook-competitor-research-with-reddit-mcp) Tags: [Cookbook](/blog?tag=cookbook) Reading time: 6 min](/blog/cookbook-competitor-research-with-reddit-mcp)
+
+[### \- [ Introducing Parallel Deep Research reports ] (https://parallel.ai/blog/deep-research-reports) Tags: [Product Release](/blog?tag=product-release) Reading time: 2 min](/blog/deep-research-reports)
+
+[### \- [ A new pareto-frontier for Deep Research price-performance ] (https://parallel.ai/blog/deep-research-benchmarks) Tags: [Benchmarks](/blog?tag=benchmarks) Reading time: 4 min](/blog/deep-research-benchmarks)
+
+[### \- [ Building a Full-Stack Search Agent with Parallel and Cerebras ] (https://parallel.ai/blog/cookbook-search-agent) Tags: [Cookbook](/blog?tag=cookbook) Reading time: 5 min](/blog/cookbook-search-agent)
+
+[### \- [ Webhooks for the Parallel Task API ] (https://parallel.ai/blog/webhooks) Tags: [Product Release](/blog?tag=product-release) Reading time: 2 min](/blog/webhooks)
+
+[### \- [ Introducing Parallel: Web Search Infrastructure for AIs ] (https://parallel.ai/blog/introducing-parallel) Tags: [Benchmarks](/blog?tag=benchmarks) , [Product Release](/blog?tag=product-release) Reading time: 6 min](/blog/introducing-parallel)
+
+[### \- [ Introducing SSE for Task Runs ] (https://parallel.ai/blog/sse-for-tasks) Tags: [Product Release](/blog?tag=product-release) Reading time: 2 min](/blog/sse-for-tasks)
+
+[### \- [ A new line of advanced processors: Ultra2x, Ultra4x, and Ultra8x ] (https://parallel.ai/blog/new-advanced-processors) Tags: [Product Release](/blog?tag=product-release) Reading time: 2 min](/blog/new-advanced-processors)
+
+[### \- [ Introducing Auto Mode for the Parallel Task API ] (https://parallel.ai/blog/task-api-auto-mode) Tags: [Product Release](/blog?tag=product-release) Reading time: 1 min](/blog/task-api-auto-mode)
+
+[### \- [ Parallel Search MCP Server in Devin ] (https://parallel.ai/blog/parallel-search-mcp-in-devin) Tags: [Product Release](/blog?tag=product-release) Reading time: 2 min](/blog/parallel-search-mcp-in-devin)
+
+[### \- [ Introducing Tool Calling via MCP Servers ] (https://parallel.ai/blog/mcp-tool-calling) Tags: [Product Release](/blog?tag=product-release) Reading time: 2 min](/blog/mcp-tool-calling)
+
+[### \- [ Introducing the Parallel Search MCP Server ] (https://parallel.ai/blog/search-mcp-server) Tags: [Product Release](/blog?tag=product-release) Reading time: 2 min](/blog/search-mcp-server)
+
+[### \- [ Introducing Source Policy ] (https://parallel.ai/blog/source-policy) Tags: [Product Release](/blog?tag=product-release) Reading time: 1 min](/blog/source-policy)
+
+[### \- [ The Parallel Task Group API ] (https://parallel.ai/blog/task-group-api) Tags: [Product Release](/blog?tag=product-release) Reading time: 1 min](/blog/task-group-api)
+
+[### \- [ State of the Art Deep Research APIs ] (https://parallel.ai/blog/deep-research) Tags: [Benchmarks](/blog?tag=benchmarks) Reading time: 3 min](/blog/deep-research)
+
+[### \- [ Introducing the Parallel Search API ] (https://parallel.ai/blog/parallel-search-api) Tags: [Product Release](/blog?tag=product-release) Reading time: 2 min](/blog/parallel-search-api)
+
+[### \- [ Introducing the Parallel Chat API ] (https://parallel.ai/blog/chat-api) Tags: [Product Release](/blog?tag=product-release) Reading time: 1 min](/blog/chat-api)
+
+[### \- [ Introducing Basis with Calibrated Confidences ] (https://parallel.ai/blog/introducing-basis-with-calibrated-confidences) Tags: [Product Release](/blog?tag=product-release) Reading time: 4 min](/blog/introducing-basis-with-calibrated-confidences)
+
+[### \- [ Introducing the Parallel Task API ] (https://parallel.ai/blog/parallel-task-api) Tags: [Product Release](/blog?tag=product-release) , [Benchmarks](/blog?tag=benchmarks) Reading time: 4 min](/blog/parallel-task-api)
+
+![Company Logo](https://parallel.ai/parallel-logo-540.png)
+
+### Contact
+
+* [hello@parallel.ai](mailto:hello@parallel.ai) [hello@parallel.ai](mailto:hello@parallel.ai)
+
+### Resources
+
+* [About](/about) [About](https://parallel.ai/about)
+* [Pricing](/pricing) [Pricing](https://parallel.ai/pricing)
+* [Docs](https://docs.parallel.ai) [Docs](https://docs.parallel.ai)
+* [Status](https://status.parallel.ai/) [Status](https://status.parallel.ai/)
+* [Blog](/blog) [Blog](https://parallel.ai/blog)
+* [Changelog](https://docs.parallel.ai/resources/changelog) [Changelog](https://docs.parallel.ai/resources/changelog)
+* [Careers](https://jobs.ashbyhq.com/parallel) [Careers](https://jobs.ashbyhq.com/parallel)
+
+### Info
+
+* [Terms](/terms-of-service) [Terms](https://parallel.ai/terms-of-service)
+* [Privacy](/privacy-policy) [Privacy](https://parallel.ai/privacy-policy)
+* [Trust Center](https://trust.parallel.ai/) [Trust Center](https://trust.parallel.ai/)
+
+![SOC 2 Compliant](https://parallel.ai/soc2.svg)
+
+[LinkedIn](https://www.linkedin.com/company/parallel-web/about/) [LinkedIn] (https://www.linkedin.com/company/parallel-web/about/) [Twitter](https://x.com/p0) [Twitter] (https://x.com/p0)
+
+Parallel Web Systems Inc. 2025
