@@ -1,0 +1,209 @@
+# Parallel Web Systems
+
+> This is the agent-friendly navigation document (llms.txt) for all public Parallel content. It is comprised of all public content from the main website (including all blog-posts), the docs, and a few resources from our SDKs.
+
+Parallel is a Enterprise Deep Research Product with APIs for performing Web Search Tasks at scale.
+
+## Main Website
+
+- [About](https://parallel.ai/about-old.md): About - Parallel
+- [Parallel](https://parallel.ai/about.md): Parallel is building the open web for AI. Declarative infrastructure, transparent attribution, and open markets engineered for the web&#x27;s next billion users.
+- [Acceptable Use Policy](https://parallel.ai/acceptable-use-policy.md): Acceptable Use Policy  - Parallel
+- [Parallel Web Systems](https://parallel.ai/articles.md): Best-in-class web search API for AI agents. Powering deep research, page extraction, enrichment, monitoring, and database creation. SOC 2 Type II certified.
+- [AI Web Search and AI Deep Research for Sales Enrichment](https://parallel.ai/articles/ai-web-enrichment-for-sales.md): Deep research AI sales web enrichment using AI search APIs. Create custom prospect intelligence beyond Apollo/ZoomInfo with automated data gathering tools.
+- [Parallel Web Systems](https://parallel.ai/articles/bing-api-comparison.md): Best-in-class web search API for AI agents. Powering deep research, page extraction, enrichment, monitoring, and database creation. SOC 2 Type II certified.
+- [Parallel Web Systems](https://parallel.ai/articles/llms-txt.md): Best-in-class web search API for AI agents. Powering deep research, page extraction, enrichment, monitoring, and database creation. SOC 2 Type II certified.
+- [Parallel Web Systems](https://parallel.ai/articles/openclaw-best-practices-web-search.md): Best-in-class web search API for AI agents. Powering deep research, page extraction, enrichment, monitoring, and database creation. SOC 2 Type II certified.
+- [What is a web crawler and how does it work? Full guide.](https://parallel.ai/articles/what-is-a-web-crawler.md): Best-in-class web search API for AI agents. Powering deep research, page extraction, enrichment, monitoring, and database creation. SOC 2 Type II certified.
+- [Parallel Web Systems](https://parallel.ai/articles/what-is-a-web-index.md): This document details the basics of web indexes and the benefits of building applications that can access them programmatically.
+- [A comprehensive introduction to web search APIs and how they work](https://parallel.ai/articles/what-is-a-web-search-api.md): Web search and AI search APIs transform how AI systems access the web. This article explains how they work to give enterprise AI internet search capabilities.
+- [What is an agent harness in the context of large-language models?](https://parallel.ai/articles/what-is-an-agent-harness.md): This article delves into what an AI harness is, why it’s become important, and how it works to improve the viability of real-world agents.
+- [What is an AI agent and how do they work in production?](https://parallel.ai/articles/what-is-an-ai-agent.md): AI agents are autonomous software systems that perceive their environment, make decisions, and take actions to achieve specific goals.
+- [Parallel Web Systems](https://parallel.ai/articles/what-is-data-enrichment.md): Data enrichment is the process of combining your internal data with information from external sources to create more complete, accurate datasets.
+- [Parallel Web Systems](https://parallel.ai/articles/what-is-deep-research.md): AI deep research investigates questions by synthesizing information across multiple web sources, then producing comprehensive reports with citations.
+- [What is Model Context Protocol (MCP) and what makes it useful?](https://parallel.ai/articles/what-is-mcp.md): This article covers how MCP works, why it matters for AI agents, the core architecture that makes it possible, and how to implement it in your own applications.
+- [What is semantic search and how does it work?](https://parallel.ai/articles/what-is-semantic-search.md): This article outlines at a high-level how semantic search works, with examples and comparisons to lexical search, as well as implementation strategies for businesses.
+- [How web scraping works and is used by businesses in data pipelines](https://parallel.ai/articles/what-is-web-scraping.md): Web scraping is a technique used by businesses to gather data from public websites. This article explains web scraping and their applications in business.
+- [Blog - Enterprise Deep Research API Insights](https://parallel.ai/blog.md): Learn about enterprise deep research APIs, structured data extraction, and AI agent integration. Technical insights on building state-of-the-art web search for ChatGPT and Claude.
+- [Parallel Web Systems](https://parallel.ai/blog/authenticated-page-access.md): Best-in-class web search API for AI agents. Powering deep research, page extraction, enrichment, monitoring, and database creation. SOC 2 Type II certified.
+- [Parallel Web Systems](https://parallel.ai/blog/benchmarks-task-api-sealqa.md): Parallel scores state-of-the-art on SEAL-0 and SEAL-HARD benchmarks, designed to challenge search-augmented LLMs on real-world research queries.
+- [How Amp’s coding agents build better software with Parallel Search](https://parallel.ai/blog/case-study-amp.md): Best-in-class web search API for AI agents. Powering deep research, page extraction, enrichment, monitoring, and database creation. SOC 2 Type II certified.
+- [Case Study for Day AI using Parallel Task API](https://parallel.ai/blog/case-study-day-ai.md): With Parallel’s web search technology backing it, Day provides superior visibility of insights across private and public data.
+- [Gumloop and Parallel Search API Case Study](https://parallel.ai/blog/case-study-gumloop.md): By integrating Parallel&#x27;s Task API as a core component, Gumloop enables businesses to build AI automation workflows that are grounded in real-time web data.
+- [Parallel Web Systems](https://parallel.ai/blog/case-study-lindy.md): Lindy integrated the Parallel Task API to enable high-quality web research via nodes in their low-code agent builder.
+- [Parallel Web Systems](https://parallel.ai/blog/case-study-macroscope.md): Learn how Macroscope uses Parallel&#x27;s web intelligence APIs ensure that code reviews are always using the most up-to-date information from the web.
+- [How Parallel powers Starbridge&#x27;s platform for public GTM](https://parallel.ai/blog/case-study-starbridge.md): This case study describes how Starbridge, using the Parallel Task API, helps companies scale public sector sales with efficiency and accuracy.
+- [Parallel Web Systems](https://parallel.ai/blog/case-study-tabstack.md): Best-in-class web search API for AI agents. Powering deep research, page extraction, enrichment, monitoring, and database creation. SOC 2 Type II certified.
+- [Build a Real-Time AI Fact Checker with Parallel &amp; Cerebras](https://parallel.ai/blog/cerebras-fact-checker.md): Learn how to build a streaming fact checker that extracts claims from text and verifies them against live web sources in real-time using Parallel and Cerebras.
+- [Introducing the Parallel Chat API](https://parallel.ai/blog/chat-api.md): Introducing the Parallel Chat API, a state-of-the-art low latency AI web research and search API for web-based LLM completions that deliver real-time deep research capabilities through our rapidly growing web index. The Parallel Chat API returns OpenAI ChatCompletions compatible streaming responses in both text and structured JSON format, enabling seamless OpenAI search integration for interactive applications requiring instant web automation tools and web research capabilities. Built with the same price-performance obsession as the Parallel Task API, the Parallel Chat API functions as an advanced AI web search alternative that transforms any application into a powerful web research platform.
+- [Building a Serverless Competitive Intelligence Platform with MCP + Task API](https://parallel.ai/blog/cookbook-competitor-research-with-reddit-mcp.md): Build a competitive intelligence platform with the Parallel Task API configured with Reddit MCP tool calls.
+- [How to build a market research platform with Parallel Deep Research](https://parallel.ai/blog/cookbook-market-research-platform-with-parallel.md): An open-source guide on how to build a comprehensive market research platform that generates detailed industry reports using Parallel&#x27;s Deep Research product.
+- [Building a Full-Stack Search Agent with Parallel and Cerebras](https://parallel.ai/blog/cookbook-search-agent.md): Build a web research agent that combines Parallel&#x27;s Search API with streaming AI inference.
+- [Building a real-time streaming task manager with Parallel](https://parallel.ai/blog/cookbook-sse-task-manager-with-parallel.md): This cookbook details how to build a task streaming playground that showcases Parallel&#x27;s Task API with real-time Server-Sent Events (SSE).
+- [Parallel AI releases new Core2x processor for Task API](https://parallel.ai/blog/core2x-processor.md): The new Core2x processor now is available in the Parallel Task API to offer developers finer control.
+- [A new pareto-frontier for Deep Research price-performance](https://parallel.ai/blog/deep-research-benchmarks.md): Expanded results that demonstrate Parallel&#x27;s complete price-performance advantage in Deep Research.
+- [Parallel Deep Research Reports](https://parallel.ai/blog/deep-research-reports.md): The Parallel Task API now supports comprehensive markdown Deep Research report generation with in-line citations and relevant excerpts.
+- [State of the Art Deep Research APIs](https://parallel.ai/blog/deep-research.md): Parallel Task API processors achieve state-of-the-art 27% accuracy on the BrowseComp benchmark—beating every other commercial API.
+- [Parallel Web Systems](https://parallel.ai/blog/deepsearch-qa.md): Best-in-class web search API for AI agents. Powering deep research, page extraction, enrichment, monitoring, and database creation. SOC 2 Type II certified.
+- [The full Basis framework is now available in Base and Lite processors](https://parallel.ai/blog/full-basis-framework-for-task-api.md): Lite and Base Task API processors now include the complete Basis framework—citations, reasoning, excerpts, and calibrated confidence scores.
+- [Parallel Web Systems](https://parallel.ai/blog/granular-basis-task-api.md): Best-in-class web search API for AI agents. Powering deep research, page extraction, enrichment, monitoring, and database creation. SOC 2 Type II certified.
+- [Introducing Basis with Calibrated Confidences](https://parallel.ai/blog/introducing-basis-with-calibrated-confidences.md): Parallel Web Systems introduces Basis with calibrated confidences - a new verification framework for AI web research and search API outputs that sets a new industry standard for transparent and reliable deep research. Basis provides comprehensive citations, detailed reasoning, confidence scoring, and source evidence for every Task API response, enabling enterprises to identify when AI web research may yield unreliable results and implement targeted human-in-the-loop workflows. Through rigorous calibration testing, Basis confidences serve as accurate proxies for performance evaluation, with high-confidence outputs achieving 2-3x lower error rates than overall datasets.
+- [Parallel Web Systems](https://parallel.ai/blog/introducing-findall-api.md): Parallel&#x27;s new FindAll API turns natural language queries into custom datasets from the web. It finds entities like companies, people, or locations based on your criteria, then enriches them with structured data—all with citations. FindAll Pro achieves 61% recall, 3x better than competitors.
+- [Parallel Web Systems](https://parallel.ai/blog/introducing-parallel-extract.md): Parallel Extract API converts web pages and PDFs to LLM-ready markdown. Get compressed excerpts or full content extraction for AI agents. Now in beta.
+- [Introducing the Parallel Search API](https://parallel.ai/blog/introducing-parallel-search.md): The highest accuracy web search API for AI agents
+- [Introducing Parallel](https://parallel.ai/blog/introducing-parallel.md): The Parallel Deep Research API outperforms humans and all leading AI models
+- [Parallel Web Systems](https://parallel.ai/blog/LLMTEXT-for-llmstxt.md): Introducing a new set of tools for llms.txt that help you create and check llms.txt, or transform llms.txt files into MCP servers
+- [Introducing Tool Calling via MCP Servers](https://parallel.ai/blog/mcp-tool-calling.md): Starting today, the Parallel Task API supports Tool Calling via MCP Servers in beta. With a single API call, you can now bring your own tools, data sources, and execution logic directly into web research workflows.
+- [Parallel Web Systems](https://parallel.ai/blog/monitor-api.md): This blog details the release of the Parallel Monitor API, which allows users and developers to monitor the open web for state changes.
+- [A new line of advanced processors: Ultra2x, Ultra4x, and Ultra8x](https://parallel.ai/blog/new-advanced-processors.md): New advanced processors are now available with the Parallel Task API, giving you granular control over compute allocation for critical research workflows. Last month, we demonstrated that accuracy scales consistently with compute budget on BrowseComp, achieving 39% and 48% accuracy with 2x and 4x compute respectively. These processors are now available as Ultra2x and Ultra4x, alongside our most advanced processor yet—Ultra8x.
+- [Introducing the Parallel Search API](https://parallel.ai/blog/parallel-search-api.md): The Parallel Search API is a new AI search engine API that transforms web search for Large Language Models and AI agents. Built on Parallel&#x27;s custom web crawler and index, the Search API takes flexible inputs (search objective and/or search queries) and returns LLM-ready ranked URLs with extended webpage excerpts. Unlike traditional search APIs designed for human use, this AI-native search API delivers high-density, information-rich content optimized for direct LLM consumption, eliminating complex multi-step pipelines of searching, scraping, and parsing.
+- [Parallel Search MCP Server in Devin](https://parallel.ai/blog/parallel-search-mcp-in-devin.md): The Parallel Search MCP Server is now live in Devin&#x27;s MCP Marketplace, bringing high quality web research capabilities directly to the AI software engineer. Devin can now query the web with the same infrastructure that powers our state-of-the-art Task and Chat APIs.
+- [Introducing the Parallel Task API: The state-of-the-art API for automated AI deep web research](https://parallel.ai/blog/parallel-task-api.md): The Parallel Task API is a state-of-the-art system for automated web research that delivers the highest accuracy at every price point.
+- [Introducing the Parallel Task MCP Server to help you research better](https://parallel.ai/blog/parallel-task-mcp-server.md): The Parallel Task MCP Server enables users to continue working in their MCP client while Parallel’s web search tasks run in the background.
+- [Introducing research models with Basis for the Parallel Chat API](https://parallel.ai/blog/research-models-chat.md): Parallel Chat API now offers research models with Basis verification—citations, reasoning, and calibrated confidence scores. OpenAI-compatible.
+- [A state-of-the-art search API purpose-built for agents](https://parallel.ai/blog/search-api-benchmark.md): The Parallel Search MCP Server offers an easy to integrate, state-of-the-art, web search solution for AI agents. Built on the same search infrastructure that powers Parallel’s Task API and Search API, it demonstrates superior performance while being up to 50% cheaper than LLM native web search implementations - establishing a new price-performance frontier for AI agent web access.
+- [Introducing the Parallel Search MCP Server](https://parallel.ai/blog/search-mcp-server.md): The Parallel Search MCP Server exposes the Parallel Search API as a plug-and-play tool, giving LLMs instant access to real-time web knowledge with a simple configuration change. This replaces brittle, multi-step search stacks with a single, production-ready tool that delivers higher quality results at significantly lower cost.
+- [Parallel Web Systems](https://parallel.ai/blog/series-a.md): Parallel announces $100M Series A at $740M valuation to build web infrastructure for AI agents. We&#x27;re creating better search for the web&#x27;s second user.
+- [Introducing Source Policy: Precise control over web research sources](https://parallel.ai/blog/source-policy.md): Starting today, Source Policy is available for both the Parallel Task API and Search API - giving you granular control over which sources your AI agents access and how results are prioritized.
+- [Parallel Web Systems](https://parallel.ai/blog/sse-for-tasks.md): Best-in-class web search API for AI agents. Powering deep research, page extraction, enrichment, monitoring, and database creation. SOC 2 Type II certified.
+- [Parallel Web Systems](https://parallel.ai/blog/structured-outputs-monitor.md): Define exactly what fields you want from each web event with Monitor API structured outputs. Get validated, schema-matched data instead of raw text.
+- [Introducing Auto Mode for the Parallel Task API](https://parallel.ai/blog/task-api-auto-mode.md): Starting today, the Parallel Task API supports Auto Mode - enabling one-off web research queries without requiring explicit output schemas. Simply ask a research question and let our processors handle the rest.
+- [Parallel Web Systems](https://parallel.ai/blog/task-api-latency.md): Best-in-class web search API for AI agents. Powering deep research, page extraction, enrichment, monitoring, and database creation. SOC 2 Type II certified.
+- [Introducing the Parallel Task Group API](https://parallel.ai/blog/task-group-api.md): Parallel launches Task Group API for batch web research at scale. Execute thousands of AI-powered data collection tasks with unified monitoring, real-time streaming, and intelligent failure handling. Now in public beta.
+- [Introducing the Typescript SDK](https://parallel.ai/blog/typescript-sdk.md): The Parallel TypeScript SDK is generally available - bringing strongly typed interfaces to all Parallel APIs.
+- [Parallel Web Systems](https://parallel.ai/blog/vercel.md): Best-in-class web search API for AI agents. Powering deep research, page extraction, enrichment, monitoring, and database creation. SOC 2 Type II certified.
+- [Webhooks](https://parallel.ai/blog/webhooks.md): Best-in-class web search API for AI agents. Powering deep research, page extraction, enrichment, monitoring, and database creation. SOC 2 Type II certified.
+- [Customer Terms](https://parallel.ai/customer-terms.md): Customer Terms  - Parallel
+- [Parallel Web Systems](https://parallel.ai/index.md): Best-in-class web search API for AI agents. Powering deep research, page extraction, enrichment, monitoring, and database creation. SOC 2 Type II certified.
+- [Parallel Pricing – Pay-As-You-Go Web Search for AI Agents](https://parallel.ai/pricing.md): Flexible pricing for a variety of web agent and web search tasks. Choose the tier that best fits your speed, accuracy, and pricing needs.
+- [Privacy Policy - test](https://parallel.ai/privacy-policy-test.md): Privacy Policy - test - Parallel
+- [Privacy Policy](https://parallel.ai/privacy-policy.md): Privacy Policy - Parallel
+- [/products/api](https://parallel.ai/products/api.md)
+- [Find All - Enterprise Deep Research Examples](https://parallel.ai/products/findall.md): Explore real-world examples of enterprise deep research API queries. See how AI agents use Parallel&#x27;s structured data extraction for complex multi-hop research across various domains.
+- [The best web search for your AI](https://parallel.ai/products/search.md): The highest accuracy web search API, built from the ground up for AIs.
+- [Task API](https://parallel.ai/products/task.md): Task API for AI agents.
+- [Terms of Service](https://parallel.ai/terms-of-service.md): Terms of Service - Parallel
+
+## Docs
+
+- [Chat Completions](https://parallel.ai/docs/api-reference/chat-api-beta/chat-completions.md)
+- [Extract](https://parallel.ai/docs/api-reference/extract-beta/extract.md): s relevant content from specific web URLs.
+- [Add Enrichment to FindAll Run](https://parallel.ai/docs/api-reference/findall-api-beta/add-enrichment-to-findall-run.md): Add an enrichment to a FindAll run.
+- [Cancel FindAll Run](https://parallel.ai/docs/api-reference/findall-api-beta/cancel-findall-run.md): Cancel a FindAll run.
+- [Create FindAll Run](https://parallel.ai/docs/api-reference/findall-api-beta/create-findall-run.md): Starts a FindAll run.
+- [Extend FindAll Run](https://parallel.ai/docs/api-reference/findall-api-beta/extend-findall-run.md): Extend a FindAll run by adding additional matches to the current match limit.
+- [FindAll Run Result](https://parallel.ai/docs/api-reference/findall-api-beta/findall-run-result.md): Retrieve the FindAll run result at the time of the request.
+- [Get FindAll Run Schema](https://parallel.ai/docs/api-reference/findall-api-beta/get-findall-run-schema.md)
+- [Ingest FindAll Run](https://parallel.ai/docs/api-reference/findall-api-beta/ingest-findall-run.md): Transforms a natural language search objective into a structured FindAll spec.
+- [Retrieve FindAll Run Status](https://parallel.ai/docs/api-reference/findall-api-beta/retrieve-findall-run-status.md): Retrieve a FindAll run.
+- [Stream FindAll Events](https://parallel.ai/docs/api-reference/findall-api-beta/stream-findall-events.md): Stream events from a FindAll run.
+- [Create Monitor](https://parallel.ai/docs/api-reference/monitor/create-monitor.md): Create a web monitor.
+- [Delete Monitor](https://parallel.ai/docs/api-reference/monitor/delete-monitor.md): Delete a monitor.
+- [List Events](https://parallel.ai/docs/api-reference/monitor/list-events.md): for a monitor from up to the last 300 event groups.
+- [List Monitors](https://parallel.ai/docs/api-reference/monitor/list-monitors.md): List active monitors.
+- [Retrieve Event Group](https://parallel.ai/docs/api-reference/monitor/retrieve-event-group.md): Retrieve an event group for a monitor.
+- [Retrieve Monitor](https://parallel.ai/docs/api-reference/monitor/retrieve-monitor.md): Retrieve a monitor.
+- [Simulate Event](https://parallel.ai/docs/api-reference/monitor/simulate-event.md): Simulate sending an event for a monitor.
+- [Update Monitor](https://parallel.ai/docs/api-reference/monitor/update-monitor.md): Update a monitor.
+- [Search](https://parallel.ai/docs/api-reference/search-beta/search.md): es the web.
+- [Add Runs to Task Group](https://parallel.ai/docs/api-reference/tasks-beta/add-runs-to-task-group.md): Initiates multiple task runs within a TaskGroup.
+- [Create Task Group](https://parallel.ai/docs/api-reference/tasks-beta/create-task-group.md): Initiates a TaskGroup to group and track multiple runs.
+- [Fetch Task Group Runs](https://parallel.ai/docs/api-reference/tasks-beta/fetch-task-group-runs.md): Retrieves task runs in a TaskGroup and optionally their inputs and outputs.
+- [Retrieve Task Group Run](https://parallel.ai/docs/api-reference/tasks-beta/retrieve-task-group-run.md): Retrieves run status by run_id.
+- [Retrieve Task Group](https://parallel.ai/docs/api-reference/tasks-beta/retrieve-task-group.md): Retrieves aggregated status across runs in a TaskGroup.
+- [Stream Task Group Events](https://parallel.ai/docs/api-reference/tasks-beta/stream-task-group-events.md): Streams events from a TaskGroup: status updates and run completions.
+- [Create Task Run](https://parallel.ai/docs/api-reference/tasks-v1/create-task-run.md): Initiates a task run.
+- [Retrieve Task Run Input](https://parallel.ai/docs/api-reference/tasks-v1/retrieve-task-run-input.md): Retrieves the input of a run by run_id.
+- [Retrieve Task Run Result](https://parallel.ai/docs/api-reference/tasks-v1/retrieve-task-run-result.md): Retrieves a run result by run_id, blocking until the run is completed.
+- [Retrieve Task Run](https://parallel.ai/docs/api-reference/tasks-v1/retrieve-task-run.md): Retrieves run status by run_id.
+- [Stream Task Run Events](https://parallel.ai/docs/api-reference/tasks-v1/stream-task-run-events.md): Streams events for a task run.
+- [Chat API Quickstart](https://parallel.ai/docs/chat-api/chat-quickstart.md): Build low-latency web research applications with OpenAI-compatible streaming chat completions
+- [OpenAI SDK Compatibility](https://parallel.ai/docs/chat-api/sdk-compatibility.md): features and limitations
+- [Google BigQuery](https://parallel.ai/docs/data-integrations/bigquery.md): Enrich data at scale using Parallel's SQL-native remote functions for BigQuery
+- [DuckDB](https://parallel.ai/docs/data-integrations/duckdb.md): Enrich data at scale using Parallel's native DuckDB integration with batch processing
+- [Data Integrations](https://parallel.ai/docs/data-integrations/overview.md): Enrich your data with web intelligence directly in your favorite data tools
+- [Polars](https://parallel.ai/docs/data-integrations/polars.md): Enrich data at scale using Parallel's native Polars integration for DataFrames
+- [Snowflake](https://parallel.ai/docs/data-integrations/snowflake.md): Enrich data at scale using Parallel's SQL-native UDTF for Snowflake
+- [Apache Spark](https://parallel.ai/docs/data-integrations/spark.md): Enrich data at scale using Parallel's SQL-native UDFs for Apache Spark
+- [Supabase](https://parallel.ai/docs/data-integrations/supabase.md): Enrich your Supabase data with live web intelligence using Edge Functions and Parallel
+- [Extract API Best Practices](https://parallel.ai/docs/extract/best-practices.md): Learn how to optimize web content extraction with objectives, search queries, and fetch policies for LLM-ready markdown output
+- [Extract API Quickstart](https://parallel.ai/docs/extract/extract-quickstart.md): Convert any public URL into clean, LLM-optimized markdown with the Parallel Extract API
+- [Candidates](https://parallel.ai/docs/findall-api/core-concepts/findall-candidates.md): Understanding FindAll candidates, their structure, states, and how to exclude specific entities
+- [Generators](https://parallel.ai/docs/findall-api/core-concepts/findall-generator-pricing.md): Choose the right FindAll generator (preview, base, core, pro) based on query complexity and expected match volume
+- [Run Lifecycle](https://parallel.ai/docs/findall-api/core-concepts/findall-lifecycle.md): Understand FindAll run statuses, termination reasons, and how to cancel runs
+- [Cancel](https://parallel.ai/docs/findall-api/features/findall-cancel.md): Stop FindAll runs early to control costs
+- [Enrichments](https://parallel.ai/docs/findall-api/features/findall-enrich.md): Add non-boolean enrichment data to FindAll candidates without affecting match conditions
+- [Extend](https://parallel.ai/docs/findall-api/features/findall-extend.md): Increase the match limit of existing FindAll runs to get more results without changing query criteria
+- [Preview](https://parallel.ai/docs/findall-api/features/findall-preview.md): Test FindAll queries with a small sample of candidates before committing to full runs
+- [Refresh Runs](https://parallel.ai/docs/findall-api/features/findall-refresh.md): Rerun the same FindAll query with exclude_list to discover net new entities over time
+- [Streaming Events](https://parallel.ai/docs/findall-api/features/findall-sse.md): Receive real-time updates on FindAll runs using Server-Sent Events (SSE)
+- [Webhooks](https://parallel.ai/docs/findall-api/features/findall-webhook.md): Receive real-time notifications on FindAll runs and candidates using webhooks
+- [FindAll Migration Guide](https://parallel.ai/docs/findall-api/findall-migration-guide.md): Guide for migrating from V0 to V1 FindAll API
+- [FindAll API Quickstart](https://parallel.ai/docs/findall-api/findall-quickstart.md): Discover and enrich entities from the web using natural language queries with the FindAll API
+- [Glossary](https://parallel.ai/docs/getting-started/glossary.md): Key terms and concepts used throughout Parallel's documentation
+- [Overview](https://parallel.ai/docs/getting-started/overview.md): A high-level introduction to Parallel's APIs for web research, data enrichment, and intelligent automation
+- [Pricing](https://parallel.ai/docs/getting-started/pricing.md)
+- [Rate limits](https://parallel.ai/docs/getting-started/rate-limits.md): Default API rate limits for Search, Extract, Tasks, Chat, FindAll, and Monitor endpoints
+- [Parallel Documentation](https://parallel.ai/docs/home.md): Explore Parallel's web API products for building intelligent applications.
+- [Sign In - Parallel](https://parallel.ai/docs/index.md)
+- [Agent Skills](https://parallel.ai/docs/integrations/agent-skills.md): Add Parallel web search, extraction, deep research, and data enrichment to any AI coding agent
+- [AWS Marketplace](https://parallel.ai/docs/integrations/aws-marketplace.md): Access Parallel's API through the AWS Marketplace
+- [Browser Use](https://parallel.ai/docs/integrations/browseruse.md): Access private web data in Tasks using Browser Use MCP
+- [Claude Code Plugin Marketplace](https://parallel.ai/docs/integrations/claude-code-marketplace.md): Add Parallel web search, extraction, deep research, and data enrichment to Claude Code
+- [Google Vertex AI](https://parallel.ai/docs/integrations/google-vertex.md): Use Parallel with Google Vertex AI
+- [Google Sheets](https://parallel.ai/docs/integrations/gsuite.md): Use Parallel directly in Google Sheets with the PARALLEL_QUERY function
+- [LangChain](https://parallel.ai/docs/integrations/langchain.md): integrations for Parallel, enabling real-time web research and AI capabilities
+- [Programmatic Use](https://parallel.ai/docs/integrations/mcp/programmatic-use.md): How to use the MCP servers Programmatically
+- [Quickstart](https://parallel.ai/docs/integrations/mcp/quickstart.md): Install and configure Parallel MCP servers for AI assistants like Cursor, VS Code, and Claude Desktop
+- [Search MCP](https://parallel.ai/docs/integrations/mcp/search-mcp.md): Add real-time web search and content extraction to AI agents with the Parallel Search MCP Server
+- [Task MCP](https://parallel.ai/docs/integrations/mcp/task-mcp.md): Enable deep research and data enrichment workflows in AI assistants with the Parallel Task MCP Server
+- [n8n](https://parallel.ai/docs/integrations/n8n.md): Use Parallel in n8n Automations
+- [OAuth Provider](https://parallel.ai/docs/integrations/oauth-provider.md): Integrate with the Parallel OAuth Provider to get a Parallel API key on behalf of your users
+- [OpenAI Tool Calling](https://parallel.ai/docs/integrations/openai-tool-calling.md): Use Parallel Search as a tool with OpenAI's function calling to give GPT models real-time web access
+- [Superhuman](https://parallel.ai/docs/integrations/superhuman.md): Use Parallel with Superhuman
+- [Vercel](https://parallel.ai/docs/integrations/vercel.md): Use Parallel with Vercel
+- [Zapier](https://parallel.ai/docs/integrations/zapier.md): Use Parallel in Zapier workflows
+- [Events and Event Groups](https://parallel.ai/docs/monitor-api/monitor-events.md): Understand monitor events, event groups, and how to retrieve them
+- [Monitor API Quickstart](https://parallel.ai/docs/monitor-api/monitor-quickstart.md): Track web changes continuously with scheduled queries and webhook notifications using the Monitor API
+- [Simulate Event](https://parallel.ai/docs/monitor-api/monitor-simulate-event.md): Test your webhook integration by simulating monitor events
+- [Slack Integration](https://parallel.ai/docs/monitor-api/monitor-slack.md): Set up Monitor in Slack to receive real-time web updates directly in your channels
+- [Structured Outputs](https://parallel.ai/docs/monitor-api/monitor-structured-outputs.md): Return monitor events as structured JSON objects
+- [Webhooks](https://parallel.ai/docs/monitor-api/monitor-webhooks.md): Receive real-time notifications for Monitor executions and detected events using webhooks
+- [parallel-web - npm](https://parallel.ai/docs/package/parallel-web.md)
+- [parallel-web · PyPI](https://parallel.ai/docs/project/parallel-web/index.md)
+- [public-openapi](https://parallel.ai/docs/public-openapi.json.md)
+- [Changelog](https://parallel.ai/docs/resources/changelog.md): Product updates from the Parallel team
+- [Crawler](https://parallel.ai/docs/resources/crawler.md): This documentation provides guidance for webmasters on managing their website's interaction with our crawling system
+- [FAQs](https://parallel.ai/docs/resources/faqs.md): Frequently asked questions about Parallel APIs, billing, security, and platform features
+- [Source Policy](https://parallel.ai/docs/resources/source-policy.md): Control which sources are used in web research, including domain allow/deny lists and a freshness start date.
+- [Parallel AI Status](https://parallel.ai/docs/resources/status.md)
+- [Warnings and Errors](https://parallel.ai/docs/resources/warnings-and-errors.md): Breakdown of warnings and errors
+- [Webhook Setup](https://parallel.ai/docs/resources/webhook-setup.md): Guide to configuring and verifying webhooks for Parallel APIs
+- [Search API Best Practices](https://parallel.ai/docs/search/best-practices.md): Using the Parallel Search API
+- [Search Modes](https://parallel.ai/docs/search/modes.md): Configure the Search API mode for your use case
+- [Search MCP](https://parallel.ai/docs/search/search-mcp.md)
+- [Migration Guide](https://parallel.ai/docs/search/search-migration-guide.md): Migrate from Alpha to Beta Search API (November 2025)
+- [Search API Quickstart](https://parallel.ai/docs/search/search-quickstart.md): Execute natural language web searches and retrieve LLM-optimized excerpts with the Parallel Search API
+- [Source Policy](https://parallel.ai/docs/search/source-policy.md)
+- [Task Group](https://parallel.ai/docs/task-api/group-api.md): Batch process Tasks at scale with the Parallel Task Group API
+- [Research Basis](https://parallel.ai/docs/task-api/guides/access-research-basis.md): Understand how to access citations, reasoning, and confidence levels for your Task Run outputs
+- [Processors](https://parallel.ai/docs/task-api/guides/choose-a-processor.md): Select the right Task API processor (lite, base, core, pro, ultra) based on task complexity and latency requirements
+- [Task Runs Lifecycle](https://parallel.ai/docs/task-api/guides/execute-task-run.md): Understanding how Tasks Runs are created, processed, and returned
+- [Task Spec](https://parallel.ai/docs/task-api/guides/specify-a-task.md): Define structured research tasks with customizable input and output schemas.
+- [Ingest API](https://parallel.ai/docs/task-api/ingest-api.md): API reference for creating awesome tasks
+- [MCP Tool Calling](https://parallel.ai/docs/task-api/mcp-tool-call.md): Using MCP servers for tool calls in Tasks
+- [Source Policy](https://parallel.ai/docs/task-api/source-policy.md)
+- [Task API Deep Research Quickstart](https://parallel.ai/docs/task-api/task-deep-research.md): Transform natural language queries into comprehensive intelligence reports
+- [Task API Enrichment Quickstart](https://parallel.ai/docs/task-api/task-enrichment.md): Enrich your structured data with web intelligence using the Task API
+- [Task MCP](https://parallel.ai/docs/task-api/task-mcp.md)
+- [Task API Quickstart](https://parallel.ai/docs/task-api/task-quickstart.md): Transform complex knowledge work into programmable, repeatable operations powered by AI web research
+- [Streaming Events](https://parallel.ai/docs/task-api/task-sse.md): SSE for Task Runs
+- [Webhooks](https://parallel.ai/docs/task-api/webhooks.md): Webhook events for task run completions
+
+## SDKs
+
+- [Python SDK Footprint](https://parallel.ai/custom/python-sdk-footprint.md): All API info needed to use the Python SDK. Does not include all APIs
+- [Python SDK README](https://parallel.ai/custom/python-sdk-readme.md): Overview of how to use the Python SDK
+- [Typescript SDK Footprint](https://parallel.ai/custom/typescript-sdk-footprint.md): All API info needed to use the Typescript SDK. Does not include all APIs
+- [Typescript SDK README](https://parallel.ai/custom/typescript-sdk-readme.md): Overview of how to use the Typescript SDK
+

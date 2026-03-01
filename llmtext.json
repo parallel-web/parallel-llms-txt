@@ -1,0 +1,56 @@
+{
+  "$schema": "https://extract.llmtext.com/llmtext.schema.json",
+  "outDir": "./public",
+  "title": "Parallel Web Systems",
+  "description": "This is the agent-friendly navigation document (llms.txt) for all public Parallel content. It is comprised of all public content from the main website (including all blog-posts), the docs, and a few resources from our SDKs.",
+  "details": "Parallel is a Enterprise Deep Research Product with APIs for performing Web Search Tasks at scale.",
+  "origin": "https://parallel.ai",
+  "sources": [
+    {
+      "type": "sitemap",
+      "title": "Main Website",
+      "origin": "https://parallel.ai",
+      "outDir": "./public",
+      "titleRemovePattern": "\\|.*$"
+    },
+    {
+      "type": "llms.txt",
+      "title": "Docs",
+      "origin": "https://docs.parallel.ai",
+      "outDir": "./public/docs"
+    },
+    {
+      "type": "custom",
+      "outDir": "./public/custom",
+      "title": "SDKs",
+      "customUrls": [
+        {
+          "filename": "python-sdk-readme",
+          "url": "https://raw.githubusercontent.com/parallel-web/parallel-sdk-python/refs/heads/main/README.md",
+          "title": "Python SDK README",
+          "description": "Overview of how to use the Python SDK"
+        },
+        {
+          "filename": "python-sdk-footprint",
+          "url": "https://raw.githubusercontent.com/parallel-web/parallel-sdk-overview/refs/heads/main/python-sdk-overview.md",
+          "title": "Python SDK Footprint",
+          "description": "All API info needed to use the Python SDK. Does not include all APIs"
+        },
+
+        {
+          "filename": "typescript-sdk-readme",
+          "url": "https://raw.githubusercontent.com/parallel-web/parallel-sdk-typescript/refs/heads/main/README.md",
+          "title": "Typescript SDK README",
+          "description": "Overview of how to use the Typescript SDK"
+        },
+
+        {
+          "filename": "typescript-sdk-footprint",
+          "url": "https://raw.githubusercontent.com/parallel-web/parallel-sdk-overview/refs/heads/main/typescript-sdk-overview.md",
+          "title": "Typescript SDK Footprint",
+          "description": "All API info needed to use the Typescript SDK. Does not include all APIs"
+        }
+      ]
+    }
+  ]
+}

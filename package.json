@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "build": "extract-from-sitemap"
+  },
+  "dependencies": {
+    "parse-llms-txt": "^0.0.10"
+  },
+  "devDependencies": {
+    "extract-from-sitemap": "^0.0.26"
+  }
+}
