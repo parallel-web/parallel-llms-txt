@@ -369,7 +369,7 @@ Restart Codex after adding the server. For more details, see the [Codex MCP docu
     pi install npm:pi-mcp-adapter
     ```
 
-    Restart Pi, then add the Search MCP to `.mcp.json` in your project (or `~/.config/mcp/mcp.json` for a user-global config):
+    Restart Pi, then add the Search MCP to `.mcp.json` in your project (or `~/.pi/agent/mcp.json` for a user-global config):
 
     ```json theme={"system"}
     {
