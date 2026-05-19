@@ -1,0 +1,15 @@
+{
+  "$schema": "https://unpkg.com/wrangler@latest/config-schema.json",
+  "name": "parallel-llmtext",
+  "account_id": "aceab98f1a2fc658ed4e20bc307fa65a",
+  "main": "worker.js",
+  "compatibility_date": "2025-10-21",
+  "routes": [
+    {
+      "custom_domain": true,
+      "pattern": "llm.parallel.ai"
+    }
+  ],
+  "assets": { "directory": "./public" },
+  "observability": { "logs": { "enabled": true } }
+}
