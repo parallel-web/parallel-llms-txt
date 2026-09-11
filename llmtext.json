@@ -4,7 +4,7 @@
   "title": "Parallel Web Systems",
   "description": "This is the agent-friendly navigation document (llms.txt) for all public Parallel content. It is comprised of all public content from the main website (including all blog-posts), the docs, and a few resources from our SDKs.",
   "details": "Parallel is a Enterprise Deep Research Product with APIs for performing Web Search Tasks at scale.",
-  "origin": "https://parallel.ai",
+  "origin": "https://llm.parallel.ai",
   "sources": [
     {
       "type": "sitemap",
