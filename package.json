@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "extract-from-sitemap"
+    "build": "node scripts/build-context.mjs",
+    "test": "node --test scripts/*.test.mjs"
   },
   "dependencies": {
     "parse-llms-txt": "^0.0.10"
