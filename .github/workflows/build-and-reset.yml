@@ -1,25 +1,27 @@
-name: Auto Rebuild and Reset History
+name: Refresh and deploy context
 
 on:
-  push:
-    branches:
-      - "**" # Run on pushes to any branch
   schedule:
     - cron: "0 */6 * * *"
-  workflow_dispatch: # Allow manual trigger
+  workflow_dispatch:
+
+concurrency:
+  group: context-refresh
+  cancel-in-progress: false
+
+permissions:
+  contents: write
 
 jobs:
   rebuild:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
-      - name: Checkout repository
+      - name: Checkout main
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Fetch full history for reset
-          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: main
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -29,35 +31,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run build script
+      - name: Test snapshot validation and publication
+        run: npm test
+
+      - name: Build and validate context
         env:
           PARALLEL_API_KEY: ${{ secrets.PARALLEL_API_KEY }}
         run: npm run build
 
-      - name: Configure Git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Publish changed context
+        run: bash scripts/publish-context.sh
 
-      - name: Reset Git history and commit
-        run: |
-          # Get current branch name
-          BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
-
-          # Create a new orphan branch (no history)
-          git checkout --orphan temp-branch
-
-          # Add all files
-          git add -A
-
-          # Create initial commit
-          git commit -m "Initialize repository with build output"
-
-          # Delete the old branch
-          git branch -D $BRANCH_NAME
-
-          # Rename temp branch to original branch name
-          git branch -m $BRANCH_NAME
-
-          # Force push to remote
-          git push -f origin $BRANCH_NAME
+      # Also deploy unchanged snapshots so a later run can recover a failed deploy.
+      - name: Deploy to Cloudflare Workers
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
