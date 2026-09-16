@@ -4,75 +4,65 @@ PyPI
 
 Search PyPI Search
 
+* Help
+* [Docs](https://docs.pypi.org/)
+* 
+* 
+
+* Help
+* [Docs](https://docs.pypi.org/)
+* 
+* 
+
+* Deutsch
+* English
+* español
+* Esperanto
+* français
+* português (Brasil)
+* Ελληνικά
+* русский
+* українська
+* עברית
+* 中文 (简体)
+* 中文 (繁體)
+* 日本語
+* 한국어
+
 Search PyPI Search
 
-# parallel-web 0.6.0
-
-pip install parallel-web Copy PIP instructions
-
-Latest version
-
-Released: May 6, 2026
+# parallel-web 1.3.3
 
 The official Python library for the Parallel API
 
-### Verified details
+pip install parallel-web Copy PIP instructions
 
-_These details have been [verified by PyPI](https://docs.pypi.org/project_metadata/)_
-
-###### Maintainers
-
-Avatar for parallel-developers from gravatar.com parallel-developers
-
-### Unverified details
-
-_These details have **not** been verified by PyPI_
-
-###### Project links
-
-* [Homepage](https://github.com/parallel-web/parallel-sdk-python)
-* [Repository](https://github.com/parallel-web/parallel-sdk-python)
-
-###### Meta
-
-* **License:** MIT License (MIT)
-* **Author:** Parallel
-* **Requires:** Python >=3.9
-* **Provides-Extra:** `aiohttp`
-
-[Report project as malware](https://pypi.org/project/parallel-web/submit-malware-report/)
-
-* Project description
-* Project details
-* Release history
+* Description
 * Download files
+* Release history
 
-## Project description
-
-# Parallel Python API library
+#  Parallel Python API library
 
 [PyPI version](https://pypi.org/project/parallel-web/)
 
 The Parallel Python library provides convenient access to the Parallel REST API from any Python 3.9+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx) .
-It is strongly encouraged to use the asynchronous client for best performance.
 
 It is generated with [Stainless](https://www.stainless.com/) .
 
-## Documentation
+##  Documentation
 
-The REST API documentation can be found in our [docs](https://docs.parallel.ai) .
-The full API of this Python library can be found in [api.md](https://github.com/parallel-web/parallel-sdk-python/tree/main/api.md) .
+The REST API documentation can be found on [docs.parallel.ai](https://docs.parallel.ai) . The full API of this library can be found in [api.md](https://github.com/parallel-web/parallel-sdk-python/tree/main/api.md) .
 
-## Installation
+##  Installation
 
 ```
 # install from PyPI 
 pip install parallel-web
 ```
 
-## Usage
+##  Usage
 
 The full API of this library can be found in [api.md](https://github.com/parallel-web/parallel-sdk-python/tree/main/api.md) .
 
@@ -85,23 +75,17 @@ import os
  ) 
 
  task_run = client . task_run . create ( 
-    input = "France (2023)" , 
-    processor = "core" , 
+    input = "What was the GDP of France in 2023?" , 
+    processor = "base" , 
  ) 
- task_run_result = client . task_run . result ( run_id = task_run . run_id ) 
- print ( task_run_result . output )
+ print ( task_run . interaction_id )
 ```
 
 While you can provide an `api_key` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/) to add `PARALLEL_API_KEY="My API Key"` to your `.env` file
 so that your API Key is not stored in source control.
 
-The API also supports typed inputs and outputs via Pydantic objects. See the relevant
-section on [convenience methods](https://github.com/parallel-web/parallel-sdk-python/tree/main/) .
-
-For information on what tasks are and how to specify them, see [our docs](https://docs.parallel.ai/task-api/core-concepts/specify-a-task) .
-
-## Async usage
+##  Async usage
 
 Simply import `AsyncParallel` instead of `Parallel` and use `await` with each API call:
 
@@ -115,101 +99,77 @@ import os
  ) 
 
  async def main () -> None : 
-    task_run = await client . task_run . create ( input = "France (2023)" , processor = "core" ) 
-    run_result = await client . task_run . result ( run_id = task_run . run_id ) 
-    print ( run_result . output . content ) 
+    task_run = await client . task_run . create ( 
+        input = "What was the GDP of France in 2023?" , 
+        processor = "base" , 
+    ) 
+    print ( task_run . interaction_id ) 
 
- if __name__ == "__main__" : 
-    asyncio . run ( main ())
+ asyncio . run ( main ())
 ```
 
-To get the best performance out of Parallel's API, we recommend
-using the asynchronous client, especially for executing multiple Task Runs concurrently.
-Functionality between the synchronous and asynchronous clients is identical, including
-the convenience methods.
+Functionality between the synchronous and asynchronous clients is otherwise identical.
 
-## Frequently Asked Questions
+###  With aiohttp
 
-**Does the Task API accept prompts or objectives?**
+By default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.
 
-No, there are no `objective` or `prompt` parameters that can be specified for calls to
-the Task API. Instead, provide any directives or instructions via the schemas. For
-more information, check [our docs](https://docs.parallel.ai/task-api/core-concepts/specify-a-task) .
+You can enable this by installing `aiohttp` :
 
-**Can I access beta parameters or endpoints via the SDK?**
+```
+# install from PyPI 
+pip install parallel-web [ aiohttp ]
+```
 
-Yes, the SDK supports both beta endpoints and beta header parameters for the Task API.
-All beta parameters are accessible via the `client.beta` namespace in the SDK.
+Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()` :
 
-**Can I specify a timeout for API calls?**
+```
+import os 
+ import asyncio 
+ from parallel import DefaultAioHttpClient 
+ from parallel import AsyncParallel 
 
-Yes, all methods support a timeout. For more information, see [Timeouts](https://github.com/parallel-web/parallel-sdk-python/tree/main/) .
+ async def main () -> None : 
+    async with AsyncParallel ( 
+        api_key = os . environ . get ( "PARALLEL_API_KEY" ),  # This is the default and can be omitted 
+        http_client = DefaultAioHttpClient (), 
+    ) as client : 
+        task_run = await client . task_run . create ( 
+            input = "What was the GDP of France in 2023?" , 
+            processor = "base" , 
+        ) 
+        print ( task_run . interaction_id ) 
 
-**Can I specify retries via the SDK?**
+ asyncio . run ( main ())
+```
 
-Yes, errors can be retried via the SDK — the default retry count is 2. The maximum number
-of retries can be configured at the client level. For information on which errors
-are automatically retried and how to configure retry settings, see [Retries](https://github.com/parallel-web/parallel-sdk-python/tree/main/) .
+##  Using types
 
-## Low‑level API access
+Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html.TypedDict) . Responses are [Pydantic models](https://docs.pydantic.dev) which also provide helper methods for things like:
 
-The library also provides low‑level access to the Parallel API.
+* Serializing back into JSON, `model.to_json()`
+* Converting to a dictionary, `model.to_dict()`
+
+Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic` .
+
+##  Nested params
+
+Nested parameters are dictionaries, typed using `TypedDict` , for example:
 
 ```
 from parallel import Parallel 
- from parallel.types import TaskSpecParam 
 
  client = Parallel () 
 
  task_run = client . task_run . create ( 
-    input = { "country" : "France" , "year" : 2023 }, 
-    processor = "core" , 
-    task_spec = { 
-        "output_schema" : { 
-            "json_schema" : { 
-                "additionalProperties" : False , 
-                "properties" : { 
-                    "gdp" : { 
-                        "description" : "GDP in USD for the year" , 
-                        "type" : "string" , 
-                    } 
-                }, 
-                "required" : [ "gdp" ], 
-                "type" : "object" , 
-            }, 
-            "type" : "json" , 
-        }, 
-        "input_schema" : { 
-            "json_schema" : { 
-                "additionalProperties" : False , 
-                "properties" : { 
-                    "country" : { 
-                        "description" : "Name of the country to research" , 
-                        "type" : "string" , 
-                    }, 
-                    "year" : { 
-                        "description" : "Year for which to retrieve information" , 
-                        "type" : "integer" , 
-                    }, 
-                }, 
-                "required" : [ "country" , "year" ], 
-                "type" : "object" , 
-            }, 
-            "type" : "json" , 
-        }, 
-    }, 
+    input = "What was the GDP of France in 2023?" , 
+    processor = "base" , 
+    advanced_settings = {}, 
  ) 
-
- run_result = client . task_run . result ( task_run . run_id ) 
- print ( run_result . output . content )
+ print ( task_run . advanced_settings )
 ```
 
-For more information, please check out the relevant section in our docs:
-
-* [Task Spec](https://docs.parallel.ai/task-api/core-concepts/specify-a-task)
-* [Task Runs](https://docs.parallel.ai/task-api/core-concepts/execute-task-run)
-
-## Handling errors
+##  Handling errors
 
 When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `parallel.APIConnectionError` is raised.
 
@@ -225,7 +185,10 @@ import parallel
  client = Parallel () 
 
  try : 
-    client . task_run . create ( input = "France (2023)" , processor = "core" ) 
+    client . task_run . create ( 
+        input = "What was the GDP of France in 2023?" , 
+        processor = "base" , 
+    ) 
  except parallel . APIConnectionError as e : 
     print ( "The server could not be reached" ) 
     print ( e . __cause__ )  # an underlying Exception, likely raised within httpx. 
@@ -250,7 +213,7 @@ Error codes are as follows:
 |>=500 |`InternalServerError` |
 |N/A |`APIConnectionError` |
 
-### Retries
+###  Retries
 
 Certain errors are automatically retried 2 times by default, with a short exponential backoff.
 Connection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,
@@ -268,10 +231,13 @@ from parallel import Parallel
  ) 
 
  # Or, configure per-request: 
- client . with_options ( max_retries = 5 ) . task_run . create ( input = "France (2023)" , processor = "core" )
+ client . with_options ( max_retries = 5 ) . task_run . create ( 
+    input = "What was the GDP of France in 2023?" , 
+    processor = "base" , 
+ )
 ```
 
-### Timeouts
+###  Timeouts
 
 By default requests time out after 1 minute. You can configure this with a `timeout` option,
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/) object:
@@ -291,16 +257,19 @@ from parallel import Parallel
  ) 
 
  # Override per-request: 
- client . with_options ( timeout = 5.0 ) . task_run . create ( input = "France (2023)" , processor = "core" )
+ client . with_options ( timeout = 5.0 ) . task_run . create ( 
+    input = "What was the GDP of France in 2023?" , 
+    processor = "base" , 
+ )
 ```
 
 On timeout, an `APITimeoutError` is thrown.
 
 Note that requests that time out are [retried twice by default](https://github.com/parallel-web/parallel-sdk-python/tree/main/) .
 
-## Advanced
+##  Advanced
 
-### Logging
+###  Logging
 
 We use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.
 
@@ -312,7 +281,7 @@ $ export PARALLEL_LOG = info
 
 Or to `debug` for more verbose logging.
 
-### How to tell whether `None` means `null` or missing
+###  How to tell whether `None` means `null` or missing
 
 In an API response, a field may be explicitly `null` , or missing entirely; in either case, its value is `None` in this library. You can differentiate the two cases with `.model_fields_set` :
 
@@ -324,7 +293,7 @@ if response . my_field is None :
     print ( 'Got json like {"my_field": null}.' )
 ```
 
-### Accessing raw response data (e.g. headers)
+###  Accessing raw response data (e.g. headers)
 
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
@@ -333,12 +302,12 @@ from parallel import Parallel
 
  client = Parallel () 
  response = client . task_run . with_raw_response . create ( 
-    input = "France (2023)" , 
-    processor = "core" , 
+    input = "What was the GDP of France in 2023?" , 
+    processor = "base" , 
  ) 
  print ( response . headers . get ( 'X-My-Header' )) 
 
- task_run = response . parse () 
+ task_run = response . parse ()  # get the object that `task_run.create()` would have returned 
  print ( task_run . interaction_id )
 ```
 
@@ -346,7 +315,7 @@ These methods return an [`APIResponse`](https://github.com/parallel-web/parallel
 
 The async client returns an [`AsyncAPIResponse`](https://github.com/parallel-web/parallel-sdk-python/tree/main/src/parallel/_response.py) with the same structure, the only difference being `await` able methods for reading the response content.
 
-#### `.with_streaming_response`
+####  `.with_streaming_response`
 
 The above interface eagerly reads the full response body when you make the request, which may not always be what you want.
 
@@ -354,7 +323,8 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```
 with client . task_run . with_streaming_response . create ( 
-    input = "France (2023)" , processor = "core" 
+    input = "What was the GDP of France in 2023?" , 
+    processor = "base" , 
  ) as response : 
     print ( response . headers . get ( "X-My-Header" )) 
 
@@ -364,13 +334,13 @@ with client . task_run . with_streaming_response . create (
 
 The context manager is required so that the response will reliably be closed.
 
-### Making custom/undocumented requests
+###  Making custom/undocumented requests
 
 This library is typed for convenient access to the documented API.
 
 If you need to access undocumented endpoints, params, or response properties, the library can still be used.
 
-#### Undocumented endpoints
+####  Undocumented endpoints
 
 To make requests to undocumented endpoints, you can make requests using `client.get` , `client.post` , and other
 http verbs. Options on the client will be respected (such as retries) when making this request.
@@ -387,17 +357,17 @@ import httpx
  print ( response . headers . get ( "x-foo" ))
 ```
 
-#### Undocumented request params
+####  Undocumented request params
 
 If you want to explicitly send an extra param, you can do so with the `extra_query` , `extra_body` , and `extra_headers` request
 options.
 
-#### Undocumented response properties
+####  Undocumented response properties
 
 To access undocumented response properties, you can access the extra fields like `response.unknown_prop` . You
 can also get all the extra fields on the Pydantic model as a dict with [`response.model_extra`](https://docs.pydantic.dev/latest/api/base_model/.BaseModel.model_extra) .
 
-### Configuring the HTTP client
+###  Configuring the HTTP client
 
 You can directly override the [httpx client](https://www.python-httpx.org/api/) to customize it for your use case, including:
 
@@ -425,7 +395,7 @@ You can also customize the client on a per-request basis by using `with_options(
 client . with_options ( http_client = DefaultHttpxClient ( ... ))
 ```
 
-### Managing HTTP resources
+###  Managing HTTP resources
 
 By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html.__del__) . You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
 
@@ -439,7 +409,7 @@ from parallel import Parallel
  # HTTP client is now closed
 ```
 
-## Versioning
+##  Versioning
 
 This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:
 
@@ -451,7 +421,7 @@ We take backwards-compatibility seriously and work hard to ensure you can rely o
 
 We are keen for your feedback; please open an [issue](https://www.github.com/parallel-web/parallel-sdk-python/issues) with questions, bugs, or suggestions.
 
-### Determining the installed version
+###  Determining the installed version
 
 If you've upgraded to the latest version but aren't seeing any new features you were expecting then your python environment is likely still using an older version.
 
@@ -462,39 +432,84 @@ import parallel
  print ( parallel . __version__ )
 ```
 
-## Requirements
+##  Requirements
 
 Python 3.9 or higher.
 
-## Contributing
+##  Contributing
 
 See [the contributing documentation](https://github.com/parallel-web/parallel-sdk-python/tree/main/./CONTRIBUTING.md) .
 
-## Project details
-
-### Verified details
-
-_These details have been [verified by PyPI](https://docs.pypi.org/project_metadata/)_
-
-###### Maintainers
-
-Avatar for parallel-developers from gravatar.com parallel-developers
-
-### Unverified details
-
-_These details have **not** been verified by PyPI_
-
-###### Project links
+## Project links
 
 * [Homepage](https://github.com/parallel-web/parallel-sdk-python)
 * [Repository](https://github.com/parallel-web/parallel-sdk-python)
 
-###### Meta
+## Key dates
 
-* **License:** MIT License (MIT)
-* **Author:** Parallel
-* **Requires:** Python >=3.9
-* **Provides-Extra:** `aiohttp`
+PyPI data
+
+Data sourced directly from PyPI's database.
+
+* **Released:** Sep 1, 2026
+
+Latest release
+
+## 1 maintainer
+
+PyPI data
+
+Data sourced directly from PyPI's database.
+
+Avatar for parallel-developers from gravatar.com parallel-developers
+
+## Credits
+
+**Author:** [Parallel](mailto:support@parallel.ai)
+
+## License
+
+MIT License (MIT)
+
+## Requires
+
+**Python** >=3.9
+
+## Provides Extra
+
+`aiohttp`
+
+## Classifiers
+
+* Intended Audience
+  
+    + [Developers](https://pypi.org/search/?c=Intended+Audience+%3A%3A+Developers)
+* License
+  
+    + [OSI Approved :: MIT License](https://pypi.org/search/?c=License+%3A%3A+OSI+Approved+%3A%3A+MIT+License)
+* Operating System
+  
+    + [MacOS](https://pypi.org/search/?c=Operating+System+%3A%3A+MacOS)
+    + [Microsoft :: Windows](https://pypi.org/search/?c=Operating+System+%3A%3A+Microsoft+%3A%3A+Windows)
+    + [OS Independent](https://pypi.org/search/?c=Operating+System+%3A%3A+OS+Independent)
+    + [POSIX](https://pypi.org/search/?c=Operating+System+%3A%3A+POSIX)
+    + [POSIX :: Linux](https://pypi.org/search/?c=Operating+System+%3A%3A+POSIX+%3A%3A+Linux)
+* Programming Language
+  
+    + [Python :: 3.9](https://pypi.org/search/?c=Programming+Language+%3A%3A+Python+%3A%3A+3.9)
+    + [Python :: 3.10](https://pypi.org/search/?c=Programming+Language+%3A%3A+Python+%3A%3A+3.10)
+    + [Python :: 3.11](https://pypi.org/search/?c=Programming+Language+%3A%3A+Python+%3A%3A+3.11)
+    + [Python :: 3.12](https://pypi.org/search/?c=Programming+Language+%3A%3A+Python+%3A%3A+3.12)
+    + [Python :: 3.13](https://pypi.org/search/?c=Programming+Language+%3A%3A+Python+%3A%3A+3.13)
+    + [Python :: 3.14](https://pypi.org/search/?c=Programming+Language+%3A%3A+Python+%3A%3A+3.14)
+* Topic
+  
+    + [Software Development :: Libraries :: Python Modules](https://pypi.org/search/?c=Topic+%3A%3A+Software+Development+%3A%3A+Libraries+%3A%3A+Python+Modules)
+* Typing
+  
+    + [Typed](https://pypi.org/search/?c=Typing+%3A%3A+Typed)
+
+[Report project as malware](https://pypi.org/project/parallel-web/submit-malware-report/)
 
 ## Download files
 
@@ -502,9 +517,9 @@ Download the file for your platform. If you're not sure which to choose, learn m
 
 ### Source Distribution
 
-[parallel\_web-0.6.0.tar.gz](https://files.pythonhosted.org/packages/7f/81/101c961fe6665212df01fb39a70ebb379dc33529c7bc9210675c0f525139/parallel_web-0.6.0.tar.gz) (173.1 kB view details )
+[parallel\_web-1.3.3.tar.gz](https://files.pythonhosted.org/packages/7a/ab/5d55a9b0f41176129c2870bfe969a89d34449fc87f9cffab8cdf5011d5d1/parallel_web-1.3.3.tar.gz) (162.4 kB view details )
 
-Uploaded May 6, 2026 `Source`
+Uploaded Sep 1, 2026 `Source`
 
 ### Built Distribution
 
@@ -522,86 +537,175 @@ ABI ABI none
 
 Platform Platform any
 
-[parallel\_web-0.6.0-py3-none-any.whl](https://files.pythonhosted.org/packages/a2/7c/7e8b63a0e90efaf567a818fca86c6ad3a85711f8995d2657b51b0cae2351/parallel_web-0.6.0-py3-none-any.whl) (199.2 kB view details )
+[parallel\_web-1.3.3-py3-none-any.whl](https://files.pythonhosted.org/packages/7c/2f/07dcdc7964fc9baf2b93cbc67aaf3530688bb11283148c9acf7246c51a9e/parallel_web-1.3.3-py3-none-any.whl) (176.2 kB view details )
 
-Uploaded May 6, 2026 `Python 3`
+Uploaded Sep 1, 2026 `Python 3`
 
 ## File details
 
-Details for the file `parallel_web-0.6.0.tar.gz` .
+Details for the file `parallel_web-1.3.3.tar.gz` .
 
 ### File metadata
 
-* Download URL: [parallel\_web-0.6.0.tar.gz](https://files.pythonhosted.org/packages/7f/81/101c961fe6665212df01fb39a70ebb379dc33529c7bc9210675c0f525139/parallel_web-0.6.0.tar.gz)
-* Upload date: May 6, 2026
-* Size: 173.1 kB
+* Download URL: [parallel\_web-1.3.3.tar.gz](https://files.pythonhosted.org/packages/7a/ab/5d55a9b0f41176129c2870bfe969a89d34449fc87f9cffab8cdf5011d5d1/parallel_web-1.3.3.tar.gz)
+* Upload date: Sep 1, 2026
+* Size: 162.4 kB
 * Tags: Source
 * Uploaded using Trusted Publishing? No
-* Uploaded via: twine/5.1.1 CPython/3.12.9
+* Uploaded via: `twine/5.1.1 CPython/3.12.9`
 
 ### File hashes
 
 |Algorithm |Hash digest | |
 | --- | --- | --- |
-|SHA256 |`f8aecd3f1958090090c4516881cefea4f55c40948ba3bb99217ca9a6d4263225` |Copy |
-|MD5 |`63eda93f434ee326038e682c3d56bef9` |Copy |
-|BLAKE2b-256 |`7f81101c961fe6665212df01fb39a70ebb379dc33529c7bc9210675c0f525139` |Copy |
+|SHA256 |`ad2a699bf5463e1d269e79b70ffe32911a2917320e8f5b3cbd5a0cecd83a86a3` |Copy |
+|MD5 |`60fc276f4f4b51389a72c22ee0955295` |Copy |
+|BLAKE2b-256 |`7aab5d55a9b0f41176129c2870bfe969a89d34449fc87f9cffab8cdf5011d5d1` |Copy |
 
 [See more details on using hashes here.](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link")
 
 ## File details
 
-Details for the file `parallel_web-0.6.0-py3-none-any.whl` .
+Details for the file `parallel_web-1.3.3-py3-none-any.whl` .
 
 ### File metadata
 
-* Download URL: [parallel\_web-0.6.0-py3-none-any.whl](https://files.pythonhosted.org/packages/a2/7c/7e8b63a0e90efaf567a818fca86c6ad3a85711f8995d2657b51b0cae2351/parallel_web-0.6.0-py3-none-any.whl)
-* Upload date: May 6, 2026
-* Size: 199.2 kB
+* Download URL: [parallel\_web-1.3.3-py3-none-any.whl](https://files.pythonhosted.org/packages/7c/2f/07dcdc7964fc9baf2b93cbc67aaf3530688bb11283148c9acf7246c51a9e/parallel_web-1.3.3-py3-none-any.whl)
+* Upload date: Sep 1, 2026
+* Size: 176.2 kB
 * Tags: Python 3
 * Uploaded using Trusted Publishing? No
-* Uploaded via: twine/5.1.1 CPython/3.12.9
+* Uploaded via: `twine/5.1.1 CPython/3.12.9`
 
 ### File hashes
 
 |Algorithm |Hash digest | |
 | --- | --- | --- |
-|SHA256 |`dc5342ef7262bd2e9f85eb7eace32833bd3d7e3af0bf5fbd780d1ea8c8d9ceb0` |Copy |
-|MD5 |`c1faf3d8dd548cf35b476ef3f40efc40` |Copy |
-|BLAKE2b-256 |`a27c7e8b63a0e90efaf567a818fca86c6ad3a85711f8995d2657b51b0cae2351` |Copy |
+|SHA256 |`5400231d091139259d09fd26cc379e5968340446eec389d0c8c5e347fa159b7d` |Copy |
+|MD5 |`32a72181f4571b81cf91352d22dc2621` |Copy |
+|BLAKE2b-256 |`7c2f07dcdc7964fc9baf2b93cbc67aaf3530688bb11283148c9acf7246c51a9e` |Copy |
 
 [See more details on using hashes here.](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link")
 
-* * *
+## Release history Release notifications | RSS feed
 
-Status: [all systems operational](https://status.python.org/ "External link")
+This release
 
-Developed and maintained by the Python community, for the Python community.  
+1\.3.3 This release
+
+Sep 1, 2026 2 files
+
+1\.3.2
+
+Aug 27, 2026 2 files
+
+1\.3.1
+
+Aug 27, 2026 2 files
+
+1\.3.0
+
+Aug 12, 2026 2 files
+
+1\.2.0
+
+Aug 10, 2026 2 files
+
+1\.1.0
+
+Jun 8, 2026 2 files
+
+1\.0.1
+
+Jun 3, 2026 2 files
+
+1\.0.0
+
+Jun 2, 2026 2 files
+
+0\.6.0
+
+May 6, 2026 2 files
+
+0\.5.1
+
+Apr 22, 2026 2 files
+
+0\.5.0
+
+Apr 21, 2026 2 files
+
+0\.4.2
+
+Mar 9, 2026 2 files
+
+0\.4.1
+
+Jan 29, 2026 2 files
+
+0\.4.0
+
+Jan 13, 2026 2 files
+
+0\.3.4
+
+Nov 13, 2025 2 files
+
+0\.3.3
+
+Nov 6, 2025 2 files
+
+0\.3.2
+
+Oct 22, 2025 2 files
+
+0\.3.1
+
+Oct 21, 2025 2 files
+
+0\.3.0
+
+Oct 21, 2025 2 files
+
+0\.2.2
+
+Oct 16, 2025 2 files
+
+0\.2.1
+
+Sep 15, 2025 2 files
+
+0\.2.0
+
+Sep 1, 2025 2 files
+
+0\.1.3
+
+Aug 9, 2025 2 files
+
+0\.1.2
+
+Jun 26, 2025 2 files
+
+0\.1.1
+
+Apr 25, 2025 2 files
+
+0\.1.0
+
+Apr 24, 2025 2 files
+
+PyPI
+
+Developed and maintained by the [Python Software Foundation](https://www.python.org/psf/ "External link") and Python community, for the Python community.
+
+[Status: all systems operational](https://status.python.org/ "External link")
+
 [Donate today!](https://donate.pypi.org)
-
-"PyPI", "Python Package Index", and the blocks logos are registered trademarks of the [Python Software Foundation](https://www.python.org/psf-landing) .
-
-Site map
-
-Deployed from [`e06f4aa`](https://github.com/pypi/warehouse/commit/e06f4aac992d423f027fca7ae348ddcc3c9ccf39 "External link")
 
 Switch to desktop version
 
-* English
-* español
-* français
-* 日本語
-* português (Brasil)
-* українська
-* Ελληνικά
-* Deutsch
-* 中文 (简体)
-* 中文 (繁體)
-* русский
-* עברית
-* Esperanto
-* 한국어
+* "PyPI", "Python Package Index", and the blocks logos are registered trademarks of the [Python Software Foundation](https://www.python.org/psf-landing) .
 
-Supported by
-
-[AWS Cloud computing and Security Sponsor](https://aws.amazon.com/) [Datadog Monitoring](https://www.datadoghq.com/) [Depot Continuous Integration](https://depot.dev) [Fastly CDN](https://www.fastly.com/) [Google Download Analytics](https://careers.google.com/) [Pingdom Monitoring](https://www.pingdom.com/) [Sentry Error logging](https://sentry.io/for/python/?utm_source=pypi&utm_medium=paid-community&utm_campaign=python-na-evergreen&utm_content=static-ad-pypi-sponsor-learnmore) [StatusPage Status page](https://statuspage.io)
+* Site map
+* Deployed from [`72bf763`](https://github.com/pypi/warehouse/commit/72bf763b1ae0a654a5c6930d5991e35bdd3469ac "External link")

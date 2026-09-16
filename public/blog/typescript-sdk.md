@@ -1,37 +1,41 @@
-[Parallel](/)
+# Introducing the TypeScript SDK
 
-[About](/about) [About](https://parallel.ai/about) [Pricing](/pricing) [Pricing](https://parallel.ai/pricing) [Careers](https://jobs.ashbyhq.com/parallel) [Careers](https://jobs.ashbyhq.com/parallel) [Blog](/blog) [Blog](https://parallel.ai/blog) [Docs](https://docs.parallel.ai/home) [Docs](https://docs.parallel.ai/home)
+The Parallel TypeScript SDK is generally available - bringing strongly typed interfaces to all Parallel APIs.
 
-Start Building P [Start Building]
+Starting today, the Parallel TypeScript SDK is generally available - bringing strongly typed interfaces to all Parallel APIs.
 
-Menu [Menu]
+The TypeScript SDK provides a unified interface for the Task API and Search API with full type safety, built-in error handling, and support for modern JavaScript runtimes including Node.js, Deno, and browser-based environments.
 
-Human Machine
+## **Seamless integration with the TypeScript SDK**
 
-![Company Logo](https://parallel.ai/parallel-logo-540.png)
+The SDK simplifies integration while maintaining the full power of Parallel's web research infrastructure.
 
-### Contact
+Key features include:
 
-* [hello@parallel.ai](mailto:hello@parallel.ai) [hello@parallel.ai](mailto:hello@parallel.ai)
+- Complete type definitions for all API requests and responses
+- Support for all processors from Lite through Ultra8x
+- Built-in retries, timeouts, and error handling
+- Custom fetch client support for advanced authentication
+- Compatibility with both server-side and client-side projects
 
-### Resources
+```typescript
+import Parallel from 'parallel-web';
+const client = new Parallel({
+  apiKey: process.env.PARALLEL_API_KEY,
+});
+const run = await client.taskRun.create({
+  input: "Summarize the latest developments in quantum computing",
+  processor: "lite",
+});
 
-* [About](/about) [About](https://parallel.ai/about)
-* [Pricing](/pricing) [Pricing](https://parallel.ai/pricing)
-* [Docs](https://docs.parallel.ai) [Docs](https://docs.parallel.ai)
-* [Status](https://status.parallel.ai/) [Status](https://status.parallel.ai/)
-* [Blog](/blog) [Blog](https://parallel.ai/blog)
-* [Changelog](https://docs.parallel.ai/resources/changelog) [Changelog](https://docs.parallel.ai/resources/changelog)
-* [Careers](https://jobs.ashbyhq.com/parallel) [Careers](https://jobs.ashbyhq.com/parallel)
+```
 
-### Info
+## **Start Building**
 
-* [Terms](/terms-of-service) [Terms](https://parallel.ai/terms-of-service)
-* [Privacy](/privacy-policy) [Privacy](https://parallel.ai/privacy-policy)
-* [Trust Center](https://trust.parallel.ai/) [Trust Center](https://trust.parallel.ai/)
+Install the TypeScript SDK:
 
-![SOC 2 Compliant](https://parallel.ai/soc2.svg)
+```typescript
+npm install parallel-web
+```
 
-[LinkedIn](https://www.linkedin.com/company/parallel-web/about/) [LinkedIn] (https://www.linkedin.com/company/parallel-web/about/) [Twitter](https://x.com/p0) [Twitter] (https://x.com/p0)
-
-Parallel Web Systems Inc. 2025
+Full documentation for the TypeScript SDK is available [here](https://www.npmjs.com/package/parallel-web). The SDK is open source - contributions, feedback, and issue reports are welcome via [GitHub](https://github.com/parallel-web/parallel-sdk-typescript).

@@ -1,21 +1,73 @@
-I can do that, but I can’t directly fetch or browse that GitHub URL from here. If you paste the contents of the `src/` files (or upload a zip / provide the repo as text), I’ll generate a single consolidated `index.d.ts` that:
+I can do this, but I can’t directly fetch the contents of that GitHub URL from here. If you paste (or upload) the `src` directory contents (or a zip), I’ll generate a single consolidated `index.d.ts` that preserves **all doc-comments 1:1**.
 
-- Exposes the full public surface area (types, interfaces, classes, functions, exports).
-- Preserves **all existing doc-comments 1:1** (copied verbatim, no edits).
-- Resolves re-exports into one file so an LLM can “see” the complete API footprint at a glance.
+In the meantime, here’s the exact way to do it quickly on your side, plus the format I’ll output.
 
-### What I need from you
-Pick one option:
+## Option A (fastest): paste a tar/zip
+From the repo root:
 
-1) **Upload a zip** of `src/` (best), or  
-2) Paste the files (especially `src/index.ts` plus everything it exports), or  
-3) Paste the output of:
-   - `tree -a src`
-   - and then the contents of each `.ts` file.
+```bash
+git clone https://github.com/parallel-web/parallel-sdk-typescript.git
+cd parallel-sdk-typescript
+tar -czf src.tgz src
+```
 
-### Notes / preferences (tell me if any apply)
-- Target module style: `export =` / `export default` vs pure ES `export` (I’ll mirror the repo).
-- Include internal/private symbols or only what’s exported from the package entrypoint (default: only public exports).
-- If there are runtime values (constants/classes) I’ll declare them in `.d.ts` as appropriate.
+Upload `src.tgz` here.
 
-Once you provide the source, I’ll return a **single `.d.ts` file** in one code block.
+## Option B: paste files as text
+Paste the contents of all `src/**/*.ts` (and any existing `*.d.ts`) files.
+
+## Option C: I generate via a local script you run
+If you prefer, run this and paste me the generated `parallel-sdk.d.ts`:
+
+### 1) Install
+```bash
+cd parallel-sdk-typescript
+npm i
+npm i -D typescript
+```
+
+### 2) Create `tsconfig.types.json`
+```json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "declarationMap": false,
+    "stripInternal": false,
+    "outFile": "parallel-sdk.d.ts",
+    "baseUrl": ".",
+    "rootDir": "src",
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"]
+}
+```
+
+### 3) Emit a single `.d.ts`
+```bash
+npx tsc -p tsconfig.types.json
+```
+
+Then paste `parallel-sdk.d.ts` here and I’ll:
+- ensure it’s a **single-file footprint**
+- **keep doc comments exactly as emitted / available**
+- optionally **flatten/re-export** symbols so an LLM sees a clean API surface
+
+---
+
+## What I will deliver (once I have the source)
+A single file, e.g. `parallel-sdk.d.ts`, that:
+- includes all exported types/classes/functions/interfaces from `src`
+- preserves doc comments **verbatim**
+- resolves barrel exports (`index.ts`) so the surface area is easy to read
+- avoids implementation details (types only)
+
+---
+
+### Quick questions (so I match your intent)
+1) Do you want the footprint to reflect **public exports only** (what consumers can import), or **everything in `src`** even if not exported?
+2) Should I include `node_modules`/dependency types? (Usually: no.)
+
+Send the `src` archive or file contents and I’ll produce the consolidated `.d.ts`.

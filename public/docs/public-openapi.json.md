@@ -1492,145 +1492,19 @@
         ]
       }
     },
-    "/v1beta/tasks/runs/{run_id}/events": {
-      "get": {
-        "tags": [
-          "Tasks"
-        ],
-        "summary": "Stream Task Run Events",
-        "description": "Streams events for a task run.\n\nReturns a stream of events showing progress updates and state changes for the task\nrun.\n\nFor task runs that did not have enable_events set to true during creation, the\nfrequency of events will be reduced.",
-        "operationId": "tasks_runs_events_get_v1beta_tasks_runs__run_id__events_get",
-        "parameters": [
-          {
-            "name": "run_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Run Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "text/event-stream": {
-                "schema": {
-                  "oneOf": [
-                    {
-                      "$ref": "#/components/schemas/TaskRunProgressStatsEvent"
-                    },
-                    {
-                      "$ref": "#/components/schemas/TaskRunProgressMessageEvent"
-                    },
-                    {
-                      "$ref": "#/components/schemas/TaskRunEvent"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ErrorEvent"
-                    }
-                  ],
-                  "discriminator": {
-                    "propertyName": "type",
-                    "mapping": {
-                      "task_run.progress_stats": "#/components/schemas/TaskRunProgressStatsEvent",
-                      "task_run.progress_msg.plan": "#/components/schemas/TaskRunProgressMessageEvent",
-                      "task_run.progress_msg.search": "#/components/schemas/TaskRunProgressMessageEvent",
-                      "task_run.progress_msg.result": "#/components/schemas/TaskRunProgressMessageEvent",
-                      "task_run.progress_msg.tool_call": "#/components/schemas/TaskRunProgressMessageEvent",
-                      "task_run.progress_msg.exec_status": "#/components/schemas/TaskRunProgressMessageEvent",
-                      "task_run.state": "#/components/schemas/TaskRunEvent",
-                      "error": "#/components/schemas/ErrorEvent"
-                    }
-                  },
-                  "title": "Response 200 Tasks Runs Events Get V1Beta Tasks Runs  Run Id  Events Get"
-                },
-                "example": {
-                  "type": "task_run.progress_msg.plan",
-                  "message": "Planning task...",
-                  "timestamp": "2025-04-23T20:21:48.037943Z"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized: invalid or missing credentials",
-            "content": {
-              "application/json": {
-                "example": {
-                  "type": "error",
-                  "error": {
-                    "ref_id": "fcb2b4f3-c75e-4186-87bc-caa1a8381331",
-                    "message": "Unauthorized: invalid or missing credentials"
-                  }
-                },
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Run id not found",
-            "content": {
-              "application/json": {
-                "example": {
-                  "type": "error",
-                  "error": {
-                    "ref_id": "fcb2b4f3-c75e-4186-87bc-caa1a8381331",
-                    "message": "Run id not found"
-                  }
-                },
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Request validation error",
-            "content": {
-              "application/json": {
-                "example": {
-                  "type": "error",
-                  "error": {
-                    "ref_id": "fcb2b4f3-c75e-4186-87bc-caa1a8381331",
-                    "message": "Request validation error"
-                  }
-                },
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          }
-        },
-        "x-code-samples": [
-          {
-            "lang": "Python",
-            "source": "from parallel import Parallel\n\nclient = Parallel()\n\nevents = client.beta.task_run.events(run_id=\"run_id\")\nfor event in events:\n    print(event)\n"
-          },
-          {
-            "lang": "TypeScript",
-            "source": "import Parallel from \"parallel-web\";\n\nconst client = new Parallel();\n\nconst events = await client.beta.taskRun.events(\n    'run_id',\n);\nfor await (const event of events) {\n    console.log(event);\n}\n"
-          }
-        ]
-      }
-    },
-    "/v1beta/findall/candidates": {
+    "/v1beta/findall/entity-search": {
       "post": {
         "tags": [
           "FindAll"
         ],
-        "summary": "Generate FindAll Candidates",
-        "description": "Return ranked entity candidates matching a natural language objective.\n\nThis endpoint performs a best-effort search optimised for low latency.\nFor comprehensive match evaluation and enrichment, use the\n[FindAll API](https://docs.parallel.ai/findall-api/findall-quickstart).",
-        "operationId": "findall_candidates_v1beta_findall_candidates_post",
+        "summary": "Fast Entity Search",
+        "description": "Return ranked entities matching a natural language objective.\n\nThis endpoint performs a best-effort search optimized for low latency. To keep\nresponses fast, it returns a fixed set of attributes and supports queries of\nlimited complexity.\n\nFor comprehensive match evaluation and enrichment, use the\n[FindAll API](https://docs.parallel.ai/findall-api/findall-quickstart).",
+        "operationId": "findall_entity_search_v1beta_findall_entity_search_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/FindAllCandidatesRequest"
+                "$ref": "#/components/schemas/FindAllEntitySearchRequest"
               }
             }
           },
@@ -1642,7 +1516,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FindAllCandidatesResponse"
+                  "$ref": "#/components/schemas/FindAllEntitySearchResponse"
                 }
               }
             }
@@ -1661,11 +1535,11 @@
         "x-code-samples": [
           {
             "lang": "Python",
-            "source": "from parallel import Parallel\n\nclient = Parallel()\n\ncandidates = client.beta.findall.candidates(\n    entity_type=\"company\",\n    objective=\"AI startups that raised Series A in 2024\",\n    match_limit=100,\n)\n\nfor candidate in candidates.candidates:\n    print(f\"{candidate.name}: {candidate.url}\")"
+            "source": "from parallel import Parallel\n\nclient = Parallel()\n\nresponse = client.beta.findall.entity_search(\n    entity_type=\"companies\",\n    objective=\"AI startups that raised Series A in 2024\",\n    match_limit=100,\n)\n\nfor entity in response.entities:\n    print(f\"{entity.name}: {entity.url}\")"
           },
           {
             "lang": "TypeScript",
-            "source": "import Parallel from \"parallel-web\";\n\nconst client = new Parallel();\n\nconst candidates = await client.beta.findall.candidates({\n    entity_type: \"company\",\n    objective: \"AI startups that raised Series A in 2024\",\n    match_limit: 100,\n});\n\nfor (const candidate of candidates.candidates) {\n    console.log(`${candidate.name}: ${candidate.url}`);\n}"
+            "source": "import Parallel from \"parallel-web\";\n\nconst client = new Parallel();\n\nconst response = await client.beta.findall.entity_search({\n    entity_type: \"companies\",\n    objective: \"AI startups that raised Series A in 2024\",\n    match_limit: 100,\n});\n\nfor (const entity of response.entities) {\n    console.log(`${entity.name}: ${entity.url}`);\n}"
           }
         ]
       }
@@ -1676,7 +1550,7 @@
           "FindAll"
         ],
         "summary": "Ingest FindAll Run",
-        "description": "Transforms a natural language search objective into a structured FindAll spec.\n\nNote: Access to this endpoint requires the parallel-beta header.\n\nThe generated specification serves as a suggested starting point and can be further\ncustomized by the user.",
+        "description": "Transforms a natural language search objective into a structured FindAll spec.\n\nThe generated specification serves as a suggested starting point and can be further\ncustomized by the user.",
         "operationId": "ingest_findall_run_v1beta_findall_ingest_post",
         "parameters": [
           {
@@ -1692,6 +1566,7 @@
                   "type": "null"
                 }
               ],
+              "deprecated": true,
               "title": "Parallel-Beta",
               "x-stainless-override-schema": {
                 "x-stainless-param": "betas",
@@ -1702,7 +1577,8 @@
                   "$ref": "#/components/schemas/ParallelBeta"
                 }
               }
-            }
+            },
+            "deprecated": true
           }
         ],
         "requestBody": {
@@ -1786,6 +1662,7 @@
                   "type": "null"
                 }
               ],
+              "deprecated": true,
               "title": "Parallel-Beta",
               "x-stainless-override-schema": {
                 "x-stainless-param": "betas",
@@ -1796,7 +1673,8 @@
                   "$ref": "#/components/schemas/ParallelBeta"
                 }
               }
-            }
+            },
+            "deprecated": true
           }
         ],
         "requestBody": {
@@ -1930,6 +1808,7 @@
                   "type": "null"
                 }
               ],
+              "deprecated": true,
               "title": "Parallel-Beta",
               "x-stainless-override-schema": {
                 "x-stainless-param": "betas",
@@ -1940,7 +1819,8 @@
                   "$ref": "#/components/schemas/ParallelBeta"
                 }
               }
-            }
+            },
+            "deprecated": true
           }
         ],
         "responses": {
@@ -2008,6 +1888,7 @@
                   "type": "null"
                 }
               ],
+              "deprecated": true,
               "title": "Parallel-Beta",
               "x-stainless-override-schema": {
                 "x-stainless-param": "betas",
@@ -2018,7 +1899,8 @@
                   "$ref": "#/components/schemas/ParallelBeta"
                 }
               }
-            }
+            },
+            "deprecated": true
           }
         ],
         "responses": {
@@ -2113,6 +1995,7 @@
                   "type": "null"
                 }
               ],
+              "deprecated": true,
               "title": "Parallel-Beta",
               "x-stainless-override-schema": {
                 "x-stainless-param": "betas",
@@ -2123,7 +2006,8 @@
                   "$ref": "#/components/schemas/ParallelBeta"
                 }
               }
-            }
+            },
+            "deprecated": true
           }
         ],
         "requestBody": {
@@ -2286,6 +2170,7 @@
                   "type": "null"
                 }
               ],
+              "deprecated": true,
               "title": "Parallel-Beta",
               "x-stainless-override-schema": {
                 "x-stainless-param": "betas",
@@ -2296,7 +2181,8 @@
                   "$ref": "#/components/schemas/ParallelBeta"
                 }
               }
-            }
+            },
+            "deprecated": true
           }
         ],
         "responses": {
@@ -2420,6 +2306,7 @@
                   "type": "null"
                 }
               ],
+              "deprecated": true,
               "title": "Parallel-Beta",
               "x-stainless-override-schema": {
                 "x-stainless-param": "betas",
@@ -2430,7 +2317,8 @@
                   "$ref": "#/components/schemas/ParallelBeta"
                 }
               }
-            }
+            },
+            "deprecated": true
           }
         ],
         "requestBody": {
@@ -2561,6 +2449,7 @@
                   "type": "null"
                 }
               ],
+              "deprecated": true,
               "title": "Parallel-Beta",
               "x-stainless-override-schema": {
                 "x-stainless-param": "betas",
@@ -2571,7 +2460,8 @@
                   "$ref": "#/components/schemas/ParallelBeta"
                 }
               }
-            }
+            },
+            "deprecated": true
           }
         ],
         "responses": {
@@ -2699,6 +2589,7 @@
                   "type": "null"
                 }
               ],
+              "deprecated": true,
               "title": "Parallel-Beta",
               "x-stainless-override-schema": {
                 "x-stainless-param": "betas",
@@ -2709,7 +2600,8 @@
                   "$ref": "#/components/schemas/ParallelBeta"
                 }
               }
-            }
+            },
+            "deprecated": true
           }
         ],
         "responses": {
@@ -3091,7 +2983,7 @@
           "Monitor"
         ],
         "summary": "Cancel Monitor",
-        "description": "Cancel a monitor.\n\nPermanently stops the monitor from running. Cancellation is irreversible —\ncreate a new monitor to resume monitoring. Cancelling an already-cancelled\nmonitor is a no-op.",
+        "description": "Cancel a monitor.\n\nPermanently stops the monitor from running. Cancellation is irreversible \u2014\ncreate a new monitor to resume monitoring. Cancelling an already-cancelled\nmonitor is a no-op.",
         "operationId": "cancel_monitor_v1_monitors__monitor_id__cancel_post",
         "parameters": [
           {
@@ -3434,7 +3326,7 @@
           "Monitor"
         ],
         "summary": "Update Monitor",
-        "description": "Update a monitor.\n\nOnly fields explicitly included in the request body are changed. Pass\n`null` for `webhook` or `metadata` to clear those fields. Pass `type` and\n`settings` to update type-specific settings on an `event_stream` monitor.\nAt least one field must be provided. Cancelled monitors cannot be updated.",
+        "description": "Update a monitor.\n\nOnly fields explicitly included in the request body are changed. Pass\n`null` to clear `webhook`, `metadata`, or `settings.advanced_settings`;\nevery other field rejects `null`, so omit it to leave it unchanged. Pass\n`type` and `settings` to update type-specific settings on an\n`event_stream` monitor. Pass `processor` to change the processor used by\nsubsequent monitor runs. At least one field must be provided. Cancelled\nmonitors cannot be updated.",
         "operationId": "update_monitor_v1_monitors__monitor_id__update_post",
         "parameters": [
           {
@@ -3523,13 +3415,125 @@
         "x-code-samples": [
           {
             "lang": "Python",
-            "source": "from parallel import Parallel\n\nclient = Parallel()\n\nmonitor = client.monitor.update(\n    \"monitor_id\",\n    frequency=\"12h\",\n)\nprint(monitor.frequency)"
+            "source": "from parallel import Parallel\n\nclient = Parallel()\n\nmonitor = client.monitor.update(\n    \"monitor_id\",\n    frequency=\"12h\",\n    type=\"event_stream\",\n    settings={\"query\": \"Extract recent funding news about AI startups\"},\n)\nprint(monitor.frequency)"
           },
           {
             "lang": "TypeScript",
-            "source": "import Parallel from \"parallel-web\";\n\nconst client = new Parallel();\n\nconst monitor = await client.monitor.update('monitor_id', {\n    frequency: '12h',\n});\nconsole.log(monitor.frequency);"
+            "source": "import Parallel from \"parallel-web\";\n\nconst client = new Parallel();\n\nconst monitor = await client.monitor.update('monitor_id', {\n    frequency: '12h',\n    type: 'event_stream',\n    settings: { query: 'Extract recent funding news about AI startups' },\n});\nconsole.log(monitor.frequency);"
           }
         ]
+      }
+    },
+    "/v1beta/memory/clear": {
+      "post": {
+        "tags": [
+          "Memory"
+        ],
+        "summary": "Clear Memory",
+        "description": "Clears all entries from the selected memory without deleting the underlying tasks, monitors, or FindAll runs.",
+        "operationId": "clear_memory_v1beta_memory_clear_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MemoryClearRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Memory cleared."
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1beta/memory/evict": {
+      "post": {
+        "tags": [
+          "Memory"
+        ],
+        "summary": "Evict from Memory",
+        "description": "Removes a task run, monitor, or FindAll run from the selected memory without deleting the original resource.",
+        "operationId": "evict_memory_source_v1beta_memory_evict_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MemoryEvictRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Source removed from memory."
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1beta/memory/retrieve": {
+      "post": {
+        "tags": [
+          "Memory"
+        ],
+        "summary": "Retrieve Memory",
+        "description": "Retrieves relevant or recent runs from the selected memory. Provide a query to rank results by relevance; leave it empty to return the most recent runs.",
+        "operationId": "retrieve_memory_v1beta_memory_retrieve_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MemoryRetrieveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemoryRetrieveResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/v1beta/chat/completions": {
@@ -3562,6 +3566,53 @@
               "text/event-stream": {
                 "schema": {
                   "$ref": "#/components/schemas/ChatCompletionResponseChunk"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/responses": {
+      "post": {
+        "tags": [
+          "Responses API"
+        ],
+        "summary": "Create Response",
+        "description": "Create a response.\n\nGenerates an answer to the given input, grounded in live web research and\nannotated with URL citations. Set `model` to `parallel`; `reasoning.effort`\n(`low`/`medium`/`high`) controls how much research is performed, trading\nresponse time for answer quality. Returns an OpenAI-format `Response` as\n`application/json`, or a `text/event-stream` of OpenAI Responses SSE\nevents when `stream=true`.",
+        "operationId": "create_response_v1_responses_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResponseCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns a Response object for non-streaming requests (application/json), or a stream of OpenAI Responses streaming events (text/event-stream) when `stream=true` is set in the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              },
+              "text/event-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseStreamEvent"
                 }
               }
             }
@@ -3636,18 +3687,20 @@
                 "type": "null"
               }
             ],
-            "description": "Domain filtering preferences: preferred and disallowed domains for monitor search results.",
+            "description": "Source policy governing included and excluded domains or domain/path prefixes for monitor search results.",
             "examples": [
+              {
+                "include_domains": [
+                  "wikipedia.org",
+                  "docs.python.org/3",
+                  ".edu"
+                ]
+              },
               {
                 "exclude_domains": [
                   "reddit.com",
-                  "x.com",
+                  "youtube.com/shorts",
                   ".ai"
-                ],
-                "include_domains": [
-                  "wikipedia.org",
-                  "usa.gov",
-                  ".edu"
                 ]
               }
             ]
@@ -3686,7 +3739,7 @@
                 "type": "null"
               }
             ],
-            "description": "Domain and date filtering preferences for search results."
+            "description": "Included and excluded domain, path, and date filters for search results. Domain path prefixes are not supported in Turbo mode."
           },
           "fetch_policy": {
             "anyOf": [
@@ -3760,32 +3813,6 @@
         "title": "AutoSchema",
         "description": "Auto schema for a task input or output."
       },
-      "CandidateItem": {
-        "properties": {
-          "name": {
-            "type": "string",
-            "title": "Name",
-            "description": "Entity name."
-          },
-          "url": {
-            "type": "string",
-            "title": "Url",
-            "description": "Canonical URL for the entity."
-          },
-          "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "Descriptive text about the entity."
-          }
-        },
-        "type": "object",
-        "required": [
-          "name",
-          "url",
-          "description"
-        ],
-        "title": "CandidateItem"
-      },
       "ChatCompletion": {
         "properties": {
           "id": {
@@ -3812,6 +3839,16 @@
             "type": "string",
             "const": "chat.completion",
             "title": "Object"
+          },
+          "moderation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/openai__types__chat__chat_completion__Moderation"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "service_tier": {
             "anyOf": [
@@ -4154,6 +4191,7 @@
       },
       "ChoiceLogprobs": {
         "additionalProperties": true,
+        "description": "Log probability information for the choice.",
         "properties": {
           "content": {
             "anyOf": [
@@ -4235,6 +4273,7 @@
       },
       "CompletionTokensDetails": {
         "additionalProperties": true,
+        "description": "Breakdown of tokens used in a completion.",
         "properties": {
           "accepted_prediction_tokens": {
             "anyOf": [
@@ -4290,6 +4329,7 @@
       },
       "CompletionUsage": {
         "additionalProperties": true,
+        "description": "Usage statistics for the completion request.",
         "properties": {
           "completion_tokens": {
             "title": "Completion Tokens",
@@ -4403,6 +4443,21 @@
               }
             ]
           },
+          "memory_scope_key": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1,
+                "pattern": "^[a-zA-Z0-9_-]+$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Memory Scope Key",
+            "description": "User-provided key identifying the memory scope to use. Omit to use personal memory, if available."
+          },
           "settings": {
             "anyOf": [
               {
@@ -4459,6 +4514,32 @@
         "type": "object",
         "title": "CreateTaskGroupRequest",
         "description": "Request to create a task group."
+      },
+      "EntityItem": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "Entity name."
+          },
+          "url": {
+            "type": "string",
+            "title": "Url",
+            "description": "Canonical URL for the entity."
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "Descriptive text about the entity."
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "url",
+          "description"
+        ],
+        "title": "EntityItem"
       },
       "Error": {
         "properties": {
@@ -4632,7 +4713,7 @@
             "title": "Timeout Seconds",
             "description": "Timeout in seconds for fetching live content if unavailable in cache.",
             "examples": [
-              60
+              60.0
             ]
           },
           "disable_cache_fallback": {
@@ -4832,61 +4913,6 @@
         "title": "FindAllCandidateMetrics",
         "description": "Metrics object for FindAll run."
       },
-      "FindAllCandidatesRequest": {
-        "properties": {
-          "entity_type": {
-            "type": "string",
-            "enum": [
-              "company",
-              "people"
-            ],
-            "title": "Entity Type",
-            "description": "Type of entity to search for."
-          },
-          "objective": {
-            "type": "string",
-            "title": "Objective",
-            "description": "Natural language description of target entities."
-          },
-          "match_limit": {
-            "type": "integer",
-            "maximum": 1000,
-            "minimum": 5,
-            "title": "Match Limit",
-            "description": "Maximum number of candidates to return. Must be between 5 and 1000 (inclusive). May return fewer results. Defaults to 100.",
-            "default": 100
-          }
-        },
-        "type": "object",
-        "required": [
-          "entity_type",
-          "objective"
-        ],
-        "title": "FindAllCandidatesRequest"
-      },
-      "FindAllCandidatesResponse": {
-        "properties": {
-          "candidate_set_id": {
-            "type": "string",
-            "title": "Candidate Set Id",
-            "description": "Candidate set request ID. Example: `candidate_set_cad0a6d2dec046bd95ae900527d880e7`"
-          },
-          "candidates": {
-            "items": {
-              "$ref": "#/components/schemas/CandidateItem"
-            },
-            "type": "array",
-            "title": "Candidates",
-            "description": "Ranked list of entity candidates."
-          }
-        },
-        "type": "object",
-        "required": [
-          "candidate_set_id",
-          "candidates"
-        ],
-        "title": "FindAllCandidatesResponse"
-      },
       "FindAllEnrichInput": {
         "properties": {
           "processor": {
@@ -4922,6 +4948,61 @@
         "title": "FindAllEnrichInput",
         "description": "Input model for FindAll enrich."
       },
+      "FindAllEntitySearchRequest": {
+        "properties": {
+          "entity_type": {
+            "type": "string",
+            "enum": [
+              "people",
+              "companies"
+            ],
+            "title": "Entity Type",
+            "description": "Type of entity to search for."
+          },
+          "objective": {
+            "type": "string",
+            "title": "Objective",
+            "description": "Natural language description of target entities."
+          },
+          "match_limit": {
+            "type": "integer",
+            "maximum": 1000.0,
+            "minimum": 5.0,
+            "title": "Match Limit",
+            "description": "Maximum number of entities to return. Must be between 5 and 1000 (inclusive). May return fewer results. Defaults to 100.",
+            "default": 100
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_type",
+          "objective"
+        ],
+        "title": "FindAllEntitySearchRequest"
+      },
+      "FindAllEntitySearchResponse": {
+        "properties": {
+          "entity_set_id": {
+            "type": "string",
+            "title": "Entity Set Id",
+            "description": "Entity set request ID. Example: `entity_set_cad0a6d2dec046bd95ae900527d880e7`"
+          },
+          "entities": {
+            "items": {
+              "$ref": "#/components/schemas/EntityItem"
+            },
+            "type": "array",
+            "title": "Entities",
+            "description": "Ranked list of entities."
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_set_id",
+          "entities"
+        ],
+        "title": "FindAllEntitySearchResponse"
+      },
       "FindAllExtendInput": {
         "properties": {
           "additional_match_limit": {
@@ -4936,6 +5017,45 @@
         ],
         "title": "FindAllExtendInput",
         "description": "Input model for FindAll extend."
+      },
+      "FindAllMemoryResult": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "findall",
+            "title": "Kind",
+            "default": "findall"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id",
+            "description": "ID of the FindAll run."
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At",
+            "description": "When the FindAll result was last updated, as an RFC 3339 timestamp."
+          },
+          "input_excerpt": {
+            "type": "string",
+            "title": "Input Excerpt",
+            "description": "Preview of the run's objective. May be truncated."
+          },
+          "matched_count": {
+            "type": "integer",
+            "title": "Matched Count",
+            "description": "Current number of matched entities."
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "updated_at",
+          "input_excerpt",
+          "matched_count"
+        ],
+        "title": "FindAllMemoryResult"
       },
       "FindAllRun": {
         "properties": {
@@ -5063,14 +5183,15 @@
                 "items": {
                   "$ref": "#/components/schemas/ExcludeCandidate"
                 },
-                "type": "array"
+                "type": "array",
+                "maxItems": 10000
               },
               {
                 "type": "null"
               }
             ],
             "title": "Exclude List",
-            "description": "List of entity names/IDs to exclude from results."
+            "description": "List of entity names/IDs to exclude from results. At most 10,000 entries are allowed."
           },
           "metadata": {
             "anyOf": [
@@ -5110,6 +5231,21 @@
               }
             ],
             "description": "Webhook for the FindAll run."
+          },
+          "memory_scope_key": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1,
+                "pattern": "^[a-zA-Z0-9_-]+$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Memory Scope Key",
+            "description": "User-provided key identifying the memory scope to use. Omit to use personal memory, if available."
           }
         },
         "type": "object",
@@ -5392,6 +5528,30 @@
         "type": "object",
         "title": "HTTPValidationError"
       },
+      "IncompleteDetails": {
+        "additionalProperties": true,
+        "description": "Details about why the response is incomplete.",
+        "properties": {
+          "reason": {
+            "anyOf": [
+              {
+                "enum": [
+                  "max_output_tokens",
+                  "content_filter"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Reason"
+          }
+        },
+        "title": "IncompleteDetails",
+        "type": "object"
+      },
       "IngestInput": {
         "properties": {
           "objective": {
@@ -5409,6 +5569,21 @@
         ],
         "title": "IngestInput",
         "description": "Input model for FindAll ingest."
+      },
+      "InputTokensDetails": {
+        "additionalProperties": true,
+        "description": "A detailed breakdown of the input tokens.",
+        "properties": {
+          "cached_tokens": {
+            "title": "Cached Tokens",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "cached_tokens"
+        ],
+        "title": "InputTokensDetails",
+        "type": "object"
       },
       "JSONSchema": {
         "properties": {
@@ -5441,7 +5616,8 @@
         "required": [
           "name"
         ],
-        "title": "JSONSchema"
+        "title": "JSONSchema",
+        "description": "Structured Outputs configuration options, including a JSON Schema."
       },
       "JsonSchema": {
         "properties": {
@@ -5622,6 +5798,465 @@
         "title": "McpToolCall",
         "description": "Result of an MCP tool call."
       },
+      "MemoryClearRequest": {
+        "properties": {
+          "memory_scope_key": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1,
+                "pattern": "^[a-zA-Z0-9_-]+$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Memory Scope Key",
+            "description": "User-provided key identifying the memory scope to use. Omit to use personal memory, if available."
+          }
+        },
+        "type": "object",
+        "title": "MemoryClearRequest"
+      },
+      "MemoryEvictRequest": {
+        "properties": {
+          "memory_scope_key": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1,
+                "pattern": "^[a-zA-Z0-9_-]+$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Memory Scope Key",
+            "description": "User-provided key identifying the memory scope to use. Omit to use personal memory, if available."
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "task",
+              "monitor",
+              "findall"
+            ],
+            "title": "Kind",
+            "description": "Kind of source to evict: `task`, `monitor`, or `findall`."
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_-]+$",
+            "title": "Id",
+            "description": "ID of the task run, monitor, or FindAll run to evict."
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "id"
+        ],
+        "title": "MemoryEvictRequest"
+      },
+      "MemoryRetrieveRequest": {
+        "properties": {
+          "query": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Query",
+            "description": "Concise query describing the memories to retrieve. Empty queries return the most recent memories."
+          },
+          "limit": {
+            "type": "integer",
+            "maximum": 25.0,
+            "minimum": 1.0,
+            "title": "Limit",
+            "description": "Maximum number of memories to return.",
+            "default": 10
+          },
+          "kind": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "task",
+                  "monitor",
+                  "findall"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kind",
+            "description": "Filter memories by kind: `task`, `monitor`, or `findall`."
+          },
+          "since": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "format": "date-time",
+            "title": "Since",
+            "description": "Only return memories sourced from task, monitor, or FindAll runs completed at or after this RFC 3339 timestamp.",
+            "examples": [
+              "2026-07-15T17:30:00Z"
+            ]
+          },
+          "memory_scope_key": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1,
+                "pattern": "^[a-zA-Z0-9_-]+$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Memory Scope Key",
+            "description": "User-provided key identifying the memory scope to use. Omit to use personal memory, if available."
+          }
+        },
+        "type": "object",
+        "title": "MemoryRetrieveRequest"
+      },
+      "MemoryRetrieveResponse": {
+        "properties": {
+          "results": {
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/TaskMemoryResult"
+                },
+                {
+                  "$ref": "#/components/schemas/MonitorMemoryResult"
+                },
+                {
+                  "$ref": "#/components/schemas/FindAllMemoryResult"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "kind",
+                "mapping": {
+                  "findall": "#/components/schemas/FindAllMemoryResult",
+                  "monitor": "#/components/schemas/MonitorMemoryResult",
+                  "task": "#/components/schemas/TaskMemoryResult"
+                }
+              }
+            },
+            "type": "array",
+            "title": "Results"
+          }
+        },
+        "type": "object",
+        "required": [
+          "results"
+        ],
+        "title": "MemoryRetrieveResponse"
+      },
+      "ModerationInputModerationResult": {
+        "additionalProperties": true,
+        "description": "A moderation result produced for the response input or output.",
+        "properties": {
+          "categories": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "title": "Categories",
+            "type": "object"
+          },
+          "category_applied_input_types": {
+            "additionalProperties": {
+              "items": {
+                "enum": [
+                  "text",
+                  "image"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "title": "Category Applied Input Types",
+            "type": "object"
+          },
+          "category_scores": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "title": "Category Scores",
+            "type": "object"
+          },
+          "flagged": {
+            "title": "Flagged",
+            "type": "boolean"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "type": {
+            "const": "moderation_result",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "categories",
+          "category_applied_input_types",
+          "category_scores",
+          "flagged",
+          "model",
+          "type"
+        ],
+        "title": "ModerationInputModerationResult",
+        "type": "object"
+      },
+      "ModerationInputModerationResults": {
+        "additionalProperties": true,
+        "description": "Successful moderation results for the request input or generated output.",
+        "properties": {
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/ModerationInputModerationResultsResult"
+            },
+            "title": "Results",
+            "type": "array"
+          },
+          "type": {
+            "const": "moderation_results",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "model",
+          "results",
+          "type"
+        ],
+        "title": "ModerationInputModerationResults",
+        "type": "object"
+      },
+      "ModerationInputModerationResultsResult": {
+        "additionalProperties": true,
+        "description": "A moderation result produced for the response input or output.",
+        "properties": {
+          "categories": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "title": "Categories",
+            "type": "object"
+          },
+          "category_applied_input_types": {
+            "additionalProperties": {
+              "items": {
+                "enum": [
+                  "text",
+                  "image"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "title": "Category Applied Input Types",
+            "type": "object"
+          },
+          "category_scores": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "title": "Category Scores",
+            "type": "object"
+          },
+          "flagged": {
+            "title": "Flagged",
+            "type": "boolean"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "type": {
+            "const": "moderation_result",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "categories",
+          "category_applied_input_types",
+          "category_scores",
+          "flagged",
+          "model",
+          "type"
+        ],
+        "title": "ModerationInputModerationResultsResult",
+        "type": "object"
+      },
+      "ModerationOutputModerationResult": {
+        "additionalProperties": true,
+        "description": "A moderation result produced for the response input or output.",
+        "properties": {
+          "categories": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "title": "Categories",
+            "type": "object"
+          },
+          "category_applied_input_types": {
+            "additionalProperties": {
+              "items": {
+                "enum": [
+                  "text",
+                  "image"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "title": "Category Applied Input Types",
+            "type": "object"
+          },
+          "category_scores": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "title": "Category Scores",
+            "type": "object"
+          },
+          "flagged": {
+            "title": "Flagged",
+            "type": "boolean"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "type": {
+            "const": "moderation_result",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "categories",
+          "category_applied_input_types",
+          "category_scores",
+          "flagged",
+          "model",
+          "type"
+        ],
+        "title": "ModerationOutputModerationResult",
+        "type": "object"
+      },
+      "ModerationOutputModerationResults": {
+        "additionalProperties": true,
+        "description": "Successful moderation results for the request input or generated output.",
+        "properties": {
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/ModerationOutputModerationResultsResult"
+            },
+            "title": "Results",
+            "type": "array"
+          },
+          "type": {
+            "const": "moderation_results",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "model",
+          "results",
+          "type"
+        ],
+        "title": "ModerationOutputModerationResults",
+        "type": "object"
+      },
+      "ModerationOutputModerationResultsResult": {
+        "additionalProperties": true,
+        "description": "A moderation result produced for the response input or output.",
+        "properties": {
+          "categories": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "title": "Categories",
+            "type": "object"
+          },
+          "category_applied_input_types": {
+            "additionalProperties": {
+              "items": {
+                "enum": [
+                  "text",
+                  "image"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "title": "Category Applied Input Types",
+            "type": "object"
+          },
+          "category_scores": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "title": "Category Scores",
+            "type": "object"
+          },
+          "flagged": {
+            "title": "Flagged",
+            "type": "boolean"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "type": {
+            "const": "moderation_result",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "categories",
+          "category_applied_input_types",
+          "category_scores",
+          "flagged",
+          "model",
+          "type"
+        ],
+        "title": "ModerationOutputModerationResultsResult",
+        "type": "object"
+      },
       "MonitorCompletionEvent": {
         "properties": {
           "event_type": {
@@ -5784,7 +6419,7 @@
               }
             ],
             "title": "Include Backfill",
-            "description": "If true, the first execution returns a sample of recent historical events matching the query (preview only — not exhaustive). If false or omitted, only events from the monitor's creation date onward are returned. Subsequent executions are always incremental."
+            "description": "If true, the first execution returns a sample of recent historical events matching the query (preview only \u2014 not exhaustive). If false or omitted, only events from the monitor's creation date onward are returned. Subsequent executions are always incremental."
           },
           "advanced_settings": {
             "anyOf": [
@@ -5836,7 +6471,7 @@
               }
             ],
             "title": "Include Backfill",
-            "description": "If true, the first execution returns a sample of recent historical events matching the query (preview only — not exhaustive). If false or omitted, only events from the monitor's creation date onward are returned. Subsequent executions are always incremental."
+            "description": "If true, the first execution returns a sample of recent historical events matching the query (preview only \u2014 not exhaustive). If false or omitted, only events from the monitor's creation date onward are returned. Subsequent executions are always incremental."
           },
           "advanced_settings": {
             "anyOf": [
@@ -5856,6 +6491,90 @@
         ],
         "title": "MonitorEventStreamSettings",
         "description": "Type-specific settings for an `event_stream` monitor."
+      },
+      "MonitorMemoryEvent": {
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "title": "Event Id",
+            "description": "ID of the monitor event."
+          },
+          "event_group_id": {
+            "type": "string",
+            "title": "Event Group Id",
+            "description": "ID of the execution that produced this event."
+          },
+          "detected_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Detected At",
+            "description": "When the event was detected, as an RFC 3339 timestamp."
+          },
+          "excerpt": {
+            "type": "string",
+            "title": "Excerpt",
+            "description": "Excerpt of the monitor event. May be truncated."
+          }
+        },
+        "type": "object",
+        "required": [
+          "event_id",
+          "event_group_id",
+          "detected_at",
+          "excerpt"
+        ],
+        "title": "MonitorMemoryEvent"
+      },
+      "MonitorMemoryResult": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "monitor",
+            "title": "Kind",
+            "default": "monitor"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id",
+            "description": "ID of the monitor."
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At",
+            "description": "When the monitor last ran, as an RFC 3339 timestamp."
+          },
+          "input_excerpt": {
+            "type": "string",
+            "title": "Input Excerpt",
+            "description": "Preview of the monitor's query. May be truncated."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "cancelled"
+            ],
+            "title": "Status",
+            "description": "Current status of the monitor."
+          },
+          "matched_events": {
+            "items": {
+              "$ref": "#/components/schemas/MonitorMemoryEvent"
+            },
+            "type": "array",
+            "title": "Matched Events",
+            "description": "Detected events matching the retrieval query, ordered by relevance with more recent events favored. For an empty query, events are ordered by recency."
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "updated_at",
+          "input_excerpt",
+          "status"
+        ],
+        "title": "MonitorMemoryResult"
       },
       "MonitorResponse": {
         "properties": {
@@ -6121,7 +6840,7 @@
               }
             ],
             "title": "Latest Snapshot",
-            "description": "Task run output from the most recent completed execution of this snapshot monitor — same structure as the output of the original task run the monitor was created from. `null` until the first run completes."
+            "description": "Task run output from the most recent completed execution of this snapshot monitor \u2014 same structure as the output of the original task run the monitor was created from. `null` until the first run completes."
           }
         },
         "type": "object",
@@ -6208,6 +6927,21 @@
         ],
         "title": "MonitorWebhook",
         "description": "Webhook configuration for a monitor."
+      },
+      "OutputTokensDetails": {
+        "additionalProperties": true,
+        "description": "A detailed breakdown of the output tokens.",
+        "properties": {
+          "reasoning_tokens": {
+            "title": "Reasoning Tokens",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "reasoning_tokens"
+        ],
+        "title": "OutputTokensDetails",
+        "type": "object"
       },
       "PaginatedMonitorEvents": {
         "properties": {
@@ -6308,6 +7042,7 @@
       },
       "PromptTokensDetails": {
         "additionalProperties": true,
+        "description": "Breakdown of tokens used in the prompt.",
         "properties": {
           "audio_tokens": {
             "anyOf": [
@@ -6337,6 +7072,529 @@
         "title": "PromptTokensDetails",
         "type": "object"
       },
+      "Response": {
+        "additionalProperties": true,
+        "description": "A response from the `parallel` model. A completed response contains a\nsingle assistant message whose text is annotated with URL citations\ngrounding the answer.",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "created_at": {
+            "title": "Created At",
+            "type": "number"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResponseError"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "incomplete_details": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/IncompleteDetails"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "instructions": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Instructions"
+          },
+          "metadata": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Metadata"
+          },
+          "model": {
+            "const": "parallel",
+            "default": "parallel",
+            "title": "Model",
+            "type": "string"
+          },
+          "object": {
+            "const": "response",
+            "title": "Object",
+            "type": "string"
+          },
+          "output": {
+            "items": {
+              "$ref": "#/components/schemas/ResponseOutputMessage"
+            },
+            "title": "Output",
+            "type": "array"
+          },
+          "parallel_tool_calls": {
+            "title": "Parallel Tool Calls",
+            "type": "boolean"
+          },
+          "temperature": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Temperature"
+          },
+          "tool_choice": {
+            "default": "auto",
+            "title": "Tool Choice",
+            "type": "string"
+          },
+          "tools": {
+            "default": [],
+            "items": {},
+            "title": "Tools",
+            "type": "array"
+          },
+          "top_p": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Top P"
+          },
+          "background": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Background"
+          },
+          "completed_at": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Completed At"
+          },
+          "conversation": {
+            "default": null,
+            "title": "Conversation",
+            "type": "null"
+          },
+          "max_output_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Max Output Tokens"
+          },
+          "max_tool_calls": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Max Tool Calls"
+          },
+          "moderation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Moderation"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "previous_response_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Previous Response Id"
+          },
+          "prompt": {
+            "default": null,
+            "title": "Prompt",
+            "type": "null"
+          },
+          "prompt_cache_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Prompt Cache Key"
+          },
+          "prompt_cache_retention": {
+            "anyOf": [
+              {
+                "enum": [
+                  "in_memory",
+                  "24h"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Prompt Cache Retention"
+          },
+          "reasoning": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResponseReasoningConfig"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "safety_identifier": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Safety Identifier"
+          },
+          "service_tier": {
+            "anyOf": [
+              {
+                "enum": [
+                  "auto",
+                  "default",
+                  "flex",
+                  "scale",
+                  "priority"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Service Tier"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "enum": [
+                  "completed",
+                  "failed",
+                  "in_progress",
+                  "cancelled",
+                  "queued",
+                  "incomplete"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Status"
+          },
+          "text": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResponseTextConfig"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "top_logprobs": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Top Logprobs"
+          },
+          "truncation": {
+            "anyOf": [
+              {
+                "enum": [
+                  "auto",
+                  "disabled"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Truncation"
+          },
+          "usage": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResponseUsage"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "user": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "User"
+          }
+        },
+        "required": [
+          "id",
+          "created_at",
+          "object",
+          "output",
+          "parallel_tool_calls"
+        ],
+        "title": "Response",
+        "type": "object"
+      },
+      "ResponseCreateRequest": {
+        "properties": {
+          "model": {
+            "type": "string",
+            "title": "Model",
+            "description": "The model to run. `parallel` is the only supported value (matched case-insensitively); any other value is rejected. To trade response time for answer quality, set `reasoning.effort` (low/medium/high) rather than changing the model name.",
+            "examples": [
+              "parallel"
+            ]
+          },
+          "input": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "items": {
+                  "$ref": "#/components/schemas/ResponseInputMessage"
+                },
+                "type": "array"
+              }
+            ],
+            "title": "Input",
+            "description": "The input to generate a response for: a plain string, or a list of role/content messages that includes at least one `user` message. Must be non-empty, and only text content is supported. `input` and `instructions` together may total at most 20,000 characters.",
+            "examples": [
+              "What are the latest developments in fusion energy?"
+            ]
+          },
+          "instructions": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Instructions",
+            "description": "System instructions for the model."
+          },
+          "previous_response_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Previous Response Id",
+            "description": "ID of a previous response to use as conversation context."
+          },
+          "stream": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stream",
+            "description": "Whether to stream the response."
+          },
+          "text": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResponseTextConfig"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Configuration for text output, including structured output."
+          },
+          "metadata": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object",
+                "maxProperties": 16
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metadata",
+            "description": "Arbitrary key-value pairs, echoed back on the Response object. Useful for tagging requests. At most 16 keys; keys up to 64 characters, values up to 512 characters."
+          },
+          "reasoning": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResponseReasoningConfig"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Reasoning configuration. `effort` (low/medium/high) controls how much research is performed; defaults to `medium`."
+          },
+          "background": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Background",
+            "description": "Background mode is not supported: requests with `background=true` are rejected with a 422 validation error. Use the Task API (POST /v1/tasks/runs) for long-running work."
+          }
+        },
+        "type": "object",
+        "required": [
+          "model",
+          "input"
+        ],
+        "title": "ResponseCreateRequest",
+        "description": "Request body for the Responses API (`POST /v1/responses`).\n\nOpenAI-Responses-compatible: point a standard OpenAI client at\n`https://api.parallel.ai/v1` with your Parallel API key and set `model` to\n`parallel`. The fields below are the ones Parallel acts on; other OpenAI\nrequest fields (`tools`, `tool_choice`, `temperature`, `top_p`,\n`max_output_tokens`, `parallel_tool_calls`, `truncation`, `store`, `user`,\n`include`) are accepted for compatibility but have no effect."
+      },
+      "ResponseError": {
+        "additionalProperties": true,
+        "description": "Details of a failed response.",
+        "properties": {
+          "code": {
+            "const": "server_error",
+            "description": "Error code; currently always \"server_error\".",
+            "title": "Code",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "ResponseError",
+        "type": "object"
+      },
+      "ResponseFormatJSONObject": {
+        "additionalProperties": true,
+        "description": "JSON object response format.\n\nAn older method of generating JSON responses.\nUsing `json_schema` is recommended for models that support it. Note that the\nmodel will not generate JSON without a system or user message instructing it\nto do so.",
+        "properties": {
+          "type": {
+            "const": "json_object",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "title": "ResponseFormatJSONObject",
+        "type": "object"
+      },
       "ResponseFormatJSONSchema": {
         "properties": {
           "json_schema": {
@@ -6353,7 +7611,352 @@
           "json_schema",
           "type"
         ],
-        "title": "ResponseFormatJSONSchema"
+        "title": "ResponseFormatJSONSchema",
+        "description": "JSON Schema response format.\n\nUsed to generate structured JSON responses.\nLearn more about [Structured Outputs](https://platform.openai.com/docs/guides/structured-outputs)."
+      },
+      "ResponseFormatText": {
+        "additionalProperties": true,
+        "description": "Default response format. Used to generate text responses.",
+        "properties": {
+          "type": {
+            "const": "text",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "title": "ResponseFormatText",
+        "type": "object"
+      },
+      "ResponseFormatTextJSONSchemaConfig": {
+        "additionalProperties": true,
+        "description": "JSON Schema output format: the response's output text conforms to `schema`.",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "schema": {
+            "additionalProperties": true,
+            "title": "Schema",
+            "type": "object"
+          },
+          "type": {
+            "const": "json_schema",
+            "title": "Type",
+            "type": "string"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Description"
+          },
+          "strict": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Strict"
+          }
+        },
+        "required": [
+          "name",
+          "schema",
+          "type"
+        ],
+        "title": "ResponseFormatTextJSONSchemaConfig",
+        "type": "object"
+      },
+      "ResponseInputContentPart": {
+        "properties": {
+          "type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type",
+            "description": "The content part type. Supported: `input_text`, `output_text`, and `text`. Multimodal types (`input_image`, `input_audio`, `input_file`) are rejected with a 422 error."
+          },
+          "text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text",
+            "description": "The text payload, when the part carries one."
+          }
+        },
+        "type": "object",
+        "title": "ResponseInputContentPart",
+        "description": "A single content part of a message, e.g.\n`{\"text\": \"hi\", \"type\": \"input_text\"}`. Only text parts are supported;\nrequests containing image, audio, or file parts fail with a 422 error."
+      },
+      "ResponseInputMessage": {
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": [
+              "user",
+              "assistant",
+              "system",
+              "developer"
+            ],
+            "title": "Role",
+            "description": "The role of the message author."
+          },
+          "content": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "items": {
+                  "$ref": "#/components/schemas/ResponseInputContentPart"
+                },
+                "type": "array"
+              }
+            ],
+            "title": "Content",
+            "description": "Text content of the message. Either a string or a list of content parts (`{text, type}` objects) for OpenAI SDK clients."
+          }
+        },
+        "type": "object",
+        "required": [
+          "role",
+          "content"
+        ],
+        "title": "ResponseInputMessage",
+        "description": "A single input message for the Responses API.\n\n`content` accepts either a bare string (`\"hi\"`) or the canonical OpenAI\nlist-of-parts (`[{\"text\": \"hi\", \"type\": \"input_text\"}]`)."
+      },
+      "ResponseOutputMessage": {
+        "additionalProperties": true,
+        "description": "An assistant message produced by the model.",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "content": {
+            "items": {
+              "$ref": "#/components/schemas/ResponseOutputText"
+            },
+            "title": "Content",
+            "type": "array"
+          },
+          "role": {
+            "const": "assistant",
+            "title": "Role",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "in_progress",
+              "completed",
+              "incomplete"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "type": {
+            "const": "message",
+            "title": "Type",
+            "type": "string"
+          },
+          "phase": {
+            "anyOf": [
+              {
+                "enum": [
+                  "commentary",
+                  "final_answer"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Phase"
+          }
+        },
+        "required": [
+          "id",
+          "content",
+          "role",
+          "status",
+          "type"
+        ],
+        "title": "ResponseOutputMessage",
+        "type": "object"
+      },
+      "ResponseOutputText": {
+        "additionalProperties": true,
+        "description": "A text content part of an output message. `annotations` carries the URL\ncitations grounding the answer.",
+        "properties": {
+          "annotations": {
+            "items": {
+              "$ref": "#/components/schemas/AnnotationURLCitation"
+            },
+            "title": "Annotations",
+            "type": "array"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          },
+          "type": {
+            "const": "output_text",
+            "title": "Type",
+            "type": "string"
+          },
+          "logprobs": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/openai__types__responses__response_output_text__Logprob"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Logprobs"
+          }
+        },
+        "required": [
+          "annotations",
+          "text",
+          "type"
+        ],
+        "title": "ResponseOutputText",
+        "type": "object"
+      },
+      "ResponseReasoningConfig": {
+        "description": "Reasoning configuration (OpenAI-compatible subset).",
+        "properties": {
+          "effort": {
+            "anyOf": [
+              {
+                "enum": [
+                  "low",
+                  "medium",
+                  "high"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Controls how much research is performed, trading response time for answer quality. Defaults to `medium` when omitted.",
+            "examples": [
+              "high"
+            ],
+            "title": "Effort"
+          }
+        },
+        "title": "ResponseReasoningConfig",
+        "type": "object"
+      },
+      "ResponseTextConfig": {
+        "additionalProperties": true,
+        "description": "Text output configuration. By default the response is plain text; for\nstructured output set `format` to\n`{\"type\": \"json_schema\", \"name\": ..., \"schema\": {...}}`. The `json_object`\nformat is accepted for compatibility but produces plain text.",
+        "properties": {
+          "format": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResponseFormatText"
+              },
+              {
+                "$ref": "#/components/schemas/ResponseFormatTextJSONSchemaConfig"
+              },
+              {
+                "$ref": "#/components/schemas/ResponseFormatJSONObject"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Format"
+          },
+          "verbosity": {
+            "anyOf": [
+              {
+                "enum": [
+                  "low",
+                  "medium",
+                  "high"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Verbosity"
+          }
+        },
+        "title": "ResponseTextConfig",
+        "type": "object"
+      },
+      "ResponseUsage": {
+        "additionalProperties": true,
+        "description": "Estimated token usage, populated for OpenAI SDK compatibility. Counts\nare approximate; Parallel bills per request, not per token.",
+        "properties": {
+          "input_tokens": {
+            "title": "Input Tokens",
+            "type": "integer"
+          },
+          "input_tokens_details": {
+            "$ref": "#/components/schemas/InputTokensDetails"
+          },
+          "output_tokens": {
+            "title": "Output Tokens",
+            "type": "integer"
+          },
+          "output_tokens_details": {
+            "$ref": "#/components/schemas/OutputTokensDetails"
+          },
+          "total_tokens": {
+            "title": "Total Tokens",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "input_tokens",
+          "input_tokens_details",
+          "output_tokens",
+          "output_tokens_details",
+          "total_tokens"
+        ],
+        "title": "ResponseUsage",
+        "type": "object"
       },
       "SourcePolicy": {
         "properties": {
@@ -6363,11 +7966,11 @@
             },
             "type": "array",
             "title": "Include Domains",
-            "description": "List of domains to restrict the results to. If specified, only sources from these domains will be included. Accepts plain domains (e.g., example.com, subdomain.example.gov) or bare domain extension starting with a period (e.g., .gov, .edu, .co.uk). The combined number of domains in include_domains and exclude_domains cannot exceed 200.",
+            "description": "List of domains or domain/path prefixes to restrict results to. If specified, only matching sources will be included and exclude_domains will be ignored. Accepts plain domains (e.g., wikipedia.org), domain/path prefixes (e.g., docs.python.org/3), or bare domain extensions (e.g., .gov, .edu, .co.uk). The combined number of entries in include_domains and exclude_domains cannot exceed 200.",
             "examples": [
               [
                 "wikipedia.org",
-                "usa.gov",
+                "docs.python.org/3",
                 ".edu"
               ]
             ]
@@ -6378,11 +7981,11 @@
             },
             "type": "array",
             "title": "Exclude Domains",
-            "description": "List of domains to exclude from results. If specified, sources from these domains will be excluded. Accepts plain domains (e.g., example.com, subdomain.example.gov) or bare domain extension starting with a period (e.g., .gov, .edu, .co.uk). The combined number of domains in include_domains and exclude_domains cannot exceed 200.",
+            "description": "List of domains or domain/path prefixes to exclude from results. Applied only when include_domains is empty. If specified, matching sources will be excluded. Accepts plain domains (e.g., reddit.com), domain/path prefixes (e.g., youtube.com/shorts), or bare domain extensions (e.g., .gov, .edu, .co.uk). The combined number of entries in include_domains and exclude_domains cannot exceed 200.",
             "examples": [
               [
                 "reddit.com",
-                "x.com",
+                "youtube.com/shorts",
                 ".ai"
               ]
             ]
@@ -6406,7 +8009,7 @@
         },
         "type": "object",
         "title": "SourcePolicy",
-        "description": "Source policy for web search results.\n\nThis policy governs which sources are allowed/disallowed in results."
+        "description": "Source policy for web search results.\n\nPlain domains match that domain and its subdomains. Domain/path entries use\ncase-sensitive path matching at segment boundaries; trailing slashes are ignored,\ndot segments are normalized, and other percent-encoded path spelling is preserved.\nEntries omit schemes, ports, query strings, and fragments. When include_domains is\nnon-empty, it defines the complete allowlist and exclude_domains is ignored."
       },
       "TaskAdvancedSettings": {
         "properties": {
@@ -6671,6 +8274,45 @@
         ],
         "title": "TaskGroupStatusEvent",
         "description": "Event indicating an update to group status."
+      },
+      "TaskMemoryResult": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "task",
+            "title": "Kind",
+            "default": "task"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id",
+            "description": "ID of the task run."
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At",
+            "description": "When the run completed, as an RFC 3339 timestamp."
+          },
+          "input_excerpt": {
+            "type": "string",
+            "title": "Input Excerpt",
+            "description": "Preview of the run's input. May be truncated."
+          },
+          "output_excerpt": {
+            "type": "string",
+            "title": "Output Excerpt",
+            "description": "Preview of the run's output. May be truncated."
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "updated_at",
+          "input_excerpt",
+          "output_excerpt"
+        ],
+        "title": "TaskMemoryResult"
       },
       "TaskRun": {
         "properties": {
@@ -6951,6 +8593,21 @@
             "title": "Metadata",
             "description": "User-provided metadata stored with the run. Keys and values must be strings with a maximum length of 16 and 512 characters respectively."
           },
+          "memory_scope_key": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1,
+                "pattern": "^[a-zA-Z0-9_-]+$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Memory Scope Key",
+            "description": "User-provided key identifying the memory scope to use. Omit to use personal memory, if available."
+          },
           "source_policy": {
             "anyOf": [
               {
@@ -6960,7 +8617,7 @@
                 "type": "null"
               }
             ],
-            "description": "Optional source policy governing preferred and disallowed domains in web search results."
+            "description": "Optional source policy governing included and excluded domains and domain/path prefixes in web search results."
           },
           "advanced_settings": {
             "anyOf": [
@@ -7068,7 +8725,7 @@
             },
             "type": "array",
             "title": "Basis",
-            "description": "Basis for each top-level field in the JSON output. Per-list-element basis entries are available only when the `parallel-beta: field-basis-2025-11-25` header is supplied."
+            "description": "Basis for each top-level field in the JSON output. List fields also include per-element entries with dot-delimited indexes, such as `key_executives.0`."
           },
           "type": {
             "type": "string",
@@ -7458,6 +9115,21 @@
       },
       "UpdateMonitorEventStreamSettings": {
         "properties": {
+          "query": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Query",
+            "description": "Updated search query for the monitor. Use this for minor updates to prompts and instructions only. Major changes to the query may lead to unexpected results in change detection, as the monitor compares new results with what was previously seen. Omit to keep the current query; `null` is rejected.",
+            "examples": [
+              "Extract recent news about AI"
+            ]
+          },
           "advanced_settings": {
             "anyOf": [
               {
@@ -7467,7 +9139,7 @@
                 "type": "null"
               }
             ],
-            "description": "Advanced monitor configuration."
+            "description": "Advanced monitor configuration. Pass `null` to clear it."
           }
         },
         "type": "object",
@@ -7490,7 +9162,7 @@
               }
             ],
             "title": "Type",
-            "description": "Type of the monitor being updated. Required when `settings` is provided; must be `event_stream` (snapshot monitors have no updatable type-specific settings).",
+            "description": "Type of the monitor being updated. Required when `settings` is provided; must be `event_stream` (snapshot monitors have no updatable type-specific settings). Omit when `settings` is not provided; `null` is rejected.",
             "examples": [
               "event_stream"
             ]
@@ -7505,13 +9177,33 @@
               }
             ],
             "title": "Frequency",
-            "description": "Frequency of the monitor. Format: '<number><unit>' where unit is 'h' (hours), 'd' (days), or 'w' (weeks). Must be between 1h and 30d (inclusive).",
+            "description": "Frequency of the monitor. Format: '<number><unit>' where unit is 'h' (hours), 'd' (days), or 'w' (weeks). Must be between 1h and 30d (inclusive). Omit to keep the current frequency; `null` is rejected.",
             "examples": [
               "1h",
               "12h",
               "1d",
               "7d",
               "30d"
+            ]
+          },
+          "processor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "lite",
+                  "base"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Processor",
+            "description": "Processor to use for subsequent monitor runs. `lite` is faster and cheaper; `base` performs more thorough analysis at higher cost and latency. Omit to keep the current processor; `null` is rejected.",
+            "examples": [
+              "lite",
+              "base"
             ]
           },
           "webhook": {
@@ -7555,12 +9247,12 @@
                 "type": "null"
               }
             ],
-            "description": "Type-specific settings to update. Only valid when `type` is `event_stream`. Pass `null` for `settings.advanced_settings` to clear it."
+            "description": "Type-specific settings to update. Only valid when `type` is `event_stream`. Pass `settings.query` to update the prompt, or `null` for `settings.advanced_settings` to clear it. Omit to leave type-specific settings unchanged; `null` is rejected."
           }
         },
         "type": "object",
         "title": "UpdateMonitorRequest",
-        "description": "Request body to update a monitor.\n\nOnly fields that are explicitly included in the request body are updated.\nPass `null` for `webhook` or `metadata` to clear those fields. To update\ntype-specific settings on an `event_stream` monitor, include `type` and\n`settings`; pass `null` for `settings.advanced_settings` to clear it.\nAt least one non-`type` field must be provided."
+        "description": "Request body to update a monitor.\n\nOnly fields that are explicitly included in the request body are updated.\n`null` clears a field, and is accepted only for the fields that can be\ncleared: `webhook`, `metadata`, and `settings.advanced_settings`. Every\nother field rejects `null`; omit it to leave the current value unchanged.\nTo update type-specific settings on an `event_stream` monitor, include\n`type` and `settings`; pass `settings.query` to update the prompt. If\n`settings` is provided, `type` is required to identify the settings shape.\nThe request must still include at least one field to update; empty updates\nfail validation."
       },
       "UsageItem": {
         "properties": {
@@ -7569,7 +9261,7 @@
             "title": "Name",
             "description": "Name of the SKU.",
             "examples": [
-              "sku_search_additional_results",
+              "sku_search",
               "sku_extract_excerpts"
             ]
           },
@@ -7602,7 +9294,7 @@
               }
             ],
             "title": "Max Chars Per Result",
-            "description": "Optional upper bound on the total number of characters to include per url. Excerpts may contain fewer characters than this limit to maximize relevance and token efficiency. Values below 1000 will be automatically set to 1000."
+            "description": "Optional upper bound on the total number of characters to include per url. Excerpts may contain fewer characters than this limit to maximize relevance and token efficiency."
           }
         },
         "additionalProperties": false,
@@ -7868,6 +9560,8 @@
               {
                 "type": "string",
                 "enum": [
+                  "turbo",
+                  "fast",
                   "basic",
                   "advanced"
                 ]
@@ -7877,7 +9571,7 @@
               }
             ],
             "title": "Mode",
-            "description": "Search mode preset: supported values are `basic` and `advanced`. Basic mode offers the lowest latency and works best with 2-3 high-quality search_queries. Advanced mode provides higher quality with more advanced retrieval and compression. Defaults to `advanced` when omitted."
+            "description": "Search mode preset: supported values are `turbo`, `fast`, `basic`, and `advanced`. Turbo mode is optimized for the fastest responses. Use Fast mode for high quality search within a 1-second latency budget. Basic mode offers low latency and works best with 2-3 high-quality search_queries. Advanced mode provides higher quality with more advanced retrieval and compression. Defaults to `advanced` when omitted."
           },
           "max_chars_total": {
             "anyOf": [
@@ -8155,6 +9849,92 @@
         "title": "Webhook",
         "description": "Webhooks for Task Runs."
       },
+      "openai__types__chat__chat_completion__Moderation": {
+        "properties": {
+          "input": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ModerationInputModerationResults"
+              },
+              {
+                "$ref": "#/components/schemas/openai__types__chat__chat_completion__ModerationInputError"
+              }
+            ],
+            "title": "Input"
+          },
+          "output": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ModerationOutputModerationResults"
+              },
+              {
+                "$ref": "#/components/schemas/openai__types__chat__chat_completion__ModerationOutputError"
+              }
+            ],
+            "title": "Output"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "input",
+          "output"
+        ],
+        "title": "Moderation",
+        "description": "Moderation results for the request input and generated output, if moderated\ncompletions were requested."
+      },
+      "openai__types__chat__chat_completion__ModerationInputError": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "const": "error",
+            "title": "Type"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "code",
+          "message",
+          "type"
+        ],
+        "title": "ModerationInputError",
+        "description": "An error produced while attempting moderation."
+      },
+      "openai__types__chat__chat_completion__ModerationOutputError": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "const": "error",
+            "title": "Type"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "code",
+          "message",
+          "type"
+        ],
+        "title": "ModerationOutputError",
+        "description": "An error produced while attempting moderation."
+      },
       "openai__types__shared_params__response_format_json_object__ResponseFormatJSONObject": {
         "properties": {
           "type": {
@@ -8167,7 +9947,8 @@
         "required": [
           "type"
         ],
-        "title": "ResponseFormatJSONObject"
+        "title": "ResponseFormatJSONObject",
+        "description": "JSON object response format.\n\nAn older method of generating JSON responses.\nUsing `json_schema` is recommended for models that support it. Note that the\nmodel will not generate JSON without a system or user message instructing it\nto do so."
       },
       "openai__types__shared_params__response_format_text__ResponseFormatText": {
         "properties": {
@@ -8181,7 +9962,8 @@
         "required": [
           "type"
         ],
-        "title": "ResponseFormatText"
+        "title": "ResponseFormatText",
+        "description": "Default response format. Used to generate text responses."
       },
       "ParallelBeta": {
         "anyOf": [
@@ -8205,6 +9987,7 @@
       },
       "ChoiceDelta": {
         "additionalProperties": true,
+        "description": "A chat completion delta generated by streamed model responses.",
         "properties": {
           "content": {
             "anyOf": [
@@ -8281,6 +10064,7 @@
       },
       "ChoiceDeltaFunctionCall": {
         "additionalProperties": true,
+        "description": "Deprecated and replaced by `tool_calls`.\n\nThe name and arguments of a function that should be called, as generated by the model.",
         "properties": {
           "arguments": {
             "anyOf": [
@@ -8391,16 +10175,96 @@
         "title": "ChoiceDeltaToolCallFunction",
         "type": "object"
       },
+      "Moderation": {
+        "additionalProperties": true,
+        "description": "Moderation results for the response input and output, if moderated completions were requested.",
+        "properties": {
+          "input": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ModerationInputModerationResult"
+              },
+              {
+                "$ref": "#/components/schemas/ModerationInputError"
+              }
+            ],
+            "title": "Input"
+          },
+          "output": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ModerationOutputModerationResult"
+              },
+              {
+                "$ref": "#/components/schemas/ModerationOutputError"
+              }
+            ],
+            "title": "Output"
+          }
+        },
+        "required": [
+          "input",
+          "output"
+        ],
+        "title": "Moderation",
+        "type": "object"
+      },
+      "ModerationInputError": {
+        "additionalProperties": true,
+        "description": "An error produced while attempting moderation for the response input or output.",
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "const": "error",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "type"
+        ],
+        "title": "ModerationInputError",
+        "type": "object"
+      },
+      "ModerationOutputError": {
+        "additionalProperties": true,
+        "description": "An error produced while attempting moderation for the response input or output.",
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "const": "error",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "type"
+        ],
+        "title": "ModerationOutputError",
+        "type": "object"
+      },
       "ChatCompletionResponseChunk": {
         "additionalProperties": true,
         "description": "Chat completion response chunk.",
         "properties": {
-          "type": {
-            "const": "chat.completion.chunk",
-            "description": "The type of the chat completion chunk. Always `chat.completion.chunk`.",
-            "title": "Type",
-            "type": "string"
-          },
           "id": {
             "description": "The id of the chat completion response chunk.",
             "title": "Id",
@@ -8425,6 +10289,17 @@
             "const": "chat.completion.chunk",
             "title": "Object",
             "type": "string"
+          },
+          "moderation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Moderation"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
           },
           "service_tier": {
             "anyOf": [
@@ -8468,6 +10343,12 @@
             ],
             "default": null
           },
+          "type": {
+            "const": "chat.completion.chunk",
+            "description": "The type of the chat completion chunk. Always `chat.completion.chunk`.",
+            "title": "Type",
+            "type": "string"
+          },
           "basis": {
             "default": [],
             "description": "Basis for the chat completion chunk, including citations and reasoning supporting the output.",
@@ -8492,15 +10373,687 @@
           }
         },
         "required": [
-          "type",
           "id",
           "choices",
           "created",
           "model",
-          "object"
+          "object",
+          "type"
         ],
         "title": "ChatCompletionResponseChunk",
         "type": "object"
+      },
+      "AnnotationURLCitation": {
+        "additionalProperties": true,
+        "description": "A citation for a web resource used to generate a model response.",
+        "properties": {
+          "end_index": {
+            "title": "End Index",
+            "type": "integer"
+          },
+          "start_index": {
+            "title": "Start Index",
+            "type": "integer"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "type": {
+            "const": "url_citation",
+            "title": "Type",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "end_index",
+          "start_index",
+          "title",
+          "type",
+          "url"
+        ],
+        "title": "AnnotationURLCitation",
+        "type": "object"
+      },
+      "ResponseCompletedEvent": {
+        "additionalProperties": true,
+        "properties": {
+          "response": {
+            "$ref": "#/components/schemas/Response"
+          },
+          "sequence_number": {
+            "title": "Sequence Number",
+            "type": "integer"
+          },
+          "type": {
+            "const": "response.completed",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "response",
+          "sequence_number",
+          "type"
+        ],
+        "title": "ResponseCompletedEvent",
+        "type": "object"
+      },
+      "ResponseContentPartAddedEvent": {
+        "additionalProperties": true,
+        "properties": {
+          "content_index": {
+            "title": "Content Index",
+            "type": "integer"
+          },
+          "item_id": {
+            "title": "Item Id",
+            "type": "string"
+          },
+          "output_index": {
+            "title": "Output Index",
+            "type": "integer"
+          },
+          "part": {
+            "$ref": "#/components/schemas/ResponseOutputText"
+          },
+          "sequence_number": {
+            "title": "Sequence Number",
+            "type": "integer"
+          },
+          "type": {
+            "const": "response.content_part.added",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "content_index",
+          "item_id",
+          "output_index",
+          "part",
+          "sequence_number",
+          "type"
+        ],
+        "title": "ResponseContentPartAddedEvent",
+        "type": "object"
+      },
+      "ResponseContentPartDoneEvent": {
+        "additionalProperties": true,
+        "properties": {
+          "content_index": {
+            "title": "Content Index",
+            "type": "integer"
+          },
+          "item_id": {
+            "title": "Item Id",
+            "type": "string"
+          },
+          "output_index": {
+            "title": "Output Index",
+            "type": "integer"
+          },
+          "part": {
+            "$ref": "#/components/schemas/ResponseOutputText"
+          },
+          "sequence_number": {
+            "title": "Sequence Number",
+            "type": "integer"
+          },
+          "type": {
+            "const": "response.content_part.done",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "content_index",
+          "item_id",
+          "output_index",
+          "part",
+          "sequence_number",
+          "type"
+        ],
+        "title": "ResponseContentPartDoneEvent",
+        "type": "object"
+      },
+      "ResponseCreatedEvent": {
+        "additionalProperties": true,
+        "properties": {
+          "response": {
+            "$ref": "#/components/schemas/Response"
+          },
+          "sequence_number": {
+            "title": "Sequence Number",
+            "type": "integer"
+          },
+          "type": {
+            "const": "response.created",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "response",
+          "sequence_number",
+          "type"
+        ],
+        "title": "ResponseCreatedEvent",
+        "type": "object"
+      },
+      "ResponseFailedEvent": {
+        "additionalProperties": true,
+        "properties": {
+          "response": {
+            "$ref": "#/components/schemas/Response"
+          },
+          "sequence_number": {
+            "title": "Sequence Number",
+            "type": "integer"
+          },
+          "type": {
+            "const": "response.failed",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "response",
+          "sequence_number",
+          "type"
+        ],
+        "title": "ResponseFailedEvent",
+        "type": "object"
+      },
+      "ResponseInProgressEvent": {
+        "additionalProperties": true,
+        "properties": {
+          "response": {
+            "$ref": "#/components/schemas/Response"
+          },
+          "sequence_number": {
+            "title": "Sequence Number",
+            "type": "integer"
+          },
+          "type": {
+            "const": "response.in_progress",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "response",
+          "sequence_number",
+          "type"
+        ],
+        "title": "ResponseInProgressEvent",
+        "type": "object"
+      },
+      "ResponseIncompleteEvent": {
+        "additionalProperties": true,
+        "properties": {
+          "response": {
+            "$ref": "#/components/schemas/Response"
+          },
+          "sequence_number": {
+            "title": "Sequence Number",
+            "type": "integer"
+          },
+          "type": {
+            "const": "response.incomplete",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "response",
+          "sequence_number",
+          "type"
+        ],
+        "title": "ResponseIncompleteEvent",
+        "type": "object"
+      },
+      "ResponseOutputItemAddedEvent": {
+        "additionalProperties": true,
+        "properties": {
+          "item": {
+            "$ref": "#/components/schemas/ResponseOutputMessage"
+          },
+          "output_index": {
+            "title": "Output Index",
+            "type": "integer"
+          },
+          "sequence_number": {
+            "title": "Sequence Number",
+            "type": "integer"
+          },
+          "type": {
+            "const": "response.output_item.added",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "item",
+          "output_index",
+          "sequence_number",
+          "type"
+        ],
+        "title": "ResponseOutputItemAddedEvent",
+        "type": "object"
+      },
+      "ResponseOutputItemDoneEvent": {
+        "additionalProperties": true,
+        "properties": {
+          "item": {
+            "$ref": "#/components/schemas/ResponseOutputMessage"
+          },
+          "output_index": {
+            "title": "Output Index",
+            "type": "integer"
+          },
+          "sequence_number": {
+            "title": "Sequence Number",
+            "type": "integer"
+          },
+          "type": {
+            "const": "response.output_item.done",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "item",
+          "output_index",
+          "sequence_number",
+          "type"
+        ],
+        "title": "ResponseOutputItemDoneEvent",
+        "type": "object"
+      },
+      "ResponseOutputTextAnnotationAddedEvent": {
+        "additionalProperties": true,
+        "properties": {
+          "annotation": {
+            "$ref": "#/components/schemas/AnnotationURLCitation"
+          },
+          "annotation_index": {
+            "title": "Annotation Index",
+            "type": "integer"
+          },
+          "content_index": {
+            "title": "Content Index",
+            "type": "integer"
+          },
+          "item_id": {
+            "title": "Item Id",
+            "type": "string"
+          },
+          "output_index": {
+            "title": "Output Index",
+            "type": "integer"
+          },
+          "sequence_number": {
+            "title": "Sequence Number",
+            "type": "integer"
+          },
+          "type": {
+            "const": "response.output_text.annotation.added",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "annotation",
+          "annotation_index",
+          "content_index",
+          "item_id",
+          "output_index",
+          "sequence_number",
+          "type"
+        ],
+        "title": "ResponseOutputTextAnnotationAddedEvent",
+        "type": "object"
+      },
+      "ResponseTextDeltaEvent": {
+        "additionalProperties": true,
+        "description": "Emitted when there is an additional text delta.",
+        "properties": {
+          "content_index": {
+            "title": "Content Index",
+            "type": "integer"
+          },
+          "delta": {
+            "title": "Delta",
+            "type": "string"
+          },
+          "item_id": {
+            "title": "Item Id",
+            "type": "string"
+          },
+          "logprobs": {
+            "items": {
+              "$ref": "#/components/schemas/openai__types__responses__response_text_delta_event__Logprob"
+            },
+            "title": "Logprobs",
+            "type": "array"
+          },
+          "output_index": {
+            "title": "Output Index",
+            "type": "integer"
+          },
+          "sequence_number": {
+            "title": "Sequence Number",
+            "type": "integer"
+          },
+          "type": {
+            "const": "response.output_text.delta",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "content_index",
+          "delta",
+          "item_id",
+          "logprobs",
+          "output_index",
+          "sequence_number",
+          "type"
+        ],
+        "title": "ResponseTextDeltaEvent",
+        "type": "object"
+      },
+      "ResponseTextDoneEvent": {
+        "additionalProperties": true,
+        "description": "Emitted when text content is finalized.",
+        "properties": {
+          "content_index": {
+            "title": "Content Index",
+            "type": "integer"
+          },
+          "item_id": {
+            "title": "Item Id",
+            "type": "string"
+          },
+          "logprobs": {
+            "items": {
+              "$ref": "#/components/schemas/openai__types__responses__response_text_done_event__Logprob"
+            },
+            "title": "Logprobs",
+            "type": "array"
+          },
+          "output_index": {
+            "title": "Output Index",
+            "type": "integer"
+          },
+          "sequence_number": {
+            "title": "Sequence Number",
+            "type": "integer"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          },
+          "type": {
+            "const": "response.output_text.done",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "content_index",
+          "item_id",
+          "logprobs",
+          "output_index",
+          "sequence_number",
+          "text",
+          "type"
+        ],
+        "title": "ResponseTextDoneEvent",
+        "type": "object"
+      },
+      "openai__types__responses__response_output_text__Logprob": {
+        "additionalProperties": true,
+        "description": "The log probability of a token.",
+        "properties": {
+          "token": {
+            "title": "Token",
+            "type": "string"
+          },
+          "bytes": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Bytes",
+            "type": "array"
+          },
+          "logprob": {
+            "title": "Logprob",
+            "type": "number"
+          },
+          "top_logprobs": {
+            "items": {
+              "$ref": "#/components/schemas/openai__types__responses__response_output_text__LogprobTopLogprob"
+            },
+            "title": "Top Logprobs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "token",
+          "bytes",
+          "logprob",
+          "top_logprobs"
+        ],
+        "title": "Logprob",
+        "type": "object"
+      },
+      "openai__types__responses__response_output_text__LogprobTopLogprob": {
+        "additionalProperties": true,
+        "description": "The top log probability of a token.",
+        "properties": {
+          "token": {
+            "title": "Token",
+            "type": "string"
+          },
+          "bytes": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Bytes",
+            "type": "array"
+          },
+          "logprob": {
+            "title": "Logprob",
+            "type": "number"
+          }
+        },
+        "required": [
+          "token",
+          "bytes",
+          "logprob"
+        ],
+        "title": "LogprobTopLogprob",
+        "type": "object"
+      },
+      "openai__types__responses__response_text_delta_event__Logprob": {
+        "additionalProperties": true,
+        "description": "A logprob is the logarithmic probability that the model assigns to producing\na particular token at a given position in the sequence. Less-negative (higher)\nlogprob values indicate greater model confidence in that token choice.",
+        "properties": {
+          "token": {
+            "title": "Token",
+            "type": "string"
+          },
+          "logprob": {
+            "title": "Logprob",
+            "type": "number"
+          },
+          "top_logprobs": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/openai__types__responses__response_text_delta_event__LogprobTopLogprob"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Top Logprobs"
+          }
+        },
+        "required": [
+          "token",
+          "logprob"
+        ],
+        "title": "Logprob",
+        "type": "object"
+      },
+      "openai__types__responses__response_text_delta_event__LogprobTopLogprob": {
+        "additionalProperties": true,
+        "properties": {
+          "token": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Token"
+          },
+          "logprob": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Logprob"
+          }
+        },
+        "title": "LogprobTopLogprob",
+        "type": "object"
+      },
+      "openai__types__responses__response_text_done_event__Logprob": {
+        "additionalProperties": true,
+        "description": "A logprob is the logarithmic probability that the model assigns to producing\na particular token at a given position in the sequence. Less-negative (higher)\nlogprob values indicate greater model confidence in that token choice.",
+        "properties": {
+          "token": {
+            "title": "Token",
+            "type": "string"
+          },
+          "logprob": {
+            "title": "Logprob",
+            "type": "number"
+          },
+          "top_logprobs": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/openai__types__responses__response_text_done_event__LogprobTopLogprob"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Top Logprobs"
+          }
+        },
+        "required": [
+          "token",
+          "logprob"
+        ],
+        "title": "Logprob",
+        "type": "object"
+      },
+      "openai__types__responses__response_text_done_event__LogprobTopLogprob": {
+        "additionalProperties": true,
+        "properties": {
+          "token": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Token"
+          },
+          "logprob": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Logprob"
+          }
+        },
+        "title": "LogprobTopLogprob",
+        "type": "object"
+      },
+      "ResponseStreamEvent": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/ResponseCreatedEvent"
+          },
+          {
+            "$ref": "#/components/schemas/ResponseInProgressEvent"
+          },
+          {
+            "$ref": "#/components/schemas/ResponseOutputItemAddedEvent"
+          },
+          {
+            "$ref": "#/components/schemas/ResponseContentPartAddedEvent"
+          },
+          {
+            "$ref": "#/components/schemas/ResponseTextDeltaEvent"
+          },
+          {
+            "$ref": "#/components/schemas/ResponseTextDoneEvent"
+          },
+          {
+            "$ref": "#/components/schemas/ResponseOutputTextAnnotationAddedEvent"
+          },
+          {
+            "$ref": "#/components/schemas/ResponseContentPartDoneEvent"
+          },
+          {
+            "$ref": "#/components/schemas/ResponseOutputItemDoneEvent"
+          },
+          {
+            "$ref": "#/components/schemas/ResponseCompletedEvent"
+          },
+          {
+            "$ref": "#/components/schemas/ResponseFailedEvent"
+          },
+          {
+            "$ref": "#/components/schemas/ResponseIncompleteEvent"
+          }
+        ],
+        "description": "An event in the Responses API SSE stream; `type` identifies the event.",
+        "title": "ResponseStreamEvent"
       }
     },
     "securitySchemes": {
@@ -8533,8 +11086,16 @@
       "description": "The Monitor API watches the web for material changes on a fixed frequency. Each monitor runs once on creation and then on its configured schedule, emitting events when meaningful changes are detected.\n- `event_stream` monitors track a search query and emit an event for each new material change.\n- `snapshot` monitors track a specific task run's output and emit an event when the output changes.\n\nResults can be polled via the events endpoint or delivered via webhooks."
     },
     {
+      "name": "Memory",
+      "description": "The Memory API retrieves and manages memories created by Tasks, Monitors, and FindAll runs. Memories can be personal or isolated with a `memory_scope_key`."
+    },
+    {
       "name": "Chat API (Beta)",
       "description": "The Chat API provides a programmatic chat-style text generation interface. It accepts a sequence of messages and returns model responses. Intended for assistant-like interactions and evaluation. Streaming responses are supported."
+    },
+    {
+      "name": "Responses API",
+      "description": "An OpenAI-Responses-compatible interface for answers grounded in live web research, with URL citations. Point any Responses-API client \u2014 the OpenAI Python SDK, OpenAI TypeScript SDK, the Agents SDK, or raw HTTP \u2014 at `https://api.parallel.ai` with your Parallel API key, set `model` to `parallel`, and call `/v1/responses`.\n- `input` accepts a plain string or an array of role/content messages (canonical OpenAI shape; text content only).\n- `reasoning.effort` (`low`/`medium`/`high`) controls how much research is performed, trading response time for answer quality.\n- Multi-turn via `previous_response_id`.\n- Structured outputs via `text.format = {\"type\": \"json_schema\", \"name\": ..., \"schema\": {...}}`.\n- Streaming (`stream=true`) emits the standard OpenAI Responses SSE lifecycle: `response.created` and `response.in_progress`, then output item / content part / text delta events with URL-citation annotations, the matching `*.done` events, and a terminal `response.completed` \u2014 or `response.failed` if the request fails mid-stream."
     }
   ],
   "servers": [

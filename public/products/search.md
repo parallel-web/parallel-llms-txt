@@ -1,523 +1,237 @@
-We've raised a $100M Series B at a $2B valuation, led by Sequoia Capital. [Read the announcement.](https://parallel.ai/blog/series-b) [[Read the announcement.] (https://parallel.ai/blog/series-b)](/ai/blog/series-b)
-
-Human Machine
-
 Search API
 
-# \# The best web search for your AI a
+# The best web search for your AI agent , model, IDE, chatbot, application, workflow
 
-\## The highest accuracy web search API, built from the ground up for AIs
+The highest accuracy web search API, built from the ground up for AIs
 
-[Get Started P](https://platform.parallel.ai/) [[Get Started ] (https://platform.parallel.ai/)](https://platform.parallel.ai/) [Get a Demo](https://contact.parallel.ai/) [[Get a Demo] (https://contact.parallel.ai/)](https://contact.parallel.ai/)
+[Get Started ](https://platform.parallel.ai/)[Get a Demo](https://contact.parallel.ai/)
 
-Search Background
+## Search modes for every job
 
-Agent
+Control latency and depth to optimize your agents
 
-Why Parallel
+Each mode is powered by Parallel’s independent Index, returning high-quality ranked excerpts for grounded LLM reasoning.
 
-## \## An agent is only as good as its context
+### Turbo
 
-Parallel returns the best context from the web
+Lowest latency and cost, for grounding each call.
 
-## \## Declare semantic objectives, not just keywords
+Latency \~200ms. $1 per 1K requests. Best for voice, chat, and high-volume lookups.
+
+### Fast
+
+High-quality results in under a second.
+
+Latency \~700ms. $1 per 1K requests. Best for interactive assistants and tool-calling loops.
+
+### Basic
+
+Longer excerpts per result, for more context in one call.
+
+Latency \~1s. $5 per 1K requests. Best for agents that reason over longer source passages.
+
+### Advanced
+
+Multi-hop retrieval and compression, for the highest accuracy.
+
+Latency \~3s. $5 per 1K requests. Best for background research and deep reasoning agents.
+
+## Declare semantic objectives, not just keywords
 
 AI tells Parallel Search exactly what it's looking for
 
-[Get Started P](https://platform.parallel.ai/) [[Get Started P ] (https://platform.parallel.ai/)](https://platform.parallel.ai/)
+## Get back URLs ranked for token relevancy 
 
-Agent called parallel\_search
+Parallel surfaces the most information-dense pages for the agent's next action 
 
-`{  
-"objective" : "Find technical guides or open source repos for implementing a transformer from scratch" }` `{  
-"objective" : "" }`
-
-Parallel
-
-tr
-
-vs Human
-
-## \## Get back URLs ranked for token relevancy
-
-Parallel surfaces the most information-dense pages for the agent's next action
-
-[Get Started P](https://platform.parallel.ai/) [[Get Started P ] (https://platform.parallel.ai/)](https://platform.parallel.ai/)
-
-1
-
-Best available EV under 50K : r/electriccars - Reddit
-
-2
-
-New Electric Crossovers and SUVs Under $50k - J.D. Power
-
-3
-
-AWD EVs Under $50,000 - MotorWeek
-
-4
-
-Cheapest Electric Cars of 2025 - Kelley Blue Book
-
-5
-
-AWD EV's Under $50,000 - YouTube
-
-Parallel
-
-Sponsored Results
-
-2026 Subaru Solterra EV
-
-The 2026 Toyota bZ - A Modern Masterpiece
-
-Results
-
-Used Electric Cars for Sale
-
-vs Human
-
-## \## Reason on compressed token efficient excerpts
+## Reason on compressed token efficient excerpts
 
 Each URL is distilled into the highest-value tokens for optimal context windows
 
-[Get Started P](https://platform.parallel.ai/) [[Get Started P ] (https://platform.parallel.ai/)](https://platform.parallel.ai/)
+## We optimize every web search token in the context window
 
-[1706.03762] Attention Is All You Need https://arxiv.org/abs/1706.03762
+This means agent responses are more accurate and cost less
 
-Parallel
+[Search Playground](https://platform.parallel.ai/)
 
-[1706.03762] Attention Is All You Need https://arxiv.org/abs/1706.03762
+## SimpleQA Verified (Search modes vs Exa/Tavily, Sep 2026)
 
-vs Human
+| Series   | Model               | Cost (CPM) | Accuracy (%) |
+| -------- | ------------------- | ---------- | ------------ |
+| Parallel | Parallel Fast       | 2          | 94           |
+| Parallel | Parallel Turbo      | 2          | 91           |
+| Parallel | Parallel Advanced   | 28.3       | 97           |
+| Parallel | Parallel Basic      | 45         | 97           |
+| Others   | Exa Auto (low-cost) | 7.9        | 91           |
+| Others   | Tavily (low-cost)   | 17.4       | 94           |
+| Others   | Exa Auto (frontier) | 35.7       | 91           |
+| Others   | Tavily (frontier)   | 61.3       | 92           |
 
-## We optimize every web token in the context window
+CPM: USD per 1000 requests, log scale. Frontier tier uses a GPT-5.6 Sol agent; low-cost tier uses a GPT-5.6 Luna agent.
 
-This means agent responses are more accurate and lower cost
+**Dataset**
 
-[Search Playground P](https://platform.parallel.ai/) [[Search Playground] (https://platform.parallel.ai/)](https://platform.parallel.ai/)
+[SimpleQA Verified](https://www.kaggle.com/benchmarks/deepmind/simpleqa-verified), created by Google DeepMind, is a 1,000-question refinement of OpenAI's SimpleQA with corrected labels and balanced topics, covering short, fact-seeking questions. Results are reported on a sample of 100 questions.
 
-HLE BrowseComp WebWalker FRAMES SimpleQA
+**Evaluation methodology**
 
-[COST (CPM) ACCURACY (%) Loading chart...](https://parallel.ai/blog/introducing-parallel-search)
+Multi-step agentic evaluation at two price tiers. In the frontier tier a GPT-5.6 Sol agent (reasoning: high) is paired with Parallel Basic and Parallel Advanced; in the low-cost tier a GPT-5.6 Luna agent (reasoning: low) is paired with Parallel Fast and Parallel Turbo. Exa and Tavily are run at both tiers with the same agent. The agent calls each provider's search tool and extract tool. Answers are graded by an LLM judge.
 
-Parallel
+Cost includes LLM token costs and tool call costs, averaged per question and shown on a log scale.
 
-Others
+**Testing dates**
 
-Benchmark comparison across Cost (CPM) and Accuracy (%).
+Evals were run on September 9, 2026.
 
-### \### About this benchmark
+## BrowseComp (Search modes vs Exa/Tavily, Sep 2026)
 
-This [benchmark](https://lastexam.ai/) [[benchmark] (https://lastexam.ai/)](https://lastexam.ai/) consists of 2,500 questions developed by subject-matter experts across dozens of subjects (e.g. math, humanities, natural sciences). Each question has a known solution that is unambiguous and easily verifiable, but requires sophisticated web retrieval and reasoning. Results are reported on a sample of 100 questions from this benchmark.
+| Series   | Model               | Cost (CPM) | Accuracy (%) |
+| -------- | ------------------- | ---------- | ------------ |
+| Parallel | Parallel Fast       | 11.8       | 44           |
+| Parallel | Parallel Turbo      | 13.2       | 32           |
+| Parallel | Parallel Advanced   | 399        | 74           |
+| Parallel | Parallel Basic      | 612        | 72           |
+| Others   | Exa Auto (low-cost) | 53.4       | 36           |
+| Others   | Tavily (low-cost)   | 176        | 32           |
+| Others   | Tavily (frontier)   | 935        | 66           |
+| Others   | Exa Auto (frontier) | 971        | 70           |
 
-### \### Methodology
+CPM: USD per 1000 requests, log scale. Frontier tier uses a GPT-5.6 Sol agent; low-cost tier uses a GPT-5.6 Luna agent.
 
-* \- **\*\* Evaluation \*\*** : Results are based on tests run using official Search MCP servers provided as an MCP tool to OpenAI's GPT-5 model using the Responses API. In all cases, the MCP tools were limited to only the appropriate web search tool. Answers were evaluated using an LLM as a judge (GPT 4.1).
-* \- **\*\* Cost Calculation \*\*** : Cost reflects the average cost per query across all questions run. This cost includes both the search API call and LLM token cost.
-* \- **\*\* Testing Dates \*\*** : Testing was conducted from November 3rd to November 5th.
+**Dataset**
 
-## \## We optimize every web token in the context window
+[BrowseComp](https://openai.com/index/browsecomp/), created by OpenAI, contains 1,266 questions that require persistent browsing to locate hard-to-find, entangled information on the web. Results are reported on a sample of 50 questions.
 
-This means agent responses are more accurate and lower cost
+**Evaluation methodology**
 
-[Search Playground P](https://platform.parallel.ai/) [[Search Playground] (https://platform.parallel.ai/)](https://platform.parallel.ai/)
+Multi-step agentic evaluation at two price tiers. In the frontier tier a GPT-5.6 Sol agent (reasoning: high) is paired with Parallel Basic and Parallel Advanced; in the low-cost tier a GPT-5.6 Luna agent (reasoning: low) is paired with Parallel Fast and Parallel Turbo. Exa and Tavily are run at both tiers with the same agent. The agent calls each provider's search tool and extract tool. Answers are graded by an LLM judge.
 
-## \### HLE Search
+Cost includes LLM token costs and tool call costs, averaged per question and shown on a log scale.
 
-```
-| Series    | Model        | Cost  (CPM) | Accuracy (%) |
-| --------- | ------------ | ----------- | ------------ |
-| Parallel  | parallel     | 82          | 47           |
-| Others    | exa          | 138         | 24           |
-| Others    | tavily       | 190         | 21           |
-| Others    | perplexity   | 126         | 30           |
-| Others    | openai gpt-5 | 143         | 45           |
-```
+**Testing dates**
 
-### \### About this benchmark
+Evals were run on September 9, 2026.
 
-This [benchmark](https://lastexam.ai/) [[benchmark] (https://lastexam.ai/)](https://lastexam.ai/) consists of 2,500 questions developed by subject-matter experts across dozens of subjects (e.g. math, humanities, natural sciences). Each question has a known solution that is unambiguous and easily verifiable, but requires sophisticated web retrieval and reasoning. Results are reported on a sample of 100 questions from this benchmark.
+## WideSearch (Search modes vs Exa/Tavily, Sep 2026)
 
-### \### Methodology
+| Series   | Model               | Cost (CPM) | Score (%) |
+| -------- | ------------------- | ---------- | --------- |
+| Parallel | Parallel Turbo      | 10.1       | 44        |
+| Parallel | Parallel Fast       | 10.5       | 45.5      |
+| Parallel | Parallel Advanced   | 692        | 57.6      |
+| Parallel | Parallel Basic      | 965        | 55.3      |
+| Others   | Exa Auto (low-cost) | 41.2       | 53        |
+| Others   | Tavily (low-cost)   | 107        | 47.9      |
+| Others   | Exa Auto (frontier) | 1061       | 55.9      |
+| Others   | Tavily (frontier)   | 1072       | 55.9      |
 
-* \- **\*\* Evaluation \*\*** : Results are based on tests run using official Search MCP servers provided as an MCP tool to OpenAI's GPT-5 model using the Responses API. In all cases, the MCP tools were limited to only the appropriate web search tool. Answers were evaluated using an LLM as a judge (GPT 4.1).
-* \- **\*\* Cost Calculation \*\*** : Cost reflects the average cost per query across all questions run. This cost includes both the search API call and LLM token cost.
-* \- **\*\* Testing Dates \*\*** : Testing was conducted from November 3rd to November 5th.
+CPM: USD per 1000 requests, log scale. Score is item-level correctness averaged across tasks (partial credit). Frontier tier uses a GPT-5.6 Sol agent; low-cost tier uses a GPT-5.6 Luna agent.
 
-## \### BrowseComp Search
+**Dataset**
 
-```
-| Series    | Model        | Cost  (CPM) | Accuracy (%) |
-| --------- | ------------ | ----------- | ------------ |
-| Parallel  | parallel     | 156         | 58           |
-| Others    | exa          | 233         | 29           |
-| Others    | tavily       | 314         | 23           |
-| Others    | perplexity   | 256         | 22           |
-| Others    | openai gpt-5 | 253         | 53           |
-```
+[WideSearch](https://arxiv.org/abs/2508.07999), created by ByteDance Seed, contains 200 broad information-seeking tasks that require collecting many verifiable facts from across the web and assembling them into a structured table. Results are reported on a sample of 100 tasks.
 
-### \### About this benchmark
+**Evaluation methodology**
 
-This [benchmark](https://openai.com/index/browsecomp/) [[benchmark] (https://openai.com/index/browsecomp/)](https://openai.com/index/browsecomp/) , created by OpenAI, contains 1,266 questions requiring multi-hop reasoning, creative search formulation, and synthesis of contextual clues across time periods. Results are reported on a sample of 100 questions from this benchmark.
+Multi-step agentic evaluation at two price tiers. In the frontier tier a GPT-5.6 Sol agent (reasoning: high) is paired with Parallel Basic and Parallel Advanced; in the low-cost tier a GPT-5.6 Luna agent (reasoning: low) is paired with Parallel Fast and Parallel Turbo. Exa and Tavily are run at both tiers with the same agent. The agent calls each provider's search tool and extract tool. Answers are graded by an LLM judge.
 
-### \### Methodology
+WideSearch is scored with partial credit: each task's score reflects the share of required items collected correctly, averaged across tasks, so it is not directly comparable to the exact-match accuracy on the other benchmarks.
 
-* \- **\*\* Evaluation \*\*** : Results are based on tests run using official Search MCP servers provided as an MCP tool to OpenAI's GPT-5 model using the Responses API. In all cases, the MCP tools were limited to only the appropriate web search tool. Answers were evaluated using an LLM as a judge (GPT 4.1).
-* \- **\*\* Cost Calculation \*\*** : Cost reflects the average cost per query across all questions run. This cost includes both the search API call and LLM token cost.
-* \- **\*\* Testing Dates \*\*** : Testing was conducted from November 3rd to November 5th.
+Cost includes LLM token costs and tool call costs, averaged per task and shown on a log scale.
 
-## \### WebWalker-Search
+**Testing dates**
 
-```
-| Series    | Model        | Cost  (CPM) | Accuracy (%) |
-| --------- | ------------ | ----------- | ------------ |
-| Parallel  | parallel     | 42          | 81           |
-| Others    | exa          | 107         | 48           |
-| Others    | tavily       | 156         | 79           |
-| Others    | perplexity   | 91          | 67           |
-| Others    | openai gpt-5 | 88          | 73           |
-```
+Evals were run on September 9, 2026.
 
-### \### About this benchmark
+# Powered by our own proprietary web scale index 
 
-This [benchmark](https://arxiv.org/abs/2501.07572) [[benchmark] (https://arxiv.org/abs/2501.07572)](https://arxiv.org/abs/2501.07572) is designed to assess the ability of LLMs to perform web traversal. To successfully answer the questions in the benchmark, it requires the ability to crawl and extract content from website subpages. Results are reported on a sample of 100 questions from this benchmark.
+With innovations in retrieval, crawling, indexing, and reasoning 
 
-### \### Methodology
+* Billions of pages covering the full depth and breadth of the public web
+* Millions of pages added daily
+* Intelligently recrawled to keep data fresh
 
-* \- **\*\* Evaluation \*\*** : Results are based on tests run using official Search MCP servers provided as an MCP tool to OpenAI's GPT-5 model using the Responses API. In all cases, the MCP tools were limited to only the appropriate web search tool. Answers were evaluated using an LLM as a judge (GPT 4.1).
-* \- **\*\* Cost Calculation \*\*** : Cost reflects the average cost per query across all questions run. This cost includes both the search API call and LLM token cost.
-* \- **\*\* Testing Dates \*\*** : Testing was conducted from November 3rd to November 5th.
+# The knowledge of the entire public web
 
-## \### FRAMES-Search
+in a single tool call 
 
-```
-| Series    | Model        | Cost  (CPM) | Accuracy (%) |
-| --------- | ------------ | ----------- | ------------ |
-| Parallel  | parallel     | 42          | 92           |
-| Others    | exa          | 81          | 81           |
-| Others    | tavily       | 122         | 87           |
-| Others    | perplexity   | 95          | 83           |
-| Others    | openai gpt-5 | 68          | 90           |
-```
+Integrated directly, or add our [MCP Server](https://docs.parallel.ai/integrations/mcp/programmatic-use) 
 
-### \### About this benchmark
+[Search Playground](https://platform.parallel.ai/)[Docs](https://docs.parallel.ai/search/search-quickstart)
 
-This [benchmark](https://huggingface.co/datasets/google/frames-benchmark) [[benchmark] (https://huggingface.co/datasets/google/frames-benchmark)](https://huggingface.co/datasets/google/frames-benchmark) contains 824 challenging multi-hop questions designed to test factuality, retrieval accuracy, and reasoning. Results are reported on a sample of 100 questions from this benchmark.
+## Scale with unmatched price-performance
 
-### \### Methodology
+Get started with up to 80,000 free search requests
 
-* \- **\*\* Evaluation \*\*** : Results are based on tests run using official Search MCP servers provided as an MCP tool to OpenAI's GPT-5 model using the Responses API. In all cases, the MCP tools were limited to only the appropriate web search tool. Answers were evaluated using an LLM as a judge (GPT 4.1).
-* \- **\*\* Cost Calculation \*\*** : Cost reflects the average cost per query across all questions run. This cost includes both the search API call and LLM token cost.
-* \- **\*\* Testing Dates \*\*** : Testing was conducted from November 3rd to November 5th.
+$0.001 per request with 10 results + $0.001 per page extracted
 
-## \### Batched SimpleQA - Search
+[Get Started ](https://platform.parallel.ai/)[Calculate Savings](https://parallel.ai/products/search/calculator)
 
-```
-| Series    | Model        | Cost  (CPM) | Accuracy (%) |
-| --------- | ------------ | ----------- | ------------ |
-| Parallel  | parallel     | 50          | 90           |
-| Others    | exa          | 119         | 71           |
-| Others    | tavily       | 227         | 59           |
-| Others    | perplexity   | 100         | 74           |
-| Others    | openai gpt-5 | 91          | 88           |
-```
-
-### \### About this benchmark
-
-This benchmark was created by batching 3 independent questions from the original [SimpleQA dataset](https://openai.com/index/introducing-simpleqa/) [[SimpleQA dataset] (https://openai.com/index/introducing-simpleqa/)](https://openai.com/index/introducing-simpleqa/) to create 100 composite, more complex, questions.
-
-### \### Methodology
-
-* \- **\*\* Evaluation \*\*** : Results are based on tests run using official Search MCP servers provided as an MCP tool to OpenAI's GPT-5 model using the Responses API. In all cases, the MCP tools were limited to only the appropriate web search tool. Answers were evaluated using an LLM as a judge (GPT 4.1).
-* \- **\*\* Cost Calculation \*\*** : Cost reflects the average cost per query across all questions run. This cost includes both the search API call and LLM token cost.
-* \- **\*\* Testing Dates \*\*** : Testing was conducted from November 3rd to November 5th.
-
-## \### SimpleQA Search
-
-```
-| Series    | Model        | Cost  (CPM) | Accuracy (%) |
-| --------- | ------------ | ----------- | ------------ |
-| Parallel  | parallel     | 17          | 98           |
-| Others    | exa          | 57          | 87           |
-| Others    | tavily       | 110         | 93           |
-| Others    | perplexity   | 52          | 92           |
-| Others    | openai gpt-5 | 37          | 98           |
-```
-
-### \### About this benchmark
-
-This [benchmark](https://openai.com/index/introducing-simpleqa/) [[benchmark] (https://openai.com/index/introducing-simpleqa/)](https://openai.com/index/introducing-simpleqa/) , created by OpenAI, contains 4,326 questions focused on short, fact-seeking queries across a variety of domains. Results are reported on a sample of 100 questions from this benchmark.
-
-### \### Methodology
-
-* \- **\*\* Evaluation \*\*** : Results are based on tests run using official Search MCP servers provided as an MCP tool to OpenAI's GPT-5 model using the Responses API. In all cases, the MCP tools were limited to only the appropriate web search tool. Answers were evaluated using an LLM as a judge (GPT 4.1).
-* \- **\*\* Cost Calculation \*\*** : Cost reflects the average cost per query across all questions run. This cost includes both the search API call and LLM token cost.
-* \- **\*\* Testing Dates \*\*** : Testing was conducted from November 3rd to November 5th.
-
-# \# Powered by our own proprietary web scale index
-
-With innovations in retrieval, crawling, indexing, and reasoning
-
-* \- Billions of pages covering the full depth and breadth of the public web
-* \- Millions of pages added daily
-* \- Intelligently recrawled to keep data fresh
-
-# \# The knowledge of the entire public web
-
-in a single tool call
-
-Integrated directly, or add our [MCP Server](https://docs.parallel.ai/integrations/mcp/programmatic-use) [[MCP Server] (https://docs.parallel.ai/integrations/mcp/programmatic-use)](https://docs.parallel.ai/integrations/mcp/programmatic-use)
-
-[Search Playground P](https://platform.parallel.ai/) [[Search Playground] (https://platform.parallel.ai/)](https://platform.parallel.ai/) [Docs D](https://docs.parallel.ai/search/search-quickstart) [[Docs] (https://docs.parallel.ai/search/search-quickstart)](https://docs.parallel.ai/search/search-quickstart)
-
-Objective Find latest information about Parallel Web Systems. Focus on new product releases, benchmarks, or company announcements.
-
-Keywords
-
-Parallel Web Systems products ×
-
-Parallel Web Systems announcements ×
-
-cURL Python
-
-[Run in Playground](https://platform.parallel.ai/play/search?objective=Find%20latest%20information%20about%20Parallel%20Web%20Systems.%20Focus%20on%20new%20product%20releases%2C%20benchmarks%2C%20or%20company%20announcements.&q=Parallel%20Web%20Systems%20products&q=Parallel%20Web%20Systems%20announcements) [[Run in Playground] (https://platform.parallel.ai/play/search?objective=Find%20latest%20information%20about%20Parallel%20Web%20Systems.%20Focus%20on%20new%20product%20releases%2C%20benchmarks%2C%20or%20company%20announcements.&q=Parallel%20Web%20Systems%20products&q=Parallel%20Web%20Systems%20announcements)](https://platform.parallel.ai/play/search?objective=Find%20latest%20information%20about%20Parallel%20Web%20Systems.%20Focus%20on%20new%20product%20releases%2C%20benchmarks%2C%20or%20company%20announcements.&q=Parallel%20Web%20Systems%20products&q=Parallel%20Web%20Systems%20announcements) Copy
-
-```
-curl  https://api.parallel.ai/v1beta/search \
-  -H  "Content-Type: application/json"  \
-  -H  "x-api-key:  $PARALLEL_API_KEY "  \
-  -H  "parallel-beta: search-extract-2025-10-10"  \
-  -d  '{
-    "objective": "Find latest information about Parallel Web Systems. Focus on new product releases, benchmarks, or company announcements.",
-    "search_queries": ["Parallel Web Systems products","Parallel Web Systems announcements"],
-    "max_results": 10,
-    "max_chars_per_result": 10000
-  }'
-```
-
-## \## Scale with unmatched price-performance
-
-Get started with up to 16,000 free search requests
-
-$.005 per request with 10 results + $.001 per page extracted
-
-[Get Started P](https://platform.parallel.ai/) [[Get Started ] (https://platform.parallel.ai/)](https://platform.parallel.ai/) [Get a Demo](https://forms.fillout.com/t/sL37Ja5wWKus) [[Get a Demo] (https://forms.fillout.com/t/sL37Ja5wWKus)](https://forms.fillout.com/t/sL37Ja5wWKus)
-
-Number of search requests: 500
-
-1 1,000
-
-Results per request: 5
-
-1 20
-
-Pricing
-
-$2 .500
-
-```
 |                   | Search API                          |
 | ----------------- | ----------------------------------- |
 | Inputs            | Search objective, Keywords          |
 | Outputs           | Ranked URLs, Compressed excerpts    |
 | Best for          | Web search tool calls for AI agents |
-| Latency           | < 5s, synchronous                   |
+| Latency           | 200ms - 3s, synchronous             |
 | Basis             | —                                   |
 | Rate limits       | 600 requests / min                  |
 | Security          | SOC2                                |
-| Price per request | $0.005 for 10 results               |
-```
+| Price per request | $0.001 - $0.005 for 10 results      |
 
-### Search API
-
-Ranked web URLs with token dense compressed excerpts
-
-Inputs
-
-Search objective , Keywords
-
-Outputs
-
-Ranked URLs , Compressed excerpts
-
-Best for
-
-Web search tool calls for AI agents
-
-Latency
-
-< 5s, synchronous
-
-Basis
-
-—
-
-Rate limits
-
-600 requests / min
-
-Security
-
-SOC2
-
-Price per request
-
-$0.005
-
-for 10 results
-
-[Search playground](https://platform.parallel.ai/play/search) [[Search playground] (https://platform.parallel.ai/play/search)](https://platform.parallel.ai/play/search)
-
-S
-
-then
-
-P
-
-### Search API
-
-Ranked web URLs with token dense compressed excerpts
-
-Price per request:
-
-$0.005
-
-for 10 results
-
-[Search playground](https://platform.parallel.ai/play/search) [[Search playground] (https://platform.parallel.ai/play/search)](https://platform.parallel.ai/play/search)
-
-S
-
-then
-
-P
-
-Inputs:
-
-Search objective Keywords
-
-Outputs:
-
-Ranked URLs Compressed excerpts
-
-Best for:
-
-Web search tool calls for AI agents
-
-Latency:
-
-< 5s, synchronous
-
-Basis:
-
-—
-
-Rate limits:
-
-600 requests / min
-
-Security:
-
-SOC2
-
-## \## Every control you need
+## Every control you need 
 
 across any web page
 
-<script> </script>
-
-<script src = "/recaptcha/api.js" > </script>
-
-<script> </script>
-
-<script> </script>
-
-<embed type = "application/pdf" >
-
-<script> </script>
-
-<embed type = "application/pdf" >
-
-<script src = "/recaptcha/api.js" > </script>
-
-<script> </script>
-
-Extracting...
-
-\### Premium content extraction
+Premium content extraction
 
 Fetch content from PDFs and sites that are JS heavy or have CAPTCHAs
 
-Live fetch
+Freshness policies 
 
-Off On
+Set page age triggers for live crawls, with timeout thresholds to gaurantee latency 
 
-max\_age (hours)
-
-24
-
-fetch\_timeout (seconds)
-
-90
-
-\### Freshness policies
-
-Set page age triggers for live crawls, with timeout thresholds to gaurantee latency
-
-`{ "title" : "Nvidia Becomes First $5 Trillion Company - WSJ" , "excerpts" : [ "Last updated: 2 days ago The tech giant owes much of its $4.89 trillion market capitalization to the use of its systems to train AI models. Now it's pushing deeper into ..." ] }`
-
-\### LLM friendly outputs
+LLM friendly outputs
 
 Choose between dense snippets or full page contents, in markdown LLMs understand
 
-Policy
-
-INCLUDE
-
-NIST.GOV
-
-\### Source control
+Source control 
 
 Pick which domains are included or excluded from your web search results
 
-# \## Secure and trusted
+# Secure and trusted
 
-\### Zero data retention
+Zero data retention
 
-\### Soc 2 Type 2
+Soc 2 Type 2
 
-\### No training
+No training
 
-[](https://docs.parallel.ai/search/search-quickstart)
+## FAQ
 
-## \## FAQ
-
-\+ − What is the Parallel Search API?
++−What is the Parallel Search API?
 
 Parallel Search (API) is the highest accuracy AI search API. It allows developers to build AI apps, agents, and workflows that can search for and retrieve data from the web. It can be integrated into agent workflows for deep research across multiple steps, or for more basic single-hop queries.
 
-\+ − What is declarative semantic search?
++−What is declarative semantic search?
 
 Declarative semantic search lets agents express intent in natural language rather than construct keyword queries. Instead of "Columbus" AND "corporate law" AND "disability", an agent specifies: "Columbus-based corporate law firms specializing in disability care." The Search API interprets meaning and context, not just keywords, making it natural to integrate into agent workflows where you already have rich context from previous reasoning steps.
 
-\+ − What makes Parallel different from other search providers?
++−What makes Parallel different from other search providers? 
 
 Parallel is the only Search API built from the ground up for AI agents. This means that agents can specify declarative semantic objectives and Parallel returns URLs and compressed excerpts based on token relevancy. The result is extremely dense web tokens optimized to engineer your agent’s context for better reasoning at the next turn. Agents using Parallel search produce answers with higher accuracy, fewer round trips, and lower cost.
 
-\+ − Where do search results come from? How fresh are they?
++−Where do search results come from? How fresh are they? 
 
 We maintain a large web index containing billions of pages. Our crawling, retrieval, and ranking systems add and update millions of pages daily to keep the index fresh.
 
-\+ − Does Parallel have a web crawler?
++−Does Parallel have a web crawler? 
 
-Yes, Parallel operates a web crawler to support the quality and coverage of the index. Our crawler respects _\_ robots.txt \__ and related crawling directives. [Learn more about Parallel’s crawler here](https://docs.parallel.ai/resources/crawler) [[Learn more about Parallel’s crawler here] (https://docs.parallel.ai/resources/crawler)](https://docs.parallel.ai/resources/crawler) .
+Yes, Parallel operates a web crawler to support the quality and coverage of the index. Our crawler respects _\_robots.txt\__ and related crawling directives. [Learn more about Parallel’s crawler here](https://docs.parallel.ai/resources/crawler).
 
-\+ − What are dense excerpts?
++−What are dense excerpts? 
 
 Dense excerpts are the most query relevant content from a webpage, compressed to be extremely token efficient for an agent. These compressed excerpts reduce noise by engineering an agent’s context window to only have the most relevant tokens to reason on - leading to higher accuracy, fewer round trips, and less token use.
 
-\+ − What does end-to-end latency mean?
++−What does end-to-end latency mean?
 
 End-to-end latency measures total time from agent input to final output, not single-search latency. Our semantic search architecture and dense snippets reduce the number of searches required to reach quality outputs. Two high-precision searches with Parallel beat three lower-quality attempts elsewhere—saving both time and tokens.

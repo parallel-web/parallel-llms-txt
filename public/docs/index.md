@@ -1,4 +1,4 @@
-By signing in and using this service, you agree to Parallel's [Terms of Service](https://www.parallel.ai/customer-terms) and [Privacy Policy](https://www.parallel.ai/privacy-policy) .
+By signing in and using this service, you agree to Parallel's [Terms of Service](https://parallel.ai/terms-of-service) , [Customer Terms](https://parallel.ai/customer-terms) and [Privacy Policy](https://www.parallel.ai/privacy-policy) .
 
 # Check your inbox
 

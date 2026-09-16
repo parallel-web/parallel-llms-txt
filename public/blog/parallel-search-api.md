@@ -1,173 +1,376 @@
-[Parallel](/)
+# Upgrades to the Parallel Search & Extract APIs
 
-[About](/about) [About](https://parallel.ai/about) [Pricing](/pricing) [Pricing](https://parallel.ai/pricing) [Careers](https://jobs.ashbyhq.com/parallel) [Careers](https://jobs.ashbyhq.com/parallel) [Blog](/blog) [Blog](https://parallel.ai/blog) [Docs](https://docs.parallel.ai/home) [Docs](https://docs.parallel.ai/home)
+Today, we’re announcing major upgrades to the quality and capabilities of our [Search](https://parallel.ai/products/search) and [Extract](https://parallel.ai/products/extract) APIs, and making both generally available. These enhancements deliver industry-leading accuracy and token efficiency for web search across diverse use cases, including company research, coding agents, multilingual queries, finance, and broad internet research.
 
-Start Building P [Start Building]
+## Highlights
 
-Menu [Menu]
+- New streamlined search modes catering to interactive and background agents
+- Pareto optimal performance on challenging public benchmarks
+- Leading performance on benchmarks focused on specialized knowledge work
+- Superior compression of webpage context using the Extract API
+- Improvements to global index coverage and multi-lingual capabilities
 
-Human Machine
+## The best web search for AI agents in interactive and background use cases
 
-# \# Introducing the Parallel Search API
+As AI agents have become better at handling knowledge work that needs the web, two main product patterns have emerged: interactive workflows and long-running background tasks.
 
-Tags: [Product Release](/blog?tag=product-release)
+Interactive workflows support real-time collaboration between a user and an agent. They are shaped by latency requirements and frequently focus on targeted web research or fetching specific information.
 
-Reading time: 2 min
+Background tasks work more independently on ambiguous, multi-step questions spanning several topics. These searches typically require deeper retrieval and orchestration of multiple tool calls.
 
-Building AI agents and applications that access the web shouldn't require complex orchestration of searching, scraping, parsing, re-ranking, and filtering. The Parallel Search API handles this complexity for you, collapsing multi-step pipelines into a single fast API call.
+The Search API now offers two modes designed for these distinct use cases.
 
-## \## Why AIs Need a New Kind of Search
+**Basic mode** is optimized for quick retrieval. It delivers P50 latency under one second and P90 under two seconds, making it a good fit for interactive, human-in-the-loop experiences.
 
-LLMs ingest tokens, not web pages. Mainstream search engines are engineered for human use—short, keyword queries, clickable titles, and ad yield—so they surface teaser snippets instead of the high‑density passages an agent needs to reason. Developers are forced to add scraping and summarization layers that increase latency, inflate token costs, and introduce brittle failure points that can corrupt reliability and downstream quality. An AI‑native retrieval layer must deliver the most information‑rich spans of text, with explicit controls for freshness and length, ready to slot directly into an LLM context window. These requirements shape the Parallel Search API.
+**Advanced mode** is built for depth and cost efficiency. It spends more time querying, reranking, and compressing results across both general-purpose and specialized indexes. Traditional search APIs often force agents into a series of sequential searches that expand the context window, increasing latency and inflating cost. Advanced mode resolves more in a single call, with lower end-to-end agent cost. 
 
-![Search API Playground on the Parallel Developer Platform](https://cdn.sanity.io/images/5hzduz3y/production/7cb91842e91b65063cd8e35c4d3212309496a77c-1664x1080.gif) Search API Playground on the Parallel Developer Platform
 
-## \## **\*\* _\_ The \__ Web Search Tool for AI Agents \*\***
 
-Built on Parallel’s custom web crawler and index, the Search API takes flexible inputs (search objective and/or search queries) and returns LLM-ready ranked URLs with extended webpage excerpts. With granular control over output sizes, it largely reduces the need for additional scraping, making it the go-to search tool for your AI agent.
+| Search Mode | Median Latency (P50) | Best for |
+| --- | --- | --- |
+| Basic | 1s | Single-hop, latency-sensitive agents, e.g., human-in-loop chat, interactive experiences |
+| Advanced | 3s | Multi-hop background agents that can tolerate extra latency for better depth and cost-efficiency, e.g., code review agents, deep research |
 
-**\*\* Two tiers to match your needs: \*\***
+### Browsecomp
 
-* \- **\*\* Base \*\*** : Fast, cost-effective web access with extended webpage excerpts (2-5s)
-* \- **\*\* Pro \*\*** : Best-in-class retrieval engine, prioritizing freshness and relevance. Built for long-horizon agents where quality matters over speed (15-60s)
-
-\### Create a Search API Request
+[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 
 ```
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-curl --request  POST  \
-  --url  https : //api.parallel.ai/alpha/search \ 
-  --header  "Content-Type: application/json"  \
-  --header  "x-api-key: $PARALLEL_API_KEY"  \
-  --data  '{
-    "objective": "When was the United Nations established? Prefer UN' \ '' s websites. ",
-    " search_queries ": [
-      " Founding  year  UN ",
-      " Year of  founding  United Nations "
-    ],
-    " processor ": " base ",
-    " max_results ": 5,
-    " max_chars_per_result ": 1500
-  }' ```  curl --request POST \ --url https://api.parallel.ai/alpha/search \ --header "Content-Type: application/json" \ --header "x-api-key: $PARALLEL_API_KEY" \ --data '{ "objective": "When was the United Nations established? Prefer UN'\''s websites.", "search_queries": [ "Founding year UN", "Year of founding United Nations" ], "processor": "base", "max_results": 5, "max_chars_per_result": 1500 }' ```
+[
+  {
+    "label": "Tavily",
+    "x": 973,
+    "y": 42
+  },
+  {
+    "label": "Exa",
+    "x": 1160,
+    "y": 40
+  }
+]
 ```
 
-The Parallel Search API delivers high-quality, relevant results while optimizing for the price-performance balance your AI applications need at scale. By providing a single, simple abstraction, our Search API reduces token spend and eliminates the need to orchestrate multiple tools. Our [Chat](https://parallel.ai/blog/chat-api) [Chat]($https://parallel.ai/blog/chat-api) and [Task APIs](https://parallel.ai/blog/parallel-task-api) [Task APIs]($https://parallel.ai/blog/parallel-task-api) utilize this same search technology as their underlying foundation.
+```
+[
+  {
+    "label": "Parallel Basic",
+    "x": 600,
+    "y": 53
+  },
+  {
+    "label": "Parallel Advanced",
+    "x": 379,
+    "y": 51
+  }
+]
+```
 
-## \## **\*\* Start Building \*\***
+### Humanity's Last Exam
 
-Get started in our [Developer Platform](https://platform.parallel.ai/play/search) [Developer Platform]($https://platform.parallel.ai/play/search) or dive into the [documentation](https://docs.parallel.ai/search-api/search-quickstart) [documentation]($https://docs.parallel.ai/search-api/search-quickstart) .
+[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 
-By Parallel
+```
+[
+  {
+    "label": "Parallel Basic",
+    "x": 451,
+    "y": 58
+  },
+  {
+    "label": "Parallel Advanced",
+    "x": 315,
+    "y": 56
+  }
+]
+```
 
-June 10, 2025
+```
+[
+  {
+    "label": "Exa",
+    "x": 522,
+    "y": 57
+  },
+  {
+    "label": "Tavily",
+    "x": 538,
+    "y": 54
+  }
+]
+```
 
-### \## Related Posts 27
+### SealQA
 
-[### \- [ How Lindy brings state-of-the-art web research to automation flows ] (https://parallel.ai/blog/case-study-lindy) Tags: [Case Study](/blog?tag=case-study) Reading time: 3 min](/blog/case-study-lindy)
+[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 
-[### \- [ Introducing the Parallel Task MCP Server ] (https://parallel.ai/blog/parallel-task-mcp-server) Tags: [Product Release](/blog?tag=product-release) Reading time: 4 min](/blog/parallel-task-mcp-server)
+```
+[
+  {
+    "label": "Parallel Basic",
+    "x": 258,
+    "y": 45
+  },
+  {
+    "label": "Parallel Advanced",
+    "x": 191,
+    "y": 41
+  }
+]
+```
 
-[### \- [ Introducing the Core2x Processor for improved compute control on the Task API ] (https://parallel.ai/blog/core2x-processor) Tags: [Product Release](/blog?tag=product-release) Reading time: 2 min](/blog/core2x-processor)
+```
+[
+  {
+    "label": "Tavily",
+    "x": 243,
+    "y": 45
+  },
+  {
+    "label": "Exa",
+    "x": 326,
+    "y": 41
+  }
+]
+```
 
-[### \- [ How Day AI merges private and public data for business intelligence ] (https://parallel.ai/blog/case-study-day-ai) Tags: [Case Study](/blog?tag=case-study) Reading time: 4 min](/blog/case-study-day-ai)
+### WebWalker
 
-[### \- [ Full Basis framework for all Task API Processors ] (https://parallel.ai/blog/full-basis-framework-for-task-api) Tags: [Product Release](/blog?tag=product-release) Reading time: 2 min](/blog/full-basis-framework-for-task-api)
+[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 
-[### \- [ Building a real-time streaming task manager with Parallel ] (https://parallel.ai/blog/cookbook-sse-task-manager-with-parallel) Tags: [Cookbook](/blog?tag=cookbook) Reading time: 5 min](/blog/cookbook-sse-task-manager-with-parallel)
+```
+[
+  {
+    "label": "Exa",
+    "x": 210,
+    "y": 74
+  },
+  {
+    "label": "Tavily",
+    "x": 202,
+    "y": 71
+  }
+]
+```
 
-[### \- [ How Gumloop built a new AI automation framework with web intelligence as a core node ] (https://parallel.ai/blog/case-study-gumloop) Tags: [Case Study](/blog?tag=case-study) Reading time: 3 min](/blog/case-study-gumloop)
+```
+[
+  {
+    "label": "Parallel Advanced",
+    "x": 101,
+    "y": 73
+  },
+  {
+    "label": "Parallel Basic",
+    "x": 155,
+    "y": 71
+  }
+]
+```
 
-[### \- [ Introducing the TypeScript SDK ] (https://parallel.ai/blog/typescript-sdk) Tags: [Product Release](/blog?tag=product-release) Reading time: 1 min](/blog/typescript-sdk)
+### FreshQA
 
-[### \- [ Building a serverless competitive intelligence platform with MCP + Task API ] (https://parallel.ai/blog/cookbook-competitor-research-with-reddit-mcp) Tags: [Cookbook](/blog?tag=cookbook) Reading time: 6 min](/blog/cookbook-competitor-research-with-reddit-mcp)
+[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 
-[### \- [ Introducing Parallel Deep Research reports ] (https://parallel.ai/blog/deep-research-reports) Tags: [Product Release](/blog?tag=product-release) Reading time: 2 min](/blog/deep-research-reports)
+```
+[
+  {
+    "label": "Parallel Advanced",
+    "x": 49,
+    "y": 79
+  },
+  {
+    "label": "Parallel Basic",
+    "x": 90,
+    "y": 77
+  }
+]
+```
 
-[### \- [ A new pareto-frontier for Deep Research price-performance ] (https://parallel.ai/blog/deep-research-benchmarks) Tags: [Benchmarks](/blog?tag=benchmarks) Reading time: 4 min](/blog/deep-research-benchmarks)
+```
+[
+  {
+    "label": "Exa",
+    "x": 84,
+    "y": 78
+  },
+  {
+    "label": "Tavily",
+    "x": 89,
+    "y": 78
+  }
+]
+```
 
-[### \- [ Building a Full-Stack Search Agent with Parallel and Cerebras ] (https://parallel.ai/blog/cookbook-search-agent) Tags: [Cookbook](/blog?tag=cookbook) Reading time: 5 min](/blog/cookbook-search-agent)
+### FRAMES
 
-[### \- [ Webhooks for the Parallel Task API ] (https://parallel.ai/blog/webhooks) Tags: [Product Release](/blog?tag=product-release) Reading time: 2 min](/blog/webhooks)
+[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 
-[### \- [ Introducing Parallel: Web Search Infrastructure for AIs ] (https://parallel.ai/blog/introducing-parallel) Tags: [Benchmarks](/blog?tag=benchmarks) , [Product Release](/blog?tag=product-release) Reading time: 6 min](/blog/introducing-parallel)
+```
+[
+  {
+    "label": "Parallel Advanced",
+    "x": 93,
+    "y": 87
+  },
+  {
+    "label": "Parallel Basic",
+    "x": 165,
+    "y": 84
+  }
+]
+```
 
-[### \- [ Introducing SSE for Task Runs ] (https://parallel.ai/blog/sse-for-tasks) Tags: [Product Release](/blog?tag=product-release) Reading time: 2 min](/blog/sse-for-tasks)
+```
+[
+  {
+    "label": "Exa",
+    "x": 169,
+    "y": 87
+  },
+  {
+    "label": "Tavily",
+    "x": 189,
+    "y": 83
+  }
+]
+```
 
-[### \- [ A new line of advanced processors: Ultra2x, Ultra4x, and Ultra8x ] (https://parallel.ai/blog/new-advanced-processors) Tags: [Product Release](/blog?tag=product-release) Reading time: 2 min](/blog/new-advanced-processors)
+## The best web search API for specialized knowledge work
 
-[### \- [ Introducing Auto Mode for the Parallel Task API ] (https://parallel.ai/blog/task-api-auto-mode) Tags: [Product Release](/blog?tag=product-release) Reading time: 1 min](/blog/task-api-auto-mode)
+We believe the best web search API for agents is a strong general-purpose system with the scale, depth, and ranking quality to perform well across many kinds of knowledge work.
 
-[### \- [ A state-of-the-art search API purpose-built for agents ] (https://parallel.ai/blog/search-api-benchmark) Tags: [Benchmarks](/blog?tag=benchmarks) Reading time: 3 min](/blog/search-api-benchmark)
+Our API is built on that foundation. It offers broad coverage of the web while going deep in the domains that matter most, so agents can retrieve high-quality results for both general research and specialized tasks. Whether the job is debugging against current library documentation or researching a prospect’s funding history and tech stack, the same strengths apply: a large index, deep retrieval, and strong ranking.
 
-[### \- [ Parallel Search MCP Server in Devin ] (https://parallel.ai/blog/parallel-search-mcp-in-devin) Tags: [Product Release](/blog?tag=product-release) Reading time: 2 min](/blog/parallel-search-mcp-in-devin)
+Advanced mode is designed for the most demanding workflows, where agents benefit from deeper retrieval and more precise ranking across both broad web content and domain-relevant sources.
 
-[### \- [ Introducing Tool Calling via MCP Servers ] (https://parallel.ai/blog/mcp-tool-calling) Tags: [Product Release](/blog?tag=product-release) Reading time: 2 min](/blog/mcp-tool-calling)
+On our internal dataset focused on company search, Parallel’s Search API outperforms alternatives in finding highly relevant candidates that meet the specified search criteria.
 
-[### \- [ Introducing the Parallel Search MCP Server ] (https://parallel.ai/blog/search-mcp-server) Tags: [Product Release](/blog?tag=product-release) Reading time: 2 min](/blog/search-mcp-server)
+![](https://cdn.sanity.io/images/5hzduz3y/production/488a6088450e4127de0e02a9ac77361201f5f56d-2000x1056.jpg)
 
-[### \- [ Introducing Source Policy ] (https://parallel.ai/blog/source-policy) Tags: [Product Release](/blog?tag=product-release) Reading time: 1 min](/blog/source-policy)
+> **Company Benchmark Methodology**
+>
+> **Dataset**
+>
+> Queries targeting companies across categories, filtering by sector, funding stage, geography, investors, revenue, and team composition. Queries were generated using an LLM.
+>
+> **Sample queries**
+>
+> The benchmark queries are intentionally complex — the kind of multi-constraint searches that break general-purpose web search:
+>
+> - "Biotech and solar energy startups serving healthcare providers, backed by IVP"
+> - "Series B SaaS companies focused on manufacturers and industrial production."
+>
+> **Evaluation setup**
+>
+> 250 queries, 10 results per query, single-graded by GPT-5.4-mini. The LLM judge graded every returned URL on whether it represents a genuine match for the query objective.
+>
+> We measure **precision,** which represents the fraction of returned results that are relevant — the metric that matters most for candidate generation, where downstream workflows depend on signal quality.
 
-[### \- [ The Parallel Task Group API ] (https://parallel.ai/blog/task-group-api) Tags: [Product Release](/blog?tag=product-release) Reading time: 1 min](/blog/task-group-api)
+Similarly, for queries generated by coding agents as part of development workflows, Parallel’s Search API provides the most relevant code snippets and documents.
 
-[### \- [ State of the Art Deep Research APIs ] (https://parallel.ai/blog/deep-research) Tags: [Benchmarks](/blog?tag=benchmarks) Reading time: 3 min](/blog/deep-research)
+### Coding
 
-[### \- [ Introducing the Parallel Chat API ] (https://parallel.ai/blog/chat-api) Tags: [Product Release](/blog?tag=product-release) Reading time: 1 min](/blog/chat-api)
+[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 
-[### \- [ Introducing Basis with Calibrated Confidences ] (https://parallel.ai/blog/introducing-basis-with-calibrated-confidences) Tags: [Product Release](/blog?tag=product-release) Reading time: 4 min](/blog/introducing-basis-with-calibrated-confidences)
+```
+[
+  {
+    "label": "Parallel Advanced",
+    "x": 154,
+    "y": 82
+  },
+  {
+    "label": "Parallel Basic",
+    "x": 269,
+    "y": 81
+  }
+]
+```
 
-[### \- [ Introducing the Parallel Task API ] (https://parallel.ai/blog/parallel-task-api) Tags: [Product Release](/blog?tag=product-release) , [Benchmarks](/blog?tag=benchmarks) Reading time: 4 min](/blog/parallel-task-api)
+```
+[
+  {
+    "label": "Exa",
+    "x": 331,
+    "y": 80
+  },
+  {
+    "label": "Tavily",
+    "x": 352,
+    "y": 75
+  }
+]
+```
 
-![Company Logo](https://parallel.ai/parallel-logo-540.png)
+## Combine Search with Extract for the deepest, most token-efficient multi-hop agent
 
-### Contact
+Search and Extract are designed to work together. Search finds the right sources with high precision. Extract turns those sources into concise, task-relevant context that an agent can use efficiently.
 
-* [hello@parallel.ai](mailto:hello@parallel.ai) [hello@parallel.ai](mailto:hello@parallel.ai)
+The Parallel Extract API is especially useful when the source is long or dense, such as a 200-page SEC filing, an investor document, or a complex technical page. Passing the full source into context increases token usage and makes downstream reasoning less focused.
 
-### Resources
+The Parallel Extract API solves this by letting the agent specify an extraction objective. After Search identifies the right source, Extract returns only the content most relevant to that objective. The result is a more efficient retrieval pipeline: Search provides breadth and precision, while Extract compresses large pages and documents into high-signal context for the next reasoning step.
 
-* [About](/about) [About](https://parallel.ai/about)
-* [Pricing](/pricing) [Pricing](https://parallel.ai/pricing)
-* [Docs](https://docs.parallel.ai) [Docs](https://docs.parallel.ai)
-* [Status](https://status.parallel.ai/) [Status](https://status.parallel.ai/)
-* [Blog](/blog) [Blog](https://parallel.ai/blog)
-* [Changelog](https://docs.parallel.ai/resources/changelog) [Changelog](https://docs.parallel.ai/resources/changelog)
-* [Careers](https://jobs.ashbyhq.com/parallel) [Careers](https://jobs.ashbyhq.com/parallel)
+Together, they give agents the best of both: high-quality retrieval and high-quality compression in a single workflow.
 
-### Info
+On [FinanceBench](https://docs.patronus.ai/docs/research_and_differentiators/financebench), built around real-world workflows across SEC filings, earnings reports, and multi-page investor documents, the extract API consistently succeeds at getting the highest recall for any number of tokens returned.
 
-* [Terms](/terms-of-service) [Terms](https://parallel.ai/terms-of-service)
-* [Privacy](/privacy-policy) [Privacy](https://parallel.ai/privacy-policy)
-* [Trust Center](https://trust.parallel.ai/) [Trust Center](https://trust.parallel.ai/)
+![](https://cdn.sanity.io/images/5hzduz3y/production/8d607881c601e54f00329d647527800d4d58ef8c-2000x1706.jpg)
 
-![SOC 2 Compliant](https://parallel.ai/soc2.svg)
+> **Finance Benchmark Methodology**
+>
+> **Dataset**
+>
+> The eval sampled 136 questions from the finance bench QA dataset.
+>
+>
+>
+> **Evaluation setup**
+>
+> For each evaluation question, the harness runs the extract APIs against the question's URLs and objective, then judges the response using an LLM-as-judge based on the reference answer.
+>
+>
+>
+> **Evaluation**
+>
+> 1. Combine all extracted content returned by the engine into a single excerpt.
+>
+> 2. LLM judge (GPT 5.4 mini) determines whether the combined excerpt contains enough information to correctly answer the question, given a known reference answer. The judge returns a short chain of reasoning plus a binary verdict: *sufficient* or *insufficient*.
+>
+> 3. Aggregate recall across the dataset is the fraction of questions the extracted content could answer. If the engine returns no content, the question is scored zero without calling the judge.
 
-[LinkedIn](https://www.linkedin.com/company/parallel-web/about/) [LinkedIn] (https://www.linkedin.com/company/parallel-web/about/) [Twitter](https://x.com/p0) [Twitter] (https://x.com/p0)
+## We’ve expanded Parallel Search to more corners of the world
 
-Parallel Web Systems Inc. 2025
+Sophisticated AI products serve users globally. A GTM agent may prospect across markets, a compliance agent may track filings across jurisdictions, and a research assistant may serve users in many languages. These workflows require a search layer that can retrieve fresh, relevant content across languages and regions with consistent quality.
+
+The Parallel Search API now supports this natively, giving agents a stronger foundation for global workflows.
+
+- **Global index coverage: **Our index now spans web pages from 30+ countries, including Korean, Chinese, Japanese, Spanish, Indian, German, Arabic, Portuguese, and Russian language content.
+- **Multilingual query input: **Submit queries in any language. The Search API handles retrieval across languages without additional configuration.
+- **Location parameter: **Set a target location to refine results to a specific region.
+
+![](https://cdn.sanity.io/images/5hzduz3y/production/754f1331567a72c8b01834653f864fe239982d98-2192x1538.jpg)
+
+> **Multi-Lingual Benchmark Methodology**
+>
+> **Dataset**
+>
+> Starting from OpenAI's **SimpleQA**, each question was translated into all 26 languages from Apple's **MKQA** benchmark. Translations were carried out using LLMs and were spot checked by human annotators fluent in the respective languages. The reference answer is also translated/localized per language, giving us paired queries where the _same fact_ is asked across Latin-European, Cyrillic, CJK, Semitic (RTL), and SE Asian scripts.
+>
+>
+>
+> **Evaluation methodology**
+>
+> 100 questions from each language; each query is sent to the search provider as-is, and the results are fed into an LLM for synthesis. The final answer is graded using an LLM-as-a-judge.
+>
+>
+>
+> We report 2 metrics:
+>
+> - **The fraction of answers marked as correct**, as reported by the judge. The grader sees the question, the gold answer, and the predicted answer, and returns CORRECT / INCORRECT / NOT_ATTEMPTED. We grade with an LLM rather than string EM/F1 because the agent's predicted answers are full sentences in many scripts — "The 2010 recipient was Michio Sugeno" in English, ميتشيو سوغينو transliterated variants in Arabic, etc. What we care about is whether the agent got the answer right, which the LLM judge captures directly.
+> - **Cross-lingual retrieval ability**: Because every question is paired across all 26 languages, the drop in accuracy when switching from English to non-English languages for the same question isolates the provider's cross-lingual retrieval quality. A small drop means the index and retrieval pipeline handle non-English queries nearly as well as English; a large drop means the provider is English-centric and falls off when asked to cross script families.
+
+Parallel builds web infrastructure for AI. We give AI agents structured, grounded access to the open web, enabling agents to find, extract, monitor, and reason over information at a scale and quality no human workflow can match. Our infrastructure is powered by a rapidly growing proprietary index of the global internet, built from the ground up for AI consumption.
+
+Fortune 100s and leading frontier AI companies, including Harvey, Manus, Modal, Starbridge, and Profound, rely on Parallel for grounding, fact-checking, contract monitoring, and high-quality content generation.
+
+Get started on our [Developer Platform](https://platform.parallel.ai/) or read the [documentation](https://docs.parallel.ai/).

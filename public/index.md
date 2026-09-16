@@ -1,362 +1,338 @@
-[Parallel](/)
+# Where agents find answers
 
-[About](/about) [About](https://parallel.ai/about) [Pricing](/pricing) [Pricing](https://parallel.ai/pricing) [Careers](https://jobs.ashbyhq.com/parallel) [Careers](https://jobs.ashbyhq.com/parallel) [Blog](/blog) [Blog](https://parallel.ai/blog) [Docs](https://docs.parallel.ai/home) [Docs](https://docs.parallel.ai/home)
+Web infrastructure for AI to search, extract, monitor, and reason over the world's information
 
-Start Building P [Start Building]
+[Start building for free](https://platform.parallel.ai/)
 
-Menu [Menu]
+## Join the teams building the AI frontier
 
-Human Machine
+Trusted by category-defining startups & Fortune 500 enterprises
 
-# \#
+* Harvey
+* Formation Bio
+* Attio
+* Starbridge
+* Granola
+* Pfizer
+* Manus
+* Hex
+* Modal
+* Dropbox
+* Owner
+* Greptile
+* Rogo
+* Profound
+* Opendoor
 
-\##
+## Put the web to work across every industry
 
-The highest accuracy web search for your AI
+* Monitor portfolios, signals, and pricing  
+Watch the things your business runs on: portfolio companies, target accounts, competitor pricing, regulations. Get a structured alert the moment something material changes, so you only hear what matters to you.  
+Example query: Find the latest funding rounds for AI infrastructure startups
+* Answer with fresh facts, inside your product  
+Give your assistant, copilot, or coding agent current, cited answers fast enough for a chat thread: live docs, real-world context, breaking news. Your users get the answer that's relevant today, not at training time.  
+Example query: What changed in the EU AI Act this month?
+* Automate research on any account, market, or thesis at scale  
+Hand over an objective and get back hundreds of finished, cited reports in minutes: an account brief before the call, an investment memo, a competitive landscape. Analyst-grade work, embedded in your workflow.  
+Example query: Build a cited brief on the industrial robotics market
+* Enrich companies, people, and accounts  
+Drop in a list or describe who you're looking for. Get back live, structured profiles: target accounts, investment candidates, vendors, or the long tail. Every field cited and confidence-scored, ready for your CRM or pipeline.  
+Example query: Enrich these 50 accounts with headcount and funding
 
-## \## A web API purpose-built for AIs
+## Better answers start with better web search
 
-Powering millions of daily requests
+Parallel gives agents real-time access to fresh and relevant context from the web. Search billions of pages, extract key information, monitor changes, and do complex research with cited outputs you can trust in production.
 
-\### Highest accuracy
+[API Playground](https://platform.parallel.ai/)
 
-Production-ready outputs built on cross-referenced facts, with minimal hallucination.
+What do I need to know for my meeting tomorrow?
 
-\### Predictable costs
+### With Parallel retrieval
 
-Flex compute budget based on task complexity. Pay per query, not per token.
+The company closed a $40M Series B last week and has been hiring aggressively in enterprise sales since, a signal they're moving upmarket. The lead contact joined as VP of Product in January, previously led product at a direct competitor, and published a piece last week flagging retrieval quality as their biggest infrastructure gap.
 
-\### Evidence-based outputs
+High confidence
 
-Verifiability and provenance for every atomic output.
+### LLM only
 
-\### Trusted
+The company is an enterprise SaaS business focused on workflow automation, backed by Sequoia and Index Ventures. The lead contact is a senior product leader who previously worked at Salesforce. They've been growing their enterprise segment and expanding internationally.
 
-SOC-II Type 2 Certified, trusted by leading startups and enterprises.
+## Designed to compose
 
-Powering the best AIs using the web
+With Parallel, agents can find quick answers, watch the web for changes, enrich databases, and do deep research across the deepest corners of the web, all through a single API.
 
-## Highest accuracy at every price point
+[API Playground](https://platform.parallel.ai/)
 
-State of the art across several benchmarks
+* EXTRACT: Find the latest news on my competitors
+* MONITOR: Alert me when any of them raises a new round
+* DEEP RESEARCH: Build a cited funding report
 
-WISER-Search BrowseComp DeepResearch Bench WISER-Atomic SimpleQA
+## Production-grade trust
 
-[COST (CPM) ACCURACY (%) Loading chart...](https://parallel.ai/blog/search-api-benchmark)
+Parallel's Web Agents use [Basis](https://docs.parallel.ai/task-api/guides/access-research-basis) to attach provenance and calibrated confidence scoring to every output, for trusted use and auditability in production. Every score can be fed back into retrieval to continuously improve results over time.
 
-CPM: USD per 1000 requests. Cost is shown on a Linear scale.
+[API Playground](https://platform.parallel.ai/)
 
-Parallel
+## More signal per token
 
-Native
+Reduce your inference spend while improving quality with more context-efficient retrieval. Every query is served by Parallel’s web index, purpose-built for agents.
 
-Exa
+[Onboard your agent](https://docs.parallel.ai/getting-started/overview#onboard-your-agent)
 
-BrowseComp benchmark analysis: CPM: USD per 1000 requests. Cost is shown on a Linear scale. . Evaluation shows Parallel's enterprise deep research API for AI agents achieving up to 48% accuracy, outperforming GPT-4 browsing (1%), Claude search (6%), Exa (14%), and Perplexity (8%). Enterprise-grade structured deep research performance across Cost (CPM) and Accuracy (%). State-of-the-art enterprise deep research API with structured data extraction built for ChatGPT deep research and complex multi-hop AI agent workflows.
+Our products
 
-### \### About the benchmark
+## Retrieval, built from the ground up
 
-This benchmark, created by Parallel, blends WISER-Fresh and WISER-Atomic. WISER-Fresh is a set of 76 queries requiring the freshest data from the web, generated by Parallel with o3 pro. WISER-Atomic is a set of 120 hard real-world business queries, based on use cases from Parallel customers. Read our blog [here](https://parallel.ai/blog/search-api-benchmark) [here]($https://parallel.ai/blog/search-api-benchmark) .
+Parallel makes the web programmable, bringing the world's information to agents, grounding them in better facts, helping them do complex knowledge work, and even keeping them pro-actively informed. Everything runs on Parallel's proprietary web search stack, built for the scale AI demands.
 
-### \### Distribution
+* [Task API](https://parallel.ai/products/task)  
+Deep research and analysis at enterprise scale. Give it an objective, get back structured, cited answers
+* [Monitor API](https://parallel.ai/products/monitor)  
+Track changes and act on what matters, with structured alerts via webhook.
+* [FindAll API](https://parallel.ai/products/findall)  
+Build structured datasets with real-time enrichment. Describe what you want, get a live list.
+* [Search API](https://parallel.ai/products/search)  
+The highest-accuracy web search for your AI. Fresh, fast, and affordable grounding in one call.
+* [Extract API](https://parallel.ai/products/extract)  
+Get full or excerpted contents from the public web, including PDFs, JS-heavy pages, and government sites
+* [Parallel Web Index](https://index.parallel.ai)  
+Real-time access to the web's most valuable sources, built from the ground up for AIs.
 
-40% WISER-Fresh  
-60% WISER-Atomic
+## Better, faster, cheaper at every price point
 
-### \### Evaluation
+From sub-second lookups to hour-long research, state of the art at every tier
 
-The Parallel Search API was evaluated by comparing three different web search solutions (Parallel MCP server, Exa MCP server/tool calling, LLM native web search) across four different LLMs (GPT 4.1, o4-mini, o3, Claude Sonnet 4).
+[Start building for free](#start)[View all benchmarks](https://parallel.ai/benchmarks)
 
-## \## Highest accuracy at every price point
+### SimpleQA Verified
 
-State of the art across several benchmarks
+__SimpleQA Verified — Accuracy (%) vs Cost (CPM).__
+| Provider            | Accuracy (%) | Cost (CPM) |
+| ------------------- | ------------ | ---------- |
+| Parallel Fast       | 94           | 2          |
+| Parallel Turbo      | 91           | 2          |
+| Parallel Advanced   | 97           | 28.3       |
+| Parallel Basic      | 97           | 45         |
+| Exa Auto (low-cost) | 91           | 7.9        |
+| Tavily (low-cost)   | 94           | 17.4       |
+| Exa Auto (frontier) | 91           | 35.7       |
+| Tavily (frontier)   | 92           | 61.3       |
 
-## \### Search MCP Benchmark (LP)
+CPM: USD per 1000 requests, log scale. Frontier tier uses a GPT-5.6 Sol agent; low-cost tier uses a GPT-5.6 Luna agent.
 
-```
-| Series    | Model                        | Cost (CPM) | Accuracy (%) |
-| --------- | ---------------------------- | ---------- | ------------ |
-| Parallel  | GPT 4.1 w/ Prll Search MCP   | 21         | 74.9         |
-| Parallel  | o4 mini w / Prll Search MCP  | 90         | 82.14        |
-| Parallel  | o3 w / Prll Search MCP       | 192        | 80.61        |
-| Parallel  | sonnet 4 w / Prll Search MCP | 92         | 78.57        |
-| Native    | GPT 4.1 w / Native Search    | 27         | 70           |
-| Native    | o4 mini w / Native Search    | 190        | 77           |
-| Native    | o3 w / Native Search         | 351        | 79.08        |
-| Native    | sonnet 4 w / Native Search   | 122        | 68.83        |
-| Exa       | GPT 4.1 w/ Exa Search MCP    | 40         | 58.67        |
-| Exa       | o4 mini w/ Exa Search MCP    | 199        | 61.73        |
-| Exa       | o3 w/ Exa Search MCP         | 342        | 56.12        |
-| Exa       | sonnet 4 w/ Exa Search MCP   | 140        | 67.13        |
-```
+**Dataset**
 
-CPM: USD per 1000 requests. Cost is shown on a Linear scale.
+[SimpleQA Verified](https://www.kaggle.com/benchmarks/deepmind/simpleqa-verified), created by Google DeepMind, is a 1,000-question refinement of OpenAI's SimpleQA with corrected labels and balanced topics, covering short, fact-seeking questions. Results are reported on a sample of 100 questions.
 
-### \### About the benchmark
+**Evaluation methodology**
 
-This benchmark, created by Parallel, blends WISER-Fresh and WISER-Atomic. WISER-Fresh is a set of 76 queries requiring the freshest data from the web, generated by Parallel with o3 pro. WISER-Atomic is a set of 120 hard real-world business queries, based on use cases from Parallel customers. Read our blog [here](https://parallel.ai/blog/search-api-benchmark) [here]($https://parallel.ai/blog/search-api-benchmark) .
+Multi-step agentic evaluation at two price tiers. In the frontier tier a GPT-5.6 Sol agent (reasoning: high) is paired with Parallel Basic and Parallel Advanced; in the low-cost tier a GPT-5.6 Luna agent (reasoning: low) is paired with Parallel Fast and Parallel Turbo. Exa and Tavily are run at both tiers with the same agent. The agent calls each provider's search tool and extract tool. Answers are graded by an LLM judge.
 
-### \### Distribution
+Cost includes LLM token costs and tool call costs, averaged per question and shown on a log scale.
 
-40% WISER-Fresh  
-60% WISER-Atomic
+**Testing dates**
 
-### \### Evaluation
+Evals were run on September 9, 2026.
 
-The Parallel Search API was evaluated by comparing three different web search solutions (Parallel MCP server, Exa MCP server/tool calling, LLM native web search) across four different LLMs (GPT 4.1, o4-mini, o3, Claude Sonnet 4).
+### BrowseComp
 
-## \### New Browsecomp (LP)
+__BrowseComp — Accuracy (%) vs Cost (CPM).__
+| Provider            | Accuracy (%) | Cost (CPM) |
+| ------------------- | ------------ | ---------- |
+| Parallel Fast       | 44           | 11.8       |
+| Parallel Turbo      | 32           | 13.2       |
+| Parallel Advanced   | 74           | 399        |
+| Parallel Basic      | 72           | 612        |
+| Exa Auto (low-cost) | 36           | 53.4       |
+| Tavily (low-cost)   | 32           | 176        |
+| Tavily (frontier)   | 66           | 935        |
+| Exa Auto (frontier) | 70           | 971        |
 
-```
-| Series    | Model      | Cost (CPM) | Accuracy  (%) |
-| --------- | ---------- | ---------- | ------------- |
-| Parallel  | Ultra      | 300        | 45            |
-| Parallel  | Ultra2x    | 600        | 51            |
-| Parallel  | Ultra4x    | 1200       | 56            |
-| Parallel  | Ultra8x    | 2400       | 58            |
-| Others    | GPT-5      | 488        | 38            |
-| Others    | Anthropic  | 5194       | 7             |
-| Others    | Exa        | 402        | 14            |
-| Others    | Perplexity | 709        | 6             |
-```
+CPM: USD per 1000 requests, log scale. Frontier tier uses a GPT-5.6 Sol agent; low-cost tier uses a GPT-5.6 Luna agent.
 
-CPM: USD per 1000 requests. Cost is shown on a Log scale.
+**Dataset**
 
-### \### About the benchmark
+[BrowseComp](https://openai.com/index/browsecomp/), created by OpenAI, contains 1,266 questions that require persistent browsing to locate hard-to-find, entangled information on the web. Results are reported on a sample of 50 questions.
 
-This [benchmark](https://openai.com/index/browsecomp/) [benchmark]($https://openai.com/index/browsecomp/) , created by OpenAI, contains 1,266 questions requiring multi-hop reasoning, creative search formulation, and synthesis of contextual clues across time periods. Results are reported on a random sample of 100 questions from this benchmark. Read the [blog](https://parallel.ai/blog/deep-research-benchmarks) [blog]($https://parallel.ai/blog/deep-research-benchmarks) .
+**Evaluation methodology**
 
-### \### Methodology
+Multi-step agentic evaluation at two price tiers. In the frontier tier a GPT-5.6 Sol agent (reasoning: high) is paired with Parallel Basic and Parallel Advanced; in the low-cost tier a GPT-5.6 Luna agent (reasoning: low) is paired with Parallel Fast and Parallel Turbo. Exa and Tavily are run at both tiers with the same agent. The agent calls each provider's search tool and extract tool. Answers are graded by an LLM judge.
 
-* \- Dates: All measurements were made between 08/11/2025 and 08/29/2025.
-* \- Configurations: For all competitors, we report the highest numbers we were able to achieve across multiple configurations of their APIs. The exact configurations are below.
-  
-    + \- GPT-5: high reasoning, high search context, default verbosity
-    + \- Exa: Exa Research Pro
-    + \- Anthropic: Claude Opus 4.1
-    + \- Perplexity: Sonar Deep Research reasoning effort high
+Cost includes LLM token costs and tool call costs, averaged per question and shown on a log scale.
 
-## \### RACER (LP)
+**Testing dates**
 
-```
-| Series   | Model      | Cost (CPM) | Win Rate vs Reference (%) |
-| -------- | ---------- | ---------- | ------------------------- |
-| Parallel | Ultra      | 300        | 82                        |
-| Parallel | Ultra2x    | 600        | 86                        |
-| Parallel | Ultra4x    | 1200       | 92                        |
-| Parallel | Ultra8x    | 2400       | 96                        |
-| Others   | GPT-5      | 628        | 66                        |
-| Others   | O3 Pro     | 4331       | 30                        |
-| Others   | O3         | 605        | 26                        |
-| Others   | Perplexity | 538        | 6                         |
-```
+Evals were run on September 9, 2026.
 
-CPM: USD per 1000 requests. Cost is shown on a Log scale.
+### WideSearch
 
-### \### About the benchmark
+__WideSearch — Score (%) vs Cost (CPM).__
+| Provider            | Score (%) | Cost (CPM) |
+| ------------------- | --------- | ---------- |
+| Parallel Turbo      | 44        | 10.1       |
+| Parallel Fast       | 45.5      | 10.5       |
+| Parallel Advanced   | 57.6      | 692        |
+| Parallel Basic      | 55.3      | 965        |
+| Exa Auto (low-cost) | 53        | 41.2       |
+| Tavily (low-cost)   | 47.9      | 107        |
+| Exa Auto (frontier) | 55.9      | 1061       |
+| Tavily (frontier)   | 55.9      | 1072       |
 
-This [benchmark](https://github.com/Ayanami0730/deep_research_bench) [benchmark]($https://github.com/Ayanami0730/deep\_research\_bench) contains 100 expert-level research tasks designed by domain specialists across 22 fields, primarily Science & Technology, Business & Finance, and Software Development. It evaluates AI systems' ability to produce rigorous, long-form research reports on complex topics requiring cross-disciplinary synthesis. Results are reported from the subset of 50 English-language tasks in the benchmark. Read the [blog](https://parallel.ai/blog/deep-research-benchmarks) [blog]($https://parallel.ai/blog/deep-research-benchmarks) .
+CPM: USD per 1000 requests, log scale. Score is item-level correctness averaged across tasks (partial credit). Frontier tier uses a GPT-5.6 Sol agent; low-cost tier uses a GPT-5.6 Luna agent.
 
-### \### Methodology
+**Dataset**
 
-* \- Dates: All measurements were made between 08/11/2025 and 08/29/2025.
-* \- Win Rate: Calculated by comparing [RACE](https://github.com/Ayanami0730/deep_research_bench) [RACE]($https://github.com/Ayanami0730/deep\_research\_bench) scores in direct head-to-head evaluations against reference reports.
-* \- Configurations: For all competitors, we report results for the highest numbers we were able to achieve across multiple configurations of their APIs. The exact GPT-5 configuration is high reasoning, high search context, and high verbosity.
-* \- Excluded API Results: Exa Research Pro (0% win rate), Claude Opus 4.1 (0% win rate).
+[WideSearch](https://arxiv.org/abs/2508.07999), created by ByteDance Seed, contains 200 broad information-seeking tasks that require collecting many verifiable facts from across the web and assembling them into a structured table. Results are reported on a sample of 100 tasks.
 
-## \### WISER-Atomic
+**Evaluation methodology**
 
-```
-| Series   | Model          | Cost (CPM) | Accuracy (%) |
-| -------- | -------------- | ---------- | ------------ |
-| Parallel | Core           | 25         | 77           |
-| Parallel | Base           | 10         | 75           |
-| Parallel | Lite           | 5          | 64           |
-| Others   | o3             | 45         | 69           |
-| Others   | 4.1 mini low   | 25         | 63           |
-| Others   | gemini 2.5 pro | 36         | 56           |
-| Others   | sonar pro high | 16         | 64           |
-| Others   | sonar low      | 5          | 48           |
-```
+Multi-step agentic evaluation at two price tiers. In the frontier tier a GPT-5.6 Sol agent (reasoning: high) is paired with Parallel Basic and Parallel Advanced; in the low-cost tier a GPT-5.6 Luna agent (reasoning: low) is paired with Parallel Fast and Parallel Turbo. Exa and Tavily are run at both tiers with the same agent. The agent calls each provider's search tool and extract tool. Answers are graded by an LLM judge.
 
-CPM: USD per 1000 requests. Cost is shown on a Log scale.
+WideSearch is scored with partial credit: each task's score reflects the share of required items collected correctly, averaged across tasks, so it is not directly comparable to the exact-match accuracy on the other benchmarks.
 
-### \### About the benchmark
+Cost includes LLM token costs and tool call costs, averaged per task and shown on a log scale.
 
-This benchmark, created by Parallel, contains 121 questions intended to reflect real-world web research queries across a variety of domains. Read our blog [here](https://parallel.ai/blog/parallel-task-api) [here]($https://parallel.ai/blog/parallel-task-api) .
+**Testing dates**
 
-### \### Steps of reasoning
+Evals were run on September 9, 2026.
 
-50% Multi-Hop questions  
-50% Single-Hop questions
+## Pioneers of the agentic web are building with Parallel
 
-### \### Distribution
+> “Authoritative legal data across dozens of countries lives on sites no search engine has ever indexed. Parallel solves that at a scale we couldn't build ourselves.”
+> 
+> Gabe Pereyra, President & Co-Founder, Harvey
 
-40% Financial Research  
-20% Sales Research  
-20% Recruitment  
-20% Miscellaneous
+> “The best agentic search isn't just the fastest or the cheapest. It's net new information that language models don't already know. Parallel delivers that.”
+> 
+> Sarah Sacks, AI Lead, Notion
 
-## \### SimpleQA
+> “Parallel provided us with a big upgrade in speed and index coverage. Combined with a 5x improvement in cost efficiency, it was an easy decision to build our agents with them.”
+> 
+> Vikas Velagapudi, Founder, Convoke
 
-```
-| Series   | Model            | Cost (CPM) | Accuracy (%) |
-| -------- | ---------------- | ---------- | ------------ |
-| Parallel | Core             | 25         | 94           |
-| Parallel | Base             | 10         | 94           |
-| Parallel | Lite             | 5          | 92           |
-| Others   | o3 high          | 56         | 92           |
-| Others   | gemini 2.5 flash | 35         | 91           |
-| Others   | 4.1 mini high    | 30         | 88           |
-| Others   | sonar pro        | 13         | 84           |
-| Others   | sonar            | 8          | 81           |
-```
+> “You cannot make mistakes in financial services. With Parallel, our banking customers run agents that complete complex KYB checks in minutes, not hours.”
+> 
+> Maik Taro Wehmeyer, Co-Founder & CEO, Taktile
 
-CPM: USD per 1000 requests. Cost is shown on a Log scale.
+> “In our internal evaluations we found Parallel to be the fastest and most accurate web search tool we tested. That speed together with its fine-grained control over web search means our agents can iteratively search, view results and refine search terms to get the answers users need.”
+> 
+> James Clough, Head of AI, ModelML
 
-### \### About the benchmark
+> “We benchmarked providers on web research across entity types (companies, people, vessels), geographies, and data richness. Parallel topped every dimension on both breadth of findings and accuracy.”
+> 
+> James Rogers, Product Manager, Bretton AI
 
-This benchmark contains 4,326 questions focused on short, fact-seeking queries across a variety of domains.
+> “Parallel is core infrastructure for our agents. It outperformed every alternative on quality and cost, pulling from the whole web instead of prepackaged datasets.”
+> 
+> Mihir Garimella, CEO, Actively
 
-### \### Steps of reasoning
+> “Parallel is the highest accuracy API on the market. It handled the edge cases other providers simply couldn't: obscure companies, ambiguous names, conflicting sources.”
+> 
+> Max Brodeur-Urbas, CEO, Gumloop
 
-100% Single-Hop questions
+> “Parallel's Monitor API lets Poke track anything our users care about: their team, their neighborhood, the news that matters to them. It helps make Poke more proactive in their daily lives, which ultimately makes for a better companion.”
+> 
+> Marvin Von Hagen, CEO, Interaction
 
-### \### Distribution
+> “Parallel consistently delivered the highest quality results at the best price, and handled the complex government websites every other provider struggled with.”
+> 
+> Sweyn Venderbush, CEO, Starbridge
 
-36% Culture  
-20% Science and Technology  
-16% Politics  
-28% Miscellaneous
+> “Parallel's team was incredibly helpful as we designed how Amp would use their APIs: tool names, params, UI, and other thoughtful guidance. They get it, and they care.”
+> 
+> Quinn Slack, CEO, Amp
 
-## \## The most accurate deep and wide research
+> “We chose Parallel as our preferred search API because of the comprehension and accuracy of their outputs: structured, well-sourced, and ready to feed straight into our content generation agents.”
+> 
+> Dylan Babbs, Co-founder, Profound
 
-Run deeper and more accurate research at scale, for the same compute budget
+> “Our partnership with Parallel replaces repetitive human effort with continuous agentic research that integrates seamlessly into enhanced decision-making systems.”
+> 
+> Sanjeev Vohra, CTIO, Genpact
 
-[Run a query](https://platform.parallel.ai/play/deep-research) [Run a query ] (https://platform.parallel.ai/play/deep-research)
+> “We tested every major web search provider. Parallel's outputs came back structured, well-cited, and dense with the right information.”
+> 
+> Amr Shafik, VP Product, Airops
 
-D then P
+Trust
 
-Starting research...
+## Built for enterprise, secure by design
 
-## \## Search, built for AIs
+Build trust with the [Basis framework](https://docs.parallel.ai/task-api/guides/access-research-basis), unique to Parallel: calibrated confidence scores, citations, source excerpts, and reasoning traces.
 
-The most accurate search tool, to bring web context to your AI agents
+* SOC 2 Type 2
+* Zero data retention available
+* HIPAA-ready offering
+* GDPR Compliance
+* Single sign-on (SSO/SAML)
 
-[Give AIs Search](https://platform.parallel.ai/play/search) [Give AIs Search] (https://platform.parallel.ai/play/search)
+## Pay for answers, not tokens
 
-S then P
+Every Parallel API flexes to fit your needs. Dial speed, depth, and cost to what each workflow is worth, set a budget cap, and hold to it. Per-request pricing means you pay for answers, not tokens, so there’s no incentive to burn context and no surprise bill at the end of the month.
 
-## \## Build a dataset from the web
+[Pricing](https://parallel.ai/pricing)
 
-Define your search criteria in natural language, and get back a structured table of matches
+## Start building for free
 
-[Create a dataset](https://platform.parallel.ai/find-all) [Create a dataset] (https://platform.parallel.ai/find-all)
+Get started with our APIs in seconds. Run up to 5,000 requests per month for free.
 
-F then P
+[API Playground](https://platform.parallel.ai/) [Docs](https://docs.parallel.ai/getting-started/overview#onboard-your-agent)
 
-ID
+Agent onboarding prompt:
 
-1
+Use curl to read parallel.ai/agents.md and perform the setup to install Parallel
 
-2
+Available everywhere you build
 
-3
+* Google Cloud
+* OpenRouter
+* Vercel
+* LangChain
+* Supabase
+* Google Sheets
+* Snowflake
+* Gemini
+* Hermes Agent
+* OpenClaw
+* n8n
+* MPP
 
-4
+## FAQs
 
-5
+* **What does Parallel do?**  
+Parallel builds web search and research APIs purpose-built for AI agents and agentic workflows. We run our own web-scale index with billions of pages and millions more added and updated daily. Our product suite spans the full range of knowledge work agents are helping automate for businesses: Search and Extract for real-time retrieval, Task and FindAll for deep research and entity discovery, and Monitor for continuous tracking. If your agent needs to read, research, or watch the web, Parallel is the unified platform that makes it as easy as an API call.
+* **How is Parallel different from other web search APIs (like Exa, Tavily, or Perplexity)?**  
+Most search APIs retro-fit traditional search engines for AI, but Parallel’s Index was designed for LLMs and programmatic use from the start. Our products are powered by innovations in crawling, indexing, and retrieval applied for efficient use of LLM context windows and software pipelines. By rebuilding the stack for the agentic software market, Parallel makes AI viable for high-stakes sectors like law, finance, and healthcare where accuracy is paramount.
+* **Why does AI need the web?**  
+Large language models are trained on past information, which means their knowledge of the present is out of date as soon as a training run begins. LLM knowledge cutoffs are often many months or even years behind present day facts. Web search APIs ground LLMs in real-world news published across the open (and in some cases, closed) web to ensure that AI always has the most up-to-date information needed to answer a query or task.
+* **Which Parallel API should I use?**  
+Start with the job you need done:
 
-6
+  * Search API returns ranked URLs and dense excerpts in real time. Use it to ground an agent or assistant in fresh, cited web context or to find the most relevant pages (URLs).
+  * Extract API turns any public URL, including hosted PDFs and JavaScript-heavy pages, into clean markdown context. Use it to pull content from public URLs you already have or recently surfaced with a web search.
+  * Responses API returns synthesized, cited answers from the live web in seconds. Use it for latency-sensitive research in products or as a web research subagent — same quality as Task, purpose-built for conversational speed.
+  * Task API runs structured deep research and data enrichment with citations and confidence scoring. Use it for reports, account briefs, due diligence, or enriching records at scale — best cost-to-quality for async or background work.
+  * FindAll API discovers and structures entity datasets from a natural language query. Use it to build a live list of anything, including but not limited to events, people, and companies.
+  * Monitor API tracks the web continuously and sends webhook alerts when something appears or changes. Use it to watch prices, news, competitors, or regulations.  
+The general rule: Search and Extract when latency matters and you need raw context, Responses when you need synthesized answers at conversational latency, Task and FindAll when you need deeper synthesis and structure (best cost-to-quality for async or background work), Monitor when the work never stops (ambient agents that proactively do work when triggered by new information).
+* **How much does Parallel cost? Is there a free plan?**  
+Parallel is pay-as-you-go, priced per request rather than per token, so you know what a call costs before it runs. Web search starts as low as $1 per 1,000 requests.  
+New accounts get a signup credit, and every account gets a recurring free monthly allowance of $5\. Free credit is always spent before any paid balance, so you only pay once you’ve used it up. Parallel Search is also available via a free hosted MCP server, which is suitable for personal/hobbyist use.  
+See [parallel.ai/pricing](/pricing) for the full breakdown. For higher rate limits and bespoke agreements, speak with [our sales team](https://contact.parallel.ai/).
+* **What is the Parallel Web Index?**  
+The Parallel Web Index is our proprietary, web-scale index of the open web, designed from the ground up to power the scale that AI web search demands. Our index contains billions of pages, and millions are added or updated daily, keeping it fresh and far-reaching.
+* **What is Index by Parallel?**  
+[Index by Parallel](https://index.parallel.ai/) is a platform that helps content owners understand how AI agents use their work and earn compensation tied to the value they contribute. Compensation is calculated by estimating each source’s Shapley value, its marginal contribution to the work an agent performs at the moment of inference. Content that’s uniquely valuable, hard to replace, or used in high-value agent work earns more.
+* **How fresh is Parallel's data?**  
+Parallel adds millions of pages to the Parallel Web Index daily, and you can force a live crawl for time-sensitive queries. Set freshness controls to require recent pages or trigger a fresh fetch, so your agent always reads what’s true today.
+* **How does Parallel cite its sources?**  
+Search and Extract APIs include source URLs.  
+On Parallel’s agentic APIs (Web Agents), every output supports [Basis](https://docs.parallel.ai/task-api/guides/access-research-basis), our verifiability framework, which attaches citations, the reasoning behind a result, and a calibrated confidence score to each fact. You can trust an answer in production and audit it afterward, tracing any claim back to the page it came from. Those confidence scores also feed back into retrieval, so results improve over time.
+* **Is Parallel secure and compliant?**  
+Yes. Parallel is SOC 2 Type II certified, HIPAA compliant, and offers zero data retention. For teams with stricter requirements, enterprise controls are available. See our [terms of service](/customer-terms) for more information.
+* **How do I connect Parallel to my agent or existing stack?**  
+You have a few options. Call the REST API directly, or use the Python (parallel-web) or TypeScript SDK. For agent frameworks, the Parallel Search MCP server drops in through Cursor, Claude Code, and other MCP-compatible tools. If you already use the OpenAI SDK, point your base URL at the Chat API and swap your key; everything else works the same. Parallel also integrates with LangChain, the Vercel AI SDK, and Google Vertex AI, and delivers async results over webhooks. Start at [docs.parallel.ai](https://docs.parallel.ai).
 
-Entities
+## Where agents find answers
 
-## \## Custom web enrichment
-
-Bring existing data, define output columns to research, and get fresh web enrichments back
-
-[Enrich your data](https://platform.parallel.ai/play) [Enrich your data] (https://platform.parallel.ai/play)
-
-T then P
-
-ID
-
-Entities
-
-Product releases
-
-SOC 2 status
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-Start building
-
-## \## Towards a programmatic web for AIs
-
-Parallel is building new interfaces, infrastructure, and business models for AIs to work with the web
-
-[Try it for free P](https://platform.parallel.ai) [Try it for free] (https://platform.parallel.ai) [Join us C](https://jobs.ashbyhq.com/parallel) [Join us ] (https://jobs.ashbyhq.com/parallel)
-
-[](https://docs.parallel.ai/home)
-
-Deep research API interface for ChatGPT and AI agents. Enterprise-grade deep research with up to 48% accuracy vs GPT-4's 1%. Built for ChatGPT deep research assistants and complex multi-hop AI workflows.
-
-Latest updates
-
-October 8
-
-[[ How Day AI merges private and public data for business intelligence ] (https://parallel.ai/blog/case-study-day-ai) Day AI is an AI-native CRM that you can talk to. Their platform combines data from leading SaaS tools like Slack and email, with public data gathered and structured via Parallel’s Task API to help their customers sell better.](/blog/case-study-day-ai)
-
-Tags: [Case Study](/blog?tag=case-study)
-
-October 7
-
-[[ Full Basis framework for all Task API Processors ] (https://parallel.ai/blog/full-basis-framework-for-task-api) Lite and Base Task API processors now include the complete Basis framework—citations, reasoning, excerpts, and calibrated confidence scores.](/blog/full-basis-framework-for-task-api)
-
-Tags: [Product Release](/blog?tag=product-release)
-
-September 30
-
-[[ How Gumloop built a new AI automation framework with web intelligence as a core node ] (https://parallel.ai/blog/case-study-gumloop) By integrating Parallel's Task API as a core component, Gumloop enables businesses to build AI automation workflows that are grounded in real-time web data.](/blog/case-study-gumloop)
-
-Tags: [Case Study](/blog?tag=case-study)
-
-![Company Logo](https://parallel.ai/parallel-logo-540.png)
-
-### Contact
-
-* [hello@parallel.ai](mailto:hello@parallel.ai) [hello@parallel.ai](mailto:hello@parallel.ai)
-
-### Resources
-
-* [About](/about) [About](https://parallel.ai/about)
-* [Pricing](/pricing) [Pricing](https://parallel.ai/pricing)
-* [Docs](https://docs.parallel.ai) [Docs](https://docs.parallel.ai)
-* [Status](https://status.parallel.ai/) [Status](https://status.parallel.ai/)
-* [Blog](/blog) [Blog](https://parallel.ai/blog)
-* [Changelog](https://docs.parallel.ai/resources/changelog) [Changelog](https://docs.parallel.ai/resources/changelog)
-* [Careers](https://jobs.ashbyhq.com/parallel) [Careers](https://jobs.ashbyhq.com/parallel)
-
-### Info
-
-* [Terms](/terms-of-service) [Terms](https://parallel.ai/terms-of-service)
-* [Privacy](/privacy-policy) [Privacy](https://parallel.ai/privacy-policy)
-* [Trust Center](https://trust.parallel.ai/) [Trust Center](https://trust.parallel.ai/)
-
-![SOC 2 Compliant](https://parallel.ai/soc2.svg)
-
-[LinkedIn](https://www.linkedin.com/company/parallel-web/about/) [LinkedIn] (https://www.linkedin.com/company/parallel-web/about/) [Twitter](https://x.com/p0) [Twitter] (https://x.com/p0)
-
-Parallel Web Systems Inc. 2025
+[Start building for free](https://platform.parallel.ai/) [Contact us](https://contact.parallel.ai/)
