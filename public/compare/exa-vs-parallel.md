@@ -6,7 +6,7 @@ Parallel is faster, more affordable, and more accurate than Exa on everything fr
 
 [Search, per 1,000 requests: $1 vs. $7](#cost) [Artificial Analysis Search Index, of 12 products: 1st (75) vs. 2nd (74)](#accuracy) [Search latency, BrowseComp p50: 216ms vs. 361ms](#performance)
 
-Last updated August 19, 2026
+Last updated September 16, 2026
 
 ## What does Parallel do?
 
@@ -31,10 +31,10 @@ __Parallel and Exa compared at a glance__
 | Field-level citations on agentic runs                       | Research Basis on Task, FindAll, and Monitor: URL, excerpt, reasoning, confidence (Leads) | Grounding when a run emits it                       |
 | Batch research orchestration                                | Task Groups over reusable Task Specs (Leads)                                              | No documented equivalent                            |
 | Change monitoring, per 1,000 executions                     | $3–$10, event stream plus snapshot value diffs (Leads)                                    | $15, recurring deduplicated search                  |
-| People and company search                                   | Entity Search for ranked results; FindAll for verified sets                               | Dedicated people and company indexes                |
+| People and company search                                   | Responses and Task APIs                                                                   | Dedicated people and company indexes                |
 | Framework ecosystem                                         | Vercel AI SDK, n8n, LangChain, LlamaIndex, and more                                       | LangChain, LlamaIndex, CrewAI, and 25+ more (Leads) |
 
-Sources: [Parallel pricing](https://parallel.ai/pricing), [Parallel Search Turbo benchmark run](https://parallel.ai/blog/parallel-search-turbo), [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel Entity Search docs](https://docs.parallel.ai/findall-api/entity-search)
+Sources: [Parallel pricing](https://parallel.ai/pricing), [Parallel Search Turbo benchmark run](https://parallel.ai/blog/parallel-search-turbo), [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel Responses docs](https://docs.parallel.ai/responses-api/responses-quickstart), [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart)
 
 ## Better at finding critical information
 
@@ -259,7 +259,7 @@ Yes. Task Specs fix the input and output contract, Task Groups fan thousands of 
 * **Where does Exa still win?**  
 Exa suits independent apps and side projects: its framework ecosystem spans LangChain, LlamaIndex, CrewAI, and 25+ others, search can add per-result AI summaries at extra cost, and subpage crawling is documented. Not latency, and not the index: Exa advertises sub-200ms but measured 335–361ms in our run.
 * **How current is this comparison?**  
-Parallel reviewed both providers’ live documentation and published price lists on July 27, 2026, and last updated this page on August 19, 2026\. BrowseComp, SimpleQA, and latency figures come from Parallel’s July 2026 evaluation; Search Index scores come from Artificial Analysis’s independent August 2026 benchmark. Both platforms ship often, so check the linked sources before you buy.
+Parallel reviewed both providers’ live documentation and published price lists on July 27, 2026, and last updated this page on September 16, 2026\. BrowseComp, SimpleQA, and latency figures come from Parallel’s July 2026 evaluation; Search Index scores come from Artificial Analysis’s independent August 2026 benchmark. Both platforms ship often, so check the linked sources before you buy.
 
 Trusted by
 
