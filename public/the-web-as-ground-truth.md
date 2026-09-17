@@ -239,3 +239,9 @@ When models are provided snippets with source URLs, every claim an agent makes c
 #### A system that improves with use
 
 When instrumented for user and agentic feedback, retrieval systems get better over time. The results you get today beat the ones you got six months ago.
+
+## Your Privacy Choices
+
+Privacy Policy | Manage Preferences
+
+Accept all Reject all
