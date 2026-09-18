@@ -2,6 +2,7 @@
 
 ### Comparison
 
+* [Web unlocker vs. scraper vs. fetch: which layer does your pipeline need?](https://parallel.ai/articles/web-unlocker-vs-scraper-vs-fetch)
 * [The best API for company research in 2026: what an independent benchmark found](https://parallel.ai/articles/best-api-for-company-research)
 * [TinyFish vs Parallel: operating websites or retrieving the web](https://parallel.ai/articles/tinyfish-vs-parallel)
 * [The best web search MCP server in 2026: 5 options compared](https://parallel.ai/articles/best-web-search-mcp)
@@ -98,6 +99,8 @@
 
 ### Industry Terms
 
+* [Web crawling vs. web scraping: what's the difference, and do you need either?](https://parallel.ai/articles/web-crawling-vs-web-scraping)
+* [Web scraper vs. web extraction: what's the difference?](https://parallel.ai/articles/web-scraper-vs-web-extraction)
 * [What is WebMCP?](https://parallel.ai/articles/what-is-webmcp)
 * [What are agent skills? SKILL.md and the portable-capability standard, explained](https://parallel.ai/articles/what-are-agent-skills)
 * [13 AI agent ideas organized by what they actually need to work](https://parallel.ai/articles/13-ai-agent-ideas-organized-by-what-they-actually-need-to-work)
