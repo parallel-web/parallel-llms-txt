@@ -121,6 +121,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Best Web Search APIs for AI Agents in 2026: Honest Comparison](https://llm.parallel.ai/articles/the-honest-2026-comparison-web-search-apis-for-ai-agents.md): Honest 2026 comparison of web search APIs for AI agents - SERP vs AI-native vs OpenAI/Claude tools, with pricing, limits, and how to choose after Bing…
 - [TinyFish vs Parallel: web agents or a retrieval API](https://llm.parallel.ai/articles/tinyfish-vs-parallel.md): TinyFish Search and Fetch are $0.00 per call, default 30 searches per minute. Parallel Search starts at $1 per 1,000. Compare agents, research APIs, and…
 - [Turn Any CLI Into an Agent Skill](https://llm.parallel.ai/articles/turn-any-cli-into-an-agent-skill.md): Tutorial: wrap any CLI in a SKILL.md agent skill that works across Claude Code, OpenClaw, and Hermes, with a complete worked example and agent-friendly CLI…
+- [Web Crawling vs. Web Scraping: What&#x27;s the Difference?](https://llm.parallel.ai/articles/web-crawling-vs-web-scraping.md): Compare web crawling and web scraping: how each works, where they overlap, what robots.txt governs, and when an AI agent can skip both with search and extract…
 - [Web Monitoring Software for AI Agents: Real-Time Setup Guide](https://llm.parallel.ai/articles/web-monitoring-software-how-to-set-up-real-time-monitoring-for-ai-agents.md): Learn how to set up real-time web monitoring for AI agents using APIs, webhooks, and structured JSON for faster, automated workflows.
 - [Web Monitoring Tools Guide: Track Business-Critical Changes](https://llm.parallel.ai/articles/web-monitoring-tools-a-guide-to-tracking-changes-that-matter-for-your-business.md): Learn how web monitoring tools track website, API, and data changes with webhooks, natural language queries, and automation for business intelligence.
 - [Web Scraper vs. Web Extraction: What&#x27;s the Difference?](https://llm.parallel.ai/articles/web-scraper-vs-web-extraction.md): Compare web scrapers and web extraction: what each does, where they overlap, how they fail differently, and how LLM extraction changed the cost of web data.
@@ -331,7 +332,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Sign In - Parallel](https://llm.parallel.ai/docs/index.md)
 - [parallel-web - npm](https://llm.parallel.ai/docs/package/parallel-web.md)
 - [parallel-web · PyPI](https://llm.parallel.ai/docs/project/parallel-web/index.md)
-- [public-openapi](https://llm.parallel.ai/docs/public-openapi.json.md)
+- [OpenAPI Spec](https://llm.parallel.ai/docs/public-openapi.json.md)
 
 ## SDKs
 
