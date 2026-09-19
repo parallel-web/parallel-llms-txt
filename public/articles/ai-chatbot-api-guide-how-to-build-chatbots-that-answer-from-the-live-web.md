@@ -116,9 +116,9 @@ Three reasoning-effort tiers serve different latency and depth requirements:
 
 | Effort | Use case | Latency | Price/1K |
 | --- | --- | --- | --- |
-| low | Simple fact retrieval | \~5–10s | $10 |
-| medium (default) | Multi-hop questions | \~15–20s | $50 |
-| high | Deep research | \~30–60s | $250 |
+| low | Simple fact retrieval | ~5–10s | $10 |
+| medium (default) | Multi-hop questions | ~15–20s | $50 |
+| high | Deep research | ~30–60s | $250 |
 
 The `low` effort tier targets production chat applications. It returns a complete, cited answer in approximately 5–10 seconds and supports SSE streaming through the standard OpenAI SDK.
 

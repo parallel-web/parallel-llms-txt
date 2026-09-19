@@ -92,7 +92,7 @@ Brave offers cost-competitive pricing with $5 per month in free credits and usag
 | Provider | Index type | Output format | SimpleQA accuracy | Price per request | Enterprise features |
 | --- | --- | --- | --- | --- | --- |
 | Parallel | Proprietary (billions of pages) | Ranked URLs + dense excerpts (JSON) | 98% | $0.005 ($0.001 with Turbo) | SOC 2 Type 2, zero retention, 600 req/min |
-| Exa | Semantic embeddings | Source URLs (no answers) | 87% | \~$0.007-0.015 | Multiple search tiers |
+| Exa | Semantic embeddings | Source URLs (no answers) | 87% | ~$0.007-0.015 | Multiple search tiers |
 | Tavily | Content aggregation | Structured content for RAG | 93% | $0.110 | Built-in filtering |
 | Brave | Independent index | SERP-style results | N/A | Usage-based ($5/mo free) | Independent data source |
 | Perplexity Sonar | LLM + search bundle | Natural-language answers | 92% | $0.052 | 50 req/min rate limit |

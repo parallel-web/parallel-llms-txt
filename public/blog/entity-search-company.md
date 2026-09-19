@@ -42,10 +42,14 @@ Focused Entity Search is adding another tool to their arsenal for cases where th
 
 | Product | Best for | Type | Scope | Latency | Cost |
 | --- | --- | --- | --- | --- | --- |
-| Entity Search  | Fast list building of people or companies on standard attributes (stage, sector, etc.) to show in UI or hand downstream.  Example: "Series B fintech companies in Latin America that raised in 2025–2026." | Synchronous | Companies & People | 1s to 3s | $ |
-| Search | Grounding an agent or chatbot's answer with live web pages and excerpts.   Example: "Recent US regulatory changes to stablecoin payments." | Synchronous | Whole web | 500ms - 10s | $ |
-| FindAll | Comprehensive list building with strict match criteria and validation for any entity type.  Example: “Find all hyperscaler data center projects announced in the US since 2024 planned to be over 500MW.” | Asynchronous | Whole web | 10s - 30m  | $ - $$$ |
-| Task | Comprehensive research and data enrichment tasks.  Example: “Compare all FDA drug recalls that cite nitrosamine contamination between 2020-2025 and include each NDC code. Explain which recall involved the largest patient population.” | Asynchronous | Whole web | 10s -  2h | $ - $$$ |
+| Entity Search | Fast list building of people or companies on standard attributes (stage, sector, etc.) to show in UI or hand downstream.
+Example: "Series B fintech companies in Latin America that raised in 2025–2026." | Synchronous | Companies & People | 1s to 3s | $ |
+| Search | Grounding an agent or chatbot's answer with live web pages and excerpts.
+Example: "Recent US regulatory changes to stablecoin payments." | Synchronous | Whole web | 500ms - 10s | $ |
+| FindAll | Comprehensive list building with strict match criteria and validation for any entity type.
+Example: “Find all hyperscaler data center projects announced in the US since 2024 planned to be over 500MW.” | Asynchronous | Whole web | 10s - 30m | $ - $$$ |
+| Task | Comprehensive research and data enrichment tasks.
+Example: “Compare all FDA drug recalls that cite nitrosamine contamination between 2020-2025 and include each NDC code. Explain which recall involved the largest patient population.” | Asynchronous | Whole web | 10s - 2h | $ - $$$ |
 
 ## Get started with Entity Search
 

@@ -1,7 +1,7 @@
-### \[Introducing the Search Capability Leaderboard\](https://parallel.ai/blog/search-leaderboard)
+### \[Testing out Jev: real-world developer experience\](https://parallel.ai/blog/testing-jev)
 
-Tags:[Benchmarks](/blog?tag=benchmarks),[Product](/blog?tag=product)
+Tags:[Developers](/blog?tag=developers)
 
-By Parallel
+By Vlad Shulman
 
-September 15, 2026
+September 18, 2026

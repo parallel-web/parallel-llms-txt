@@ -60,7 +60,7 @@ Tavily focuses on AI-powered search with built-in summarization capabilities. Th
 
 For developers migrating from Bing, understanding the practical differences helps smooth the transition.
 
-| Feature | Bing API  | Parallel Search API |
+| Feature | Bing API | Parallel Search API |
 | --- | --- | --- |
 | Status | Deprecated | Active |
 | Output | JSON | JSON |

@@ -39,7 +39,7 @@ Four major deep research API options serve enterprise teams in 2026, each with a
 | Provider | Benchmark (DeepSearchQA) | Cost per 1K queries | Latency range | Structured JSON output | Security |
 | --- | --- | --- | --- | --- | --- |
 | Parallel Task API | 62% accuracy (Pro tier) | $5 - $2,400 (9 tiers) | 10s - 2hr | Yes, with per-field citations and confidence | SOC 2 Type 2, zero data retention |
-| Gemini Deep Research | No public DeepSearchQA result | \~$2,500 | 3 - 15 min | Markdown reports, limited schema control | Google Cloud enterprise agreements |
+| Gemini Deep Research | No public DeepSearchQA result | ~$2,500 | 3 - 15 min | Markdown reports, limited schema control | Google Cloud enterprise agreements |
 | OpenAI Deep Research | No public DeepSearchQA result (o3/o4-mini) | High (token-based, variable) | 5 - 45 min | Responses API with tool outputs | Enterprise API agreements |
 | Perplexity Sonar Deep Research | No public DeepSearchQA result | $2 - $8 per 1M tokens | Under 3 min | JSON with citations | Standard API terms |
 

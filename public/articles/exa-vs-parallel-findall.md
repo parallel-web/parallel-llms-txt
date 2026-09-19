@@ -42,17 +42,17 @@ Exa's approach is more tightly coupled. There isn't an explicit "match evaluatio
 
 ## **Key feature comparison**
 
-| Feature | Parallel FindAll |  Exa Websets + Enrichments |
+| Feature | Parallel FindAll | Exa Websets + Enrichments |
 | --- | --- | --- |
 | Input | Natural language query | Natural language query |
 | Entity discovery | Three-stage pipeline with explicit match evaluation | Embeddings-based search with criteria verification |
 | Match conditions | Boolean criteria with multi-hop reasoning | Search query filters + criteria |
-| Output formats | Structured JSON with citations, reasoning, confidence  | Structured data with multiple format types |
-| Citations Full | Basis framework: citations, reasoning, excerpts, calibrated confidence  | Source-backed results |
-| Async processing  | Yes, polling-based with status updates | Yes, webhook support |
+| Output formats | Structured JSON with citations, reasoning, confidence | Structured data with multiple format types |
+| Citations Full | Basis framework: citations, reasoning, excerpts, calibrated confidence | Source-backed results |
+| Async processing | Yes, polling-based with status updates | Yes, webhook support |
 | Post-hoc enrichment | Can add enrichments to completed runs | Can add enrichment columns anytime |
-| Monitoring  | Separate Monitor API for ongoing tracking | Built-in Monitor feature for web tracking |
-| Dashboard/UI Developer | Platform with playground  | Full dashboard with chat-based enrichment creation |
+| Monitoring | Separate Monitor API for ongoing tracking | Built-in Monitor feature for web tracking |
+| Dashboard/UI Developer | Platform with playground | Full dashboard with chat-based enrichment creation |
 | SDK support | Python SDK, TypeScript SDK, REST API, MCP Server, Vercel AI SDK tools | Python SDK, JS SDK, OpenAI-compatible endpoint, MCP Server |
 
 
@@ -154,9 +154,9 @@ Exa's dashboard-first approach with chat-based enrichment creation makes it more
 
 | Dimension | Parallel FindAll | Exa Webset |
 | --- | --- | --- |
-| Core strength  | Entity discovery with high recall  | Embeddings-powered search with enrichment |
+| Core strength | Entity discovery with high recall | Embeddings-powered search with enrichment |
 | Best published recall | 61% (Pro tier, self-reported WISER benchmark) | Not published |
-| Pricing model | Pay-per-query + per-match  | Monthly subscription + credits |
+| Pricing model | Pay-per-query + per-match | Monthly subscription + credits |
 | Lowest entry point | $0.10 (preview) | Free (1,000 credits), $49/mo (Core) |
 | SDK support | Python, TypeScript, MCP Server | Python, JS, OpenAI-compatible, MCP Server |
 | Integrations | Cloudflare AI Gateway, Vercel AI SDK | 30+ including LangChain, CrewAI, LlamaIndex, Vercel AI SDK |

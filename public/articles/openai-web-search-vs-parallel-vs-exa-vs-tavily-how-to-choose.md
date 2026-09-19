@@ -100,8 +100,8 @@ Tavily handles basic queries and standard web content without friction. For deve
 | Feature | OpenAI built-in search | Parallel | Exa | Tavily |
 | --- | --- | --- | --- | --- |
 | Search index | Bing (third-party) | Proprietary (AI-optimized) | Neural/semantic index | Web search (sourcing unclear) |
-| Pricing model | Per-search surcharge + token costs (\~$10-25/1K calls) | Per-request ($0.001 Turbo, $0.005 Basic/Advanced; Responses from $10/1K) | Usage-based | Per-request (\~$0.016) |
-| Median latency | \~1s | \~200ms (Turbo mode) | \~335-361ms (Instant) | \~150-357ms (Ultra Fast) |
+| Pricing model | Per-search surcharge + token costs (~$10-25/1K calls) | Per-request ($0.001 Turbo, $0.005 Basic/Advanced; Responses from $10/1K) | Usage-based | Per-request (~$0.016) |
+| Median latency | ~1s | ~200ms (Turbo mode) | ~335-361ms (Instant) | ~150-357ms (Ultra Fast) |
 | Model lock-in | OpenAI only | Any model (OpenAI-compatible) | Any model | Any model |
 | Output format | Integrated into model response | Token-dense excerpts or full markdown | Structured results | Structured JSON |
 | Freshness control | None (model-managed) | Freshness policies, live-fetch toggle | Limited | Limited |

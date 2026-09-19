@@ -227,10 +227,10 @@ Match processor tier to task complexity:
 
 | Tier | Use case | Fields | Cost/1,000 |
 | --- | --- | --- | --- |
-| lite | Basic metadata, fallbacks | \~2 | $5 |
-| base | Standard firmographics | \~5 | $10 |
-| core | Cross-referenced enrichment | \~10 | $25 |
-| pro | Deep research, multi-source synthesis | \~20 | $100 |
+| lite | Basic metadata, fallbacks | ~2 | $5 |
+| base | Standard firmographics | ~5 | $10 |
+| core | Cross-referenced enrichment | ~10 | $25 |
+| pro | Deep research, multi-source synthesis | ~20 | $100 |
 
 For most enrichment workflows, core handles the balance of depth and cost.
 

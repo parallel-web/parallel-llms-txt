@@ -25,7 +25,7 @@ We compare deep research and search API providers below on latency, accuracy, co
 | Parallel Task API (Ultra) | Deep research | Minutes | 45% | $300 | Structured JSON + citations |
 | Parallel Task API (Ultra8x) | Deep research | Minutes to hours | 58% | $2,400 | Structured JSON + citations |
 | OpenAI deep research | Deep research | Minutes to tens of minutes | 38-41% (GPT-5) | Not published | Markdown report |
-| Gemini Deep Research Max | Deep research | Minutes to 10+ min | N/A | \~$2,500 (estimated) | Markdown report |
+| Gemini Deep Research Max | Deep research | Minutes to 10+ min | N/A | ~$2,500 (estimated) | Markdown report |
 | Exa | Search | 450ms-10s | 14% | Varies | JSON + highlights |
 | Perplexity Deep Research | Deep research | Minutes | 6-8% | Varies | Markdown |
 | Parallel Search API | Search | ~200ms (Turbo) to 3s | N/A | $1 (Turbo) to $5 | JSON + dense excerpts |

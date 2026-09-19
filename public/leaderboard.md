@@ -64,6 +64,26 @@ Most cost-efficient models scoring at or above the median Search Intelligence Sc
 
 Our goal here is to measure how effective models are at using search. For simplicity, we combine publicly accepted benchmark datasets with our own WISER benchmark into a composite score. This is not meant to reflect the comprehensive evaluations Parallel runs internally. We use the following evaluation datasets: [DeepSearchQA](https://www.kaggle.com/benchmarks/google/dsqa) (DSQA): Google's benchmark of multi-step research questions. [Humanity's Last Exam](https://lastexam.ai) (HLE): Expert-written questions that need web-grounded reasoning. [WISER](https://parallel.ai/blog/search-api-benchmark) (WISER): Parallel's own benchmark of real-world business research queries.
 
+### Example questions
+
+Shortened examples from public benchmark materials. The scored sample may differ.
+
+* DSQA  
+#### Research across sources  
+Using Macrotrends for NVIDIA’s stock performance and Worldometer for U.S. GDP, identify years from 2020 through 2023 when annual stock gains exceeded 125% and GDP growth exceeded 2.5%.  
+Find both data series, align the years, and return every year that meets both thresholds.  
+[DeepSearchQA paper, Table 3](https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA%5Fbenchmark%5Fpaper.pdf)
+* HLE  
+#### Specialist knowledge  
+In hummingbirds, how many tendon pairs does the sesamoid bone within the m. depressor caudae insertion support?  
+Interpret specialist anatomy terms and establish the precise count from relevant evidence.  
+[Humanity’s Last Exam examples](https://lastexam.ai/)
+* WISER  
+#### Business research  
+For Salesforce’s FY2024, calculate the share of subscription and support revenue from Tableau’s reporting segment. Compare it with Salesforce’s 2023 CRM market share.  
+Identify the reporting segment, calculate its revenue share, and compare it with a separate market estimate.  
+[Parallel’s WISER examples](https://parallel.ai/blog/search-api-benchmark)
+
 Every model is presented with the same question twice: once, it is asked to answer without relying on search; the second time, we give it access to Parallel Search Fast mode. The harness and other parameters are held constant.
 
 Search Intelligence Score: accuracy on the three evals, averaged with equal weight, 0–100\. Lift: the difference between a model's score with search and without. Search Efficiency Leaderboard: models at or above the median score (51.2), ranked by cost per 1,000 tasks, cheapest first. Time per task: average seconds from question to answer. Pareto frontier: no other model is both cheaper and higher scoring.
