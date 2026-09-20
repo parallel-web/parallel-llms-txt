@@ -8,12 +8,12 @@ npm tokens that bypass 2FA are being restricted — account changes (Aug 2026) a
 
 TypeScript icon, indicating that this package has built-in type declarations
 
-1\.3.3 • Public • Published 17 days ago
+1\.3.3 • Public • Published 20 days ago
 
 * [Readme](https://www.npmjs.com/package/parallel-web?activeTab=readme)
 * [Code Beta](https://www.npmjs.com/package/parallel-web?activeTab=code)
 * [0 Dependencies](https://www.npmjs.com/package/parallel-web?activeTab=dependencies)
-* [11 Dependents](https://www.npmjs.com/package/parallel-web?activeTab=dependents)
+* [13 Dependents](https://www.npmjs.com/package/parallel-web?activeTab=dependents)
 * [22 Versions](https://www.npmjs.com/package/parallel-web?activeTab=versions)
 
 # Parallel TypeScript API Library
@@ -22,7 +22,7 @@ TypeScript icon, indicating that this package has built-in type declarations
 
 This library provides convenient access to the Parallel REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found on [docs.parallel.ai](https://docs.parallel.ai) . The full API of this library can be found in [api.md](https://github.com/parallel-web/parallel-sdk-typescript/blob/HEAD/api.md) .
+The REST API documentation can be found on [docs.parallel.ai](https://docs.parallel.ai/) . The full API of this library can be found in [api.md](https://github.com/parallel-web/parallel-sdk-typescript/blob/HEAD/api.md) .
 
 It is generated with [Stainless](https://www.stainless.com/) .
 
@@ -371,7 +371,7 @@ none
 
 # Provenance
 
-Share feedback
+[Share feedback](https://github.com/npm/feedback)
 
 ## Package Sidebar
 
@@ -389,7 +389,7 @@ Share feedback
 
 ### Weekly Downloads
 
-172,772
+150,068
 
 ### Version
 
@@ -401,11 +401,11 @@ MIT
 
 ### Last publish
 
-17 days ago
+20 days ago
 
 ### Collaborators
 
-* parallel-developers
+* [parallel-developers](https://www.npmjs.com/~parallel-developers)
   
   parallel-developers
 
@@ -417,24 +417,24 @@ MIT
 
 [](https://github.com/npm)
 
-[](https://github.com)
+[](https://github.com/)
 
 ### Support
 
-* [Help](https://docs.npmjs.com)
+* [Help](https://docs.npmjs.com/)
 * [Advisories](https://github.com/advisories)
 * [Status](http://status.npmjs.org/)
-* Contact npm
+* [Contact npm](https://www.npmjs.com/support)
 
 ### Company
 
-* About
+* [About](https://www.npmjs.com/about)
 * [Blog](https://github.blog/tag/npm/)
-* Press
+* [Press](https://www.npmjs.com/press)
 
 ### Terms & Policies
 
-* Policies
-* Terms of Use
-* Code of Conduct
-* Privacy
+* [Policies](https://www.npmjs.com/policies/)
+* [Terms of Use](https://www.npmjs.com/policies/terms)
+* [Code of Conduct](https://www.npmjs.com/policies/conduct)
+* [Privacy](https://www.npmjs.com/policies/privacy)
