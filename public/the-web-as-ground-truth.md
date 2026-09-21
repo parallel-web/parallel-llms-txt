@@ -1,6 +1,6 @@
 [](https://parallel.ai/blog/parallel-search-fast)
 
-Introducing Parallel Search Fast: A web search API for agents that’s fast, cheap, and accurate. [Learn more.](https://parallel.ai/blog/parallel-search-fast) [[Learn more.] (https://parallel.ai/blog/parallel-search-fast)](/ai/blog/parallel-search-fast) Introducing Parallel Search Fast. [Learn more.](https://parallel.ai/blog/parallel-search-fast)
+Introducing Parallel Search Fast: A web search API for agents that’s fast, cheap, and accurate. [Learn more.](https://parallel.ai/blog/parallel-search-fast) [[Learn more.] (https://parallel.ai/blog/parallel-search-fast)](https://parallel.ai/ai/blog/parallel-search-fast) Introducing Parallel Search Fast. [Learn more.](https://parallel.ai/blog/parallel-search-fast)
 
 Contents
 
