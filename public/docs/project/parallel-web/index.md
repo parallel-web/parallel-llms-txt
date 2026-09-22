@@ -531,7 +531,7 @@ For a detailed explanation of source distributions (sdists) and built distributi
 
 * * *
 
-**Total release size:** `338.6 kB`
+**Total release size:** 338\.6 kB
 
 ## Release files / parallel\_web-1.3.3.tar.gz
 
@@ -684,4 +684,4 @@ Switch to desktop version
 * "PyPI", "Python Package Index", and the blocks logos are registered [trademarks](https://pypi.org/trademarks/) of the [Python Software Foundation](https://www.python.org/psf-landing) .
 
 * [Site map](https://pypi.org/sitemap/)
-* Deployed from [`7320d90`](https://github.com/pypi/warehouse/commit/7320d9052b59a7e3b1c2122034396f5d339cd3e0 "External link")
+* Deployed from [`1e5bf8e`](https://github.com/pypi/warehouse/commit/1e5bf8e79a5d1b8be305681d118d7f22297454e2 "External link")

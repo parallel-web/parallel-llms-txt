@@ -21,7 +21,7 @@ You.com's Web Search API returns URLs, titles, and descriptions alongside query-
 
 Parallel's Search API takes a natural-language objective, optionally with explicit search queries, and returns ranked URLs with excerpts sized by max_chars_per_result and max_chars_total. Four modes set the trade: Turbo at ~200ms and $1 per 1,000 requests, Fast at under a second and the same $1 per 1,000, Basic at ~1s and $5 per 1,000, and Advanced at ~3s and $5 per 1,000, which is the default. A Source Policy handles domains and freshness; a Fetch Policy chooses between the index and a live crawl.
 
-The design difference worth noting: You.com takes a query, Parallel takes an objective. Both then compress. You.com publishes no median latency figure, while Parallel publishes 200ms for Turbo, so if speed is a hard requirement you will need to measure You.com yourself.
+The design difference worth noting: You.com takes a query, Parallel takes an objective. Both then compress. You.com publishes no median latency figure, while Parallel publishes 200ms for Turbo. [Openbenchmarks' independent speed boards](https://openbenchmarks.com/web-search/fastest-search-api) (September 2026) fill the gap: You.com measured 628ms mean latency on factual lookup against 348ms for Parallel turbo, and it took first place on hard retrieval with fetch at 638ms, where Parallel basic measured 1.59s.
 
 ## **Pricing, and the crossover that decides it**
 

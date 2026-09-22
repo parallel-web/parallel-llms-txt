@@ -42,7 +42,7 @@ Which you prefer depends on how you like to build. One endpoint with a mode swit
 
 Both companies lead with benchmark numbers, and the numbers do not line up cleanly enough to declare a winner.
 
-Linkup reports that Search ranks first among sub-second web search APIs on SimpleQA Verified with a 92% F-score, and that Research ranks first on SEAL-0 with 61% accuracy. Linkup publishes its SimpleQA evaluation harness as open source, which is worth crediting; few providers in this category do.
+Linkup reports that Search ranks first among sub-second web search APIs on SimpleQA Verified with a 92% F-score, and that Research ranks first on SEAL-0 with 61% accuracy. Linkup publishes its SimpleQA evaluation harness as open source, which is worth crediting; few providers in this category do. On [Openbenchmarks' independent speed boards](https://openbenchmarks.com/web-search/fastest-search-api) (September 2026), Linkup fast measured 1.57s mean request latency on factual lookup and Linkup standard 2.55s, against 348ms for Parallel turbo and 942ms for Parallel fast, so the sub-second label depends on how and where latency is measured.
 
 Parallel reports 91% accuracy on SimpleQA for Turbo at a 240ms median search latency, measured in a single-step setup where the raw question goes to search and the model answers from the results alone with roughly 1,000 characters per result. On SealQA, Parallel's published Task API results run from 42.3% on Core at $25 per 1,000 runs to 56.8% on Ultra8x at $2,400 per 1,000 on SEAL-0, and 60.6% to 70.1% on SEAL-HARD.
 

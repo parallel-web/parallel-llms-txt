@@ -26,7 +26,7 @@ We measured latency separately as p50 client-side wall clock time for a single p
 
 Source: BrowseComp benchmark, tested July 10 to 12, 2026.
 
-An independent check now exists: the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (August 2026) runs 15 search API products across 7 providers through a fixed GPT-5.6 Luna agent harness and reaches the same top-line conclusion, ranking Parallel Search (advanced) first overall at 75, now matched by Brave's LLM context mode at 75, with You.com (highlights) and Exa (auto) at 74. Their harness measures cost per task as well, and Parallel's fast and turbo modes recorded the two lowest search costs of any product tested.
+An independent check now exists: the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (August 2026) runs 15 search API products across 7 providers through a fixed GPT-5.6 Luna agent harness and reaches the same top-line conclusion, ranking Parallel Search (advanced) first overall at 75, now matched by Brave's LLM context mode at 75, with You.com (highlights) and Exa (auto) at 74. Their harness measures cost per task as well, and Parallel's fast and turbo modes recorded the two lowest search costs of any product tested. [Openbenchmarks' fastest-search-API boards](https://openbenchmarks.com/web-search/fastest-search-api) (September 2026) reach the same conclusion on speed: Parallel turbo posted the lowest mean latency on factual lookup at 348ms across 300 questions and the lowest average search time on hard retrieval at 333ms, with Exa Instant next at 398ms and 447ms.
 
 ## The five web search APIs, compared
 

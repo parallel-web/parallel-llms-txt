@@ -40,7 +40,7 @@ _Note: For the latest pricing, always check official documentation._
 
 Parallel publishes median latencies per mode: roughly 200ms for Turbo, under a second for Fast, 1 second for Basic, 3 seconds for Advanced. Its default rate limits are 600 requests per minute for Search and Extract, with GET polling excluded and custom limits on enterprise plans.
 
-Perplexity does not publish a median latency figure or a default rate limit for the Search API. If either is load-bearing for your design, measure it yourself during evaluation rather than assuming parity.
+Perplexity does not publish a median latency figure or a default rate limit for the Search API. [Openbenchmarks' independent speed boards](https://openbenchmarks.com/web-search/fastest-search-api) (September 2026) supply a latency number: Perplexity's low context setting measured 1.38s mean on factual lookup against 348ms for Parallel turbo, though on multi-hop search with fetch Perplexity's high setting came out ahead of turbo once time is divided by answer quality. If the rate limit is load-bearing for your design, measure it yourself during evaluation rather than assuming parity.
 
 ## **What sits around each endpoint**
 

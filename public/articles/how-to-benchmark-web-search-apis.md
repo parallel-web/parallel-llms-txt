@@ -12,7 +12,7 @@ A public benchmark measures average performance on general questions, and your w
 
 Rankings also move with the task. When we tested the same engines on different datasets in the same week, the order shifted. An engine that leads a multi-hop browsing suite can trail on single-hop lookups, so a leaderboard built on someone else's task mix tells you little about yours.
 
-And most accuracy claims in this category are vendor-run, ours included. The closest thing to a neutral referee arrived in August 2026, when Artificial Analysis published its Search Index: an independent benchmark of 15 search API products on a fixed agent harness, on which Parallel Search ranks first. Use it as your external baseline. But the numbers that should decide your choice are still the ones you generate yourself, on your own workload.
+And most accuracy claims in this category are vendor-run, ours included. The closest thing to a neutral referee arrived in August 2026, when Artificial Analysis published its Search Index: an independent benchmark of 15 search API products on a fixed agent harness, on which Parallel Search ranks first. [Openbenchmarks](https://openbenchmarks.com/web-search/fastest-search-api) is a second one, with an open-source harness, a public sample, a held-out scoring set, and separate speed boards per task type, which show why the task mix matters: Parallel turbo leads factual lookup on latency while Exa Instant leads multi-hop search on time per unit of answer quality. Use both as your external baseline. But the numbers that should decide your choice are still the ones you generate yourself, on your own workload.
 
 ## What you need before you start
 
