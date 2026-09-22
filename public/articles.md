@@ -2,6 +2,8 @@
 
 ### Comparison
 
+* [Best Cursor plugins for research and competitive analysis](https://parallel.ai/articles/best-cursor-plugins-for-research)
+* [Best Grok Bot plugins for research and GTM](https://parallel.ai/articles/best-grok-bot-plugins)
 * [Web unlocker vs. scraper vs. fetch: which layer does your pipeline need?](https://parallel.ai/articles/web-unlocker-vs-scraper-vs-fetch)
 * [The best API for company research in 2026: what an independent benchmark found](https://parallel.ai/articles/best-api-for-company-research)
 * [TinyFish vs Parallel: operating websites or retrieving the web](https://parallel.ai/articles/tinyfish-vs-parallel)
@@ -42,6 +44,7 @@
 
 ### Guides
 
+* [How to use Grok Bot for competitive research](https://parallel.ai/articles/grok-bot-competitive-research)
 * [The best MCP servers and connectors for Meta Muse in 2026](https://parallel.ai/articles/best-mcp-servers-for-meta-muse)
 * [How to create custom integrations with Meta Muse: connect any API or MCP server](https://parallel.ai/articles/meta-muse-custom-integrations)
 * [The best ClawHub skills for OpenClaw in 2026](https://parallel.ai/articles/best-clawhub-skills-for-openclaw)
