@@ -1,12 +1,12 @@
 # Serper vs. Parallel: the cheapest SERP API against the cheapest agent search
 
-Parallel's Fast mode carries the same $1 per 1,000 sticker as Serper's entry pack, answers in ~700ms, and comes back with page excerpts. Serper is still cheaper at volume if SERP JSON is what you need. The two products are aimed at different jobs, agent search on one side and rank tracking on the other, and this comparison covers what each product is, pricing, why the sticker price is not the bill, throughput, coverage limits, and compliance.
+Serper is a fast, cheap Google SERP API that returns structured JSON for SEO and rank work. Parallel is a retrieval stack that returns page-body excerpts for models. Serper wins on price at volume when SERP JSON is the product. Parallel wins on context quality when a model consumes the output. On Parallel, Fast matches Serper’s entry sticker at $1 per 1,000 and answers in ~700ms; the Fast Mode launch covers the full proof. Fast does not replace Serper for rank tracking, local pack, Shopping, or geo verticals. This comparison covers what each product is, pricing, why the sticker price is not the bill, throughput, coverage limits, and compliance.
 
 ## **What each one is**
 
 Serper is a fast, cheap Google SERP API, and deliberately narrow. You POST a query with your key in an X-API-KEY header and get structured JSON back in one to two seconds: organic listings, the knowledge graph, answer boxes, people-also-ask, and related searches. Images, News, Maps, Places, Videos, Shopping, Scholar, and Patents each have their own endpoint.
 
-Parallel is a retrieval stack built for models. Give the Search API a natural-language objective, optionally with explicit search queries alongside it, and you get back ranked URLs with excerpts pulled from the page bodies and selected against that objective. There are four modes: Turbo at ~200ms and $1 per 1,000 requests, Fast at ~700ms and the same $1 per 1,000 with AA Search intelligence 73, Basic at ~1s and $5 per 1,000, and Advanced at ~3s and $5 per 1,000, which is the default. Extract, Task, Responses, FindAll, Entity Search, and Monitor sit around it.
+Parallel is a retrieval stack built for models. Give the Search API a natural-language objective, optionally with explicit search queries alongside it, and you get back ranked URLs with excerpts pulled from the page bodies and selected against that objective. There are four modes: Turbo at ~200ms and $1 per 1,000 requests, Fast at ~700ms and $1 per 1,000, Basic at ~1s and $5 per 1,000, and Advanced at ~3s and $5 per 1,000, which is the default. Extract, Task, Responses, FindAll, Entity Search, and Monitor sit around it.
 
 ## **Pricing, where Serper is genuinely strong**
 
@@ -79,8 +79,8 @@ Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero d
 
 Choose Serper when you want Google's results, cheaply, at volume, and you already have a content pipeline. Rank tracking, SEO tooling, Maps and Places data, and high-throughput lookups where a snippet is genuinely enough all fit it well. If your volume is predictable and steady, the six-month credit clock is a non-issue and the pricing is hard to beat.
 
-Choose Parallel when a model consumes the output. For most agents Fast is the default at that $1 sticker, returning page-body excerpts instead of click-bait snippets, which removes the fetch-and-clean stage and cuts the input tokens your model pays for on every call. Turbo is there when latency is the constraint. Usage-based billing with nothing expiring suits spiky agent traffic, and Extract, Task, Responses, FindAll, Entity Search, and Monitor cover the work that sits above search.
+Choose Parallel when a model consumes the output. Fast is the default speed tier at that $1 sticker, returning page-body excerpts instead of click-bait snippets, which removes the fetch-and-clean stage and cuts the input tokens your model pays for on every call. The [Fast Mode launch](https://parallel.ai/blog/parallel-search-fast) has the full latency and price proof. Fast does not replace Serper for rank tracking or SERP features. Turbo is there when latency is the constraint. Usage-based billing with nothing expiring suits spiky agent traffic, and Extract, Task, Responses, FindAll, Entity Search, and Monitor cover the work that sits above search.
 
-Serper is the better buy if your bottleneck is the price of a Google query. Parallel is the better buy if your bottleneck is the cost and quality of the context your model reasons over.
+Serper is the better buy if your bottleneck is the price of a Google SERP query for SEO tooling. Parallel is the better buy if your bottleneck is the cost and quality of the context your model reasons over.
 
 **Related reading: **[Switching from Serper to Parallel](https://parallel.ai/articles/serper-to-parallel-search-api) · [SerpApi vs. Parallel](https://parallel.ai/articles/serpapi-vs-parallel) · [DataForSEO vs. Parallel](https://parallel.ai/articles/dataforseo-vs-parallel).
