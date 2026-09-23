@@ -238,6 +238,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Building a Vendor Intelligence System with Parallel](https://llm.parallel.ai/blog/vendor-intelligence-system.md): A cookbook for monitoring vendor risk with AI: use Parallel Task and Monitor to surface credible risk signals and run in-depth research across sources.
 - [Parallel Now Available Across the Vercel AI Stack](https://llm.parallel.ai/blog/vercel.md): Parallel Web Tools and Agents are available across Vercel AI Gateway, AI SDK, and Marketplace, bringing accurate web search and research to Vercel projects.
 - [Webhooks](https://llm.parallel.ai/blog/webhooks.md): Webhooks are available for all Task Runs, including Deep Research. Get pushed notifications to your endpoint when tasks complete instead of polling for status.
+- [Parallel AI logos and brand assets: SVG and PNG downloads](https://llm.parallel.ai/brand.md): Download official Parallel AI logos, wordmarks, and avatars in SVG and PNG. Find brand assets and colors for Parallel Web Systems at parallel.ai.
 - [Careers - Build the Open Web for AI](https://llm.parallel.ai/careers.md): Build the open web for AI at Parallel Web Systems. APIs, crawling, indexing, and retrieval — plus a values-driven team in Palo Alto and San Francisco.
 - [Compare Parallel with other web infrastructure](https://llm.parallel.ai/compare.md): Source-linked comparisons of Parallel and other web search and research platforms for AI agents.
 - [Parallel vs. Exa: AI Search API Comparison 2026](https://llm.parallel.ai/compare/exa-vs-parallel.md): Parallel returns cited, structured web research from $1 per 1,000 searches against Exa’s $7. Compare accuracy, pricing, and every API side by side.
@@ -336,7 +337,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Sign In - Parallel](https://llm.parallel.ai/docs/index.md)
 - [parallel-web - npm](https://llm.parallel.ai/docs/package/parallel-web.md)
 - [parallel-web · PyPI](https://llm.parallel.ai/docs/project/parallel-web/index.md)
-- [OpenAPI Spec](https://llm.parallel.ai/docs/public-openapi.json.md)
+- [public-openapi](https://llm.parallel.ai/docs/public-openapi.json.md)
 
 ## SDKs
 
