@@ -17,7 +17,7 @@
           "Search"
         ],
         "summary": "Search",
-        "description": "Searches the web.\n\nThe legacy Search API reference (`/v1beta/search` endpoint) is available\n[here](https://docs.parallel.ai/api-reference/legacy/search-beta/search), and\nmigration guide is [here](https://docs.parallel.ai/search/search-migration-guide).",
+        "description": "Searches the web.",
         "operationId": "v1_search_v1_search_post",
         "requestBody": {
           "content": {
@@ -95,7 +95,7 @@
           "Extract"
         ],
         "summary": "Extract",
-        "description": "Extracts relevant content from specific web URLs.\n\nThe legacy Extract API reference (`/v1beta/extract` endpoint) is available\n[here](https://docs.parallel.ai/api-reference/legacy/extract-beta/extract), and\nmigration guide is [here](https://docs.parallel.ai/extract/extract-migration-guide).",
+        "description": "Extracts relevant content from specific web URLs.",
         "operationId": "extract_v1_extract_post",
         "requestBody": {
           "content": {
@@ -1116,6 +1116,7 @@
                       "task_run.progress_msg.result": "#/components/schemas/TaskRunProgressMessageEvent",
                       "task_run.progress_msg.tool_call": "#/components/schemas/TaskRunProgressMessageEvent",
                       "task_run.progress_msg.exec_status": "#/components/schemas/TaskRunProgressMessageEvent",
+                      "task_run.progress_msg.extract": "#/components/schemas/TaskRunProgressMessageEvent",
                       "task_run.state": "#/components/schemas/TaskRunEvent",
                       "error": "#/components/schemas/ErrorEvent"
                     }
@@ -2890,6 +2891,55 @@
         ]
       }
     },
+    "/v1/monitors/stats": {
+      "get": {
+        "tags": [
+          "Monitor"
+        ],
+        "summary": "Monitor Stats",
+        "description": "Return aggregate counts of your monitors.\n\nCounts every monitor across all statuses, broken down by status and then\nby processor and run frequency (e.g. '1h', '1d') within each status.\nStatuses, processors, and frequencies with zero monitors are omitted.\nUse this instead of paginating List Monitors when only counts are needed.",
+        "operationId": "monitor_stats_v1_monitors_stats_get",
+        "responses": {
+          "200": {
+            "description": "Aggregate monitor counts.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitorStatsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized: invalid or missing credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "type": "error",
+                  "error": {
+                    "ref_id": "fcb2b4f3-c75e-4186-87bc-caa1a8381331",
+                    "message": "Unauthorized: invalid or missing credentials"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Python",
+            "source": "from parallel import Parallel\n\nclient = Parallel()\n\nstats = client.monitor.stats()\nprint(stats.total, stats.processor_counts.get(\"active\", {}))"
+          },
+          {
+            "lang": "TypeScript",
+            "source": "import Parallel from \"parallel-web\";\n\nconst client = new Parallel();\n\nconst stats = await client.monitor.stats();\nconsole.log(stats.total, stats.processor_counts['active'] ?? {});"
+          }
+        ]
+      }
+    },
     "/v1/monitors/{monitor_id}": {
       "get": {
         "tags": [
@@ -3326,7 +3376,7 @@
           "Monitor"
         ],
         "summary": "Update Monitor",
-        "description": "Update a monitor.\n\nOnly fields explicitly included in the request body are changed. Pass\n`null` to clear `webhook`, `metadata`, or `settings.advanced_settings`;\nevery other field rejects `null`, so omit it to leave it unchanged. Pass\n`type` and `settings` to update type-specific settings on an\n`event_stream` monitor. Pass `processor` to change the processor used by\nsubsequent monitor runs. At least one field must be provided. Cancelled\nmonitors cannot be updated.",
+        "description": "Update a monitor.\n\nOnly fields explicitly included in the request body are changed. Pass\n`null` to clear `webhook`, `metadata`, or `settings.advanced_settings`;\nevery other field rejects `null`, so omit it to leave it unchanged. Pass\n`type` and `settings` to update type-specific settings on an\n`event_stream` monitor. Pass `processor` to change the processor used by\nsubsequent monitor runs. At least one field must be provided. On a\ncancelled monitor only `metadata` can be updated.",
         "operationId": "update_monitor_v1_monitors__monitor_id__update_post",
         "parameters": [
           {
@@ -3633,6 +3683,113 @@
   },
   "components": {
     "schemas": {
+      "ActionOpenPage": {
+        "additionalProperties": true,
+        "description": "Action type \"open_page\" - Opens a specific URL from search results.",
+        "properties": {
+          "type": {
+            "const": "open_page",
+            "title": "Type",
+            "type": "string"
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Url"
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "title": "ActionOpenPage",
+        "type": "object"
+      },
+      "ActionSearch": {
+        "additionalProperties": true,
+        "description": "Action type \"search\" - Performs a web search query.",
+        "properties": {
+          "type": {
+            "const": "search",
+            "title": "Type",
+            "type": "string"
+          },
+          "queries": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Queries"
+          },
+          "query": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Query"
+          },
+          "sources": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/ActionSearchSource"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Sources"
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "title": "ActionSearch",
+        "type": "object"
+      },
+      "ActionSearchSource": {
+        "additionalProperties": true,
+        "description": "A source used in the search.",
+        "properties": {
+          "type": {
+            "const": "url",
+            "title": "Type",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "url"
+        ],
+        "title": "ActionSearchSource",
+        "type": "object"
+      },
       "AdvancedExtractSettings": {
         "properties": {
           "fetch_policy": {
@@ -3739,7 +3896,7 @@
                 "type": "null"
               }
             ],
-            "description": "Included and excluded domain, path, and date filters for search results. Domain path prefixes are not supported in Turbo mode."
+            "description": "Included and excluded domain, path, and date filters for search results."
           },
           "fetch_policy": {
             "anyOf": [
@@ -6897,6 +7054,66 @@
         "title": "MonitorSnapshotSettings",
         "description": "Type-specific settings for a `snapshot` monitor."
       },
+      "MonitorStatsResponse": {
+        "properties": {
+          "total": {
+            "type": "integer",
+            "title": "Total",
+            "description": "Total number of monitors across all statuses and processors."
+          },
+          "processor_counts": {
+            "additionalProperties": {
+              "additionalProperties": {
+                "additionalProperties": {
+                  "type": "integer"
+                },
+                "type": "object"
+              },
+              "propertyNames": {
+                "enum": [
+                  "lite",
+                  "base"
+                ]
+              },
+              "type": "object"
+            },
+            "propertyNames": {
+              "enum": [
+                "active",
+                "cancelled"
+              ]
+            },
+            "type": "object",
+            "title": "Processor Counts",
+            "description": "Number of monitors per run frequency (e.g. '1h', '1d'), keyed by status and processor. Statuses, processors, and frequencies with zero monitors are omitted.",
+            "examples": [
+              {
+                "active": {
+                  "base": {
+                    "1d": 12
+                  },
+                  "lite": {
+                    "1d": 5,
+                    "1h": 25
+                  }
+                },
+                "cancelled": {
+                  "lite": {
+                    "1h": 7
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "total",
+          "processor_counts"
+        ],
+        "title": "MonitorStatsResponse",
+        "description": "Aggregate counts of the authenticated client's monitors."
+      },
       "MonitorWebhook": {
         "properties": {
           "url": {
@@ -7074,7 +7291,7 @@
       },
       "Response": {
         "additionalProperties": true,
-        "description": "A response from the `parallel` model. A completed response contains a\nsingle assistant message whose text is annotated with URL citations\ngrounding the answer.",
+        "description": "A response from the `parallel` model. A completed response contains one\n`web_search_call` item per web search the model ran, followed by a single\nassistant message whose text is annotated with URL citations grounding the\nanswer.",
         "properties": {
           "id": {
             "title": "Id",
@@ -7146,7 +7363,21 @@
           },
           "output": {
             "items": {
-              "$ref": "#/components/schemas/ResponseOutputMessage"
+              "discriminator": {
+                "mapping": {
+                  "message": "#/components/schemas/ResponseOutputMessage",
+                  "web_search_call": "#/components/schemas/ResponseFunctionWebSearch"
+                },
+                "propertyName": "type"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/ResponseOutputMessage"
+                },
+                {
+                  "$ref": "#/components/schemas/ResponseFunctionWebSearch"
+                }
+              ]
             },
             "title": "Output",
             "type": "array"
@@ -7174,7 +7405,9 @@
           },
           "tools": {
             "default": [],
-            "items": {},
+            "items": {
+              "$ref": "#/components/schemas/ResponseWebSearchTool"
+            },
             "title": "Tools",
             "type": "array"
           },
@@ -7547,6 +7780,29 @@
             ],
             "title": "Background",
             "description": "Background mode is not supported: requests with `background=true` are rejected with a 422 validation error. Use the Task API (POST /v1/tasks/runs) for long-running work."
+          },
+          "tools": {
+            "anyOf": [
+              {
+                "items": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ResponseWebSearchTool"
+                    },
+                    {
+                      "additionalProperties": true,
+                      "type": "object"
+                    }
+                  ]
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tools",
+            "description": "OpenAI tools. Web grounding is always on, so no tool is needed to search; a `web_search` tool's `filters` restrict the domains searched and cited (`allowed_domains` maps to Parallel's `source_policy.include_domains`, `blocked_domains` to `exclude_domains`; set one, not both). Every other tool is accepted and ignored."
           }
         },
         "type": "object",
@@ -7555,7 +7811,7 @@
           "input"
         ],
         "title": "ResponseCreateRequest",
-        "description": "Request body for the Responses API (`POST /v1/responses`).\n\nOpenAI-Responses-compatible: point a standard OpenAI client at\n`https://api.parallel.ai/v1` with your Parallel API key and set `model` to\n`parallel`. The fields below are the ones Parallel acts on; other OpenAI\nrequest fields (`tools`, `tool_choice`, `temperature`, `top_p`,\n`max_output_tokens`, `parallel_tool_calls`, `truncation`, `store`, `user`,\n`include`) are accepted for compatibility but have no effect."
+        "description": "Request body for the Responses API (`POST /v1/responses`).\n\nOpenAI-Responses-compatible: point a standard OpenAI client at\n`https://api.parallel.ai/v1` with your Parallel API key and set `model` to\n`parallel`. The fields below are the ones Parallel acts on; of `tools`,\nonly a `web_search` tool's `filters` have an effect. Other OpenAI request\nfields (`tool_choice`, `temperature`, `top_p`, `max_output_tokens`,\n`parallel_tool_calls`, `truncation`, `store`, `user`, `include`) are\naccepted for compatibility but have no effect."
       },
       "ResponseError": {
         "additionalProperties": true,
@@ -7679,6 +7935,57 @@
           "type"
         ],
         "title": "ResponseFormatTextJSONSchemaConfig",
+        "type": "object"
+      },
+      "ResponseFunctionWebSearch": {
+        "additionalProperties": true,
+        "description": "One web action the `parallel` model took while researching the answer:\na `search` (`action.queries` are the search queries issued, `action.query`\nthe first of them) or an `open_page` (`action.url` is the page it read).",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "action": {
+            "discriminator": {
+              "mapping": {
+                "open_page": "#/components/schemas/ActionOpenPage",
+                "search": "#/components/schemas/ActionSearch"
+              },
+              "propertyName": "type"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ActionSearch"
+              },
+              {
+                "$ref": "#/components/schemas/ActionOpenPage"
+              }
+            ],
+            "title": "Action"
+          },
+          "status": {
+            "enum": [
+              "in_progress",
+              "searching",
+              "completed",
+              "failed"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "type": {
+            "const": "web_search_call",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "action",
+          "status",
+          "type"
+        ],
+        "title": "ResponseFunctionWebSearch",
         "type": "object"
       },
       "ResponseInputContentPart": {
@@ -7958,6 +8265,104 @@
         "title": "ResponseUsage",
         "type": "object"
       },
+      "ResponseWebSearchTool": {
+        "additionalProperties": true,
+        "description": "The OpenAI `web_search` tool. Web grounding is always on, so the tool\nitself changes nothing; its `filters` restrict which domains are searched.\n`search_context_size` and `user_location` are accepted and ignored.",
+        "properties": {
+          "type": {
+            "enum": [
+              "web_search",
+              "web_search_2025_08_26"
+            ],
+            "title": "Type",
+            "type": "string"
+          },
+          "filters": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResponseWebSearchToolFilters"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "search_context_size": {
+            "anyOf": [
+              {
+                "enum": [
+                  "low",
+                  "medium",
+                  "high"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Search Context Size"
+          },
+          "user_location": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/UserLocation"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "title": "ResponseWebSearchTool",
+        "type": "object"
+      },
+      "ResponseWebSearchToolFilters": {
+        "additionalProperties": false,
+        "description": "Domain filters on the OpenAI `web_search` tool, mapped onto Parallel's\nsource policy: `allowed_domains` -> `include_domains`, `blocked_domains` ->\n`exclude_domains`. Entries follow the Source Policy rules (plain domains\nmatch their subdomains; no schemes, ports, query strings or fragments; at\nmost 200 entries in total). Setting both lists is accepted, but only the\nallow list applies today.",
+        "properties": {
+          "allowed_domains": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Only sources on these domains (and their subdomains) are used. Maps to `source_policy.include_domains`.",
+            "title": "Allowed Domains"
+          },
+          "blocked_domains": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Sources on these domains (and their subdomains) are excluded. Maps to `source_policy.exclude_domains`. When `allowed_domains` is also set, the allow list is what applies.",
+            "title": "Blocked Domains"
+          }
+        },
+        "title": "ResponseWebSearchToolFilters",
+        "type": "object"
+      },
       "SourcePolicy": {
         "properties": {
           "include_domains": {
@@ -8030,11 +8435,45 @@
               "de",
               "jp"
             ]
+          },
+          "data_sources": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TaskDataSources"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Optional partner data sources to enable for this task run. Supported on standard processors only; a selected partner name must not collide with an `mcp_servers` entry."
           }
         },
         "type": "object",
         "title": "TaskAdvancedSettings",
         "description": "Advanced search configuration for a task run."
+      },
+      "TaskDataSources": {
+        "properties": {
+          "pay_per_use": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Pay Per Use",
+            "description": "Pay-per-use data partners to enable for this task, in addition to sources included with the processor. See the Data Sources documentation for the available names."
+          },
+          "free": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Free",
+            "description": "Free data partners to enable for this task, in addition to sources included with the processor. Never billed. See the Data Sources documentation for the available names."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "TaskDataSources"
       },
       "TaskGroupResponse": {
         "properties": {
@@ -8800,7 +9239,8 @@
               "task_run.progress_msg.search",
               "task_run.progress_msg.result",
               "task_run.progress_msg.tool_call",
-              "task_run.progress_msg.exec_status"
+              "task_run.progress_msg.exec_status",
+              "task_run.progress_msg.extract"
             ],
             "title": "Type",
             "description": "Event type; always starts with 'task_run.progress_msg'."
@@ -9281,6 +9721,75 @@
         ],
         "title": "UsageItem",
         "description": "Usage item for a single operation."
+      },
+      "UserLocation": {
+        "additionalProperties": true,
+        "description": "The approximate location of the user.",
+        "properties": {
+          "city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "City"
+          },
+          "country": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Country"
+          },
+          "region": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Region"
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Timezone"
+          },
+          "type": {
+            "anyOf": [
+              {
+                "const": "approximate",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Type"
+          }
+        },
+        "title": "UserLocation",
+        "type": "object"
       },
       "V1ExcerptSettings": {
         "properties": {
@@ -10621,7 +11130,22 @@
         "additionalProperties": true,
         "properties": {
           "item": {
-            "$ref": "#/components/schemas/ResponseOutputMessage"
+            "discriminator": {
+              "mapping": {
+                "message": "#/components/schemas/ResponseOutputMessage",
+                "web_search_call": "#/components/schemas/ResponseFunctionWebSearch"
+              },
+              "propertyName": "type"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ResponseOutputMessage"
+              },
+              {
+                "$ref": "#/components/schemas/ResponseFunctionWebSearch"
+              }
+            ],
+            "title": "Item"
           },
           "output_index": {
             "title": "Output Index",
@@ -10650,7 +11174,22 @@
         "additionalProperties": true,
         "properties": {
           "item": {
-            "$ref": "#/components/schemas/ResponseOutputMessage"
+            "discriminator": {
+              "mapping": {
+                "message": "#/components/schemas/ResponseOutputMessage",
+                "web_search_call": "#/components/schemas/ResponseFunctionWebSearch"
+              },
+              "propertyName": "type"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ResponseOutputMessage"
+              },
+              {
+                "$ref": "#/components/schemas/ResponseFunctionWebSearch"
+              }
+            ],
+            "title": "Item"
           },
           "output_index": {
             "title": "Output Index",
@@ -10815,6 +11354,99 @@
           "type"
         ],
         "title": "ResponseTextDoneEvent",
+        "type": "object"
+      },
+      "ResponseWebSearchCallCompletedEvent": {
+        "additionalProperties": true,
+        "description": "Emitted when a web search call is completed.",
+        "properties": {
+          "item_id": {
+            "title": "Item Id",
+            "type": "string"
+          },
+          "output_index": {
+            "title": "Output Index",
+            "type": "integer"
+          },
+          "sequence_number": {
+            "title": "Sequence Number",
+            "type": "integer"
+          },
+          "type": {
+            "const": "response.web_search_call.completed",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "item_id",
+          "output_index",
+          "sequence_number",
+          "type"
+        ],
+        "title": "ResponseWebSearchCallCompletedEvent",
+        "type": "object"
+      },
+      "ResponseWebSearchCallInProgressEvent": {
+        "additionalProperties": true,
+        "description": "Emitted when a web search call is initiated.",
+        "properties": {
+          "item_id": {
+            "title": "Item Id",
+            "type": "string"
+          },
+          "output_index": {
+            "title": "Output Index",
+            "type": "integer"
+          },
+          "sequence_number": {
+            "title": "Sequence Number",
+            "type": "integer"
+          },
+          "type": {
+            "const": "response.web_search_call.in_progress",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "item_id",
+          "output_index",
+          "sequence_number",
+          "type"
+        ],
+        "title": "ResponseWebSearchCallInProgressEvent",
+        "type": "object"
+      },
+      "ResponseWebSearchCallSearchingEvent": {
+        "additionalProperties": true,
+        "description": "Emitted when a web search call is executing.",
+        "properties": {
+          "item_id": {
+            "title": "Item Id",
+            "type": "string"
+          },
+          "output_index": {
+            "title": "Output Index",
+            "type": "integer"
+          },
+          "sequence_number": {
+            "title": "Sequence Number",
+            "type": "integer"
+          },
+          "type": {
+            "const": "response.web_search_call.searching",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "item_id",
+          "output_index",
+          "sequence_number",
+          "type"
+        ],
+        "title": "ResponseWebSearchCallSearchingEvent",
         "type": "object"
       },
       "openai__types__responses__response_output_text__Logprob": {
@@ -11023,6 +11655,15 @@
           },
           {
             "$ref": "#/components/schemas/ResponseOutputItemAddedEvent"
+          },
+          {
+            "$ref": "#/components/schemas/ResponseWebSearchCallInProgressEvent"
+          },
+          {
+            "$ref": "#/components/schemas/ResponseWebSearchCallSearchingEvent"
+          },
+          {
+            "$ref": "#/components/schemas/ResponseWebSearchCallCompletedEvent"
           },
           {
             "$ref": "#/components/schemas/ResponseContentPartAddedEvent"
