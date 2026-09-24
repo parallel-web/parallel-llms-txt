@@ -1,9 +1,7 @@
-### \[Bring trusted data into Parallel with Data Connectors\](https://parallel.ai/blog/data-connectors)
+### \[Testing out Jev: real-world developer experience\](https://parallel.ai/blog/testing-jev)
 
-Parallel is expanding how customers put trusted, specialized data to work in their agentic workflows. Starting today, we're rolling out Data Connectors, which you can use to reach a growing network of data providers.
+Tags:[Developers](/blog?tag=developers)
 
-Tags:[Product](/blog?tag=product)
+By Vlad Shulman
 
-By Parallel
-
-September 23, 2026
+September 18, 2026

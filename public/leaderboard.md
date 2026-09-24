@@ -1,6 +1,6 @@
 # Search Capability Leaderboard
 
-Updated September 14, 2026
+Updated September 22, 2026
 
 What's the best model for agentic search?
 
@@ -8,57 +8,59 @@ Large language models rely on web search to find information that isn't availabl
 
 Insights
 
-* [GPT-6 (Astra)](/leaderboard/gpt-6-astra) (Gold, Search Intelligence): Highest Search Intelligence Score (70.3). Great for tasks that require complex reasoning and maximum accuracy.
-* [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna) (Gold, Search Efficiency): Most cost-efficient model ($23.0 per 1K tasks). Great for most queries, at 13× lower cost than the top model.
-* [DeepSeek V4.1 Flash](/leaderboard/deepseek-v4-1-flash) (Silver, Search Efficiency) (Bronze, Search Intelligence): Largest lift from search (+45.0). Most improved when paired with search.
+* [Claude Opus 5.5](/leaderboard/claude-opus-5-5) (Gold, Search Intelligence): Highest Search Intelligence Score (75.5). Great for tasks that require complex reasoning and maximum accuracy.
+* [DeepSeek V4.1 Flash](/leaderboard/deepseek-v4-1-flash) (Gold, Search Efficiency): Most cost-efficient model ($35.8 per 1K tasks). Great for most queries, at 46× lower cost than the top model.
+* [GLM 5.3](/leaderboard/glm-5-3) (Bronze, Search Efficiency): Largest lift from search (+40.8). Most improved when paired with search.
 
 ## Search Intelligence Leaderboard
 
 | Rank | Model                                                            | Score with Search | Score without Search | Lift  | Cost per 1K tasks | Time per task |
 | ---- | ---------------------------------------------------------------- | ----------------- | -------------------- | ----- | ----------------- | ------------- |
-| 1    | [GPT-6 (Astra)](/leaderboard/gpt-6-astra)                        | 70.3              | 35.0                 | +35.3 | $301              | 34.7s         |
-| 2    | [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)                          | 66.7              | 31.3                 | +35.3 | $217              | 52.9s         |
-| 3    | [DeepSeek V4.1 Flash](/leaderboard/deepseek-v4-1-flash)          | 65.3              | 20.3                 | +45.0 | $44.8             | 124s          |
-| 4    | [Muse Spark 1.3](/leaderboard/muse-spark-1-3)                    | 65.3              | 31.0                 | +34.3 | $98.2             | 66.2s         |
-| 5    | [Claude Fable 5.1](/leaderboard/claude-fable-5-1)                | 61.0              | 31.9                 | +29.1 | $455              | 81.5s         |
-| 6    | [Claude Opus 5](/leaderboard/claude-opus-5)                      | 59.3              | 34.0                 | +25.3 | $235              | 74.5s         |
-| 7    | [Kimi K3](/leaderboard/kimi-k3)                                  | 56.3              | 24.0                 | +32.3 | $209              | 198s          |
-| 8    | [GLM 5.3](/leaderboard/glm-5-3)                                  | 55.3              | 20.0                 | +35.3 | $110              | 147s          |
-| 9    | [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna)                        | 54.7              | 22.3                 | +32.3 | $23.0             | 59.4s         |
-| 10   | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash)                | 54.3              | 29.0                 | +25.3 | $61.1             | 79.7s         |
-| 11   | [Claude Sonnet 5](/leaderboard/claude-sonnet-5)                  | 53.7              | 20.3                 | +33.3 | $223              | 83.3s         |
-| 12   | [GLM-5.2](/leaderboard/glm-5-2)                                  | 51.7              | 17.0                 | +34.7 | $122              | 118s          |
-| 13   | [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash)                | 50.7              | 28.7                 | +22.0 | $166              | 123s          |
-| 14   | [DeepSeek V4 Pro (0813)](/leaderboard/deepseek-v4-pro-0813)      | 50.3              | 23.3                 | +27.0 | $108              | 213s          |
-| 15   | [DeepSeek V4 Flash](/leaderboard/deepseek-v4-flash)              | 50.0              | 15.0                 | +35.0 | $18.8             | 150s          |
-| 16   | [DeepSeek V4 Pro](/leaderboard/deepseek-v4-pro)                  | 50.0              | 22.0                 | +28.0 | $102              | 205s          |
-| 17   | [MiniMax M3](/leaderboard/minimax-m3)                            | 49.0              | 20.0                 | +29.0 | $39.9             | 156s          |
-| 18   | [Hunyuan 3](/leaderboard/hy3)                                    | 49.0              | 14.3                 | +34.7 | $41.0             | 239s          |
-| 19   | [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview)            | 45.3              | 24.3                 | +21.0 | $199              | 116s          |
-| 20   | [MiMo v2.5](/leaderboard/mimo-v2-5)                              | 45.0              | 12.7                 | +32.3 | $26.2             | 203s          |
-| 21   | [DeepSeek V4 Flash (0731)](/leaderboard/deepseek-v4-flash-0731)  | 43.7              | 22.7                 | +21.0 | $9.45             | 88.0s         |
-| 22   | [Nemotron 3 Ultra 550B](/leaderboard/nemotron-3-ultra-550b-a55b) | 42.7              | 16.3                 | +26.3 | $155              | 109s          |
-| 23   | [Nemotron 3.5 Lightning](/leaderboard/nemotron-3-5-lightning)    | 35.0              | 6.0                  | +29.0 | $17.1             | 169s          |
-| 24   | [Laguna S 2.1](/leaderboard/laguna-s-2-1)                        | 33.0              | 6.0                  | +27.0 | $28.3             | 364s          |
+| 1    | [Claude Opus 5.5](/leaderboard/claude-opus-5-5)                  | 75.5              | 42.7                 | +32.9 | $1,656            | 525s          |
+| 2    | [Claude Opus 5](/leaderboard/claude-opus-5)                      | 71.2              | 40.4                 | +30.8 | $1,437            | 492s          |
+| 3    | [GPT-6 Astra](/leaderboard/gpt-6-astra)                          | 70.8              | 43.0                 | +27.9 | $401              | 83.7s         |
+| 4    | [Claude Fable 5.1](/leaderboard/claude-fable-5-1)                | 69.3              | 44.6                 | +24.7 | $3,101            | 536s          |
+| 5    | [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)                          | 67.7              | 41.4                 | +26.3 | $269              | 107s          |
+| 6    | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash)                | 66.8              | 39.4                 | +27.4 | $130              | 229s          |
+| 7    | [Muse Spark 1.3](/leaderboard/muse-spark-1-3)                    | 66.1              | 30.3                 | +35.8 | $142              | 274s          |
+| 8    | [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash)                | 65.1              | 39.0                 | +26.1 | $177              | 317s          |
+| 9    | [Kimi K3](/leaderboard/kimi-k3)                                  | 64.2              | 30.6                 | +33.6 | $266              | 432s          |
+| 10   | [DeepSeek V4.1 Flash](/leaderboard/deepseek-v4-1-flash)          | 62.7              | 27.0                 | +35.7 | $35.8             | 549s          |
+| 11   | [GLM 5.3](/leaderboard/glm-5-3)                                  | 62.7              | 21.9                 | +40.8 | $78.5             | 308s          |
+| 12   | [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna)                        | 60.7              | 26.9                 | +33.9 | $36.2             | 98.0s         |
+| 13   | [Claude Sonnet 5](/leaderboard/claude-sonnet-5)                  | 60.4              | 22.3                 | +38.1 | $1,000            | 775s          |
+| 14   | [DeepSeek V4 Flash (0731)](/leaderboard/deepseek-v4-flash-0731)  | 59.2              | 24.0                 | +35.2 | $13.6             | 292s          |
+| 15   | [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview)            | 58.6              | 34.1                 | +24.5 | $114              | 276s          |
+| 16   | [DeepSeek V4 Pro](/leaderboard/deepseek-v4-pro)                  | 58.4              | 30.5                 | +27.9 | $110              | 383s          |
+| 17   | [Hunyuan 3](/leaderboard/hy3)                                    | 58.2              | 22.6                 | +35.6 | $28.4             | 363s          |
+| 18   | [GLM-5.2](/leaderboard/glm-5-2)                                  | 54.3              | 18.4                 | +35.9 | $66.6             | 301s          |
+| 19   | [DeepSeek V4 Pro (0813)](/leaderboard/deepseek-v4-pro-0813)      | 53.5              | 33.1                 | +20.4 | $234              | 394s          |
+| 20   | [DeepSeek V4 Flash](/leaderboard/deepseek-v4-flash)              | 53.1              | 19.5                 | +33.7 | $24.4             | 358s          |
+| 21   | [Nemotron 3 Ultra 550B](/leaderboard/nemotron-3-ultra-550b-a55b) | 53.0              | 15.3                 | +37.7 | $113              | 328s          |
+| 22   | [MiniMax M3](/leaderboard/minimax-m3)                            | 52.6              | 23.1                 | +29.5 | $41.1             | 291s          |
+| 23   | [MiMo v2.5](/leaderboard/mimo-v2-5)                              | 49.5              | 11.6                 | +37.9 | $23.5             | 894s          |
+| 24   | [Laguna S 2.1](/leaderboard/laguna-s-2-1)                        | 39.5              | 12.3                 | +27.2 | $21.4             | 459s          |
+| 25   | [Nemotron 3.5 Lightning](/leaderboard/nemotron-3-5-lightning)    | 37.9              | 9.8                  | +28.0 | $12.1             | 176s          |
 
 ## Search Efficiency Leaderboard
 
-Most cost-efficient models scoring at or above the median Search Intelligence Score (51.2), cheapest first. Costs are per 1,000 tasks.
+Most cost-efficient models scoring at or above the median Search Intelligence Score (60.4), cheapest first. Costs are per 1,000 tasks.
 
 | Rank | Model                                                   | Cost per 1K tasks | Score with Search |
 | ---- | ------------------------------------------------------- | ----------------- | ----------------- |
-| 1    | [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna)               | $23.0             | 54.7              |
-| 2    | [DeepSeek V4.1 Flash](/leaderboard/deepseek-v4-1-flash) | $44.8             | 65.3              |
-| 3    | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash)       | $61.1             | 54.3              |
-| 4    | [Muse Spark 1.3](/leaderboard/muse-spark-1-3)           | $98.2             | 65.3              |
-| 5    | [GLM 5.3](/leaderboard/glm-5-3)                         | $110              | 55.3              |
-| 6    | [GLM-5.2](/leaderboard/glm-5-2)                         | $122              | 51.7              |
-| 7    | [Kimi K3](/leaderboard/kimi-k3)                         | $209              | 56.3              |
-| 8    | [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)                 | $217              | 66.7              |
-| 9    | [Claude Sonnet 5](/leaderboard/claude-sonnet-5)         | $223              | 53.7              |
-| 10   | [Claude Opus 5](/leaderboard/claude-opus-5)             | $235              | 59.3              |
-| 11   | [GPT-6 (Astra)](/leaderboard/gpt-6-astra)               | $301              | 70.3              |
-| 12   | [Claude Fable 5.1](/leaderboard/claude-fable-5-1)       | $455              | 61.0              |
+| 1    | [DeepSeek V4.1 Flash](/leaderboard/deepseek-v4-1-flash) | $35.8             | 62.7              |
+| 2    | [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna)               | $36.2             | 60.7              |
+| 3    | [GLM 5.3](/leaderboard/glm-5-3)                         | $78.5             | 62.7              |
+| 4    | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash)       | $130              | 66.8              |
+| 5    | [Muse Spark 1.3](/leaderboard/muse-spark-1-3)           | $142              | 66.1              |
+| 6    | [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash)       | $177              | 65.1              |
+| 7    | [Kimi K3](/leaderboard/kimi-k3)                         | $266              | 64.2              |
+| 8    | [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)                 | $269              | 67.7              |
+| 9    | [GPT-6 Astra](/leaderboard/gpt-6-astra)                 | $401              | 70.8              |
+| 10   | [Claude Sonnet 5](/leaderboard/claude-sonnet-5)         | $1,000            | 60.4              |
+| 11   | [Claude Opus 5](/leaderboard/claude-opus-5)             | $1,437            | 71.2              |
+| 12   | [Claude Opus 5.5](/leaderboard/claude-opus-5-5)         | $1,656            | 75.5              |
+| 13   | [Claude Fable 5.1](/leaderboard/claude-fable-5-1)       | $3,101            | 69.3              |
 
 ## Methodology
 
@@ -84,6 +86,8 @@ For Salesforce’s FY2024, calculate the share of subscription and support reven
 Identify the reporting segment, calculate its revenue share, and compare it with a separate market estimate.  
 [Parallel’s WISER examples](https://parallel.ai/blog/search-api-benchmark)
 
-Every model is presented with the same question twice: once, it is asked to answer without relying on search; the second time, we give it access to Parallel Search Fast mode. The harness and other parameters are held constant.
+Each model answers the same 100 questions per benchmark, with and without Parallel Search Fast mode and Extract. Tool budgets are fixed; code execution is disabled. Once the tool budget is exhausted, we request a final answer with tools disabled. Reasoning settings and token limits may vary by model to reflect provider recommendations, when provided.
 
-Search Intelligence Score: accuracy on the three evals, averaged with equal weight, 0–100\. Lift: the difference between a model's score with search and without. Search Efficiency Leaderboard: models at or above the median score (51.2), ranked by cost per 1,000 tasks, cheapest first. Time per task: average seconds from question to answer. Pareto frontier: no other model is both cheaper and higher scoring.
+DSQA answers are extracted without access to the reference answer, then graded. HLE and WISER use correct-or-incorrect grading.
+
+Search Intelligence Score: DSQA F1, HLE accuracy, and WISER accuracy, weighted equally on a 0–100 scale. F1 allows partial credit for incomplete answers and penalizes incorrect items. Scores use all 100 questions per benchmark; failed and pending tasks count as zero. Lift: the difference between a model's score with search and without. Search Efficiency Leaderboard: models at or above the median score (60.4), ranked by cost per 1,000 tasks, cheapest first. Costs include inference and estimated Search and Extract usage, excluding grading. Cost records are incomplete and may omit recovery attempts. Time per task: average seconds from question to final answer across available records, with equal weight for each benchmark. Pareto frontier: no other model is both cheaper and higher scoring.
