@@ -1,27 +1,27 @@
 # Claude Fable 5.1 · Search Capability Leaderboard
 
-* Search Intelligence Score: **61.0** (#5 in Search Intelligence)
-* Without search: 31.9 · Lift from search +29.1
-* Cost per 1K tasks: $455 (#12 in Search Efficiency)
-* Time per task: 81.5s
+* Search Intelligence Score: **69.3** (#4 in Search Intelligence)
+* Without search: 44.6 · Lift from search +24.7
+* Cost per 1K tasks: $3,101 (#13 in Search Efficiency)
+* Time per task: 536s
 * Lab: Anthropic · Model id: claude-fable-5.1
 
 ## Accuracy by benchmark
 
 | Suite | With search | Without search |
 | ----- | ----------- | -------------- |
-| DSQA  | 48.0        | 15.0           |
-| HLE   | 65.0        | 62.6           |
-| WISER | 70.0        | 18.0           |
+| DSQA  | 79.9        | 57.9           |
+| HLE   | 54.0        | 56.0           |
+| WISER | 74.0        | 20.0           |
 
 ## Compared with
 
-| Model                                                   | Score | Lift  | Cost per 1K tasks | Time per task |
-| ------------------------------------------------------- | ----- | ----- | ----------------- | ------------- |
-| Claude Fable 5.1                                        | 61.0  | +29.1 | $455              | 81.5s         |
-| [Claude Opus 5](/leaderboard/claude-opus-5)             | 59.3  | +25.3 | $235              | 74.5s         |
-| [Claude Sonnet 5](/leaderboard/claude-sonnet-5)         | 53.7  | +33.3 | $223              | 83.3s         |
-| [DeepSeek V4.1 Flash](/leaderboard/deepseek-v4-1-flash) | 65.3  | +45.0 | $44.8             | 124s          |
-| [Muse Spark 1.3](/leaderboard/muse-spark-1-3)           | 65.3  | +34.3 | $98.2             | 66.2s         |
+| Model                                           | Score | Lift  | Cost per 1K tasks | Time per task |
+| ----------------------------------------------- | ----- | ----- | ----------------- | ------------- |
+| Claude Fable 5.1                                | 69.3  | +24.7 | $3,101            | 536s          |
+| [Claude Opus 5](/leaderboard/claude-opus-5)     | 71.2  | +30.8 | $1,437            | 492s          |
+| [Claude Opus 5.5](/leaderboard/claude-opus-5-5) | 75.5  | +32.9 | $1,656            | 525s          |
+| [Claude Sonnet 5](/leaderboard/claude-sonnet-5) | 60.4  | +38.1 | $1,000            | 775s          |
+| [GPT-6 Astra](/leaderboard/gpt-6-astra)         | 70.8  | +27.9 | $401              | 83.7s         |
 
-Latest update September 14, 2026\. Methodology: /leaderboard#methodology
+Latest update September 22, 2026\. Methodology: /leaderboard#methodology

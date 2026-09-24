@@ -1,28 +1,27 @@
 # Gemini 3.7 Flash · Search Capability Leaderboard
 
-* Search Intelligence Score: **54.3** (#10 in Search Intelligence)
-* Without search: 29.0 · Lift from search +25.3
-* Cost per 1K tasks: $61.1 (#3 in Search Efficiency)
-* Time per task: 79.7s
-* Medals: Bronze, Search Efficiency
+* Search Intelligence Score: **66.8** (#6 in Search Intelligence)
+* Without search: 39.4 · Lift from search +27.4
+* Cost per 1K tasks: $130 (#4 in Search Efficiency)
+* Time per task: 229s
 * Lab: Google · Model id: google/gemini-3.7-flash
 
 ## Accuracy by benchmark
 
 | Suite | With search | Without search |
 | ----- | ----------- | -------------- |
-| DSQA  | 43.0        | 16.0           |
-| HLE   | 61.0        | 54.0           |
-| WISER | 59.0        | 17.0           |
+| DSQA  | 87.5        | 58.3           |
+| HLE   | 46.0        | 42.0           |
+| WISER | 67.0        | 18.0           |
 
 ## Compared with
 
 | Model                                                 | Score | Lift  | Cost per 1K tasks | Time per task |
 | ----------------------------------------------------- | ----- | ----- | ----------------- | ------------- |
-| Gemini 3.7 Flash                                      | 54.3  | +25.3 | $61.1             | 79.7s         |
-| [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash)     | 50.7  | +22.0 | $166              | 123s          |
-| [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview) | 45.3  | +21.0 | $199              | 116s          |
-| [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna)             | 54.7  | +32.3 | $23.0             | 59.4s         |
-| [Claude Sonnet 5](/leaderboard/claude-sonnet-5)       | 53.7  | +33.3 | $223              | 83.3s         |
+| Gemini 3.7 Flash                                      | 66.8  | +27.4 | $130              | 229s          |
+| [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash)     | 65.1  | +26.1 | $177              | 317s          |
+| [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview) | 58.6  | +24.5 | $114              | 276s          |
+| [Muse Spark 1.3](/leaderboard/muse-spark-1-3)         | 66.1  | +35.8 | $142              | 274s          |
+| [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)               | 67.7  | +26.3 | $269              | 107s          |
 
-Latest update September 14, 2026\. Methodology: /leaderboard#methodology
+Latest update September 22, 2026\. Methodology: /leaderboard#methodology

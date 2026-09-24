@@ -1,27 +1,28 @@
 # Claude Opus 5 · Search Capability Leaderboard
 
-* Search Intelligence Score: **59.3** (#6 in Search Intelligence)
-* Without search: 34.0 · Lift from search +25.3
-* Cost per 1K tasks: $235 (#10 in Search Efficiency)
-* Time per task: 74.5s
+* Search Intelligence Score: **71.2** (#2 in Search Intelligence)
+* Without search: 40.4 · Lift from search +30.8
+* Cost per 1K tasks: $1,437 (#11 in Search Efficiency)
+* Time per task: 492s
+* Medals: Silver, Search Intelligence
 * Lab: Anthropic · Model id: claude-opus-5
 
 ## Accuracy by benchmark
 
 | Suite | With search | Without search |
 | ----- | ----------- | -------------- |
-| DSQA  | 48.0        | 22.0           |
-| HLE   | 62.0        | 54.0           |
-| WISER | 68.0        | 26.0           |
+| DSQA  | 83.6        | 49.2           |
+| HLE   | 53.0        | 52.0           |
+| WISER | 77.0        | 20.0           |
 
 ## Compared with
 
 | Model                                             | Score | Lift  | Cost per 1K tasks | Time per task |
 | ------------------------------------------------- | ----- | ----- | ----------------- | ------------- |
-| Claude Opus 5                                     | 59.3  | +25.3 | $235              | 74.5s         |
-| [Claude Fable 5.1](/leaderboard/claude-fable-5-1) | 61.0  | +29.1 | $455              | 81.5s         |
-| [Claude Sonnet 5](/leaderboard/claude-sonnet-5)   | 53.7  | +33.3 | $223              | 83.3s         |
-| [Kimi K3](/leaderboard/kimi-k3)                   | 56.3  | +32.3 | $209              | 198s          |
-| [GLM 5.3](/leaderboard/glm-5-3)                   | 55.3  | +35.3 | $110              | 147s          |
+| Claude Opus 5                                     | 71.2  | +30.8 | $1,437            | 492s          |
+| [Claude Fable 5.1](/leaderboard/claude-fable-5-1) | 69.3  | +24.7 | $3,101            | 536s          |
+| [Claude Opus 5.5](/leaderboard/claude-opus-5-5)   | 75.5  | +32.9 | $1,656            | 525s          |
+| [Claude Sonnet 5](/leaderboard/claude-sonnet-5)   | 60.4  | +38.1 | $1,000            | 775s          |
+| [GPT-6 Astra](/leaderboard/gpt-6-astra)           | 70.8  | +27.9 | $401              | 83.7s         |
 
-Latest update September 14, 2026\. Methodology: /leaderboard#methodology
+Latest update September 22, 2026\. Methodology: /leaderboard#methodology
