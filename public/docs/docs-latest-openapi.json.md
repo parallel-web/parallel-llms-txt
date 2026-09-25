@@ -5838,6 +5838,47 @@
         "title": "MatchCondition",
         "description": "Match condition model for FindAll ingest."
       },
+      "McpListToolsTool": {
+        "additionalProperties": true,
+        "description": "A tool available on an MCP server.",
+        "properties": {
+          "input_schema": {
+            "title": "Input Schema"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "annotations": {
+            "anyOf": [
+              {},
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Annotations"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Description"
+          }
+        },
+        "required": [
+          "input_schema",
+          "name"
+        ],
+        "title": "McpListToolsTool",
+        "type": "object"
+      },
       "McpServer": {
         "properties": {
           "type": {
@@ -7291,7 +7332,7 @@
       },
       "Response": {
         "additionalProperties": true,
-        "description": "A response from the `parallel` model. A completed response contains one\n`web_search_call` item per web search the model ran, followed by a single\nassistant message whose text is annotated with URL citations grounding the\nanswer.",
+        "description": "A response from the `parallel` model. A completed response contains one\n`web_search_call` item per web search the model ran, `mcp_list_tools`\ndiscovery outcomes, and one `mcp_call` item per MCP tool call it made,\nfollowed by a single assistant message\nwhose text is annotated with URL citations grounding the answer.",
         "properties": {
           "id": {
             "title": "Id",
@@ -7365,6 +7406,8 @@
             "items": {
               "discriminator": {
                 "mapping": {
+                  "mcp_call": "#/components/schemas/ResponseMcpCall",
+                  "mcp_list_tools": "#/components/schemas/ResponseMcpListTools",
                   "message": "#/components/schemas/ResponseOutputMessage",
                   "web_search_call": "#/components/schemas/ResponseFunctionWebSearch"
                 },
@@ -7376,6 +7419,12 @@
                 },
                 {
                   "$ref": "#/components/schemas/ResponseFunctionWebSearch"
+                },
+                {
+                  "$ref": "#/components/schemas/ResponseMcpCall"
+                },
+                {
+                  "$ref": "#/components/schemas/ResponseMcpListTools"
                 }
               ]
             },
@@ -7406,7 +7455,14 @@
           "tools": {
             "default": [],
             "items": {
-              "$ref": "#/components/schemas/ResponseWebSearchTool"
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/ResponseWebSearchTool"
+                },
+                {
+                  "$ref": "#/components/schemas/ResponseMcpTool"
+                }
+              ]
             },
             "title": "Tools",
             "type": "array"
@@ -7790,6 +7846,9 @@
                       "$ref": "#/components/schemas/ResponseWebSearchTool"
                     },
                     {
+                      "$ref": "#/components/schemas/ResponseMcpTool"
+                    },
+                    {
                       "additionalProperties": true,
                       "type": "object"
                     }
@@ -7802,7 +7861,18 @@
               }
             ],
             "title": "Tools",
-            "description": "OpenAI tools. Web grounding is always on, so no tool is needed to search; a `web_search` tool's `filters` restrict the domains searched and cited (`allowed_domains` maps to Parallel's `source_policy.include_domains`, `blocked_domains` to `exclude_domains`; set one, not both). Every other tool is accepted and ignored."
+            "description": "OpenAI tools. Web grounding is always on, so no tool is needed to search; a `web_search` tool's `filters` restrict the domains searched and cited (`allowed_domains` maps to Parallel's `source_policy.include_domains`, `blocked_domains` to `exclude_domains`; set one, not both). An `mcp` tool gives the model a remote MCP server to call; at most 10 per request. Every other tool is accepted and ignored."
+          },
+          "data_sources": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TaskDataSources"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Data partners to enable for this request, in addition to web search: `pay_per_use` partners are billed per call, `free` partners are not. Same names and shape as the Task API's `advanced_settings.data_sources`; see the Data Sources documentation. Supported when `reasoning.effort` is `medium` (the default) or `high`. A partner name must not collide with an `mcp` tool's `server_label`."
           }
         },
         "type": "object",
@@ -7811,7 +7881,7 @@
           "input"
         ],
         "title": "ResponseCreateRequest",
-        "description": "Request body for the Responses API (`POST /v1/responses`).\n\nOpenAI-Responses-compatible: point a standard OpenAI client at\n`https://api.parallel.ai/v1` with your Parallel API key and set `model` to\n`parallel`. The fields below are the ones Parallel acts on; of `tools`,\nonly a `web_search` tool's `filters` have an effect. Other OpenAI request\nfields (`tool_choice`, `temperature`, `top_p`, `max_output_tokens`,\n`parallel_tool_calls`, `truncation`, `store`, `user`, `include`) are\naccepted for compatibility but have no effect."
+        "description": "Request body for the Responses API (`POST /v1/responses`).\n\nOpenAI-Responses-compatible: point a standard OpenAI client at\n`https://api.parallel.ai/v1` with your Parallel API key and set `model` to\n`parallel`. The fields below are the ones Parallel acts on. Web grounding\nis always on, so no tool is needed to search; a `web_search` tool only\nrestricts the searched domains through its `filters`. An `mcp` tool gives\nthe model a remote MCP server to call, and each call is executed and\nreported as an `mcp_call` output item. Every other tool is accepted and\nignored. `data_sources` enables data partners in addition to web search.\nOther OpenAI request fields (`tool_choice`, `temperature`, `top_p`,\n`max_output_tokens`, `parallel_tool_calls`, `truncation`, `store`, `user`,\n`include`) are accepted for compatibility but have no effect."
       },
       "ResponseError": {
         "additionalProperties": true,
@@ -8055,6 +8125,301 @@
         ],
         "title": "ResponseInputMessage",
         "description": "A single input message for the Responses API.\n\n`content` accepts either a bare string (`\"hi\"`) or the canonical OpenAI\nlist-of-parts (`[{\"text\": \"hi\", \"type\": \"input_text\"}]`)."
+      },
+      "ResponseMcpCall": {
+        "additionalProperties": true,
+        "description": "One tool call the `parallel` model made on an MCP server: a server from\nthe request's `mcp` tools, or a partner enabled via `data_sources`.\n`arguments` is the JSON-encoded input; `output` is the text the tool\nreturned, or `error` the failure when the call did not succeed.",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "arguments": {
+            "title": "Arguments",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "server_label": {
+            "title": "Server Label",
+            "type": "string"
+          },
+          "type": {
+            "const": "mcp_call",
+            "title": "Type",
+            "type": "string"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "discriminator": {
+                  "mapping": {
+                    "http_error": "#/components/schemas/ResponseMcpHttpError",
+                    "mcp_protocol_error": "#/components/schemas/ResponseMcpProtocolError",
+                    "mcp_tool_execution_error": "#/components/schemas/ResponseMcpToolExecutionError"
+                  },
+                  "propertyName": "type"
+                },
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/ResponseMcpToolExecutionError"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ResponseMcpProtocolError"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ResponseMcpHttpError"
+                  }
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Error"
+          },
+          "output": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Output"
+          },
+          "status": {
+            "enum": [
+              "completed",
+              "failed"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "arguments",
+          "name",
+          "server_label",
+          "type",
+          "status"
+        ],
+        "title": "ResponseMcpCall",
+        "type": "object"
+      },
+      "ResponseMcpHttpError": {
+        "properties": {
+          "type": {
+            "const": "http_error",
+            "default": "http_error",
+            "title": "Type",
+            "type": "string"
+          },
+          "code": {
+            "title": "Code",
+            "type": "integer"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "ResponseMcpHttpError",
+        "type": "object"
+      },
+      "ResponseMcpListTools": {
+        "additionalProperties": true,
+        "description": "Tools discovered on a customer MCP server, or a connection/listing error.\nRequested data partners report failures only, with an empty tools list.",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "server_label": {
+            "title": "Server Label",
+            "type": "string"
+          },
+          "tools": {
+            "items": {
+              "$ref": "#/components/schemas/McpListToolsTool"
+            },
+            "title": "Tools",
+            "type": "array"
+          },
+          "type": {
+            "const": "mcp_list_tools",
+            "title": "Type",
+            "type": "string"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Error"
+          }
+        },
+        "required": [
+          "id",
+          "server_label",
+          "tools",
+          "type"
+        ],
+        "title": "ResponseMcpListTools",
+        "type": "object"
+      },
+      "ResponseMcpProtocolError": {
+        "properties": {
+          "type": {
+            "const": "mcp_protocol_error",
+            "default": "mcp_protocol_error",
+            "title": "Type",
+            "type": "string"
+          },
+          "code": {
+            "title": "Code",
+            "type": "integer"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "ResponseMcpProtocolError",
+        "type": "object"
+      },
+      "ResponseMcpTool": {
+        "additionalProperties": true,
+        "description": "The OpenAI `mcp` tool: a remote MCP server the `parallel` model may call\nwhile researching, alongside web search. Each call is reported as an\n`mcp_call` output item. `headers` and `authorization` are sent to the\nserver and never echoed back. Parallel runs tool calls without an approval\nround trip, so `require_approval` must be set to `never` explicitly.\n`connector_id` and `tunnel_id` are not supported.",
+        "properties": {
+          "server_label": {
+            "description": "Name for this server. Appears as `server_label` on its `mcp_call` items and must not collide with a `data_sources` partner name.",
+            "title": "Server Label",
+            "type": "string"
+          },
+          "type": {
+            "const": "mcp",
+            "title": "Type",
+            "type": "string"
+          },
+          "allowed_tools": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Tool names the model may call on this server. Omit to allow every tool; an empty list is rejected.",
+            "title": "Allowed Tools"
+          },
+          "authorization": {
+            "anyOf": [
+              {
+                "format": "password",
+                "type": "string",
+                "writeOnly": true
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "OAuth access token, sent as `Authorization: Bearer <token>`.",
+            "title": "Authorization"
+          },
+          "headers": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "format": "password",
+                  "type": "string",
+                  "writeOnly": true
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "HTTP headers sent on every request to the server, for authentication or other purposes.",
+            "title": "Headers"
+          },
+          "require_approval": {
+            "const": "never",
+            "description": "Must be `never`: tool calls run without an approval step.",
+            "title": "Require Approval",
+            "type": "string"
+          },
+          "server_description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Server Description"
+          },
+          "server_url": {
+            "description": "URL of the MCP server.",
+            "title": "Server Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "server_label",
+          "type",
+          "require_approval",
+          "server_url"
+        ],
+        "title": "ResponseMcpTool",
+        "type": "object"
+      },
+      "ResponseMcpToolExecutionError": {
+        "properties": {
+          "type": {
+            "const": "mcp_tool_execution_error",
+            "default": "mcp_tool_execution_error",
+            "title": "Type",
+            "type": "string"
+          },
+          "content": {
+            "title": "Content"
+          }
+        },
+        "required": [
+          "content"
+        ],
+        "title": "ResponseMcpToolExecutionError",
+        "type": "object"
       },
       "ResponseOutputMessage": {
         "additionalProperties": true,
@@ -11126,12 +11491,138 @@
         "title": "ResponseIncompleteEvent",
         "type": "object"
       },
+      "ResponseMcpCallCompletedEvent": {
+        "additionalProperties": true,
+        "description": "Emitted when an MCP  tool call has completed successfully.",
+        "properties": {
+          "item_id": {
+            "title": "Item Id",
+            "type": "string"
+          },
+          "output_index": {
+            "title": "Output Index",
+            "type": "integer"
+          },
+          "sequence_number": {
+            "title": "Sequence Number",
+            "type": "integer"
+          },
+          "type": {
+            "const": "response.mcp_call.completed",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "item_id",
+          "output_index",
+          "sequence_number",
+          "type"
+        ],
+        "title": "ResponseMcpCallCompletedEvent",
+        "type": "object"
+      },
+      "ResponseMcpCallFailedEvent": {
+        "additionalProperties": true,
+        "description": "Emitted when an MCP  tool call has failed.",
+        "properties": {
+          "item_id": {
+            "title": "Item Id",
+            "type": "string"
+          },
+          "output_index": {
+            "title": "Output Index",
+            "type": "integer"
+          },
+          "sequence_number": {
+            "title": "Sequence Number",
+            "type": "integer"
+          },
+          "type": {
+            "const": "response.mcp_call.failed",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "item_id",
+          "output_index",
+          "sequence_number",
+          "type"
+        ],
+        "title": "ResponseMcpCallFailedEvent",
+        "type": "object"
+      },
+      "ResponseMcpListToolsCompletedEvent": {
+        "additionalProperties": true,
+        "description": "Emitted when the list of available MCP tools has been successfully retrieved.",
+        "properties": {
+          "item_id": {
+            "title": "Item Id",
+            "type": "string"
+          },
+          "output_index": {
+            "title": "Output Index",
+            "type": "integer"
+          },
+          "sequence_number": {
+            "title": "Sequence Number",
+            "type": "integer"
+          },
+          "type": {
+            "const": "response.mcp_list_tools.completed",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "item_id",
+          "output_index",
+          "sequence_number",
+          "type"
+        ],
+        "title": "ResponseMcpListToolsCompletedEvent",
+        "type": "object"
+      },
+      "ResponseMcpListToolsFailedEvent": {
+        "additionalProperties": true,
+        "description": "Emitted when the attempt to list available MCP tools has failed.",
+        "properties": {
+          "item_id": {
+            "title": "Item Id",
+            "type": "string"
+          },
+          "output_index": {
+            "title": "Output Index",
+            "type": "integer"
+          },
+          "sequence_number": {
+            "title": "Sequence Number",
+            "type": "integer"
+          },
+          "type": {
+            "const": "response.mcp_list_tools.failed",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "item_id",
+          "output_index",
+          "sequence_number",
+          "type"
+        ],
+        "title": "ResponseMcpListToolsFailedEvent",
+        "type": "object"
+      },
       "ResponseOutputItemAddedEvent": {
         "additionalProperties": true,
         "properties": {
           "item": {
             "discriminator": {
               "mapping": {
+                "mcp_call": "#/components/schemas/ResponseMcpCall",
+                "mcp_list_tools": "#/components/schemas/ResponseMcpListTools",
                 "message": "#/components/schemas/ResponseOutputMessage",
                 "web_search_call": "#/components/schemas/ResponseFunctionWebSearch"
               },
@@ -11143,6 +11634,12 @@
               },
               {
                 "$ref": "#/components/schemas/ResponseFunctionWebSearch"
+              },
+              {
+                "$ref": "#/components/schemas/ResponseMcpCall"
+              },
+              {
+                "$ref": "#/components/schemas/ResponseMcpListTools"
               }
             ],
             "title": "Item"
@@ -11176,6 +11673,8 @@
           "item": {
             "discriminator": {
               "mapping": {
+                "mcp_call": "#/components/schemas/ResponseMcpCall",
+                "mcp_list_tools": "#/components/schemas/ResponseMcpListTools",
                 "message": "#/components/schemas/ResponseOutputMessage",
                 "web_search_call": "#/components/schemas/ResponseFunctionWebSearch"
               },
@@ -11187,6 +11686,12 @@
               },
               {
                 "$ref": "#/components/schemas/ResponseFunctionWebSearch"
+              },
+              {
+                "$ref": "#/components/schemas/ResponseMcpCall"
+              },
+              {
+                "$ref": "#/components/schemas/ResponseMcpListTools"
               }
             ],
             "title": "Item"
@@ -11664,6 +12169,18 @@
           },
           {
             "$ref": "#/components/schemas/ResponseWebSearchCallCompletedEvent"
+          },
+          {
+            "$ref": "#/components/schemas/ResponseMcpCallCompletedEvent"
+          },
+          {
+            "$ref": "#/components/schemas/ResponseMcpCallFailedEvent"
+          },
+          {
+            "$ref": "#/components/schemas/ResponseMcpListToolsCompletedEvent"
+          },
+          {
+            "$ref": "#/components/schemas/ResponseMcpListToolsFailedEvent"
           },
           {
             "$ref": "#/components/schemas/ResponseContentPartAddedEvent"
