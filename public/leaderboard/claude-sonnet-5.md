@@ -1,27 +1,27 @@
 # Claude Sonnet 5 · Search Capability Leaderboard
 
-* Search Intelligence Score: **60.4** (#13 in Search Intelligence)
-* Without search: 22.3 · Lift from search +38.1
-* Cost per 1K tasks: $1,000 (#10 in Search Efficiency)
-* Time per task: 775s
+* Search Intelligence Score: **66.6** (#8 in Search Intelligence)
+* Without search: 22.8 · Lift from search +43.8
+* Cost per 1K tasks: $688 (#11 in Search Efficiency)
+* Time per task: 846s
 * Lab: Anthropic · Model id: claude-sonnet-5
 
 ## Accuracy by benchmark
 
 | Suite | With search | Without search |
 | ----- | ----------- | -------------- |
-| DSQA  | 68.2        | 31.8           |
-| HLE   | 46.0        | 23.0           |
-| WISER | 67.0        | 12.0           |
+| DSQA  | 82.8        | 32.5           |
+| HLE   | 45.0        | 25.0           |
+| WISER | 72.0        | 11.0           |
 
 ## Compared with
 
 | Model                                             | Score | Lift  | Cost per 1K tasks | Time per task |
 | ------------------------------------------------- | ----- | ----- | ----------------- | ------------- |
-| Claude Sonnet 5                                   | 60.4  | +38.1 | $1,000            | 775s          |
-| [Claude Fable 5.1](/leaderboard/claude-fable-5-1) | 69.3  | +24.7 | $3,101            | 536s          |
-| [Claude Opus 5](/leaderboard/claude-opus-5)       | 71.2  | +30.8 | $1,437            | 492s          |
-| [Claude Opus 5.5](/leaderboard/claude-opus-5-5)   | 75.5  | +32.9 | $1,656            | 525s          |
-| [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna)         | 60.7  | +33.9 | $36.2             | 98.0s         |
+| Claude Sonnet 5                                   | 66.6  | +43.8 | $688              | 846s          |
+| [Claude Opus 5](/leaderboard/claude-opus-5)       | 70.0  | +32.8 | $1,012            | 342s          |
+| [Claude Fable 5.1](/leaderboard/claude-fable-5-1) | 72.7  | +30.3 | $1,655            | 512s          |
+| [Claude Opus 5.5](/leaderboard/claude-opus-5-5)   | 75.4  | +31.2 | $949              | 512s          |
+| [GPT-6 Sol](/leaderboard/gpt-6-sol)               | 66.6  | +28.7 | $183              | 260s          |
 
-Latest update September 22, 2026\. Methodology: /leaderboard#methodology
+Latest update September 25, 2026\. Methodology: /leaderboard#methodology

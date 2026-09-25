@@ -21,7 +21,7 @@
 | Gemini 3.7 Flash                                      | 66.8  | +27.4 | $130              | 229s          |
 | [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash)     | 65.1  | +26.1 | $177              | 317s          |
 | [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview) | 58.6  | +24.5 | $114              | 276s          |
-| [Muse Spark 1.3](/leaderboard/muse-spark-1-3)         | 66.1  | +35.8 | $142              | 274s          |
-| [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)               | 67.7  | +26.3 | $269              | 107s          |
+| [GPT-6 Sol](/leaderboard/gpt-6-sol)                   | 66.6  | +28.7 | $183              | 260s          |
+| [Claude Sonnet 5](/leaderboard/claude-sonnet-5)       | 66.6  | +43.8 | $688              | 846s          |
 
-Latest update September 22, 2026\. Methodology: /leaderboard#methodology
+Latest update September 25, 2026\. Methodology: /leaderboard#methodology

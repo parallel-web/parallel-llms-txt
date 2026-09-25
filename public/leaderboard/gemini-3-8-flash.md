@@ -1,6 +1,6 @@
 # Gemini 3.8 Flash · Search Capability Leaderboard
 
-* Search Intelligence Score: **65.1** (#8 in Search Intelligence)
+* Search Intelligence Score: **65.1** (#10 in Search Intelligence)
 * Without search: 39.0 · Lift from search +26.1
 * Cost per 1K tasks: $177 (#6 in Search Efficiency)
 * Time per task: 317s
@@ -24,4 +24,4 @@
 | [Kimi K3](/leaderboard/kimi-k3)                       | 64.2  | +33.6 | $266              | 432s          |
 | [Muse Spark 1.3](/leaderboard/muse-spark-1-3)         | 66.1  | +35.8 | $142              | 274s          |
 
-Latest update September 22, 2026\. Methodology: /leaderboard#methodology
+Latest update September 25, 2026\. Methodology: /leaderboard#methodology
