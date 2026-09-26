@@ -31,7 +31,7 @@ Search PyPI Search
 
 Search PyPI Search
 
-# parallel-web 1.3.3
+# parallel-web 1.3.4
 
 The official Python library for the Parallel API
 
@@ -41,7 +41,7 @@ pip install parallel-web Copy PIP instructions
 * Release files
 * Release history
 
-#  Parallel Python API library
+# Parallel Python API library 
 
 [PyPI version](https://pypi.org/project/parallel-web/)
 
@@ -51,18 +51,18 @@ and offers both synchronous and asynchronous clients powered by [httpx](https://
 
 It is generated with [Stainless](https://www.stainless.com/) .
 
-##  Documentation
+## Documentation 
 
 The REST API documentation can be found on [docs.parallel.ai](https://docs.parallel.ai/) . The full API of this library can be found in [api.md](https://github.com/parallel-web/parallel-sdk-python/tree/main/api.md) .
 
-##  Installation
+## Installation 
 
 ```
 # install from PyPI 
 pip install parallel-web
 ```
 
-##  Usage
+## Usage 
 
 The full API of this library can be found in [api.md](https://github.com/parallel-web/parallel-sdk-python/tree/main/api.md) .
 
@@ -85,7 +85,7 @@ While you can provide an `api_key` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/) to add `PARALLEL_API_KEY="My API Key"` to your `.env` file
 so that your API Key is not stored in source control.
 
-##  Async usage
+## Async usage 
 
 Simply import `AsyncParallel` instead of `Parallel` and use `await` with each API call:
 
@@ -110,7 +110,7 @@ import os
 
 Functionality between the synchronous and asynchronous clients is otherwise identical.
 
-###  With aiohttp
+### With aiohttp 
 
 By default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.
 
@@ -143,7 +143,7 @@ import os
  asyncio . run ( main ())
 ```
 
-##  Using types
+## Using types 
 
 Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html.TypedDict) . Responses are [Pydantic models](https://docs.pydantic.dev/) which also provide helper methods for things like:
 
@@ -152,7 +152,7 @@ Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typ
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic` .
 
-##  Nested params
+## Nested params 
 
 Nested parameters are dictionaries, typed using `TypedDict` , for example:
 
@@ -169,7 +169,7 @@ from parallel import Parallel
  print ( task_run . advanced_settings )
 ```
 
-##  Handling errors
+## Handling errors 
 
 When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `parallel.APIConnectionError` is raised.
 
@@ -213,7 +213,7 @@ Error codes are as follows:
 |>=500 |`InternalServerError` |
 |N/A |`APIConnectionError` |
 
-###  Retries
+### Retries 
 
 Certain errors are automatically retried 2 times by default, with a short exponential backoff.
 Connection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,
@@ -237,7 +237,7 @@ from parallel import Parallel
  )
 ```
 
-###  Timeouts
+### Timeouts 
 
 By default requests time out after 1 minute. You can configure this with a `timeout` option,
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/) object:
@@ -267,9 +267,9 @@ On timeout, an `APITimeoutError` is thrown.
 
 Note that requests that time out are [retried twice by default](https://github.com/parallel-web/parallel-sdk-python/tree/main/) .
 
-##  Advanced
+## Advanced 
 
-###  Logging
+### Logging 
 
 We use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.
 
@@ -281,7 +281,7 @@ $ export PARALLEL_LOG = info
 
 Or to `debug` for more verbose logging.
 
-###  How to tell whether `None` means `null` or missing
+### How to tell whether `None` means `null` or missing 
 
 In an API response, a field may be explicitly `null` , or missing entirely; in either case, its value is `None` in this library. You can differentiate the two cases with `.model_fields_set` :
 
@@ -293,7 +293,7 @@ if response . my_field is None :
     print ( 'Got json like {"my_field": null}.' )
 ```
 
-###  Accessing raw response data (e.g. headers)
+### Accessing raw response data (e.g. headers) 
 
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
@@ -315,7 +315,7 @@ These methods return an [`APIResponse`](https://github.com/parallel-web/parallel
 
 The async client returns an [`AsyncAPIResponse`](https://github.com/parallel-web/parallel-sdk-python/tree/main/src/parallel/_response.py) with the same structure, the only difference being `await` able methods for reading the response content.
 
-####  `.with_streaming_response`
+#### `.with_streaming_response` 
 
 The above interface eagerly reads the full response body when you make the request, which may not always be what you want.
 
@@ -334,13 +334,13 @@ with client . task_run . with_streaming_response . create (
 
 The context manager is required so that the response will reliably be closed.
 
-###  Making custom/undocumented requests
+### Making custom/undocumented requests 
 
 This library is typed for convenient access to the documented API.
 
 If you need to access undocumented endpoints, params, or response properties, the library can still be used.
 
-####  Undocumented endpoints
+#### Undocumented endpoints 
 
 To make requests to undocumented endpoints, you can make requests using `client.get` , `client.post` , and other
 http verbs. Options on the client will be respected (such as retries) when making this request.
@@ -357,17 +357,17 @@ import httpx
  print ( response . headers . get ( "x-foo" ))
 ```
 
-####  Undocumented request params
+#### Undocumented request params 
 
 If you want to explicitly send an extra param, you can do so with the `extra_query` , `extra_body` , and `extra_headers` request
 options.
 
-####  Undocumented response properties
+#### Undocumented response properties 
 
 To access undocumented response properties, you can access the extra fields like `response.unknown_prop` . You
 can also get all the extra fields on the Pydantic model as a dict with [`response.model_extra`](https://docs.pydantic.dev/latest/api/base_model/.BaseModel.model_extra) .
 
-###  Configuring the HTTP client
+### Configuring the HTTP client 
 
 You can directly override the [httpx client](https://www.python-httpx.org/api/) to customize it for your use case, including:
 
@@ -395,7 +395,7 @@ You can also customize the client on a per-request basis by using `with_options(
 client . with_options ( http_client = DefaultHttpxClient ( ... ))
 ```
 
-###  Managing HTTP resources
+### Managing HTTP resources 
 
 By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html.__del__) . You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
 
@@ -409,7 +409,7 @@ from parallel import Parallel
  # HTTP client is now closed
 ```
 
-##  Versioning
+## Versioning 
 
 This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:
 
@@ -421,7 +421,7 @@ We take backwards-compatibility seriously and work hard to ensure you can rely o
 
 We are keen for your feedback; please open an [issue](https://www.github.com/parallel-web/parallel-sdk-python/issues) with questions, bugs, or suggestions.
 
-###  Determining the installed version
+### Determining the installed version 
 
 If you've upgraded to the latest version but aren't seeing any new features you were expecting then your python environment is likely still using an older version.
 
@@ -432,11 +432,11 @@ import parallel
  print ( parallel . __version__ )
 ```
 
-##  Requirements
+## Requirements 
 
 Python 3.9 or higher.
 
-##  Contributing
+## Contributing 
 
 See [the contributing documentation](https://github.com/parallel-web/parallel-sdk-python/tree/main/CONTRIBUTING.md) .
 
@@ -451,7 +451,7 @@ PyPI data
 
 Data sourced directly from PyPI's database.
 
-* **Released:** Sep 1, 2026
+* **Released:** Sep 25, 2026
 
 Latest release
 
@@ -511,7 +511,7 @@ MIT License (MIT)
 
 [Report project as malware](https://pypi.org/project/parallel-web/submit-malware-report/)
 
-## Release files for parallel-web 1.3.3
+## Release files for parallel-web 1.3.4
 
 For a detailed explanation of source distributions (sdists) and built distributions (wheels), please see the [package formats documentation](https://packaging.python.org/en/latest/discussions/package-formats/ "External link") .
 
@@ -519,7 +519,7 @@ For a detailed explanation of source distributions (sdists) and built distributi
 
 |File |Size |Uploaded | |
 | --- | --- | --- | --- |
-|[parallel\_web-1.3.3.tar.gz](https://files.pythonhosted.org/packages/7a/ab/5d55a9b0f41176129c2870bfe969a89d34449fc87f9cffab8cdf5011d5d1/parallel_web-1.3.3.tar.gz) |162\.4 kB |Sep 1, 2026 |Details |
+|[parallel\_web-1.3.4.tar.gz](https://files.pythonhosted.org/packages/7c/9a/627b8ccb2d81ac17044957c3ff659346fa3334760a38a4b482ecd2e83282/parallel_web-1.3.4.tar.gz) |163\.3 kB |Sep 25, 2026 |Details |
 
 * * *
 
@@ -527,38 +527,38 @@ For a detailed explanation of source distributions (sdists) and built distributi
 
 |File |Interpreter |ABI |Platform |[Reset](https://pypi.org/project/parallel-web/) |
 | --- | --- | --- | --- | --- |
-|[parallel\_web-1.3.3-py3-none-any.whl](https://files.pythonhosted.org/packages/7c/2f/07dcdc7964fc9baf2b93cbc67aaf3530688bb11283148c9acf7246c51a9e/parallel_web-1.3.3-py3-none-any.whl) 176\.2 kB Sep 1, 2026 |Python 3 |none |any |Details |
+|[parallel\_web-1.3.4-py3-none-any.whl](https://files.pythonhosted.org/packages/85/8b/e68342fe5adf230e2503bf579d9e7c27217a1cb5734a909e8033e3f6586d/parallel_web-1.3.4-py3-none-any.whl) 177\.9 kB Sep 25, 2026 |Python 3 |none |any |Details |
 
 * * *
 
-**Total release size:** 338\.6 kB
+**Total release size:** 341\.2 kB
 
-## Release files / parallel\_web-1.3.3.tar.gz
+## Release files / parallel\_web-1.3.4.tar.gz
 
-|Download URL |[parallel\_web-1.3.3.tar.gz](https://files.pythonhosted.org/packages/7a/ab/5d55a9b0f41176129c2870bfe969a89d34449fc87f9cffab8cdf5011d5d1/parallel_web-1.3.3.tar.gz) |
+|Download URL |[parallel\_web-1.3.4.tar.gz](https://files.pythonhosted.org/packages/7c/9a/627b8ccb2d81ac17044957c3ff659346fa3334760a38a4b482ecd2e83282/parallel_web-1.3.4.tar.gz) |
 | --- | --- |
-|Size |162\.4 kB |
+|Size |163\.3 kB |
 |Tags |Source |
 |SHA-256 checksum  
-[How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`ad2a699bf5463e1d269e79b70ffe32911a2917320e8f5b3cbd5a0cecd83a86a3` |
+[How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`b6d3d6a34ecb16d970d474db74233a287783b75d4be8dd214142f466e5b47bab` |
 |BLAKE2b-256 checksum  
-[How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`7aab5d55a9b0f41176129c2870bfe969a89d34449fc87f9cffab8cdf5011d5d1` |
-|Upload date |Sep 1, 2026 |
+[How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`7c9a627b8ccb2d81ac17044957c3ff659346fa3334760a38a4b482ecd2e83282` |
+|Upload date |Sep 25, 2026 |
 |Uploaded using Trusted Publishing?  
 [What is trusted publishing?](https://docs.pypi.org/trusted-publishers/) |No |
 |Uploaded via |`twine/5.1.1 CPython/3.12.9` |
 
-## Release files / parallel\_web-1.3.3-py3-none-any.whl
+## Release files / parallel\_web-1.3.4-py3-none-any.whl
 
-|Download URL |[parallel\_web-1.3.3-py3-none-any.whl](https://files.pythonhosted.org/packages/7c/2f/07dcdc7964fc9baf2b93cbc67aaf3530688bb11283148c9acf7246c51a9e/parallel_web-1.3.3-py3-none-any.whl) |
+|Download URL |[parallel\_web-1.3.4-py3-none-any.whl](https://files.pythonhosted.org/packages/85/8b/e68342fe5adf230e2503bf579d9e7c27217a1cb5734a909e8033e3f6586d/parallel_web-1.3.4-py3-none-any.whl) |
 | --- | --- |
-|Size |176\.2 kB |
+|Size |177\.9 kB |
 |Tags |Python 3 |
 |SHA-256 checksum  
-[How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`5400231d091139259d09fd26cc379e5968340446eec389d0c8c5e347fa159b7d` |
+[How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`5b9b9be064d012f29f48fc6914a5e3100faf2b4c8fcce566fc7d318478f94944` |
 |BLAKE2b-256 checksum  
-[How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`7c2f07dcdc7964fc9baf2b93cbc67aaf3530688bb11283148c9acf7246c51a9e` |
-|Upload date |Sep 1, 2026 |
+[How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`858be68342fe5adf230e2503bf579d9e7c27217a1cb5734a909e8033e3f6586d` |
+|Upload date |Sep 25, 2026 |
 |Uploaded using Trusted Publishing?  
 [What is trusted publishing?](https://docs.pypi.org/trusted-publishers/) |No |
 |Uploaded via |`twine/5.1.1 CPython/3.12.9` |
@@ -567,7 +567,11 @@ For a detailed explanation of source distributions (sdists) and built distributi
 
 This release
 
-[1\.3.3](https://pypi.org/project/parallel-web/1.3.3/) This release
+[1\.3.4](https://pypi.org/project/parallel-web/1.3.4/) This release
+
+Sep 25, 2026 [2 release files](https://pypi.org/project/parallel-web/1.3.4/)
+
+[1\.3.3](https://pypi.org/project/parallel-web/1.3.3/)
 
 Sep 1, 2026 [2 release files](https://pypi.org/project/parallel-web/1.3.3/)
 
@@ -684,4 +688,4 @@ Switch to desktop version
 * "PyPI", "Python Package Index", and the blocks logos are registered [trademarks](https://pypi.org/trademarks/) of the [Python Software Foundation](https://www.python.org/psf-landing) .
 
 * [Site map](https://pypi.org/sitemap/)
-* Deployed from [`3935ffb`](https://github.com/pypi/warehouse/commit/3935ffb6e8de5769a329787567be759a95c19044 "External link")
+* Deployed from [`02dae5a`](https://github.com/pypi/warehouse/commit/02dae5a1510bf9ba3fc5ff9ec0d94440055d92ec "External link")
