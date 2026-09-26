@@ -1,8 +1,8 @@
 # Nemotron 3 Ultra 550B · Search Capability Leaderboard
 
-* Search Intelligence Score: **53.0** (#21 in Search Intelligence)
+* Search Intelligence Score: **53.0** (#23 in Search Intelligence)
 * Without search: 15.3 · Lift from search +37.7
-* Cost per 1K tasks: $113 (below the median score of 60.4, so not ranked on cost)
+* Cost per 1K tasks: $113 (below the median score of 61.9, so not ranked on cost)
 * Time per task: 328s
 * Lab: NVIDIA · Model id: nvidia/nemotron-3-ultra-550b-a55b
 
@@ -24,4 +24,4 @@
 | [MiniMax M3](/leaderboard/minimax-m3)                         | 52.6  | +29.5 | $41.1             | 291s          |
 | [DeepSeek V4 Pro (0813)](/leaderboard/deepseek-v4-pro-0813)   | 53.5  | +20.4 | $234              | 394s          |
 
-Latest update September 22, 2026\. Methodology: /leaderboard#methodology
+Latest update September 25, 2026\. Methodology: /leaderboard#methodology

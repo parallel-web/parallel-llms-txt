@@ -1,10 +1,10 @@
 # DeepSeek V4.1 Flash · Search Capability Leaderboard
 
-* Search Intelligence Score: **62.7** (#10 in Search Intelligence)
+* Search Intelligence Score: **62.7** (#12 in Search Intelligence)
 * Without search: 27.0 · Lift from search +35.7
-* Cost per 1K tasks: $35.8 (#1 in Search Efficiency)
+* Cost per 1K tasks: $35.8 (#2 in Search Efficiency)
 * Time per task: 549s
-* Medals: Gold, Search Efficiency
+* Medals: Silver, Search Efficiency
 * Lab: DeepSeek · Model id: deepseek/deepseek-v4.1-flash
 
 ## Accuracy by benchmark
@@ -25,4 +25,4 @@
 | [DeepSeek V4 Pro (0813)](/leaderboard/deepseek-v4-pro-0813)     | 53.5  | +20.4 | $234              | 394s          |
 | [DeepSeek V4 Flash](/leaderboard/deepseek-v4-flash)             | 53.1  | +33.7 | $24.4             | 358s          |
 
-Latest update September 22, 2026\. Methodology: /leaderboard#methodology
+Latest update September 25, 2026\. Methodology: /leaderboard#methodology

@@ -1,10 +1,9 @@
 # GPT-5.6 Luna · Search Capability Leaderboard
 
-* Search Intelligence Score: **60.7** (#12 in Search Intelligence)
+* Search Intelligence Score: **60.7** (#15 in Search Intelligence)
 * Without search: 26.9 · Lift from search +33.9
-* Cost per 1K tasks: $36.2 (#2 in Search Efficiency)
+* Cost per 1K tasks: $36.2 (below the median score of 61.9, so not ranked on cost)
 * Time per task: 98.0s
-* Medals: Silver, Search Efficiency
 * Lab: OpenAI · Model id: gpt-5.6-luna
 
 ## Accuracy by benchmark
@@ -17,12 +16,12 @@
 
 ## Compared with
 
-| Model                                                           | Score | Lift  | Cost per 1K tasks | Time per task |
-| --------------------------------------------------------------- | ----- | ----- | ----------------- | ------------- |
-| GPT-5.6 Luna                                                    | 60.7  | +33.9 | $36.2             | 98.0s         |
-| [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)                         | 67.7  | +26.3 | $269              | 107s          |
-| [GPT-6 Astra](/leaderboard/gpt-6-astra)                         | 70.8  | +27.9 | $401              | 83.7s         |
-| [Claude Sonnet 5](/leaderboard/claude-sonnet-5)                 | 60.4  | +38.1 | $1,000            | 775s          |
-| [DeepSeek V4 Flash (0731)](/leaderboard/deepseek-v4-flash-0731) | 59.2  | +35.2 | $13.6             | 292s          |
+| Model                                   | Score | Lift  | Cost per 1K tasks | Time per task |
+| --------------------------------------- | ----- | ----- | ----------------- | ------------- |
+| GPT-5.6 Luna                            | 60.7  | +33.9 | $36.2             | 98.0s         |
+| [GPT-6 Luna](/leaderboard/gpt-6-luna)   | 61.9  | +33.9 | $33.1             | 391s          |
+| [GPT-6 Sol](/leaderboard/gpt-6-sol)     | 66.6  | +28.7 | $183              | 260s          |
+| [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol) | 67.7  | +26.3 | $269              | 107s          |
+| [GPT-6 Astra](/leaderboard/gpt-6-astra) | 70.8  | +27.9 | $401              | 83.7s         |
 
-Latest update September 22, 2026\. Methodology: /leaderboard#methodology
+Latest update September 25, 2026\. Methodology: /leaderboard#methodology

@@ -1,8 +1,8 @@
 # Gemini 3 Flash · Search Capability Leaderboard
 
-* Search Intelligence Score: **58.6** (#15 in Search Intelligence)
+* Search Intelligence Score: **58.6** (#17 in Search Intelligence)
 * Without search: 34.1 · Lift from search +24.5
-* Cost per 1K tasks: $114 (below the median score of 60.4, so not ranked on cost)
+* Cost per 1K tasks: $114 (below the median score of 61.9, so not ranked on cost)
 * Time per task: 276s
 * Lab: Google · Model id: google/gemini-3-flash-preview
 
@@ -24,4 +24,4 @@
 | [DeepSeek V4 Pro](/leaderboard/deepseek-v4-pro)   | 58.4  | +27.9 | $110              | 383s          |
 | [Hunyuan 3](/leaderboard/hy3)                     | 58.2  | +35.6 | $28.4             | 363s          |
 
-Latest update September 22, 2026\. Methodology: /leaderboard#methodology
+Latest update September 25, 2026\. Methodology: /leaderboard#methodology
