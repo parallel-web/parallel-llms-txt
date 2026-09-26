@@ -25,7 +25,7 @@ Credits expire six months from purchase, so a pack bought for a project that the
 
 Parallel bills per request. Nothing is prepaid and nothing expires. Search Turbo and Fast are **$1 per 1,000 requests** with 10 results and excerpts included, and additional results billed at $1 per 1,000; Basic and Advanced are $5 per 1,000. Extract costs $1 per 1,000 URLs. Above the search layer, the Task API runs $5 to $2,400 per 1,000 runs, Responses $10 to $250 per 1,000, Monitor $3 per 1,000 executions, Entity Search $5 per 1,000, and FindAll a fixed cost plus $0.03 to $1.00 per match. Every month Parallel applies $5 in free credits automatically, enough for up to 5,000 Fast or Turbo searches.
 
-At the search layer Serper is level with Fast on the entry pack and cheaper above it, reaching a third of that $1 rate at 12.5 million queries. That is a real advantage.
+At the search layer Serper is level with Fast on the entry pack and cheaper above it, reaching a third of that $1 rate at 12.5 million queries, a real advantage for high-volume SERP work.
 
 _Note: For the latest pricing, always check official documentation._
 
@@ -37,13 +37,13 @@ Parallel returns the relevant passage from the page body in the first response, 
 
 Ten Serper searches cost a cent at the entry pack. Fetching five pages per search and feeding even trimmed content to a frontier model costs multiples of that in input tokens, before the model has produced a single output token. On a single agent step the search line is the smallest number in the equation, which is why optimizing it on its own does so little to the total.
 
-Parallel's own July 2026 benchmarks make the same point from the other direction. Running a GPT-5.4 agent with up to 20 tool calls on BrowseComp, SERP-style engines landed well below LLM-native ones on accuracy, with SerpApi at 23.3% and Parallel Turbo at 51%. Serper was not in that test, and the SERP engines ran without a fetch tool, so the result is directional evidence about SERP-style APIs in general and says nothing about Serper in particular. Independently, the Artificial Analysis Search Index (August 2026) ranks Parallel Search (advanced) first of the 15 search API products it tested, and neither Serper nor SerpApi appears in that lineup.
+Serper isn't in the current runs on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026), which test Parallel against Exa, Tavily, and Perplexity, and it isn't on Openbenchmarks' latency boards, so there's no head-to-head number to quote. Independently, the Artificial Analysis Search Index (September 2026 data) scores Parallel Search (advanced) at 75, behind Perplexity Search (medium) at 80 and Octen Search at 77, and neither Serper nor SerpApi appears on its displayed leaderboard.
 
 ## **Throughput**
 
 Serper scales throughput with the pack you buy: 50 QPS at $50, rising to 300 QPS at $3,750, and even the entry pack works out to 3,000 queries a minute.
 
-Parallel's defaults are 600 requests per minute for Search, Extract, and Entity Search, 300 for Monitor, and 300 per hour for FindAll runs, with GET polling excluded and custom limits available on enterprise plans. On default quotas Serper gives you more headroom without a conversation.
+Parallel's defaults are 600 requests per minute for Search, Extract, and Entity Search, 300 for Monitor, and 25 per hour for FindAll runs, with GET polling excluded and custom limits available on enterprise plans. On default quotas Serper gives you more headroom without a conversation.
 
 ## **Coverage and what each cannot do**
 
@@ -77,10 +77,10 @@ Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero d
 
 ## **When to use each**
 
-Choose Serper when you want Google's results, cheaply, at volume, and you already have a content pipeline. Rank tracking, SEO tooling, Maps and Places data, and high-throughput lookups where a snippet is genuinely enough all fit it well. If your volume is predictable and steady, the six-month credit clock is a non-issue and the pricing is hard to beat.
+Choose Serper when you want Google's results, cheaply, at volume, and you already have a content pipeline. Rank tracking, SEO tooling, Maps and Places data, and high-throughput lookups where a snippet is enough all fit it well. If your volume is predictable and steady, the six-month credit clock is a non-issue and the pricing is hard to beat.
 
-Choose Parallel when a model consumes the output. Fast is the default speed tier at that $1 sticker, returning page-body excerpts instead of click-bait snippets, which removes the fetch-and-clean stage and cuts the input tokens your model pays for on every call. The [Fast Mode launch](https://parallel.ai/blog/parallel-search-fast) has the full latency and price proof. Fast does not replace Serper for rank tracking or SERP features. Turbo is there when latency is the constraint. Usage-based billing with nothing expiring suits spiky agent traffic, and Extract, Task, Responses, FindAll, Entity Search, and Monitor cover the work that sits above search.
+Choose Parallel when a model consumes the output. Fast is the recommended default tier at that $1 sticker, returning page-body excerpts instead of click-bait snippets, which removes the fetch-and-clean stage and cuts the input tokens your model pays for on every call. The [Fast Mode launch](https://parallel.ai/blog/parallel-search-fast) has the full latency and price proof. Fast does not replace Serper for rank tracking or SERP features. Turbo is there when latency is the constraint. Usage-based billing with nothing expiring suits spiky agent traffic, and Extract, Task, Responses, FindAll, Entity Search, and Monitor cover the work that sits above search.
 
 Serper is the better buy if your bottleneck is the price of a Google SERP query for SEO tooling. Parallel is the better buy if your bottleneck is the cost and quality of the context your model reasons over.
 
-**Related reading: **[Switching from Serper to Parallel](https://parallel.ai/articles/serper-to-parallel-search-api) · [SerpApi vs. Parallel](https://parallel.ai/articles/serpapi-vs-parallel) · [DataForSEO vs. Parallel](https://parallel.ai/articles/dataforseo-vs-parallel).
+**Related reading: **[Switching from Serper to Parallel](https://parallel.ai/articles/serper-to-parallel-search-api) · [SerpApi vs. Parallel](https://parallel.ai/articles/serpapi-vs-parallel) · [DataForSEO vs. Parallel](https://parallel.ai/articles/dataforseo-vs-parallel) · [Why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search).

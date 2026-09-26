@@ -2,27 +2,25 @@
 
 A research assistant needs verifiable, current sources behind every claim, and the architecture connecting the model to the web decides its accuracy, cost, and reliability. This guide covers why live web access is the requirement, the core architecture of a web research agent, how to choose a search API, a step-by-step build with tool calling and citations, production patterns, and common mistakes.
 
-The gap between "can generate text" and "can do research" is live web access. A research assistant needs verifiable, current information with source attribution for every claim. Without it, your agent produces text that sounds authoritative but can't back up a single claim.
+What separates a text generator from a research assistant is live web access. Without it, your agent produces text that sounds authoritative but can't back up a single claim.
 
 Most developers try to bridge this gap with multi-step pipelines: search, scrape, parse, chunk, re-rank, then feed to an LLM. Each step adds latency and failure points. A scraper breaks when a site redesigns, and token costs balloon when you ingest entire articles to extract two relevant paragraphs.
-
-The architecture you choose for connecting your LLM to the web determines accuracy, cost, and reliability for everything downstream.
 
 ## Why your AI assistant needs live web access
 
 Static LLMs produce plausible-sounding answers from training data that's months or years old. Ask about a company's current leadership, a recent policy change, or today's market conditions and the model will generate something that reads well but may be wrong.
 
-Research demands verifiable sources and honest uncertainty. LLMs can't provide any of these on their own. Your research assistant should return an "insufficient evidence" signal when search results don't support a claim, rather than fabricate a confident answer.
+Research also needs verifiable sources and honest uncertainty, and an LLM can't provide either on its own. Your research assistant should return an "insufficient evidence" signal when search results don't support a claim, rather than fabricate a confident answer.
 
-The compounding problem matters most. An inaccurate search result feeds an inaccurate summary, which feeds an inaccurate report. Each layer of reasoning amplifies errors from the layer below. When your search layer returns irrelevant content, your LLM wastes tokens reasoning over noise and produces weaker outputs at higher cost.
+An inaccurate search result feeds an inaccurate summary, which feeds an inaccurate report, and each layer of reasoning amplifies errors from the layer below. When your search layer returns irrelevant content, your LLM wastes tokens reasoning over noise and produces weaker outputs at higher cost.
 
-You need a search layer, a [web search API](https://parallel.ai/articles/what-is-a-web-search-api) purpose-built for machines, that returns structured excerpts your model can consume in a single context window, not raw HTML or link lists.
+You need a search layer: a [web search API](https://parallel.ai/articles/what-is-a-web-search-api) built for machines that returns structured excerpts your model can consume in a single context window, instead of raw HTML or link lists.
 
 ## The core architecture of a web research agent
 
 A research assistant breaks down into five layers: query planning, web search, content extraction, LLM reasoning, and output with citations. You can wire these together in two ways.
 
-**The multi-step pipeline** chains separate services: a search API returns URLs, a scraper fetches pages, a parser strips boilerplate, a chunker splits content, and a re-ranker selects the best passages. You control every step but maintain five integration points. Each one can fail.
+**The multi-step pipeline** chains separate services: a search API returns URLs, a scraper fetches pages, a parser strips boilerplate, a chunker splits content, and a re-ranker selects the best passages. You control every step but maintain five integration points, any of which can fail.
 
 ```sh
 Query → Search API → Scraper → Parser → Chunker → Re-ranker → LLM → Response
@@ -34,7 +32,7 @@ Query → Search API → Scraper → Parser → Chunker → Re-ranker → LLM �
 Query → AI-Native Search API → LLM → Response with Citations
 ```
 
-The AI-native approach cuts latency from 15-30 seconds to under 5 seconds, eliminates scraper maintenance, and reduces token consumption by 10-50x. You trade fine-grained control over each pipeline step for a single, optimized call that handles [web crawling](https://parallel.ai/articles/what-is-a-web-crawler) and excerpt generation in one step. This architecture pattern powers [deep research](https://parallel.ai/articles/what-is-deep-research) systems that synthesize information across dozens of sources into cited reports.
+The AI-native approach cuts pipeline latency, eliminates scraper maintenance, and reduces token consumption because the model reads compact excerpts instead of full pages. You trade fine-grained control over each pipeline step for a single, optimized call that handles [web crawling](https://parallel.ai/articles/what-is-a-web-crawler) and excerpt generation in one step. This architecture pattern powers [deep research](https://parallel.ai/articles/what-is-deep-research) systems that synthesize information across dozens of sources into cited reports.
 
 For production agents, the single-call approach reduces operational burden in two areas: infrastructure (no scraper fleet to maintain) and reliability (one integration point instead of five).
 
@@ -42,7 +40,7 @@ Parallel's [Search API](https://docs.parallel.ai/home) was built for this approa
 
 ## Choosing your search API
 
-The search layer is the most consequential infrastructure decision you'll make. The quality of context your LLM receives constrains reasoning accuracy and cost per query.
+The search layer sets the quality of context your LLM receives, which constrains reasoning accuracy and cost per query.
 
 Evaluate search APIs on six criteria:
 
@@ -63,9 +61,9 @@ Evaluate search APIs on six criteria:
 | Index | Proprietary (billions of pages) | Third-party + crawling | Proprietary neural index | Google's web index |
 | Ideal use case | Production AI agents, research systems | Quick prototyping, simple search | Semantic/similarity search | Traditional web search integration |
 
-Parallel's Search API leads [accuracy benchmarks across WISER-Search, BrowseComp, FRAMES, and SimpleQA](https://parallel.ai/blog/search-api-benchmark), with up to 20% accuracy gains in agentic workflows compared to alternatives. The difference comes from the excerpt format: compressed passages maximize useful context per token rather than returning raw page content or short keyword snippets.
+On [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026), with a GPT-5.6 Sol agent, Parallel Advanced scored 97% on SimpleQA Verified and 74% on BrowseComp, level with Perplexity on BrowseComp and ahead of Exa (91%, 70%) and Tavily (92%, 66%). At the low-cost tier, Fast scored 94% on SimpleQA Verified at $2.00 per 1,000 questions, against $7.90 for Exa and $17.40 for Tavily. We attribute much of that to the excerpt format: compressed passages maximize useful context per token rather than returning raw page content or short keyword snippets.
 
-Practical selection guidance: if you're building a general-purpose research agent with production reliability requirements, an AI-native search API gives you the best accuracy-to-cost ratio. If you need academic or domain-specific search, combine a general web search API with a specialized index like [Semantic Scholar](https://api.semanticscholar.org/) or PubMed. If you're coming from OpenAI's built-in web search, you can [migrate to Parallel's Search API](https://parallel.ai/articles/openai-to-parallel-search-api) with minimal code changes.
+If you're building a general-purpose research agent with production reliability requirements, start with an AI-native search API. If you need academic or domain-specific search, combine a general web search API with a specialized index like [Semantic Scholar](https://api.semanticscholar.org/) or PubMed. If you're coming from OpenAI's built-in web search, you can [migrate to Parallel's Search API](https://parallel.ai/articles/openai-to-parallel-search-api) with minimal code changes.
 
 ## Building the research agent step by step
 
@@ -102,7 +100,7 @@ Store API keys as environment variables. Never hardcode them.
 
 ### Connect the search tool
 
-The Search API accepts an _objective_ parameter, a natural-language description of your research intent. The API interprets your research intent rather than matching individual keywords.
+The Search API accepts an _objective_ parameter, a natural-language description of what you're researching. The API interprets that intent rather than matching individual keywords.
 
 ```python
 def search_web(objective: str, num_results: int = 10) -> list:
@@ -138,7 +136,7 @@ import { openai } from "@ai-sdk/openai";
 import { z } from "zod";
 
 const { text } = await generateText({
-  model: openai("gpt-4o"),
+  model: openai("gpt-6-sol"),
   tools: {
     webSearch: tool({
       description: "Search the web for current information on any topic",
@@ -184,7 +182,7 @@ def research(question: str) -> str:
         for r in results
     )
     response = llm.chat.completions.create(
-        model="gpt-4o",
+        model="gpt-6-sol",
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": f"Search results:\n{context}\n\nQuestion: {question}"},
@@ -193,21 +191,21 @@ def research(question: str) -> str:
     return response.choices[0].message.content
 ```
 
-The system prompt enforces grounding. The LLM can reason across multiple sources but cannot fabricate claims beyond what the search results contain. This grounding constraint prevents the LLM from fabricating claims beyond the retrieved evidence. [Stanford research on RAG hallucination rates](https://dho.stanford.edu/wp-content/uploads/Legal_RAG_Hallucinations.pdf) in legal AI tools shows that retrieval-augmented systems hallucinate when grounding constraints are weak.
+The system prompt enforces grounding: the LLM can reason across multiple sources but is told not to make claims beyond what the search results contain. [Stanford research on RAG hallucination rates](https://dho.stanford.edu/wp-content/uploads/Legal_RAG_Hallucinations.pdf) in legal AI tools shows that retrieval-augmented systems hallucinate when grounding constraints are weak.
 
 ## Production patterns that matter
 
-Prototype research agents work in demos. Production agents need to handle cost and latency at scale.
+In production, a research agent also has to handle cost and latency at scale.
 
 **Caching.** Store search results for identical or similar objectives. A support agent answering the same product question 50 times a day shouldn't make 50 search API calls. Implement a cache layer with TTL (time to live) based on how fast the underlying data changes: minutes for breaking news, days for reference material.
 
 **Token management.** Match excerpt length to your task. Quick factual lookups need 500-800 characters per result. Deep research synthesis benefits from 1500-3000 characters. The `max_chars_per_result` parameter in Parallel's Search API gives you direct control. Shorter excerpts mean lower LLM inference costs.
 
-**Error handling.** Search APIs can timeout, return empty results, or hit rate limits. Build fallback logic: retry with a rephrased objective, reduce result count, or report insufficient evidence to the user. When search fails, return an explicit insufficient-evidence signal rather than passing an empty context to the LLM.
+**Error handling.** Search APIs can time out, return empty results, or hit rate limits. Build fallback logic: retry with a rephrased objective or reduce result count, and if search still fails, return an explicit insufficient-evidence signal rather than passing an empty context to the LLM.
 
-**Cost math.** At $0.005 per request with Parallel, a research agent that makes three searches per query costs $0.015 for search, or $0.003 with Turbo mode at $0.001 per request. Add LLM inference ($0.01-0.05 for GPT-4o class models) and a typical research query runs $0.025-0.065. Compare this to scraping pipelines that consume 10-50x more tokens from ingesting full pages.
+**Cost math.** At $0.005 per request with Parallel, a research agent that makes three searches per query costs $0.015 for search, or $0.003 with Turbo mode at $0.001 per request. Add LLM inference (roughly $0.01-0.05 per query, depending on the model) and a typical research query runs $0.025-0.065 on Basic or Advanced. Compare this to scraping pipelines that ingest full pages and consume far more tokens.
 
-**Latency budget.** Each synchronous search call takes 2-5 seconds; Turbo mode cuts that to ~200ms at the median. For real-time applications, pipeline multiple search calls in parallel when the agent identifies sub-questions. Three parallel searches take the same time as one.
+**Latency budget.** Each synchronous search call takes about 1-3 seconds in Basic or Advanced mode; Turbo mode cuts that to ~200ms at the median. For real-time applications, run multiple search calls in parallel when the agent identifies sub-questions, so three searches take about as long as one.
 
 ## Common mistakes to avoid
 
@@ -215,15 +213,15 @@ Prototype research agents work in demos. Production agents need to handle cost a
 
 **Single-query research.** Complex questions need multiple searches from different angles. "Compare the pricing models of major cloud providers" requires separate searches for each provider. Build iterative search into your agent loop with multi-step tool calling.
 
-**No grounding constraints.** Without explicit instructions to cite sources and refuse when evidence is thin, the LLM will fill gaps with plausible fabrication. The system prompt constraint ("use ONLY the provided search results") prevents fabrication in every research use case.
+**No grounding constraints.** Without explicit instructions to cite sources and refuse when evidence is thin, the LLM will fill gaps with plausible fabrication. The system prompt constraint ("use ONLY the provided search results") is your main defense against it.
 
-**Ignoring freshness.** Research on fast-moving topics (earnings reports, policy changes, product launches) needs fresh data. Parallel's Search API provides freshness policies and live crawl toggles to ensure results reflect the current state of the web, not cached pages from weeks ago.
+**Ignoring freshness.** Research on fast-moving topics (earnings reports, policy changes, product launches) needs fresh data. Parallel's Search API provides freshness policies and live crawl toggles so results reflect the current web rather than pages cached weeks ago.
 
 ## Frequently asked questions
 
 **The best search API for an AI research assistant**
 
-The answer depends on your use case. For general web research with production reliability, Parallel's Search API leads accuracy benchmarks across WISER-Search, BrowseComp, and FRAMES. For academic papers, combine a general web search API with domain-specific indexes like Semantic Scholar or PubMed.
+For general web research with production reliability, Parallel's Search API in Advanced mode scored 97% on SimpleQA Verified and 74% on BrowseComp on parallel.ai/benchmarks (September 2026), tied with Perplexity on BrowseComp. For academic papers, combine a general web search API with domain-specific indexes like Semantic Scholar or PubMed.
 
 **Reducing hallucinations in AI research**
 
@@ -235,7 +233,7 @@ Yes. Platforms like Relevance AI and LangFlow offer no-code and low-code agent b
 
 **Cost of running an AI research agent**
 
-Search costs range from $0.001-0.05 per request depending on the provider and plan. Combined with LLM inference ($0.01-0.10 per query for GPT-4o class models), a typical research query costs $0.03-0.15 total. Caching and excerpt length tuning can reduce costs by 50-70% in production.
+Parallel search costs $0.001-0.005 per request depending on the mode. Combined with LLM inference (roughly $0.01-0.05 per query, depending on the model), a typical three-search research query costs about $0.013-0.065 total. Caching and excerpt length tuning can cut costs further in production.
 
 ## Start building
 

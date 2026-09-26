@@ -1,6 +1,6 @@
 # The best ClawHub skills for OpenClaw in 2026
 
-ClawHub hosts over 67,000 skills for OpenClaw, which is exactly why you need a short list and a vetting habit. The skills worth installing in 2026, the web-research stack, and the security rules the ClawHavoc attack taught everyone.
+ClawHub hosts over 67,000 skills for OpenClaw, so you need a short list and a vetting habit. This guide covers the skills worth installing in 2026, the web-research stack, and the security rules the ClawHavoc attack taught everyone.
 
 ClawHub (`hub.openclaw.ai`) hosts over 67,000 [skills](https://parallel.ai/articles/what-are-agent-skills) for OpenClaw: plain-text `SKILL.md` packages that teach your agent new capabilities, installed with a single `clawhub install` command. A registry that large is a blessing and an attack surface, so this guide does two jobs: the short list of skills that have earned their install counts, and the vetting habits that keep a skill registry from becoming your breach.
 
@@ -14,19 +14,19 @@ The most-installed skill on ClawHub by a wide margin (hundreds of thousands of i
 
 ### 2. Skill Vetter
 
-Security-first vetting for skills themselves: run it before installing anything else, and it reviews a candidate skill's source for suspicious permissions and behavior. That a vetting skill sits near the top of the install charts tells you the community learned its lesson (more on that below). Meta, and genuinely useful.
+Security-first vetting for skills themselves: run it before installing anything else, and it reviews a candidate skill's source for suspicious permissions and behavior. That a vetting skill sits near the top of the install charts tells you the community learned its lesson (more on that below).
 
 ### 3. Gog (Google Workspace)
 
-One install covers Gmail, Calendar, Drive, Docs, Sheets, and Contacts through a Google Workspace CLI. For a personal agent, this is the single highest-leverage productivity skill: summarize unread email, find the document, schedule the meeting, end to end. Notice the design: it's a skill wrapping a CLI, the pattern that dominates ClawHub's top charts.
+One install covers Gmail, Calendar, Drive, Docs, Sheets, and Contacts through a Google Workspace CLI. For a personal agent, this is the single highest-leverage productivity skill: summarize unread email, find the document, schedule the meeting, end to end. It's a skill wrapping a CLI, the pattern that dominates ClawHub's top charts.
 
 ### 4. Wacli (WhatsApp)
 
-A CLI-based WhatsApp integration: send messages, sync and search conversation history, draft replies through plain conversation with your agent. If your work communication runs on WhatsApp, this one earns its slot immediately.
+A CLI-based WhatsApp integration: send messages, sync and search conversation history, draft replies through plain conversation with your agent. If your work communication runs on WhatsApp, this is the one to add.
 
 ### 5. GitHub
 
-Drives the `gh` CLI for PR descriptions, issue triage, and build monitoring. Worth noting against the [MCP-versus-skills question](https://parallel.ai/articles/mcp-vs-skills-vs-clis): for GitHub specifically, the skill-wrapping-gh approach is the one Hermes's maintainers also chose over the official MCP server, largely for context-cost reasons.
+Drives the `gh` CLI for PR descriptions, issue triage, and build monitoring. It also bears on the [MCP-versus-skills question](https://parallel.ai/articles/mcp-vs-skills-vs-clis): for GitHub specifically, the skill-wrapping-gh approach is the one Hermes's maintainers also chose over the official MCP server, largely for context-cost reasons.
 
 ## The web research stack (ours)
 
@@ -48,7 +48,7 @@ Two disclosures in the spirit of the vetting section below. First, ClawHub has n
 
 ## The security section, because ClawHavoc happened
 
-In early 2026, researchers uncovered a coordinated campaign, ClawHavoc, that published typosquatted skills on ClawHub: near-misspellings of popular names that installed backdoors stealing SSH keys, API tokens, and browser session cookies. ClawHub removed over 2,400 suspicious skills and now checks every published skill against VirusTotal. Better, but not airtight, so keep three habits:
+In early 2026, researchers uncovered a coordinated campaign, ClawHavoc, that published typosquatted skills on ClawHub: near-misspellings of popular names that installed backdoors stealing SSH keys, API tokens, and browser session cookies. ClawHub removed over 2,400 suspicious skills and now checks every published skill against VirusTotal. That helps but isn't airtight, so keep three habits:
 
 1. Read the `SKILL.md` before installing; it's plain text, and suspicious commands are visible. 
 2. Check the skill's scan report on its ClawHub page, and apply the 100/3 rule: prefer skills with 100+ installs and 3+ months of history.
@@ -76,4 +76,4 @@ In early 2026, researchers uncovered a coordinated campaign, ClawHavoc, that pub
 
 ## Start with two
 
-Install Skill Vetter first, then let it vet everything else you add, starting with whichever skill matches your daily grind: Gog for Google-centric work, `parallel-search` and `parallel-extract` for research-heavy work. Read each `SKILL.md` as you go; at one page each, there's no excuse not to.
+Install Skill Vetter first, then let it vet everything else you add, starting with whichever skill matches your daily grind: Gog for Google-centric work, `parallel-search` and `parallel-extract` for research-heavy work. Read each `SKILL.md` as you go; they run about a page each.

@@ -1,103 +1,112 @@
 # What's the most powerful search API for AI in 2026? A BrowseComp benchmark report
 
-Raw accuracy alone doesn't settle which search API is the most powerful for AI. We ranked five of them on BrowseComp and reported latency next to accuracy for every engine, so neither number hides the other.
+Raw accuracy alone doesn't settle which search API is the most powerful for AI. We compared four of them on BrowseComp at two price tiers, reported cost next to every accuracy figure, and added independent latency data.
 
-A [web search API](https://parallel.ai/articles/what-is-a-web-search-api) gives [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) a way to query the live web and pull back results they can reason over. On simple lookups, most engines clear the bar. The gap opens on hard, multi-hop questions, where an agent has to chase a fact across several pages and hold the thread. Those queries separate strong retrieval from weak, and they map to the research work that "most powerful" actually implies.
+A [web search API](https://parallel.ai/articles/what-is-a-web-search-api) gives [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) a way to query the live web and pull back results they can reason over. On simple lookups, most engines clear the bar. The gap opens on hard, multi-hop questions, where an agent has to chase a fact across several pages and hold the thread. Those are the queries that separate strong retrieval from weak, and they match the research work "most powerful" implies.
 
 The most powerful search API for AI in 2026 isn't the one with the single highest accuracy score. That number hides how fast the engine answers and how many round trips your agent makes before it lands an answer.
 
-Latency and round trips compound. An agent that misses on the first call retries and adds delay your users feel, so a high headline accuracy can still lose on speed and reliability. A capability claim like "most powerful" deserves sourced numbers on the hardest task, not adjectives, which is why we lead this report with data rather than a pitch.
+Latency and round trips compound. An agent that misses on the first call retries and adds delay your users feel, so a high headline accuracy can still lose on speed and reliability.
 
-This report covers web search APIs, the exact search endpoint each vendor exposes. We ranked the field on one hard benchmark and reported the latency next to every accuracy figure, because you can't read one without the other.
+This report covers web search APIs, the exact search endpoint each vendor exposes. We ranked the field on one hard benchmark, reported cost next to every accuracy figure, and added independent latency measurements.
 
 ## **The BrowseComp scoreboard**
 
-We ran five web search APIs against BrowseComp and recorded both the accuracy each reached and the latency it took to answer. The scoreboard follows.
+We ran four web search APIs against BrowseComp at two price tiers and recorded the accuracy each reached and what it cost per 1,000 questions.
 
-| Search API | Architecture | p50 search latency (ms) | Accuracy (%) | Strongest fit |
-| --- | --- | --- | --- | --- |
-| Parallel Turbo | Own web-scale index | 216 | 51 | Demanding multistep research |
-| Brave Search | Independent crawl, search only | 430 | 38.3 | Privacy-minded lookups |
-| Exa Instant | Neural, embeddings search | 361 | 33.7 | Semantic discovery |
-| SerpAPI | Scraped SERP data, search only | 999 | 23.3 | Budget SERP scraping |
-| Tavily Ultra Fast | Search for LLM and RAG | 357 | 19.3 | Simple RAG grounding |
+| Search API | Low-cost tier (GPT-5.6 Luna): accuracy, cost per 1K questions | Frontier tier (GPT-5.6 Sol): accuracy, cost per 1K questions | Tools |
+| --- | --- | --- | --- |
+| Parallel | Fast 44%, $11.8; Turbo 32%, $13.2 | Advanced 74%, $399; Basic 72%, $612 | Search and extract |
+| Perplexity | 46%, $37.1 | 74%, $275 | Search only |
+| Exa Auto | 36%, $53.4 | 70%, $971 | Search and extract |
+| Tavily | 32%, $176 | 66%, $935 | Search and extract |
 
-BrowseComp, created by OpenAI, is a set of 1,266 questions that require persistent browsing to locate hard-to-find, entangled information across the web. Each API ran inside a GPT-5.4 agent with up to 20 tool calls, and an LLM judge graded the answers. We report p50 search latency, the client-side wall clock around a single search API request measured from a client in us-central, taken as the best across runs and plotted on a log scale, where lower is better. We ran the evaluations between July 10 and 12, 2026. OpenAI Web Search scored 57.7% on BrowseComp, the highest on the suite, but it isn't plotted here because its per-call latency isn't available.
+BrowseComp, created by OpenAI, is a set of 1,266 questions that require persistent browsing to locate hard-to-find, entangled information across the web. Our September 9, 2026 run on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) used a 50-question sample at two tiers: a GPT-5.6 Sol agent (reasoning high) with Parallel Basic and Advanced, and a GPT-5.6 Luna agent (reasoning low) with Parallel Fast and Turbo. Every competitor ran at both tiers with the same agent. Parallel, Exa, and Tavily got search and extract tools; Perplexity ran search only. An LLM judge graded the answers, and cost covers LLM tokens plus tool calls per 1,000 questions. Brave Search, SerpAPI, and OpenAI Web Search aren't in our current benchmark runs.
 
-Read the table honestly. Raw accuracy alone hides speed and reliability. Among the engines you can measure end to end, Parallel leads on both accuracy and latency, reaching 51% at 216 ms, the fastest and most accurate result in the plotted roster. OpenAI Web Search posted higher accuracy at 57.7%, yet you can't measure its per-call latency, so it never enters the speed comparison. The rest of the field splits in two: engines that pair solid accuracy with competitive latency, and engines that answer slowly or land near the bottom on this task. Which engine wins depends on your query mix and how much latency your surface can absorb, which is exactly why we report latency and accuracy as a pair.
+At the frontier tier, Parallel Advanced ties Perplexity at 74%, but Perplexity gets there for $275 per 1,000 questions against our $399. Exa (70%) and Tavily (66%) trail at more than three times Perplexity's cost. At the low-cost tier, Perplexity leads at 46% and Parallel Fast sits two points behind at 44% for about a third of the cost. Which engine wins depends on your query mix, your budget per question, and how much latency your surface can absorb.
 
-That reading no longer rests only on our own runs. The independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (August 2026) benchmarks 15 search API products across 7 providers on a fixed agent harness and ranks Parallel Search (advanced) first overall at 75, with the largest quality lift over its no-search baseline and, in its fast and turbo modes, the two lowest measured search costs of any product tested. On speed, [Openbenchmarks' fastest-search-API boards](https://openbenchmarks.com/web-search/fastest-search-api) (September 2026) put Parallel turbo first on factual lookup at 348ms mean latency and first on hard retrieval at 333ms, though Exa Instant, about 50ms behind on both, edges it on multi-hop search once time is divided by answer quality.
+For an independent check, the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (September 2026 data) benchmarks 25 search API products across 12 providers on a fixed agent harness. Perplexity Search (medium) leads at 80, followed by Octen Search at 77; Parallel Search (advanced) scores 75, level with Brave's LLM context mode, and ties for the top DeepSearchQA score (81). Parallel's fast mode recorded $8.41 in search cost per 1,000 benchmark tasks in AA's September 8 data, among the lowest measured. On speed, [Openbenchmarks' fastest-search-API boards](https://openbenchmarks.com/web-search/fastest-search-api) (September 2026) put Parallel turbo first on factual lookup at 348ms mean latency and first on hard retrieval at 333ms, though Exa Instant, about 50ms behind on both, edges it on multi-hop search once time is divided by answer quality.
 
-## **The contenders, ranked on BrowseComp**
+## **The contenders**
 
-### **1. Parallel (Search API)**
+### **Parallel (Search API)**
 
 ![](https://cdn.sanity.io/images/5hzduz3y/production/a4ba72cdbd32509be5745e8c8ac9b26c485cced0-3586x1814.png)
 
-Parallel runs on its own proprietary web index of billions of pages, with millions added daily. An agent states a semantic objective in plain language, and [Parallel's Search API](https://parallel.ai/products/search) returns URLs ranked by token relevance plus compressed, dense excerpts sized for an LLM context window, with no ads or SEO noise. One call covers search, scrape, parse, and re-rank, which trims the round trips an agent makes. We designed it as search built from the ground up for AI agents, not a human product adapted after the fact, and the fastest tier is [Parallel Search Turbo](https://parallel.ai/blog/parallel-search-turbo).
+Parallel runs on its own proprietary web index of billions of pages, with millions added daily. An agent states a semantic objective in plain language, and [Parallel's Search API](https://parallel.ai/products/search) returns URLs ranked by token relevance plus compressed, dense excerpts sized for an LLM context window, with no ads or SEO noise. One call covers search, scrape, parse, and re-rank, which trims the round trips an agent makes. We built it for AI agents from the start, and the fastest tier is [Parallel Search Turbo](https://parallel.ai/blog/parallel-search-turbo).
 
-On BrowseComp, Parallel Turbo reached 51% accuracy at 216 ms p50 latency (July 10 to 12, 2026). That's the highest accuracy in the plotted roster, and it's the fastest engine too. Parallel also holds SOC 2 Type 2 certification, with zero data retention available for enterprise teams.
+On BrowseComp in our September 2026 run on [parallel.ai/benchmarks](https://parallel.ai/benchmarks), Parallel Advanced reached 74% with the frontier agent, tied with Perplexity for first, and Parallel Fast reached 44% at $11.8 per 1,000 questions with the low-cost agent, the lowest cost at that tier. Turbo, built for latency, scored 32%. Parallel also holds SOC 2 Type 2 certification, with zero data retention available for enterprise teams.
 
 **Best for:** AI agents doing demanding, multistep web research where accuracy and low latency both matter.
 
-**Tradeoffs:** We're a newer platform with a smaller partner ecosystem than the incumbent search vendors. OpenAI Web Search posted higher raw accuracy on this suite, 57.7% against our 51%, though it isn't plotted here because its per-call latency isn't measurable.
+**Tradeoffs:** We're a newer platform with a smaller partner ecosystem than the incumbent search vendors. Perplexity matched our frontier-tier accuracy at lower cost ($275 against $399 per 1,000 questions) and edged Fast at the low-cost tier, 46% to 44%.
 
-### **2. Brave Search**
+### **Perplexity**
 
-Brave serves results from its own independent crawl of the web, news, and more, with a privacy focus, and it ran search only in this test with no extract step. The index draws on Brave's own crawl rather than reselling another provider's results.
+Perplexity runs its own search stack and sells its Search API as a standalone retrieval endpoint that returns ranked results with snippets. It ran search only in this evaluation, with no extract step.
 
-On BrowseComp, Brave Search reached 38.3% accuracy at 430 ms p50 latency (July 10 to 12, 2026). That's the second-highest accuracy in the roster, though its latency sits among the slower engines here.
+On BrowseComp (September 2026), Perplexity scored 74% at the frontier tier for $275 per 1,000 questions, tied with Parallel Advanced at lower cost, and 46% at the low-cost tier for $37.1, the top low-cost score.
 
-**Best for:** Privacy-minded lookups from teams that don't need the fastest response or deep multistep reasoning.
+**Best for:** Hard multi-hop research where frontier-tier cost per question matters most.
 
-**Tradeoffs:** No extract step in this evaluation, higher latency than the leaders, and accuracy on hard browsing that sits below Parallel.
+**Tradeoffs:** At the low-cost tier it cost about three times as much per question as Parallel Fast for two more points of accuracy.
 
-### **3. Exa**
+### **Exa**
 
 Exa is a neural, embeddings-based web search API with fast and deep tiers, plus websets and research products alongside the core search tool. It exposes an extract step, which the evaluation used.
 
-On BrowseComp, Exa Instant reached 33.7% accuracy at 361 ms p50 latency (July 10 to 12, 2026). That's mid-pack latency paired with accuracy below Parallel and Brave on this task.
+On BrowseComp (September 2026), Exa Auto scored 70% at the frontier tier for $971 per 1,000 questions and 36% at the low-cost tier for $53.4. On speed, [Openbenchmarks](https://openbenchmarks.com/web-search/fastest-search-api) measured Exa Instant at 398ms mean latency on factual lookup, second to Parallel Turbo.
 
 **Best for:** Semantic discovery where vector ranking is the priority.
 
-**Tradeoffs:** On this task, mid-pack latency paired with accuracy below both Parallel and Brave.
+**Tradeoffs:** On this task, accuracy below Parallel and Perplexity at both tiers, and the highest frontier-tier cost in the table.
 
-### **4. SerpAPI**
-
-SerpAPI scrapes and structures results from mainstream search engines, delivering SERP data as an API. It ran search only here, giving simple access to conventional search engine result pages without running your own scrapers.
-
-On BrowseComp, SerpAPI reached 23.3% accuracy at 999 ms p50 latency, the slowest engine in the roster (July 10 to 12, 2026). It answers slowest and lands near the bottom on accuracy for this multi-hop task.
-
-**Best for:** SERP scraping and simple lookups rather than demanding or latency-sensitive agent research.
-
-**Tradeoffs:** It returns results built for people to click instead of dense excerpts sized for an LLM, and the slowest latency in the table pairs with near-lowest accuracy.
-
-### **5. Tavily**
+### **Tavily**
 
 Tavily is a search API built for LLMs and retrieval-augmented generation (RAG), and it's widely adopted in agent stacks. Many agent frameworks ship Tavily as a default grounding step, so it's familiar to build with. It exposes an extract step, which the test used.
 
-On BrowseComp, Tavily Ultra Fast reached 19.3% accuracy at 357 ms p50 latency (July 10 to 12, 2026). Its latency is reasonable, yet it posts the lowest accuracy in the roster despite the "Ultra Fast" name.
+On BrowseComp (September 2026), Tavily scored 66% at the frontier tier for $935 per 1,000 questions and 32% at the low-cost tier for $176, level with Parallel Turbo on accuracy at more than ten times the cost.
 
-**Best for:** Straightforward RAG grounding and simpler agent lookups.
+**Best for:** Simple RAG grounding and simpler agent lookups.
 
-**Tradeoffs:** On hard multistep browsing, it posts the lowest accuracy in the table even though its latency stays competitive.
+**Tradeoffs:** On hard multistep browsing, it posts the lowest frontier-tier accuracy in the table, and [Openbenchmarks](https://openbenchmarks.com/web-search/fastest-search-api) measured Tavily basic at 1.88s mean latency on factual lookup (September 2026), among the slower engines on that board.
+
+### **Brave Search**
+
+Brave serves results from its own independent crawl of the web, news, and more, with a privacy focus.
+
+Brave isn't in our current benchmark runs. On independent data, Brave's LLM context mode scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (September 2026 data), level with Parallel advanced, and [Openbenchmarks](https://openbenchmarks.com/web-search/fastest-search-api) measured Brave at 601 to 630ms mean latency on factual lookup.
+
+**Best for:** Privacy-minded lookups from teams that don't need the fastest response or deep multistep reasoning.
+
+**Tradeoffs:** We have no current BrowseComp result for it, so test it on your own hard queries before relying on it for multistep research.
+
+### **SerpAPI**
+
+SerpAPI scrapes and structures results from mainstream search engines, delivering SERP data as an API. You get conventional search engine result pages without running your own scrapers.
+
+SerpAPI isn't in our current benchmark runs or on the independent boards cited above, so we have no current accuracy or latency figure for it.
+
+**Best for:** SERP scraping and simple lookups rather than demanding or latency-sensitive agent research.
+
+**Tradeoffs:** It returns results built for people to click instead of dense excerpts sized for an LLM, which leaves an agent more reading to do on multi-hop tasks.
 
 ## **Why the scoreboard isn't the verdict**
 
-A scoreboard tells you how five engines did on 1,266 fixed questions. It doesn't tell you how they'll do on yours. Benchmark tables, including this one, are a starting point, because retrieval quality depends on your own workloads and query patterns. The only test that settles the question runs your real production queries side by side and measures whether the agent finished the task.
+A scoreboard tells you how four engines did on 50 fixed questions. It doesn't tell you how they'll do on yours. Benchmark tables, including this one, are a starting point, because retrieval quality depends on your own workloads and query patterns. The only test that settles the question runs your real production queries side by side and measures whether the agent finished the task.
 
-We tested the same engines on other datasets that same week, and the rankings shifted with the task, which is the point, since no single dataset is a verdict.
+We tested the same engines on SimpleQA Verified and WideSearch in the same run, and the rankings shifted with the task. On WideSearch at the low-cost tier, for example, Exa (53.0) beat Parallel Fast (45.5). The full results are on [parallel.ai/benchmarks](https://parallel.ai/benchmarks).
 
-We should be plain about our position. Parallel publishes this benchmark, and we're biased toward our own product. We chose BrowseComp because it matches demanding agent work, and we reported every latency figure next to every accuracy figure, yet we still picked the frame. Teams move to Parallel by running the test themselves, on their own queries, and checking the numbers. So that's what we suggest you do next.
+Parallel publishes this benchmark, and we're biased toward our own product. We chose BrowseComp because it matches demanding agent work, and we reported cost next to every accuracy figure, but we still picked the frame. The better check is to run the test yourself on your own queries.
 
 ## **Run the benchmark on your own queries**
 
-You can reproduce this evaluation in about a day. Here's the plan, and the [complete benchmarking method](https://parallel.ai/articles/how-to-benchmark-web-search-apis) explains the reasoning behind each step.
+You can reproduce this evaluation in about a day. The steps are below, and the [complete benchmarking method](https://parallel.ai/articles/how-to-benchmark-web-search-apis) explains the reasoning behind each step.
 
 1. Sample real production queries. Pull a representative set from your logs, weighted toward the hard, multi-hop questions where engines diverge.
 2. Run each API side by side with default configuration. Keep the surrounding setup identical across engines, so the search API is the only variable.
-3. Judge whether the agent finished the task, not retrieval metrics alone. Score the final answer, since that's what your users feel.
-4. Measure latency and cost per successful task, not per request. A call that fails twice costs you more than one accurate call.
+3. Judge whether the agent finished the task. Score the final answer rather than retrieval metrics alone, since the answer is what your users see.
+4. Measure latency and cost per successful task rather than per request. A call that fails twice costs you more than one accurate call.
 5. Rerun periodically. Providers ship changes constantly and any benchmark ages, so schedule a repeat. If you wire the search step through the [Parallel Search MCP Server](https://parallel.ai/blog/search-mcp-server), swapping engines to compare takes minutes.
 
 ## **Common questions about search APIs for AI**
@@ -116,7 +125,7 @@ It depends on the surface. A chat assistant that users watch in real time needs 
 
 **Does an extract step matter?**
 
-Often, yes. Search finds the right pages, and an extract step pulls clean content from them. For multi-hop research, pairing the two lifts task success, which is why the benchmark gave engines that expose an extract step a web_fetch call.
+Often, yes. Search finds the right pages, and an extract step pulls clean content from them. For multi-hop research, pairing the two lifts task success, which is why the benchmark gave Parallel, Exa, and Tavily an extract tool alongside search.
 
 **How often should you re-benchmark?**
 
@@ -124,4 +133,4 @@ Every quarter, or after any provider ships a major change. Indexes and latency b
 
 ## **Run the test yourself**
 
-You've seen our numbers. Now run yours. You can benchmark Parallel against your own production queries on our [free tier](https://parallel.ai/pricing), up to roughly 16,000 searches with no credit card. Point it at the queries that matter most, then measure task success and latency against your current engine.
+You can benchmark Parallel against your own production queries on our [free tier](https://parallel.ai/pricing), which includes $5 in free credits every month (up to 5,000 Turbo searches). Point it at the queries that matter most, then measure task success and latency against your current engine.

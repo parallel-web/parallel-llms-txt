@@ -22,7 +22,7 @@ This matters because autonomous agent activity on the web is rising. HUMAN Secur
 
 A browser agent can fill forms across web portals, including insurance quotes, government forms, and job applications. Form filling is a common job, and also one of the hardest. On Skyvern's open Web Bench, agents scored lowest on [write-heavy tasks like form filling](https://www.skyvern.com/blog/web-bench-a-new-way-to-compare-ai-browser-agents/), such as logging in and submitting forms.
 
-Teams choosing a web access layer weigh browser automation against API access. If you want to [build a research agent](https://parallel.ai/articles/how-to-build-an-ai-research-agent-that-actually-works), that decision shapes your speed and cost.
+Teams choosing a web access layer weigh browser automation against API access. If you want to [build a research agent](https://parallel.ai/articles/how-to-build-an-ai-research-agent-that-actually-works), that decision shapes your speed and cost. Our explainer on [why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) compares the token and time cost of browsing with querying an index.
 
 ## Related terms
 

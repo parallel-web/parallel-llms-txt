@@ -35,13 +35,13 @@ The marketplace package uses the Parallel CLI and requires setup and authenticat
 
 Use [Ahrefs](https://cursor.com/marketplace/ahrefs) for questions about keywords, backlinks, rankings, and site health. Those metrics help you evaluate which topics deserve research before you write an article.
 
-A useful sequence is to ask Ahrefs for keyword estimates, then ask Parallel to inspect the sources and articles a reader would encounter. You need both the demand estimate and an understanding of what the searcher wants.
+A useful sequence is to ask Ahrefs for keyword estimates, then ask Parallel to inspect the sources and articles a reader would encounter, so you have both the demand estimate and a sense of what the searcher wants.
 
 Try:
 
 > Use Ahrefs to compare these ten keyword ideas for US search demand. Include the available volume and difficulty estimates. Flag missing data. Then use Parallel to inspect the current results for the three most relevant topics and identify questions our article could answer with concrete examples.
 
-Keep the country and measurement date alongside the metrics. For a new product or phrase, a missing estimate leaves uncertainty about demand. Avoid treating it as proof that nobody searches for the topic. Check your Ahrefs account’s access and usage allowances before building recurring reports.
+Keep the country and measurement date alongside the metrics. For a new product or phrase, a missing estimate means demand is uncertain; don’t read it as proof that nobody searches for the topic. Check your Ahrefs account’s access and usage allowances before building recurring reports.
 
 ## Notion: research records and team knowledge
 

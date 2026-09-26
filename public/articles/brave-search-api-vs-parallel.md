@@ -14,7 +14,7 @@ Parallel's index exists only to serve agents. There is no consumer product on to
 
 Brave's Search plan covers several endpoints under one price. Web Search returns human-readable URLs and text snippets with schema-enriched metadata. LLM Context is the AI-oriented sibling: Brave compacts the relevant web context into a form meant for model consumption, and it is the same layer that backs Ask Brave. News, Video, and Image search have dedicated endpoints, as does Place Search for physical locations. Autosuggest and Spellcheck round it out.
 
-Goggles lets you re-rank and filter Brave results with source rules, including rules that boost trusted domains or exclude sources. This is a useful capability when your application needs explicit ranking preferences. [Brave LLM Context](https://api-dashboard.search.brave.com/documentation/services/llm-context)
+Goggles lets you re-rank and filter Brave results with source rules, including rules that boost trusted domains or exclude sources, which is useful when your application needs explicit ranking preferences. [Brave LLM Context](https://api-dashboard.search.brave.com/documentation/services/llm-context)
 
 Parallel's Search API takes an objective plus optional explicit queries and returns ranked URLs with excerpts, sized by max_chars_per_result and max_chars_total. Four modes set the latency and depth: Turbo at ~200ms and $1 per 1,000 requests, Fast at under a second and the same $1 per 1,000, Basic at ~1s and $5 per 1,000, and Advanced at ~3s and $5 per 1,000, which is the default. A Source Policy handles domain inclusion, exclusion, and freshness; a Fetch Policy decides between the index and a live crawl. Parallel also sells an Extract API at $1 per 1,000 URLs for when an agent needs the whole page.
 
@@ -30,7 +30,7 @@ Both providers offer OpenAI-compatible interfaces, but Brave’s cited answer en
 
 ## **Accuracy and cost inside an agent loop**
 
-Artificial Analysis’s September 8, 2026 Search Index, checked September 22, shows Parallel Advanced and Brave LLM Context tied at the displayed score of 75. Parallel Advanced’s combined search and model cost is $83.51 per 1,000 benchmark tasks; Brave LLM Context’s is $129.53. Brave completes tasks faster in this snapshot, at about 19 seconds versus 38 for Parallel Advanced. Parallel Fast scores 73 at a combined $68.08 and about 16 seconds. Costs sum the displayed search and model columns. [Artificial Analysis leaderboard](https://artificialanalysis.ai/agents/search-api)
+Artificial Analysis’s Search Index data dated September 22, 2026 shows Parallel Advanced and Brave LLM Context tied at 75, both behind Perplexity Search (medium) at 80 and Octen Search at 77. Parallel Advanced’s search cost is $47.93 per 1,000 benchmark tasks; Brave LLM Context’s is $61.96. Brave completes tasks faster, at about 23 seconds versus 41 for Parallel Advanced. In AA’s September 8 data, Parallel Fast scored 73 at $8.41 in search cost and about 16 seconds per task. Search costs exclude model costs and are not per-call prices. [Artificial Analysis leaderboard](https://artificialanalysis.ai/agents/search-api)
 
 This is an independent Artificial Analysis evaluation, not a Parallel-run benchmark. It uses the same answer model and agent harness across providers, with a shared text-only web_fetch tool. Reported task time combines measured search time and derived model time; it is not latency for one API request. Evaluate Brave LLM Context when you need model grounding, rather than substituting its separate Web Search endpoint. [Benchmark methodology](https://artificialanalysis.ai/methodology/search-api)
 
@@ -46,7 +46,7 @@ Both plans include $5 in credits every month, applied automatically. A card is r
 
 Parallel's free tier is structured identically: $5 in credits every month, applied automatically, with a card on file. Because Turbo costs $1 per 1,000 requests, that covers up to 5,000 searches a month against Brave's 1,000.
 
-Paid rates line up as follows. Brave Search is $5 per 1,000 requests. Parallel is $1 per 1,000 in Turbo and $5 per 1,000 in Basic and Advanced. So Brave sits at parity with Parallel's higher-quality modes and at five times the cost of Turbo. Everything else on the Parallel side is priced separately: Extract at $1 per 1,000 URLs, the Task API at $5 to $2,400 per 1,000 runs across nine processors, Monitor at $3 per 1,000 executions on lite or $10 on base, Entity Search at $5 per 1,000, and FindAll on a fixed cost plus $0.03 to $1.00 per match.
+Brave Search is $5 per 1,000 requests; Parallel is $1 per 1,000 in Turbo and $5 per 1,000 in Basic and Advanced. So Brave sits at parity with Parallel's higher-quality modes and at five times the cost of Turbo. Everything else on the Parallel side is priced separately: Extract at $1 per 1,000 URLs, the Task API at $5 to $2,400 per 1,000 runs across nine processors, Monitor at $3 per 1,000 executions on lite or $10 on base, Entity Search at $5 per 1,000, and FindAll on a fixed cost plus $0.03 to $1.00 per match.
 
 _Check official documentation for current pricing._
 
@@ -54,9 +54,9 @@ _Check official documentation for current pricing._
 
 Brave's Search plan allows 50 requests per second, which works out to 3,000 per minute, enforced on a one-second sliding window with X-RateLimit headers on every response. That is higher than Parallel's default of 600 requests per minute for Search, and it is a real advantage if you are running heavy parallel fan-out and do not want to negotiate limits.
 
-The Answers plan is the opposite story at 2 requests per second, which is restrictive enough to shape your architecture. If generated answers are on your hot path, that number deserves attention before anything else in this comparison.
+The Answers plan allows only 2 requests per second, which is restrictive enough to shape your architecture. If generated answers are on your hot path, check that limit first.
 
-Parallel's defaults are 600 per minute for Search, Extract, and Entity Search, 300 for Monitor, and 300 per hour for FindAll runs, with GET polling excluded and custom limits available on enterprise plans.
+Parallel's defaults are 600 per minute for Search, Extract, and Entity Search, 300 for Monitor, and 25 per hour for FindAll runs, with GET polling excluded and custom limits available on enterprise plans.
 
 ## **The storage rights clause**
 

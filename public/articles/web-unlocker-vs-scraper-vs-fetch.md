@@ -14,11 +14,11 @@ A fetch is an HTTP GET. Every language ships one, and the response is whatever t
 
 Fetch breaks in three predictable ways. Pages that build their content with JavaScript return an empty shell, because no browser ran the scripts. Sites behind services like Cloudflare, DataDome, or PerimeterX return a challenge page or a 403 instead of content. And even when fetch succeeds, the response is full of navigation, ads, and script tags, so anyone feeding it to a model pays tokens for boilerplate.
 
-For AI agents, "fetch" has taken on a second meaning. A `web_fetch` tool is the function an agent calls when it already knows the URL and needs the content. What sits behind that tool can be a bare HTTP client or a managed API that renders, cleans, and trims the page. Which one sits behind the tool decides how much of the response is usable.
+For AI agents, "fetch" has taken on a second meaning. A `web_fetch` tool is the function an agent calls when it already knows the URL and needs the content. Whether a bare HTTP client or a managed API that renders, cleans, and trims the page sits behind that tool decides how much of the response is usable.
 
 ## Scraper: fetch plus parsing
 
-A scraper adds two things to fetch. It parses the response into structured data with selectors or a model, and it usually manages the retrieval mechanics at scale: request scheduling, retries, browser rendering, and IP rotation. [Our web scraping guide](https://parallel.ai/articles/what-is-web-scraping) covers the mechanics; the short version is that a scraper owns the whole path from URL to record.
+A scraper adds two things to fetch. It parses the response into structured data with selectors or a model, and it usually manages the retrieval mechanics at scale: request scheduling, retries, browser rendering, and IP rotation. [Our web scraping guide](https://parallel.ai/articles/what-is-web-scraping) covers the mechanics. A scraper owns the whole path from URL to record.
 
 Scraping APIs package this as a service. Send a URL, get back HTML, markdown, or JSON, with rendering and proxies handled on the vendor's side. Pricing is per request or per credit, and the credit cost climbs with difficulty. ScraperAPI's own documentation puts its minimum at $3 per 1,000 requests without rendering and $7 with rendered pages, and its credit multipliers add ten credits when a target sits behind bot protection. Firecrawl charges one credit per basic page and $99 per month for 100,000 credits on its Standard plan. Some of these vendors also sell search, crawling, and browser sessions under the same key. We compared several of them with Parallel, including [Firecrawl](https://parallel.ai/articles/firecrawl-vs-parallel), [ScrapingBee](https://parallel.ai/articles/scrapingbee-vs-parallel), and [Apify](https://parallel.ai/articles/apify-vs-parallel).
 
@@ -37,7 +37,7 @@ Vendors describe the product in nearly identical terms. Bright Data's docs say i
 | Decodo Site Unblocker | Proxy-like | Raw HTML | Per request or per GB | From $0.95 per 1K requests or $10 per GB |
 | Zyte API | REST endpoint | HTML body or browser-rendered | Per successful response, by site tier | $0.13 to $1.27 per 1K HTTP; $1.01 to $16.08 per 1K browser-rendered |
 
-Prices are list prices from vendor pages in September 2026 and change often. Two things in the table matter more than the numbers. Every vendor bills on success, which is the whole pitch: you pay for pages you got, not attempts. And every vendor returns HTML. An unlocker feeds a scraper rather than replacing one.
+Prices are list prices from vendor pages in September 2026 and change often. Two patterns in the table matter more than the numbers. Every vendor bills on success, so you pay only for pages you actually got. And every vendor returns HTML, so an unlocker feeds a scraper rather than replacing one.
 
 Independent measurements exist. AIMultiple's web unblocker benchmark ran roughly 40,000 requests against protected sites such as Amazon and ranks vendors on success rate and response time. In the response-time ranking, Zyte led at 1.75 seconds, followed by Bright Data at 2.38 seconds and Decodo at 3.43 seconds. Treat vendor success-rate claims of 98 to 100 percent as claims until you have run your own target list.
 
@@ -61,9 +61,9 @@ None of those numbers includes the thing an AI application actually pays for, wh
 
 ## Compliance in 2026
 
-The three layers sit in different places on the compliance map, and the map moved this year.
+The compliance picture differs by layer, and it changed this year.
 
-On the legal side, the leading US precedent still favors collection of public data. In Meta v. Bright Data, Judge Edward Chen ruled on January 23, 2024 that Facebook's and Instagram's terms do not bar logged-off scraping of public data, and Meta later dismissed its remaining claim. X Corp.'s separate suit against Bright Data was dismissed in May 2024 as preempted by the Copyright Act, then partially revived. These cases turn on public versus logged-in data and on contract terms. They do not bless every technique.
+On the legal side, the leading US precedent still favors collection of public data. In Meta v. Bright Data, Judge Edward Chen ruled on January 23, 2024 that Facebook's and Instagram's terms do not bar logged-off scraping of public data, and Meta later dismissed its remaining claim. X Corp.'s separate suit against Bright Data was dismissed in May 2024 as preempted by the Copyright Act, then partially revived. These cases turn on public versus logged-in data and on contract terms, and they do not bless every technique.
 
 On the technical side, site owners have new defaults on their side. Cloudflare began blocking AI crawlers by default for new customers on July 1, 2025 and launched Pay Per Crawl the same day. On July 1, 2026 it announced Pay Per Use, and from September 15, 2026 new Cloudflare domains block bots classified as Training or Agent on pages that display ads, with mixed-purpose crawlers blocked outright. Cloudflare also says more than half of AI crawl traffic re-fetches pages that have not changed.
 

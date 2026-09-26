@@ -12,28 +12,28 @@ A real example: _git commit -m "fix login bug"_
 
 _git_ is the program. _commit_ is the action. _-m_ is an option that says "I'm attaching a message." The quoted string is the argument.
 
-CLIs follow predictable patterns. Once you learn the grammar, you can operate thousands of different tools. That predictability matters for humans, but it matters even more for AI agents.
+CLIs follow predictable patterns, so once you learn the grammar you can operate thousands of different tools. That predictability helps humans, and it helps AI agents even more.
 
 ## GUIs were built for human eyes
 
 Graphical interfaces optimize for visual cognition. Humans can scan a toolbar, recognize an icon, and click it in under a second. We process spatial layouts, color cues, and visual hierarchy without conscious effort. GUIs exploit this by turning abstract operations into tangible objects: folders you can open, sliders you can drag, buttons you can press.
 
-The tradeoff: GUIs encode information in pixels. The state of a GUI lives in rendered images on a screen. To understand what a GUI is showing, you need vision. To operate a GUI, you need a pointer device and a coordinate system.
+GUIs encode information in pixels: the state of a GUI lives in rendered images on a screen. To understand what it shows, you need vision, and to operate it, you need a pointer device and a coordinate system.
 
-AI agents can technically interact with GUIs. They take screenshots, feed the image into a vision model, analyze the layout, decide where to click, and repeat until the task is done. This process is slow, error-prone, and expensive. A single GUI interaction might require several model inference calls just to figure out which button to press. And if the UI changes between software versions, the agent has to relearn the layout from scratch.
+AI agents can interact with GUIs by taking screenshots, feeding each image into a vision model, analyzing the layout, deciding where to click, and repeating until the task is done. The process is slow, error-prone, and expensive. A single GUI interaction might require several model inference calls just to figure out which button to press, and if the UI changes between software versions, the agent has to relearn the layout from scratch.
 
 ## CLIs speak the same language as LLMs
 
-Large language models (LLMs) are text-native. They read text, reason about text, and generate text. A CLI is a text-in, text-out interface. The alignment is structural.
+Large language models (LLMs) are text-native. They read text, reason about text, and generate text, and a CLI is a text-in, text-out interface.
 
-When an AI agent needs to list files in a directory, it generates the string ls -la and reads the text output. No screenshot. No vision model. No pixel coordinates. The agent produces a few tokens of input and receives a few hundred tokens of output. The entire interaction fits in a single inference call.
+When an AI agent needs to list files in a directory, it generates the string ls -la and reads the text output, with no screenshot, vision model, or pixel coordinates involved. The agent produces a few tokens of input and receives a few hundred tokens of output, and the entire interaction fits in a single inference call.
 
-This maps to several concrete advantages:
+For agents, that translates into four practical advantages:
 
 - **Speed.** Generating a CLI command takes milliseconds. Parsing text output is near-instant. A GUI interaction that requires screenshot capture, vision processing, and coordinate mapping takes orders of magnitude longer.
-- **Cost.** Text tokens are cheap. Image tokens are expensive. A CLI interaction might cost a fraction of a cent. A GUI interaction involving screenshots can cost 10 to 30 times more per action.
+- **Cost.** Text tokens are cheap and image tokens are expensive. A CLI interaction might cost a fraction of a cent, while a GUI interaction involving screenshots can cost 10 to 30 times more per action.
 - **Reliability.** CLI commands are deterministic. git status returns the same structured output regardless of screen resolution, OS theme, or window size. GUI layouts shift across versions, screen sizes, and display settings.
-- **Composability.** CLI commands pipe into other CLI commands. An agent can chain grep, sort, and head together in a single line to filter, order, and truncate data. GUIs don't compose. You can't pipe the output of one window into another.
+- **Composability.** CLI commands pipe into other CLI commands. An agent can chain grep, sort, and head together in a single line to filter, order, and truncate data. GUIs don't compose: you can't pipe the output of one window into another.
 
 ## The Unix philosophy turns out to be agent-friendly
 
@@ -57,29 +57,29 @@ When an AI agent figures out a multi-step workflow through a CLI, the commands f
 find /var/log -name "*.log" -size +100M -exec gzip {} \\\\;
 ```
 
-One line. Readable by humans. Executable by machines. Reproducible across environments.
+It's one line that a person can read, a machine can execute, and any environment can reproduce.
 
-GUI workflows don't have this property. If an agent navigates through five screens and twelve clicks to accomplish a task, the only record is a series of screenshots. You can't re-run screenshots.
+GUI workflows don't have this property. If an agent navigates through five screens and twelve clicks to accomplish a task, the only record is a series of screenshots.
 
-This matters for trust and oversight. When an AI agent operates through CLIs, you can read exactly what it did in the command history. When it operates through GUIs, you're left reviewing screen recordings.
+That also makes oversight easier. When an AI agent operates through CLIs, you can read exactly what it did in the command history; when it operates through GUIs, you're left reviewing screen recordings.
 
 ## **The CLI renaissance is already here**
 
-Google recognized the trend and released gws, a CLI for Google Workspace, in early 2026. One CLI that gives agents programmatic access to Docs, Drive, Calendar, Gmail, and Sheets. Every "office" operation that once required a human clicking through a GUI became a text command that an agent can invoke.
+Google released gws, a CLI for Google Workspace, in early 2026. It gives agents programmatic access to Docs, Drive, Calendar, Gmail, and Sheets from one tool. Every "office" operation that once required a human clicking through a GUI became a text command that an agent can invoke.
 
-Stripe, Supabase, Vercel, and PostHog all ship CLIs optimized for headless environments where agents operate without displays. The pattern is consistent: structured JSON output, predictable flags, and no interactive prompts.
+Stripe, Supabase, Vercel, and PostHog all ship CLIs optimized for headless environments where agents operate without displays, and they share a pattern: structured JSON output, predictable flags, and no interactive prompts.
 
-Developers have noticed. Tools like Claude Code, Gemini CLI, and OpenCode run in the terminal and coordinate with other CLIs to read files, run tests, manage Git repositories, and deploy code. These agents treat the terminal as their workspace, the same way a human developer treats an IDE.
+Tools like Claude Code, Gemini CLI, and OpenCode run in the terminal and coordinate with other CLIs to read files, run tests, manage Git repositories, and deploy code. These agents treat the terminal as their workspace, the same way a human developer treats an IDE.
 
-The shift isn't limited to developer tools. Financial operations (Ramp CLI), voice generation (ElevenLabs CLI), and email automation (Agentmail CLI) are all moving to CLI-first interfaces. The common thread: if an AI agent might use your product, you need a text-based interface.
+The shift isn't limited to developer tools. Financial operations (Ramp CLI), voice generation (ElevenLabs CLI), and email automation (Agentmail CLI) are all moving to CLI-first interfaces. If an AI agent might use your product, it needs a text-based interface.
 
 ## **CLIs won't replace GUIs**
 
 Humans still need graphical interfaces. Editing a photo, designing a slide deck, browsing a map: these tasks rely on spatial reasoning and visual feedback that CLIs can't replicate.
 
-The split is straightforward. GUIs serve human visual cognition. CLIs serve programmatic execution. AI agents fall squarely into the second category.
+GUIs serve human visual cognition and CLIs serve programmatic execution, which is where AI agents sit.
 
-The interesting middle ground: AI agents that accept natural language from a human, translate it into CLI commands, execute those commands, and present the results back through a GUI. The human sees a friendly interface. The agent operates through text. Both get what they need.
+In between are AI agents that accept natural language from a human, translate it into CLI commands, execute those commands, and present the results back through a GUI. The human sees a friendly interface while the agent operates through text.
 
 ## **What this means if you're building software**
 
@@ -87,4 +87,4 @@ If your product has an API but no CLI, AI agents can still use it through HTTP r
 
 If your product has a GUI and no CLI or API, AI agents will struggle to use it at all. They'll resort to screen-scraping, coordinate-guessing, and brittle automation that breaks with every UI update.
 
-The playbook is becoming clear: build a CLI that outputs structured text (ideally JSON), supports non-interactive execution, and documents itself through help flags. Your human users will keep using the GUI. Your agent users will keep using the CLI. And the line between those two groups is blurring faster than most product teams expect.
+Build a CLI that outputs structured text (ideally JSON), supports non-interactive execution, and documents itself through help flags. Your human users will keep using the GUI, and your agent users will use the CLI.

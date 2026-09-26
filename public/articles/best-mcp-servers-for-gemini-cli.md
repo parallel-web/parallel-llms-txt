@@ -2,7 +2,7 @@
 
 Gemini CLI configures MCP servers in settings.json and ships with Google Search grounding built in. Here are the five servers worth adding anyway in 2026, with exact config, and when the built-in search is already enough.
 
-Gemini CLI is Google's open-source terminal agent, and it arrives better-equipped than most: Google Search grounding is built in, and [MCP](https://parallel.ai/articles/what-is-mcp) support handles everything else. So an honest server roundup for Gemini CLI starts with a different question than usual: what does an agent that already has Google need? The answer is denser web context for agent loops, current library docs, repo tooling, and a browser.
+Gemini CLI is Google's open-source terminal agent, and it arrives better-equipped than most: Google Search grounding is built in, and [MCP](https://parallel.ai/articles/what-is-mcp) support handles everything else. So the useful question for a Gemini CLI roundup is what an agent that already has Google still needs: denser web context for agent loops, current library docs, repo tooling, and a browser.
 
 Disclosure: we make Parallel, our search server is the first pick, and we cite benchmark numbers so you can discount our bias and, better, test it free.
 
@@ -14,7 +14,7 @@ Servers are declared under `mcpServers` in `~/.gemini/settings.json`. Remote Str
 
 ### 1. Parallel Search MCP
 
-Why add a search server to the agent that has Google? Because grounding and agent-grade retrieval are different jobs. Built-in grounding returns what a search engine returns: good links, thin snippets. The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) returns ranked results with token-dense excerpts an agent can usually answer from in one call, plus `web_fetch` for reading full pages, PDFs included, as clean markdown. It's free with no API key:
+Grounding and agent-grade retrieval are different jobs. Built-in grounding returns what a search engine returns: good links, thin snippets. The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) returns ranked results with token-dense excerpts an agent can usually answer from in one call, plus `web_fetch` for reading full pages, PDFs included, as clean markdown. It's free with no API key:
 
 ```json
 {
@@ -26,31 +26,31 @@ Why add a search server to the agent that has Google? Because grounding and agen
 }
 ```
 
-The underlying API ranks first on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 15 search API products (August 2026). Since both options cost you nothing in Gemini CLI, the right move is to run the same questions through built-in grounding and the MCP and keep whichever answers better.
+The underlying API's advanced mode scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. Since both options cost you nothing in Gemini CLI, the right move is to run the same questions through built-in grounding and the MCP and keep whichever answers better.
 
 **Best for:** dense, answer-ready web context and explicit page fetching in agent loops.** Tradeoffs:** we're the vendor; anonymous rate limits suit personal use, and a free API key (via the `mcp-remote` wrapper with a Bearer header) lifts them.
 
 ### 2. Context7
 
-Version-pinned library docs on demand. Search, even good search, retrieves pages about libraries; Context7 retrieves the documented truth for the exact version you installed, which is the difference between plausible and correct generated code.
+Context7 provides version-pinned library docs on demand. Search, even good search, retrieves pages about libraries; Context7 retrieves the documentation for the exact version you installed, so the generated code calls APIs that exist in that version.
 
 **Best for:** killing hallucinated APIs.** Tradeoffs:** indexed libraries only.
 
 ### 3. GitHub MCP
 
-The official hosted server for issues, PRs, and Actions logs. The standing caveats apply: it's tool-heavy, so scope its toolsets, and if your GitHub use is light, Gemini CLI drives the `gh` CLI through shell perfectly well without any server.
+GitHub's official hosted server covers issues, PRs, and Actions logs. It's tool-heavy, so scope its toolsets, and if your GitHub use is light, Gemini CLI drives the `gh` CLI through shell perfectly well without any server.
 
 **Best for:** structured multi-repo workflows.** Tradeoffs:** large tool surface.
 
 ### 4. Playwright MCP
 
-A real browser for verifying frontend work and reproducing bugs. Among the most-installed MCP servers in the community, and a natural fit for a terminal agent that otherwise can't see the page it just changed.
+Playwright gives Gemini CLI a real browser for verifying frontend work and reproducing bugs. It's among the most-installed MCP servers in the community, and it suits a terminal agent that otherwise can't see the page it just changed.
 
 **Best for:** UI verification.** Tradeoffs:** heavier than API calls; use `web_fetch` for plain reading.
 
 ### 5. Parallel Task MCP
 
-Asynchronous research subagents through the [Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp): hand off a whole research objective, get back a structured, cited result while the session keeps working. Needs an API key; the [recurring $5 monthly free credit](https://parallel.ai/pricing) on every account covers a lot of per-request research.
+Asynchronous research subagents through the [Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp): hand off a whole research objective, get back a structured, cited result while the session keeps working. It needs an API key; the [recurring $5 monthly free credit](https://parallel.ai/pricing) on every account covers a lot of per-request research.
 
 **Best for:** research too deep for a handful of searches.** Tradeoffs:** minutes, not seconds.
 

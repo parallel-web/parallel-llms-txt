@@ -4,9 +4,9 @@ WebMCP lets websites expose tools to AI agents. See how the browser API works, h
 
 WebMCP (Web Model Context Protocol) is a proposed browser API that lets websites expose functions as tools for AI agents. A site describes what a tool does, which inputs it accepts, and how to run it. An agent can then call that tool instead of figuring out the same task through clicks and form fields. The [WebMCP specification](https://webmachinelearning.github.io/webmcp/) defines the browser-facing interface.
 
-Consider an API dashboard. A developer asks an assistant, "How many requests did this account make in the past seven days?" The dashboard could expose a `get_api_usage` tool that returns the answer directly. The assistant would no longer need to find the right chart, change its date range, and interpret the result.
+Say a developer asks an assistant on an API dashboard, "How many requests did this account make in the past seven days?" The dashboard could expose a `get_api_usage` tool that returns the answer directly, so the assistant doesn't have to find the right chart, change its date range, and interpret the result.
 
-The name invites an obvious question: **is WebMCP just MCP in a browser?** Not quite. They share a tool-oriented approach, but WebMCP is a separate web-platform proposal, not an extension or replacement of the Model Context Protocol. [Chrome's comparison](https://developer.chrome.com/docs/ai/webmcp/compare-mcp) makes that distinction explicit.
+A common question is **is WebMCP just MCP in a browser?** They share a tool-oriented approach, but WebMCP is a separate web-platform proposal rather than an extension or replacement of the Model Context Protocol. [Chrome's comparison](https://developer.chrome.com/docs/ai/webmcp/compare-mcp) makes that distinction explicit.
 
 _Technical details checked September 5, 2026. WebMCP is still evolving. Its _[_September 4 draft_](https://webmachinelearning.github.io/webmcp/)_ is a Community Group Report, not a W3C Standard or a specification on the W3C Standards Track._
 
@@ -24,7 +24,7 @@ WebMCP offers two authoring approaches: the **imperative API**, which registers 
 
 Both approaches give an agent an explicit description of a capability. Tool names, descriptions, and JSON Schema inputs help the agent decide which action to request and which arguments to provide. MCP's [tools specification](https://modelcontextprotocol.io/specification/2026-07-28/server/tools) uses this same basic vocabulary.
 
-The difference is where those capabilities are exposed and how the agent reaches them.
+Where they differ is where those capabilities are exposed and how the agent reaches them.
 
 | Area | WebMCP | MCP |
 | --- | --- | --- |
@@ -42,7 +42,7 @@ Sources: [MCP architecture](https://modelcontextprotocol.io/docs/2026-07-28/lear
 
 Registering a WebMCP tool does not create a remote MCP endpoint. You cannot assume an ordinary MCP client will discover it by connecting to the website's URL.
 
-The WebMCP draft deliberately leaves the browser-to-agent representation open. A browser may expose tools through MCP, another function-calling interface, or a different mechanism. The page-facing API and the agent-facing integration are separate concerns. That flexibility is stated in the specification's [interaction with agents section](https://webmachinelearning.github.io/webmcp/#interaction-with-agents).
+The WebMCP draft deliberately leaves the browser-to-agent representation open: a browser may expose tools through MCP, another function-calling interface, or a different mechanism, and the page-facing API is specified separately from the agent-facing integration. See the specification's [interaction with agents section](https://webmachinelearning.github.io/webmcp/#interaction-with-agents).
 
 For an existing MCP service, keep its integration unless you have a reason to change it. WebMCP can provide another way into the same underlying application functionality.
 
@@ -52,7 +52,7 @@ MCP servers can be local processes as well as hosted services. Our guide to [rem
 
 MCP can also support browser automation. Microsoft's [Playwright MCP](https://github.com/microsoft/playwright-mcp), for example, exposes browser capabilities through an MCP server. That is different from a website publishing its own WebMCP tools: the former gives an agent a browser automation interface; the latter gives it application-specific functions chosen by the site author.
 
-There is also a separate [MCP Apps extension](https://modelcontextprotocol.io/extensions/apps/overview) for interactive interfaces rendered inside an MCP host. WebMCP works with an existing website; MCP Apps bring an interface into the agent's application. Neither should be confused with the other.
+There is also a separate [MCP Apps extension](https://modelcontextprotocol.io/extensions/apps/overview) for interactive interfaces rendered inside an MCP host. WebMCP works with an existing website; MCP Apps bring an interface into the agent's application.
 
 ## WebMCP examples: JavaScript and HTML
 
@@ -144,7 +144,7 @@ For a purchase, deletion, or account change, do not copy the auto-submit choice 
 
 **Choose MCP when the capability should be available outside that page.** A service that searches documents, reads a database, or runs an overnight enrichment job should not depend on someone keeping a tab open. MCP's local and remote server model fits that requirement. For the underlying concepts, see [what MCP is and how it works](https://parallel.ai/articles/what-is-mcp).
 
-**Use both when the product has both kinds of interaction.** Consider a CRM: a backend integration could support scheduled account research, while a WebMCP tool prepares an update in the account page for a salesperson to review. This is an architectural example, not a claim that a particular CRM already supports WebMCP.
+**Use both when the product has both kinds of interaction.** In a CRM, for instance, a backend integration could support scheduled account research while a WebMCP tool prepares an update in the account page for a salesperson to review. That example is hypothetical; we aren't claiming any particular CRM supports WebMCP today.
 
 Before adding tools, identify the step that makes the workflow difficult. A single action that retrieves the selected project's diagnostics may be more useful than a catalog of every function in the dashboard.
 
@@ -160,21 +160,21 @@ For example, an agent researching a prospect might use **Parallel Search MCP** t
 
 ## Browser support and getting started
 
-As of September 5, 2026, the project's [implementation tracker](https://github.com/webmachinelearning/webmcp/blob/main/implementation-status.md) lists origin trials in Chrome 149 and Edge 150. This is experimental availability, not a reason to assume every browser and agent supports the same API surface.
+As of September 5, 2026, the project's [implementation tracker](https://github.com/webmachinelearning/webmcp/blob/main/implementation-status.md) lists origin trials in Chrome 149 and Edge 150. That availability is experimental, so don't assume every browser and agent supports the same API surface.
 
 For local Chrome development, the official setup uses `chrome://flags/#enable-webmcp-testing`. Enable the flag and relaunch Chrome. The [getting-started documentation](https://developer.chrome.com/docs/ai/webmcp) also describes the origin trial and the Model Context Tool Inspector extension for inspecting registered tools and invoking them during testing.
 
-Feature-detect the API, as the JavaScript example does, and keep the normal user interface working without it. The current Chrome documentation also requires an origin-isolated document and applies the `tools` Permissions Policy. Secure deployment and iframe configuration need attention; finding a browser flag is not the entire integration.
+Feature-detect the API, as the JavaScript example does, and keep the normal user interface working without it. The current Chrome documentation also requires an origin-isolated document and applies the `tools` Permissions Policy, so plan for secure deployment and iframe configuration as well as the flag.
 
-Start with one read-only task users already struggle to complete. Test ordinary requests, ambiguous wording, invalid inputs, expired sessions, and unavailable services. Measure successful completion, latency, and user corrections against your existing approach. Chrome's [tool-building guide](https://developer.chrome.com/docs/ai/webmcp/build-tools) recommends evaluations and production telemetry; registering a tool is not evidence that it improves the task.
+Start with one read-only task users already struggle to complete. Test ordinary requests, ambiguous wording, invalid inputs, expired sessions, and unavailable services. Measure successful completion, latency, and user corrections against your existing approach. Chrome's [tool-building guide](https://developer.chrome.com/docs/ai/webmcp/build-tools) recommends evaluations and production telemetry to confirm that a registered tool actually improves the task.
 
 ## Security: a tool description is not a permission check
 
-Treat WebMCP tools as another way to reach application functionality, not as a trusted caller.
+Treat WebMCP tools as another way to reach application functionality, and give calls through them no more trust than any other client request.
 
 Authentication and authorization still belong in your application. Restrict the records a tool can read, preserve tenant boundaries, and keep service credentials out of client-side code. A request coming from an agent should not gain privileges an equivalent user action lacks. MCP's [tool security requirements](https://modelcontextprotocol.io/specification/2026-07-28/server/tools#security-considerations) likewise require input validation and access controls.
 
-WebMCP's annotations communicate intent: `readOnlyHint` identifies tools intended not to change state, `untrustedContentHint` flags output containing untrusted material, and `consequentialHint` marks significant or irreversible actions. These are useful signals, but your application should enforce its own approval rules. A tool named `preview_change` should not silently commit it. Chrome's [tool security guidance](https://developer.chrome.com/docs/ai/webmcp/secure-tools) covers these annotations and the risks of exposing tools across origins.
+WebMCP's annotations communicate intent: `readOnlyHint` identifies tools intended not to change state, `untrustedContentHint` flags output containing untrusted material, and `consequentialHint` marks significant or irreversible actions. Your application should still enforce its own approval rules: a tool named `preview_change` should not silently commit it. Chrome's [tool security guidance](https://developer.chrome.com/docs/ai/webmcp/secure-tools) covers these annotations and the risks of exposing tools across origins.
 
 Read-only also does not mean harmless: a tool can reveal private information without modifying anything. Return only what the task needs and review any cross-origin exposure. Tool outputs containing external or user-written text need special care: a structured response can still carry malicious instructions. Chrome's [agent security guidance](https://developer.chrome.com/docs/agents/security) discusses these risks and the need for multiple defenses.
 
@@ -190,10 +190,10 @@ Headless use is possible, but a browser document still has to run the page and i
 
 ### Should I replace an existing MCP integration?
 
-Not just to adopt WebMCP. Keep MCP for clients and workflows that need it. Add WebMCP where direct access to the website's current state and interface makes a user task easier. The two can share application logic without being interchangeable protocols.
+Not for its own sake. Keep MCP for clients and workflows that need it, and add WebMCP where direct access to the website's current state and interface makes a user task easier. The two can share application logic, but they aren't interchangeable protocols.
 
 ## Make the next action explicit
 
-WebMCP gives site authors a way to replace guesswork about an interface with named, testable actions. It is worth evaluating where an agent and a user need to work in the same application, while keeping MCP integrations that serve clients outside that page.
+WebMCP gives site authors a way to replace guesswork about an interface with named, testable actions. Evaluate it where an agent and a user need to work in the same application, and keep the MCP integrations that serve clients outside that page.
 
 When the task begins with finding information across the web, start with [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp). It supplies web search and page retrieval. A participating site's WebMCP tools can handle the next step inside its application.

@@ -1,10 +1,10 @@
 # How to add web search to a local AI agent (Ollama, LM Studio, Pi, and Goose)
 
-A local model has no idea what happened after its training cutoff, and most search APIs would put a bill back into your zero-cost stack. Here's how to add free web search to agents running on Ollama and LM Studio, via LM Studio, Goose, Pi, and Cline, plus the honest privacy caveat.
+A local model has no idea what happened after its training cutoff, and most search APIs would put a bill back into your zero-cost stack. This guide covers adding free web search to agents running on Ollama and LM Studio, via LM Studio, Goose, Pi, and Cline, plus the privacy caveat.
 
-Running a model locally solves cost, privacy, and control in one move, and creates a new problem in the same move: the agent's knowledge ends at its training cutoff, and a local machine has no web index. Ask a local Gemma or Llama about a library released last month and you get confident fiction. Web search is the missing organ, and the trick is adding it without reintroducing the API bill your local stack exists to avoid.
+Running a model locally solves cost, privacy, and control in one move, and creates a new problem in the same move: the agent's knowledge ends at its training cutoff, and a local machine has no web index. Ask a local Gemma or Llama about a library released last month and you get confident fiction. Web search fills that gap, provided you can add it without reintroducing the API bill your local stack exists to avoid.
 
-The good news: the [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) is free with no API key or account, so a fully local agent gains real web search and page fetching for exactly $0. Disclosure: it's ours, which is why this guide uses it; the setup patterns below work with any hosted MCP server if you'd rather bring a different one.
+The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) is free with no API key or account, so a fully local agent gains real web search and page fetching for exactly $0. Disclosure: it's ours, which is why this guide uses it; the setup patterns below work with any hosted MCP server if you'd rather bring a different one.
 
 ## One caveat before setup
 

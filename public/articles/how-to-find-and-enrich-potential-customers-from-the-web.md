@@ -12,35 +12,35 @@ Finding and enriching customers is two jobs: discovering companies that match yo
 
 ## What customer enrichment means in 2026
 
-_Customer enrichment_ transforms sparse prospect identifiers into actionable intelligence. Your sales team starts with a company name or domain. Enrichment layers on context: headcount, funding stage, tech stack, decision-maker contacts, recent news. That context determines whether the prospect fits your ICP, how to position your product, and when to reach out.
+_Customer enrichment_ turns sparse prospect identifiers into intelligence your team can act on. Your sales team starts with a company name or domain, and enrichment layers on context: headcount, funding stage, tech stack, decision-maker contacts, recent news. That context determines whether the prospect fits your ICP, how to position your product, and when to reach out.
 
-Two distinct workflows exist here. The first enriches records you already have in your CRM. The second combines discovery and enrichment: you find companies matching your criteria from the live web, then enrich each match. Most teams need both.
+There are two workflows here. One enriches records you already have in your CRM. The other combines discovery and enrichment: you find companies matching your criteria from the live web, then enrich each match. Most teams need both.
 
 B2B data decays fast. Industry research shows contact and company data degrades [25-30% per year](https://www.dun-bradstreet.co.uk/perspectives/articles/how-b2b-data-decay-impacts-sales-and-marketing-performance.html). People change jobs, companies raise funding, headcounts shift, tech stacks evolve. A database compiled in January becomes unreliable by summer.
 
-The shift in 2026 is clear: [data enrichment](https://parallel.ai/articles/what-is-data-enrichment) has moved from batch uploads against static databases toward live, on-demand [web research](https://parallel.ai/articles/what-is-web-scraping) powered by AI. Instead of querying a vendor's pre-built tables, modern systems search the web at research time. They synthesize information from LinkedIn profiles, Crunchbase filings, company websites, news articles, and SEC documents. The result is fresher data, custom schemas, and per-field provenance.
+In 2026 [data enrichment](https://parallel.ai/articles/what-is-data-enrichment) has moved from batch uploads against static databases toward live, on-demand [web research](https://parallel.ai/articles/what-is-web-scraping) powered by AI. Instead of querying a vendor's pre-built tables, these systems search the web at research time and synthesize information from LinkedIn profiles, Crunchbase filings, company websites, news articles, and SEC documents, which gets you fresher data, custom schemas, and per-field provenance.
 
 ## Why static databases fall short
 
-Traditional data providers built the first generation of B2B enrichment. Apollo, ZoomInfo, Clearbit (now part of HubSpot): these platforms maintain massive contact and company databases. They work. Millions of sales teams rely on them. But the model has structural limitations.
+Traditional data providers built the first generation of B2B enrichment. Apollo, ZoomInfo, Clearbit (now part of HubSpot): these platforms maintain massive contact and company databases. Millions of sales teams rely on them, but the model has structural limitations.
 
-**Everyone gets the same data.** When you query Apollo or ZoomInfo, you receive the same records as every competitor in your space. You get no differentiation at the data layer. Your outreach competes with identical firmographic segments.
+**Everyone gets the same data.** When you query Apollo or ZoomInfo, you receive the same records as every competitor in your space, so your outreach targets the same firmographic segments theirs does.
 
-**Fixed schemas constrain what you can learn.** These providers decide which fields to collect: employee count, industry, annual revenue, HQ location. If your sales motion requires data outside that schema (say, whether a company uses a specific open-source framework, or the name of their VP of Data), you hit a wall.
+**Fixed schemas constrain what you can learn.** These providers decide which fields to collect: employee count, industry, annual revenue, HQ location. If your sales motion requires data outside that schema (say, whether a company uses a specific open-source framework, or the name of their VP of Data), they can't give it to you.
 
 **Coverage gaps exist.** Niche industries, early-stage startups, international markets: these segments often have incomplete or outdated records. A Series A company founded six months ago may not appear in the database. A manufacturing firm in Southeast Asia may have minimal data.
 
-**Cost scales poorly.** Enterprise contracts for ZoomInfo or Apollo run $15,000 to $50,000+ per year. That spend buys access to depreciating assets. Next year, you pay again for data that has degraded further.
+**Cost scales poorly.** Enterprise contracts for ZoomInfo or Apollo run $15,000 to $50,000+ per year. That spend buys data that depreciates, and next year you pay again for records that have degraded further.
 
-Tools like Clay provide orchestration across these providers. Clay makes it easier to chain data sources, run conditional logic, and push enriched records to your CRM. But Clay still depends on the same underlying databases. Orchestration improves workflow; it doesn't solve the staleness, schema rigidity, or coverage problems.
+Tools like Clay provide orchestration across these providers. Clay makes it easier to chain data sources, run conditional logic, and push enriched records to your CRM. Clay also has its own AI research agent, Claygent, but most of its enrichment still draws on the same underlying databases. Better orchestration doesn't fix the staleness, schema rigidity, or coverage problems underneath.
 
 ## The find-and-enrich workflow, step by step
 
-A complete enrichment workflow has two stages. **Discovery** finds companies matching your criteria from the live web. **Enrichment** layers structured intelligence onto each match. Execute both in sequence.
+A complete enrichment workflow has two stages. **Discovery** finds companies matching your criteria from the live web. **Enrichment** layers structured intelligence onto each match.
 
 ### Step 1: Define your ICP with measurable criteria
 
-Start with a precise definition of your ideal customer profile. Vague criteria produce noise. Measurable criteria produce matches you can act on.
+Start with a precise definition of your ideal customer profile. Vague criteria return noise; measurable criteria return matches you can act on.
 
 Poor ICP definition: "B2B SaaS companies in the US."
 
@@ -89,9 +89,9 @@ The schema defines what you extract. The processor tier determines depth and cos
 
 ### Step 4: Run enrichment against live web sources
 
-With schema defined, the [Task API](https://parallel.ai/products/task) researches each company against current web sources. Parallel's system queries LinkedIn for personnel data, [Crunchbase](https://www.crunchbase.com/) and TechCrunch for funding rounds, [SEC EDGAR](https://www.sec.gov/search#/dateRange=custom&startdt=2024-01-01&enddt=2026-04-27) for financial filings, company websites for product and team information, Google News for recent announcements.
+With schema defined, the [Task API](https://parallel.ai/products/task) researches each company against current web sources. Parallel's system queries LinkedIn for personnel data, [Crunchbase](https://www.crunchbase.com/) and TechCrunch for funding rounds, [SEC EDGAR](https://www.sec.gov/search#/dateRange=custom&startdt=2024-01-01&enddt=2026-04-27) for financial filings, company websites for product and team information, and Google News for recent announcements.
 
-Concrete example: You have 50 Series A SaaS companies from your FindAll results. You want founding year, headcount, latest funding amount, VP of Engineering name and LinkedIn, and primary tech stack. One Task API call per company returns structured JSON with all fields populated from live sources.
+Say you have 50 Series A SaaS companies from your FindAll results. You want founding year, headcount, latest funding amount, VP of Engineering name and LinkedIn, and primary tech stack. One Task API call per company returns structured JSON with all fields populated from live sources.
 
 ### Step 5: Validate and score with confidence levels
 
@@ -111,19 +111,17 @@ You can integrate the JSON output directly. Define a Pydantic schema, parse the 
 
 ## What to enrich and why it matters
 
-Different data categories serve different purposes in your sales motion. Each type drives a specific sales action.
-
 ### Firmographic data
 
-Company size, revenue, industry, headquarters location, founding year. Firmographics enable account qualification. You filter out companies too small to buy, segment by industry vertical, and prioritize by growth stage. Sources: LinkedIn company pages, [Crunchbase](https://www.crunchbase.com/) profiles, company websites, SEC filings.
+Company size, revenue, industry, headquarters location, founding year. Firmographics are for qualifying accounts: you filter out companies too small to buy, segment by industry vertical, and prioritize by growth stage. Sources: LinkedIn company pages, [Crunchbase](https://www.crunchbase.com/) profiles, company websites, SEC filings.
 
 ### Technographic data
 
-Tech stack, recent technology adoptions, integration gaps. Technographics enable solution positioning. You identify companies using tools your product integrates with, or tools your product replaces. "They use Segment and Amplitude but not a CDP" becomes a tailored pitch. Sources: [BuiltWith](https://builtwith.com/), job postings (technologies mentioned), GitHub repositories, company engineering blogs.
+Tech stack, recent technology adoptions, integration gaps. Technographics tell you how to position: you can find companies using tools your product integrates with, or tools your product replaces. "They use Segment and Amplitude but not a CDP" becomes a tailored pitch. Sources: [BuiltWith](https://builtwith.com/), job postings (technologies mentioned), GitHub repositories, company engineering blogs.
 
 ### Contact and personnel data
 
-Decision-maker names, titles, LinkedIn profiles, email addresses, recent role changes. Personnel data enables personalized outreach. You message the right person with context about their role and tenure. A new VP of Engineering represents a buying window. Sources: LinkedIn profiles, company websites (team pages), press releases announcing hires.
+Decision-maker names, titles, LinkedIn profiles, email addresses, recent role changes. Personnel data lets you message the right person with context about their role and tenure. A new VP of Engineering represents a buying window. Sources: LinkedIn profiles, company websites (team pages), press releases announcing hires.
 
 ### Financial and funding data
 
@@ -131,13 +129,13 @@ Funding rounds, investors, revenue signals, recent investments. Financial data i
 
 ### News and event signals
 
-Product launches, executive hires, partnerships, expansions. Event signals enable timely outreach. "Congratulations on the Series A" beats a cold email. "I saw you're expanding into EMEA" opens a relevant conversation. Sources: Google News, company press releases, industry publications.
+Product launches, executive hires, partnerships, expansions. Event signals tell you when to reach out. "Congratulations on the Series A" beats a cold email. "I saw you're expanding into EMEA" opens a relevant conversation. Sources: Google News, company press releases, industry publications.
 
-Each category compounds the others. You use firmographics to qualify, technographics to position, personnel data to personalize, financial data to time your outreach, and event signals to hook the conversation.
+In practice, you use firmographics to qualify, technographics to position, personnel data to personalize, financial data to time your outreach, and event signals to hook the conversation.
 
 ## AI-powered enrichment vs. traditional tools
 
-Traditional enrichment queries pre-built databases. AI-powered enrichment queries the live web at research time. The tradeoffs matter for different use cases.
+Traditional enrichment queries pre-built databases. AI-powered enrichment queries the live web at research time.
 
 ### Traditional database enrichment
 
@@ -157,7 +155,7 @@ Weaknesses: Slower per-record than database lookups (seconds vs. milliseconds), 
 
 ### Cost comparison
 
-Parallel's Task API runs $0.025 per record at the core processor tier. Enriching 1,000 companies costs $25. A ZoomInfo enterprise contract at $30,000/year for 1,000 monthly credits works out to $2.50 per enrichment. But that contract includes data decay, fixed schemas, and no per-field sourcing.
+Parallel's Task API runs $0.025 per record at the core processor tier. Enriching 1,000 companies costs $25. A ZoomInfo enterprise contract at $30,000/year for 1,000 monthly credits works out to $2.50 per enrichment. That price still comes with data decay, fixed schemas, and no per-field sourcing.
 
 [Modal published a case study](https://parallel.ai/blog/case-study-modal) on switching from traditional providers to Parallel. They achieved 88.9% coverage on capital raised data versus patchy coverage from database providers. Cost savings ranged from 6x to 31x depending on the enrichment type.
 
@@ -167,7 +165,7 @@ Use traditional databases when you need bulk lookups on common fields with milli
 
 ## Building your own enrichment pipeline
 
-Off-the-shelf enrichment tools trade flexibility for convenience. Building your own pipeline gives you full control over schemas, data sources, and integration patterns. The architecture breaks down into four layers.
+Off-the-shelf enrichment tools trade flexibility for convenience. Building your own pipeline gives you full control over schemas, data sources, and integration patterns, and it breaks down into four layers.
 
 ### Core components
 
@@ -240,7 +238,7 @@ Processing hundreds of records? Use Task Groups for concurrent execution and bat
 
 ### Continuous enrichment with Monitor API
 
-Enrichment data decays. Set up monitoring to re-enrich on trigger events. Parallel's [Monitor API](https://docs.parallel.ai/monitor-api/monitor-quickstart) tracks web changes and sends webhook notifications when funding announcements, leadership changes, or other signals appear. Pipe those events into your enrichment pipeline for automatic refresh.
+Because enrichment data decays, set up monitoring to re-enrich on trigger events. Parallel's [Monitor API](https://docs.parallel.ai/monitor-api/monitor-quickstart) tracks web changes and sends webhook notifications when funding announcements, leadership changes, or other signals appear. Pipe those events into your enrichment pipeline for automatic refresh.
 
 Modal's production pipeline uses [Pydantic](https://docs.pydantic.dev/latest/) schemas for validation and pipes enriched records into Snowflake for analytics. The same pattern works for any data warehouse.
 
@@ -252,7 +250,7 @@ Duplicate records, inconsistent formatting, and stale domains waste enrichment b
 
 ### Enriching everything equally
 
-Not every prospect deserves deep research. Apply tiered enrichment: deep (pro processor) for strategic accounts, standard (core) for qualified leads, lightweight (lite) for long-tail prospects. Match investment to opportunity size.
+Not every prospect deserves deep research. Apply tiered enrichment: deep (pro processor) for strategic accounts, standard (core) for qualified leads, lightweight (lite) for long-tail prospects.
 
 ### Ignoring freshness
 
@@ -260,7 +258,7 @@ Enrichment without refresh schedules produces stale data within months. Build re
 
 ### No validation layer
 
-Accepting enriched data without confidence checks leads to bad outreach. A low-confidence field should trigger manual review, not an automated email. Build confidence thresholds into your pipeline. Route low-confidence records to human verification.
+Accepting enriched data without confidence checks leads to bad outreach. Build confidence thresholds into your pipeline so low-confidence records go to human verification instead of triggering an automated email.
 
 ## FAQ
 
@@ -280,6 +278,6 @@ AI-powered enrichment queries the live web: LinkedIn, Crunchbase, company websit
 
 Traditional database providers charge $15,000-$50,000+/year for enterprise contracts. API-based enrichment costs $0.005-$0.10+ per record depending on depth. Parallel's Task API runs $0.025/record at the core tier, with per-field citations included.
 
-Customer enrichment has shifted from querying static databases to researching the live web. The companies that build custom enrichment pipelines gain fresher data, custom schemas, and provenance their sales teams can trust. Start with your ICP definition, build a schema that matches your sales motion, and let AI handle the research.
+Customer enrichment has shifted from querying static databases to researching the live web. A custom pipeline gets you fresher data, custom schemas, and per-field provenance. Start with your ICP definition, build a schema that matches your sales motion, and let AI handle the research.
 
 [Start Building](https://docs.parallel.ai/home)

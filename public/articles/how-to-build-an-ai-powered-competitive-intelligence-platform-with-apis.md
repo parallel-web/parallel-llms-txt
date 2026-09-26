@@ -2,7 +2,7 @@
 
 A competitive intelligence platform reduces to four API layers: entity discovery, deep research, continuous monitoring, and real-time search. This guide covers each layer in turn with the capabilities that matter for CI, shows how to compose them into an end-to-end workflow, and compares the cost with the $20K to $100K platforms teams buy instead.
 
-Engineering-led teams have different requirements. You want CI data flowing into your own [AI agents](https://parallel.ai/articles/what-is-an-ai-agent), CRMs, deal rooms, and internal tools. You need structured JSON, not PDFs. You need webhooks, not weekly email digests. You need an API layer you can program, not a SaaS dashboard you log into.
+Engineering-led teams have different requirements. You want CI data flowing into your own [AI agents](https://parallel.ai/articles/what-is-an-ai-agent), CRMs, deal rooms, and internal tools. That means structured JSON instead of PDFs, webhooks instead of weekly email digests, and an API layer you can program rather than a SaaS dashboard you log into.
 
 A production-grade competitive intelligence stack requires four capabilities:
 
@@ -13,7 +13,7 @@ A production-grade competitive intelligence stack requires four capabilities:
 
 ## Every competitive intelligence platform runs on four API layers
 
-The [competitive intelligence industry reached $8.2 billion in 2023](https://sendview.io/guides/guide-to-the-competitive-intelligence-industry) and is [projected to reach $4.03 billion by 2034](https://www.fortunebusinessinsights.com/competitive-intelligence-tools-market-104522) in the dedicated tools segment alone, with double-digit growth rates across every forecast. The four-layer framework matches how intelligence professionals think about competitive analysis. Discovery answers "who should we watch?" Research answers "what do we need to know about them?" Monitoring answers "what changed?" Search answers "what's the context?"
+The competitive intelligence tools market is [projected to grow from $0.71 billion in 2025 to $4.03 billion by 2034](https://www.fortunebusinessinsights.com/competitive-intelligence-tools-market-104522), about 21% a year, according to Fortune Business Insights. The four-layer framework matches how intelligence professionals think about competitive analysis. Discovery answers "who should we watch?" Research answers "what do we need to know about them?" Monitoring answers "what changed?" Search answers "what's the context?"
 
 Each layer has distinct technical requirements. Discovery needs multi-criteria filtering across heterogeneous data sources. Research needs structured extraction with citations. Monitoring needs change detection with deduplication. Search needs semantic retrieval optimized for LLM context windows.
 
@@ -21,7 +21,7 @@ Building these capabilities from scratch requires maintaining web crawlers, sear
 
 ## Layer 1: Entity discovery
 
-Competitive intelligence starts with knowing who and what to watch. Static competitor lists go stale. Markets shift. New entrants appear. Existing players pivot into your space.
+Competitive intelligence starts with knowing who and what to watch. Static competitor lists go stale as new entrants appear and existing players pivot into your space.
 
 A discovery layer should accept natural-language queries and return structured entity datasets. You describe what you're looking for: "Series B fintech companies in APAC that launched payments products in the last 90 days." The API returns structured records with company names, domains, funding details, and source citations.
 
@@ -31,7 +31,7 @@ A discovery layer should accept natural-language queries and return structured e
 
 **Structured output** ensures every discovered entity comes back as clean JSON you can load into databases, CRMs, or downstream analysis pipelines. Company name, domain, funding stage, headcount, product category, and relevant URLs should all be explicit fields.
 
-**Citations and provenance** let you verify discoveries. CI data feeds decisions. You need to know the source for every claim, whether that's a [Crunchbase](https://www.crunchbase.com/) profile, a TechCrunch article, or an SEC filing.
+**Citations and provenance** let you verify discoveries. Because CI data feeds decisions, you need to know the source for every claim, whether that's a [Crunchbase](https://www.crunchbase.com/) profile, a TechCrunch article, or an SEC filing.
 
 ### The manual alternative doesn't scale
 
@@ -58,8 +58,6 @@ Generator tiers let you trade off cost against thoroughness. Preview mode tests 
 
 ## Layer 2: Deep research and enrichment
 
-Discovery tells you who to watch. Research tells you what you need to know about them.
-
 A research layer accepts a competitor entity and an objective, then returns structured JSON with exactly the fields you requested. You might ask: "Extract this company's pricing model, target customer segments, and key product differentiators." The API returns structured data with per-field citations. This [data enrichment](https://parallel.ai/articles/what-is-data-enrichment) process turns basic entity records into comprehensive competitive profiles.
 
 ### Processor tiers match compute to complexity
@@ -70,7 +68,7 @@ A research layer accepts a competitor entity and an objective, then returns stru
 
 ### Citations and confidence scores are non-negotiable
 
-CI data feeds real decisions: pricing strategy, product roadmaps, sales positioning. A hallucinated competitor feature or invented pricing tier causes downstream damage.
+CI data feeds real decisions: pricing strategy, product roadmaps, sales positioning. A hallucinated competitor feature or invented pricing tier can end up in a pricing decision or a sales deck.
 
 Every enrichment field should include:
 
@@ -108,11 +106,11 @@ Data sources include company websites, pricing pages, job boards ([Greenhouse](h
 
 ### Batch enrichment at scale
 
-Enriching 50 discovered competitors with pricing, positioning, and recent product launches requires 50 Task API calls. Task Groups execute these concurrently with batch tracking and consolidated webhooks. A full competitive landscape analysis that would take an analyst weeks completes in minutes.
+Enriching 50 discovered competitors with pricing, positioning, and recent product launches requires 50 Task API calls. Task Groups execute these concurrently with batch tracking and consolidated webhooks. A full competitor analysis that would take an analyst weeks completes in minutes.
 
 ## Layer 3: Continuous monitoring
 
-Point-in-time research captures a snapshot. Markets move. Competitors change pricing, launch products, announce funding rounds, hire executives, and pivot positioning.
+Point-in-time research captures a snapshot, but competitors keep changing pricing, launching products, announcing funding rounds, hiring executives, and shifting their positioning.
 
 A monitoring layer accepts plain-English watch conditions and delivers structured webhook events when something changes. You define what to watch: "Alert me when [competitor] changes their pricing page or announces a new product." The system runs continuously and notifies you when it detects relevant changes.
 
@@ -128,7 +126,7 @@ A monitoring layer accepts plain-English watch conditions and delivers structure
 
 A funding announcement appears on [TechCrunch](https://techcrunch.com/), Crunchbase, the company blog, and 50 industry news sites. Without deduplication, you receive 50 alerts about the same event.
 
-Quality monitoring deduplicates at the event level. The same underlying fact, regardless of how many sources report it, produces one structured event with citations to all relevant sources.
+Good monitoring deduplicates at the event level. The same underlying fact, regardless of how many sources report it, produces one structured event with citations to all relevant sources.
 
 ### Parallel Monitor API for continuous tracking
 
@@ -156,7 +154,7 @@ Key monitoring targets for CI include:
 
 ## Layer 4: Real-time search for context
 
-Monitoring catches known signals. Search handles the unknown.
+Monitoring catches the signals you know to watch for. Search handles the questions nobody anticipated:
 
 "What did the market say about [competitor]'s outage last Tuesday?" "What are analysts predicting about [industry] consolidation?" "What alternatives are users discussing since [competitor] raised prices?"
 
@@ -172,7 +170,7 @@ Monitoring catches known signals. Search handles the unknown.
 
 Keyword search ("competitor X pricing") returns pages that contain those words. Semantic search ("Find analyst reactions to Competitor X's pricing changes last quarter") returns pages that address the objective, even if they don't contain exact keyword matches.
 
-Token-dense excerpts matter for LLM consumption. Search results that include compressed, relevant passages let downstream models reason about the information without processing entire documents.
+Search results that include compressed, relevant passages let downstream models reason about the information without processing entire documents.
 
 Freshness controls let you specify recency requirements. CI queries often need information from the last 24 hours, last week, or last quarter.
 
@@ -191,7 +189,7 @@ Results include URLs, page titles, publish dates, and compressed excerpts optimi
 
 ## How to compose the four layers into a CI workflow
 
-The real power emerges when you chain the layers together. Each API outputs structured JSON that feeds the next layer or your internal systems.
+The layers are most useful chained together, since each API outputs structured JSON that feeds the next layer or your internal systems.
 
 ### End-to-end workflow example
 
@@ -212,7 +210,7 @@ Platform subscriptions charge $20K to $100K per year regardless of usage. API-ba
 | Monitor API | $0.003 per execution |
 | Search API | From $0.001 per request with Turbo mode; $0.005 per request for Basic and Advanced |
 
-A team monitoring 50 competitors with daily cadence, enriching new discoveries monthly, and running 100 ad-hoc searches per week might spend $200 to $500 per month. The same coverage from a platform costs 40 to 200 times more. See full [pricing](https://parallel.ai/pricing) details.
+A team monitoring 50 competitors with daily cadence, enriching new discoveries monthly, and running 100 ad-hoc searches per week might spend $200 to $500 per month. The same coverage from a platform costs roughly 3 to 40 times more. See full [pricing](https://parallel.ai/pricing) details.
 
 ### Composability enables custom workflows
 
@@ -224,11 +222,11 @@ Parallel's [CI cookbook](https://parallel.ai/blog/cookbook-competitor-research-w
 
 ### What are the best competitive intelligence tools in 2026?
 
-Two categories serve different needs. **Off-the-shelf platforms** like Klue, Crayon, and Contify work for teams that want dashboards, battle cards, and managed analyst services. They charge $20K to $100K per year and handle everything end to end.
+**Off-the-shelf platforms** like Klue, Crayon, and Contify work for teams that want dashboards, battle cards, and managed analyst services. They charge $20K to $100K per year and handle everything end to end.
 
 **API-based infrastructure** like Parallel works for teams building custom CI into their own products and workflows. You get full control over data sources, analysis pipelines, and output formats. You pay per request rather than annual subscriptions.
 
-The choice depends on your team's technical resources and integration requirements. If you want a turnkey solution, buy a platform. If you want CI data flowing into your own AI agents, CRMs, and internal tools, build with APIs.
+If you want a turnkey solution, buy a platform. If you want CI data flowing into your own AI agents, CRMs, and internal tools, build with APIs.
 
 ### How much do competitive intelligence tools cost?
 
@@ -244,11 +242,11 @@ Yes, if your team has engineering resources. The four-layer architecture (discov
 
 Building with APIs gives you full control over data sources, analysis pipelines, output formats, and system integrations. You can customize every aspect of the workflow rather than adapting to a platform's predetermined structure.
 
-The tradeoff is implementation effort. A platform works out of the box. An API-based system requires integration work. Teams with strong engineering capabilities find the customization benefits outweigh the implementation costs.
+The tradeoff is implementation effort: a platform works on day one, while an API-based system requires integration work. Teams with strong engineering capabilities find the customization benefits outweigh the implementation costs.
 
 ### How do I use AI to analyze competitive intelligence data?
 
-Feed structured CI data into LLMs for summarization, trend detection, and briefing generation. The key is structured input with citations so the AI's output is verifiable.
+Feed structured CI data into LLMs for summarization, trend detection, and briefing generation. Give the model structured input with citations so the AI's output is verifiable.
 
 A typical pattern:
 
@@ -258,10 +256,10 @@ A typical pattern:
 4. Generate analysis, summaries, or recommendations
 5. Include source citations from the original data
 
-The Basis framework in Parallel's Task API provides per-field citations and confidence scores. When you feed this data into downstream LLMs, the citations carry through to the final output. Your competitive briefs remain traceable to original sources.
+The Basis framework in Parallel's Task API provides per-field citations and confidence scores. When you feed this data into downstream LLMs, the citations carry through to the final output, so your competitive briefs stay traceable to original sources.
 
 ## Start building
 
-You now have a complete blueprint for building an AI-powered competitive intelligence platform with APIs. The four-layer architecture handles discovery, research, monitoring, and search. Each layer outputs structured JSON that composes into custom workflows.
+The four-layer architecture handles discovery, research, monitoring, and search, and each layer outputs structured JSON that composes into custom workflows.
 
 Parallel's documentation includes working code examples, API references, and implementation guides for common CI patterns. **[Start Building](https://docs.parallel.ai/home)**

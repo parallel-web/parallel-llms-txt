@@ -4,7 +4,7 @@ Most of a Firecrawl-to-Parallel migration is a parameter rename, so the decision
 
 Firecrawl and Parallel both return query-relevant excerpts from a search call, so the switch is mostly mechanical. The structural change is the billing model: Firecrawl sells monthly credit subscriptions that expire, Parallel sells requests. A Firecrawl search costs 2 credits per 10 results (roughly **$1.20 to $1.66 per 1,000** depending on plan) against **$1 per 1,000** for Parallel Search Turbo.
 
-Those numbers are close. The gap opens when you need page content rather than highlights, and when your traffic is spiky enough that a monthly credit allowance stops fitting.
+Those numbers are close; the gap opens when you need page content rather than highlights, and when your traffic is spiky enough that a monthly credit allowance stops fitting.
 
 ## **What the two cost**
 
@@ -42,14 +42,14 @@ _Note: For the latest pricing, always check official documentation._
 
 Firecrawl does several things Parallel does not, and if you use them you are keeping both:
 
-- Crawl. There is no site-wide crawler in Parallel
+- Crawl: no site-wide crawler
 - Map: no URL discovery endpoint
 - Interact: no browser automation, so no clicking, form filling, or interstitials
 - sources: ["news"] and ["images"], and the github, research, and pdf categories: use a Source Policy domain list instead
 - location: no geo parameter
-- Self-hosting. Firecrawl's core is open source; Parallel is hosted only
+- Self-hosting: Firecrawl's core is open source; Parallel is hosted only
 
-In the other direction, you gain a Fetch Policy that forces live crawling, the Task API with per-field citations, reasoning, excerpts, and calibrated confidence scores at nine fixed price tiers, plus FindAll and Entity Search.
+In the other direction, you gain a Fetch Policy that forces live crawling, the Task API with per-field citations, reasoning, excerpts, and confidence levels at nine fixed price tiers, plus FindAll and Entity Search.
 
 ## **The code change**
 
@@ -77,16 +77,16 @@ search = client.search(
 )
 ```
 
-Note what disappears in the second version: the scrape_options block. In the Firecrawl call that block is what turns a 2-credit search into a 12-credit one; in the Parallel call the excerpts are already there.
+The second version drops the scrape_options block. In the Firecrawl call that block is what turns a 2-credit search into a 12-credit one; in the Parallel call the excerpts are already there.
 
 ## **Rate limits**
 
-The unit changes here, which is worth planning for. Firecrawl caps concurrent requests, from 2 on Free to 150 on Scale. Parallel caps requests per minute: 600 for Search, Extract, and Entity Search, 300 for Monitor, and 300 per hour for FindAll runs, with GET polling excluded and custom limits available on enterprise plans. If your code is written around a concurrency semaphore, you will want a rate limiter instead.
+The limit unit changes. Firecrawl caps concurrent requests, from 2 on Free to 150 on Scale. Parallel caps requests per minute: 600 for Search, Extract, and Entity Search, 300 for Monitor, and 25 per hour for FindAll runs, with GET polling excluded and custom limits available on enterprise plans. If your code is written around a concurrency semaphore, you will want a rate limiter instead.
 
-Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention, and commits contractually to not training on customer data.
+Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention on Enterprise plans, and commits contractually to not training on customer data.
 
 ## **Get started**
 
-Move the search calls first and leave crawl, map, and interact where they are. That split usually holds permanently rather than being a migration step. Start with any call currently using scrapeOptions, since that is where the cost difference is largest, and check whether the excerpts alone answer your queries before reaching for Extract. The $5 monthly free credit covers 5,000 Turbo searches, which is enough to compare properly against your current pipeline.
+Move the search calls first and leave crawl, map, and interact where they are. That split is usually permanent. Start with any call currently using scrapeOptions, since that is where the cost difference is largest, and check whether the excerpts alone answer your queries before reaching for Extract. The $5 monthly free credit covers 5,000 Turbo searches, which is enough to compare properly against your current pipeline.
 
 **Related reading: **[Firecrawl vs. Parallel](https://parallel.ai/articles/firecrawl-vs-parallel) · [Switching from Tavily](https://parallel.ai/articles/tavily-to-parallel-search-api) · [Switching from Exa](https://parallel.ai/articles/exa-to-parallel-search-api).

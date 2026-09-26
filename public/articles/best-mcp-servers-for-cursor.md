@@ -8,7 +8,7 @@ Disclosure: we make Parallel, our search server is the first pick, and we cite t
 
 ## How MCP works in Cursor
 
-Config lives at `~/.cursor/mcp.json` for your personal setup or `.cursor/mcp.json` in a repo for project-scoped, team-shared servers. Remote servers are a url entry; local ones are a command plus args. Cursor also supports one-click install deeplinks (most vendors publish them) and handles OAuth flows in-app for servers that need sign-in. One habit worth forming: put team-relevant servers in the project file and keep personal experiments out of it.
+Config lives at `~/.cursor/mcp.json` for your personal setup or `.cursor/mcp.json` in a repo for project-scoped, team-shared servers. Remote servers are a url entry; local ones are a command plus args. Cursor also supports one-click install deeplinks (most vendors publish them) and handles OAuth flows in-app for servers that need sign-in. Put team-relevant servers in the project file and keep personal experiments out of it.
 
 ## The best MCP servers for Cursor
 
@@ -26,7 +26,7 @@ The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) 
 }
 ```
 
-The underlying API ranks first on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 15 search API products (August 2026). For an IDE agent the practical win is current documentation and error research without leaving the editor, and `web_fetch` keeps long docs pages from flooding the context window.
+The underlying API's advanced mode scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. For an IDE agent the practical win is current documentation and error research without leaving the editor, and `web_fetch` keeps long docs pages from flooding the context window.
 
 **Best for:** grounding Cursor in the current web at zero cost.** Tradeoffs:** we're the vendor. Anonymous use runs personal-scale rate limits in fast basic mode; a free API key as a Bearer header lifts them.
 
@@ -44,7 +44,7 @@ GitHub's official hosted server over OAuth: issues, PRs, code search, Actions lo
 
 ### 4. Playwright MCP
 
-Microsoft's browser-automation server lets Cursor's agent verify its own frontend work: load the page, click the flow, screenshot the result. Among the most-installed servers in the community, and the difference between a plausible diff and a confirmed fix.
+Microsoft's browser-automation server lets Cursor's agent verify its own frontend work: load the page, click the flow, screenshot the result. It's among the most-installed servers in the community, and it lets the agent confirm a fix instead of handing you a plausible diff.
 
 **Best for:** UI verification and bug reproduction.** Tradeoffs:** heavier than API calls; for reading pages, `web_fetch` is cheaper.
 

@@ -2,43 +2,43 @@
 
 A chatbot that cites its sources needs retrieval in the request path, which is a design decision at the API layer rather than a prompt you add later. This guide covers what to look for in a chatbot API with web search, how five providers compare on accuracy, latency, citations, and cost predictability, and how to ship a web-grounded chatbot in under 20 lines of Python.
 
-The fix: integrate live [web search API](https://parallel.ai/articles/what-is-a-web-search-api) capabilities at the chatbot API layer. Instead of relying on frozen training data, a web-grounded chatbot retrieves current information from the open web, synthesizes it into a response, and cites its sources. Users get accurate, verifiable answers.
+A chatbot API with live [web search API](https://parallel.ai/articles/what-is-a-web-search-api) capabilities retrieves current information from the open web instead of relying on frozen training data, synthesizes it into a response, and cites its sources.
 
 ## Key takeaways
 
 - A chatbot API with built-in web search eliminates the need to stitch together separate LLM and search services.
-- Citation support is non-negotiable; users and compliance teams need to verify every claim.
+- Users and compliance teams need citations to verify claims, so treat citation support as a requirement.
 - OpenAI-compatible endpoints let you swap providers without rewriting your application code.
 - Latency, cost predictability, and source quality matter more than raw model size when choosing an API.
 - You can stand up a web-grounded chatbot in under 20 lines of Python using the Parallel Responses API.
 
 ## What is a chatbot API?
 
-A chatbot API is a programmatic interface for sending user messages and receiving AI-generated responses without managing model infrastructure. You send a prompt, the API returns a completion. No GPUs to provision, no model weights to download, no inference stack to maintain.
+A chatbot API is a programmatic interface for sending user messages and receiving AI-generated responses without managing model infrastructure. You send a prompt and the API returns a completion, with no GPUs to provision, model weights to download, or inference stack to maintain.
 
-Modern chatbot APIs go beyond simple request-response cycles. They support conversation history so the model understands context across multiple turns. They stream tokens as they're generated so users see responses building in real time. Many expose function calling or tool use, letting the model invoke external services mid-conversation, a pattern central to how [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) interact with the world.
+Modern chatbot APIs also support conversation history, so the model understands context across multiple turns. They stream tokens as they're generated so users see responses building in real time. Many expose function calling or tool use, letting the model invoke external services mid-conversation, a pattern central to how [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) interact with the world.
 
 Most chatbot APIs wrap a large language model behind a REST or WebSocket interface. OpenAI's Chat Completions API set the pattern; Anthropic, Google, and others followed. The core abstraction is the same: an array of messages in, a message out.
 
-A chatbot API differs from a raw text completion API in one key way: it's conversation-oriented. The interface expects structured turns (user, assistant, system) rather than arbitrary text blobs. This structure makes building chat products simpler and enables features like system prompts and multi-turn memory.
+Unlike a raw text completion API, a chatbot API is conversation-oriented. The interface expects structured turns (user, assistant, system) rather than arbitrary text blobs, which makes building chat products simpler and enables features like system prompts and multi-turn memory.
 
 ## Why web search matters for chatbots
 
-Large language models have a knowledge cutoff. GPT-4's training data ends in late 2023. Claude's cuts off earlier. Anything that happened after the cutoff date is invisible to the model. Ask about a product launched last month, a law passed last quarter, or an API deprecated last week, and the model either refuses to answer or invents something plausible-sounding but false.
+Large language models have a knowledge cutoff. Each model's training data stops at a fixed date, often months before the model ships. Anything that happened after the cutoff date is invisible to the model. Ask about a product launched last month, a law passed last quarter, or an API deprecated last week, and the model either refuses to answer or invents something plausible-sounding but false.
 
-Hallucination rates spike for recent events, niche topics, and precise factual claims. A 2024 study on [Vectara's hallucination leaderboard](https://github.com/vectara/hallucination-leaderboard) found that even the best LLMs hallucinate on 3-10% of responses when generating summaries, with rates climbing higher for open-domain questions. For technical documentation, pricing pages, and regulatory text, that error rate is unacceptable.
+Hallucination rates spike for recent events, niche topics, and precise factual claims. [Vectara's hallucination leaderboard](https://github.com/vectara/hallucination-leaderboard) measures how often models add unsupported claims when summarizing a short document they're given. As of September 2026, the best-scoring model hallucinates on 1.8% of summaries, and many widely used frontier models land between 5% and 12%. For technical documentation, pricing pages, and regulatory text, that error rate is unacceptable.
 
-Users expect current information. A developer asking about the latest version of a framework needs the current docs, not a stale snapshot. A researcher tracking a breaking news story needs today's coverage, not last year's. A compliance team verifying a regulation needs the text currently in force.
+Users expect current information. A developer asking about the latest version of a framework needs the current docs, a researcher tracking a breaking news story needs today's coverage, and a compliance team verifying a regulation needs the text currently in force.
 
-Web search gives chatbots access to live data and source citations. The model can retrieve current information, ground its response in that information, and tell users exactly where the answer came from. This transparency builds trust. Users can click through to the source, verify the claim, and build confidence in the system.
+Web search gives chatbots access to live data and source citations. The model can retrieve current information, ground its response in that information, and tell users exactly where the answer came from, so they can click through to the source and verify the claim.
 
 Retrieval-augmented generation (RAG) over a static corpus helps for internal documentation but doesn't solve freshness for open-domain questions. If the corpus isn't updated in real time, the same staleness problem persists. Web search is the only way to ground answers in the current state of the internet. For complex research tasks, teams are turning to [deep research](https://parallel.ai/articles/what-is-deep-research) workflows that chain multiple searches together.
 
-The real-world consequences of ungrounded answers are severe. A chatbot that returns a wrong API endpoint breaks a developer's integration. A chatbot that quotes an old price point erodes customer trust. A chatbot that misrepresents a regulation exposes the business to compliance risk. Every incorrect answer chips away at credibility.
+A chatbot that returns a wrong API endpoint breaks a developer's integration. One that quotes an old price point erodes customer trust, and one that misrepresents a regulation exposes the business to compliance risk.
 
 ## What to look for in a chatbot API with web search
 
-Choosing the right chatbot API requires evaluating five dimensions: accuracy, latency, citations, pricing, and compatibility.
+Evaluate chatbot APIs on accuracy, latency, citations, pricing, and compatibility.
 
 ### Accuracy and source quality
 
@@ -50,11 +50,11 @@ Search index freshness matters too. An API pulling from a stale index produces s
 
 ### Latency and streaming
 
-Two latency components add up in a web-grounded chatbot: retrieval time and generation time. The search step fetches and ranks relevant pages. The generation step synthesizes retrieved content into a response. Both take time.
+Two latency components add up in a web-grounded chatbot: retrieval time and generation time. The search step fetches and ranks relevant pages, and the generation step synthesizes retrieved content into a response.
 
-Streaming masks latency for users. Instead of waiting five seconds for a complete response, users see tokens appear as they're generated. The perceived wait time drops from "time to complete" to "time to first token." This matters for chat interfaces where responsiveness shapes user experience.
+Streaming masks latency for users. Instead of waiting five seconds for a complete response, users see tokens appear as they're generated, so the perceived wait drops from "time to complete" to "time to first token."
 
-Ask whether the API streams tokens during generation. Ask what the typical time-to-first-token is. If the API batches retrieval and generation sequentially without streaming, users stare at a spinner. That experience feels slow even if the total latency is reasonable.
+Ask whether the API streams tokens during generation, and what the typical time-to-first-token is. If the API batches retrieval and generation sequentially without streaming, users stare at a spinner, which feels slow even when total latency is reasonable.
 
 ### Citation and attribution
 
@@ -62,7 +62,7 @@ Citations let users verify claims. A chatbot that says "the API costs $5 per 1,0
 
 Structured citation metadata beats inline URLs. A response with a separate citations array (URL, title, snippet, position in response) is easier to render in a UI than a response with raw links scattered through prose. Structured metadata also makes programmatic verification possible.
 
-For compliance-heavy industries (finance, healthcare, legal), citation support isn't optional. Auditors and regulators want to trace every claim back to its source. A chatbot that can't produce citations can't meet those requirements.
+Compliance-heavy industries (finance, healthcare, legal) require citations, because auditors and regulators want to trace every claim back to its source.
 
 ### Pricing and cost predictability
 
@@ -78,21 +78,21 @@ Free tiers help you prototype before committing budget. Most APIs offer a limite
 
 The OpenAI Chat Completions API became a de facto standard. Thousands of applications, SDKs, and frameworks target it. [LangChain](https://python.langchain.com/docs/introduction/), LlamaIndex, [Vercel AI SDK](https://sdk.vercel.ai/docs/introduction), and countless internal tools expect OpenAI-compatible endpoints.
 
-A chatbot API with OpenAI-compatible interface lets you swap providers without rewriting application code. Point the SDK at a different base URL, change the API key, and you're running on a new backend. This portability reduces lock-in and makes migration painless.
+A chatbot API with an OpenAI-compatible interface lets you swap providers without rewriting application code. Point the SDK at a different base URL, change the API key, and you're running on a new backend, which reduces lock-in.
 
-Compatibility also means inheriting the ecosystem. Libraries that work with OpenAI work with any compatible provider. Tutorials written for OpenAI translate directly. The mental model carries over. You spend time on your product, not on learning a new SDK.
+Compatibility also means inheriting the ecosystem: libraries that work with OpenAI work with any compatible provider, and tutorials written for OpenAI translate directly.
 
 ## Top chatbot APIs for web-grounded conversations
 
-Five providers stand out for building chatbots with web search capabilities. Each takes a different approach to integrating search with generation. For a broader comparison of search API providers, see our [Bing API alternatives](https://parallel.ai/articles/bing-api-comparison) guide.
+The five providers below each take a different approach to integrating search with generation. For a broader comparison of search API providers, see our [Bing API alternatives](https://parallel.ai/articles/bing-api-comparison) guide.
 
-### OpenAI Chat Completions with web search
+### OpenAI API with web search
 
-OpenAI's Chat Completions API is the incumbent. It powers ChatGPT and millions of integrations worldwide. OpenAI added [web search as a tool](https://developers.openai.com/api/docs/guides/tools-web-search) in 2024, allowing models to retrieve current information during conversations.
+OpenAI's API is the incumbent, running the same models that power ChatGPT across millions of integrations worldwide. OpenAI added [web search as a tool](https://developers.openai.com/api/docs/guides/tools-web-search) in March 2025, as a built-in tool in the Responses API and through dedicated search models in Chat Completions, allowing models to retrieve current information during conversations.
 
 Web search works as a tool call. The model decides when to search, issues a query, receives results, and synthesizes a response. This approach gives the model control over when to search but adds latency for the tool-call round trip.
 
-Pricing combines per-token costs with a separate search fee. Input tokens, output tokens, and search invocations all carry charges. Costs can be unpredictable for search-heavy workloads.
+Pricing combines per-token costs with a separate search fee: $10 per 1,000 web search calls, plus the retrieved search content billed as input tokens. Input tokens, output tokens, and search invocations all carry charges. Costs can be unpredictable for search-heavy workloads.
 
 **Pros:** Largest ecosystem, most capable models, extensive documentation, broad tool support.
 
@@ -100,11 +100,11 @@ Pricing combines per-token costs with a separate search fee. Input tokens, outpu
 
 ### Parallel Responses API
 
-The Parallel Responses API answers questions with live web research, with citations built in from the ground up. Every response comes grounded in Parallel's proprietary web index, updated continuously with millions of pages daily.
+The Parallel Responses API answers questions with live web research and built-in citations. Responses are grounded in Parallel's proprietary web index, updated continuously with millions of pages daily.
 
 The API is OpenAI-compatible, following the OpenAI Responses format. You use the same SDK and the same request shape. Point your existing code at Parallel's base URL and responses come back with structured citations by default. Teams already on OpenAI can [switch from OpenAI web search to Parallel](https://parallel.ai/articles/openai-to-parallel-search-api) without rewriting application code.
 
-Pricing is a fixed rate per request, starting at [$10 per 1,000 requests](https://parallel.ai/pricing) at low reasoning effort ($50 per 1,000 at medium, $250 per 1,000 at high), charged only for successful responses. No per-token charges, no separate search fees. You know exactly what each request costs regardless of conversation length or how many sources the model retrieves.
+Pricing is a fixed rate per request, starting at [$10 per 1,000 requests](https://parallel.ai/pricing) at low reasoning effort ($50 per 1,000 at medium, $250 per 1,000 at high), charged only for successful responses. There are no per-token charges or separate search fees, so each request costs the same regardless of conversation length or how many sources the model retrieves.
 
 **Pros:** Built-in web search, structured citations by default, OpenAI-compatible, predictable pricing, proprietary web index.
 
@@ -118,7 +118,7 @@ Web search isn't native to Dialogflow. You add it by integrating Google Custom S
 
 Pricing is complex, combining Dialogflow session fees with Custom Search API charges. Enterprise customers can negotiate custom terms. The platform suits large organizations already invested in Google Cloud.
 
-**Pros:** Enterprise features, Google Cloud integration, robust state management, compliance certifications.
+**Pros:** Enterprise features, Google Cloud integration, mature state management, compliance certifications.
 
 **Cons:** Complex setup for web search; high configuration overhead; pricing complexity.
 
@@ -158,7 +158,7 @@ Pricing is per-request with different tiers based on model capability. The focus
 
 ## How to build a web search chatbot with the Parallel Responses API
 
-You can build a web-grounded chatbot with citations in under 20 lines of Python. Here's how. For a more advanced implementation, check out how to [build a web research agent](https://parallel.ai/blog/cookbook-search-agent) with streaming search results.
+You can build a web-grounded chatbot with citations in under 20 lines of Python. For a more advanced implementation, check out how to [build a web research agent](https://parallel.ai/blog/cookbook-search-agent) with streaming search results.
 
 ### Prerequisites
 
@@ -180,7 +180,7 @@ client = OpenAI(
 # Ask a question requiring live web data
 response = client.responses.create(
     model="parallel",
-    input="What is the current price of OpenAI's GPT-4 API?",
+    input="What is the current price of OpenAI's GPT-6 Sol API?",
     reasoning={"effort": "low"}
 )
 
@@ -215,11 +215,9 @@ You can extend this pattern to support streaming, multi-turn conversations (pass
 
 ## Common mistakes when choosing a chatbot API
 
-Developers make predictable mistakes when selecting a chatbot API. Avoid these five.
-
 ### Optimizing for model size over answer quality
 
-Bigger models don't guarantee better answers. A smaller model with high-quality retrieval often outperforms a larger model with poor or no retrieval. Benchmark on your actual use cases, not parameter counts. Accuracy on your domain matters more than performance on generic benchmarks.
+Bigger models don't guarantee better answers. A smaller model with high-quality retrieval often outperforms a larger model with poor or no retrieval. Benchmark on your actual use cases: accuracy on your domain matters more than parameter counts or generic benchmark scores.
 
 ### Ignoring citation support until launch
 
@@ -231,17 +229,17 @@ Web search adds latency. A chatbot that took 500ms now takes 2 seconds. If your 
 
 ### Locking into a vendor-specific SDK
 
-Proprietary SDKs create switching costs. When the vendor raises prices or degrades quality, you're stuck rewriting. Choose APIs with OpenAI-compatible interfaces. Use the standard SDK. Keep your options open.
+Proprietary SDKs create switching costs. When the vendor raises prices or degrades quality, you're stuck rewriting. An API with an OpenAI-compatible interface, called through the standard SDK, keeps that switch cheap.
 
 ### Skipping cost modeling
 
-Prototype usage patterns differ from production patterns. A chatbot that costs pennies in testing can cost thousands at scale if you haven't modeled your expected volume, average conversation length, and search frequency. Build a cost model before launch. Set up alerts. Monitor spend daily.
+Prototype usage patterns differ from production patterns. A chatbot that costs pennies in testing can cost thousands at scale if you haven't modeled your expected volume, average conversation length, and search frequency. Build a cost model before launch, set up alerts, and monitor spend daily.
 
 ## Frequently asked questions
 
 ### What is the best free chatbot API?
 
-Most providers offer free tiers with limited requests. Parallel offers $5 in free credits every month, enough for up to 5,000 Turbo searches. OpenAI provides trial credits for new accounts. The "best" depends on your use case; evaluate accuracy and features, not just free volume.
+Most providers offer free tiers with limited requests. Parallel offers $5 in free credits every month, enough for up to 5,000 Turbo searches. OpenAI provides trial credits for new accounts. Beyond free volume, compare accuracy and features on your own use case.
 
 ### Can I use the OpenAI SDK with other chatbot APIs?
 
@@ -257,6 +255,6 @@ A chatbot API generates conversational responses from prompts. A web search API 
 
 ## Start building
 
-The Parallel Responses API gives you web-grounded, cited answers in a single, OpenAI-compatible endpoint. Fixed per-request pricing, structured citations, and a proprietary web index mean you can build accurate, verifiable chatbots without stitching together multiple services.
+The Parallel Responses API gives you web-grounded, cited answers in a single, OpenAI-compatible endpoint. Fixed per-request pricing, structured citations, and a proprietary web index let you build chatbots that cite their sources without stitching together multiple services.
 
 [Start building](https://docs.parallel.ai/home).

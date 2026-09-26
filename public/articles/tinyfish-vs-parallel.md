@@ -18,9 +18,7 @@ Parallel's surface is Search, Extract, Task, Responses, FindAll, Entity Search, 
 
 ## **Where the overlap actually is**
 
-Only two of the four TinyFish products compete with anything Parallel sells: TinyFish Search lines up against Parallel Search, and TinyFish Fetch against Parallel Extract. Everything else is uncontested in both directions. Agent and Browser have no Parallel equivalent, and Task, Responses, FindAll, Entity Search, and Monitor have no TinyFish equivalent.
-
-The overlapping half is also the half TinyFish gives away.
+Only two of the four TinyFish products compete with anything Parallel sells: TinyFish Search lines up against Parallel Search, and TinyFish Fetch against Parallel Extract. Everything else is uncontested in both directions. Agent and Browser have no Parallel equivalent, and Task, Responses, FindAll, Entity Search, and Monitor have no TinyFish equivalent. The overlapping pair is also the pair TinyFish gives away.
 
 ## **Pricing: a free half and a metered half**
 
@@ -36,7 +34,7 @@ The overlapping half is also the half TinyFish gives away.
 
 The zero is real: TinyFish Search and Fetch cost nothing per call, they do not draw down the wallet, and they keep working at a zero balance. If your workload is search and page fetching and it fits inside the rate limits, nothing in the category beats that on price, Parallel's metered API included.
 
-What the zero buys TinyFish is the agent meter. Revenue is $0.016 per agent step, and an agent run is many steps. Free retrieval is how developers arrive. The free half is sized for the funnel, not for production throughput.
+What the zero buys TinyFish is the agent meter. Revenue is $0.016 per agent step, and an agent run is many steps. Free retrieval brings developers in, and its rate limits are sized for that funnel rather than for production throughput.
 
 The homepage also runs a cost comparison, putting 10,000 agent steps at $24,000 on a competing stack against $160 on TinyFish. No comparator is named and no methodology is given, so there is no way to check the figure.
 
@@ -46,7 +44,7 @@ Parallel charges per request against one meter, with nothing prepaid. Search tur
 
 TinyFish Search allows 30 requests per minute per key, and Fetch allows 150 URLs per minute at no more than ten per request. Agent runs default to two concurrent, Browser to five concurrent sessions. Parallel's defaults are 600 requests per minute for Search and Extract, 300 per minute for Responses and Monitor, 2,000 per minute for Task, and 25 FindAll runs per hour.
 
-One agent doing multi-hop research can spend 30 searches in well under a minute, so a single active user can saturate the TinyFish limit. Twenty times the search throughput is what separates a free tier from a production dependency. Both vendors raise limits on enterprise plans, and TinyFish’s cap is per key rather than per account. On defaults, the rate limit decides whether free is a price or a ceiling.
+One agent doing multi-hop research can spend 30 searches in well under a minute, so a single active user can saturate the TinyFish limit, and Parallel's default Search limit is twenty times higher. Both vendors raise limits on enterprise plans, and TinyFish’s cap is per key rather than per account.
 
 ## **Developer experience**
 
@@ -80,7 +78,7 @@ search = client.search(
 )
 ```
 
-The two call shapes show the difference. TinyFish takes a goal and a page to work on, then returns a stream of what the agent did. Parallel takes an objective and a set of queries, then returns ranked URLs with compressed excerpts sized for a model's context window.
+TinyFish takes a goal and a page to work on, then returns a stream of what the agent did. Parallel takes an objective and a set of queries, then returns ranked URLs with compressed excerpts sized for a model's context window.
 
 The free entry points differ in shape as well as price. TinyFish's MCP server sits behind OAuth 2.1, so an account comes first even though the Search and Fetch calls themselves cost nothing. Parallel's hosted Search MCP at search.parallel.ai/mcp takes anonymous requests with no account and no key. Point a client at the URL and web_search and web_fetch appear, backed by the Search and Extract APIs, running Search in basic mode with excerpts capped at roughly 25,000 characters per call to fit typical MCP client limits.
 

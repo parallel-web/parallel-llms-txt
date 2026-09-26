@@ -2,13 +2,13 @@
 
 Meta Muse ships with a fixed connector list and no way for third parties to add to it, but Muse can write and run its own integration code for any service with a public API, CLI, or MCP server. This guide covers how Muse connects to services, what happens when you hand it an MCP server URL, a copy-paste prompt that works in one message, and the security controls that apply to custom connectors.
 
-Meta launched Muse, its personal AI agent, on September 8, 2026. It runs on a dedicated cloud computer and acts inside the apps you connect to it. Its connector list is curated by Meta, and there is no developer portal where a third party can submit one. That has led to a common assumption that if a service is not in the list, Muse cannot use it. The assumption is wrong. Muse can write and run its own integration code on its virtual machine, and Meta documents this as a supported feature called a Custom Connector.
+Meta launched Muse, its personal AI agent, on September 8, 2026. It runs on a dedicated cloud computer and acts inside the apps you connect to it. Its connector list is curated by Meta, and there is no developer portal where a third party can submit one. That has led to a common assumption that if a service is not in the list, Muse cannot use it. In fact, Muse can write and run its own integration code on its virtual machine, and Meta documents this as a supported feature called a Custom Connector.
 
 We tested this by asking Muse to connect to our own hosted MCP server. It took one message and a little under a minute, and the result was a working, reusable integration. What follows is what Muse does when you hand it an API or an MCP server, the prompt that gets the cleanest result, and what to know before you grant it credentials.
 
 ## The three ways Muse connects to a service
 
-Muse reaches outside services in three ways, and it will usually pick the right one on its own. Knowing the ladder helps you understand what it is about to do and why it asks certain questions.
+Muse reaches outside services in three ways, and it will usually pick the right one on its own. Knowing which one it is using tells you why it asks the questions it does.
 
 **Built-in connectors.** Meta builds these with the service provider. At launch the list includes Gmail, Google Calendar and Google Workspace, Ticketmaster, OpenTable, Spotify, Apple Health, Function Health, Peloton, and Plaid, plus Facebook, Instagram, and Threads, which connect automatically through Accounts Center. You turn them on under Settings and then Connectors, or by asking Muse to "connect my Gmail." Each one comes with skills that Meta wrote and iterated on, and its code runs in a privilege-separated worker outside the agent's own runtime, so the agent never touches the OAuth token.
 
@@ -30,11 +30,11 @@ Muse has no "add MCP server" setting. When we asked it to connect to a [Model Co
 
 It then asked two questions. Is the server reachable over HTTP at a URL, or does it run over stdio as a command it would need to launch? And does it need any auth, such as an API key or a header? Those are the only two things you have to know about a server before you start.
 
-Given a URL, Muse wrote a client using the official MCP SDK, connected over streamable HTTP, listed the server's tools, called each of them end to end, and reported the results. It then saved the integration as a reusable skill, which means it is available in future conversations without repeating the setup. The whole exchange fit in one screen.
+Given a URL, Muse wrote a client using the official MCP SDK, connected over streamable HTTP, listed the server's tools, called each of them end to end, and reported the results. It then saved the integration as a reusable skill, which means it is available in future conversations without repeating the setup.
 
-Two practical consequences follow from where Muse runs. Remote servers over streamable HTTP are the easy case, because a cloud VM can reach them the same way any other client does. A stdio server has to be installable on a Debian box with `npm` or `pip`, which most published servers are. A server running on your own laptop is not reachable, since the VM is in Meta's cloud and not on your network. Our guide to [remote vs. local MCP servers](https://parallel.ai/articles/remote-vs-local-mcp-servers) covers the distinction.
+Where Muse runs decides which servers it can reach. Remote servers over streamable HTTP are the easy case, because a cloud VM can reach them the same way any other client does. A stdio server has to be installable on a Debian box with `npm` or `pip`, which most published servers are. A server running on your own laptop is not reachable, since the VM is in Meta's cloud and not on your network. Our guide to [remote vs. local MCP servers](https://parallel.ai/articles/remote-vs-local-mcp-servers) covers the distinction.
 
-The model underneath is built for this. Meta's release notes for Muse Spark 1.1 say the model "zero-shot generalizes to new native tools, MCP servers, and custom skills," and the safety post describes training on zero-shot tool calling through CLIs and skills. You are not asking Muse to do something unusual.
+Meta's release notes for Muse Spark 1.1 say the model "zero-shot generalizes to new native tools, MCP servers, and custom skills," and the safety post describes training on zero-shot tool calling through CLIs and skills.
 
 ## Step by step: connect Muse to a new service
 
@@ -51,7 +51,7 @@ Build a custom integration to [SERVICE]. Its [MCP server URL / OpenAPI document 
 
 ## Worked example: web search in one message
 
-Muse can already browse the web with its browser sub-agent, so why add a search server? Because browsing is the expensive way to answer a factual question. The browser agent loads a results page, picks a link, loads that page, reads it, and repeats, and every step is a screenshot-scale chunk of context that counts against your usage meter. A search MCP returns ranked results with excerpts in one tool call, and a fetch tool returns a page as compact markdown. Research that would take Muse a dozen browser steps takes one or two calls.
+Muse can already browse the web with its browser sub-agent, but browsing is the expensive way to answer a factual question. The browser agent loads a results page, picks a link, loads that page, reads it, and repeats, and every step is a screenshot-scale chunk of context that counts against your usage meter. A search MCP returns ranked results with excerpts in one tool call, and a fetch tool returns a page as compact markdown. Research that would take Muse a dozen browser steps takes one or two calls.
 
 We make Parallel, so our example is the [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp). It is a hosted server at `https://search.parallel.ai/mcp` with two tools, `web_search` and `web_fetch`, and it is free to use with no account or API key. The prompt is the one we used:
 
@@ -59,7 +59,7 @@ We make Parallel, so our example is the [Parallel Search MCP](https://docs.paral
 Build a custom integration to the Parallel Search MCP server at https://search.parallel.ai/mcp. It is a remote MCP server over streamable HTTP with two tools, web_search and web_fetch. No authentication is needed. Connect to it with the official MCP SDK, test both tools end to end, and save the integration as a reusable skill so you can use it for web research in any future conversation. If I later give you a Parallel API key, add it as an Authorization: Bearer header.
 ```
 
-Muse came back with both tools working and a note that it would reach for the skill automatically whenever it needed current web information. It also offered, unprompted, to wire in a Parallel API key as a bearer token if we wanted higher rate limits. That is the right offer. The anonymous endpoint runs at lower limits, and a free account at [platform.parallel.ai](https://platform.parallel.ai) includes $5 in credits every month, applied automatically. Organizations that want every request attributed to an account can point Muse at `https://search.parallel.ai/mcp-oauth` instead, which rejects anonymous calls.
+Muse came back with both tools working and a note that it would reach for the skill automatically whenever it needed current web information. It also offered, unprompted, to wire in a Parallel API key as a bearer token if we wanted higher rate limits. The anonymous endpoint runs at lower limits, and a free account at [platform.parallel.ai](https://platform.parallel.ai) includes $5 in credits every month, applied automatically. Organizations that want every request attributed to an account can point Muse at `https://search.parallel.ai/mcp-oauth` instead, which rejects anonymous calls.
 
 The same shape works for Parallel's [Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp) at `https://task-mcp.parallel.ai/mcp`, which runs deep research and batch enrichment as asynchronous jobs. That one requires an API key from the start. Our list of the [best MCP servers and connectors for Meta Muse](https://parallel.ai/articles/best-mcp-servers-for-meta-muse) covers what else is worth adding.
 
@@ -67,7 +67,7 @@ The same shape works for Parallel's [Task MCP](https://docs.parallel.ai/integrat
 
 If you build software and want Muse users to be able to reach it, you are in the same position as everyone else: Meta has not published a program for adding connectors, and the launch partners appear to have been arranged as partnerships. When we asked Muse how a company gets added as a connector, it told us there was no public application or developer portal it could point to, and then pointed out that connector status is not required, since it can build a custom integration to any public API.
 
-The things that make that integration smooth are the same things that make any agent integration smooth.
+What makes that integration smooth is what makes any agent integration smooth:
 
 - **A public, linkable spec.** An OpenAPI document or an MCP server URL that Muse can read without logging in. Gated docs turn a one-message setup into a browser session.
 - **Token authentication.** Bearer tokens and API-key headers fit the credential-store flow directly. Muse's own question is "an API key or header," which tells you what it expects. OAuth-only services may still work through Muse's browser, but expect more back and forth.

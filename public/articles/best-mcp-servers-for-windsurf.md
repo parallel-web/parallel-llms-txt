@@ -22,7 +22,7 @@ The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) 
 }
 ```
 
-The underlying API ranks first on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 15 search API products (August 2026). For an IDE agent, the day-to-day value is current docs and error research in the flow of coding, with `web_fetch` keeping long pages from flooding context.
+The underlying API's advanced mode scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. For an IDE agent, the day-to-day value is current docs and error research in the flow of coding, with `web_fetch` keeping long pages from flooding context.
 
 **Best for:** grounding Cascade in the current web at zero cost.** Tradeoffs:** we're the vendor; anonymous rate limits suit personal use, and a free API key lifts them.
 
@@ -40,13 +40,13 @@ The official hosted server for issues, PRs, code search, and Actions logs over O
 
 ### 4. Playwright MCP
 
-Microsoft's browser server lets Cascade click through the app it just modified: load, interact, screenshot. That's how Cascade confirms a feature works instead of assuming the diff is right.
+Microsoft's browser server lets Cascade click through the app it just modified (load, interact, screenshot) to confirm a feature works instead of assuming the diff is right.
 
 **Best for:** UI verification and bug reproduction.** Tradeoffs:** heavier than API calls.
 
 ### 5. Sentry MCP
 
-Hosted, OAuth-secured access to production errors and traces. Debugging with the actual stack trace in context beats debugging from a description of it, and Windsurf's agent uses that context well.
+Hosted, OAuth-secured access to production errors and traces, so Cascade debugs from the actual stack trace instead of a description of it.
 
 **Best for:** production issue triage in the editor.** Tradeoffs:** only useful if you run Sentry.
 

@@ -2,11 +2,11 @@
 
 Prospecting automation has solved outreach and scheduling but left research untouched, which is where reps still lose hours per account. This guide covers what most prospecting tools miss, an end-to-end pipeline for company discovery, page extraction, deep research, and custom enrichment beyond standard fields, and where automation should stop and reps take over.
 
-Most prospecting automation tools solve for contact data and outreach cadences. They give you email addresses, phone numbers, and the ability to send sequences at scale. What they don't give you is understanding. They don't tell you what a company's product does, who their customers are, what technology they use, or what challenges they face.
+Most prospecting automation tools solve for contact data and outreach cadences. They give you email addresses, phone numbers, and the ability to send sequences at scale. They don't tell you what a company's product does, who their customers are, what technology they use, or what challenges they face.
 
-This gap matters. Generic outreach gets ignored. Personalized outreach requires research. And research, until now, has been the part of prospecting that doesn't scale.
+Generic outreach gets ignored, and personalized outreach requires research, which until now has been the part of prospecting that doesn't scale.
 
-AI search and extraction APIs close this gap. You can build systems that discover target companies, gather intelligence from web sources, structure that intelligence into CRM-ready fields, and qualify prospects based on signals your competitors can't access.
+AI search and extraction APIs close this gap. You can build systems that discover target companies, gather intelligence from web sources, structure that intelligence into CRM-ready fields, and qualify prospects based on signals that standard databases don't carry.
 
 ## What most prospecting automation misses
 
@@ -14,15 +14,15 @@ Current tools automate the "who" (contact lookup) and the "how" (email sequences
 
 Standard enrichment providers return structured fields: company size, industry, revenue range, headquarters location. These fields help with basic segmentation. They don't help you write an email that references something specific about the prospect's business.
 
-Reps compensate by doing manual research. They visit the company website to understand the product. They check LinkedIn to see recent hires. They scan TechCrunch for funding news. They review G2 to understand competitive positioning. This process takes 15 to 30 minutes per account, and it doesn't scale.
+Reps compensate by doing manual research. They visit the company website to understand the product. They check LinkedIn to see recent hires. They scan TechCrunch for funding news. They review G2 to understand competitive positioning. This takes 15 to 30 minutes per account.
 
-The result is a choice between two bad options. Reps either skip research and send generic outreach (low response rates), or they do manual research and limit their pipeline coverage (low volume). Automated sales prospecting promises scale, but it delivers quantity without context. Salesforce research shows reps [spend 60% of their time on non-selling tasks](https://www.salesforce.com/sales/state-of-sales/sales-statistics/) like prospecting, admin, and data entry.
+Reps end up choosing between two bad options: they either skip research and send generic outreach (low response rates), or they do manual research and limit their pipeline coverage (low volume). Salesforce research shows reps [spend 60% of their time on non-selling tasks](https://www.salesforce.com/sales/state-of-sales/sales-statistics/) like prospecting, admin, and data entry.
 
-The missing layer is live web intelligence. Databases snapshot company information at a point in time. The web contains current information: what the company announced last week, who they hired this month, what their customers say about them today. AI prospecting tools that tap into this layer create outreach that feels researched because it actually is. For a deeper look at how [AI web enrichment for sales](https://parallel.ai/articles/ai-web-enrichment-for-sales) works at the API level, we've written about the underlying approach separately.
+The missing layer is live web intelligence. Databases snapshot company information at a point in time. The web contains current information: what the company announced last week, who they hired this month, what their customers say about them today. AI prospecting tools that tap into this layer produce outreach based on current research. For a deeper look at how [AI web enrichment for sales](https://parallel.ai/articles/ai-web-enrichment-for-sales) works at the API level, we've written about the underlying approach separately.
 
 ## The automated prospecting pipeline, end to end
 
-An effective automated prospecting system has four stages: Discover, Research, Enrich, and Qualify. Each stage transforms raw information into something more useful for sales. Gartner projects that [95% of seller research workflows will begin with AI by 2027](https://www.gartner.com/en/sales/topics/sales-ai), up from less than 20% in 2024. The pipeline below shows what that looks like in practice.
+An effective automated prospecting system has four stages: Discover, Research, Enrich, and Qualify. Gartner projects that [95% of seller research workflows will begin with AI by 2027](https://www.gartner.com/en/sales/topics/sales-ai), up from less than 20% in 2024. The pipeline below shows what that looks like in practice.
 
 **Discover** identifies companies matching your criteria. Instead of buying a static list, you define your ideal company profile and find matches across the open web. A Search API handles this stage, returning ranked URLs with context about why each result matches.
 
@@ -42,17 +42,17 @@ Data flows from discovery through qualification. Check the [API documentation](h
 4. Scoring model ranks prospects by fit and intent signals
 5. Qualified prospects sync to CRM with full research briefs attached
 
-Each stage maps to a specific API capability. The architecture is modular. You can run discovery once and research continuously, or trigger the full pipeline when new companies match your criteria.
+Each stage maps to a specific API capability, so the architecture is modular: you can run discovery once and research continuously, or trigger the full pipeline when new companies match your criteria.
 
 ## Automate company discovery with AI search
 
 The first pipeline stage finds companies that match your target profile. Traditional approaches involve manual searching on LinkedIn, browsing industry directories, or purchasing static lists from data vendors. These methods produce outdated results and require significant filtering.
 
-AI search flips the process. You describe your ideal company in natural language and get ranked results from across the web.
+With AI search, you describe your ideal company in natural language and get ranked results from across the web.
 
 Example search objective: "Series B SaaS companies in healthcare that hired a VP of Engineering in the last 90 days."
 
-The [Search API](https://parallel.ai/products/search) interprets this objective semantically. It doesn't just match keywords. It understands that you want companies in a specific funding stage, operating in healthcare technology, with recent engineering leadership hires. Results come back ranked by relevance, with dense excerpts that let you assess fit without visiting every page.
+The [Search API](https://parallel.ai/products/search) interprets this objective semantically, as a set of constraints: a specific funding stage, healthcare technology, and a recent engineering leadership hire. Results come back ranked by relevance, with dense excerpts that let you assess fit without visiting every page.
 
 ```python
 import requests
@@ -72,11 +72,11 @@ for result in response.json()["results"]:
     print(f"Excerpt: {result['excerpts'][0][:200]}...")
 ```
 
-Source control lets you focus results. Include specific domains to search only trusted sources (LinkedIn, Crunchbase, TechCrunch). Exclude domains that return noise for your use case. Freshness controls ensure you're finding recent information, not outdated profiles.
+Source control lets you focus results. Include specific domains to search only trusted sources (LinkedIn, Crunchbase, TechCrunch). Exclude domains that return noise for your use case. Freshness controls keep results recent.
 
 The output is a list of candidate companies with enough context to decide relevance. Each result includes the source URL, page title, and a compressed excerpt that your pipeline can process immediately. You've automated the SDR task of "find me 50 companies that look like our best customers."
 
-Discovery queries can target specific data sources. Search TechCrunch for recently funded startups. Search LinkedIn for companies with specific job titles in their org chart. Search GitHub for companies contributing to specific open-source projects. Search industry publications for companies mentioned in analyst coverage. Each source reveals different signals about prospect fit.
+Discovery queries can target specific data sources. Search TechCrunch for recently funded startups. Search LinkedIn for companies with specific job titles in their org chart. Search GitHub for companies contributing to specific open-source projects. Search industry publications for companies mentioned in analyst coverage.
 
 ## Extract company intelligence from any web page
 
@@ -100,11 +100,11 @@ for extraction in response.json()["results"]:
     print(extraction["excerpts"])
 ```
 
-Objective-driven extraction focuses the output. Instead of getting an entire webpage converted to markdown, you get the specific sections relevant to your research question. This reduces token consumption in downstream LLM pipelines and keeps your data clean.
+Objective-driven extraction focuses the output. Instead of getting an entire webpage converted to markdown, you get the specific sections relevant to your research question. This reduces token consumption in downstream LLM pipelines.
 
 The API handles content that breaks traditional scrapers: JavaScript-heavy single-page applications, CAPTCHA-protected pages, and embedded PDFs. You don't need to maintain Puppeteer infrastructure or write custom parsing logic for each site.
 
-Pair extraction with search to build a complete research pipeline. Search finds relevant pages across the web. Extraction reads specific information from those pages. The combination automates what previously required manual browsing.
+Pair extraction with search to build a complete research pipeline: search finds relevant pages across the web, and extraction reads specific information from those pages, replacing what used to be manual browsing.
 
 Common extraction patterns for prospecting:
 
@@ -112,9 +112,9 @@ Common extraction patterns for prospecting:
 - **[SEC EDGAR](https://www.sec.gov/edgar/searchedgar/companysearch)**** filings**: Revenue figures, risk factors, strategic priorities (public companies)
 - **G2 or Capterra listing**: Customer sentiment, competitive comparisons, use cases
 
-Each extraction returns markdown optimized for LLM consumption. The content is clean, structured, and ready for the next pipeline stage.
+Each extraction returns markdown formatted for LLM consumption and ready for the next pipeline stage.
 
-Extraction scales across hundreds of URLs per batch. Run scheduled jobs that extract updated information from every prospect's website in your pipeline. Compare current extractions against historical snapshots to detect changes: new product launches, leadership changes, messaging pivots. These change signals indicate timing for outreach.
+Extraction scales across hundreds of URLs per batch. Run scheduled jobs that extract updated information from every prospect's website in your pipeline. Compare current extractions against historical snapshots to detect changes: new product launches, leadership changes, messaging pivots. Each change is a timing signal for outreach.
 
 ## Run deep research with AI agents
 
@@ -160,7 +160,7 @@ print(result["output"]["content"])
 print(result["output"]["basis"])  # citations, reasoning, confidence per field
 ```
 
-Every claim in the output comes with citations back to source URLs. Your reps can verify key findings before high-stakes outreach. The citation trail transforms AI-generated research from a black box into a verifiable briefing.
+Every claim in the output comes with citations back to source URLs. Your reps can verify key findings before high-stakes outreach.
 
 The [Task API](https://parallel.ai/products/task) supports different processor tiers matched to research complexity. Simple metadata lookups run in seconds. Comprehensive competitive analysis that requires visiting dozens of pages runs in minutes. You trade latency for depth based on what each prospect requires. You can also integrate research into agent frameworks using the [MCP server](https://parallel.ai/blog/parallel-task-mcp-server).
 
@@ -174,7 +174,7 @@ Use cases that benefit from agent-powered research:
 - **Decision-maker profiles**: Background, career history, and published content from key contacts
 - **News synthesis**: Recent announcements, press coverage, and market developments
 
-The structured output format makes agent research directly usable. Define a JSON schema for your prospect briefing template, and the Task API returns data that maps to your CRM fields. No parsing required. No manual data entry. Research flows from web sources to your sales tools without human intervention.
+Define a JSON schema for your prospect briefing template, and the Task API returns data that maps to your CRM fields, so research moves from web sources into your sales tools without parsing or manual data entry.
 
 ## Build custom enrichment beyond standard fields
 
@@ -199,13 +199,13 @@ The pipeline for custom enrichment:
 3. Build extraction patterns that pull specific data points from each source
 4. Aggregate signals into composite scores that feed your qualification model
 
-This approach produces enrichment your competitors can't replicate by subscribing to the same data providers. You're building proprietary intelligence from public sources.
+Competitors can't replicate this enrichment by subscribing to the same data providers, because you build it yourself from public sources.
 
 Example workflow: You want to identify companies investing in AI infrastructure. Search job boards for "machine learning engineer" and "MLOps" postings. Extract the posting details to identify required skills and technologies. Cross-reference against Crunchbase to find which of these companies raised funding in the last 12 months. Score by hiring volume, funding recency, and technology specificity. The output is a prioritized list of prospects with verified AI investment signals that no database vendor tracks.
 
 ## Where automation ends and reps take over
 
-Automated prospecting doesn't replace sales reps. It changes what reps spend their time on.
+Automated prospecting changes what reps spend their time on.
 
 **Automate**: Company discovery, data gathering, web extraction, signal enrichment, initial research synthesis, lead scoring, CRM population.
 
@@ -213,7 +213,7 @@ Automated prospecting doesn't replace sales reps. It changes what reps spend the
 
 The goal is a handoff point where reps receive a pre-researched, qualified prospect file rather than a name and email address. The briefing includes what the company does, recent developments, technology environment, potential pain points, and suggested talking points. Reps review the briefing (five minutes) instead of conducting the research (thirty minutes).
 
-AI-generated research requires verification for high-stakes outreach. The citation trails make this fast. A rep can click through to source URLs and confirm key facts before referencing them in a call. Trust but verify.
+AI-generated research requires verification for high-stakes outreach. The citation trails make this fast: a rep can click through to source URLs and confirm key facts before referencing them in a call.
 
 The best automated prospecting systems create tiered handoffs. High-priority prospects get human review before outreach. Standard prospects go into automated sequences with personalization variables populated by the research pipeline. Low-priority prospects stay in nurture tracks until signals indicate timing improvement.
 
@@ -227,7 +227,7 @@ Identify which stages create bottlenecks. For most teams, research and enrichmen
 
 **What parts of sales prospecting should be automated versus human-led?**
 
-Automate data collection, web research, enrichment, and scoring. Keep relationship building, needs assessment, and negotiation human-led. The boundary should be where judgment and empathy create value. Gathering information doesn't require judgment. Interpreting that information in a sales conversation does.
+Automate data collection, web research, enrichment, and scoring. Keep relationship building, needs assessment, and negotiation human-led. Draw the boundary where judgment and empathy matter: gathering information doesn't require judgment, but interpreting it in a sales conversation does.
 
 **How can AI reduce prospect research time without losing account context?**
 
@@ -239,6 +239,6 @@ Go beyond standard firmographics. Collect web-sourced signals that indicate fit 
 
 ## Start building your automated prospecting pipeline
 
-The prospecting workflow that took SDRs hours per account now runs in minutes through APIs. Search finds companies matching your criteria. Extract pulls intelligence from their web presence. Task synthesizes research across multiple sources with full citations. See [pricing](https://docs.parallel.ai/getting-started/pricing) for details on cost per query.
+The prospecting research that took SDRs hours per account now runs in minutes through APIs: Search finds companies matching your criteria, Extract pulls intelligence from their web presence, and Task synthesizes research across multiple sources with full citations. See [pricing](https://docs.parallel.ai/getting-started/pricing) for details on cost per query.
 
 [Start Building](https://docs.parallel.ai/home) with Parallel's Search, Extract, and Task APIs to automate the research phase of your prospecting workflow.

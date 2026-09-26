@@ -67,7 +67,7 @@ Set the scope before running a crawl. A page limit, path boundary, and explicit 
 
 The [Exa plugin](https://cursor.com/marketplace/exa) includes web search and page-fetching skills, a setup command, and an MCP connection. Its documented commands include `/exa-search <query>` and `/exa-fetch <url>`.
 
-If you already use Exa, the marketplace plugin lets you bring that workflow into Cursor. You can use it to find current documentation, locate relevant sources, and retrieve page content.
+If you already use Exa, the marketplace plugin brings that workflow into Cursor, where you can use it to find current documentation, locate relevant sources, and retrieve page content.
 
 To compare search plugins, run the same question through each and inspect the evidence. Use a task from your backlog, such as finding a documented limitation that could block an integration. Check source relevance, factual support, and how much follow-up work you need.
 
@@ -91,7 +91,7 @@ For example, ask Cursor to read a requirements document before comparing externa
 
 > Read [requirements page] in Notion. Use Parallel to check which requirements each vendor documents. Draft a comparison with source URLs, open questions, and the tradeoffs relevant to our project. Return the draft for review before changing the page.
 
-Choose the destination page and update behavior before asking Cursor to save the result. That keeps research attached to the decision your team needs to make.
+Choose the destination page and update behavior before asking Cursor to save the result, so the research stays attached to the decision it informs.
 
 ## Linear: research tied to product work
 

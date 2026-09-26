@@ -12,19 +12,19 @@ A conversational assistant that can answer questions about this morning needs li
 
 ## The real-time data problem
 
-Your users ask questions about yesterday's earnings call. They want today's stock price. They need the latest regulatory filing. And your LLM knows nothing about any of it.
+Your users ask about yesterday's earnings call, today's stock price, and the latest regulatory filing, and your LLM knows nothing about any of it.
 
-Every large language model ships with a [knowledge cutoff](https://otterly.ai/blog/knowledge-cutoff/). GPT-4o's training data ends months before deployment. Claude's knowledge has similar boundaries. The model can reason brilliantly about what it knows, but it cannot know what happened last week.
+Every large language model ships with a [knowledge cutoff](https://otterly.ai/blog/knowledge-cutoff/). Training data ends months before a model is deployed, whether it comes from OpenAI, Anthropic, or Google. The model can reason well about what it knows, but it has no record of what happened last week.
 
-This gap creates real pain. A user asks your assistant about a company's Q4 results. The model either [hallucinate a plausible answer](https://sqmagazine.co.uk/llm-hallucination-statistics/) or refuses entirely. Neither outcome builds trust. A [172-billion-token study](https://arxiv.org/html/2603.08274v1) confirmed that outdated training data directly increases fabrication rates, and [hallucination rates vary widely across models](https://github.com/vectara/hallucination-leaderboard).
+A user asks your assistant about a company's Q4 results. The model will either [hallucinate a plausible answer](https://sqmagazine.co.uk/llm-hallucination-statistics/) or refuse entirely. A [172-billion-token study](https://arxiv.org/html/2603.08274v1) confirmed that outdated training data directly increases fabrication rates, and [hallucination rates vary widely across models](https://github.com/vectara/hallucination-leaderboard).
 
-The disconnect between static training data and the live web frustrates users in predictable ways. They expect an AI assistant to access current information. When they ask "What is Bitcoin trading at?" they want a number, not an apology about knowledge cutoffs.
+Users expect an AI assistant to access current information. When they ask "What is Bitcoin trading at?" they want a number rather than an apology about knowledge cutoffs.
 
-Traditional solutions fall short. You can fine-tune on recent data, but that process takes weeks and the data ages immediately. You can prompt the model to disclaim uncertainty, but users came for answers, not disclaimers. You need a bridge between the LLM's reasoning capabilities and the live web.
+The usual workarounds fall short. Fine-tuning on recent data takes weeks, and the data ages immediately. Prompting the model to disclaim uncertainty doesn't give users the answers they came for. What's missing is a connection between the LLM's reasoning and the live web.
 
 ## What a conversational AI assistant needs
 
-A working _conversational AI assistant_ combines five core components.
+A working _conversational AI assistant_ has five components.
 
 First, you need an LLM for reasoning. The model interprets user intent, synthesizes information, and generates coherent responses.
 
@@ -34,9 +34,9 @@ Third, you connect a retrieval system for external knowledge. This system surfac
 
 Fourth, you implement [tool-calling capability](https://parallel.ai/articles/what-is-mcp). The LLM must decide when to search, formulate the right query, and incorporate results into its response.
 
-Fifth, you format responses appropriately. Citations need URLs. Lists need structure. The output must serve the user's actual need.
+Fifth, you format responses appropriately. Citations need URLs. Lists need structure.
 
-The retrieval component determines whether your assistant can answer questions about the real world. Everything else enables reasoning about whatever information that component provides.
+Of the five, retrieval decides whether your assistant can answer questions about the real world.
 
 ## Three approaches to real-time data access
 
@@ -46,7 +46,7 @@ The most common pattern embeds your documents into a vector database and retriev
 
 This approach works well for stable content. Internal documentation, product manuals, and policy documents change infrequently enough that weekly or daily indexing keeps the system reasonably fresh.
 
-The freshness problem emerges when your content changes faster than your indexing cycle. Stock prices shift by the second. News breaks hourly. Regulatory filings appear without warning. A static index cannot capture information that does not exist at indexing time.
+Freshness breaks down when your content changes faster than your indexing cycle: stock prices shift by the second, news breaks hourly, and regulatory filings appear without warning. A static index cannot capture information that does not exist at indexing time.
 
 You also carry infrastructure cost. Vector databases need hosting. Embedding pipelines need compute. The overhead scales with your corpus size.
 
@@ -56,25 +56,25 @@ You also carry infrastructure cost. Vector databases need hosting. Embedding pip
 
 An alternative approach crawls web pages on demand. When a user asks about Apple's stock price, you fetch finance.yahoo.com, parse the HTML, and extract the number. Building your own [web crawler](https://parallel.ai/articles/what-is-a-web-crawler) for this purpose introduces significant complexity.
 
-Latency becomes the first obstacle. A single page fetch takes two to ten seconds. JavaScript-rendered content requires headless browsers. Complex pages need multiple requests. Your user waits while your scraper navigates the modern web's complexity.
+Latency is the first obstacle. A single page fetch takes two to ten seconds, JavaScript-rendered content requires headless browsers, and complex pages need multiple requests.
 
-Reliability creates the second obstacle. Websites deploy CAPTCHAs, rate limits, and bot detection. A scraper that works today fails tomorrow when the target site updates its defenses.
+Reliability is the second. Websites deploy CAPTCHAs, rate limits, and bot detection. A scraper that works today fails tomorrow when the target site updates its defenses.
 
-Token efficiency presents the third obstacle. A typical web page contains navigation menus, advertisements, footers, and scripts. The actual content comprises perhaps 10% of the raw HTML. You burn context window budget on noise.
+Token efficiency is the third. A typical web page contains navigation menus, advertisements, footers, and scripts. The actual content comprises perhaps 10% of the raw HTML, and the rest burns context window budget.
 
 ### External search APIs
 
 A [search API](https://parallel.ai/articles/what-is-a-web-search-api) accepts a query and returns ranked URLs with token-dense excerpts. The pattern inverts the scraping model: instead of you maintaining crawling infrastructure, a specialized service continuously indexes the web and serves pre-processed results.
 
-Latency improves. Pre-indexed content returns in one to three seconds. You skip the crawling, rendering, and parsing steps entirely.
+Latency drops: pre-indexed content returns in a few hundred milliseconds to a few seconds, because you skip the crawling, rendering, and parsing steps entirely.
 
-Token efficiency transforms when you receive compressed excerpts instead of raw pages. A search API returns the relevant paragraphs, not the entire document. Your context window fills with signal, not navigation menus.
+Token use drops too, since you receive compressed excerpts instead of raw pages: the relevant paragraphs rather than the entire document.
 
 Reliability shifts from your infrastructure to the API provider. They handle CAPTCHAs, rate limits, and site-specific parsing. You make a single API call.
 
 Freshness depends on the provider's indexing velocity. Parallel maintains a web-scale index with millions of pages added daily, continuously updated to capture recent content.
 
-We built the Search API specifically for this use case. You describe your search objective in natural language, and we return URLs ranked by relevance along with dense excerpts optimized for LLM consumption. **Declarative ****[semantic search](https://parallel.ai/articles/what-is-semantic-search)** means you state what you need, not how to find it.
+We built the Search API specifically for this use case. You describe your search objective in natural language, and we return URLs ranked by relevance along with dense excerpts optimized for LLM consumption. **Declarative ****[semantic search](https://parallel.ai/articles/what-is-semantic-search)** means you state what you need and the API works out how to find it.
 
 ## Building the assistant: architecture and code
 
@@ -82,7 +82,7 @@ We built the Search API specifically for this use case. You describe your search
 
 The flow moves in one direction: user query enters an orchestration layer that decides whether web search would help, calls the Search API if needed, passes the results to the LLM for synthesis, and returns a response with source citations.
 
-The orchestration layer matters. A question like "What is the capital of France?" needs no search. A question like "What did Tesla announce yesterday?" requires fresh data. Your assistant must distinguish between these cases and route accordingly.
+A question like "What is the capital of France?" needs no search. A question like "What did Tesla announce yesterday?" requires fresh data. The orchestration layer has to tell these cases apart and route accordingly.
 
 ### Setting up the search tool
 
@@ -141,7 +141,8 @@ client = openai.OpenAI()
 
 def chat(messages: list) -> str:
     response = client.chat.completions.create(
-        model="gpt-4o",
+        model="gpt-6-sol",
+        reasoning_effort="none",  # required for tool calling on GPT-6 over Chat Completions
         messages=messages,
         tools=[search_tool]
     )
@@ -160,7 +161,7 @@ def chat(messages: list) -> str:
             })
         # Generate final response with search context
         response = client.chat.completions.create(
-            model="gpt-4o",
+            model="gpt-6-sol",
             messages=messages
         )
         return response.choices[0].message.content
@@ -184,17 +185,15 @@ We recommend limiting results to three to five per query. More results provide m
 
 Balance freshness against latency by using the Search API's freshness controls. For time-sensitive queries, you can trigger live crawls for the most current data. For evergreen topics, cached results return faster.
 
-Parallel's excerpts represent a core differentiator. We optimize every token for the LLM's next reasoning step, not for human readability. The result: more useful context per token than any raw scraping approach.
+We optimize Parallel's excerpts for the LLM's next reasoning step rather than for human readability, so each token carries more useful context than raw scraped HTML.
 
 ## Security and data quality for production
 
-Enterprise deployments require security guarantees that development prototypes can ignore.
-
 We hold SOC 2 Type 2 certification. An independent auditor has verified our security controls over an extended observation period. Your compliance team can request the report.
 
-We enforce zero data retention. Your queries and their results do not persist in our systems after the response completes. We do not train on customer data. Your competitive research remains yours.
+We enforce zero data retention. Your queries and their results do not persist in our systems after the response completes. We do not train on customer data.
 
-**Source control** gives you domain-level filtering. Include only trusted domains for compliance-sensitive applications. Exclude competitors or unreliable sources. You control what enters your assistant's context.
+**Source control** gives you domain-level filtering. Include only trusted domains for compliance-sensitive applications. Exclude competitors or unreliable sources.
 
 Build in error handling for production reliability. The search might fail due to network issues, rate limits, or transient errors. Your assistant should handle these gracefully:
 
@@ -223,7 +222,7 @@ Our index adds millions of pages daily and supports freshness controls to trigge
 
 **What latency should I expect?**
 
-The Search API returns results in one to three seconds, adding minimal delay compared to the LLM's inference time.
+The Search API returns results in about 200ms on Turbo up to about 3 seconds on Advanced, depending on the mode, adding minimal delay compared to the LLM's inference time.
 
 **How do I handle search API errors gracefully?**
 
@@ -231,7 +230,7 @@ Implement fallback logic: if the search call fails, your assistant can answer fr
 
 ## Start building with real-time web access
 
-You now have the architecture and code to connect your conversational AI assistant to live web data. The Search API bridges the gap between your LLM's reasoning capabilities and the information your users need.
+You now have the architecture and code to connect your conversational AI assistant to live web data.
 
 Get your API key and start building today.
 

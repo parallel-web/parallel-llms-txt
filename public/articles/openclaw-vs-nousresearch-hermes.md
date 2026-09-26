@@ -44,8 +44,6 @@ Hermes supports Nous Portal (300+ models on paid tiers), OpenRouter, OpenAI, Ant
 
 ## **The skills both agents possess**
 
-Here's the feature surface side by side.
-
 | Capability | OpenClaw | Hermes Agent |
 | --- | --- | --- |
 | Multi-channel chat | WhatsApp, Telegram, Slack, Discord, iMessage (via BlueBubbles), Google Chat, Matrix, Teams, Signal, IRC, LINE, Feishu, Mattermost, Nostr, Twitch, Zalo, and more (26 channels as of v2026.6) | Telegram, Discord, Slack, WhatsApp, Signal, Matrix, Mattermost, Email, SMS, DingTalk, Feishu/Lark, WeCom, BlueBubbles (iMessage), Home Assistant, Webhooks (15+ platforms) |
@@ -59,15 +57,13 @@ Here's the feature surface side by side.
 | Visual workspace | Live Canvas (A2UI), where the agent builds its own UI | No agent-authored canvas, but Hermes Desktop (native macOS, Windows, Linux) and a local web dashboard cover the GUI case |
 | Automation triggers | Webhooks, Gmail Pub/Sub | Cron-driven, gateway-delivered |
 
-
-
 ## **The overlap is real**
 
-Both agents can browse the web, edit files, run shell commands, schedule recurring jobs, and chat from your phone. Both now have extensive platform coverage, more than most comparisons acknowledge. The differences are in emphasis, not absolute capability.
+Both agents can browse the web, edit files, run shell commands, schedule recurring jobs, and chat from your phone. Both now cover more platforms than most comparisons acknowledge, and the differences are mostly in emphasis.
 
 OpenClaw covers more messaging surfaces (26 channels as of v2026.6, including Teams, Google Chat, IRC, LINE, Nostr, and Twitch alongside the mainstream platforms). Hermes covers 15+ platforms with strong enterprise and Asian platform support (DingTalk, WeCom, Feishu/Lark, QQ Bot), plus Email, SMS, and Home Assistant integrations that OpenClaw doesn't natively include. Both reach iMessage, but differently: OpenClaw goes through BlueBubbles, while Hermes added native iMessage via Photon in June 2026 and no longer needs a local Mac relay.
 
-Where they diverge more clearly: OpenClaw leans into environmental integration (device-level Nodes, Gmail Pub/Sub triggers, and the Canvas visual workspace). Hermes leans into programmatic depth and self-extension. The execute_code tool lets it collapse multi-step workflows into one sandboxed Python script (via RPC bridge). Combine that with the skills system and subagent delegation, and you get an agent designed to compound its own productivity.
+Where they diverge more clearly: OpenClaw leans into environmental integration (device-level Nodes, Gmail Pub/Sub triggers, and the Canvas visual workspace). Hermes leans into programmatic depth and self-extension. The execute_code tool lets it collapse multi-step workflows into one sandboxed Python script (via RPC bridge). Add the skills system and subagent delegation, and Hermes is built to get more productive the longer you use it.
 
 ## **Pros and cons**
 
@@ -97,11 +93,11 @@ API costs can balloon quickly without optimization (the heartbeat check alone ca
 
 ### **Hermes Agent strengths**
 
-Self-improving skills loop is genuinely novel. It gets better at your tasks over time, and skills follow the portable agentskills.io open standard.
+Self-improving skills loop is unusual among open-source agents: it gets better at your tasks over time, and skills follow the portable agentskills.io open standard.
 
 execute_code tool is a major efficiency win (collapses multi-turn workflows into single inference calls).
 
-Layered memory with FTS5 full-text search, LLM summarization, and pluggable providers (Honcho dialectic user modeling and 8+ community backends) makes recall actually reliable.
+Layered memory with FTS5 full-text search, LLM summarization, and pluggable providers (Honcho dialectic user modeling and 8+ community backends) makes recall reliable.
 
 OpenAI-compatible API, MCP support, ACP IDE integration (VS Code, Zed, JetBrains), and plugin system make it easy to plug into existing stacks.
 
@@ -137,7 +133,7 @@ Best for: developers and researchers who want a persistent collaborator they can
 
 ## **Leveling up web search with Parallel**
 
-Web search and deep research are integral features for OpenClaw and Hermes, and both ship with a menu of providers rather than a single hardcoded one. OpenClaw auto-detects Brave first among keyed providers and offers Parallel Search two ways: a free, key-free option and a paid API-backed one, each selected explicitly. Hermes defaults to Firecrawl and falls back to a DuckDuckGo skill when no key is present. For those who want to level up their agent's research skills, both support Parallel Search directly. Adding Parallel to OpenClaw or Hermes gives the agents web search infrastructure built specifically for agents.
+OpenClaw and Hermes both depend on web search and deep research, and both ship with a menu of providers rather than a single hardcoded one. OpenClaw auto-detects Brave first among keyed providers and offers Parallel Search two ways: a free, key-free option and a paid API-backed one, each selected explicitly. Hermes defaults to Firecrawl and falls back to a DuckDuckGo skill when no key is present. Both support Parallel Search directly if you want web search infrastructure built specifically for agents.
 
 ```
 openclaw plugins install @openclaw/parallel-plugin
@@ -168,6 +164,4 @@ OpenClaw bets that the bottleneck is the integration surface (the more places th
 
 Hermes bets that the bottleneck is learning and orchestration (the faster the agent can compound its own capabilities, the more useful it becomes).
 
-Neither bet has been proven wrong yet. 
-
-If you're new to personal agents, the most educational exercise is probably to try both. OpenClaw will teach you how much leverage you get from broad channel integration; Hermes will teach you what it feels like to work with an agent that actually accumulates skill over time. You'll come away with a much clearer sense of what you want the next generation of personal agents to look like.
+If you're new to personal agents, the most educational exercise is probably to try both. OpenClaw will teach you how much leverage you get from broad channel integration; Hermes will teach you what it feels like to work with an agent that accumulates skill over time.

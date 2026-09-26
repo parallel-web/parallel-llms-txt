@@ -4,7 +4,7 @@ Free tiers for web search APIs are not comparable: some are one-time credit gran
 
 ## **What "free" actually means for a search API**
 
-"Free tier" covers at least four different arrangements, and the difference matters more than the headline number. Before comparing providers, it helps to know which one you're being offered.
+"Free tier" covers at least four different arrangements, and which one you're being offered matters more than the headline number.
 
 ### **One-time credits vs. recurring credits**
 
@@ -12,7 +12,7 @@ A signup grant is a fixed amount you burn through once. A recurring monthly allo
 
 ### **Whether a card is required**
 
-This is the single most practical distinction. A hard-capped free tier with no card on file cannot generate a bill. A credit-based free tier with a card attached converts to metered billing the instant you exceed the credit, and some providers don't offer a spending cap. Neither model is wrong, but they carry very different risk if your agent enters a retry loop at 3 a.m.
+A hard-capped free tier with no card on file cannot generate a bill. A credit-based free tier with a card attached converts to metered billing the instant you exceed the credit, and some providers don't offer a spending cap. Neither model is wrong, but they behave very differently if your agent enters a retry loop at 3 a.m.
 
 ### **Rate limits, not credits, are usually the ceiling**
 
@@ -20,11 +20,11 @@ Free tiers are typically throttled well below paid tiers. A plan with 1,000 mont
 
 ### **Where the results come from**
 
-Some providers run their own web index. Others scrape a consumer search engine and reformat the results as JSON. Scraped SERP data is cheap and often excellent, but it inherits legal and continuity risk from the engine being scraped. Google has litigated against SERP scrapers. For a weekend project this is irrelevant. For something you intend to run for years, it belongs in the evaluation.
+Some providers run their own web index. Others scrape a consumer search engine and reformat the results as JSON. Scraped SERP data is cheap and often excellent, but it inherits legal and continuity risk from the engine being scraped. Google has litigated against SERP scrapers. That's irrelevant for a weekend project and worth weighing for anything you intend to run for years.
 
 ### **What the output is shaped for**
 
-A free tier measured in requests tells you nothing about how many requests you'll need. APIs that return 20-word snippets built for human eyeballs force your model to fetch each page separately, so a single question can cost five calls. APIs that return dense, query-relevant excerpts often answer in one. Cost per request is the wrong unit; cost per answer is the right one.
+A free tier measured in requests tells you nothing about how many requests you'll need. APIs that return 20-word snippets built for human eyeballs force your model to fetch each page separately, so a single question can cost five calls. APIs that return dense, query-relevant excerpts often answer in one. Compare providers on cost per answer.
 
 ## **The best free web search APIs in 2026**
 
@@ -36,17 +36,17 @@ We built the [**Parallel Search API**](https://parallel.ai/products/search) for 
 - **A signup credit.** New accounts created at [platform.parallel.ai](https://platform.parallel.ai) receive a starting credit balance you can spend across any Parallel API: Search, Extract, Task, Responses, FindAll, Entity Search, or Monitor.
 - **$5 in free credits every month.** Eligible organizations with a card on file receive [$5 in credits automatically each month](https://parallel.ai/blog/free-tier-parallel), usable across Parallel products. Free credit applies before a paid balance, so you only pay once you've used it up. Unused balance expires at the end of the month, one credit per organization, and marketplace and postpaid organizations aren't eligible.
 
-The Search API offers [four modes](https://docs.parallel.ai/search/modes): Turbo (~200ms median latency, $1 per 1,000 requests), Fast (under a second, also $1 per 1,000), Basic (~1s, $5 per 1,000), and Advanced (~3s, $5 per 1,000, the API default). Turbo and Fast matter most for anyone shopping on price. At $1 per 1,000 requests they're the cheapest modes we offer, and on the independent Artificial Analysis Search Index (August 2026) they recorded the two lowest search costs of the 15 products tested, Fast the lowest outright, with Fast scoring 73 against advanced's 75. That combination is unusual: in this category, cheap and fast normally means worse.
+The Search API offers [four modes](https://docs.parallel.ai/search/modes): Turbo (~200ms median latency, $1 per 1,000 requests), Fast (under a second, also $1 per 1,000), Basic (~1s, $5 per 1,000), and Advanced (~3s, $5 per 1,000, the API default). If you're shopping on price, look at Turbo and Fast: at $1 per 1,000 requests they're the cheapest modes we offer, and in the independent Artificial Analysis Search Index's September 8, 2026 data, Fast recorded $8.41 in search cost per 1,000 benchmark tasks, among the lowest measured, while scoring 73 against advanced's 75. In this category, cheap and fast usually costs more accuracy than that.
 
-Every response includes source attribution. We hold SOC 2 Type 2 certification and enforce zero data retention on every plan, including while you're spending free credits. The [Search API quickstart](https://docs.parallel.ai/search/search-quickstart) takes about five minutes end to end.
+Every response includes source attribution. We hold SOC 2 Type 2 certification, and zero data retention is available on Enterprise plans. The [Search API quickstart](https://docs.parallel.ai/search/search-quickstart) takes about five minutes end to end.
 
 ### **2. Tavily**
 
-Tavily's free plan gives 1,000 API credits per month with no credit card required, covering both its search and extract endpoints. It's one of the cleanest free tiers in the category precisely because there's no card involved: you cannot accidentally generate a bill. Paid usage runs $0.008 per credit pay-as-you-go, with monthly plans bringing that down. Tavily also integrates tightly with agent frameworks like LangChain, which makes it a common first choice for developers already in that ecosystem. The trade-off is index scale. Tavily doesn't operate its own full web index.
+Tavily's free plan gives 1,000 API credits per month with no credit card required, covering both its search and extract endpoints. With no card involved, you can't accidentally generate a bill. Paid usage runs $0.008 per credit pay-as-you-go, with monthly plans bringing that down. Tavily also integrates tightly with agent frameworks like LangChain, which makes it a common first choice for developers already in that ecosystem. The trade-off is index scale: Tavily doesn't operate its own full web index.
 
 ### **3. Exa**
 
-Exa is the most generous free tier on this list in raw dollar terms: $20 in credits on signup plus $10 in free credits every month, with no payment method required. Requests stop when your balance runs out, so the account cannot incur a charge. Exa runs its own embeddings-based index and pairs the API with prosumer tools like Websets, so it's a good fit if you want to explore interactively as well as programmatically. Its index is smaller and more specialized than providers running general web-scale crawls.
+Exa gives new accounts a $10 onboarding bonus plus $10 in free credits every month, with no payment method required. Requests stop when your balance runs out, so the account cannot incur a charge. Exa runs its own embeddings-based index and pairs the API with prosumer tools like Websets, so it's a good fit if you want to explore interactively as well as programmatically. Its index is smaller and more specialized than providers running general web-scale crawls.
 
 ### **4. Firecrawl**
 
@@ -62,15 +62,15 @@ Linkup gives new accounts 4,000 free queries on signup and then tops accounts up
 
 ### **7. Brave Search API**
 
-Brave is worth understanding as a cautionary example. Its free tier (2,000 queries per month since 2023, later raised to 5,000) was eliminated in February 2026 and replaced with $5 in monthly credits on metered plans. At $5 per 1,000 requests, that credit buys about 1,000 searches, after which the card Brave has required at signup since 2023 gets charged. Claiming the credit also requires attributing Brave Search in your project's website or about page. Brave remains one of the few independent Western operators of a full web index, which is a genuine technical advantage, but the free tier that made it the default choice for hobbyists no longer exists.
+Brave's free tier (2,000 queries per month since 2023, later raised to 5,000) was eliminated in February 2026 and replaced with $5 in monthly credits on metered plans. At $5 per 1,000 requests, that credit buys about 1,000 searches, after which the card Brave has required at signup since 2023 gets charged. Claiming the credit also requires attributing Brave Search in your project's website or about page. Brave remains one of the few independent Western operators of a full web index, which is a genuine technical advantage, but the free tier that made it the default choice for hobbyists no longer exists.
 
 ### **8. Google Custom Search JSON API**
 
-The historical default for free web search (100 queries per day free, $5 per 1,000 beyond that, hard-capped at 10,000 per day) is closed to new customers and scheduled for discontinuation on January 1, 2027. If you already have a project on it, you have a migration deadline. If you don't, you can't sign up. Google points existing users toward Vertex AI Search, which is oriented to site search across a limited domain set rather than open web search and requires full Google Cloud setup. We mention it because it still appears near the top of search results for this query, and it's no longer an option.
+The historical default for free web search (100 queries per day free, $5 per 1,000 beyond that, hard-capped at 10,000 per day) is closed to new customers and scheduled for discontinuation on January 1, 2027. If you already have a project on it, you have a migration deadline. If you don't, you can't sign up. Google points existing users toward Vertex AI Search, which is oriented to site search across a limited domain set rather than open web search and requires full Google Cloud setup. We include it only because it still ranks near the top of search results for this query.
 
 ### **9. Self-hosted SearXNG**
 
-SearXNG is a self-hosted metasearch engine with no per-query cost at all. If "free" means "no invoice," this is the only entry that fully qualifies. You supply the server, and you own the operational reality: results come from aggregating public engines, so you inherit their rate limiting and blocking, and there's no SLA, no support, and no one to page when a source engine changes its markup. Reasonable for privacy-sensitive internal tooling, and for cost-sensitive experimentation where occasional failure is acceptable. Not a foundation for a product.
+SearXNG is a self-hosted metasearch engine with no per-query cost at all. If "free" means "no invoice," this is the only entry that fully qualifies. You supply the server, and you own the operational reality: results come from aggregating public engines, so you inherit their rate limiting and blocking, and there's no SLA, no support, and no one to page when a source engine changes its markup. It's reasonable for privacy-sensitive internal tooling and for cost-sensitive experimentation where occasional failure is acceptable, but it can't carry a product.
 
 ## **Free tiers side by side**
 
@@ -92,8 +92,8 @@ _Check official documentation for current pricing._
 
 Every other entry on this list requires an account before your agent can run a single query. The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) doesn't. It's a hosted, streamable-HTTP MCP server at **https://search.parallel.ai/mcp**, free and usable anonymously, and it exposes two tools:
 
-- **web_search**: real-time search returning ranked URLs with compressed, query-relevant excerpts, running the Search API in Basic mode.
-- **web_fetch**: clean markdown from any public URL, including JavaScript-heavy pages, CAPTCHA-protected content, and PDFs.
+- **web_search**: real-time search returning ranked URLs with compressed, query-relevant excerpts, running the Search API in Fast mode.
+- **web_fetch**: clean markdown from any public URL, including JavaScript-heavy pages and PDFs.
 
 Results are capped at roughly 25,000 characters per call to stay inside typical MCP client output limits. For Claude Code, one command:
 
@@ -116,23 +116,24 @@ For clients configured through JSON (Cursor, Windsurf, Cline, Claude Desktop, an
 
 There are one-click installers for [Cursor](https://cursor.com/en/install-mcp?name=Parallel%20Search%20MCP&config=eyJ1cmwiOiJodHRwczovL3NlYXJjaC5wYXJhbGxlbC5haS9tY3AifQ==) and [VS Code](https://insiders.vscode.dev/redirect/mcp/install?name=Parallel%20Search%20MCP&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fsearch.parallel.ai%2Fmcp%22%7D), plus setup instructions for 25+ clients in the [MCP quickstart](https://docs.parallel.ai/integrations/mcp/quickstart). It works with Claude and Claude Code, ChatGPT and Codex, Cursor, Cline, OpenClaw, Hermes Agent, OpenCode, Windsurf, Goose, LM Studio, and anything else that speaks MCP.
 
-Two things to know about the boundary. Anonymous use gets rate limits sized for hobby and personal agents; if you want higher limits and usage analytics, create an account at [platform.parallel.ai](https://platform.parallel.ai) and pass your API key as a Bearer token, or point your client at https://search.parallel.ai/mcp-oauth to authenticate over OAuth instead. And for production traffic, call the Search API directly. That's where mode selection, result counts, and per-request cost control live.
+Anonymous use gets rate limits sized for hobby and personal agents; if you want higher limits and usage analytics, create an account at [platform.parallel.ai](https://platform.parallel.ai) and pass your API key as a Bearer token, or point your client at https://search.parallel.ai/mcp-oauth to authenticate over OAuth instead. For production traffic, call the Search API directly, which is where mode selection, result counts, and per-request cost control live.
 
 ## **Four modes, and why Turbo and Fast change the free-tier math**
 
-Most search APIs sell one quality level at one price. We sell three, so you can match spend to what a given query is worth.
+Most search APIs sell one quality level at one price. We sell four, so you can match spend to what a given query is worth.
 
 | Mode | Median latency | Price | Built for |
 | --- | --- | --- | --- |
 | Turbo | ~200ms | $1 / 1,000 requests | Chat, voice agents, RAG pre-filtering, high-volume lookups |
-| Basic | ~1s | $5 / 1,000 requests | Most agent workloads; deeper context than Turbo |
+| Fast | ~700ms | $1 / 1,000 requests | Most agent loops (the docs' recommended starting mode) |
+| Basic | ~1s | $5 / 1,000 requests | Agent workloads that need deeper context per call |
 | Advanced | ~3s | $5 / 1,000 requests | Multi-hop background agents, deep research, code review |
 
-[Turbo](https://parallel.ai/blog/parallel-search-turbo) is the one to understand if price is what brought you here, alongside the new Fast mode at the same $1 per 1,000. Turbo returns web grounding in about 200ms, roughly 14x cheaper than the default search built into frontier models, at similar or better accuracy; Fast takes under a second, returns higher-quality results, and is the best fit for most agent loops. Both return dense excerpts directly rather than a list of links to go fetch, which is what keeps the total number of calls down.
+[Turbo](https://parallel.ai/blog/parallel-search-turbo) and the newer Fast mode, both at $1 per 1,000, are the ones to look at if price brought you here. Turbo returns web grounding in about 200ms; Fast takes under a second, returns higher-quality results, and is the best fit for most agent loops. On [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026), with a GPT-5.6 Luna agent at the low-cost tier, Fast scored 94% on SimpleQA Verified and Turbo 91%, both at $2 per 1,000 questions including LLM tokens, against $5.50 for Perplexity (94%) and $17.40 for Tavily (94%). Both return dense excerpts directly rather than a list of links to go fetch, which keeps the total number of calls down.
 
-On the independent Artificial Analysis Search Index (August 2026), which runs the same GPT-5.6 Luna agent against every provider and varies only the search API, Parallel Search leads the table: advanced mode scored 75 of a possible 100, matched by Brave's LLM context mode at 75 and ahead of You.com (highlights) and Exa (auto) at 74. Turbo, the mode the free tier stretches furthest, scored 67 at a measured $13.64 per 1,000 benchmark tasks, and Fast, at the same $1 per 1,000 list price, scored 73 while recording the lowest search cost of any product tested at $8.41.
+On the independent Artificial Analysis Search Index (September 2026 data), which runs the same GPT-5.6 Luna agent against every provider and varies only the search API, Parallel Search (advanced) scores 75 of a possible 100, level with Brave's LLM context mode and behind Perplexity Search (medium) at 80 and Octen Search at 77, with You.com (highlights) and Exa (auto) at 74. Turbo, the mode the free tier stretches furthest, scored 67 at a measured $13.64 per 1,000 benchmark tasks in AA's August data, and Fast, at the same $1 per 1,000 list price, scored 73 at $8.41 in the September 8 data, among the lowest search costs measured.
 
-One methodology note: unlike the vendor-run numbers that used to dominate this category (ours included), the figures above come from Artificial Analysis, an independent evaluator, using a fixed harness in which the search provider is the only variable. That's the neutral scorecard this category was missing. Still, run your own evaluation on your own queries before committing; an aggregate index can't predict your workload.
+One methodology note: unlike the vendor-run numbers that used to dominate this category (ours included), the figures above come from Artificial Analysis, an independent evaluator, using a fixed harness in which the search provider is the only variable. Still, run your own evaluation on your own queries before committing; an aggregate index can't predict your workload.
 
 ## **How far $5 a month actually goes**
 
@@ -143,7 +144,7 @@ Because Parallel prices per request rather than per token, the free monthly allo
 - 1,000 Task API runs
 - 1,666 Monitor API executions
 
-Or any combination. 5,000 Turbo searches a month is around 165 a day, which is more than enough to run a personal research agent, a Slack bot, or a monitoring job continuously without ever paying. Failed runs aren't billed, so a broken query doesn't eat the allowance. And because free credit is spent before paid balance, adding a card doesn't change when you start paying, it changes what happens after you've used the free credit up.
+Or any combination. 5,000 Turbo searches a month is around 165 a day, which is more than enough to run a personal research agent, a Slack bot, or a monitoring job continuously without ever paying. Failed runs aren't billed, so a broken query doesn't eat the allowance. And because free credit is spent before paid balance, adding a card doesn't make you pay sooner; it only decides what happens after the free credit is gone.
 
 ## **Which free option fits your project**
 
@@ -151,7 +152,7 @@ Or any combination. 5,000 Turbo searches a month is around 165 a day, which is m
 - **You're prototyping and want to avoid an invoice.** Tavily or Exa. Both refill monthly with no card on file, so overage is impossible by construction.
 - **You need Google's actual ranking.** Serper, at 2,500 free queries and $0.30 per 1,000 after. Accept the scraping dependency knowingly.
 - **The free tier is a trial for something that goes to production.** Evaluate on the paid path, not the free one. Check the mode you'll ship and the rate limits you'll need, and whether SOC 2 and zero data retention are included or an enterprise upsell.
-- **Volume is high and per-query cost decides the build.** Turbo or Fast at $1 per 1,000 requests, and measure cost per answer rather than cost per request, dense excerpts mean fewer calls per resolved question.
+- **Volume is high and per-query cost decides the build.** Turbo or Fast at $1 per 1,000 requests, and measure cost per answer rather than cost per request: dense excerpts mean fewer calls per resolved question.
 - **You cannot spend money and can run infrastructure.** Self-hosted SearXNG, with clear eyes about reliability.
 
 ## **Frequently asked questions about free web search APIs**

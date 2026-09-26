@@ -20,11 +20,11 @@ Web context is what coding agents most often lack: the error message that starte
 codex mcp add parallel-search --url https://search.parallel.ai/mcp
 ```
 
-Parallel ranks first on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 15 search API products across 7 providers (August 2026). Restart Codex after adding the server and the tools appear.
+Parallel Search (advanced) scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products across 12 providers (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. Restart Codex after adding the server and the tools appear.
 
 **Best for:** grounding Codex in current docs, errors, and releases without leaving the terminal.
 
-**Tradeoffs:** we're the vendor, so we're biased. Anonymous use has lower rate limits and runs the low-latency basic search mode; the API key and OAuth variants above lift the limits.
+**Tradeoffs:** we're the vendor, so we're biased. Anonymous use has lower rate limits and runs the low-latency fast search mode; the API key and OAuth variants above lift the limits.
 
 ### 2. Parallel Task MCP
 
@@ -44,13 +44,13 @@ codex mcp add context7 -- npx -y @upstash/context7-mcp
 
 ### 4. GitHub MCP
 
-GitHub's official hosted server brings issues, pull requests, code search, and Actions logs into Codex over OAuth (`codex mcp login github` after adding it). The usual caveat applies: it registers many tools, so limit toolsets to the ones you use, and if your GitHub workflow is light, the `gh` CLI through shell may be all you need.
+GitHub's official hosted server brings issues, pull requests, code search, and Actions logs into Codex over OAuth (`codex mcp login github` after adding it). It registers many tools, so limit toolsets to the ones you use, and if your GitHub workflow is light, the `gh` CLI through shell may be all you need.
 
 **Best for:** multi-repo, PR-heavy work.** Tradeoffs:** large tool surface; scope it or it crowds your context.
 
 ### 5. Playwright MCP
 
-Microsoft's Playwright server gives Codex a real browser to verify its own work: load the page it just changed, click through the flow, screenshot the result. By mid-2026 it's among the most-installed MCP servers in the community, and it turns a plausible-looking diff into a confirmed fix.
+Microsoft's Playwright server gives Codex a real browser to verify its own work: load the page it just changed, click through the flow, screenshot the result. By mid-2026 it's among the most-installed MCP servers in the community.
 
 **Best for:** UI verification and frontend bug reproduction.** Tradeoffs:** heavier than API calls; for just reading pages, `web_fetch` is cheaper.
 

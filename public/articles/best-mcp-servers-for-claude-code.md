@@ -2,9 +2,9 @@
 
 Claude Code treats MCP as a first-class feature. These are the six servers that earn their context cost in 2026, with the exact claude mcp add command for each, and guidance on when the built-in tools are already enough.
 
-Claude Code is the most widely used coding harness of 2026, and the [Model Context Protocol (MCP)](https://parallel.ai/articles/what-is-mcp) is its extension surface: one config entry connects the agent to a documentation index, your issue tracker, a browser, or the live web. The catch is that every connected server spends context on every turn, so the useful question isn't which servers exist (thousands), but which ones earn their cost.
+Claude Code is Anthropic's agentic coding harness, and the [Model Context Protocol (MCP)](https://parallel.ai/articles/what-is-mcp) is its extension surface: one config entry connects the agent to a documentation index, your issue tracker, a browser, or the live web. Every connected server spends context on every turn, though, so out of the thousands that exist, the useful question is which ones earn their cost.
 
-Here are the six we'd install, with the exact setup for each. Disclosure up front: we make Parallel, our search server is the first pick, and we cite the benchmark numbers so you can discount our bias.
+Below are the six we'd install, with the exact setup for each. Disclosure up front: we make Parallel, our search server is the first pick, and we cite the benchmark numbers so you can discount our bias.
 
 ## How MCP works in Claude Code
 
@@ -20,7 +20,7 @@ The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) 
 claude mcp add --transport http "Parallel-Search-MCP" https://search.parallel.ai/mcp
 ```
 
-Claude Code has a built-in web search tool, and for casual lookups it's fine; we've written a direct [comparison of Claude's built-in search against Parallel](https://parallel.ai/articles/claude-web-search-vs-parallel) if you want the details. The short version: a dedicated engine returns denser, more complete context per call, and Parallel ranks first on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 15 search API products across 7 providers (August 2026). Since the MCP is free, the experiment costs you one command.
+Claude Code has a built-in web search tool, and for casual lookups it's fine; we've written a direct [comparison of Claude's built-in search against Parallel](https://parallel.ai/articles/claude-web-search-vs-parallel) if you want the details. In brief, a dedicated engine returns denser, more complete context per call, and Parallel Search (advanced) scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products across 12 providers (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77.
 
 **Best for:** researching libraries, errors, and APIs mid-task, and reading long docs pages without flooding the context window.
 
@@ -52,7 +52,7 @@ Microsoft's Playwright server gives Claude Code a real browser to click through 
 
 ### 6. Sentry MCP
 
-Sentry's hosted OAuth server puts production errors, traces, and release health in the agent's reach. Debugging with the actual stack trace and breadcrumbs beats debugging from a pasted screenshot, every time.
+Sentry's hosted OAuth server puts production errors, traces, and release health in the agent's reach, so it debugs from the actual stack trace and breadcrumbs instead of a pasted screenshot.
 
 **Best for:** triaging and fixing production issues in context.** Tradeoffs:** designed for human-in-the-loop debugging rather than as a full Sentry API replacement.
 

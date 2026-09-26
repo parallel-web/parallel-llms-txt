@@ -1,54 +1,52 @@
 # How to switch from OpenAI web search to Parallel Search API
 
-Switching from OpenAI's built-in web search to Parallel's Search API cuts the search line by 80% to 96%, depending on your model tier and Parallel mode, and the migration is a client and parameter change. This guide covers what 10,000 searches actually cost on each side, including the token fees and multi-call behavior that make OpenAI's bill higher than the sticker, and the code change in Python and TypeScript.
+Switching from OpenAI's built-in web search to Parallel's Search API cuts the per-call search fee by 50% to 96%, depending on which OpenAI search tool you use and your Parallel mode, and the migration is a client and parameter change. This guide covers what 10,000 searches actually cost on each side, including the token fees and multi-call behavior that make OpenAI's bill higher than the sticker, and the code change in Python and TypeScript.
 
-OpenAI charges **$25 per 1,000 web search calls** for non-reasoning models like GPT-4o and GPT-4.1, and $10 per 1,000 calls for reasoning models like GPT-5. Parallel's Search API costs **$5 per 1,000 requests**, with compressed excerpts included in every result, and the Turbo and Fast modes bring that down to $1 per 1,000, at ~200ms and sub-second median latency respectively. That's an 80% cost reduction on the standard tier and 50% on the reasoning tier, reaching 96% and 90% with Turbo, with higher accuracy across four major benchmarks.
+OpenAI charges **$10 per 1,000 web search calls** on its current web_search tool for every model, plus the search content tokens at the model's input rate; the legacy web_search_preview tool charges $25 per 1,000 calls on non-reasoning models like GPT-4o and GPT-4.1. Parallel's Search API costs **$5 per 1,000 requests**, with compressed excerpts included in every result, and the Turbo and Fast modes bring that down to $1 per 1,000, at ~200ms and sub-second median latency respectively. That's a 50% cut in the per-call fee against web_search and 80% against the $25 preview tier, reaching 90% and 96% with Turbo. OpenAI's built-in search isn't in our current benchmark runs, so the accuracy section below compares Parallel with Exa, Tavily, and Perplexity instead.
 
 
 **What OpenAI charges for web search**
 
-OpenAI's web search pricing splits into two tiers based on the model you're calling:
+OpenAI's current web_search tool costs $10 per 1,000 calls on every model. The legacy web_search_preview tool still splits into two tiers based on the model you're calling:
 
-| Model tier | Cost per 1,000 search calls |
+| Model tier (web_search_preview) | Cost per 1,000 search calls |
 | --- | --- |
-| Non-reasoning (GPT-4o, GPT-4.1) | $25 |
-| Reasoning (GPT-5) | $10 |
+| Non-reasoning (GPT-4o, GPT-4.1) | $25 (search content tokens free) |
+| Reasoning (GPT-6, GPT-5, o-series) | $10 (plus search content tokens) |
 
-Two details make the effective cost higher than it looks. First, OpenAI's model can trigger multiple search calls per API request, so a single /v1/responses call might generate two or three billable searches. Second, you pay for the search context tokens on top of the per-call fee (at the model's standard token rate). The bill adds up fast in production.
+Two details make the effective cost higher than it looks. First, OpenAI's model can trigger multiple search calls per API request, so a single /v1/responses call might generate two or three billable searches. Second, except on the preview tool's $25 non-reasoning tier, you pay for the search context tokens on top of the per-call fee (at the model's standard token rate).
 
-OpenAI's marketing pricing page shows only the $25 figure. The $10 reasoning-model tier appears on the developer pricing page. If you've seen conflicting numbers, that's why.
+OpenAI's developer pricing page lists all three rates: $10 per 1,000 calls for web_search on every model, and $10 or $25 per 1,000 for web_search_preview depending on whether the model is a reasoning model. Older write-ups that quote only $25 are describing the preview tool, which explains any conflicting numbers you may have seen.
 
 
 **What Parallel charges**
 
 Parallel's Search API costs **$5 per 1,000 requests** for the Basic and Advanced modes; the Turbo and Fast modes cost $1 per 1,000 requests, at ~200ms and sub-second latency respectively. For most agent workloads, Fast is the mode to reach for. Each request returns up to 10 results with compressed, query-relevant excerpts included at no extra charge. Additional results beyond 10 cost $1 per 1,000.
 
-No token fees on top. No per-model pricing tiers. One flat price per mode.
+There are no token fees on top and no per-model pricing tiers, just one flat price per mode.
 
-|  | OpenAI (reasoning) | OpenAI (non-reasoning) | Parallel |
+|  | OpenAI web_search (all models) | OpenAI web_search_preview (non-reasoning) | Parallel |
 | --- | --- | --- | --- |
-| Per 1,000 search calls | $25 | $10 | $1 (Turbo) to $5 (Basic, Advanced) |
-| Excerpts/content included | Included | Token fees apply | Included |
+| Per 1,000 search calls | $10 | $25 | $1 (Turbo) to $5 (Basic, Advanced) |
+| Excerpts/content included | Token fees apply | Included | Included |
 | Rate limit | Varies | Varies | 600 req/min |
 
 ## What 10,000 searches actually cost
 
-Here's what a realistic monthly workload costs across three configurations: an AI agent making 10,000 web search calls per month, using GPT-4.1 ($2/1M input, $8/1M output) for reasoning. Each query retrieves roughly 4,000 tokens of search context and generates a 500-token response.
+The table below prices a realistic monthly workload: an AI agent making 10,000 web search calls per month, using either GPT-6 Sol ($2/1M input, $10/1M output) or GPT-6 Luna ($0.10/1M input, $0.50/1M output) for reasoning. Each query retrieves roughly 4,000 tokens of search context through OpenAI's tool, or about 2,500 with Parallel's compressed excerpts, and generates a 500-token response.
 
-|  | OpenAI web search (GPT-4.1) | OpenAI web search (GPT-5) | Parallel Search API + GPT-4.1 |
-| --- | --- | --- | --- |
-| Search calls | 10,000 × $0.01 = $100 | 10,000 × $0.025 = $250 | 10,000 × $0.005 = $50 (or $10 with Turbo at $0.001) |
-| Search context tokens | 40M tokens × $2/1M = $80 | Free (included in $25 tier) | 25M tokens × $2/1M = $50 |
-| Output tokens | 5M tokens × $8/1M = $40 | 5M tokens × $10/1M = $50 | 5M tokens × $8/1M = $40 |
-| Monthly total | $220 | $300 | $140 |
+|  | OpenAI web search + GPT-6 Sol | Parallel Search API + GPT-6 Sol | OpenAI web search + GPT-6 Luna | Parallel Search API + GPT-6 Luna |
+| --- | --- | --- | --- | --- |
+| Search calls | 10,000 × $0.01 = $100 | 10,000 × $0.005 = $50 (or $10 with Turbo) | 10,000 × $0.01 = $100 | 10,000 × $0.005 = $50 (or $10 with Turbo) |
+| Search context tokens | 40M × $2/1M = $80 | 25M × $2/1M = $50 | 40M × $0.10/1M = $4 | 25M × $0.10/1M = $2.50 |
+| Output tokens | 5M × $10/1M = $50 | 5M × $10/1M = $50 | 5M × $0.50/1M = $2.50 | 5M × $0.50/1M = $2.50 |
+| Monthly total | $230 | $150 ($110 with Turbo) | $106.50 | $55 ($15 with Turbo) |
 
-A few things to note in the math.
-
-OpenAI's GA web search tool costs **$10 per 1,000 calls** with GPT-4o and GPT-4.1. The search content tokens (web results injected into the model's context) get billed at the model's input rate on top of that. With GPT-5, search calls jump to **$25 per 1,000**, though the search content tokens are free. Either way, you don't control how much content the model retrieves per search.
+OpenAI's GA web search tool costs **$10 per 1,000 calls** on every model, including GPT-6 Sol and GPT-6 Luna. The search content tokens (web results injected into the model's context) get billed at the model's input rate on top of that. Only the legacy web_search_preview tool charges **$25 per 1,000**, on non-reasoning models, with the search content tokens free. Either way, you don't control how much content the model retrieves per search.
 
 Parallel's Search API costs **$5 per 1,000 calls** for the Basic and Advanced modes, or $1 per 1,000 with Turbo or Fast, regardless of which LLM you pair it with. Excerpts are included. The search context column is lower (25M vs. 40M tokens) because Parallel returns compressed, query-relevant excerpts rather than raw page content. You set the excerpt length with max_chars_per_result, so you control exactly how many tokens reach your LLM.
 
-At minimum, Parallel saves you **36% over the GPT-4.1 configuration** and **53% over the GPT-5 configuration**. The savings scale linearly: at 100,000 searches per month, the gap between OpenAI + GPT-5 ($3,000) and Parallel + GPT-4.1 ($1,400) is $1,600. Switching the search calls to Turbo or Fast at $0.001 per request widens the gap further.
+On the same model, Parallel saves you **about 35% with GPT-6 Sol** and **about 48% with GPT-6 Luna**. The savings scale linearly: at 100,000 searches per month, the gap between OpenAI + GPT-6 Sol ($2,300) and Parallel + GPT-6 Sol ($1,500) is $800. Switching the search calls to Turbo or Fast at $0.001 per request widens the gap further.
 
 
 **Why the cost gap reflects a design difference**
@@ -57,23 +55,21 @@ OpenAI treats web search as a tool bolted onto its language models. You send a p
 
 Parallel built its Search API as standalone infrastructure. You call the endpoint, define your search objective in natural language, and get back structured JSON with ranked URLs and dense excerpts. You control what goes into your LLM's context window, how many results you retrieve, and how many characters each excerpt contains.
 
-The practical difference: Parallel returns token-efficient excerpts compressed around your query's intent, not raw page content. Every token in the response earns its place in your context window.
 
+**How Parallel scores on current benchmarks**
 
-**Parallel scores higher on every major benchmark**
+OpenAI's built-in web search isn't in our current benchmark runs, so we don't have a current head-to-head against it. The closest current evidence is our September 9, 2026 Search API evaluation on [parallel.ai/benchmarks](https://parallel.ai/benchmarks), which compares Parallel with Exa, Tavily, and Perplexity. Every provider was paired with the same agent at two price tiers: a GPT-5.6 Sol agent (reasoning high) at the frontier tier and a GPT-5.6 Luna agent (reasoning low) at the low-cost tier. An LLM judge graded the answers. Cells show accuracy and total cost per 1,000 questions.
 
-We tested Parallel's Search API against OpenAI GPT-5 (with web search enabled) across four public benchmarks, using 100-question samples from each. GPT-5 served as the search-calling agent, and GPT-4.1 judged the answers.
-
-| Benchmark | Parallel | OpenAI GPT-5 | Parallel Cost (Per 1K) | OpenAI Cost (Per 1K) |
+| Benchmark (agent tier) | Parallel | Perplexity | Tavily | Exa (auto) |
 | --- | --- | --- | --- | --- |
-| SimpleQA (factual Q&A) | 98% | 98% | $17 | $37 |
-| FRAMES (multi-hop reasoning) | 92% | 90% | $42 | $68 |
-| BrowseComp (complex web browsing) | 58% | 53% | $156 | $253 |
-| HLE (expert-level questions) | 47% | 45% | $82 | $143 |
+| SimpleQA Verified (frontier) | 97% / $28.3 (Advanced) | 95% / $20.2 | 92% / $61.3 | 91% / $35.7 |
+| SimpleQA Verified (low-cost) | 94% / $2.0 (Fast) | 94% / $5.5 | 94% / $17.4 | 91% / $7.9 |
+| BrowseComp (frontier) | 74% / $399 (Advanced) | 74% / $275 | 66% / $935 | 70% / $971 |
+| BrowseComp (low-cost) | 44% / $11.8 (Fast) | 46% / $37.1 | 32% / $176 | 36% / $53.4 |
 
 _Note: Despite our best efforts, these figures may not always be up to date. For the latest benchmarks, visit our __[benchmarks hub](https://parallel.ai/benchmarks)__._
 
-Parallel matches or beats OpenAI on accuracy across all four benchmarks. The cost column includes both the search API fees and LLM inference costs. On FRAMES, Parallel leads by 2 points at 38% lower total cost. On BrowseComp, the hardest benchmark in this set, Parallel leads by 5 points at 38% less. Separately, the independent Artificial Analysis Search Index (August 2026) ranks Parallel Search (advanced) first of the 15 search API products it tested; OpenAI's built-in web search was not among them.
+At the frontier tier, Parallel Advanced led SimpleQA Verified at 97% and tied Perplexity on BrowseComp at 74%, though Perplexity got there for less ($275 vs. $399 per 1,000 questions). At the low-cost tier, Parallel Fast matched the top SimpleQA Verified score (94%) at $2 per 1,000 questions, the lowest cost in the run, and Perplexity edged it on BrowseComp (46% vs. 44%). The cost figures include search fees and LLM tokens. Separately, the independent Artificial Analysis Search Index (September 2026 data) scores Parallel Search (advanced) at 75, level with Brave's LLM context mode and behind Perplexity Search (medium) at 80 and Octen Search at 77; OpenAI's built-in web search is not on its displayed leaderboard.
 
 These benchmarks are self-reported. We've published the methodology, competitor configurations, and judge model for transparency, and we use standardized public benchmark question sets.
 
@@ -107,7 +103,7 @@ for result in results.results:
         print(excerpt)
 ```
 
-With this approach, you don't control how many searches the model runs, what content it retrieves, or how many tokens it consumes. The model decides all of that.
+With this approach, you don't control how many searches the model runs, what content it retrieves, or how many tokens it consumes.
 
 ```python
 import os
@@ -157,7 +153,7 @@ context = "\n\n".join(
 
 # Step 3: Pass context to your LLM
 response = openai.chat.completions.create(
-    model="gpt-4o",
+    model="gpt-6-sol",
     messages=[
         {"role": "system", "content": "Answer using only the provided sources. "
                                        "Cite URLs for each claim."},
@@ -172,7 +168,7 @@ print(response.choices[0].message.content)
 
 Parallel's Search API is model-agnostic. You call it for search, then pass the results into whatever LLM you use for reasoning. A typical pattern:
 
-This pattern gives you the best of both: Parallel's search accuracy and excerpt quality, with your choice of LLM for reasoning. You also avoid paying OpenAI's $25 per 1,000 web search surcharge, since the LLM call contains no search tool.
+You get Parallel's search accuracy and excerpt quality with your choice of LLM for reasoning. You also avoid paying OpenAI's $10 to $25 per 1,000 web search surcharge and its search content tokens, since the LLM call contains no search tool.
 
 ## Get started
 

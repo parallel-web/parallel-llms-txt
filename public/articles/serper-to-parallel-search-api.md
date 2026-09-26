@@ -2,7 +2,7 @@
 
 Serper is cheaper per search than Parallel at volume, so the reason to switch is the stage after the search call: turning titles, links, and one-line snippets into something a model can reason from. This guide covers the honest cost comparison, how each parameter maps, what you give up, and the code change.
 
-Start with the part most migration guides would skip: you are not doing this to save money on the search line. Serper sells Google results from $1.00 down to $0.30 per 1,000 queries, and Parallel Search Turbo is $1 per 1,000. At volume, Serper is cheaper.
+You are not migrating to save money on the search line. Serper sells Google results from $1.00 down to $0.30 per 1,000 queries, and Parallel Search Turbo is $1 per 1,000. At volume, Serper is cheaper.
 
 The reason to switch is the stage that comes after the search call. A Serper response gives your agent a title, a link, a position, and Google's description snippet, one or two lines written to earn a click. To reason from that, you fetch the pages, strip the boilerplate, chunk what is left, and pay input tokens for whatever survives. This guide is about deleting that stage.
 
@@ -41,7 +41,7 @@ If you have keyword queries you have already tuned against Google, keep them: pa
 
 ## **What you lose**
 
-This migration is not free of trade-offs, and if any of the following are load-bearing you should keep Serper for those calls:
+If any of the following are load-bearing, keep Serper for those calls:
 
 - Ranked positions. Parallel does not reproduce Google's SERP, so rank tracking has no equivalent
 - gl and hl, no country and language parameters; use a Source Policy and state the locale in the objective
@@ -49,7 +49,7 @@ This migration is not free of trade-offs, and if any of the following are load-b
 - The vertical endpoints. Images, Maps, Places, Shopping, Scholar, and Patents have no Parallel equivalent
 - Throughput on default limits. Serper gives 50 to 300 QPS depending on pack; Parallel's default is 600 requests per minute, with custom limits on enterprise plans
 
-A hybrid is perfectly reasonable: Serper for the vertical and rank-tracking calls, Parallel on the agent path where the model reads the output.
+A hybrid works well: Serper for the vertical and rank-tracking calls, Parallel on the agent path where the model reads the output.
 
 ## **The code change**
 
@@ -82,7 +82,7 @@ search = client.search(
 
 ## **Get started**
 
-Measure the right thing. Take a sample of production questions, run your current Serper-plus-fetch pipeline against them, and record three numbers: end-to-end latency, total input tokens sent to the model, and answer accuracy. Then run the same questions through Turbo and compare. If the search line goes up slightly and the token line drops by more, the migration pays for itself, and if it does not, you have learned that cheaply. The $5 monthly free credit covers 5,000 Turbo searches, which is enough to run the test.
+Take a sample of production questions, run your current Serper-plus-fetch pipeline against them, and record three numbers: end-to-end latency, total input tokens sent to the model, and answer accuracy. Then run the same questions through Turbo and compare. If the search line goes up slightly and the token line drops by more, the migration pays for itself, and if it does not, you have learned that cheaply. The $5 monthly free credit covers 5,000 Turbo searches, which is enough to run the test.
 
 Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention, and commits contractually to not training on customer data.
 

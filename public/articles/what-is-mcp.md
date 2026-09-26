@@ -4,7 +4,7 @@ MCP is the reason an agent can reach a new tool without a bespoke integration, a
 
 ## **Definition and core purpose of the Model Context Protocol**
 
-The Model Context Protocol (MCP) is an open standard that allows large language models (LLMs) to connect with external data sources, tools, and services to access real-time information and perform actions. Introduced by [Anthropic in November 2024](https://www.anthropic.com/news/model-context-protocol), MCP replaces fragmented integrations with a standardized approach. Think of it as a universal adapter that lets AI applications communicate with any external system through one consistent interface.
+The Model Context Protocol (MCP) is an open standard that allows large language models (LLMs) to connect with external data sources, tools, and services to access real-time information and perform actions. Introduced by [Anthropic in November 2024](https://www.anthropic.com/news/model-context-protocol), MCP replaces fragmented integrations with a standardized approach. It works like a universal adapter, letting AI applications communicate with any external system through one consistent interface.
 
 Before MCP, every AI application needed custom code to connect with databases, APIs, search engines, and other services. Each integration was different, which created maintenance overhead and limited how quickly developers could add new capabilities to their AI systems.
 
@@ -12,9 +12,9 @@ MCP provides a specialized API protocol that enables AI applications to communic
 
 ## **Why MCP matters for AI agents and LLMs**
 
-LLMs face a fundamental limitation: they're constrained by their training data, which becomes outdated the moment training ends. An AI assistant trained six months ago doesn't know about this morning's news, your company's latest database entries, or real-time market conditions.
+LLMs are limited to their training data, which becomes outdated the moment training ends. An AI assistant trained six months ago doesn't know about this morning's news, your company's latest database entries, or real-time market conditions.
 
-MCP enables AI agents to break free from this constraint by accessing live information and performing actions in the real world. Instead of hallucinating answers based on stale training data, agents can query current systems and retrieve verified information.
+MCP lets AI agents access live information and perform actions in the real world. Instead of hallucinating answers based on stale training data, agents can query current systems and retrieve verified information.
 
 What becomes possible:
 
@@ -24,11 +24,9 @@ What becomes possible:
 - File system access reads, writes, and organizes documents within specified directories
 - API interactions send emails, create tickets, or update CRM records
 
-The difference between an LLM with and without MCP is the difference between a reference book and a research assistant. One contains fixed knowledge; the other actively gathers what it needs.
-
 ## **Key components of the MCP architecture**
 
-MCP operates through a three-tier architecture that separates concerns and maintains security. Each component plays a distinct role in connecting AI models to external capabilities.
+MCP splits an integration into three tiers, a host, a server, and a client, each with its own role in connecting AI models to external capabilities.
 
 **Host**
 
@@ -40,7 +38,7 @@ The server is the external service providing tools, data, or functionality. A da
 
 **Client**
 
-The client acts as middleware, translating between the host and server. LLMs can't directly execute tools or make API calls, they generate text. The client interprets the model's intentions, executes the appropriate server operations, and returns results in a format the model can process.
+The client acts as middleware, translating between the host and server. LLMs can't directly execute tools or make API calls; they generate text. The client interprets the model's intentions, executes the appropriate server operations, and returns results in a format the model can process.
 
 **Schema and type system**
 
@@ -52,7 +50,7 @@ MCP includes authentication mechanisms and access controls. Servers can require 
 
 ## **How the MCP workflow operates step-by-step**
 
-An MCP interaction follows a predictable sequence, using JSON-RPC 2.0 messages to establish communication and exchange information. Here's how a complete workflow unfolds.
+An MCP interaction follows a predictable sequence, using JSON-RPC 2.0 messages to establish communication and exchange information.
 
 **1. Tool registration**
 
@@ -60,7 +58,7 @@ When a server starts, it announces its available tools and capabilities to any c
 
 **2. Capability discovery**
 
-The client connects to the server and negotiates the protocol version, ensuring both sides support compatible features. During this handshake, the client learns exactly what the server can do, which tools exist, what data formats they accept, and what permissions are required.
+The client connects to the server and negotiates the protocol version, ensuring both sides support compatible features. During this handshake, the client learns what the server can do: which tools exist, what data formats they accept, and what permissions are required.
 
 **3. Context packaging**
 
@@ -76,15 +74,15 @@ The client validates the server's responses before passing them to the host, che
 
 ## **MCP versus function-calling, OpenAPI, and other tool protocols**
 
-You might be wondering how MCP differs from existing approaches like function-calling APIs or OpenAPI specifications. The distinction comes down to design philosophy and use case optimization.
+MCP differs from function-calling APIs and OpenAPI specifications in design and in the use cases each targets.
 
 ![MCP vs. Traditional APIs](https://cdn.sanity.io/images/5hzduz3y/production/167f529153b2f811c3c80b147a0048fd481827cd-1982x738.png)
 
-Function-calling in LLM APIs like OpenAI's or Anthropic's lets models invoke specific functions you define, but you still write custom code for each integration. MCP standardizes that entire layer. The model doesn't know whether it's talking to a database, a search engine, or a file system. The protocol is the same.
+Function-calling in LLM APIs like OpenAI's or Anthropic's lets models invoke specific functions you define, but you still write custom code for each integration. MCP standardizes that entire layer. The model uses the same protocol whether it's talking to a database, a search engine, or a file system.
 
 ## **Benefits of adopting MCP in AI applications**
 
-MCP delivers concrete advantages that compound as your AI systems grow more sophisticated:
+MCP's advantages grow with the number of tools your agents use:
 
 - **Reduces integration complexity:** Instead of maintaining dozens of custom integrations, you write one MCP client that connects to any compliant server
 - **Minimizes hallucination risk:** Structured data and verification reduce AI errors because models work with current, validated information rather than generating plausible-sounding fabrications
@@ -92,19 +90,17 @@ MCP delivers concrete advantages that compound as your AI systems grow more soph
 - **Improves security posture:** Centralized authentication and permissions mean you configure access control once rather than implementing it separately for each integration
 - **Standardizes auditing and logging:** Consistent tracking across all tool interactions gives you visibility into what your AI agents are doing
 
-When an agent retrieves data through MCP, you can trace exactly where that information came from. Every MCP request and response flows through the same infrastructure, making it straightforward to monitor, debug, and audit agent behavior.
+When an agent retrieves data through MCP, you can trace exactly where that information came from. Every MCP request and response flows through the same infrastructure, which makes it easier to monitor, debug, and audit agent behavior.
 
 ## **Limitations and open challenges of the MCP standard**
 
-MCP isn't a silver bullet, and it's worth understanding where the current implementation has room to grow. The protocol introduces some overhead: establishing connections, negotiating capabilities, and packaging data all take time. For simple use cases where you're making one straightforward API call, MCP might be overkill compared to a direct integration.
+The protocol introduces some overhead: establishing connections, negotiating capabilities, and packaging data all take time. For simple use cases where you're making one simple API call, MCP might be overkill compared to a direct integration.
 
-The ecosystem is still young. While Anthropic and a growing developer community are building MCP servers, you won't find MCP implementations for every service yet. If you need to connect to a niche API, you might build your own server.
+The ecosystem is large but uneven. The MCP project counted more than 10,000 active servers by December 2025, but you won't find a maintained MCP implementation for every service. If you need to connect to a niche API, you might build your own server.
 
-There's also a learning curve. Developers familiar with REST APIs or GraphQL will need to understand MCP's architecture, JSON-RPC messaging, and schema definitions.
+There's also a learning curve: developers familiar with REST APIs or GraphQL will need to understand MCP's architecture, JSON-RPC messaging, and schema definitions.
 
 ## **Current ecosystem, implementations, and governance**
-
-MCP is gaining traction across the AI development community, with implementations emerging for common use cases and infrastructure.
 
 **Anthropic Claude**
 
@@ -120,11 +116,9 @@ AI development platforms and agent frameworks are integrating MCP support. Devel
 
 **Roadmap and working group**
 
-Anthropic maintains the specification and coordinates with the developer community through GitHub discussions and working groups. The protocol is evolving based on real-world usage and feedback from implementers.
+Since December 2025, MCP has been a project of the Agentic AI Foundation, a directed fund under the Linux Foundation. Its maintainers coordinate with the developer community through GitHub discussions and working groups, and the protocol is evolving based on real-world usage and feedback from implementers.
 
-## **Quick-start guide implementing an MCP client or server**
-
-Getting started with MCP is more approachable than it might seem. Here's the path from zero to a working implementation.
+## **Quick-start guide: implementing an MCP client or server**
 
 **1. Select a reference library**
 
@@ -140,7 +134,7 @@ Set up the server to handle MCP requests. This typically involves implementing h
 
 **4. Test with an LLM**
 
-Validate the integration works correctly by connecting your server to an MCP-compatible LLM. Send test queries that exercise your tools and verify the responses are formatted properly.
+Connect your server to an MCP-compatible LLM, send test queries that exercise your tools, and check that the responses are formatted properly.
 
 **5. Monitor and iterate**
 
@@ -148,7 +142,7 @@ Track performance and refine implementation based on real usage. Pay attention t
 
 ## **How Parallel Search complements MCP-based agents**
 
-AI agents need access to current web information to reason about the real world. Parallel's [Search](https://parallel.ai/blog/search-mcp-server) and [Task](https://parallel.ai/blog/parallel-task-mcp-server) APIs are available through MCP, giving agents enterprise-grade web research capabilities through the same standardized protocol.
+AI agents need access to current web information to reason about the real world. Parallel's [Search](https://parallel.ai/blog/search-mcp-server) and [Task](https://parallel.ai/blog/parallel-task-mcp-server) APIs are available through MCP, so agents get web research through the same standardized protocol.
 
 When your MCP-enabled client/agent needs to research a topic, verify a fact, or gather current information, it can call Parallel's MCP servers to conduct basic search or reasoning-enhanced search. The agent describes what it's looking for, "Find the current CTO of this company" or "Research recent funding rounds for startups in the fintech space", and Parallel returns structured, verifiable results optimized for LLMs.
 
@@ -174,4 +168,4 @@ MCP introduces minimal latency for the protocol negotiation, typically measured 
 
 **How does MCP relate to retrieval-augmented generation services?**
 
-MCP provides the standardized interface for RAG systems to deliver context to LLMs, while RAG focuses on the retrieval and generation process itself. You might use MCP to connect your LLM to a vector database or search service that implements RAG, making the two complementary rather than competing approaches.
+MCP provides the standardized interface for RAG systems to deliver context to LLMs, while RAG focuses on the retrieval and generation process itself. You might use MCP to connect your LLM to a vector database or search service that implements RAG, so the two work together.

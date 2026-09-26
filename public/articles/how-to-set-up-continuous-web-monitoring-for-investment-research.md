@@ -4,21 +4,21 @@ Continuous web monitoring replaces manual source checking, so filings, news, hir
 
 ## Why investment research needs continuous monitoring
 
-You search for information when you need it, pulling data from terminals, vendor feeds, and the open web. This pull-based approach works until it doesn't. A competitor files an 8-K announcing an acquisition at 4:30 PM on Friday. You don't find out until Monday morning's news digest. The stock has already gapped.
+You search for information when you need it, pulling data from terminals, vendor feeds, and the open web. The weakness of this pull-based approach shows up in timing: a competitor files an 8-K announcing an acquisition at 4:30 PM on Friday, you don't find out until Monday morning's news digest, and by then the stock has already gapped.
 
 Most market-moving signals appear on the web before they reach Bloomberg or Refinitiv. You can spot hiring velocity on career pages weeks before headcount shows up in quarterly filings. Pricing changes hit ecommerce sites before analysts publish notes. FDA adverse event reports show up on government portals before they become news.
 
-Investment analysts track hundreds of these signals across SEC filings, news, career pages, pricing data, and regulatory updates. Doing this manually creates two problems. First, you miss time-sensitive events because you're not watching when they happen. Second, you spend hours each week on repetitive searches that could be automated.
+Investment analysts track hundreds of these signals across SEC filings, news, career pages, pricing data, and regulatory updates. Done manually, you miss time-sensitive events because you're not watching when they happen, and you spend hours each week on repetitive searches that could be automated.
 
-Push-based monitoring solves both problems. Instead of searching when you need an answer, you define what you want to track and receive notifications when something changes. Your monitoring system watches SEC EDGAR for material event filings. It scans career pages for headcount spikes. It tracks competitor pricing pages for changes. You only act when new information surfaces.
+With push-based monitoring, instead of searching when you need an answer, you define what you want to track and receive notifications when something changes. The system watches SEC EDGAR for material event filings, scans career pages for headcount spikes, and tracks competitor pricing pages, and you act only when new information surfaces.
 
-Hedge funds and asset managers have used alternative data pipelines for years. The shift now is from buying static vendor datasets to building proprietary, continuous monitoring systems. Packaged alternative data gets shared across buyers, eroding any edge. Custom monitoring lets you define queries unique to your investment thesis.
+Hedge funds and asset managers have used alternative data pipelines for years. The shift now is from buying static vendor datasets to building proprietary, continuous monitoring systems. Packaged alternative data gets shared across buyers, so any edge erodes; custom monitoring lets you define queries unique to your investment thesis.
 
-Parallel built the [Monitor API](https://parallel.ai/blog/monitor-api) around this pull-to-push paradigm shift. You define a natural language query describing what you want to track, set a schedule, and receive webhook notifications with structured event data. The search runs continuously so you never miss a signal. Teams running [financial research workflows](https://parallel.ai/blog/case-study-kepler) have already adopted this approach to stay ahead of manual processes.
+Parallel built the [Monitor API](https://parallel.ai/blog/monitor-api) around this pull-to-push model. You define a natural language query describing what you want to track, set a schedule, and receive webhook notifications with structured event data. The search runs continuously. Teams running [financial research workflows](https://parallel.ai/blog/case-study-kepler) already use this approach in place of manual checks.
 
 ## What to monitor: web sources that generate investment signals
 
-Building effective monitoring starts with identifying high-value sources. The best sources share three characteristics: they update frequently, they're publicly accessible, and they contain information that moves markets before traditional channels pick it up.
+Start by identifying high-value sources. The best ones update frequently, they're publicly accessible, and they contain information that moves markets before traditional channels pick it up.
 
 ### Corporate signals
 
@@ -50,7 +50,7 @@ Monitor a portfolio company's career page for headcount changes. Set hourly cade
 
 ## The architecture of a continuous monitoring pipeline
 
-A monitoring pipeline has four stages: detect, extract, enrich, and act. Each stage transforms raw web data into actionable intelligence.
+A monitoring pipeline has four stages: detect, extract, enrich, and act.
 
 ### Stage 1: Detect
 
@@ -58,7 +58,7 @@ You watch the web for changes that match your criteria by defining natural langu
 
 Set cadence based on how fast your signals move. Hourly monitoring catches time-sensitive events like regulatory filings and pricing changes. Daily cadence works for news and funding announcements. Weekly scheduling fits macro reports and industry publications.
 
-Parallel's Monitor API handles detection. You create a monitor with a natural language query, webhook URL, and schedule. The system searches continuously and sends structured events when new information appears.
+Parallel's Monitor API handles detection: you create a monitor with a natural language query, webhook URL, and schedule. The system searches continuously and sends structured events when new information appears.
 
 ```python
 import requests
@@ -84,31 +84,31 @@ Your pipeline needs full content from changed pages after a monitor fires. Raw w
 
 The Extract API converts any URL into clean markdown. Pass the source URLs from your monitor event, and get structured content ready for LLM processing. This stage handles JavaScript rendering, CAPTCHAs, and PDF extraction automatically.
 
-You need clean extraction because raw HTML carries noise: navigation elements, ads, scripts, and formatting that bloat your context window without adding signal. Clean markdown lets downstream models focus on substance. You can also use objective-driven extraction to pull only relevant sections from long documents.
+You need clean extraction because raw HTML carries noise: navigation elements, ads, scripts, and formatting that bloat your context window without adding signal. You can also use objective-driven extraction to pull only relevant sections from long documents.
 
 ### Stage 3: Enrich
 
-Raw alerts lack context. "Something changed on this page" isn't actionable. Enrichment adds analysis, cross-references, and structured output to transform notifications into intelligence.
+An alert that says "something changed on this page" doesn't tell you what to do. Enrichment adds analysis, cross-references, and structured output.
 
-The [Task API](https://parallel.ai/products/task) runs structured research on extracted content. Define an output schema specifying the fields you need: event type, affected parties, financial impact, and a confidence-scored summary. Task performs multi-source research, adds citations, and returns data matching your schema. This [data enrichment](https://parallel.ai/articles/what-is-data-enrichment) step is what separates raw notifications from actionable intelligence.
+The [Task API](https://parallel.ai/products/task) runs structured research on extracted content. Define an output schema specifying the fields you need: event type, affected parties, financial impact, and a confidence-scored summary. Task performs multi-source research, adds citations, and returns data matching your schema. This [data enrichment](https://parallel.ai/articles/what-is-data-enrichment) step turns a notification into something an analyst can act on.
 
 ### Stage 4: Act
 
-Deliver enriched signals to your workflow. Webhooks send events to Slack, email, CRMs, or custom dashboards. Automatic deduplication ensures analysts only see net-new information.
+Deliver enriched signals to your workflow. Webhooks send events to Slack, email, CRMs, or custom dashboards. Automatic deduplication means analysts only see net-new information.
 
-Parallel's API suite maps directly to each stage. Monitor API handles detection. Extract API pulls content. Task API enriches signals. Webhooks deliver results. This composable architecture lets you build pipelines that match your exact research workflow. Parallel is the only provider that offers all four stages in one stack.
+Parallel's API suite maps to each stage: Monitor API handles detection, Extract API pulls content, Task API enriches signals, and webhooks deliver results. Because the pieces are separate, you can shape the pipeline to your research workflow.
 
 ## Setting up your first investment monitor step by step
 
-Here's a concrete implementation: monitoring SEC 8-K filings for portfolio companies and receiving enriched alerts when material events surface.
+The walkthrough below monitors SEC 8-K filings for portfolio companies and sends enriched alerts when material events surface.
 
 ### Step 1: Define your thesis signal
 
 Start with one specific signal tied to your investment thesis. Track SEC 8-K filings for material events because they're time-sensitive and contain information that moves prices. Focus on executive changes, acquisitions, and material agreements.
 
-SEC 8-K filings cover a broad range of material events: changes in control, bankruptcy, delisting, executive compensation modifications, and completion of asset sales. Each filing type carries different urgency. Executive departures often precede strategic shifts. Acquisition announcements move prices within minutes. Material agreements reveal customer concentration and supplier dependencies.
+SEC 8-K filings cover a broad range of material events: changes in control, bankruptcy, delisting, executive compensation modifications, and completion of asset sales. Filing types carry different urgency: executive departures often precede strategic shifts., acquisition announcements move prices within minutes, and material agreements reveal customer concentration and supplier dependencies.
 
-For a portfolio of 20 companies, you could create individual monitors or use a single query that covers the group. Individual monitors let you customize cadence and routing per position. Group queries reduce management overhead but limit customization.
+For a portfolio of 20 companies, you could create individual monitors or use a single query that covers the group. Individual monitors let you customize cadence and routing per position; a group query is less to manage but applies one setup to every holding.
 
 ### Step 2: Create the monitor
 
@@ -173,7 +173,7 @@ def handle_monitor_event(event):
 
 ### Step 5: Enrich with structured research
 
-Pass extracted content to the Task API with an output schema. Define the fields you need for your analysis workflow. This is where [deep research](https://parallel.ai/articles/what-is-deep-research) transforms raw filings into structured intelligence.
+Pass extracted content to the Task API with an output schema. Define the fields you need for your analysis workflow. The [deep research](https://parallel.ai/articles/what-is-deep-research) step turns raw filings into structured records.
 
 ```python
 def enrich_filing(extracted_content):
@@ -208,11 +208,11 @@ def enrich_filing(extracted_content):
 
 Route enriched signals to Slack, email, or your portfolio management system. Build conditional logic based on event type, financial impact, or confidence scores. High-confidence acquisition filings might trigger immediate alerts, while routine amendments go into a daily digest.
 
-Consider building tiered routing based on materiality. Executive changes at core holdings go to the portfolio manager's phone. Routine filings accumulate in a daily summary email. Competitive intelligence flows to a shared research channel. This tiered approach prevents alert fatigue while ensuring critical signals reach decision-makers within minutes.
+Tier the routing by materiality. Executive changes at core holdings go to the portfolio manager's phone. Routine filings accumulate in a daily summary email. Competitive intelligence flows to a shared research channel. Critical signals reach decision-makers within minutes without burying them in routine alerts.
 
 ## Three monitoring patterns for different investment strategies
 
-The same architecture adapts to different investment workflows. Each pattern uses Monitor, Extract, and Task APIs with different queries, cadences, and output schemas.
+Each pattern below uses Monitor, Extract, and Task APIs with different queries, cadences, and output schemas.
 
 ### Pattern 1: Event-driven equity research
 
@@ -228,7 +228,7 @@ Private market investors track funding rounds, new company formations, and found
 
 Query examples: "Series A funding rounds for AI infrastructure companies," "New Delaware LLC registrations with 'AI' or 'robotics' in the name," "Former Google or Meta executives announcing new startups."
 
-Use daily cadence. Enrich matches with company profiles and founder backgrounds via the Task API. Feed enriched leads into your CRM or deal pipeline tool. The Task API can cross-reference signals against your existing portfolio to flag competitive overlaps. Teams building [production-grade research workflows](https://parallel.ai/blog/case-study-opendoor) use this pattern to maintain deal flow without manual sourcing.
+Use daily cadence. Enrich matches with company profiles and founder backgrounds via the Task API. Feed enriched leads into your CRM or deal pipeline tool. The Task API can cross-reference signals against your existing portfolio to flag competitive overlaps. Teams building [production-grade research workflows](https://parallel.ai/blog/case-study-opendoor) use this pattern to keep deal flow coming without manual sourcing.
 
 ### Pattern 3: Regulatory and compliance monitoring
 
@@ -238,11 +238,11 @@ Query examples: "New FDA warning letters for pharmaceutical manufacturers," "FTC
 
 Weekly cadence works for broad regulatory scanning. Shift to hourly monitoring for active enforcement matters or pending rule deadlines. Produce a weekly regulatory digest with the Task API that summarizes all activity and highlights items requiring action.
 
-Regulatory monitoring protects against downside risk and surfaces opportunity. Comment periods on proposed rules let you anticipate policy changes months before implementation. Enforcement patterns against competitors reveal regulatory priorities that might affect your holdings. FDA approval timelines and advisory committee schedules help you position ahead of binary events.
+Regulatory monitoring covers downside risk and opportunity. Comment periods on proposed rules let you anticipate policy changes months before implementation. Enforcement patterns against competitors reveal regulatory priorities that might affect your holdings. FDA approval timelines and advisory committee schedules help you position ahead of binary events.
 
 ## Avoiding common pitfalls
 
-Building investment monitors requires balancing signal quality against operational complexity. Avoid these common mistakes.
+Most investment monitors that fail do so for one of the reasons below.
 
 ### Over-monitoring
 
@@ -254,17 +254,17 @@ The same event surfaces across multiple sources. An acquisition appears in SEC f
 
 ### Missing the enrichment step
 
-Raw alerts lack context. "The page changed" or "New filing detected" requires additional research before you can act. Analysts who skip enrichment spend hours manually reviewing every alert. Build enrichment into your pipeline from the start. Chain Extract and Task API calls to deliver analysis, not just notifications.
+"The page changed" or "New filing detected" requires additional research before you can act. Analysts who skip enrichment spend hours manually reviewing every alert. Build enrichment into your pipeline from the start by chaining Extract and Task API calls after each alert.
 
 ### Compliance blind spots
 
-Investment monitoring must target only publicly available data. Avoid scraping behind paywalls or login walls. Establish a data governance framework that documents your sources and access methods. Review your monitoring queries with compliance before scaling. Parallel maintains SOC 2 Type 2 certification and enforces zero data retention, which simplifies compliance documentation.
+Investment monitoring must target only publicly available data. Avoid scraping behind paywalls or login walls. Establish a data governance framework that documents your sources and access methods. Review your monitoring queries with compliance before scaling. Parallel maintains SOC 2 Type 2 certification and offers zero data retention on Enterprise plans, which simplifies compliance documentation.
 
 ## FAQs
 
 ### What is continuous web monitoring for investment research?
 
-Continuous web monitoring tracks changes across public web sources like SEC filings, news, career pages, and pricing data. It delivers structured alerts when information relevant to your investment thesis appears. Unlike periodic research, it runs on a schedule (hourly, daily, weekly) so you never miss a signal.
+Continuous web monitoring tracks changes across public web sources like SEC filings, news, career pages, and pricing data. It delivers structured alerts when information relevant to your investment thesis appears. Unlike periodic research, it runs on a fixed schedule (hourly, daily, weekly).
 
 ### Is web monitoring for investment research legal?
 
@@ -276,10 +276,10 @@ Vendor data feeds are standardized and shared across buyers. Continuous monitori
 
 ### How much does it cost to set up continuous web monitoring?
 
-API-based monitoring costs a fraction of enterprise terminal subscriptions. Parallel's Monitor API charges $3 per 1,000 executions. A daily monitor on 50 sources costs about $4.50 per month.
+API-based monitoring costs a fraction of enterprise terminal subscriptions. Parallel's Monitor API charges $3 per 1,000 executions on the lite processor. Fifty daily monitors run about 1,500 executions a month, or about $4.50.
 
 ### Can I integrate web monitoring into my existing research workflow?
 
-Yes. API-first monitoring systems deliver events via webhooks, making them composable with CRMs, Slack, portfolio tools, or custom dashboards. No manual copy-paste required.
+Yes. API-first monitoring systems deliver events via webhooks, making them composable with CRMs, Slack, portfolio tools, or custom dashboards.
 
 **Ready to build your first investment monitor?** [Start Building](https://docs.parallel.ai/home) with Parallel's Monitor API. Create a free account, define your first query, and receive structured alerts within the hour.

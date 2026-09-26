@@ -10,7 +10,7 @@ This guide covers how MCP support works in OpenClaw, the servers that earn a pla
 
 Before you install anything, know that OpenClaw ships with [free, LLM-optimized web search by default, powered by the Parallel Search API](https://parallel.ai/blog/free-web-search-openclaw). A fresh OpenClaw install can already ground its answers in current web results without any configuration, an API key, or a paid plan.
 
-Which means the direct answer to "what's the best web search MCP for OpenClaw" is: you probably have it already. Adding the Parallel Search MCP on top still makes sense in two cases: you want web page fetching exposed as an explicit tool alongside search, or you want to attach an API key for higher rate limits than the anonymous default.
+So the direct answer to "what's the best web search MCP for OpenClaw" is that you probably have it already. Adding the Parallel Search MCP on top still makes sense in two cases: you want web page fetching exposed as an explicit tool alongside search, or you want to attach an API key for higher rate limits than the anonymous default.
 
 ## How MCP works in OpenClaw
 
@@ -36,7 +36,7 @@ openclaw mcp status --verbose
 
 The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) is a hosted server at `https://search.parallel.ai/mcp` that exposes two tools: `web_search`, which returns ranked results with token-dense excerpts an agent can usually answer from directly, and `web_fetch`, which pulls token-efficient markdown from specific URLs, including PDFs and JavaScript-heavy pages. It's free to use with no API key or account, and it runs on our own web-scale index rather than reselling another engine's results.
 
-Parallel ranks first on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), an independent benchmark of 15 search API products across 7 providers (August 2026). It's also the engine behind OpenClaw's default search, so installing the MCP mainly buys you explicit fetching and, with an API key from `platform.parallel.ai` passed as a Bearer header, higher rate limits. Our notes on [getting maximum search accuracy out of OpenClaw](https://parallel.ai/articles/openclaw-best-practices-web-search) cover the prompting side.
+Parallel Search (advanced) scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), an independent benchmark of 25 search API products across 12 providers (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. OpenClaw also ships Parallel as a built-in search provider (paid, or a key-free Parallel Search (Free) option you select explicitly), so installing the MCP mainly buys you explicit fetching and, with an API key from `platform.parallel.ai` passed as a Bearer header, higher rate limits. Our notes on [getting maximum search accuracy out of OpenClaw](https://parallel.ai/articles/openclaw-best-practices-web-search) cover the prompting side.
 
 **Best for:** grounding every OpenClaw answer in current web results, plus reading specific pages in depth, at zero cost.
 
@@ -84,7 +84,7 @@ Notion's hosted, OAuth-secured MCP server connects OpenClaw to your notes, docs,
 
 OpenClaw grew out of the Pi harness, and it inherited Pi's shell-first instincts: for tools that are really just CLIs, a ClawHub skill is often lighter than an MCP server, because the agent shells out on demand instead of carrying tool schemas in context on every turn. Parallel works both ways; the [Parallel CLI ships as an OpenClaw skill](https://docs.parallel.ai/integrations/clawhub) if you'd rather skip MCP entirely.
 
-A reasonable rule: hosted services with OAuth and state (GitHub, Notion) fit MCP; local, composable, context-cheap tooling fits skills. And whichever route you pick, keep the total small. Every server adds tool definitions to the context window and another place for tool-name collisions, and three to five well-chosen servers reliably beat fifteen.
+As a rule of thumb, hosted services with OAuth and state (GitHub, Notion) fit MCP; local, composable, context-cheap tooling fits skills. And whichever route you pick, keep the total small. Every server adds tool definitions to the context window and another place for tool-name collisions, and three to five well-chosen servers reliably beat fifteen.
 
 ## Frequently asked questions
 
@@ -98,4 +98,4 @@ A reasonable rule: hosted services with OAuth and state (GitHub, Notion) fit MCP
 
 ## Start with search
 
-The one-line `openclaw mcp set` command above is the whole setup, and it never asks for an account, a key, or a card. If OpenClaw becomes the way you work, [create a free Parallel account](https://platform.parallel.ai/) for higher rate limits and the $5 monthly credit that covers the Task MCP's research subagents. Then judge it the only way that counts: on your own questions.
+The one-line `openclaw mcp set` command above is the whole setup, and it never asks for an account, a key, or a card. If OpenClaw becomes the way you work, [create a free Parallel account](https://platform.parallel.ai/) for higher rate limits and the $5 monthly credit that covers the Task MCP's research subagents. Then test it on your own questions.

@@ -12,9 +12,9 @@ Firms that build their own sourcing pipelines surface targets weeks before platf
 
 Eighty-six percent of organizations have integrated generative AI into M&A workflows, according to [Deloitte's 2025 survey](https://www.deloitte.com/us/en/what-we-do/capabilities/mergers-acquisitions-restructuring/articles/m-and-a-generative-ai-study.html). Yet most deal teams still rely on static databases and manual research for sourcing targets.
 
-The gap sits in the infrastructure layer. Investment professionals can access SaaS platforms that promise AI-powered sourcing, or they can experiment with general-purpose AI tools. Neither option delivers the thesis-specific, real-time intelligence that separates good deals from great ones.
+The gap is in the infrastructure layer. Investment professionals can buy SaaS platforms that promise AI-powered sourcing or experiment with general-purpose AI tools, and neither gives them thesis-specific, real-time intelligence.
 
-Existing content on AI deal sourcing focuses on platform comparisons or abstract concepts. No one has answered the practical question: how do you build deal sourcing infrastructure using AI APIs? Investment teams with engineering resources want building blocks, not black boxes.
+Most writing on AI deal sourcing compares platforms or stays abstract. Investment teams with engineering resources have a more practical question: how do you build deal sourcing infrastructure from AI APIs?
 
 PE, VC, and M&A firms use [web search](https://parallel.ai/articles/what-is-a-web-search-api), deep research, and monitoring APIs to build proprietary deal sourcing pipelines.
 
@@ -28,7 +28,7 @@ Investment teams spend [60 to 70 percent of analyst time on data gathering](http
 
 SaaS platforms solve part of the problem by aggregating data sources and applying scoring models. But they create new constraints: proprietary data silos that lock you into their coverage universe, rigid scoring algorithms that don't map to your thesis, and no custom workflow integration with your CRM or deal management systems.
 
-APIs give investment teams a different approach. You define your thesis criteria in code. You query the live web. You pipe structured data into your existing systems. The building blocks exist to construct deal sourcing infrastructure that reflects your investment strategy.
+With APIs, you define your thesis criteria in code, query the live web, and pipe structured data into your existing systems, so the pipeline reflects your investment strategy instead of a vendor's coverage universe.
 
 ## How AI APIs power each stage of deal sourcing
 
@@ -40,9 +40,9 @@ AI search APIs let teams define criteria in natural language rather than rigid f
 
 This approach accesses sources that static databases miss: [Crunchbase profiles](https://www.crunchbase.com/), LinkedIn company pages, [SEC EDGAR filings](https://www.sec.gov/edgar/searchedgar/companysearch), TechCrunch announcements, industry blogs, podcast appearances, and conference speaker lists. Results return as structured data with citations pointing to source URLs.
 
-The [FindAll API](https://parallel.ai/products/findall) exemplifies this pattern. You submit a natural-language query with match criteria, and it transforms the web into an on-demand structured database. The API runs a three-stage pipeline: generate candidates from web search, evaluate each candidate against your conditions, and enrich matches with additional fields if needed.
+The [FindAll API](https://parallel.ai/products/findall) works this way. You submit a natural-language query with match criteria, and it builds a structured list of matching entities from the web. The API runs a three-stage pipeline: generate candidates from web search, evaluate each candidate against your conditions, and enrich matches with additional fields if needed.
 
-Consider a growth equity fund building a dynamic target list for AI infrastructure investments. The fund wants companies that raised Series B or later rounds in the past 18 months, employ between 50 and 500 people, and build developer-focused products. A traditional database query would require multiple filters and manual review of partial matches. FindAll accepts the criteria as natural language and returns structured results.
+A growth equity fund building a dynamic target list for AI infrastructure investments might want companies that raised Series B or later rounds in the past 18 months, employ between 50 and 500 people, and build developer-focused products. A traditional database query would require multiple filters and manual review of partial matches. FindAll accepts the criteria as natural language and returns structured results.
 
 ```python
 import requests
@@ -61,19 +61,19 @@ response = requests.post(
 # ready to submit to POST /v1beta/findall/runs
 ```
 
-The response includes matched companies with sourced data for each field. Every claim traces back to a specific URL, eliminating the "where did this come from" question that plagues generic AI outputs.
+The response includes matched companies with sourced data for each field. Every claim traces back to a specific URL, so an analyst can check where each data point came from.
 
-Benchmark data demonstrates the capability gap. FindAll achieves 3x higher recall on the [WISER benchmark](https://parallel.ai/blog/introducing-findall-api), a test of web-scale entity discovery. For deal sourcing, recall matters: missing a high-potential target costs more than reviewing a few false positives.
+For deal sourcing, recall matters: missing a high-potential target costs more than reviewing a few false positives. FindAll has no current benchmark on [parallel.ai/benchmarks](https://parallel.ai/benchmarks), so judge it on your own theses. A company is only returned as a match after it's checked against every condition, with citations, and the higher generators (core at $2 plus $0.15 per match, pro at $10 plus $1 per match) search more widely for hard queries.
 
 ### Research and enrichment: building company profiles from web intelligence
 
-Discovery identifies candidates. Enrichment transforms a company name into an investment-grade profile.
+Once discovery identifies candidates, enrichment turns each company name into a profile a deal team can use.
 
-Deal teams need comprehensive intelligence across multiple dimensions: competitive positioning, customer sentiment, hiring signals, financial health indicators, regulatory exposure, and management team backgrounds. Analysts gather this information from dozens of sources: competitor websites, Glassdoor reviews, patent filings, earnings transcripts, press releases, job postings, and industry forums.
+Deal teams need intelligence across multiple dimensions: competitive positioning, customer sentiment, hiring signals, financial health indicators, regulatory exposure, and management team backgrounds. Analysts gather this information from dozens of sources: competitor websites, Glassdoor reviews, patent filings, earnings transcripts, press releases, job postings, and industry forums.
 
 Task and [Deep Research APIs](https://parallel.ai/articles/what-is-deep-research) automate this synthesis. You define the information you need in a structured schema, and the API orchestrates web search, content extraction, and reasoning to populate each field. Results return as structured JSON with per-field citations showing the precise source of each data point.
 
-The citation layer matters for investment decisions. Generic AI tools produce fluent prose that may contain hallucinated facts. Investment committees can't act on information without provenance. Task API addresses this through the [Basis framework](https://parallel.ai/blog/introducing-basis-with-calibrated-confidences), which provides citations, reasoning chains, and calibrated confidence scores for every atomic fact.
+Citations matter here because investment committees can't act on information without provenance, and generic AI tools produce fluent prose that may contain hallucinated facts. Task API addresses this through the [Basis framework](https://parallel.ai/blog/introducing-basis-with-calibrated-confidences), which provides citations, reasoning chains, and calibrated confidence levels (low, medium, or high) for every atomic fact.
 
 ```python
 import requests
@@ -110,7 +110,7 @@ response = requests.post(
 
 The response includes each requested field populated from web research, with basis metadata showing source URLs, confidence levels, and reasoning. An analyst reviewing the output can click through to verify any claim against primary sources.
 
-Task API Pro achieves 62% accuracy on DeepSearchQA at $100 per 1,000 runs. Comparable deep research solutions cost $2,500 per 1,000 runs. For a fund enriching 500 target companies per month, the cost difference compounds into meaningful operating leverage.
+Task API Pro scores 83% on DeepSearchQA at $100 per 1,000 runs; in the same comparison on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (August 2026), Gemini 3.1 Pro (high) scored 77% at $123.90 per 1,000. The difference compounds for a fund enriching 500 target companies per month.
 
 [Extract API](https://docs.parallel.ai/extract/extract-quickstart) complements deep research by pulling specific data from known sources. Job boards reveal hiring priorities. Regulatory databases show compliance status. Company websites contain pricing pages and customer logos. When you know the URL, Extract converts the page into clean markdown optimized for downstream processing.
 
@@ -118,17 +118,17 @@ Task API Pro achieves 62% accuracy on DeepSearchQA at $100 per 1,000 runs. Compa
 
 Static databases update on fixed schedules. PitchBook refreshes company profiles on a periodic cycle. Crunchbase reflects funding announcements after press releases propagate. By the time database records change, the signal has aged.
 
-The best deals come from spotting signals early. Executive departures indicate potential succession planning or strategic shifts. Hiring surges in specific functions suggest product expansion. Regulatory filings reveal compliance investments. Funding rounds signal competitive dynamics.
+Deal-relevant signals show up early on the web. Executive departures can indicate succession planning or strategic shifts, hiring surges in specific functions suggest product expansion, regulatory filings reveal compliance investments, and funding rounds signal competitive dynamics.
 
-[Monitor API](https://parallel.ai/blog/monitor-api) transforms deal sourcing from periodic batch processing to continuous, event-driven intelligence. You define a natural-language query, set a schedule, and receive webhook notifications whenever new relevant information appears on the web.
+[Monitor API](https://parallel.ai/blog/monitor-api) turns deal sourcing from a periodic batch job into a continuous, event-driven feed. You define a natural-language query, set a schedule, and receive webhook notifications whenever new relevant information appears on the web.
 
 A PE firm focused on healthcare IT acquisitions can monitor queries like "acquisition of healthcare IT companies under $50M" and receive alerts within hours of announcements hitting PR Newswire. A growth fund tracking infrastructure software can monitor "Series B funding round infrastructure software" to catch signals before they reach database platforms.
 
 Signal sources span the web: SEC EDGAR for regulatory filings, PR Newswire for press announcements, LinkedIn job postings for hiring patterns, Crunchbase for funding updates, and news outlets for strategic announcements. Monitor API handles the continuous scanning and delivers deduplicated events via webhooks.
 
-The transformation shifts deal sourcing from pull to push. Instead of analysts running weekly database queries, the pipeline surfaces relevant events as they occur. The fund that acts on a signal first gains positioning advantage in competitive processes.
+Instead of analysts running weekly database queries, the pipeline surfaces relevant events as they occur, and the fund that acts on a signal first is better positioned in a competitive process.
 
-Composability amplifies the value. When Monitor detects a relevant event, downstream APIs enrich the signal without manual intervention. A funding announcement triggers Extract to pull the press release, Task to build a company profile, and the enriched record flows into your CRM for immediate analyst review.
+The APIs also chain together. When Monitor detects a relevant event, downstream APIs enrich the signal without manual intervention. A funding announcement triggers Extract to pull the press release, Task to build a company profile, and the enriched record flows into your CRM for immediate analyst review.
 
 ## Building a deal sourcing pipeline with AI APIs
 
@@ -138,7 +138,7 @@ The architecture follows a repeatable pattern:
 
 1. **Define thesis criteria as API schemas.** Translate your investment thesis into structured queries. A vertical SaaS fund might define criteria around target industry, revenue range, customer concentration, and product category.
 2. **Run discovery queries on schedule.** FindAll API or Search API executes weekly or monthly scans against the live web, returning new companies that match your criteria.
-3. **Enrich each match with deep research.** Task API builds comprehensive profiles for candidates that pass initial screening. Define the intelligence you need in an output schema.
+3. **Enrich each match with deep research.** Task API builds detailed profiles for candidates that pass initial screening. Define the intelligence you need in an output schema.
 4. **Score and rank based on thesis fit.** Your internal logic scores enriched profiles against investment criteria. Ranking algorithms can weight factors like market timing, competitive positioning, and growth trajectory.
 5. **Push to CRM with full research dossiers.** Structured output flows into Salesforce, Affinity, or your deal management platform via API integration. Associates receive actionable profiles rather than raw data.
 6. **Monitor for new signals on active targets.** Once a company enters your pipeline, Monitor API tracks relevant events: funding rounds, executive changes, product launches, and competitive moves.
@@ -171,25 +171,25 @@ The architecture follows a repeatable pattern:
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
-[Per-request pricing](https://parallel.ai/pricing) makes costs predictable. Scanning 1,000 companies per month with FindAll at the Core tier costs approximately $2,150 (fixed cost plus per-match fees). Enriching the top 100 matches with Task API Pro adds $10. Monitor API tracking 50 active targets at daily cadence runs approximately $4.50 per month. Total pipeline cost scales linearly with volume, and you can estimate monthly spend before deploying.
+[Per-request pricing](https://parallel.ai/pricing) makes costs predictable. A FindAll run on the core generator that returns 1,000 matching companies costs about $152 ($2 fixed plus $0.15 per match); the base generator, built for broad queries, costs $0.25 plus $0.03 per match. Enriching the top 100 matches with Task API Pro adds $10. Monitor API tracking 50 active targets at daily cadence runs approximately $4.50 per month. Total pipeline cost scales linearly with volume, and you can estimate monthly spend before deploying.
 
-The build-versus-buy calculation favors APIs for firms with [technical resources](https://www.bcg.com/publications/2026/private-equitys-future-digital-first-and-ai-powered). SaaS platforms require less engineering effort but deliver generic intelligence that competitors also access. API pipelines demand more upfront development but produce thesis-specific output that platforms can't replicate. A fund with a differentiated thesis gains more from custom infrastructure than from shared tooling.
+The build-versus-buy calculation favors APIs for firms with [technical resources](https://www.bcg.com/publications/2026/private-equitys-future-digital-first-and-ai-powered). SaaS platforms require less engineering effort but deliver generic intelligence that competitors also access. API pipelines demand more upfront development but produce thesis-specific output that platforms can't replicate.
 
 Integration patterns vary by technical maturity. Some firms run pipelines as scheduled jobs on cloud functions. Others embed API calls in existing data platforms like Snowflake or Databricks. The most sophisticated shops build custom agent orchestration that chains discovery, [AI-powered enrichment](https://parallel.ai/articles/ai-web-enrichment-for-sales), and monitoring into autonomous workflows.
 
 ## What to look for in AI deal sourcing APIs
 
-API selection determines pipeline reliability. Five criteria separate infrastructure suitable for investment workflows from tools designed for general-purpose applications.
+Five criteria matter most when you evaluate APIs for investment workflows.
 
-**Structured output with citations.** Investment decisions require verifiable facts. APIs should return JSON with per-field source attribution, not freeform text that conflates synthesis with speculation. Every claim about revenue, headcount, funding, or competitive positioning must trace to a specific URL. The Basis framework used by Parallel Task API provides citations, reasoning chains, and confidence scores for each atomic fact.
+**Structured output with citations.** Investment decisions require verifiable facts. APIs should return JSON with per-field source attribution rather than freeform text that mixes synthesis with speculation. Every claim about revenue, headcount, funding, or competitive positioning must trace to a specific URL. The Basis framework used by Parallel Task API provides citations, reasoning chains, and confidence levels for each atomic fact.
 
-**Live web access versus cached data.** Stale data defeats the purpose of AI-powered sourcing. APIs built on proprietary web indexes with continuous crawling catch emerging signals. Parallel maintains a web-scale index with billions of pages and millions added daily. Solutions that rely on third-party search providers or periodic scraping introduce latency that degrades signal value.
+**Live web access versus cached data.** APIs built on proprietary web indexes with continuous crawling catch emerging signals. Parallel maintains a web-scale index with billions of pages and millions added daily. Solutions that rely on third-party search providers or periodic scraping add lag, and a signal is worth less the later it arrives.
 
 **Predictable pricing.** Investment pipelines scale with deal activity. Per-request pricing lets you estimate costs before deployment and scale without surprise bills. Per-token models make costs unpredictable when research complexity varies. Parallel APIs price per request or per task, regardless of how many tokens the underlying model processes.
 
-**Security and compliance.** Investment data flows through these pipelines, including proprietary thesis criteria and target lists. SOC 2 Type 2 certification demonstrates operational security controls. Zero data retention policies ensure your queries and results don't persist on vendor systems. Parallel holds SOC 2 Type 2 certification and enforces zero data retention.
+**Security and compliance.** Investment data flows through these pipelines, including proprietary thesis criteria and target lists. SOC 2 Type 2 certification demonstrates operational security controls. Zero data retention policies ensure your queries and results don't persist on vendor systems. Parallel holds SOC 2 Type 2 certification and offers zero data retention on Enterprise plans.
 
-**Composability.** Discovery feeds enrichment feeds monitoring. APIs should chain together without custom glue code. Parallel's suite shares authentication, output formats, and webhook patterns. A company discovered by FindAll API flows to Task API for enrichment and Monitor API for tracking, all within the same API ecosystem.
+**Composability.** Discovery feeds enrichment feeds monitoring, so the APIs should chain together without custom glue code. Parallel's suite shares authentication, output formats, and webhook patterns: a company discovered by FindAll API flows to Task API for enrichment and Monitor API for tracking.
 
 ## Frequently asked questions
 
@@ -207,10 +207,10 @@ AI deal sourcing APIs scan the live web, including company websites, Crunchbase,
 
 **Q: How much does AI deal sourcing cost?**
 
-Per-request API pricing varies by task complexity. Basic discovery runs $0.25 to $10 per query, deep research profiles cost $0.10 to $2.40 per company, and continuous monitoring costs $3 per 1,000 signal checks, making costs predictable at any pipeline volume.
+Per-request API pricing varies by task complexity. FindAll discovery runs cost $0.25 to $10 in fixed fees plus $0.03 to $1 per match, deep research profiles cost $0.10 to $2.40 per company, and continuous monitoring costs $3 per 1,000 signal checks, making costs predictable at any pipeline volume.
 
 ## Start building your deal sourcing pipeline
 
-Investment teams ready to move beyond static databases can access the same AI APIs that power enterprise research workflows. Parallel's documentation covers authentication, code examples, and integration patterns for each API in the pipeline.
+Parallel's documentation covers authentication, code examples, and integration patterns for each API in the pipeline.
 
 [Start Building](https://docs.parallel.ai/home)

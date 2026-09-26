@@ -2,13 +2,13 @@
 
 Competitor feature alerts are useful only if they say what shipped and how much it matters, which takes classification rather than change detection. This guide covers which sources reveal feature launches first, a three-layer pipeline that detects changes, structures them, and classifies each by type and severity, how to track strategic intent beyond features, and the stack it takes to run.
 
-You can detect changes on any public page. The missing piece is context. A good competitor feature alerting system watches the right sources and uses AI to classify each change by type and severity before routing it to the right person.
+Any page-change tool can tell you that a public page changed. A good competitor feature alerting system also tells you what the change means: it watches the right sources and uses AI to classify each change by type and severity before routing it to the right person.
 
-The architecture breaks into three layers. Parallel's Monitor API handles detection, Extract API structures the content, and Task API classifies each change. The code examples below deploy today.
+The architecture has three layers: Parallel's Monitor API handles detection, the Extract API structures the content, and the Task API classifies each change. The code examples below are ready to deploy.
 
 ## Most competitor alerts fail for the same reason
 
-Page-change tools operate at the wrong level of abstraction. They compare HTML snapshots and surface diffs. A CSS tweak on a pricing page triggers the same alert as a new enterprise tier. A docs site restructuring floods your inbox while the actual API launch on `/changelog` goes unnoticed.
+Page-change tools compare HTML snapshots and surface diffs. A CSS tweak on a pricing page triggers the same alert as a new enterprise tier. A docs site restructuring floods your inbox while the actual API launch on `/changelog` goes unnoticed.
 
 Reddit threads in r/productmanagement and r/competitive_intel repeat the same complaint: "Most tools just send 'page changed' alerts. No context. No insight."
 
@@ -17,13 +17,13 @@ You need a pipeline that classifies changes before surfacing them. A working com
 - **Change detection** on high-signal pages (changelogs, docs, pricing)
 - **Structured extraction** that converts raw page content into clean markdown or JSON
 - **AI classification** that scores each change by type (feature launch, pricing shift, positioning change) and severity (1 to 10)
-- **Tiered routing** that sends critical alerts within minutes, batches minor changes into weekly digests
+- **Tiered routing** that sends critical alerts within minutes and batches minor changes into weekly digests
 
 The pipeline below catches feature launches within hours of publication and delivers them with enough context to act on.
 
 ## The signals that reveal feature launches first
 
-Not all competitor pages carry equal weight. Feature launches surface in predictable places, and the order matters. Start with the highest-signal sources and expand from there.
+Feature launches surface in predictable places. Start with the highest-signal sources and expand from there.
 
 **Changelogs and release notes** are the single best source for feature detection. Pages at `/changelog`, `/releases`, `/updates`, or `/whats-new` contain dated entries with feature names, descriptions, and sometimes migration notes. Most SaaS companies update these before or alongside marketing announcements.
 
@@ -41,7 +41,7 @@ For a typical competitive set of three to five companies, you might monitor 15 t
 
 ## Build your alert pipeline in three layers
 
-A competitor feature alert system runs in three stages. Change detection feeds content extraction, which feeds AI classification.
+Change detection feeds content extraction, which feeds AI classification.
 
 ### Layer 1: detect changes on competitor pages
 
@@ -89,9 +89,9 @@ The Monitor runs daily, checks for new information matching your query, and deli
 
 ### Layer 2: extract and structure the changes
 
-Your webhook payload includes a summary and source URLs on every event. But for AI classification, you need the full content of the changed page in a clean, structured format.
+Your webhook payload includes a summary and source URLs on every event, but for AI classification, you need the full content of the changed page in a clean, structured format.
 
-Raw HTML is unusable for LLM analysis. Boilerplate navigation, scripts, ads, and layout markup bury the actual content. You need an extraction layer that converts web pages into markdown or structured JSON.
+Raw HTML is a poor input for LLM analysis, since boilerplate navigation, scripts, ads, and layout markup bury the actual content. You need an extraction layer that converts web pages into markdown or structured JSON.
 
 Parallel's [Extract API](https://docs.parallel.ai/extract/extract-quickstart) handles this conversion. Pass it a URL, and it returns LLM-ready markdown with the page's content, metadata, and structure preserved. For competitor changelog pages, this means clean entries with dates, feature names, and descriptions, stripped of all layout noise.
 
@@ -120,11 +120,9 @@ page_title = result["metadata"]["title"]
 
 With structured content from both the current and previous versions of a page, you can compute a meaningful diff. Store the previous extraction result, compare it against the new one, and pass only the delta to your classification layer. This keeps your LLM prompts focused and your token costs low.
 
-Parallel's Extract API returns token-efficient markdown and structured metadata formatted for direct LLM consumption. Generic scraping tools return raw HTML that requires additional cleanup before use.
-
 ### Layer 3: classify with AI and route alerts
 
-The classification layer is where your alert system goes from "something changed" to "your competitor just launched an AI workflow builder targeting enterprise teams." Feed the extracted content delta to an LLM with a structured prompt, and you get back a typed, scored assessment.
+The classification layer turns "something changed" into "your competitor just launched an AI workflow builder targeting enterprise teams." Feed the extracted content delta to an LLM with a structured prompt, and you get back a typed, scored assessment.
 
 Parallel's [Task API](https://docs.parallel.ai/task-api/task-quickstart) handles this orchestration. You define an output schema describing the fields you want (change type, severity, summary, affected segments), and the API returns structured JSON that conforms to that schema.
 
@@ -194,7 +192,7 @@ The `output` object comes back clean and typed. A typical result looks like this
 }
 ```
 
-Route alerts based on the severity score. A simple routing strategy:
+Route alerts by severity score:
 
 - **Severity 8 to 10**: immediate Slack notification to the product and leadership channels, with the full summary and recommended action
 - **Severity 4 to 7**: daily digest email to the competitive intelligence team
@@ -206,7 +204,7 @@ For Slack delivery, a standard [incoming webhook](https://api.slack.com/messagin
 
 Individual feature launches tell you what a competitor shipped last week. Patterns across multiple signals tell you where they're heading next quarter.
 
-Cross-referencing data points across sources reveals strategic direction that no single alert captures. A competitor publishing a new SOC 2 certification page, adding an "Enterprise" column to their pricing page, posting five enterprise AE roles on LinkedIn, and expanding their API docs with SSO and audit log endpoints signals an upmarket expansion in real time. No individual change scores above a 6. The combined signal scores a 10.
+Cross-referencing data points across sources reveals strategic direction that no single alert captures. A competitor publishing a new SOC 2 certification page, adding an "Enterprise" column to their pricing page, posting five enterprise AE roles on LinkedIn, and expanding their API docs with SSO and audit log endpoints signals an upmarket expansion in real time. No single change scores above a 6. Taken together, they score a 10.
 
 Parallel's [FindAll API](https://docs.parallel.ai/findall-api/findall-quickstart) helps you discover competitor web properties you didn't know existed. It turns natural-language research queries into structured results across the web, surfacing new subdomains, landing pages, partner integration directories, and documentation sections that your URL list doesn't cover yet. Run a weekly FindAll query for each competitor to expand your monitoring surface. For a working reference implementation, see our [competitive intelligence platform cookbook](https://parallel.ai/blog/cookbook-competitor-research-with-reddit-mcp) which demonstrates the full Monitor-to-Task pipeline.
 
@@ -217,15 +215,15 @@ Build a weekly intelligence briefing that aggregates all classified events acros
 - **Go-to-market signals**: pricing changes, new sales hires, new partner pages
 - **Technical infrastructure signals**: new compliance certifications, documentation restructuring, new SDK releases
 
-Your team stops responding to launches and starts anticipating product strategy. A team that spots the upmarket pattern three months before the official "Enterprise Plan" launch has time to shape their response.
+A team that spots the upmarket pattern three months before the official "Enterprise Plan" launch has time to shape their response.
 
 ## The tools and stack you need
 
 Your approach depends on technical capability and budget.
 
-**API-first monitoring** (Parallel Monitor + Extract + Task APIs) gives you the building blocks to construct a custom pipeline tuned to your specific competitors and signal priorities. You define what to watch, how to extract it, how to classify it, and where to route it. Full control over every layer, structured data at every stage, and costs that scale with usage rather than seats. Parallel's Monitor API runs at [$0.003 per execution](https://parallel.ai/pricing) ($3 per 1,000 runs), making daily monitoring of 25 URLs across five competitors cost $2.25 per month for the detection layer alone.
+**API-first monitoring** (Parallel Monitor + Extract + Task APIs) gives you the building blocks to construct a custom pipeline tuned to your specific competitors and signal priorities. You define what to watch, how to extract it, how to classify it, and where to route it. You control every layer, get structured data at every stage, and pay by usage rather than by seat. Parallel's Monitor API runs at [$0.003 per execution](https://parallel.ai/pricing) ($3 per 1,000 runs), making daily monitoring of 25 URLs across five competitors cost $2.25 per month for the detection layer alone.
 
-**SaaS competitive intelligence platforms** (Klue, Crayon, AlphaSense) provide turnkey solutions for non-technical CI teams. They aggregate competitor data, surface insights through dashboards, and deliver alerts. The tradeoffs: limited customization, opaque data sources, and pricing that scales with seat count. Expect $20K to $100K+ per year for a mid-size team.
+**SaaS competitive intelligence platforms** (Klue, Crayon, AlphaSense) provide turnkey solutions for non-technical CI teams. They aggregate competitor data, surface insights through dashboards, and deliver alerts. The tradeoffs are limited customization, opaque data sources, and pricing that scales with seat count. Vendr's purchase data puts the median annual contract at about $30,000 for Klue and Crayon and about $18,000 for AlphaSense, and larger deployments run into six figures.
 
 **Page-change monitors** (Visualping, [ChangeDetection.io](https://github.com/dgtlmoon/changedetection.io)) catch surface-level changes at low cost but miss the classification layer. You'll get every CSS change alongside every feature launch, with no way to distinguish between them.
 
@@ -243,7 +241,7 @@ Changelogs and release notes are the highest-signal source. Documentation sites 
 Use AI classification to score each change by type (feature launch, pricing change, messaging shift) and severity (1 to 10). Route severity 8+ alerts within minutes. Batch severity 4 to 7 into daily digests. Aggregate everything else into a weekly roundup.
 
 **Is automated competitor monitoring legal?**
-Monitoring publicly available web pages is legal. Respect robots.txt directives and terms of service. Do not scrape behind authentication or access non-public data. Consult your legal team about specific data sources if you're unsure.
+Monitoring publicly available web pages is generally lawful, but the rules depend on your jurisdiction and on each site's terms of service. Respect robots.txt directives and those terms. Do not scrape behind authentication or access non-public data. Consult your legal team about specific data sources if you're unsure.
 
 **Can I build a custom competitor monitoring system without a dedicated engineering team?**
 You can get started with low-code tools. Combine a monitoring API for change detection, an extraction API for structured content, and an LLM API for classification. A single developer can build a working pipeline in a day using webhooks and a messaging tool like Slack for delivery.

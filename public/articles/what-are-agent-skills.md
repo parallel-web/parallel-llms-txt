@@ -26,13 +26,13 @@ When a task needs current information from the web, use the `parallel-cli` tool:
 Prefer search excerpts when they answer the question; fetch full pages only when needed.
 ```
 
-Before the standard, every harness had its own format: `.cursorrules` here, custom instructions there, per-agent system prompts everywhere, and zero portability between them. With `SKILL.md`, one skill runs unchanged in Claude Code, Codex CLI, Cursor, OpenCode, OpenClaw, and Hermes Agent. Switch harnesses, keep your setup.
+Before the standard, every harness had its own format: `.cursorrules` here, custom instructions there, per-agent system prompts everywhere, and zero portability between them. With `SKILL.md`, one skill runs unchanged in Claude Code, Codex CLI, Cursor, OpenCode, OpenClaw, and Hermes Agent, so you can switch harnesses and keep your setup.
 
 ## How loading actually works
 
 The design's core trick is progressive disclosure. The harness keeps only each skill's name and description in context, a line or two per skill, and loads the full body only when the model decides a task matches. That's what makes skills cheap in a way always-loaded tool schemas are not, and it's the heart of the [skills-versus-MCP tradeoff](https://parallel.ai/articles/mcp-vs-skills-vs-clis): an installed-but-unused skill costs almost nothing, while an installed-but-unused MCP server pays schema rent on every turn.
 
-The other thing to understand is that a skill grants knowledge, not access. The instructions can only direct capabilities the agent already has, usually the shell. That's why so many top skills are thin wrappers that teach the agent an existing CLI: the CLI does the work, the skill supplies the know-how, and the agent composes both with pipes and scripts.
+A skill grants knowledge, not access. The instructions can only direct capabilities the agent already has, usually the shell. That's why so many top skills are thin wrappers that teach the agent an existing CLI: the CLI does the work, the skill supplies the know-how, and the agent composes both with pipes and scripts.
 
 ## Where skills live
 
@@ -48,7 +48,7 @@ The other thing to understand is that a skill grants knowledge, not access. The 
 | Best at | Local know-how, CLI workflows | Hosted, stateful, authenticated services |
 | Inspectable before install | Fully (plain text) | Partially (code or a remote endpoint) |
 
-These are complements, not rivals, and vendors increasingly ship both. We do: Parallel publishes [official skills on ClawHub](https://docs.parallel.ai/integrations/clawhub) (search, extract, deep research, enrichment, all wrapping the Parallel CLI) and a [free hosted MCP server](https://docs.parallel.ai/integrations/mcp/search-mcp) for harnesses where remote tools fit better.
+The two complement each other, and vendors increasingly ship both. We do: Parallel publishes [official skills on ClawHub](https://docs.parallel.ai/integrations/clawhub) (search, extract, deep research, enrichment, all wrapping the Parallel CLI) and a [free hosted MCP server](https://docs.parallel.ai/integrations/mcp/search-mcp) for harnesses where remote tools fit better.
 
 ## The security lesson: read before you install
 
@@ -64,7 +64,7 @@ The registry defenses improved, but the durable protections are habits. Read the
 
 **How do I write one?** Frontmatter, instructions, test, publish. Our [tutorial on turning a CLI into a skill](https://parallel.ai/articles/turn-any-cli-into-an-agent-skill) walks through a complete working example.
 
-**Are skills the same as plugins?** No. Plugins and extensions are code that hooks into a specific harness's internals; skills are portable instructions. Registries like ClawHub distribute both, under separate tabs, for good reason.
+**Are skills the same as plugins?** No. Plugins and extensions are code that hooks into a specific harness's internals; skills are portable instructions. Registries like ClawHub distribute both, under separate tabs.
 
 ## Try one
 

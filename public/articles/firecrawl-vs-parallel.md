@@ -25,7 +25,7 @@ Parallel organizes around answering questions:
 - Entity Search API (real-time people and company search)
 - Monitor API (track changes over time)
 
-The overlap is real but narrow: both platforms search the web, and both turn a URL into markdown. Everything else pulls apart. Firecrawl can walk an entire site and drive a browser. Parallel can run multi-hour research jobs and return typed, cited fields.
+The overlap is narrow: both platforms search the web, and both turn a URL into markdown. Beyond that, Firecrawl can walk an entire site and drive a browser, while Parallel can run multi-hour research jobs and return typed, cited fields.
 
 ## **Search**
 
@@ -33,13 +33,13 @@ Firecrawl's /search takes a query string and returns titles, descriptions, and U
 
 Parallel's Search API takes a natural-language objective, optionally alongside explicit search queries, and returns ranked URLs with compressed excerpts sized by max_chars_per_result and max_chars_total. Four modes trade latency for depth: Turbo (~200ms, $1 per 1,000 requests), Fast (under a second, $1 per 1,000), Basic (~1s, $5 per 1,000), and Advanced (~3s, $5 per 1,000, the default). A Source Policy includes or excludes domains and sets a freshness date; a Fetch Policy decides whether results come from the index or a live crawl.
 
-The two have converged on the same insight: agents should get the relevant passage, not the whole page. Firecrawl calls them highlights, Parallel calls them excerpts, and both exist to keep tokens out of your context window.
+Both have converged on returning the relevant passage instead of the whole page. Firecrawl calls them highlights, Parallel calls them excerpts, and both exist to keep tokens out of your context window.
 
 ### **A note on the competing benchmark claims**
 
-Both companies published SimpleQA results in July 2026, and the numbers are not comparable. Firecrawl reports 94.7% for a GPT-5.4 agent running up to 20 tool calls, using /search plus its own scrape endpoint to fetch full pages. Parallel reports 91% for Turbo in a single-step setup: the raw question goes straight to search, every engine gets roughly 1,000 characters per result, and the model answers from those results alone with no fetching.
+Firecrawl reported 94.7% on SimpleQA in July 2026 for a GPT-5.4 agent running up to 20 tool calls, using /search plus its own scrape endpoint to fetch full pages. Firecrawl isn't in our current benchmark runs, so there's no head-to-head from a shared harness. On [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026), Parallel scored 94% on SimpleQA Verified in Fast mode with a GPT-5.6 Luna agent and 97% in Advanced mode with a GPT-5.6 Sol agent, both with search and extract tools.
 
-A multi-hop agent that can open pages should beat a one-shot lookup, so the gap between 94.7% and 91% mostly measures the difference in harness, not the difference in retrieval quality. Both are vendor-run. If accuracy is the deciding factor for you, run both against your own queries.
+Those numbers still aren't comparable: the agents, harnesses, and question sets differ, and both are vendor-run. The closest independent comparison is the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (September 2026 data), which scores Firecrawl 73, level with Parallel basic, and Parallel advanced 75. If accuracy is the deciding factor for you, run both against your own queries.
 
 ## **Crawling and browser control, where Firecrawl is clearly ahead**
 
@@ -47,19 +47,19 @@ Firecrawl will take a domain and return every page on it. Map enumerates a site'
 
 Parallel's Extract API converts URLs you already have into clean markdown with objective-aligned excerpts, and it handles JavaScript-heavy pages and PDFs. It does not crawl sites, discover URLs, or automate a browser.
 
-If the job is "ingest this documentation site" or "click through this checkout flow," Firecrawl does it and Parallel does not. That is the cleanest dividing line between the two platforms.
+If the job is "ingest this documentation site" or "click through this checkout flow," Firecrawl does it and Parallel does not.
 
 ## **Deep research and structured output**
 
 Firecrawl's Agent endpoint takes a prompt, searches and navigates on its own, and returns a result plus the sources it used. Pass a schema and you get structured JSON instead of prose. It is the successor to /extract and is still in preview, with five free runs a day and dynamic pricing.
 
-Parallel's Task API covers the same intent with nine fixed processor tiers, from lite at $5 per 1,000 runs and 10 to 60 seconds of latency, up to ultra8x at $2,400 per 1,000 runs and as long as two hours. Every field in the output carries a Basis: the citations behind it, the reasoning that produced it, the excerpts it was drawn from, and a calibrated confidence score. Fast variants of each processor trade some depth for tighter latency at the same price.
+Parallel's Task API covers the same intent with nine fixed processor tiers, from lite at $5 per 1,000 runs and 10 to 60 seconds of latency, up to ultra8x at $2,400 per 1,000 runs and as long as two hours. Every field in the output carries a Basis: the citations behind it, the reasoning that produced it, the excerpts it was drawn from, and a calibrated confidence level (low, medium, or high). Fast variants of each processor trade some depth for tighter latency at the same price.
 
-For synchronous work, Parallel's Responses API is OpenAI-compatible and priced by reasoning effort: $10 per 1,000 requests at low, $50 at medium, $250 at high. The practical difference from Firecrawl Agent is budgeting. Dynamic pricing on a preview endpoint is hard to forecast; a fixed CPM per processor is a line item you can model before you ship.
+For synchronous work, Parallel's Responses API is OpenAI-compatible and priced by reasoning effort: $10 per 1,000 requests at low, $50 at medium, $250 at high. Compared with Firecrawl Agent, the difference is budgeting: dynamic pricing on a preview endpoint is hard to forecast, while a fixed CPM per processor is a line item you can model before you ship.
 
 ## **Pricing**
 
-This is the biggest structural difference between the two. Firecrawl sells monthly credit subscriptions. Parallel sells per-request usage.
+Pricing is the biggest structural difference between the two: Firecrawl sells monthly credit subscriptions, and Parallel sells per-request usage.
 
 Firecrawl's plans (billed yearly) run Free at 1,000 credits a month and 2 concurrent requests, Hobby at $16 for 5,000 credits and 5 concurrent, Standard at $83 for 100,000 credits and 50 concurrent, Growth at $333 for 500,000 credits and 100 concurrent, and Scale at $599 for 1,000,000 credits and 150 concurrent. Credits do not roll over, and there is no pay-as-you-go option.
 
@@ -78,11 +78,11 @@ Parallel charges per request with no plan to buy into:
 | Entity Search | $5 per 1,000 requests, 100 results included |
 | FindAll | A fixed cost plus $0.03 to $1.00 per match depending on generator |
 
-The comparison worth doing is on search. On Firecrawl's Standard plan, a credit works out to $0.00083, so a 10-result search at 2 credits costs about $1.66 per 1,000 searches. At Growth that falls to roughly $1.33 and at Scale to roughly $1.20. Those are competitive numbers, close to Parallel Turbo's $1 per 1,000.
+Search is where the prices compare directly. On Firecrawl's Standard plan, a credit works out to $0.00083, so a 10-result search at 2 credits costs about $1.66 per 1,000 searches. At Growth that falls to roughly $1.33 and at Scale to roughly $1.20. Those are competitive numbers, close to Parallel Turbo's $1 per 1,000.
 
 The gap opens when you need page content rather than highlights. A 10-result Firecrawl search with scrapeOptions costs 2 credits for the search plus 1 credit per page, so 12 credits, or roughly $10 per 1,000 searches on Standard. Turning on JSON mode adds 4 credits per page on top. Parallel's excerpts are included in the $1.
 
-Two subscription details matter for agent traffic specifically. Credits expire monthly, so a quiet month is money spent on nothing. And because there is no pay-as-you-go tier, a spike past your allotment means upgrading a plan rather than paying for the overage. Agent workloads are spiky by nature, which makes both of these worth modeling against your worst month rather than your average one.
+Two subscription details matter for agent traffic. Credits expire monthly, so a quiet month is money spent on nothing. And because there is no pay-as-you-go tier, a spike past your allotment means upgrading a plan rather than paying for the overage. Agent workloads are spiky, so model both of these against your worst month rather than your average one.
 
 On free tiers: Firecrawl gives 1,000 credits a month with no card required. Parallel applies $5 in free credits every month automatically, which covers up to 5,000 Turbo searches.
 
@@ -94,13 +94,13 @@ The two platforms meter throughput differently, which reflects what each expects
 
 Firecrawl caps concurrent requests, from 2 on Free to 150 on Scale. That is the right unit for crawling: it bounds how fast you can chew through a site.
 
-Parallel caps requests per minute: 600 for Search, 600 for Extract, 600 for Entity Search, 300 for Monitor, and 300 per hour for FindAll runs. GET requests for polling results do not count. That is the right unit for a fleet of agents each firing short, independent lookups.
+Parallel caps requests per minute: 600 for Search, 600 for Extract, 600 for Entity Search, 300 for Monitor, and 25 per hour for FindAll runs. GET requests for polling results do not count. Per-minute limits suit a fleet of agents each firing short, independent lookups.
 
 ## **Developer experience**
 
 Both ship Python and TypeScript SDKs, MCP servers, and hosted playgrounds. Firecrawl adds a CLI and lets you make search calls with no API key at all to try it out.
 
-Firecrawl's real advantage here is that the core is open source and self-hostable. If you need a hard ceiling on cost, or you have data that cannot leave your infrastructure, you can run the engine yourself. Parallel is a hosted service only.
+Firecrawl's advantage here is that the core is open source and self-hostable. If you need a hard ceiling on cost, or you have data that cannot leave your infrastructure, you can run the engine yourself. Parallel is a hosted service only.
 
 Parallel's setup:
 
@@ -130,6 +130,6 @@ Choose Firecrawl when the unit of work is a page or a site. Site-wide ingestion,
 
 Choose Parallel when the unit of work is a question. Turbo's 200ms median latency at $1 per 1,000 requests is built for agents that search inside loops, and the excerpts come included rather than costing a scrape per result. [Openbenchmarks' independent speed boards](https://openbenchmarks.com/web-search/fastest-search-api) (September 2026) measured turbo at 348ms mean latency on factual lookup against 510ms for Firecrawl search, a respectable third place, and 333ms against 2.87s on hard retrieval. Above the search layer, the Task and Responses APIs give you deterministic per-request pricing across nine depth tiers, and the Basis attached to every field makes outputs auditable, which is what production agents in finance, healthcare, and law tend to need. FindAll, Entity Search, and Monitor cover list-building and change tracking without extra plumbing.
 
-Plenty of teams run both, and the split is usually clean: Firecrawl for the bulk ingestion pipeline, Parallel for the live agent path. The question to ask is not which platform is better, but whether your bottleneck is getting pages or getting answers.
+Plenty of teams run both, and the split is usually clean: Firecrawl for the bulk ingestion pipeline, Parallel for the live agent path. Which one you need first depends on whether your bottleneck is getting pages or getting answers.
 
 **Related reading: **[Switching from Firecrawl to Parallel](https://parallel.ai/articles/firecrawl-to-parallel-search-api) · [Jina AI Reader vs. Parallel](https://parallel.ai/articles/jina-ai-reader-vs-parallel) · [Crawl4AI vs. Parallel](https://parallel.ai/articles/crawl4ai-vs-parallel).

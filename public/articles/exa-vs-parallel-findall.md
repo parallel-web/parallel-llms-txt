@@ -59,19 +59,11 @@ Exa's approach is more tightly coupled. There isn't an explicit "match evaluatio
 
 ## **Recall and accuracy**
 
-Parallel publishes specific recall benchmarks for FindAll via its self-reported WISER benchmark (40 complex multi-criteria queries, tested November 2025):
+FindAll has no current benchmark on [parallel.ai/benchmarks](https://parallel.ai/benchmarks), so the evidence for its recall is how it works. You set match conditions, and FindAll only returns a candidate as matched after verifying it against every condition, with citations for each match. You trade cost for depth by choosing a generator: preview ($0.10 fixed), base ($0.25 plus $0.03 per match), core ($2 plus $0.15 per match), or pro ($10 plus $1 per match). Higher generators search more widely, so they suit queries where a missed entity is expensive.
 
-| Tier | Recall | Price (CPM) | Note |
-| --- | --- | --- | --- |
-| FindAll Pro | 61% | $1,430 | Reported as ~3x better than alternatives |
-| FindAll Core | 52.5% | $230 |  |
-| FindAll Base | 30% | $60 | Lowest-cost option |
+Exa does not publish comparable recall figures for Websets. The one independent benchmark we know of, a March 2026 evaluation by NewsCatcher (32 queries focused on real-world event discovery), favored Exa: Websets reached 19.6% recall with 83.7% precision, while Parallel FindAll Core reached 5.5% recall with 77.7% precision. That's a single query set, so results may differ on other workloads.
 
-For comparison, Parallel's benchmark reports OpenAI Deep Research at 21% recall, Anthropic Deep Research at 15.3%, and Exa at 19.2%.
-
-Exa does not publish comparable recall figures for Websets specifically, though independent benchmarks have evaluated both products. A March 2026 third-party benchmark by NewsCatcher (32 queries focused on real-world event discovery) showed Exa Websets achieving 19.6% recall with 83.7% precision, while Parallel AI Core reached 5.5% recall with 77.7% precision on that particular query set. Different benchmarks test different query types, so results vary depending on the workload.
-
-The difference in transparency here is notable. Parallel stakes a claim with published numbers on its own benchmark; Exa lets its product reputation and third-party evaluations speak for themselves. When evaluating either product, run tests on queries that match your actual use case.
+Neither vendor has a current published recall benchmark for these products, and the only independent result favors Websets. When evaluating either product, run tests on queries that match your actual use case.
 
 ## **Developer experience**
 
@@ -124,13 +116,13 @@ enrichment = exa.websets.enrichments.create('webset_id', params={
 
 
 
-Exa's dashboard-first approach with chat-based enrichment creation makes it more accessible for business users. Parallel leans more heavily toward the developer/API-first experience, though both now offer comparable SDK coverage.
+Parallel leans more heavily toward the developer/API-first experience, while Exa's dashboard and chat-based enrichment creation suit business users. Both now offer comparable SDK coverage.
 
 ## **Use case fit**
 
 ### **Choose Parallel FindAll when:**
 
-**You need high recall on specific entity discovery.** FindAll Pro's 61% recall (on Parallel's WISER benchmark) and multi-hop match evaluation make it strong for exhaustive searches where missing entities has real cost: competitive intelligence, market mapping, compliance screening.
+**You need verified matches for exhaustive entity discovery.** Every FindAll match is checked against all of your conditions with multi-hop evaluation and returned with citations, and the pro generator spends more per candidate for hard queries where a missing entity has real cost: competitive intelligence, market mapping, compliance screening.
 
 **You want pay-as-you-go pricing.** No monthly commitment means you can run one-off research queries without subscription overhead.
 
@@ -154,8 +146,8 @@ Exa's dashboard-first approach with chat-based enrichment creation makes it more
 
 | Dimension | Parallel FindAll | Exa Webset |
 | --- | --- | --- |
-| Core strength | Entity discovery with high recall | Embeddings-powered search with enrichment |
-| Best published recall | 61% (Pro tier, self-reported WISER benchmark) | Not published |
+| Core strength | Entity discovery with explicit match evaluation | Embeddings-powered search with enrichment |
+| Independent recall (NewsCatcher, March 2026) | 5.5% (Core) | 19.6% |
 | Pricing model | Pay-per-query + per-match | Monthly subscription + credits |
 | Lowest entry point | $0.10 (preview) | Free (1,000 credits), $49/mo (Core) |
 | SDK support | Python, TypeScript, MCP Server | Python, JS, OpenAI-compatible, MCP Server |
@@ -166,6 +158,6 @@ Exa's dashboard-first approach with chat-based enrichment creation makes it more
 
 ## **Conclusion**
 
-Parallel FindAll and Exa Websets solve overlapping problems with distinct approaches. FindAll is purpose-built for entity discovery at scale with a rigorous match evaluation pipeline and published recall benchmarks. It's the stronger choice when you need confidence that you've found everything meeting your criteria. Exa Websets brings a more accessible, dashboard-driven experience with rich SDK support and the broadest ecosystem of integrations. It's the better fit when you want a versatile enrichment platform that business users can operate directly.
+Parallel FindAll and Exa Websets solve overlapping problems with distinct approaches. FindAll is purpose-built for entity discovery at scale with a rigorous match evaluation pipeline and citations on every match. Exa Websets brings a more accessible, dashboard-driven experience with rich SDK support and the broadest ecosystem of integrations.
 
-For teams building automated data pipelines where recall and precision matter most, Parallel FindAll has the edge. For teams that want an all-in-one platform with a polished UI and flexible enrichment types, Exa Websets is the more complete package. Both products are actively evolving.
+For teams building automated data pipelines that need explicit, auditable match criteria and per-match citations, Parallel FindAll fits well, though the only independent recall benchmark (NewsCatcher, event discovery) favored Websets, so test on your own queries. For teams that want an all-in-one platform with a polished UI and flexible enrichment types, Exa Websets is the more complete package, and business users can operate it directly. Both products are actively evolving.

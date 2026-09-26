@@ -5,7 +5,7 @@ Deep research APIs let you describe an ideal customer profile in plain language 
 ## Key takeaways
 
 - An _ideal customer profile_ defines the company-level attributes that predict your best customers: firmographic, technographic, and behavioral signals.
-- Traditional B2B data providers like Apollo, ZoomInfo, and Clearbit offer static databases with fixed schemas, useful for basic firmographic filtering but limited for complex or signal-based criteria.
+- Traditional B2B data providers like Apollo, ZoomInfo, and HubSpot's Breeze Intelligence (formerly Clearbit) offer static databases with fixed schemas, useful for basic firmographic filtering but limited for complex or signal-based criteria.
 - You can discover companies from the live web using deep research APIs with natural language queries and multi-hop reasoning, handling criteria that static databases miss.
 - You can turn ICP criteria into a single API call with Parallel's FindAll API by describing your ideal customer in plain English and receiving structured results.
 - Combining discovery (FindAll) with enrichment (Task API) gives you a complete pipeline from ICP definition to qualified lead list.
@@ -22,47 +22,47 @@ Most ICP definitions include three categories of attributes:
 
 **Behavioral signals** capture what a company is doing right now: hiring velocity in specific departments, recent funding rounds, product launches, expansion into new markets, or leadership changes. These signals indicate timing and intent. A company that just raised a Series B and is hiring five sales development reps has different needs than one that has been static for two years.
 
-Specificity determines ICP effectiveness. "Mid-market tech companies" describes millions of organizations. "Series A SaaS companies with 50 to 200 employees focused on HR technology" describes hundreds. The narrower your ICP, the higher your conversion rates and the more efficient your sales team's time allocation.
+"Mid-market tech companies" describes millions of organizations. "Series A SaaS companies with 50 to 200 employees focused on HR technology" describes hundreds. The narrower your ICP, the higher your conversion rates and the less time your sales team spends on poor fits.
 
-Most teams stop at firmographics and miss the behavioral signals that separate good-fit accounts from great-fit accounts. The challenge is not defining these criteria but finding companies that match them.
+Most teams stop at firmographics and miss the behavioral signals that separate good-fit accounts from great-fit accounts. Finding companies that match those signals is the harder part.
 
 ## Why static databases fall short for complex ICP matching
 
-Traditional B2B data providers query pre-built databases with fixed schemas. Apollo, ZoomInfo, Clearbit, and People Data Labs maintain large repositories of company records with standardized fields: industry, headcount, revenue, location, and a set of technographic tags. When you query these platforms, you filter against existing records. [Forbes identifies data quality as a top B2B challenge](https://www.forbes.com/councils/forbesagencycouncil/2024/03/26/the-top-10-marketing-data-challenges-for-b2b-businesses-in-2024/), noting that 80% of contact data at many organizations comes from tools like ZoomInfo, with significant freshness and accuracy gaps.
+Traditional B2B data providers query pre-built databases with fixed schemas. Apollo, ZoomInfo, HubSpot's Breeze Intelligence (formerly Clearbit), and People Data Labs maintain large repositories of company records with standardized fields: industry, headcount, revenue, location, and a set of technographic tags. When you query these platforms, you filter against existing records. [Forbes identifies data quality as a top B2B challenge](https://www.forbes.com/councils/forbesagencycouncil/2024/03/26/the-top-10-marketing-data-challenges-for-b2b-businesses-in-2024/), using the example of a midsize tech company that sources 80% of its contact data from tools like ZoomInfo.
 
 This approach works well for basic firmographic filtering. If you need "all SaaS companies with 100 to 500 employees in California," a static database delivers that list in seconds. The data exists in a normalized format, indexed and ready to query.
 
-The limitations emerge when your ICP criteria go beyond fixed fields:
+Static databases struggle once your ICP criteria go beyond fixed fields:
 
 **Dynamic signals are invisible.** A company that announced SOC 2 certification last week, launched a new product line yesterday, or promoted a new CTO this month will not have those events reflected in a quarterly database refresh. If your ICP includes "companies that recently achieved compliance certifications," static databases cannot help.
 
-**Multi-hop criteria require inference.** If you need "companies whose founders previously worked at Google" or "startups backed by investors who also funded Stripe," you are asking for relationships that span multiple data sources. Static databases store records, not reasoning chains.
+**Multi-hop criteria require inference.** If you need "companies whose founders previously worked at Google" or "startups backed by investors who also funded Stripe," you are asking for relationships that span multiple data sources.
 
 **Niche and new companies fall through the cracks.** A startup founded three months ago may not appear in databases built from annual data aggregation. If your ICP targets emerging players in a specific vertical, static providers will undercount your total addressable market.
 
 **Data freshness degrades over time.** Monthly or quarterly refresh cycles mean that headcount, funding status, and even company existence can be stale. [Forrester reports](https://www.forrester.com/blogs/b2b-marketers-expect-to-do-more-with-more-but-its-not-as-good-as-it-sounds/) that poor data quality and accessibility remain persistent challenges blocking B2B marketing progress. You end up with records for companies that no longer exist and miss companies that launched after the last refresh.
 
-Sales teams need live signals; static providers deliver snapshots. Teams either over-filter and miss opportunities, or under-filter and waste cycles on poor-fit accounts. Neither outcome helps pipeline. For a deeper look at how [AI-powered sales enrichment](https://parallel.ai/articles/ai-web-enrichment-for-sales) addresses these gaps, see our guide.
+Because static providers deliver snapshots, teams either over-filter and miss opportunities or under-filter and waste cycles on poor-fit accounts. For a deeper look at how [AI-powered sales enrichment](https://parallel.ai/articles/ai-web-enrichment-for-sales) addresses these gaps, see our guide.
 
 ## How deep research APIs change ICP discovery
 
-With [deep research](https://parallel.ai/articles/what-is-deep-research) APIs, you take a different approach. Instead of querying a pre-indexed database, you search the live web in real time through an API that applies multi-hop reasoning to find entities matching your criteria.
+With [deep research](https://parallel.ai/articles/what-is-deep-research) APIs, you search the live web in real time instead of querying a pre-indexed database, and the API applies multi-hop reasoning to find entities matching your criteria.
 
 You describe your ideal customer in natural language and hand off discovery, validation, and structuring to the API. It searches across company websites, press releases, SEC filings, job boards, LinkedIn profiles, and platforms like [Crunchbase](https://www.crunchbase.com/) to find candidates, then evaluates each one against your stated criteria.
 
-The sources matter. Through a deep research API, you synthesize information from public filings, press coverage, job postings, and social profiles. You read the hiring page to understand growth trajectory, check [Crunchbase](https://www.crunchbase.com/) for funding history, and scan LinkedIn for team composition. You get a complete picture of each candidate company, triangulated across sources. [Day AI uses Parallel to merge private and public data](https://parallel.ai/blog/case-study-day-ai) for exactly this kind of sales intelligence workflow.
+Through a deep research API, you synthesize information from public filings, press coverage, job postings, and social profiles. You read the hiring page to understand growth trajectory, check [Crunchbase](https://www.crunchbase.com/) for funding history, and scan LinkedIn for team composition, so each candidate is checked against several sources. [Day AI uses Parallel to merge private and public data](https://parallel.ai/blog/case-study-day-ai) for exactly this kind of sales intelligence workflow.
 
-This architecture unlocks criteria that static databases cannot handle:
+This approach handles criteria that static databases can't:
 
 **Natural language input.** You specify "Series A fintech companies with 20 to 100 employees that offer APIs for payment processing" rather than constructing Boolean filters across fixed fields. The API interprets your intent and searches accordingly.
 
-**Live web coverage.** Results reflect what exists on the web right now, not what existed at the last database refresh. A company that announced funding yesterday can appear in today's results.
+**Live web coverage.** Results reflect the web as it is now rather than at the last database refresh. A company that announced funding yesterday can appear in today's results.
 
 **Multi-source synthesis.** You combine information from a company's website, their LinkedIn page, a TechCrunch article, and a job posting to evaluate a single match condition. This is multi-hop reasoning applied to entity discovery.
 
-**Structured output.** Results come back as typed fields, not raw web pages. You get company names, URLs, match confidence scores, and citations showing where each data point originated.
+**Structured output.** Results come back as typed fields: company names, URLs, match confidence scores, and citations showing where each data point originated.
 
-Parallel's [FindAll API](https://parallel.ai/products/findall) is the concrete example of this approach. You submit a natural language objective with structured match conditions, and you discover entities from the live web that satisfy those conditions. The three-stage pipeline (Generate, Evaluate, Enrich) handles the full workflow from candidate discovery through validation to structured output.
+Parallel's [FindAll API](https://parallel.ai/products/findall) works this way. You submit a natural language objective with structured match conditions, and you discover entities from the live web that satisfy those conditions. The three-stage pipeline (Generate, Evaluate, Enrich) handles the full workflow from candidate discovery through validation to structured output.
 
 ## Turning ICP criteria into an API call with FindAll
 
@@ -122,11 +122,11 @@ The three-stage pipeline operates as follows:
 
 Every match includes the _[Basis](https://docs.parallel.ai/task-api/guides/access-research-basis)_[ framework](https://docs.parallel.ai/task-api/guides/access-research-basis) output: per-field citations showing where each data point originated, reasoning explaining how the match was evaluated, and calibrated confidence scores. Your sales team can click through to the source and verify any data point before outreach.
 
-The citation structure looks like this: if FindAll reports that a company "raised Series A funding," the result includes the source URL (a TechCrunch article, a Crunchbase page, or an SEC filing), the relevant excerpt, and a confidence score. You can trace every claim back to its source, turning opaque API output into verifiable intelligence.
+The citation structure looks like this: if FindAll reports that a company "raised Series A funding," the result includes the source URL (a TechCrunch article, a Crunchbase page, or an SEC filing), the relevant excerpt, and a confidence score. You can trace every claim back to its source.
 
 ## Enriching discovered companies with deeper ICP signals
 
-Discovery is step one. After FindAll returns a list of ICP-matching companies, you need deeper context for prioritization and outreach: decision-maker contacts, technology stack details, recent funding history, and competitive positioning.
+After FindAll returns a list of ICP-matching companies, you need deeper context for prioritization and outreach: decision-maker contacts, technology stack details, recent funding history, and competitive positioning.
 
 You handle [data enrichment](https://parallel.ai/articles/what-is-data-enrichment) through Parallel's [Task API](https://parallel.ai/products/task). You define a custom schema specifying the exact fields your sales team needs, then run enrichment across your discovered list.
 
@@ -166,11 +166,11 @@ Processor tiers let you match AI compute to task complexity:
 
 Combining FindAll with Task API creates a complete pipeline: discover companies matching your ICP, then enrich each one with the context your sales team needs. You end up with a qualified lead list where every data point traces back to a source.
 
-The workflow in practice: FindAll returns 50 companies matching your ICP criteria. You pipe those results into Task API with a schema requesting CTO contact information, current tech stack, and recent funding details. Task API enriches each company in parallel, returning structured data with citations. Your sales team receives a prioritized list with the context they need to personalize outreach.
+In practice, FindAll might return 50 companies matching your ICP criteria. You pipe those results into Task API with a schema requesting CTO contact information, current tech stack, and recent funding details. Task API enriches each company in parallel, returning structured data with citations. Your sales team receives a prioritized list with the context they need to personalize outreach.
 
 ## Comparing approaches: static databases vs. deep research APIs
 
-The choice between static databases and deep research APIs depends on your ICP complexity and workflow requirements. The [Salesforce State of Sales report](https://www.salesforce.com/resources/research-reports/state-of-sales/) found that teams using enriched CRM data generate 44% more sales-qualified leads than those relying on base contact data alone.
+The choice between static databases and deep research APIs depends on your ICP complexity and workflow requirements. The [Salesforce State of Sales report](https://www.salesforce.com/resources/research-reports/state-of-sales/) found that 46% of sales professionals say data quality issues hurt their sales.
 
 | Dimension | Static databases | Deep research APIs |
 | --- | --- | --- |
@@ -183,7 +183,7 @@ The choice between static databases and deep research APIs depends on your ICP c
 
 **When static databases work well:**
 
-Apollo, ZoomInfo, Clearbit, and People Data Labs excel at high-volume firmographic filtering with standard criteria. If your ICP is "all marketing agencies with 10 to 50 employees in New York," a static database delivers that list quickly and cheaply. The criteria map directly to indexed fields.
+Apollo, ZoomInfo, Breeze Intelligence, and People Data Labs excel at high-volume firmographic filtering with standard criteria. If your ICP is "all marketing agencies with 10 to 50 employees in New York," a static database delivers that list quickly and cheaply. The criteria map directly to indexed fields.
 
 **When deep research APIs add value:**
 
@@ -191,19 +191,17 @@ FindAll addresses the cases static databases miss: multi-criteria discovery with
 
 **Hybrid approach:**
 
-Many teams use both. Static databases provide bulk firmographic filtering for initial list building. Deep research APIs handle complex validation, net-new discovery in underserved segments, and custom enrichment. The tools complement rather than replace each other.
+Many teams use both. Static databases provide bulk firmographic filtering for initial list building. Deep research APIs handle complex validation, net-new discovery in underserved segments, and custom enrichment.
 
-The decision criteria: if your ICP fits standard firmographic fields and you prioritize volume, start with a static provider. If you need behavioral signals, multi-hop criteria, or custom data points, a deep research API fills the gap.
+If your ICP fits standard firmographic fields and you prioritize volume, start with a static provider. If you need behavioral signals, multi-hop criteria, or custom data points, a deep research API fills the gap.
 
-Consider your sales motion. High-velocity outbound with simple targeting criteria benefits from static database speed and scale. Account-based selling with complex qualification criteria benefits from deep research precision. Enterprise deals where each target requires custom research justify the additional depth. Match your tooling to your go-to-market strategy.
+High-velocity outbound with simple targeting criteria benefits from static database speed and scale. Account-based selling with complex qualification criteria benefits from deep research precision. Enterprise deals where each target requires custom research justify the additional depth.
 
 ## Common mistakes when automating ICP discovery
 
-Four patterns undermine ICP discovery effectiveness:
-
 **Defining criteria too broadly.** "Technology companies" matches millions of organizations. "Series B developer tools companies with 20 to 100 employees using Kubernetes in production" matches hundreds. Broad criteria waste compute and deliver low-signal results. Invest time upfront in specificity.
 
-**Ignoring data provenance.** API results without citations are claims without evidence. If you cannot trace a data point to its source, you cannot verify accuracy. The Basis framework addresses this by providing per-field citations, reasoning, and confidence scores. Build workflows that surface provenance to your sales team.
+**Ignoring data provenance.** If you cannot trace a data point to its source, you cannot verify it. The Basis framework addresses this by providing per-field citations, reasoning, and confidence scores. Build workflows that surface provenance to your sales team.
 
 **Treating discovery as a one-time event.** Markets shift. Companies raise funding, get acquired, hire, and expand. An ICP-matching list from six months ago misses new entrants and includes companies that no longer fit. Schedule periodic refreshes aligned with your sales cycle.
 

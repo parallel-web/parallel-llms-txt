@@ -12,7 +12,7 @@ Linkup exposes five endpoints, each placed at a different point on the latency a
 - Tasks (batch up to 100 Search, Fetch, or Research calls into one asynchronous job)
 - Extract (seed URL plus a query, returning repeated structured rows such as products or job listings; in closed beta)
 
-Parallel exposes eight:
+Parallel exposes seven:
 
 - Search API (synchronous, four modes from ~200ms to ~3s)
 - Extract API (URLs to clean markdown, including JS-heavy pages and PDFs)
@@ -34,7 +34,7 @@ Parallel's Search takes a natural-language objective, optionally with explicit s
 
 This is the cleanest functional difference at the search layer. Linkup's outputType parameter gives you three shapes from the same endpoint: searchResults returns raw entries with URLs and content, sourcedAnswer returns a written answer with the sources behind it and optional inline citations, and structured returns data conforming to a JSON schema you supply.
 
-Parallel keeps those separate. Search returns results and excerpts only. Synthesized answers come from the Responses API; typed structured output comes from the Task API, where every field arrives with a Basis attached: the citations behind it, the reasoning that produced it, the excerpts it was drawn from, and a calibrated confidence score.
+Parallel keeps those separate. Search returns results and excerpts only. Synthesized answers come from the Responses API; typed structured output comes from the Task API, where every field arrives with a Basis attached: the citations behind it, the reasoning that produced it, the excerpts it was drawn from, and a confidence rating of low, medium, or high.
 
 Which you prefer depends on how you like to build. One endpoint with a mode switch is fewer moving parts. Separate endpoints give you independent pricing, independent rate limits, and per-field provenance on the structured path.
 
@@ -44,9 +44,9 @@ Both companies lead with benchmark numbers, and the numbers do not line up clean
 
 Linkup reports that Search ranks first among sub-second web search APIs on SimpleQA Verified with a 92% F-score, and that Research ranks first on SEAL-0 with 61% accuracy. Linkup publishes its SimpleQA evaluation harness as open source, which is worth crediting; few providers in this category do. On [Openbenchmarks' independent speed boards](https://openbenchmarks.com/web-search/fastest-search-api) (September 2026), Linkup fast measured 1.57s mean request latency on factual lookup and Linkup standard 2.55s, against 348ms for Parallel turbo and 942ms for Parallel fast, so the sub-second label depends on how and where latency is measured.
 
-Parallel reports 91% accuracy on SimpleQA for Turbo at a 240ms median search latency, measured in a single-step setup where the raw question goes to search and the model answers from the results alone with roughly 1,000 characters per result. On SealQA, Parallel's published Task API results run from 42.3% on Core at $25 per 1,000 runs to 56.8% on Ultra8x at $2,400 per 1,000 on SEAL-0, and 60.6% to 70.1% on SEAL-HARD.
+Parallel's current Search results on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026) come from a multi-step agentic setup: a GPT-5.6 Sol agent with Advanced and Basic, a cheaper GPT-5.6 Luna agent with Fast and Turbo, search and extract tools, and an LLM judge on a 100-question sample of SimpleQA Verified. There Advanced and Basic score 97%, Fast 94%, and Turbo 91%. Linkup isn't in those runs, and Parallel has no current published SealQA result.
 
-Read carefully, those are not comparable measurements. SimpleQA Verified is a curated 1,000-prompt subset, not the full 4,326-question SimpleQA set, and an F-score is not the same statistic as accuracy. On SEAL-0, Linkup's 61% is above the 56.8% Parallel published for Ultra8x, but Parallel's SealQA testing ran in October 2025 and the vendors did not run the two systems head to head. Every one of these figures is vendor-produced on a vendor-chosen harness.
+Those are not comparable measurements. Linkup's 92% is an F-score from its own sub-second search setup; Parallel's figures are an agent's accuracy on a sample of the same dataset, with room to search more than once. SimpleQA Verified is a curated 1,000-prompt subset, not the full 4,326-question SimpleQA set, and an F-score is not the same statistic as accuracy. Linkup's SEAL-0 result has no current Parallel counterpart to set beside it. Every one of these figures is vendor-produced on a vendor-chosen harness.
 
 One independent head-to-head now exists. [Openbenchmarks](https://openbenchmarks.com/multi-turn-company-search) publishes its harness, its scoring code, and every raw vendor response, and its multi-turn company search board (first published August 22, 2026, last run August 28) includes both Linkup depths and all four Parallel modes. A fixed research agent running gpt-5.6-sol answers 45 hand-labelled questions, each combining three or four constraints such as investor backing, accelerator participation, headquarters, and founding period, with its native web search swapped for the vendor's API. Every configuration ran each question three times, and answers are scored against a frozen gold set of companies, so precision and recall are measured directly rather than inferred from an accuracy score.
 
@@ -61,7 +61,7 @@ One independent head-to-head now exists. [Openbenchmarks](https://openbenchmarks
 
 On the search-only board, ranked by F1, Parallel Basic and Advanced finish first and third of the thirteen configurations tested, ahead of both Linkup depths. Parallel Fast and Turbo finish behind both at about half Linkup's cost per agent run. With page fetching enabled, Linkup Standard's precision rises to 90.7, the highest on that board, and its F1 of 42.0 sits within a point of Parallel Basic and Advanced. The trial-to-trial spread is one to two points, so adjacent rows are close, but the five-point gap between Parallel's premium modes and Linkup is larger than the noise, and so is the gap between Linkup and Parallel's two cheap modes.
 
-The honest conclusion is that both are accuracy-first products with credible results. The one independent measurement covers a single task, multi-constraint company discovery, with a single agent, and on that task it favours Parallel's Basic and Advanced modes over Linkup, and Linkup over Parallel's Fast and Turbo. Run both against a sample of your own production queries; it is a day of work and it answers the question for your workload.
+Both are accuracy-first products with credible results. The one independent measurement covers a single task, multi-constraint company discovery, with a single agent, and on that task it favours Parallel's Basic and Advanced modes over Linkup, and Linkup over Parallel's Fast and Turbo. Running both against a sample of your own production queries takes about a day of work and answers the question for your workload.
 
 ## **Deep research**
 
@@ -75,7 +75,7 @@ Parallel also offers the Responses API for synchronous research, OpenAI-compatib
 
 Linkup offers two enterprise deployment modes that Parallel does not match. A Private Index builds a dedicated, access-controlled index over your proprietary data, so retrieval spans your own corpus without exposing it. Bring Your Own Cloud runs the full indexing layer inside your own infrastructure, which keeps queries inside your environment.
 
-For a bank, a government department, or a legal AI product working under strict data sovereignty rules, that is a decisive capability, and it shows in Linkup's customer list. Parallel is a hosted API. It offers zero data retention and a contractual commitment not to train on customer data, but the queries do go to Parallel's infrastructure.
+For a bank, a government department, or a legal AI product working under strict data sovereignty rules, that is a decisive capability, and it shows in Linkup's customer list. Parallel is a hosted API. It offers zero data retention on Enterprise plans and a contractual commitment not to train on customer data, but the queries do go to Parallel's infrastructure.
 
 ## **Pricing**
 
@@ -103,23 +103,23 @@ Parallel:
 | FindAll | Fixed cost plus $0.03 to $1.00 per match |
 | Free tier | $5 in credits a month, applied automatically, covering up to 5,000 Turbo searches |
 
-Three things fall out of that. At the search layer, Parallel's Turbo and Fast modes are five to six times cheaper than Linkup Search, and Fast holds near-premium quality at that price (73 against advanced's 75 on Artificial Analysis's August 2026 index); against Basic and Advanced the two are at parity. Extraction is level at $1 per 1,000 for plain pages, but Parallel does not charge extra for JavaScript rendering where Linkup charges five times as much for it. And on deep research, Parallel's floor of $5 per 1,000 sits well below Linkup's $250, while the ceilings are comparable.
+At the search layer, Parallel's Turbo and Fast modes are five to six times cheaper than Linkup Search, and Fast holds near-premium quality at that price (73 against advanced's 75 in Artificial Analysis's September 8, 2026 data); against Basic and Advanced the two are at parity. Extraction is level at $1 per 1,000 for plain pages, but Parallel does not charge extra for JavaScript rendering where Linkup charges five times as much for it. On deep research, Parallel's floor of $5 per 1,000 sits well below Linkup's $250, while the ceilings are comparable.
 
-The free tiers are closer than the headline numbers suggest. Linkup's $20 monthly credit is four times Parallel's $5, but because Turbo costs a fifth of Linkup Search, Parallel's credit buys roughly 5,000 searches against Linkup's 4,000.
+Linkup's $20 monthly credit is four times Parallel's $5, but because Turbo costs a fifth of Linkup Search, the free tiers end up closer than that: Parallel's credit buys roughly 5,000 searches against Linkup's 4,000.
 
 _Check official documentation for current pricing._
 
 ## **Reliability and rate limits**
 
-Linkup commits to 99.9% uptime backed by an SLA. Parallel publishes default rate limits of 600 requests per minute for Search, Extract, and Entity Search, 300 for Monitor, and 300 per hour for FindAll runs, with GET polling excluded and custom limits on enterprise plans. Linkup does not publish default per-endpoint quotas, so ask during evaluation if throughput matters to your design.
+Linkup commits to 99.9% uptime backed by an SLA. Parallel publishes default rate limits of 600 requests per minute for Search, Extract, and Entity Search, 300 for Monitor, and 25 per hour for FindAll runs, with GET polling excluded and custom limits on enterprise plans. Linkup does not publish default per-endpoint quotas, so ask during evaluation if throughput matters to your design.
 
 ## **Compliance**
 
 Linkup includes SOC 2 Type II on all plans and states that it does not train on user data. Zero data retention is available with the Enterprise plan, alongside IP whitelisting, a dedicated index refresh rate, and a private environment.
 
-Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention, and commits contractually to not training on customer data, with a public status page and trust center.
+Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention on Enterprise plans, and commits contractually to not training on customer data, with a public status page and trust center.
 
-The substantive difference is not the certification, which both hold, but the deployment envelope: Linkup will run inside your cloud, Parallel will not.
+Both hold the certification, so the substantive difference is the deployment envelope: Linkup will run inside your cloud, and Parallel will not.
 
 ## **Developer experience**
 
@@ -139,10 +139,10 @@ search = client.search(
 
 ## **When to use each**
 
-Choose Linkup when the deployment model is the constraint. Bring Your Own Cloud and Private Index are genuine capabilities that Parallel has no answer to, and if your data cannot leave your VPC, nothing else in this comparison matters. The outputType switch is a nice piece of design if you want search results, a written answer, and structured JSON from one endpoint. The batch Tasks endpoint suits scheduled bulk work, the open-source evaluation harness suggests a company confident in being checked, and SOC 2 Type II on every plan is a lower bar to clear than an enterprise contract.
+Choose Linkup when the deployment model is the constraint. Bring Your Own Cloud and Private Index are real capabilities that Parallel has no answer to, and if your data cannot leave your VPC, nothing else in this comparison matters. The outputType switch is a nice piece of design if you want search results, a written answer, and structured JSON from one endpoint. The batch Tasks endpoint suits scheduled bulk work, the open-source evaluation harness suggests a company confident in being checked, and SOC 2 Type II on every plan is a lower bar to clear than an enterprise contract.
 
-Choose Parallel when unit economics and breadth decide it. Turbo runs at 200ms and Fast at under a second, both $1 per 1,000 requests, a fifth to a sixth of Linkup Search, which changes what you can afford to do inside an agent loop. Nine research processors starting at $5 per 1,000 make per-row enrichment practical at volumes where a $250 floor does not, and the Basis on every Task field gives you per-field citations, reasoning, and confidence rather than document-level sources. FindAll, Entity Search, and Monitor cover list building and change tracking that Linkup does not sell, and zero data retention does not require an enterprise plan.
+Choose Parallel when unit economics and breadth decide it. Turbo runs at 200ms and Fast at under a second, both $1 per 1,000 requests, a fifth to a sixth of Linkup Search, which changes what you can afford to do inside an agent loop. Nine research processors starting at $5 per 1,000 make per-row enrichment practical at volumes where a $250 floor does not, and the Basis on every Task field gives you per-field citations, reasoning, and confidence rather than document-level sources. FindAll, Entity Search, and Monitor cover list building and change tracking that Linkup does not sell.
 
-These two are close enough that published benchmarks will not decide it for you. The independent Artificial Analysis Search Index (August 2026) ranks Parallel Search (advanced) first of the 15 products it tested, but Linkup is not among them, and the Openbenchmarks company search board puts Parallel's premium modes ahead of Linkup and Linkup ahead of Parallel's cheap ones. The questions that will decide it: does your data need to stay in your own cloud, and how much of your workload sits at the cheap, high-volume end of the curve rather than the deep-research end?
+These two are close enough that published benchmarks will not decide it for you. The independent Artificial Analysis Search Index (September 2026 data) scores Parallel Search (advanced) at 75, behind Perplexity Search (medium) at 80 and Octen Search at 77, and its displayed leaderboard doesn't include Linkup. The Openbenchmarks company search board puts Parallel's premium modes ahead of Linkup and Linkup ahead of Parallel's cheap ones. The questions that will decide it: does your data need to stay in your own cloud, and how much of your workload sits at the cheap, high-volume end of the curve rather than the deep-research end?
 
 **Related reading: **[Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel) · [You.com vs. Parallel](https://parallel.ai/articles/you-com-vs-parallel) · [Perplexity Search API vs. Parallel Search API](https://parallel.ai/articles/perplexity-search-api-vs-parallel-search-api).

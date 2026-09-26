@@ -10,7 +10,7 @@ A web crawler discovers pages by following links from one URL to the next and bu
 
 A crawler starts from a set of seed URLs, fetches each page, pulls out every link it contains, and adds the new links to a queue called the frontier. Then it repeats. Along the way it decides which links are worth following, how often to come back to a page that changes, and how fast it can hit one host without causing trouble. Our [web crawler guide](https://parallel.ai/articles/what-is-a-web-crawler) covers the selection, revisit, and politeness policies in depth.
 
-The scale is what separates crawling from everything else. Common Crawl's July 2026 archive, gathered between July 7 and July 25, holds 2.14 billion pages from 40.5 million hosts, including 603 million URLs never seen in any earlier crawl. Google describes the web as "a nearly infinite space" that exceeds its ability to index every URL, which is why it assigns each site a crawl budget made of two parts: a crawl capacity limit, meaning how many parallel connections it will open without overloading the server, and crawl demand, meaning how much it wants to recrawl based on popularity, staleness, and page quality.
+Crawling runs at a scale scraping rarely approaches. Common Crawl's July 2026 archive, gathered between July 7 and July 25, holds 2.14 billion pages from 40.5 million hosts, including 603 million URLs never seen in any earlier crawl. Google describes the web as "a nearly infinite space" that exceeds its ability to index every URL, which is why it assigns each site a crawl budget made of two parts: a crawl capacity limit, meaning how many parallel connections it will open without overloading the server, and crawl demand, meaning how much it wants to recrawl based on popularity, staleness, and page quality.
 
 The output of a crawl is a corpus and a link graph. Search engines rank that corpus. An enterprise crawler might feed it to a site-search index or a change monitor. The crawler itself rarely cares what a page says, beyond the links and a handful of signals it needs to prioritize the next fetch.
 
@@ -55,7 +55,7 @@ The Robots Exclusion Protocol was written for crawlers. RFC 9309, published in S
 
 That gap is why scraping sits in a grey zone that crawling does not. A well-behaved crawler reads robots.txt before it follows a single link. A scraper with a fixed URL list may never consult it, and the legal question of whether it should is settled by contract terms, copyright, and computer-access law rather than by the protocol. Site owners have responded with technical controls instead of relying on the file. Cloudflare's Radar began publishing crawl-to-refer ratios in July 2025, showing how many pages each AI platform fetched per visitor it sent back. For the week of June 19 to 26, 2025, the ratios ranged from roughly 70,900 to 1 for Anthropic down to 0.1 to 1 for Mistral. From September 15, 2026, new Cloudflare domains block bots classified as Training or Agent on pages that carry ads by default.
 
-For anyone building a collector, the practical rule is the same in both cases. Identify your client honestly, read and respect robots.txt, rate-limit per host, and get legal review before touching anything behind a login or an explicit block.
+Whether you crawl or scrape, the practical rules are the same: identify your client honestly, read and respect robots.txt, rate-limit per host, and get legal review before touching anything behind a login or an explicit block.
 
 ## The third option for AI agents
 
@@ -89,7 +89,7 @@ for result in extract.results:
         print(excerpt)
 ```
 
-Parallel does run a crawler. That is how its index exists, and it is why Extract can often serve a page from cache instead of fetching live. The difference is who carries the cost. Search and Extract expose the results of crawling and targeted retrieval without asking you to schedule a frontier, honor a crawl budget, or maintain selectors. When you need a crawl of your own, for a private intranet or a domain you own, a crawler is still the right tool. Our [Crawl4AI comparison](https://parallel.ai/articles/crawl4ai-vs-parallel) covers that boundary.
+Parallel does run a crawler; that is how its index exists, and it is why Extract can often serve a page from cache instead of fetching live. Parallel carries that cost, so Search and Extract expose the results of crawling and targeted retrieval without asking you to schedule a frontier, honor a crawl budget, or maintain selectors. When you need a crawl of your own, for a private intranet or a domain you own, a crawler is still the right tool. Our [Crawl4AI comparison](https://parallel.ai/articles/crawl4ai-vs-parallel) covers that boundary.
 
 ## Decision guide
 

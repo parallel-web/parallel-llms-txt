@@ -1,10 +1,10 @@
 # Does Pi support MCP? The best MCP servers for Pi in 2026
 
-Pi ships without built-in MCP support, and that's deliberate. Here's how to add MCP to the Pi coding agent with pi-mcp-adapter, the four servers worth connecting, and when a Pi skill is the better answer.
+Pi ships without built-in MCP support, and that's deliberate. This guide covers how to add MCP to the Pi coding agent with pi-mcp-adapter, the four servers worth connecting, and when a Pi skill is the better answer.
 
 [Pi](https://pi.dev/) is the minimal coding harness: a small, hackable agent you adapt to your workflows through extensions, skills, and packages, rather than a product that decides your workflow for you. It's also the harness underneath OpenClaw, which is a large part of why it's everywhere in 2026.
 
-So, the question this article exists to answer: Pi ships with no built-in [Model Context Protocol (MCP)](https://parallel.ai/articles/what-is-mcp) support at all. That's a design decision, not a missing feature. This guide covers what that decision means, how to add MCP when you want it, which servers are worth connecting, and when Pi's native patterns serve you better. Disclosure: we make Parallel, one of the servers recommended below, and we'll show numbers rather than ask for trust.
+Pi ships with no built-in [Model Context Protocol (MCP)](https://parallel.ai/articles/what-is-mcp) support at all, by design. This guide covers what that decision means, how to add MCP when you want it, which servers are worth connecting, and when Pi's native patterns serve you better. Disclosure: we make Parallel, one of the servers recommended below, and we'll show numbers rather than ask for trust.
 
 ## Why Pi doesn't ship MCP support
 
@@ -24,7 +24,7 @@ pi install npm:pi-mcp-adapter
 /mcp setup
 ```
 
-One detail worth understanding before you pick servers: by default the adapter exposes everything through a single mcp proxy tool. The agent searches for tools, reads their descriptions, and calls them through the proxy. That keeps Pi's context small no matter how many servers you connect, which is very much in Pi's spirit. For the handful of tools you use constantly, set `directTools: true` on a server and its tools register alongside read, bash, and edit as first-class Pi tools.
+Before you pick servers, note that by default the adapter exposes everything through a single mcp proxy tool. The agent searches for tools, reads their descriptions, and calls them through the proxy. That keeps Pi's context small no matter how many servers you connect, in keeping with Pi's design. For the handful of tools you use constantly, set `directTools: true` on a server and its tools register alongside read, bash, and edit as first-class Pi tools.
 
 ## The best MCP servers for Pi
 
@@ -43,7 +43,7 @@ Pi has no built-in web search, so this is the gap most worth closing first. The 
 }
 ```
 
-The underlying Search API ranks first on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 15 search API products (August 2026). And it fits Pi's zero-cost ethos: we've built a [fully free CLI agent from Pi, Ollama, Gemma 4, and Parallel](https://parallel.ai/blog/free-CLI-agent), with no API bill anywhere in the stack.
+The underlying Search API's advanced mode scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. And it fits Pi's zero-cost ethos: we've built a [fully free CLI agent from Pi, Ollama, Gemma 4, and Parallel](https://parallel.ai/blog/free-CLI-agent), with no API bill anywhere in the stack.
 
 **Best for:** current docs, error messages, and library research mid-session, plus reading specific pages without blowing the context window.
 
@@ -57,7 +57,7 @@ Context7 serves version-pinned library documentation, which is the cheapest fix 
 
 ### 3. GitHub MCP
 
-GitHub's official server (also in the curated setup list) gives Pi issues, pull requests, and Actions context. Worth saying plainly, though: Pi users tend to be shell-first people, and the `gh` CLI already does most of this through bash with zero context overhead. Install the MCP server if you want structured tools and OAuth; stick with `gh` if you don't.
+GitHub's official server (also in the curated setup list) gives Pi issues, pull requests, and Actions context. That said, Pi users tend to be shell-first people, and the `gh` CLI already does most of this through bash with zero context overhead. Install the MCP server if you want structured tools and OAuth; stick with `gh` if you don't.
 
 **Best for:** structured repo workflows across many repos.** Tradeoffs:** a big tool surface; behind the adapter's proxy that's manageable, but don't promote all of it to `directTools`.
 
@@ -69,7 +69,7 @@ The adapter's own quick-start example, and the right browser server for Pi's aud
 
 ## The skill route: skip MCP entirely
 
-Pi's own answer to "how do I add a tool" is usually "wrap a CLI in a skill." That option exists here too: the [Parallel CLI installs as a Pi skill](https://docs.parallel.ai/integrations/cli), the same pattern as our OpenClaw integration, and gives the agent search, fetching, and research tasks through plain shell commands. Skills cost almost nothing in context and compose with pipes and scripts; MCP buys you portability across harnesses, OAuth handling, and per-tool schemas. Pick per tool, not per ideology.
+Pi's own answer to "how do I add a tool" is usually "wrap a CLI in a skill." That option exists here too: the [Parallel CLI installs as a Pi skill](https://docs.parallel.ai/integrations/cli), the same pattern as our OpenClaw integration, and gives the agent search, fetching, and research tasks through plain shell commands. Skills cost almost nothing in context and compose with pipes and scripts; MCP buys you portability across harnesses, OAuth handling, and per-tool schemas.
 
 ## The picks side by side
 

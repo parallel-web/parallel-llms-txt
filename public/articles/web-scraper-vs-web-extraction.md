@@ -4,9 +4,9 @@ A web scraper and web extraction are often treated as one thing, but they solve 
 
 ## Two words, two jobs
 
-A web scraper is a program that requests web pages and pulls data out of the HTML. Web extraction is the step that turns page content into the specific values, fields, or passages a downstream system needs. A scraper almost always includes an extraction step, which is why the words get swapped. Extraction does not require a scraper. It runs just as well on a PDF, an API response, a saved HTML file, or a database export.
+A web scraper is a program that requests web pages and pulls data out of the HTML. Web extraction is the step that turns page content into the specific values, fields, or passages a downstream system needs. A scraper almost always includes an extraction step, which is why the words get swapped. Extraction doesn't require a scraper, though: it runs just as well on a PDF, an API response, a saved HTML file, or a database export.
 
-The distinction sounds academic until a job fails. A pipeline can reach every URL it was given and still write the wrong price into every row. Another pipeline can map fields perfectly on the 60 percent of pages it managed to load. Both report success. They failed in different layers, and you fix them with different tools.
+The distinction matters when a job fails. A pipeline can reach every URL it was given and still write the wrong price into every row. Another pipeline can map fields perfectly on the 60 percent of pages it managed to load. Both report success, but they failed in different layers and need different fixes.
 
 ## What a web scraper does
 
@@ -46,17 +46,17 @@ Extraction rules used to be handwritten. A selector pointed at a `<span class="p
 
 ## Why the terms blur
 
-Most commercial tools sell both layers under one name. A "scraping API" fetches a page through its proxy pool, renders JavaScript, and returns markdown or JSON. A "data extraction platform" typically includes crawling and fetching so it has something to extract from. Vendors also price the two layers differently even when they bundle them. Firecrawl charges one credit for a basic scrape and adds four credits per page for its JSON, Question, and Highlight formats, which is a plain admission that structured extraction costs more than retrieval.
+Most commercial tools sell both layers under one name. A "scraping API" fetches a page through its proxy pool, renders JavaScript, and returns markdown or JSON. A "data extraction platform" typically includes crawling and fetching so it has something to extract from. Vendors also price the two layers differently even when they bundle them. Firecrawl charges one credit for a basic scrape and adds four credits per page for its JSON, Question, and Highlight formats, which reflects that structured extraction costs more to run than retrieval.
 
 The usage also differs by audience. Data engineers say "scraper" and mean the whole pipeline. Document-processing teams say "extraction" and may never touch a website at all. When two teams argue about whether a project is scraping or extraction, they are usually describing the same job from different ends.
 
 ## How LLMs changed the split
 
-Large language models moved extraction from rules to intent. Instead of a selector per field per site, you describe what you want. That shift has three consequences for anyone building pipelines.
+Large language models moved extraction from rules to intent. Instead of a selector per field per site, you describe what you want. That shift has three consequences.
 
-First, extraction got portable across sites. One prompt that asks for "the current sale price and whether the item ships today" works on retailers that have never been seen before. Second, extraction got more expensive per page than retrieval, because a model has to read the content. Third, the interesting unit of output changed. For an agent, the right output is often not a schema at all. It is the two or three passages on the page that answer the question, in as few tokens as possible.
+First, extraction got portable across sites. One prompt that asks for "the current sale price and whether the item ships today" works on retailers that have never been seen before. Second, extraction got more expensive per page than retrieval, because a model has to read the content. Third, the interesting unit of output changed. For an agent, the right output is often the two or three passages on the page that answer the question, in as few tokens as possible, rather than a schema.
 
-For agents, the third point matters most. The agent does not need the whole page or a rigid schema, only the relevant content, cleaned, with a source URL attached.
+That third change matters most for agents, which need the relevant content cleaned and with a source URL attached.
 
 ## Where Parallel Extract fits
 
@@ -81,7 +81,7 @@ for result in extract.results:
 
 Pricing is $1 per 1,000 URLs, and each call returns in roughly 1 to 20 seconds. The default rate limit is 600 requests per minute. Each result carries the page title and a publish date when one is available, and URLs that could not be returned show up in an `errors` array rather than failing the whole request. A `fetch_policy` setting lets you force a live fetch or accept older cached content when speed matters more than freshness.
 
-Extract is not a scraper in the classic sense. There are no selectors to write and no proxy pool to manage. It also does not produce a rigid schema by itself. If you need typed fields, pair it with a model that reads the excerpts, or use the [Task API](https://docs.parallel.ai/task/task-quickstart) when the job is research across many sources rather than one page. For the discovery step, the [Search API](https://parallel.ai/products/search) finds the URLs first, and Extract pulls the detail only where an agent needs it. Our [guide to AI data extraction at scale](https://parallel.ai/articles/ai-data-extraction-how-to-extract-structured-data-from-websites-at-scale) covers the full pipeline.
+Extract has no selectors to write and no proxy pool to manage, and it doesn't produce a rigid schema by itself. If you need typed fields, pair it with a model that reads the excerpts, or use the [Task API](https://docs.parallel.ai/task/task-quickstart) when the job is research across many sources rather than one page. For the discovery step, the [Search API](https://parallel.ai/products/search) finds the URLs first, and Extract pulls the detail only where an agent needs it. Our [guide to AI data extraction at scale](https://parallel.ai/articles/ai-data-extraction-how-to-extract-structured-data-from-websites-at-scale) covers the full pipeline.
 
 ## Which one are you missing?
 
@@ -98,7 +98,7 @@ Measure the layers separately. Track URL coverage and page retrieval as one numb
 
 ### Is web extraction the same as web scraping?
 
-No. Scraping collects content from websites and usually includes an extraction step. Extraction structures values from any source, including PDFs, APIs, and files you already have, so it is the wider term and also the narrower stage.
+No. Scraping collects content from websites and usually includes an extraction step. Extraction structures values from any source, including PDFs, APIs, and files you already have, so it covers more sources than scraping does, even though it's only one stage inside a scraper.
 
 ### Is a web crawler a scraper?
 

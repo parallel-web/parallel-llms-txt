@@ -4,15 +4,15 @@ Vendor benchmark tables, ours included, tell you how a fixed test scored on a fi
 
 Every vendor in this category publishes benchmark numbers, and we're one of them. A benchmark table tells you how a fixed set of tools scored on a fixed dataset during one testing window, on a harness the vendor chose. It cannot tell you how any of those tools will perform on your workload. The only test that settles which [web search API](https://parallel.ai/articles/what-is-a-web-search-api) belongs in your stack runs your real production queries through each candidate and measures whether your agent finished the job.
 
-This guide is that test, written out end to end: the query set, the harness, the judge, and the scoring, including the statistics that tell you when a gap is real. It takes about a day, most of it unattended. We make the [Parallel Search API](https://parallel.ai/products/search), we run evals of our own, and we want you to choose us, so treat our tables the way you'd treat any vendor's: as a starting point, not a verdict.
+This guide is that test, written out end to end: the query set, the harness, the judge, and the scoring, including the statistics that tell you when a gap is real. It takes about a day, most of it unattended. We make the [Parallel Search API](https://parallel.ai/products/search), we run evals of our own, and we want you to choose us, so treat our tables the way you'd treat any vendor's, as a starting point.
 
 ## Why your own queries beat any leaderboard
 
-A public benchmark measures average performance on general questions, and your workload isn't general questions. It's your domains, your query patterns, your freshness needs, and your definition of a correct answer. A tool that wins on the aggregate can lose on the slice you actually run, and the reverse happens too.
+A public benchmark measures average performance on general questions, while your workload is your domains, your query patterns, your freshness needs, and your definition of a correct answer. A tool that wins on the aggregate can lose on the slice you actually run, and the reverse happens too.
 
 Rankings also move with the task. When we tested the same engines on different datasets in the same week, the order shifted. An engine that leads a multi-hop browsing suite can trail on single-hop lookups, so a leaderboard built on someone else's task mix tells you little about yours.
 
-And most accuracy claims in this category are vendor-run, ours included. The closest thing to a neutral referee arrived in August 2026, when Artificial Analysis published its Search Index: an independent benchmark of 15 search API products on a fixed agent harness, on which Parallel Search ranks first. [Openbenchmarks](https://openbenchmarks.com/web-search/fastest-search-api) is a second one, with an open-source harness, a public sample, a held-out scoring set, and separate speed boards per task type, which show why the task mix matters: Parallel turbo leads factual lookup on latency while Exa Instant leads multi-hop search on time per unit of answer quality. Use both as your external baseline. But the numbers that should decide your choice are still the ones you generate yourself, on your own workload.
+And most accuracy claims in this category are vendor-run, ours included. The closest thing to a neutral referee arrived in August 2026, when Artificial Analysis published its Search Index: an independent benchmark that now covers 25 search API products on a fixed agent harness, on which Parallel Search (advanced) scores 75 in the September 2026 data, behind Perplexity Search (medium) at 80 and Octen Search at 77. [Openbenchmarks](https://openbenchmarks.com/web-search/fastest-search-api) is a second one, with an open-source harness, a public sample, a held-out scoring set, and separate speed boards per task type, which show why the task mix matters: Parallel turbo leads factual lookup on latency while Exa Instant leads multi-hop search on time per unit of answer quality. Use both as your external baseline.
 
 ## What you need before you start
 
@@ -20,9 +20,9 @@ An API key for every candidate, most of which have free tiers that cover an eval
 
 ## Step 1: Build the query set
 
-Pull queries from your production logs, not from your imagination. Synthetic prompts flatter every vendor equally and tell you nothing. For a single-hop workload, 50 to 100 queries give a quick, credible read. For a fuller bake-off, 200 to 500 reflect your true traffic mix. For deep research, 30 to 50 questions weighted toward the hard multi-hop cases that break systems will separate the field faster than a thousand easy lookups.
+Pull queries from your production logs. Synthetic prompts flatter every vendor equally. For a single-hop workload, 50 to 100 queries give a quick, credible read. For a fuller bake-off, 200 to 500 reflect your true traffic mix. For deep research, 30 to 50 questions weighted toward the hard multi-hop cases that break systems will separate the field faster than a thousand easy lookups.
 
-For every query, write one line describing what a correct outcome looks like. This is the piece most teams skip, and it's the piece that makes grading possible. If you can't state what correct means for a query, the query can't score, and it belongs in a demo, not an eval. Keep the whole set in one JSONL file:
+For every query, write one line describing what a correct outcome looks like. This is the piece most teams skip, and it's the piece that makes grading possible. If you can't state what correct means for a query, it can't be scored, so leave it out of the eval. Keep the whole set in one JSONL file:
 
 ```json
 {"id": "q001", "query": "Which version of the EU AI Act's GPAI obligations applied as of August 2025?", "correct_looks_like": "Cites the Aug 2, 2025 application date for GPAI obligations"}
@@ -76,7 +76,7 @@ with open("results.jsonl", "a") as out:
             out.write(json.dumps(row) + "\n")
 ```
 
-Each provider gets an adapter that maps its API onto the same `search(objective)` interface. Run each one with its default configuration on the first pass: per-vendor tuning hides the out-of-the-box behavior your team will live with, and you can tune the winner later. Here's what an adapter looks like for our API; the shape is similar for the others:
+Each provider gets an adapter that maps its API onto the same `search(objective)` interface. Run each one with its default configuration on the first pass: per-vendor tuning hides the out-of-the-box behavior your team will live with, and you can tune the winner later. An adapter for our API looks like this, and the shape is similar for the others:
 
 ```py
 import os
@@ -102,7 +102,7 @@ Record everything the scoring step needs while you're in the loop: the final ans
 
 ## Step 3: Judge end-task success
 
-Grade whether the agent completed the job, not whether a relevant URL appeared somewhere in the results. Retrieval scores help you debug a failure, and they don't decide the choice.
+Grade whether the agent completed the job. A relevant URL appearing somewhere in the results doesn't count; retrieval scores help you debug a failure, but they don't decide the choice.
 
 Use an LLM judge with a strict prompt, one grade per query per provider:
 
@@ -151,7 +151,7 @@ for name, rs in by_provider.items():
           f"| ${per_success:.2f} per successful task")
 ```
 
-The confidence interval is the part most vendor tables omit, ours included. At 100 queries, a measured 50% accuracy carries a 95% interval of about plus or minus 10 points. Two providers three points apart at that sample size are tied, whatever the headline order says. When you need to separate two close candidates, don't reach for more decimal places; reach for a paired comparison on the same queries, which is far more sensitive at the same sample size:
+The confidence interval is the part most vendor tables omit, ours included. At 100 queries, a measured 50% accuracy carries a 95% interval of about plus or minus 10 points. Two providers three points apart at that sample size are tied, whatever the headline order says. To separate two close candidates, use a paired comparison on the same queries, which is far more sensitive at the same sample size than adding decimal places:
 
 ```py
 # Paired comparison: more sensitive than comparing two headline accuracies.
@@ -163,13 +163,13 @@ b_only = sum(1 for q in ids if ok["B", q] and not ok["A", q])
 print(f"A wins {a_only} queries B loses; B wins {b_only} queries A loses")
 ```
 
-Two more honesty rules. Run-to-run variance is real, so rerun a surprising result before you believe it. And decide before you start whether you report first-run numbers or best-of-N, then apply the same rule to every provider. In our own published benchmarks we ran multiple sessions and reported the best observed score per provider, applied uniformly; whichever convention you pick, write it down next to the results.
+Two more rules. Run-to-run variance is real, so rerun a surprising result before you believe it. And decide before you start whether you report first-run numbers or best-of-N, then apply the same rule to every provider. In our own published benchmarks we ran multiple sessions and reported the best observed score per provider, applied uniformly; whichever convention you pick, write it down next to the results.
 
 ## Step 5: Read the results, then keep them honest
 
-Pick on accuracy for your hard slice first, then cost and latency per successful task, then operational fit: rate limits, concurrency, compliance requirements like SOC 2 and data retention. A tie on accuracy at different latencies isn't a tie, and neither is one at different costs per successful task.
+Pick on accuracy for your hard slice first, then cost and latency per successful task, then operational fit: rate limits, concurrency, compliance requirements like SOC 2 and data retention. When two providers tie on accuracy, let latency and cost per successful task break the tie.
 
-Then treat the harness as a product. Keep it in version control with the query set and the results. Rerun quarterly, and after any provider ships a major model or index change, and compare against your previous run before reacting to a vendor announcement. Every benchmark ages, including yours, and including the ones on our site.
+Then treat the harness as a product. Keep it in version control with the query set and the results. Rerun quarterly, and after any provider ships a major model or index change, and compare against your previous run before reacting to a vendor announcement.
 
 ## Scaffolding that speeds this up
 
@@ -187,7 +187,7 @@ Enough that the gap you care about clears the error bars. As a rule of thumb, 10
 
 ### Can I use one model as both agent and judge?
 
-Yes, and it's common. The judge isn't being asked to know the answer, it's being asked to compare the agent's answer against the correctness criterion you wrote. The spot-check exists to catch the cases where that trust is misplaced.
+Yes, and it's common. The judge doesn't need to know the answer; it compares the agent's answer against the correctness criterion you wrote. The spot-check exists to catch the cases where that trust is misplaced.
 
 ### How often should I re-evaluate?
 
@@ -195,4 +195,4 @@ Quarterly is a reasonable cadence, plus a rerun whenever a provider announces a 
 
 ## Run it against us
 
-Parallel's free tier covers up to 5,000 free monthly searches with no credit card required, enough for a full evaluation on your own traffic. Get started with the [Search API quickstart](https://docs.parallel.ai/search/search-quickstart).
+Parallel's free tier includes $5 in free credits every month, enough for up to 5,000 Turbo or Fast searches, which covers a full evaluation on your own traffic. Get started with the [Search API quickstart](https://docs.parallel.ai/search/search-quickstart).

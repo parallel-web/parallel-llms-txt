@@ -8,20 +8,18 @@ A research agent operates as an autonomous loop. You give it an objective ("Find
 
 This differs from _static RAG_ systems that query a fixed, pre-indexed corpus. [Retrieval-augmented generation](https://www.ibm.com/think/topics/retrieval-augmented-generation) works when your answers exist in documents you control. Research agents tackle questions where the relevant information lives across the open web, changes frequently, and requires synthesis from multiple sources. An [agentic RAG survey](https://arxiv.org/html/2501.09136v4) from researchers at Cleveland State and Northeastern captures the distinction: agentic systems embed autonomous [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) into the retrieval pipeline, dynamically managing search strategies and iterating on context.
 
-The distinction from chat assistants matters too. A chat assistant handles single-turn queries. A research agent pursues multi-step investigations, adjusts its search strategy based on findings, identifies gaps in its knowledge, and iterates until it reaches a satisfactory answer or hits a stopping condition. [AI agents in scientific research](https://www.nature.com/articles/d41586-025-03246-7) are already handling complex workflows that span dozens of sources and multiple reasoning steps.
+Research agents also differ from chat assistants, which handle single-turn queries. A research agent pursues multi-step investigations, adjusts its search strategy based on findings, identifies gaps in its knowledge, and iterates until it reaches a satisfactory answer or hits a stopping condition. [AI agents in scientific research](https://www.nature.com/articles/d41586-025-03246-7) are already handling complex workflows that span dozens of sources and multiple reasoning steps.
 
-The four phases look like this:
+Collapsed into four phases, the cycle looks like this:
 
 1. **Plan**: The agent breaks the objective into sub-queries and decides search strategies
 2. **Search**: It executes queries against the web and retrieves relevant content
 3. **Reflect**: It evaluates findings, identifies gaps, and generates follow-up queries
 4. **Synthesize**: It compiles results into a structured output with citations
 
-Use cases span competitive analysis, market research, lead enrichment, due diligence, and regulatory monitoring. These are infrastructure problems. Prompt engineering can't compensate for weak web retrieval. Your agent's accuracy depends on the quality of web data it can access. [McKinsey's analysis of the agentic organization](https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/the-agentic-organization-contours-of-the-next-paradigm-for-the-ai-era) highlights how enterprises are deploying AI agents along a spectrum from simple tool augmentation to end-to-end workflow automation.
+Use cases span competitive analysis, market research, lead enrichment, due diligence, and regulatory monitoring. In each one, accuracy depends on the web data the agent can access, and prompt engineering can't compensate for weak retrieval. [McKinsey's analysis of the agentic organization](https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/the-agentic-organization-contours-of-the-next-paradigm-for-the-ai-era) highlights how enterprises are deploying AI agents along a spectrum from simple tool augmentation to end-to-end workflow automation.
 
-Consider a due diligence workflow. An analyst needs to verify a company's SOC 2 certification status, identify recent funding rounds, check for regulatory actions, and map the competitive landscape. A human researcher spends 4-6 hours on this task. A well-built research agent completes it in 2-3 minutes. The agent searches for certification announcements, extracts details from press releases, cross-references regulatory databases, and synthesizes findings with source citations. Companies like Profound are already using Parallel's APIs to power [marketing agents conducting multi-source research](https://parallel.ai/blog/case-study-profound) at this level of [deep research](https://parallel.ai/articles/what-is-deep-research).
-
-The agent succeeds or fails based on its access to web data. If it can't find the right pages, parse their content, or retrieve fresh information, no amount of prompt engineering compensates.
+Take a due diligence workflow, where an analyst needs to verify a company's SOC 2 certification status, identify recent funding rounds, check for regulatory actions, and map competitors. A human researcher spends 4-6 hours on this task. A well-built research agent completes it in 2-3 minutes. The agent searches for certification announcements, extracts details from press releases, cross-references regulatory databases, and synthesizes findings with source citations. Companies like Profound are already using Parallel's APIs to power [marketing agents conducting multi-source research](https://parallel.ai/blog/case-study-profound) at this level of [deep research](https://parallel.ai/articles/what-is-deep-research).
 
 ## The five components every research agent needs
 
@@ -29,11 +27,11 @@ Building a research agent requires five core components working in coordination.
 
 **1. Reasoning engine (LLM)**
 
-The LLM handles planning, decision-making, and synthesis. You'll use it to decompose objectives into sub-queries, evaluate search results for relevance, decide when to iterate versus conclude, and generate the final output. Most frontier models (GPT-4, Claude, Gemini) work here. The choice matters less than the next component.
+The LLM handles planning, decision-making, and synthesis. You'll use it to decompose objectives into sub-queries, evaluate search results for relevance, decide when to iterate versus conclude, and generate the final output. Most frontier models from OpenAI, Anthropic, and Google work here, and the choice matters less than the web access layer.
 
 **2. Web access layer**
 
-This is the critical infrastructure decision. The web access layer determines how your agent finds and retrieves information. Options range from browser automation to search API wrappers to purpose-built agent infrastructure. We'll examine this in depth in the next section.
+The web access layer determines how your agent finds and retrieves information. Options range from browser automation to search API wrappers to purpose-built agent infrastructure. The next section covers this choice in depth.
 
 **3. Memory and state**
 
@@ -45,35 +43,35 @@ The orchestration layer breaks high-level objectives into executable steps and m
 
 **5. Output synthesizer**
 
-The final component compiles findings into structured outputs with citations and confidence signals. Raw extracts need transformation into coherent answers. You should trace every claim back to a source URL.
+The final component compiles findings into structured outputs with citations and confidence signals. It turns raw extracts into coherent answers, and every claim should trace back to a source URL.
 
-Most developers spend their time on components 1, 4, and 5. The web access layer gets treated as a solved problem. This is a mistake. Your agent's ceiling is determined by the quality of data it can access. A sophisticated reasoning engine working with poor web retrieval produces poor results.
+Most developers spend their time on components 1, 4, and 5. They treat the web access layer as a solved problem, but your agent's ceiling is set by the data it can access, and a sophisticated reasoning engine working with poor web retrieval still produces poor results.
 
-We've seen teams spend months refining prompts and orchestration logic while using commodity search that returns irrelevant results. The agent fails on basic queries. The team blames the LLM. The actual problem sits one layer deeper: garbage in, garbage out. Fix the web access layer first.
+We've seen teams spend months refining prompts and orchestration logic while using commodity search that returns irrelevant results. The agent fails on basic queries, the team blames the LLM, and the actual problem is the search results going in. Fix the web access layer first.
 
 ## Why the web access layer is the decision that matters most
 
-Most agent tutorials treat web search as interchangeable. Add a search tool to your agent, and you're done. In practice, the [web search API](https://parallel.ai/articles/what-is-a-web-search-api) layer determines the upper bound on your agent's accuracy.
+Most agent tutorials treat web search as interchangeable: add a search tool to your agent and you're done. In practice, the [web search API](https://parallel.ai/articles/what-is-a-web-search-api) layer determines the upper bound on your agent's accuracy.
 
-Consider three approaches:
+There are three common approaches:
 
 **Browser automation (Playwright, Selenium)**
 
-You control a headless browser, navigate pages, execute JavaScript, and extract content. Maximum flexibility. You can access anything a human browser can reach.
+You control a headless browser, navigate pages, execute JavaScript, and extract content. This gives you maximum flexibility: you can access anything a human browser can reach.
 
-The costs add up. Each page load takes 2-10 seconds. JavaScript execution consumes compute. Sites detect and block automation. CAPTCHAs, rate limits, and anti-bot measures require workarounds. A 20-page research task might take 5 minutes and fail intermittently. In production, you're running infrastructure for browser orchestration, managing proxies, and debugging site-specific failures.
+Each page load takes 2-10 seconds, and JavaScript execution consumes compute. Sites detect and block automation. CAPTCHAs, rate limits, and anti-bot measures require workarounds. A 20-page research task might take 5 minutes and fail intermittently. In production, you're running infrastructure for browser orchestration, managing proxies, and debugging site-specific failures.
 
 **Generic search APIs (SerpAPI, Google Custom Search)**
 
-These return search engine result pages: titles, snippets, URLs. You get metadata, not content. Your agent still needs to fetch each page, parse HTML, extract relevant text, and handle rendering issues.
+These return search engine result pages: titles, snippets, URLs. That's metadata rather than content, so your agent still needs to fetch each page, parse HTML, extract relevant text, and handle rendering issues.
 
-The architecture doubles your API calls. Search to find URLs, then separate requests to get content. SerpAPI charges per search. Page extraction requires additional infrastructure or a second service. Costs compound.
+This doubles your API calls: one search to find URLs, then separate requests to get content. SerpAPI charges per search, and page extraction requires additional infrastructure or a second service.
 
 **Agent-native search APIs (****[Parallel Search API](https://parallel.ai/products/search)****)**
 
-Purpose-built for LLM consumption. You send a natural language objective, and the API returns ranked URLs with dense, query-relevant excerpts already extracted. No separate fetch step. No HTML parsing. The content arrives in token-efficient markdown. Parallel's index delivers [benchmark-proven accuracy](https://parallel.ai/blog/search-api-benchmark) against alternatives, with [semantic search](https://parallel.ai/articles/what-is-semantic-search) that understands the intent behind your agent's queries.
+These are purpose-built for LLM consumption. You send a natural language objective, and the API returns ranked URLs with dense, query-relevant excerpts already extracted as token-efficient markdown, with no separate fetch or HTML parsing step. Parallel's index delivers [benchmark-proven accuracy](https://parallel.ai/blog/search-api-benchmark) against alternatives, with [semantic search](https://parallel.ai/articles/what-is-semantic-search) that understands the intent behind your agent's queries.
 
-Here's the difference in practice:
+In practice, the call looks like this:
 
 ```python
 import requests
@@ -96,7 +94,7 @@ for result in results:
 
 Each result includes a compressed excerpt optimized for your agent's context window. You skip the fetch-and-parse pipeline.
 
-Cost compounds across research tasks. A typical investigation involves 15-30 queries. At $0.05 per query with downstream extraction costs, you're spending $1-2 per task. At $0.005 per query with excerpts included, the same task costs $0.10-0.20. With Turbo mode at $0.001 per query, it drops to $0.015-0.03, so deep-research fan-outs can run more searches on the same budget. The 10x difference matters at scale.
+A typical investigation involves 15-30 queries. At $0.05 per query with downstream extraction costs, you're spending $1-2 per task. At $0.005 per query with excerpts included (10x cheaper), the same task costs $0.10-0.20. With Turbo mode at $0.001 per query, it drops to $0.015-0.03, so deep-research fan-outs can run more searches on the same budget.
 
 Evaluation criteria for your web access layer:
 
@@ -107,11 +105,11 @@ Evaluation criteria for your web access layer:
 - **Reliability**: Does it handle JavaScript rendering, CAPTCHAs, and dynamic content?
 - **Latency**: Can it return results fast enough for interactive workloads?
 
-The best agent architectures treat the web access layer as infrastructure, not a plugin. You build around its capabilities and constraints. A strong web layer with simple orchestration beats complex orchestration with weak web access.
+The best agent architectures treat the web access layer as infrastructure and build around its capabilities and constraints.
 
 ## Building the research loop step by step
 
-Let's build a research agent that answers complex questions by searching the web, extracting information, and synthesizing findings. For a complete working example, see our [full-stack search agent tutorial](https://parallel.ai/blog/cookbook-search-agent).
+The steps below build a research agent that answers complex questions by searching the web, extracting information, and synthesizing findings. For a complete working example, see our [full-stack search agent tutorial](https://parallel.ai/blog/cookbook-search-agent).
 
 ### Step 1: Define research objective and exit criteria
 
@@ -181,7 +179,7 @@ def extract_full_content(urls: list[str], parallel_client) -> list[dict]:
 
 The Search API returns excerpts for initial assessment. The Extract API retrieves focused content from high-value pages.
 
-This two-stage pattern optimizes for cost and accuracy. Search provides breadth: you scan many pages quickly to identify relevant sources. Extract provides depth: you retrieve full content only from pages worth reading in detail. Running Extract on every search result wastes tokens and increases costs. Running Search alone misses details buried deep in pages.
+This two-stage pattern optimizes for cost and accuracy. Search provides breadth: you scan many pages quickly to identify relevant sources. Extract provides depth: you retrieve full content only from pages worth reading in detail. Running Extract on every search result wastes tokens, while Search alone misses details buried deep in pages.
 
 ### Step 4: Reflect and iterate
 
@@ -268,13 +266,13 @@ response = requests.post(
 
 Task API combines LLM reasoning with web search and extraction, returns structured outputs with the Basis framework (citations, reasoning, confidence scores), and handles iteration internally. You define the objective and output schema; the API handles research execution.
 
-The Basis framework deserves attention. Every output field includes: the source URL where the information was found, excerpts from the source text, the reasoning chain that led to the conclusion, and a calibrated confidence score. You can audit every claim. You can trace errors back to their source. This transparency separates production-grade research from black-box generation.
+In the Basis framework, every output field includes the source URL where the information was found, excerpts from the source text, the reasoning chain that led to the conclusion, and a calibrated confidence score. That lets you audit every claim and trace errors back to their source.
 
-Processor tiers let you match compute to complexity. Lite handles simple lookups in 10-60 seconds at $5 per 1,000 runs. Pro tackles exploratory research in 2-10 minutes at $100 per 1,000 runs. Ultra Processors handle the most difficult multi-source synthesis tasks. You pay for the depth you need.
+Processor tiers let you match compute to complexity. Lite handles simple lookups in 10-60 seconds at $5 per 1,000 runs. Pro tackles exploratory research in 2-10 minutes at $100 per 1,000 runs. Ultra Processors handle the most difficult multi-source synthesis tasks.
 
 ## Production guardrails you can't skip
 
-Research agents can fail expensively. These guardrails prevent runaway costs and ensure reliable outputs. Research on [AI agent architectures and evaluation](https://arxiv.org/html/2601.01743v1) highlights key trade-offs: latency vs. accuracy, autonomy vs. controllability, and capability vs. reliability. A practical guide to [production-grade agentic AI workflows](https://arxiv.org/html/2512.08769v1) from Old Dominion University outlines nine core best practices for engineering reliable agent systems.
+Research agents can fail expensively, and the guardrails below keep costs bounded and outputs verifiable. Research on [AI agent architectures and evaluation](https://arxiv.org/html/2601.01743v1) highlights key trade-offs: latency vs. accuracy, autonomy vs. controllability, and capability vs. reliability. A practical guide to [production-grade agentic AI workflows](https://arxiv.org/html/2512.08769v1) from Old Dominion University outlines nine core best practices for engineering reliable agent systems.
 
 **Cost controls**
 
@@ -288,7 +286,7 @@ config = {
 }
 ```
 
-Parallel's flat per-request pricing makes cost prediction straightforward. You know the ceiling before the task runs.
+Parallel's flat per-request pricing means you know the cost ceiling before the task runs.
 
 **Loop-exit conditions**
 
@@ -340,7 +338,7 @@ Build a test suite of 50-100 queries where you know the ground truth. Include fa
 
 ## When to use a framework vs. build from scratch
 
-The agent framework landscape includes LangChain, CrewAI, and AutoGen. Each offers pre-built components for common patterns. [Enterprise best practices for agentic systems](https://www.infoworld.com/article/4154570/best-practices-for-building-agentic-systems.html) from InfoWorld provides a useful overview of how organizations are navigating these choices.
+Popular agent frameworks include LangChain, CrewAI, and AutoGen, each offering pre-built components for common patterns. [Enterprise best practices for agentic systems](https://www.infoworld.com/article/4154570/best-practices-for-building-agentic-systems.html) from InfoWorld provides a useful overview of how organizations are navigating these choices.
 
 **Framework advantages**
 
@@ -348,21 +346,19 @@ Frameworks provide integrations, abstractions for common patterns, and community
 
 **Framework tradeoffs**
 
-Abstractions hide behavior. Debugging requires understanding framework internals. Dependencies accumulate. Version upgrades introduce breaking changes. Performance tuning requires working around framework constraints.
+Abstractions hide behavior, so debugging requires understanding framework internals. Dependencies accumulate, version upgrades introduce breaking changes, and performance tuning means working around framework constraints.
 
 **Building from scratch**
 
-Full control over every component. Fewer dependencies. Direct understanding of system behavior. The cost is implementing patterns that frameworks provide out of the box.
+You get full control over every component, fewer dependencies, and a direct understanding of system behavior. In exchange, you implement patterns that frameworks already provide.
 
 **The middle path**
 
-Use purpose-built infrastructure for the hard parts, keep orchestration simple.
+Use purpose-built infrastructure for the hard parts and keep orchestration simple.
 
-Parallel's APIs handle web search, extraction, and research execution. They're framework-agnostic. You can call them from LangChain, CrewAI, a custom orchestrator, or raw Python scripts. The web access layer is the infrastructure decision that matters. Whether you wrap it in a framework or call it directly is a secondary concern.
+Parallel's APIs handle web search, extraction, and research execution. They're framework-agnostic. You can call them from LangChain, CrewAI, a custom orchestrator, or raw Python scripts. Whether you wrap them in a framework or call them directly matters less than which web access layer you choose.
 
-A lightweight orchestrator with robust web infrastructure outperforms a sophisticated framework with commodity search. Choose your web access layer carefully; be flexible about everything else.
-
-The practical recommendation: start with direct API calls and a simple Python orchestrator. Add framework abstractions only when you hit specific pain points that frameworks solve. Most teams never need them. The ones that do can migrate incrementally.
+Start with direct API calls and a simple Python orchestrator, and add framework abstractions only when you hit specific pain points that frameworks solve. Most teams never need them, and the ones that do can migrate incrementally.
 
 ## Frequently asked questions
 
@@ -372,7 +368,7 @@ RAG retrieves from a fixed corpus you've indexed. Research agents search the liv
 
 **Running costs for AI research agents**
 
-Costs vary by complexity. Simple lookups run $0.01-0.05. Deep research tasks with Task API Pro cost $0.10-1.00. Custom implementations depend on your API choices and iteration counts.
+Costs vary by complexity. Simple lookups run $0.01-0.05. Deep research tasks cost a flat $0.10 per run on Task API Pro, and the Ultra tiers run $0.30 to $2.40 per run. Custom implementations depend on your API choices and iteration counts.
 
 **Building a research agent without coding**
 

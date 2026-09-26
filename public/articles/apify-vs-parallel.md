@@ -6,7 +6,7 @@ Apify is a marketplace and runtime for thousands of prebuilt scrapers; Parallel 
 
 An Actor is a serverless cloud program that scrapes, crawls, or automates something. You take JSON in, do work that runs from seconds to hours, and write structured results to a dataset. Apify Store carries tens of thousands of them, most written by third parties, covering specific targets: Amazon listings, Google Maps places, Instagram profiles, LinkedIn, Zillow, and long-tail sites nobody else has bothered with.
 
-That catalogue is the product. If your job is "get every listing off this niche marketplace," someone has probably already written and maintained the scraper, and you rent it instead of building it. Nothing in the LLM-native search category comes close to that coverage, and it is worth being clear that Parallel does not compete with it.
+The catalogue is what you are paying for. If your job is "get every listing off this niche marketplace," someone has probably already written and maintained the scraper, and you rent it instead of building it. Nothing in the LLM-native search category comes close to that coverage, and Parallel does not try to compete with it.
 
 Two Actors sit closest to Parallel's territory. RAG Web Browser queries Google, scrapes the top N results with a real browser, and returns clean Markdown for an LLM; it can run in Standby mode as a persistent HTTP server or an MCP endpoint, which cuts the cold-start penalty. Website Content Crawler turns a site into Markdown or JSON for RAG pipelines.
 
@@ -16,11 +16,11 @@ Parallel's surface is fixed rather than a marketplace: Search, Extract, Task, Re
 
 Apify's model is a subscription that buys platform credit, which usage then draws down across three separate meters:
 
-- Compute units: 1 CU is 1 GB of memory for 1 hour, at roughly $0.20 per CU on the free plan and less on higher tiers
+- Compute units: 1 CU is 1 GB of memory for 1 hour, at $0.20 per CU on Free and Starter and less on Scale and Business
 - Proxy traffic: residential billed per gigabyte, datacenter per IP
 - Rented Actors: third-party Actors draw against the same credit, and some add per-result or per-event charges of their own
 
-Plans run from Free (around $5 in monthly credit, 25 concurrent runs, no card) through Starter near $29 a month and Scale near $199, with Business above that. Published figures vary between Apify's own page and third-party trackers, so confirm before committing.
+Plans run from Free ($5 in monthly usage, 5 concurrent runs, no card) through Starter at $19 a month, with Scale and Business ($999 a month) above that. Plan details change, so confirm on Apify's pricing page before committing.
 
 The practical consequence is that the plan price is a budget, not a bill. A per-search cost on Apify depends on how much memory the Actor was given, how long the page took to render, whether a retry fired, and whether the target needed residential proxies. That is unavoidable when you are renting compute rather than buying an answer, but it makes forecasting hard.
 
@@ -32,11 +32,11 @@ _Note: For the latest pricing, always check official documentation._
 
 An Actor run is a container that boots, does work, and writes to a dataset. Even a fast one is seconds, and a cold start adds more. Apify's answer for latency-sensitive use is Standby mode, where the Actor stays warm as an HTTP server and handles requests in parallel; that helps, and it is the mode to use if you put RAG Web Browser on a request path.
 
-Parallel Turbo returns in about 200ms because it serves from an index rather than launching a browser. For an agent making several searches inside one user turn, that difference compounds.
+Parallel Turbo returns in about 200ms because it serves from an index rather than launching a browser. For an agent making several searches inside one user turn, the gap adds up across the turn.
 
 ## **Agent integration**
 
-Apify has invested heavily here and it shows. The MCP server at mcp.apify.com handles OAuth, exposes Actor discovery and invocation as tools, and lets an agent find and run a scraper it has never seen before. Documentation ships as llms.txt and llms-full.txt. There are JavaScript and Python clients, a CLI, and framework integrations for CrewAI, LangChain, and LlamaIndex. Actor search and docs tools work without authentication at all.
+Apify has invested heavily in agent tooling. The MCP server at mcp.apify.com handles OAuth, exposes Actor discovery and invocation as tools, and lets an agent find and run a scraper it has never seen before. Documentation ships as llms.txt and llms-full.txt. There are JavaScript and Python clients, a CLI, and framework integrations for CrewAI, LangChain, and LlamaIndex. Actor search and docs tools work without authentication at all.
 
 Giving an agent the ability to discover and run any of tens of thousands of scrapers at runtime is a different capability from calling a fixed search endpoint, and for open-ended tasks it is a strong argument.
 
@@ -56,9 +56,9 @@ search = client.search(
 
 ## **Reliability and maintenance**
 
-One thing to weigh with a marketplace: most Actors are maintained by third parties, so quality and upkeep vary. When a target site changes its markup, how fast the scraper gets fixed depends on whoever wrote it. Apify publishes success rates and user counts per Actor, which helps, but it is a different reliability model from a first-party API with an SLA.
+Most Actors are maintained by third parties, so quality and upkeep vary. When a target site changes its markup, how fast the scraper gets fixed depends on whoever wrote it. Apify publishes success rates and user counts per Actor, which helps, but it is a different reliability model from a first-party API with an SLA.
 
-Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention, and commits contractually to not training on customer data, with a public status page and trust center. Default rate limits are 600 requests per minute for Search, Extract, and Entity Search, 300 for Monitor, and 300 per hour for FindAll runs.
+Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention on Enterprise plans, and commits contractually to not training on customer data, with a public status page and trust center. Default rate limits are 600 requests per minute for Search, Extract, and Entity Search, 300 for Monitor, and 25 per hour for FindAll runs.
 
 ## **When to use each**
 

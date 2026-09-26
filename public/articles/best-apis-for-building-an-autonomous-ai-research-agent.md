@@ -4,23 +4,21 @@ An autonomous research agent runs search, extraction, and synthesis without supe
 
 ## Research agents need a purpose-built API stack
 
-Research agents operate differently than chatbots. They run [multi-step workflows](https://parallel.ai/articles/what-is-an-agent-harness) without human supervision: search, extract, synthesize, verify. Each step feeds the next. A weak link anywhere in the chain degrades the final output.
+Research agents operate differently than chatbots. They run [multi-step workflows](https://parallel.ai/articles/what-is-an-agent-harness) without human supervision: search, extract, synthesize, verify. Each step feeds the next, so a weak link anywhere in the chain degrades the final output.
 
-[Generic search APIs](https://parallel.ai/articles/what-is-a-web-search-api) return keyword-matched links designed for humans to click. Agents don't click. They need semantically relevant content they can reason over. Agents using dense, relevant content produce more accurate research at lower cost.
+[Generic search APIs](https://parallel.ai/articles/what-is-a-web-search-api) return keyword-matched links designed for humans to click. An agent needs semantically relevant content it can reason over, and dense, relevant content produces more accurate research at lower cost.
 
-**You control cost and quality through token efficiency.** Most web pages contain 80% boilerplate: navigation, ads, footers, cookie banners. Agents wasting their context window on noise face two problems. Costs increase because you're paying for tokens that don't inform the answer. Output quality drops because signal competes with noise for the model's attention.
+**You control cost and quality through token efficiency.** Most web pages contain 80% boilerplate: navigation, ads, footers, cookie banners. When that noise fills an agent's context window, you pay for tokens that don't inform the answer, and the relevant content competes with noise for the model's attention.
 
-Picture your agent researching competitive pricing. A traditional search API returns ten links. The agent extracts each page, getting 20,000 tokens of HTML. Perhaps 4,000 tokens contain relevant pricing data. The remaining 16,000 tokens are wasted budget and diluted context. A purpose-built API returns dense excerpts containing the pricing information the agent requested. Same query, fraction of the tokens, better results.
+Say your agent is researching competitive pricing. A traditional search API returns ten links, and extracting each page yields 20,000 tokens of HTML. Perhaps 4,000 of those tokens contain relevant pricing data; the remaining 16,000 are wasted budget and diluted context. A purpose-built API returns dense excerpts containing the pricing information the agent requested.
 
-Autonomous agents demand more reliable APIs. You can intervene when a supervised agent hits an API failure or malformed response. An autonomous agent running overnight on 10,000 queries needs APIs that handle JS-rendered pages, CAPTCHAs, PDFs, and [anti-bot systems](https://www.humansecurity.com/learn/resources/2026-state-of-ai-traffic-report) without breaking the workflow.
+Autonomous agents also need more reliable APIs. When a supervised agent hits an API failure or malformed response, you can intervene. An autonomous agent running overnight on 10,000 queries needs APIs that handle JS-rendered pages, CAPTCHAs, PDFs, and [anti-bot systems](https://www.humansecurity.com/learn/resources/2026-state-of-ai-traffic-report) without breaking the workflow.
 
-You set your agent's ceiling with the API stack you choose. Poor retrieval degrades output regardless of prompt quality.
-
-At Parallel, we built our APIs around a core thesis: [the web's primary user is shifting from humans to machines](https://parallel.ai/blog/introducing-parallel). Today's infrastructure, built on attention, clicks, and pageviews, can't serve this new user. We're building infrastructure purpose-built for AI.
+At Parallel, we built our APIs around a core thesis: [the web's primary user is shifting from humans to machines](https://parallel.ai/blog/introducing-parallel). The web's current infrastructure is built around attention, clicks, and pageviews, which do nothing for an agent, so we build ours for machine readers.
 
 ## Five API categories your research agent needs
 
-Research agents require five distinct capabilities: **search**, **extraction**, **deep research and enrichment**, **entity discovery**, and **monitoring**. Each serves a specific function in the research loop. Anthropic's guide on [building effective agents](https://www.anthropic.com/research/building-effective-agents) covers agent architecture patterns in depth.
+Research agents require five distinct capabilities: **search**, **extraction**, **deep research and enrichment**, **entity discovery**, and **monitoring**. Anthropic's guide on [building effective agents](https://www.anthropic.com/research/building-effective-agents) covers agent architecture patterns in depth.
 
 **Search APIs** find relevant pages across the web. They answer: given my research objective, which URLs should I examine?
 
@@ -30,13 +28,13 @@ Research agents require five distinct capabilities: **search**, **extraction**, 
 
 **Entity discovery APIs** find what you don't know to search for. They transform vague objectives like "find companies doing X" into concrete entity lists.
 
-**Monitoring APIs** keep your agent's knowledge current. Research doesn't end with the first query. Markets change, competitors announce products, regulations shift.
+**Monitoring APIs** keep your agent's knowledge current as markets change, competitors announce products, and regulations shift.
 
 In a typical autonomous research loop, you chain these APIs together: search identifies promising sources, extraction retrieves full content, deep research synthesizes findings, and monitoring tracks ongoing changes. You deploy entity discovery to expand the search space when the initial objective is underspecified.
 
 ### Search APIs: finding the right information
 
-Traditional search APIs return ranked links for humans to click and evaluate. Agent search APIs return content that LLMs can reason over. You'll feel that difference in accuracy, cost, and speed.
+Traditional search APIs return ranked links for humans to click and evaluate. Agent search APIs return content that LLMs can reason over, and the difference shows up in accuracy, cost, and speed.
 
 **Evaluate search APIs on four criteria:**
 
@@ -47,9 +45,9 @@ Traditional search APIs return ranked links for humans to click and evaluate. Ag
 
 _Declarative_ search changes how you build agent queries. Instead of constructing Boolean queries like `"Columbus" AND "corporate law" AND "disability"`, agents state their objective: "Find Columbus-based corporate law firms specializing in disability care." The API interprets intent and returns results ranked by semantic relevance to the objective.
 
-Benchmark accuracy varies across providers by wide margins. Tests like [HLE](https://www.nature.com/articles/s41586-025-08588-y), [BrowseComp](https://agi.safe.ai), SimpleQA, WebWalker, and FRAMES measure different aspects of retrieval quality. HLE tests factual lookups. BrowseComp evaluates multi-step reasoning. FRAMES measures temporal reasoning. Consult these benchmarks when comparing providers. For a detailed [search API comparison](https://parallel.ai/articles/bing-api-comparison), see our breakdown of the leading alternatives.
+Benchmark accuracy varies across providers by wide margins, and each test measures something different. [BrowseComp](https://openai.com/index/browsecomp/) tests persistent multi-step browsing for hard-to-find facts, SimpleQA Verified tests single-hop factual accuracy, WideSearch tests broad information gathering across many entities, and DeepSearchQA tests end-to-end research synthesis. For a detailed [search API comparison](https://parallel.ai/articles/bing-api-comparison), see our breakdown of the leading alternatives.
 
-**Parallel Search API** leads accuracy benchmarks while maintaining the lowest cost per query. It accepts declarative objectives in natural language, returns URLs ranked by token relevancy, and includes compressed, information-dense excerpts with each result. The proprietary index spans billions of pages with millions added daily.
+**Parallel Search API** accepts declarative objectives in natural language, returns URLs ranked by token relevancy, and includes compressed, information-dense excerpts with each result. On [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026), Advanced led SimpleQA Verified (97%) and WideSearch (57.6) with a GPT-5.6 Sol agent and tied Perplexity on BrowseComp (74%) at higher cost, while Fast had the lowest cost per question at the low-cost tier. The proprietary index spans billions of pages with millions added daily.
 
 ```python
 import requests
@@ -72,7 +70,7 @@ This call returns ten results with token-dense excerpts optimized for LLM consum
 
 ### Extraction APIs: turning web pages into usable data
 
-After search identifies relevant URLs, agents need full-page content. Raw HTML is unusable. Navigation, scripts, styling, and ads obscure the actual content. Extraction APIs solve this.
+After search identifies relevant URLs, agents need full-page content, and in raw HTML the navigation, scripts, styling, and ads bury it.
 
 **Key evaluation criteria:**
 
@@ -81,11 +79,11 @@ After search identifies relevant URLs, agents need full-page content. Raw HTML i
 3. **Cost.** Price per URL extracted.
 4. **Reliability.** Failure rate across diverse site architectures.
 
-DIY extraction using [Puppeteer or Playwright](https://parallel.ai/articles/what-is-web-scraping) seems straightforward initially. Then you encounter anti-bot systems, CAPTCHA walls, dynamic rendering, and site-specific parsing requirements. Maintaining extraction infrastructure becomes a full-time job.
+DIY extraction using [Puppeteer or Playwright](https://parallel.ai/articles/what-is-web-scraping) looks simple at first, until you hit anti-bot systems, CAPTCHA walls, dynamic rendering, and site-specific parsing requirements. Maintaining extraction infrastructure becomes a full-time job.
 
-Managed extraction APIs handle the complexity. They maintain browser farms, solve CAPTCHAs, render JavaScript, and return clean output.
+Managed extraction APIs maintain browser farms, solve CAPTCHAs, render JavaScript, and return clean output.
 
-**Parallel Extract API** converts any public URL into clean, AI-friendly markdown. Declare an objective and receive focused excerpts, or request full-page content. The API handles JS-rendered SPAs, CAPTCHAs, and PDFs automatically.
+**Parallel Extract API** converts any public URL into clean, AI-friendly markdown. Declare an objective and receive focused excerpts, or request full-page content. The API handles JS-rendered SPAs and PDFs automatically; it doesn't bypass CAPTCHAs or anti-bot systems.
 
 ```python
 import requests
@@ -109,22 +107,22 @@ At $1 per 1,000 URLs, extraction costs stay predictable even at scale.
 
 Some questions require more than search and extraction. "Compare the competitors in the AI search API market" demands decomposing the question, searching multiple sources, cross-referencing findings, and synthesizing a coherent answer with citations.
 
-You can think of [deep research APIs](https://parallel.ai/articles/what-is-deep-research) as the "brain" of your autonomous research agent. They orchestrate multi-step reasoning: break down the question, search iteratively, extract relevant content, synthesize findings, and cite sources.
+In this stack, [deep research APIs](https://parallel.ai/articles/what-is-deep-research) act as the "brain" of your autonomous research agent. They orchestrate multi-step reasoning: break down the question, search iteratively, extract relevant content, synthesize findings, and cite sources.
 
 **Evaluation criteria:**
 
 1. **Accuracy.** How often does the API produce correct, verifiable answers?
 2. **Citation quality.** Are sources traceable? Do citations point to specific claims?
-3. **Cost per task.** Pricing varies by up to 25x across providers for comparable accuracy.
+3. **Cost per task.** On DeepSearchQA, providers within a few points of each other on accuracy differ in price by up to about 10x per 1,000 tasks.
 4. **Processing architecture.** Can you trade latency for accuracy? Match compute to task complexity?
 
-Cost variance across providers is dramatic. On the DeepSearchQA benchmark, Parallel Task API Pro achieves 62% accuracy at $100/1K tasks. Gemini Deep Research achieves comparable accuracy at $2,500/1K. The difference compounds at scale.
+Cost varies widely across providers. On the DeepSearchQA subset on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (August 2026), Parallel Task API Pro scored 83% at $100 per 1,000 tasks, Gemini 3.1 Pro (high) scored 77% at $123.90, and GPT-5.6 Sol (PTC max) scored 85% at $1,047.80.
 
 **Parallel Task API** combines AI inference with web search and live crawling for structured web research. Define what you need in plain language or JSON schema, and the API handles research, synthesis, and structured output.
 
 The Parallel Responses API offers the same cited, structured web research through an OpenAI-compatible endpoint, optimized for latency-sensitive workflows that need synthesized answers in seconds.
 
-The _Basis_ framework provides per-field citations, reasoning traces, and calibrated confidence levels. Each atomic fact links to its source. You can use confidence scores to filter results by certainty in downstream processing.
+The _Basis_ framework provides per-field citations, reasoning traces, and calibrated confidence levels. Each atomic fact links to its source. You can use the confidence level (low, medium, or high) to filter results by certainty in downstream processing.
 
 Processor tiers match compute to task complexity:
 
@@ -150,9 +148,9 @@ Most API comparisons overlook this capability. Traditional search assumes you kn
 2. **Precision.** Are returned entities relevant to the query?
 3. **Open-ended query handling.** Can it process vague, multi-criteria conditions?
 
-Consider the query: "Find all Series B AI infrastructure companies founded after 2022." No existing database contains this exact slice. Entity discovery APIs search the web, evaluate candidates against your criteria, and return structured results with citations.
+Take a query like "Find all Series B AI infrastructure companies founded after 2022." No existing database contains this exact slice. Entity discovery APIs search the web, evaluate candidates against your criteria, and return structured results with citations.
 
-**Parallel FindAll API** achieves 3x higher recall than OpenAI Deep Research, Anthropic Deep Research, and Exa on the WISER benchmark. It transforms natural language queries into structured, enriched datasets.
+**Parallel FindAll API** transforms natural language queries into structured, enriched datasets.
 
 For real-time discovery with a human in the loop, Parallel Entity Search returns structured company matches in seconds, starting at $0.005 per request with 100 results included.
 
@@ -162,11 +160,11 @@ The API runs a three-stage pipeline:
 2. **Evaluate**: Validate each candidate against your match conditions
 3. **Enrich**: Extract structured fields for matched entities
 
-Generator tiers (Base, Core, Pro) trade cost for recall depth. Preview mode tests queries against a sample before committing to full runs.
+Generators (base, core, and pro) trade cost for recall depth. The preview generator tests a query against a small sample before you commit to a full run.
 
 ### Monitoring APIs: keeping your agent's knowledge current
 
-Research doesn't stop after the first query. Markets shift. Competitors announce products. Regulations change. An autonomous agent with stale knowledge produces stale outputs.
+Research doesn't stop after the first query, and an autonomous agent working from stale knowledge produces stale outputs.
 
 Monitoring APIs replace polling loops with event-driven webhook delivery. Define a query, set a schedule, receive notifications when relevant changes appear.
 
@@ -199,11 +197,11 @@ Monitoring integrates with the broader Parallel suite. Monitor events can trigge
 
 Request benchmark results from providers. Compare performance at equivalent price points, not across tiers.
 
-**Token efficiency** directly impacts cost and quality. Compare the useful information density across providers. A search result returning 500 tokens of relevant content outperforms one returning 2,000 tokens of HTML noise, even if the second appears to contain more data.
+**Token efficiency** affects both cost and quality. Compare the useful information density across providers. A search result returning 500 tokens of relevant content outperforms one returning 2,000 tokens of HTML noise, even if the second appears to contain more data.
 
 **Reliability** matters more for autonomous execution. Measure failure rates, timeout frequency, and edge case handling. Can the API process JS-rendered pages? PDFs? CAPTCHA-protected content?
 
-**Cost modeling at scale** reveals true economics. Calculate cost for your expected query volume:
+**Cost modeling at scale** shows what the stack will cost you. Calculate cost for your expected query volume:
 
 | Scenario | Query Volume | Cost Factor |
 | --- | --- | --- |
@@ -215,7 +213,7 @@ You reduce switching cost with [OpenAI-compatible interfaces](https://modelconte
 
 ## Building a research agent: putting the stack together
 
-An autonomous research agent chains these APIs together in a coherent workflow. For a hands-on walkthrough, see our guide to [building a search agent](https://parallel.ai/blog/cookbook-search-agent) with Parallel and Cerebras.
+An autonomous research agent chains these APIs into one workflow. For a hands-on walkthrough, see our guide to [building a search agent](https://parallel.ai/blog/cookbook-search-agent) with Parallel and Cerebras.
 
 **The research loop:**
 
@@ -287,10 +285,10 @@ This pattern handles most research queries, and the Responses API supports struc
 At minimum, you need search and extraction. Add deep research for synthesis tasks requiring cross-source reasoning. Add entity discovery when starting from vague objectives. Add monitoring for ongoing intelligence.
 
 **What does an autonomous AI research agent cost to run?**
-Costs depend on query volume and task complexity. A basic agent running 1,000 searches and extractions daily costs approximately $6/day with Parallel APIs. Deep research tasks add $5-$300/1K depending on processor tier.
+Costs depend on query volume and task complexity. A basic agent running 1,000 searches (Basic or Advanced mode) and 1,000 extractions daily costs approximately $6/day with Parallel APIs, or about $2/day with Fast or Turbo search. Deep research tasks add $5-$2,400/1K depending on processor tier.
 
 **How do I evaluate search API accuracy for AI agents?**
-Start with the independent Artificial Analysis Search Index, which benchmarks 15 search API products on the same fixed agent harness, then compare provider performance on published benchmarks (HLE, BrowseComp, SimpleQA) at equivalent price points. Request accuracy numbers at your expected budget level, not top-tier performance.
+Start with the independent Artificial Analysis Search Index, which benchmarks 25 search API products from 12 providers on the same fixed agent harness, then compare provider performance on published benchmarks (HLE, BrowseComp, SimpleQA) at equivalent price points. Request accuracy numbers at your expected budget level, not top-tier performance.
 
 **How do I keep my research agent's data fresh?**
 Monitor APIs track web changes and deliver webhook notifications. Set hourly, daily, or weekly cadences based on how fast your domain moves. Chain monitor events to extraction and enrichment APIs for continuous intelligence pipelines.

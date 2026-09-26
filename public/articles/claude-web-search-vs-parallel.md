@@ -18,13 +18,13 @@ Parallel Search is **$1 per 1,000 requests** in Turbo and $5 per 1,000 in Basic 
 
 So the search line is ten times cheaper on Turbo and twice as cheap on Basic and Advanced. Both approaches still cost tokens for whatever content enters the context, and both compress before it gets there: Claude through dynamic filtering, Parallel through excerpts sized by max_chars_per_result and max_chars_total.
 
-One factor that moves the real number more than the rate does: the model chooses how many searches to run. A single request can trigger several billable searches, and max_uses is the only hard cap. With a direct API you make that decision in code.
+The model also chooses how many searches to run, which moves the real number more than the rate does. A single request can trigger several billable searches, and max_uses is the only hard cap. With a direct API you make that decision in code.
 
 _Note: For the latest pricing, always check official documentation._
 
 ## **The architectural difference**
 
-A server-side tool means the results land inside Claude's context and are consumed by Claude. That is exactly what you want for a chat product. It is a constraint everywhere else:
+A server-side tool means the results land inside Claude's context and are consumed by Claude. That suits a chat product and constrains everything else:
 
 - You cannot route the results to a different model, cache them in your own store, or index them, because you never hold them as data
 - Search is coupled to inference: no Claude call, no search, so a pure retrieval job means paying for a model turn you did not need

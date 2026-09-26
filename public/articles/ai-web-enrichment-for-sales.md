@@ -2,7 +2,7 @@
 
 Web enrichment fills the gaps in a CRM record with public data about a company and the people who work there, so reps can score and personalize before they make contact. This guide covers what web enrichment for sales is, why it moves revenue, which data points actually help, and how to build custom enrichment schemas with the Parallel Task API.
 
-Your CRM holds a company name, a domain, and maybe a job title. That isn't enough to write an email worth reading. Web enrichment closes the gap: it collects public data about a company and the people who work there, then writes the result back to the record before a rep makes contact.
+Your CRM holds a company name, a domain, and maybe a job title. That isn't enough to write an email worth reading. Web enrichment collects public data about a company and the people who work there, then writes the result back to the record before a rep makes contact.
 
 Enrichment also feeds lead scoring. Once you know headcount, funding stage, and technology stack, you can rank prospects instead of guessing which ones to call first.
 
@@ -40,13 +40,13 @@ The fields worth collecting:
 
 ## Beyond fixed schemas: custom enrichment with the Parallel Task API
 
-Apollo, ZoomInfo, Clearbit, Hunter.io, and Outreach ship the same fields to every customer. The firmographics and contact data are useful, but you get the schema the vendor picked, and so does everyone selling against you.
+Apollo, ZoomInfo, Clearbit (now HubSpot's Breeze Intelligence), Hunter.io, and Outreach ship the same fields to every customer. The firmographics and contact data are useful, but you get the schema the vendor picked, and so does everyone selling against you.
 
 That creates three problems:
 
 - **Commoditized data**: When a competitor queries the same provider, your outreach reads like theirs.
-- **Fixed schemas**: Clearbit and Hunter.io return preset fields, which may not map to your industry, your use case, or your qualification criteria.
-- **Shallow context**: Point solutions return surface attributes, not the contextual reasoning a rep needs for a specific account.
+- **Fixed schemas**: Breeze Intelligence (formerly Clearbit) and Hunter.io return preset fields, which may not map to your industry, your use case, or your qualification criteria.
+- **Shallow context**: Point solutions return surface attributes without the context a rep needs for a specific account.
 
 The [Parallel Task API](https://parallel.ai) takes the opposite approach. You define the schema and it runs the research, so the fields you collect are the ones your sales process uses. Parallel reports [state-of-the-art](https://parallel.ai/blog/parallel-task-api) accuracy across commercially available web research APIs.
 
@@ -55,7 +55,7 @@ That changes four things:
 - **Your own schema**: Define the fields that matter for your market, your buyer, and your solution category rather than accepting a preset list.
 - **Research competitors cannot copy**: Because the schema is yours, so is the resulting dataset. A competitor buying from Apollo or ZoomInfo cannot reproduce it.
 - **Fresh for every prospect**: Each run researches the live web instead of reading a static database, so the answer reflects this week rather than last quarter.
-- **Scale**: Run it across a target list, not one account at a time.
+- **Scale**: Run it across a whole target list at once.
 
 An example schema
 
@@ -100,15 +100,15 @@ print(f"Custom enrichment data: {prospect_data}")
 
 ```
 
-When your market moves, you change the schema. With a fixed-schema provider you wait for their roadmap.
+When your market moves, you change the schema instead of waiting on a fixed-schema provider's roadmap.
 
 ## Putting it into practice
 
 Start with governance: decide what you collect, record where it came from, and set how long you keep it. Then wire enrichment into the CRM workflow reps already use, so the data arrives where they work instead of in a separate tool.
 
-Favor fields that change what a rep says on a call. If a field never gets read, stop paying to collect it. Teams that pair enrichment with a defined sales process tend to see better lead quality and conversion than teams that buy data and hope.
+Favor fields that change what a rep says on a call. If a field never gets read, stop paying to collect it. Enrichment works best paired with a defined sales process that says which fields drive which decisions.
 
-Enrichment moves research from something a rep does during the call to something the system does before it. Buyers arrive better informed than they used to, and that head start decides whether a first email gets a reply.
+Enrichment moves research from something a rep does during the call to something the system does before it.
 
 ---
 

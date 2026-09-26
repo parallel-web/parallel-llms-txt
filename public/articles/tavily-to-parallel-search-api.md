@@ -2,7 +2,7 @@
 
 Tavily and Parallel agree closely on what a search response should contain, so this migration is short and the interesting part is the pricing model underneath. This guide covers what the two actually cost, how each parameter maps, the Tavily behavior that has no equivalent, the code change, and rate limits and compliance.
 
-Tavily and Parallel solve the same problem: give an agent web content it can reason from, not just links. The migration is mostly a rename, because the two APIs agree on what a search response should contain. Where they differ is the billing unit (Tavily meters credits that vary by search depth, Parallel meters requests at a flat rate per mode) and a Tavily basic search costs **$5 to $8 per 1,000** depending on your plan, against **$1 per 1,000** for Parallel Search Turbo.
+Tavily and Parallel solve the same problem: give an agent web content it can reason from rather than a list of links. The migration is mostly a rename, because the two APIs agree on what a search response should contain. They differ on the billing unit (Tavily meters credits that vary by search depth, Parallel meters requests at a flat rate per mode), and a Tavily basic search costs **$5 to $8 per 1,000** depending on your plan, against **$1 per 1,000** for Parallel Search Turbo.
 
 ## **What the two cost**
 
@@ -17,7 +17,7 @@ Parallel charges per request at a flat rate per mode, with no plan and no credit
 | Extraction, 1,000 URLs | ~$4.00 | $1.00 |
 | Free tier | 1,000 credits/month | $5/month credit (5,000 Turbo searches) |
 
-One credit-model detail worth knowing before you compare: Tavily's auto_parameters flag can promote a search to advanced depth on its own, which doubles the credit cost of that request. If you have it enabled and have not explicitly pinned search_depth to basic, your real per-search cost is somewhere between the two rows above.
+Tavily's auto_parameters flag can promote a search to advanced depth on its own, which doubles the credit cost of that request. If you have it enabled and have not explicitly pinned search_depth to basic, your real per-search cost is somewhere between the two rows above.
 
 _Note: For the latest pricing, always check official documentation._
 
@@ -35,7 +35,7 @@ _Note: For the latest pricing, always check official documentation._
 | Tavily Extract | Extract API |
 | Tavily Research | Task API (nine processors) or Responses API |
 
-The one genuine shift in thinking: Tavily takes a query string, Parallel takes an objective. You get better results writing "find the current enterprise pricing and rate limits for vendor X" than pasting in the keywords you would have given a search engine. If you already have well-tuned keyword queries, pass them as search_queries alongside the objective rather than throwing them away.
+The main change in approach is that Tavily takes a query string and Parallel takes an objective. You get better results writing "find the current enterprise pricing and rate limits for vendor X" than pasting in the keywords you would have given a search engine. If you already have well-tuned keyword queries, pass them as search_queries alongside the objective rather than throwing them away.
 
 ## **What does not map**
 
@@ -77,7 +77,7 @@ search = client.search(
 
 ## **Rate limits and compliance**
 
-Parallel's defaults are 600 requests per minute for Search, Extract, and Entity Search, 300 for Monitor, and 300 per hour for FindAll runs, with GET polling excluded and custom limits available on enterprise plans. Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention, and commits contractually to not training on customer data.
+Parallel's defaults are 600 requests per minute for Search, Extract, and Entity Search, 300 for Monitor, and 25 per hour for FindAll runs, with GET polling excluded and custom limits available on enterprise plans. Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention, and commits contractually to not training on customer data.
 
 ## **Get started**
 

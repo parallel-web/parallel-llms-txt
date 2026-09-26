@@ -13,7 +13,7 @@ You.com sells four APIs:
 
 Parallel sells seven: Search, Extract, Task, Responses, FindAll, Entity Search, and Monitor. The first three line up with You.com's first three. The remaining four (OpenAI-compatible agentic research, verified entity list building, real-time company and people search, and scheduled change tracking) have no You.com counterpart.
 
-Running the other way, the Finance Research API has no Parallel counterpart either. A research pipeline purpose-built to avoid fiscal-year, unit, and period errors is a real piece of domain engineering, not a repackaged general endpoint, and You.com reports it ranking first on FinSearchComp. If you are building financial workflows, that is worth evaluating on its own terms.
+Running the other way, the Finance Research API has no Parallel counterpart either. A research pipeline purpose-built to avoid fiscal-year, unit, and period errors is a real piece of domain engineering, and You.com reports it ranking first on FinSearchComp. If you are building financial workflows, that is worth evaluating on its own terms.
 
 ## **Search**
 
@@ -21,7 +21,7 @@ You.com's Web Search API returns URLs, titles, and descriptions alongside query-
 
 Parallel's Search API takes a natural-language objective, optionally with explicit search queries, and returns ranked URLs with excerpts sized by max_chars_per_result and max_chars_total. Four modes set the trade: Turbo at ~200ms and $1 per 1,000 requests, Fast at under a second and the same $1 per 1,000, Basic at ~1s and $5 per 1,000, and Advanced at ~3s and $5 per 1,000, which is the default. A Source Policy handles domains and freshness; a Fetch Policy chooses between the index and a live crawl.
 
-The design difference worth noting: You.com takes a query, Parallel takes an objective. Both then compress. You.com publishes no median latency figure, while Parallel publishes 200ms for Turbo. [Openbenchmarks' independent speed boards](https://openbenchmarks.com/web-search/fastest-search-api) (September 2026) fill the gap: You.com measured 628ms mean latency on factual lookup against 348ms for Parallel turbo, and it took first place on hard retrieval with fetch at 638ms, where Parallel basic measured 1.59s.
+You.com takes a query and Parallel takes an objective, and both then compress what they return. You.com publishes no median latency figure, while Parallel publishes 200ms for Turbo. [Openbenchmarks' independent speed boards](https://openbenchmarks.com/web-search/fastest-search-api) (September 2026) fill the gap: You.com measured 628ms mean latency on factual lookup against 348ms for Parallel turbo, and it took first place on hard retrieval with fetch at 638ms, where Parallel basic measured 1.59s.
 
 ## **Pricing, and the crossover that decides it**
 
@@ -48,9 +48,9 @@ Parallel:
 | FindAll | Fixed cost plus per match |
 | Free credits | $5 every month, applied automatically |
 
-Extraction is a dead heat at $1 per 1,000. Search is where it gets interesting, because the two meter results differently and the answer flips.
+Extraction is a dead heat at $1 per 1,000. Search is harder to call, because the two meter results differently and the cheaper option flips with depth.
 
-Parallel Turbo charges $0.001 per request for the first 10 results and $0.001 for each result after that. You.com charges a flat $0.005 whether you ask for 5 results or 100. So Turbo is five times cheaper at 10 results, the two are level at about 14 results, and above that You.com pulls ahead at the top end, where a 100-result Turbo call runs roughly $91 per 1,000 against You.com's $5. Against Parallel's Basic and Advanced modes, You.com is cheaper at any depth beyond 10 results.
+Parallel Turbo charges $0.001 per request for the first 10 results and $0.001 for each result after that. You.com charges a flat $0.005 whether you ask for 5 results or 100. So Turbo is five times cheaper at 10 results, the two are level at about 14 results, and above that You.com pulls ahead, to the point where a 100-result Turbo call runs roughly $91 per 1,000 against You.com's $5. Against Parallel's Basic and Advanced modes, You.com is cheaper at any depth beyond 10 results.
 
 That is a genuine structural advantage for You.com on wide-recall workloads: broad research sweeps, list building, anything that wants to see 50 or 100 sources per query. It is equally a structural advantage for Parallel on the narrow, high-frequency lookups an agent fires inside a loop, which is what Turbo is priced for. Work out your average results-per-call before comparing the two on price at all.
 
@@ -66,13 +66,13 @@ Parallel's Task API returns typed structured output rather than a written answer
 
 The practical distinction is inline references against per-field provenance. If a person reads the output, inline citations are fine and arguably nicer. If a system writes the output to a table, per-field confidence is what lets you gate low-quality rows without a human in the loop.
 
-On benchmarks, the two companies do not overlap. You.com cites DeepSearchQA and FinSearchComp; Parallel cites SimpleQA, BrowseComp, and SealQA. Neither has been run against the other on a shared harness, so there is nothing to compare and no winner to declare.
+On benchmarks, the two companies overlap on one name. You.com cites DeepSearchQA and FinSearchComp and reports ranking first on DeepSearchQA; on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (August 2026), Parallel's Task API scored 76% on DeepSearchQA at Lite and 86% at Ultra4x. You.com isn't in our current benchmark runs, and neither company has run the other on a shared harness, so those figures can't be compared directly. The closest independent comparison is the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (September 2026 data), where Parallel advanced scores 75 and You.com 74.
 
 ## **Compliance and developer experience**
 
-This section is close to a tie. You.com is SOC 2 certified, offers zero data retention, and does not train on your data. Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention, and commits contractually to not training on customer data, with a public status page and trust center.
+On compliance the two are close to a tie. You.com is SOC 2 certified, offers zero data retention, and does not train on your data. Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention, and commits contractually to not training on customer data, with a public status page and trust center.
 
-Both ship a Python SDK, an MCP server, and REST access. You.com maintains an open-source agent-skills repository with guided integrations for Claude, OpenAI, the Vercel AI SDK, and Teams.ai, and publishes llms.txt indexes throughout its docs: a thoughtful touch for coding agents. Parallel adds a TypeScript SDK and OpenAI SDK compatibility on the Responses API:
+Both ship a Python SDK, an MCP server, and REST access. You.com maintains an open-source agent-skills repository with guided integrations for Claude, OpenAI, the Vercel AI SDK, and Teams.ai, and publishes llms.txt indexes throughout its docs, which helps coding agents navigate them. Parallel adds a TypeScript SDK and OpenAI SDK compatibility on the Responses API:
 
 ```python
 from parallel import Parallel
@@ -86,7 +86,7 @@ search = client.search(
 )
 ```
 
-Parallel publishes default rate limits: 600 requests per minute for Search, Extract, and Entity Search, 300 for Monitor, 300 per hour for FindAll runs, with GET polling excluded. You.com does not publish per-endpoint quotas, so ask during evaluation.
+Parallel publishes default rate limits: 600 requests per minute for Search, Extract, and Entity Search, 300 for Monitor, 25 per hour for FindAll runs, with GET polling excluded. You.com does not publish per-endpoint quotas, so ask during evaluation.
 
 ## **When to use each**
 
@@ -94,6 +94,6 @@ Choose You.com when you pull a lot of results per query, or when your domain is 
 
 Choose Parallel when the calls are narrow and frequent, or when the output feeds a system rather than a reader. Turbo at 200ms and $1 per 1,000 requests is priced for agents that search inside loops at ten results a time, research starts at $5 per 1,000 runs rather than $12, and the per-field Basis makes structured output auditable. FindAll, Entity Search, Monitor, and the OpenAI-compatible Responses API cover entity discovery, change tracking, and drop-in grounding that You.com does not sell.
 
-Since the lineups mirror each other and the compliance posture is equivalent, this one really does come down to two numbers: your average results per search call, and whether a person or a program reads what comes back.
+Since the lineups mirror each other and the compliance posture is equivalent, the choice comes down to two things: your average results per search call, and whether a person or a program reads what comes back.
 
 **Related reading: **[Linkup vs. Parallel](https://parallel.ai/articles/linkup-vs-parallel) · [Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel) · [Perplexity Search API vs. Parallel Search API](https://parallel.ai/articles/perplexity-search-api-vs-parallel-search-api).

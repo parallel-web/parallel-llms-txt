@@ -6,13 +6,9 @@ Microsoft retired the Bing Search API in August 2025, and the strongest replacem
 
 Microsoft deprecated the Bing Search API on August 11, 2025 and directed developers toward Azure AI Agents and enterprise products. That decision removed the low-cost, general-purpose search endpoint many applications used. Teams that relied on Bing now need a new source of independent web data.
 
-This deprecation reflects a broader industry pattern. Large providers are retreating from open search APIs while new players step in to fill the gap. Microsoft's move toward "Grounding with Bing Search" via Azure locks developers into a specific ecosystem. That constraint does not fit applications that require flexible, independent web data access.
-
-Developers who built on Bing's infrastructure faced immediate migration decisions, and the market responded with a wave of alternatives designed specifically for AI workloads.
+Microsoft's move toward "Grounding with Bing Search" via Azure ties developers to one ecosystem, which doesn't suit applications that need flexible, independent web data access. Grounding with Bing costs $14 per 1,000 transactions, and Microsoft’s [pricing page](https://www.microsoft.com/en-us/bing/apis/grounding-pricing) says its outputs “are not directly accessible for use in other applications or programs.” Google is winding down its own results API as well; our explainer on [why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) covers both.
 
 ## **What features to look for in search API alternatives**
-
-Before evaluating specific providers, it helps to establish clear criteria. The right alternative depends on your use case, budget, and technical requirements.
 
 ### **Data accuracy and freshness**
 
@@ -24,11 +20,11 @@ Search APIs typically charge per query, through subscription tiers, or via token
 
 ### **API performance and latency**
 
-Latency refers to the time between sending a request and receiving results. This varies across providers. The fastest AI-native modes now return results in a few hundred milliseconds, base tiers often return results in 1–3 seconds, and premium tiers prioritizing quality might take 15–60 seconds. The trade-off between speed and result quality depends on whether you're building real-time chat experiences or background research agents.
+Latency refers to the time between sending a request and receiving results. The fastest AI-native modes now return results in a few hundred milliseconds, base tiers often return results in 1–3 seconds, and premium tiers prioritizing quality might take 15–60 seconds. The trade-off between speed and result quality depends on whether you're building real-time chat experiences or background research agents.
 
 ### **Enterprise security and compliance**
 
-For production deployments, certifications matter. SOC 2 Type 2 certification, GDPR compliance, and data residency options signal that a provider takes security seriously. Enterprise customers often require SLA guarantees and dedicated support channels before committing to a vendor.
+For production deployments, look for SOC 2 Type 2 certification, GDPR compliance, and data residency options. Enterprise customers often require SLA guarantees and dedicated support channels before committing to a vendor.
 
 ## **Best Bing API alternatives for AI applications**
 
@@ -36,17 +32,17 @@ For production deployments, certifications matter. SOC 2 Type 2 certification, G
 
 We built the Parallel Search API specifically for AI agents to reason over web data. Backed by our own proprietary web-scale index (billions of pages, with millions added daily), it returns ranked results with optional dense webpage excerpts, offering far more context than typical snippet-based alternatives. Four modes address different priorities: Turbo (~200ms median latency at $1 per 1,000 requests, built for real-time, high-volume workloads), Fast (under a second at the same $1 per 1,000, the best fit for most agent workloads), Basic (~1s, for deeper excerpts per call), and Advanced (~3s, for the highest-quality multi-hop results), with Basic and Advanced priced at $5 per 1,000 requests.
 
-What sets our approach apart is a focus on evidence-based results. Every response includes source attribution, making it straightforward to verify claims and maintain transparency in AI applications. We hold SOC 2 Type 2 certification, enforce zero data retention, and offer predictable pricing across tiers.
+Every response includes source attribution, so your application can verify claims. We hold SOC 2 Type 2 certification, offer zero data retention on Enterprise plans, and keep pricing predictable across tiers.
 
-For developers building multi-hop reasoning agents or long-horizon research tasks, our token-efficient excerpts and large language model (LLM)-ready outputs deliver leading accuracy with faster end-to-end latency. Because our results provide denser, more relevant context on the first call, the downstream LLM needs fewer round trips and fewer reasoning steps to reach a final answer. The denser response can shorten total pipeline time from query to final output. And for latency-sensitive workloads like voice agents and consumer chat, Turbo mode delivers web grounding in about 200ms at $1 per 1,000 requests. On the independent Artificial Analysis Search Index (August 2026), Parallel Search ranks first of the 15 search API products tested, and its fast and turbo modes recorded the two lowest search costs of any of them.
+For developers building multi-hop reasoning agents or long-horizon research tasks, our token-efficient excerpts and large language model (LLM)-ready outputs give the model denser, more relevant context on the first call, so it needs fewer round trips and fewer reasoning steps to reach a final answer. On [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026), Advanced scored 97% on SimpleQA Verified and 74% on BrowseComp with a GPT-5.6 Sol agent, level with Perplexity on BrowseComp and ahead of Exa and Tavily. For latency-sensitive workloads like voice agents and consumer chat, Turbo mode delivers web grounding in about 200ms at $1 per 1,000 requests. On the independent Artificial Analysis Search Index (September 2026 data), Parallel Search (advanced) scores 75, level with Brave's LLM context mode and behind Perplexity Search (medium) at 80 and Octen Search at 77. Parallel's fast mode recorded $8.41 in search cost per 1,000 benchmark tasks in AA's September 8 data, among the lowest measured.
 
 ### **Exa AI**
 
-Exa positions itself as an AI-native search solution with products catering to prosumer users through their platform, including web sets and a semantic search engine. The approach works well for developers who want both API access and interactive tools for exploration. Exa maintains a smaller, independent index compared to providers that aggregate across multiple sources.
+Exa positions itself as an AI-native search solution with products catering to prosumer users through their platform, including web sets and a semantic search engine. The approach works well for developers who want both API access and interactive tools for exploration. Exa runs its own independent index; as of August 2026, it says the index tracks 1.4 trillion URLs and serves 100 billion pages.
 
 ### **SerpAPI**
 
-SerpAPI takes a different approach: it scrapes search engine results pages (SERPs) from Google, Bing, and other engines, then returns structured JSON. This works well if you specifically want SERP data rather than raw web content. The trade-off is that you're getting search engine results, not direct web access, which introduces an additional layer of abstraction.
+SerpAPI takes a different approach: it scrapes search engine results pages (SERPs) from Google, Bing, and other engines, then returns structured JSON. This works well if you specifically want SERP data rather than raw web content. The trade-off is an extra layer of abstraction: you get search engine results rather than direct web access.
 
 ### **Bright Data SERP API**
 
@@ -58,8 +54,6 @@ Tavily focuses on AI-powered search with built-in summarization capabilities. Th
 
 ## **Parallel vs. Bing API direct comparison**
 
-For developers migrating from Bing, understanding the practical differences helps smooth the transition.
-
 | Feature | Bing API | Parallel Search API |
 | --- | --- | --- |
 | Status | Deprecated | Active |
@@ -67,13 +61,13 @@ For developers migrating from Bing, understanding the practical differences help
 | Pricing tiers | Complex | Simple & scalable |
 | Starting price | N/A (retired) | $1 per 1,000 requests (Turbo mode) |
 | Freshness controls | None | Variable |
-| Enterprise support | Azure-only | Open, SOC 2 Type 2, ZDR |
+| Enterprise support | Azure-only | Open, SOC 2 Type 2, ZDR on Enterprise plans |
 
-The most significant difference lies in the output format. Bing returned brief snippets optimized for human readers. Parallel returns dense, token-efficient excerpts with enough context for AI agents to reason, reducing the need for follow-up requests and improving accuracy in multi-step tasks.
+The biggest difference is the output format. Bing returned brief snippets optimized for human readers. Parallel returns dense, token-efficient excerpts with enough context for AI agents to reason, reducing the need for follow-up requests and improving accuracy in multi-step tasks.
 
 ## **Common migration challenges when switching from the Bing API**
 
-Transitioning to a new search API involves more than swapping endpoints. A few practical considerations help avoid surprises.
+Transitioning to a new search API involves more than swapping endpoints.
 
 **Authentication changes.** Most alternatives use API keys rather than Azure credentials. Key management differs across providers, so review documentation for rotation policies and security practices.
 
@@ -89,11 +83,11 @@ Most migrations complete within a few days of focused work. The APIs serve simil
 
 ### **What is the exact deprecation date for the Bing Search API?**
 
-Microsoft officially deprecated the Bing Search API on August 11, 2025. All external developer access ended on that date, with Microsoft directing users toward Azure AI Agents for continued Bing-powered functionality.
+Microsoft retired the Bing Search APIs on August 11, 2025. It decommissioned existing instances, closed new signups, and directed users toward Grounding with Bing Search in Azure AI Agents for continued Bing-powered functionality.
 
 ### **Can existing Bing API users get extended access after deprecation?**
 
-Microsoft hasn't offered extended access beyond the deprecation date. Developers who haven't migrated already face immediate service interruptions and can implement alternatives now.
+Microsoft hasn't offered extended access beyond the deprecation date. Developers who haven't migrated have already lost service and need to move to an alternative now.
 
 ### **How do alternative search APIs handle rate limiting compared to Bing?**
 
@@ -101,6 +95,6 @@ Rate limits vary by provider and pricing tier. Some offer tiered plans with prog
 
 ### **Which Bing alternative offers the best free tier for developers?**
 
-Several alternatives offer free tiers with limited monthly query limits. The best option depends on your expected volume and required features. Evaluate based on whether you require basic search results or advanced capabilities like dense excerpts and freshness guarantees.
+Several alternatives offer free tiers with limited monthly query limits. Pick based on your expected volume and whether you need basic search results or capabilities like dense excerpts and freshness guarantees.
 
-**Deeper comparisons: **[Brave Search API vs. Parallel](https://parallel.ai/articles/brave-search-api-vs-parallel) · [SerpApi vs. Parallel](https://parallel.ai/articles/serpapi-vs-parallel) · [Serper vs. Parallel](https://parallel.ai/articles/serper-vs-parallel).
+**Deeper comparisons: **[Brave Search API vs. Parallel](https://parallel.ai/articles/brave-search-api-vs-parallel) · [SerpApi vs. Parallel](https://parallel.ai/articles/serpapi-vs-parallel) · [Serper vs. Parallel](https://parallel.ai/articles/serper-vs-parallel) · [Why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search).

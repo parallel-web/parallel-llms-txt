@@ -64,7 +64,7 @@ Ask for a row for each material finding. A table makes it easier to spot an unsu
 | Status | Confirmed, conflicting, or not found |
 | Implication | The Bot’s interpretation, kept separate from the fact |
 
-Publication date and date checked answer different questions. You might read a pricing page today without knowing when the vendor changed it. Ask the Bot to preserve that uncertainty.
+Publication date and date checked answer different questions: you might read a pricing page today without knowing when the vendor changed it. Ask the Bot to preserve that uncertainty.
 
 A focused research prompt:
 
@@ -100,7 +100,7 @@ Watch for a few recurring mistakes:
 - It presents a vendor’s performance claim as an independent measurement.
 - It interprets a new customer logo as a dated contract announcement.
 
-Correct the report and ask the Bot to incorporate those corrections into its research instructions. If you use internal win/loss notes, identify them as internal sources. Readers can then distinguish customer feedback from public evidence.
+Correct the report and ask the Bot to incorporate those corrections into its research instructions. If you use internal win/loss notes, identify them as internal sources so readers can distinguish customer feedback from public evidence.
 
 ## Turn the report into a weekly routine
 

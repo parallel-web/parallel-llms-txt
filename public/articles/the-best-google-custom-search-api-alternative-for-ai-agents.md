@@ -16,17 +16,17 @@ Even at its best it returns metadata: titles, snippets, and URLs from a domain-r
 
 The Custom Search JSON API now carries Google's own label: ["closed to new customers"](https://developers.google.com/custom-search/v1/overview). Anyone already depending on it has until January 1, 2027 to move. New projects can't sign up at all, so greenfield work starts elsewhere.
 
-The path Google points existing users toward is [Vertex AI Search](https://cloud.google.com/use-cases/site-search), which handles site search across [up to 50 domains](https://developers.google.com/custom-search/v1/overview). For open-web search you fill out a contact form instead of signing up. The pricing does not help either: 100 queries per day free, $5 per 1,000 after that, and a hard ceiling of 10,000 queries per day.
+The path Google points existing users toward is [Vertex AI Search](https://cloud.google.com/use-cases/site-search), which handles site search across [up to 50 domains](https://developers.google.com/custom-search/v1/overview). For open-web search you fill out a contact form instead of signing up. The pricing does not help either: 100 queries per day free, $5 per 1,000 after that, and a hard ceiling of 10,000 queries per day. In September 2026 Google documented a partner-only [Web Search Service API](https://developers.google.com/web-search-service/overview) that returns full-web results, but every request needs a client ID tied to a partner agreement, and Google hasn’t published pricing or a way to apply.
 
-Google isn't alone in this. Microsoft [retired the Bing Search API on August 11, 2025](https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement), and that removed another mainstream option for programmatic web search. As the large providers pull back, developers are left looking for infrastructure where programmatic access is the core product. Parallel's own [Bing alternatives comparison](https://parallel.ai/articles/bing-api-comparison) traces the same pattern across providers.
+Google isn't alone in this. Microsoft [retired the Bing Search API on August 11, 2025](https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement), and that removed another mainstream option for programmatic web search. As the large providers pull back, developers are left looking for infrastructure where programmatic access is the core product. Parallel's own [Bing alternatives comparison](https://parallel.ai/articles/bing-api-comparison) traces the same pattern across providers. Our explainer on [why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) covers the scraping and legal side of the same shift.
 
 ## What the Custom Search JSON API actually does (and where it falls short)
 
 The Custom Search JSON API queries a Programmable Search Engine. That is a different thing from the Google results page you see in a browser, and the gap shows: no knowledge panels or other native formats, a ranking that won't match what a person gets from Google Search, and the same query coming back with different results than the public search page shows.
 
-The bigger constraint is the payload. Each result gives you a title, a snippet, and a URL, and nothing of what is on the page, so a scraper has to fetch and clean every page before a model can use it. You end up maintaining two systems and paying two bills.
+The bigger constraint is the payload. Each result gives you a title, a snippet, and a URL, and nothing of what is on the page, so a scraper has to fetch and clean every page before a model can use it, which leaves you maintaining two systems and paying two bills.
 
-The Custom Search JSON API was designed to power a search box on a website, and it does that well. By default the engine restricts results to domains you configure; you can open it up to the whole web, though the output still won't equal a real Google query. The 10,000 queries per day cap rules out high-volume agent workloads regardless.
+The Custom Search JSON API was designed to power a search box on a website, and it does that well. Engines restrict results to domains you configure, and since January 20, 2026 every new engine is capped at 50 domains with no whole-web option. Older whole-web engines never returned what a real Google query shows. The 10,000 queries per day cap rules out high-volume agent workloads regardless.
 
 ## What to look for in a Google Custom Search API alternative
 
@@ -46,7 +46,7 @@ No single tool covers every job here. Which one fits depends on the workload you
 
 ### SerpApi and SERP scrapers
 
-[SerpApi and similar search engine results page (SERP) scrapers](https://serpapi.com/blog/web-search-api/) simulate real Google results across engines, and for SEO rank tracking that is the right tool. What comes back is the structured SERP itself, positions and formats included, the way a browser would show it. The catch for agent work is that a SERP is still search results data. When you need the text on the pages, you parse or scrape them separately.
+[SerpApi and similar search engine results page (SERP) scrapers](https://serpapi.com/blog/web-search-api/) simulate real Google results across engines, and for SEO rank tracking that is the right tool. What comes back is the structured SERP itself, positions and formats included, the way a browser would show it. For agent work, that is still search results data: when you need the text on the pages, you parse or scrape them separately.
 
 ### Google Vertex AI Search
 
@@ -58,7 +58,7 @@ Vertex AI Search is Google's own recommended path for site search, covering up t
 
 ### Parallel Search API
 
-[Parallel's Search API is built from the ground up for AI agents](https://parallel.ai/blog/parallel-search-api), running on Parallel's own proprietary web index of billions of pages with millions added daily. A call returns ranked URLs plus dense, token-efficient excerpts together, which is what removes the separate scraper from the loop. Fast is the tier for putting Google results into a model at $1 per 1,000 requests and ~700ms, with AA Search intelligence 73. Basic and Advanced run $5 per 1,000 with 10 results included, a free tier up to 16,000 requests, and 600 requests per minute, and there is no cap at 10,000 queries per day. Of the options here, Parallel is the one running its own AI-native index and shipping content excerpts in the same call.
+[Parallel's Search API is built from the ground up for AI agents](https://parallel.ai/blog/parallel-search-api), running on Parallel's own proprietary web index of billions of pages with millions added daily. A call returns ranked URLs plus dense, token-efficient excerpts together, which is what removes the separate scraper from the loop. Fast is the tier for putting web results into a model at $1 per 1,000 requests and ~700ms, with a score of 73 in the Artificial Analysis Search Index's September 8, 2026 data. Basic and Advanced run $5 per 1,000 with 10 results included. Parallel applies $5 in free credits every month automatically, which covers up to 5,000 Fast or Turbo searches, allows 600 requests per minute, and has no cap at 10,000 queries per day.
 
 ## Why Parallel's Search API is different from Google Custom Search
 
@@ -82,11 +82,11 @@ curl https://api.parallel.ai/v1/search \
 
 The POST carries a natural-language objective, and the response comes back as ranked URLs with dense excerpts a model can reason over.
 
-Parallel reports [strong accuracy on public benchmarks](https://parallel.ai/articles/openai-to-parallel-search-api). Measured on 100-question samples against OpenAI's GPT-5 with web search, that comes out at 98% versus 98% on [SimpleQA](https://openai.com/index/introducing-simpleqa/), 92% versus 90% on FRAMES, 58% versus 53% on [BrowseComp](https://openai.com/index/browsecomp/), and 47% versus 45% on HLE. The figures are Parallel's own, and they put it level with or ahead of that baseline at [lower total cost](https://parallel.ai/benchmarks). Pricing has no daily cap, and Parallel holds SOC 2 Type 2 certification with zero data retention and no training on customer data.
+Parallel reports [strong accuracy on public benchmarks](https://parallel.ai/articles/openai-to-parallel-search-api). On [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026), with a GPT-5.6 Sol agent, Parallel Advanced scored 97% on SimpleQA Verified and 74% on [BrowseComp](https://openai.com/index/browsecomp/), against 95% and 74% for Perplexity, the closest competitor. At the low-cost tier, Fast scored 94% on SimpleQA Verified at $2.00 per 1,000 questions, the lowest cost in that tier. The figures are Parallel's own, and OpenAI's web search isn't in the current runs. Pricing has no daily cap, and Parallel holds SOC 2 Type 2 certification, with zero data retention available on Enterprise plans.
 
 ## How to migrate off Google Custom Search before 2027
 
-None of this requires rewriting everything at once. Here is an order that keeps a migration off the Custom Search JSON API controlled:
+You don't have to rewrite everything at once. This order keeps a migration off the Custom Search JSON API controlled:
 
 1. **Inventory every place you call the Custom Search JSON API.** Note for each call whether the metadata is used directly or whether you fetch page content afterward.
 2. **Pick the replacement by use case.** Match each workload to the right tool: SEO rank tracking, scoped site search, or grounding an AI agent.

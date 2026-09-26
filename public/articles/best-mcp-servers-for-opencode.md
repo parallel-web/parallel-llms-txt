@@ -29,7 +29,7 @@ Servers are declared in the [mcp block of ](https://opencode.ai/docs/mcp-servers
 
 The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) is the nine-line config above: a hosted server, free with no API key, exposing `web_search` for ranked, excerpt-dense results and `web_fetch` for token-efficient markdown from specific URLs, PDFs and JavaScript-rendered pages included.
 
-OpenCode also has a built-in websearch tool backed by Exa's hosted service, and it's a fair question why you'd add another one. The answer is now third-party: on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 15 search API products (August 2026), Parallel Search (advanced) leads at 75, one point ahead of Exa (auto) at 74. The margin is thin, so [test on your own queries](https://parallel.ai/articles/best-web-search-api). Both options are free inside OpenCode, so the comparison costs you nothing but a config entry, and the Parallel server adds explicit page fetching either way.
+OpenCode also has a built-in websearch tool backed by Exa's hosted service. On the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products (September 2026 data), Parallel Search (advanced) scores 75, one point ahead of Exa (auto) at 74, and both trail Perplexity Search (medium) at 80. The margin is thin, so [test on your own queries](https://parallel.ai/articles/best-web-search-api). Both options are free inside OpenCode, so the comparison costs you nothing but a config entry, and the Parallel server adds explicit page fetching either way.
 
 **Best for:** current docs, errors, and library research mid-task, plus reading specific pages without flooding context.
 
@@ -49,7 +49,7 @@ Context7 serves version-pinned library documentation, the cheapest cure for hall
 
 ### 4. GitHub MCP
 
-GitHub's official hosted server brings issues, PRs, and Actions logs into OpenCode. Even GitHub's own OpenCode install guide warns that it can add a lot of tokens to your context, and recommends limiting toolsets. This is exactly what OpenCode's glob pattern is for: disable `github_*` globally and re-enable it only for the agent that does repo chores.
+GitHub's official hosted server brings issues, PRs, and Actions logs into OpenCode. Even GitHub's own OpenCode install guide warns that it can add a lot of tokens to your context, and recommends limiting toolsets. OpenCode's glob pattern handles that: disable `github_*` globally and re-enable it only for the agent that does repo chores.
 
 ```json
 {
@@ -68,7 +68,7 @@ GitHub's official hosted server brings issues, PRs, and Actions logs into OpenCo
 
 ### 5. Playwright MCP
 
-Microsoft's Playwright server lets OpenCode verify its own frontend work in a real browser: load the page, click the flow, screenshot the result. Among the most-installed MCP servers in the community by mid-2026.
+Microsoft's Playwright server lets OpenCode verify its own frontend work in a real browser: load the page, click the flow, screenshot the result. It was among the most-installed MCP servers in the community by mid-2026.
 
 **Best for:** UI verification and bug reproduction.** Tradeoffs:** heavier than API calls; for reading pages, `web_fetch` is cheaper.
 
@@ -88,7 +88,7 @@ The standard advice, keep three to six servers, applies here too, but OpenCode s
 
 ## Frequently asked questions
 
-**Does OpenCode have built-in web search?** Yes, a websearch tool backed by Exa's hosted service, available when using the OpenCode provider or by setting `OPENCODE_ENABLE_EXA`. It's a fine default. The Parallel Search MCP is the free upgrade path: higher benchmarked accuracy at lower per-request cost, plus an explicit fetch tool. Run both on your real queries and keep the winner.
+**Does OpenCode have built-in web search?** Yes, a websearch tool backed by Exa's hosted service, available when using the OpenCode provider or by setting `OPENCODE_ENABLE_EXA`. It's a fine default. The Parallel Search MCP is a free alternative worth testing against it, and it adds an explicit fetch tool. Run both on your real queries and keep the winner.
 
 **Can I share MCP config with my team?** Yes. Project-root `opencode.json` is designed to be checked into git and overrides the global config.
 
