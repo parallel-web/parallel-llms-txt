@@ -11,9 +11,9 @@
 * [Parallel Search MCP vs. Exa MCP: a 2026 comparison](https://parallel.ai/articles/parallel-search-mcp-vs-exa-mcp)
 * [What's the most powerful search API for AI in 2026? A BrowseComp benchmark report](https://parallel.ai/articles/most-powerful-search-api-for-ai)
 * [The best web search API for AI applications: a 2026 benchmark report on 5 engines](https://parallel.ai/articles/best-web-search-api-for-ai-applications)
-* [We tested 5 tools for accuracy and speed. This is the best web search API in 2026](https://parallel.ai/articles/best-web-search-api)
+* [The best web search API in 2026: 5 tools compared on accuracy and speed](https://parallel.ai/articles/best-web-search-api)
 * [Best deep research APIs in 2026: a benchmark report](https://parallel.ai/articles/best-deep-research-apis)
-* [Best AI search for agents: 6 web search APIs benchmarked on BrowseComp (2026)](https://parallel.ai/articles/best-ai-search-for-agents)
+* [Best AI search for agents: 6 web search APIs compared (2026)](https://parallel.ai/articles/best-ai-search-for-agents)
 * [Best fast search APIs in 2026: a guide to 5 AI-native search tools](https://parallel.ai/articles/best-fast-search-apis)
 * [The best free web search APIs for AI agents in 2026](https://parallel.ai/articles/best-free-web-search-api)
 * [Gemini's Google Search grounding vs. Parallel: the best index, with strings attached](https://parallel.ai/articles/gemini-google-search-grounding-vs-parallel)
@@ -26,7 +26,7 @@
 * [Perplexity Search API vs. Parallel Search API: a head-to-head on the search layer](https://parallel.ai/articles/perplexity-search-api-vs-parallel-search-api)
 * [You.com vs. Parallel: two near-identical API lineups, priced differently](https://parallel.ai/articles/you-com-vs-parallel)
 * [Bright Data SERP API vs. Parallel: unblocking infrastructure or retrieval infrastructure?](https://parallel.ai/articles/bright-data-serp-api-vs-parallel)
-* [Perplexity Sonar vs. Parallel Task and Responses APIs: answer engine or research system?](https://parallel.ai/articles/perplexity-sonar-vs-parallel)
+* [Perplexity Sonar vs. Parallel (and what replaces Sonar)](https://parallel.ai/articles/perplexity-sonar-vs-parallel)
 * [Jina AI Reader vs. Parallel: two ways to turn the web into model input](https://parallel.ai/articles/jina-ai-reader-vs-parallel)
 * [Serper vs. Parallel: the cheapest SERP API against the cheapest agent search](https://parallel.ai/articles/serper-vs-parallel)
 * [Linkup vs. Parallel: comparing two accuracy-first search APIs](https://parallel.ai/articles/linkup-vs-parallel)
@@ -44,6 +44,8 @@
 
 ### Guides
 
+* [Is scraping Google legal? What the 2026 court rulings say](https://parallel.ai/articles/is-scraping-google-legal)
+* [Why can’t AI agents just use Google Search?](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search)
 * [How to use Grok Bot for competitive research](https://parallel.ai/articles/grok-bot-competitive-research)
 * [The best MCP servers and connectors for Meta Muse in 2026](https://parallel.ai/articles/best-mcp-servers-for-meta-muse)
 * [How to create custom integrations with Meta Muse: connect any API or MCP server](https://parallel.ai/articles/meta-muse-custom-integrations)
