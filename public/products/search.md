@@ -202,7 +202,7 @@ Pick which domains are included or excluded from your web search results
 
 Zero data retention
 
-Soc 2 Type 2
+SOC 2 Type 2
 
 No training
 

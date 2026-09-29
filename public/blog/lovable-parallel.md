@@ -29,13 +29,10 @@ Then, simply tell Lovable what to build. For example: "Add a research panel that
 
 ## App ideas to try with Parallel and Lovable
 
-- Competitive news and intelligence tool
-- Lead generation (ICP research) tool
-- Lead enrichment tool
-- Research paper monitor
-- Real-estate listing tracker
-- Fundraise tracker
-- Grants and RFP finder
-- Travel deal finder
+- An app for a contractor to monitor for new home sales in the area
+- A trend tracker for a local boutique, scanning the web for weekly social trends to jump on
+- A local events tracker to help manage restaurant staffing
 
-[Get started](https://lovable.dev/dashboard?connectors=&subtab=connector-detail&connector=parallel) with Parallel in Lovable.
+---
+
+[Get started with Parallel in Lovable](https://lovable.dev/dashboard?connectors=&subtab=connector-detail&connector=parallel).
