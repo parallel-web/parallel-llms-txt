@@ -1,147 +1,153 @@
-# What is a web search API?
+# What is a web search API, and when do AI agents need one?
 
-A web search API returns structured, machine-readable results (URLs, excerpts, and metadata) instead of pages built for human browsing. This guide covers the crawl, index, retrieve, respond architecture behind one, why AI developers need programmatic web access, modern capabilities like evidence links and freshness controls, the main use cases, how to call one, and how to evaluate providers.
+A web search API is the piece of an AI agent’s stack that decides whether its answers reflect today’s web or last year’s training data, and picking one starts with knowing which kind you’re buying. This guide covers how search APIs work, the three product shapes on the market, when an agent needs live search and when it doesn’t, and what the options cost.
 
-## **What is a web search API?**
+A web search API is an HTTP endpoint that takes a query and returns web results as structured data (URLs, titles, dates, and text) that code can read without rendering a page. AI agents call one to pull current, citable facts from the public web into a model’s context window at the moment they need them.
 
-Traditional search engines like Google or Bing present results as HTML pages with short teaser snippets. A modern web search API returns JSON responses containing clean information your code consumes directly, which is the form an AI agent or automation workflow needs.
+Developers used to reach for Google or Bing for this. Microsoft [retired the Bing Search APIs on August 11, 2025](https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement) and pointed customers to Grounding with Bing Search inside Azure AI Agents. Google’s [Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) is closed to new customers, and existing customers have until January 1, 2027 to move off it. Both search giants now sell web grounding as a feature of their own agent platforms, so teams building agents on other models buy search from independent providers instead.
 
-## **Core architecture: crawl, index, retrieve, respond**
+## How a web search API works
 
-Web search APIs (and AI search APIs) typically operate through four stages. Web crawlers traverse the internet, discovering and downloading pages across millions of sites. Indexing systems parse this content and build searchable data structures that organize text, metadata, and relationships.
+Every web search API runs five stages: crawl, index, retrieve, rank, and respond. Crawlers download pages and revisit them on a schedule. The indexer parses each page into text, metadata, and links, and stores it in structures that support fast lookup. At query time the retriever pulls candidate documents, a ranker orders them, and the response layer packages the top results as JSON.
 
-When your query arrives, the API matches it against the index using algorithms that weigh keyword frequency, page authority, and content freshness. The response packages matching results as structured data: URLs with excerpts, timestamps, and source links ready for your application to consume.
+The stage where providers differ most is the one you can’t see: whose index sits behind the endpoint. Some providers crawl and index the web themselves. Brave describes its API as [its own independent index](https://brave.com/search/api/) with its own ranking models, and we built the [Parallel Search API](https://parallel.ai/products/search) on our own index of billions of pages, with millions added daily. Others run no index at all. SERP APIs such as SerpApi send your query to Google or Bing, scrape the results page, and return it as JSON. Resellers wrap one of those upstream sources in a different interface.
 
-## **Why AI developers need programmatic web access**
+Own-index providers control freshness, excerpt length, and ranking, so they can shape results for a model. SERP scrapers inherit whatever the upstream engine decides, add a network hop, and carry legal exposure: Google [sued SerpApi on December 19, 2025](https://blog.google/innovation-and-ai/technology/safety-security/serpapi-lawsuit/) for circumventing its anti-scraping measures, and our explainer on [whether scraping Google is legal](https://parallel.ai/articles/is-scraping-google-legal) covers the case. And only own-index providers can tell you what’s in their index and how often they recrawl it. Our guides to [what a web index is](https://parallel.ai/articles/what-is-a-web-index) and [what a web crawler does](https://parallel.ai/articles/what-is-a-web-crawler) cover the first two stages in depth.
 
-LLMs need text they can reason over, but traditional search engines return short teaser snippets designed to generate clicks, forcing developers to build complex pipelines that search, scrape, parse, chunk, re-rank, and finally feed content to the model.
+## The three shapes of web search API
 
-Each step adds latency and failure points. A web request times out. A scraper breaks when a site redesigns. Token costs balloon when you ingest entire articles to extract two relevant paragraphs. You're orchestrating five different tools that might break independently.
+The market sells three products under one name. SERP APIs return what a human sees on a results page, AI-native search APIs return excerpts chosen for a model to read, and answer APIs run the search and the model for you and return finished text.
 
-### **Ground responses in verifiable sources**
+| Shape | What you get back | Examples | Best for |
+| --- | --- | --- | --- |
+| SERP API | Links, titles, and short snippets from a search engine results page | SerpApi, Serper, Bright Data SERP API | Rank tracking, SEO data, replicating what a human sees on Google |
+| AI-native search API | Ranked URLs with multi-paragraph excerpts selected for the query | Parallel Search, Exa, Tavily, Brave Search | Agent tool calls and retrieval-augmented generation (RAG) where your own model reasons over the evidence |
+| Answer or grounding API | Synthesized text with citations | Grounding with Google Search (Gemini), Grounding with Bing (Azure), Brave Answers, Parallel Responses API | Products that want a cited answer and don’t need to control the reasoning step |
 
-LLMs trained on static datasets generate plausible-sounding answers even when they lack current information. Web search APIs ground model outputs in real-time data with verifiable sources. When your AI agent cites a specific URL and excerpt, users can verify the information rather than blindly trusting generated text.
+SERP snippets run a sentence or two, which rarely holds the fact an agent needs. A pipeline built on them usually fetches each page, strips the navigation and ads, chunks the text, and reranks it before the model sees anything. AI-native APIs do that work server-side. In the live response below, our Fast mode returned 10 results with excerpts between about 450 and 2,950 characters each. Answer APIs hide the evidence behind prose, which is convenient until you need to check which source a sentence came from.
 
-Financial analysts, medical researchers, and legal teams need to trace claims to evidence. Source provenance lets them inspect the basis for an answer before they trust it.
+## When an AI agent needs one
 
-### **Collapse multi-step pipelines into one call**
+An agent needs live search whenever the answer depends on something its model didn’t see in training or can’t be trusted to recall exactly.
 
-[AI-native search APIs](/products/search) remove much of that orchestration. You send a research objective like "Find the current executive leadership of Stripe" and receive structured, LLM-ready excerpts in a single response. No separate scraping service, no parsing library, no chunking logic.
+**Anything after the knowledge cutoff.** Every model, Claude Opus 5.5 included, stops learning at a training cutoff, so this quarter’s earnings, last week’s library release, or yesterday’s regulation need retrieval.
 
-You integrate one API instead of maintaining five different tools, and with fewer moving parts there are fewer places for the pipeline to break.
+**Facts that change.** Prices, headcounts, executive rosters, API rate limits, and store hours drift weekly. A model that memorized them a year ago will state the old value with full confidence.
 
-### **Control latency and token costs**
+**Citations and provenance.** Legal, finance, and healthcare teams need to trace each claim to a source. A search API returns the URL and the passage, so a reviewer can open the page and check it.
 
-Full webpage ingestion wastes tokens on navigation menus, footers, ads, and boilerplate content. Well-designed web search APIs return focused excerpts containing the information density your model needs, which is typically a few paragraphs per result rather than 10,000-word articles.
+**The long tail.** Models recall popular facts well and obscure ones badly. The founding year of a regional logistics company or the pin-out of a niche sensor board sits on a handful of pages that a model saw once, if ever.
 
-Fewer tokens mean faster processing and lower end-to-end costs, and the savings add up when you're running thousands or millions of agent queries daily.
+**Verifying generated claims.** Agents can draft first and then search to confirm each factual sentence, dropping or correcting the ones no source supports. This pattern catches hallucinated numbers before a user sees them.
 
-## **Modern search API capabilities**
+## When an agent doesn’t need one
 
-Enterprise-grade APIs expose capabilities that basic search wrappers don't provide:
+Live web search adds cost, latency, and a new failure mode, so skip it when it can’t help. A support bot answering from your product manual should query a vector index of your docs, since the public web knows less about your refund policy than your own help center does. Our comparison of [RAG with web search against vector databases](https://parallel.ai/articles/how-to-build-a-rag-pipeline-with-web-search-instead-of-vector-databases) covers where each fits.
 
-**Extended excerpts vs. short snippets**: Basic APIs return brief teasers identical to browser search. Enterprise APIs provide substantive passages with enough context for AI reasoning: often 500 to 2,000 characters versus two-sentence snippets.
+Stable knowledge doesn’t need retrieval either. Unit conversions, the syntax of a Python list comprehension, and the plot of _Hamlet_ won’t change before your next deploy. Latency is the third case. A voice agent with a 300ms turn budget can’t wait on a ~3s deep search, though a ~200ms call like our Turbo mode fits some of those budgets. Many agents let the model decide per turn whether to call search, and cache repeated queries.
 
-**Freshness controls**: Fixed crawl schedules versus configurable recency parameters. Specify "content from the past 24 hours" rather than accepting whatever the provider's schedule delivers.
+## What a request and response look like
 
-**Transparent attribution**: URLs only versus explicit provenance with excerpt-to-source mapping. Connect each fact to its origin for verification.
+A search call is one POST with your query and a few options. The Python below calls our Search API in Fast mode with a natural-language objective and two keyword queries. We ran it on September 28, 2026; it took about one second end to end.
 
-**Result customization**: Limited filtering versus granular controls for excerpt length, allowed domains, and date ranges without post-processing.
+```python
+import os
+import requests
 
-**Reliability guarantees**: Best-effort service versus SLAs with uptime commitments and dedicated support for production deployments.
+resp = requests.post(
+    "https://api.parallel.ai/v1/search",
+    headers={"x-api-key": os.environ["PARALLEL_API_KEY"]},
+    json={
+        "mode": "fast",
+        "objective": "When does the Google Custom Search JSON API shut down for existing customers?",
+        "search_queries": ["Custom Search JSON API discontinued", "Custom Search JSON API January 2027"],
+    },
+    timeout=30,
+)
+resp.raise_for_status()
+data = resp.json()
 
-### **Structured metadata extraction**
-
-High-quality APIs extract semantic metadata beyond raw text: article publication dates, author information, content categories, or domain-specific schema like product prices and availability. That lets you filter results without post-processing the raw response.
-
-### **Evidence links for verification**
-
-Transparent attribution connects information to its source URL and the specific excerpt that supports it. When your AI agent claims "Company X raised $50M in Series B funding," the response includes the press release or news article where that fact appeared, so a reviewer can check the claim instead of trusting the model.
-
-### **Granular controls for freshness and length**
-
-Real-time news monitoring prioritizes content from the past few hours, while historical research pulls from archives spanning years. Some queries benefit from concise 200-character excerpts, and complex research tasks need 2,000-character passages. Good APIs expose parameters for both.
-
-## **Key use cases for programmatic web access**
-
-### **Retrieval-augmented generation**
-
-RAG systems enhance LLM responses by retrieving relevant context before generation. When a user asks about recent developments in quantum computing, the system queries a web search API for current articles, passes the excerpts to the LLM as context, and generates an answer grounded in real-time information. This pattern reduces hallucinations while keeping responses current.
-
-### **Autonomous web workers**
-
-Multi-step knowledge task workflows require agents to formulate queries, evaluate results, identify information gaps, and iterate until they've gathered sufficient information to achieve their objective. A financial analysis agent might research a company's recent earnings, then search for competitor performance, then look up relevant market trends: each query informed by previous findings.
-
-The web search API connects each reasoning step to current data. Without programmatic web access, the agent only knows what was in its training data.
-
-### **Market and news monitoring**
-
-Automated tracking systems continuously query for mentions of brands, products, competitors, or industry keywords. When the API returns new results matching your criteria, your system triggers alerts, updates dashboards, or initiates downstream workflows. Teams use this for reputation management and competitive analysis without manually checking dozens of sites.
-
-## **Implementation: calling a web search API**
-
-### **Obtain an API key**
-
-Sign up with your chosen provider and generate an API key from your account dashboard. Store this key securely: it authenticates your requests and tracks usage for billing. Most providers offer free tiers with limited requests per month for testing.
-
-### **Craft search queries or objectives**
-
-Send traditional keyword queries or natural language objectives depending on the API's capabilities. 
-
-```
-    objective: "What came first, the iphone or blackberry?",
-    search_queries: [
-        "iphone release date",
-        "blackberry relesea date"
-        ]
+for result in data["results"][:3]:
+    print(result["title"], result["url"], result["publish_date"])
+    print(result["excerpts"][0][:300], "\n")
 ```
 
-The objective guides the overall research goal while parameters like **max_results **and **max_chars_per_result** control response format.
+The response came back with 10 results. Here is its shape, trimmed to the one result from Google’s own documentation:
 
-### **Parse JSON responses**
+```json
+{
+  "search_id": "search_eafa488c550b6ea4f08a91b7d9b49258",
+  "results": [
+    {
+      "url": "https://developers.google.com/custom-search/v1/overview",
+      "title": "Custom Search JSON API | Google for Developers",
+      "publish_date": null,
+      "excerpts": [
+        "... Note: The Custom Search JSON API is closed to new customers. ... Existing Custom Search JSON API customers have until January 1, 2027 to transition to an alternative solution ..."
+      ]
+    }
+  ],
+  "warnings": null,
+  "usage": [{ "name": "sku_search", "count": 1 }],
+  "session_id": "session_eafa488c550b6ea4f08a91b7d9b49258"
+}
+```
 
-The API returns structured JSON containing an array of results. Each result typically includes a URL, title, excerpt, published date, and relevance score. Your code extracts these fields and routes them appropriately, perhaps concatenating excerpts as LLM context or storing URLs for citation.
+The excerpt already contains the answer, so an agent can pass `results` straight into the model’s context and cite `url`. The `usage` field reports one billable request. Omit `mode` and the API defaults to `advanced` (~3s); our [search modes docs](https://docs.parallel.ai/search/modes) recommend starting with `fast`. The same call works from the `parallel-web` Python and TypeScript SDKs.
 
-### **Post-process or feed into an LLM**
+## How to evaluate one
 
-For RAG applications, concatenate the excerpts with your user's question and send the combined text to your LLM. The model generates a response informed by the retrieved context. For data extraction tasks, parse the excerpts directly, looking for specific entities or facts to populate a database.
+Test candidates on your own queries, because published leaderboards measure someone else’s workload. Build a set of 100 to 200 real queries with known answers, run each API through the same agent and model, and score whether the agent got the answer right, what the whole run cost, and how long it took at the p50 and p95. Cost per correct answer beats cost per request as a metric, since an API with better excerpts often needs fewer calls.
 
-## **Economic considerations**
+We describe our own process in [how we evaluate web search APIs](https://parallel.ai/articles/how-we-evaluate-web-search-apis), and our guide to [benchmarking web search APIs on your own queries](https://parallel.ai/articles/how-to-benchmark-web-search-apis) walks through the harness, the LLM judge, and the error bars. For a published baseline, the [Parallel benchmarks page](https://parallel.ai/benchmarks) lists our September 9, 2026 Search results with the agent model used for each run.
 
-Pricing models vary across providers. Per-request pricing charges a fixed amount for each API call regardless of result size. Per-token pricing charges based on actual content returned. Some providers charge separately for the search operation and content extraction, so compare total costs across your expected usage patterns.
+## Pricing models
 
-### **Scaling for high-volume agents**
+Providers bill per request, per plan, per credit, or per request plus tokens, so headline numbers don’t always compare cleanly. These are list prices we checked on each provider’s pricing page on September 28, 2026.
 
-Rate limits constrain how many requests you can make per second or per day. Free tiers typically allow hundreds of requests monthly, sufficient for prototyping but inadequate for production. As your application scales, you'll need higher limits through paid plans.
+| Model | How it bills | Examples (list price) |
+| --- | --- | --- |
+| Per request | A flat price per call, with a set number of results included | Parallel Search $1 per 1,000 (Turbo, Fast) or $5 per 1,000 (Basic, Advanced), 10 results included; Brave Search $5 per 1,000; Exa Search $7 per 1,000 |
+| Monthly plan | A subscription buys a search quota | SerpApi Starter $25 a month for 1,000 searches; Developer $75 for 5,000 |
+| Credits | Each call costs a variable number of credits | Tavily pay-as-you-go $0.008 per credit; a basic search costs 1 credit and an advanced search 2 |
+| Per request plus tokens | A search fee plus model token charges | Grounding with Google Search on Gemini 3 models: 5,000 free search requests a month, then $14 per 1,000; Brave Answers $4 per 1,000 plus $5 per million tokens |
 
-Beyond raw throughput, consider latency requirements. Some APIs offer tiered service levels where premium tiers prioritize your requests for faster response times. For autonomous agents making dozens of sequential queries, the milliseconds add up to delays users notice.
+Per-request pricing is the easiest to forecast. Credit and plan pricing need a conversion: Tavily’s credit price works out to $8 per 1,000 basic searches, and SerpApi’s Starter plan to $25 per 1,000. Answer APIs bundle model tokens into the bill, so their per-request figure understates the total.
 
-## **Evaluation criteria**
+## How to start free
 
-### **Benchmark precision and recall**
+You can try live web search in an agent without an account. Our [Search MCP server](https://docs.parallel.ai/integrations/mcp/search-mcp) at `https://search.parallel.ai/mcp` is free to use anonymously at lower rate limits: no signup and no API key. It exposes `web_search` and `web_fetch` tools and runs in `fast` mode. Add it to Cursor with one entry in `~/.cursor/mcp.json`, or to Codex with `codex mcp add parallel-search --url https://search.parallel.ai/mcp`.
 
-Run test queries representative of your domain and evaluate result quality by hand. Precision measures how many returned results are relevant. Recall measures how many relevant results the API found. For specialized domains like medical research or legal analysis, generic search APIs often underperform because their indexes and ranking algorithms optimize for general web queries.
+When you want the raw API, sign up at [platform.parallel.ai](https://platform.parallel.ai). Accounts get $5 in free credits every month, which covers up to 5,000 Turbo or Fast searches. Passing that key to the MCP server as a Bearer token raises its rate limits. Our roundup of [free web search MCP servers](https://parallel.ai/articles/best-free-web-search-mcp) compares the keyless options, and [adding free web search to a coding agent](https://parallel.ai/articles/add-free-web-search-to-coding-agent) walks through the setup with both the MCP server and the Parallel CLI.
 
-### **Verify SOC 2 and data residency**
+## Get started
 
-Enterprise deployments require security certifications proving the provider implements appropriate controls for data handling, access management, and incident response. SOC 2 Type 2 certification demonstrates ongoing compliance rather than a point-in-time audit. If you operate in regulated industries or specific geographies, confirm the provider can meet data residency requirements.
+Point your agent at `https://search.parallel.ai/mcp` to test search with no key, or create a key on [platform.parallel.ai](https://platform.parallel.ai) and run the Python example above. The [Search API quickstart](https://docs.parallel.ai/search/search-quickstart) covers the SDKs, modes, and source policies.
 
-### **Assess latency under load**
+## Frequently asked questions
 
-Test API performance under the load you expect in production. Measure latency at ten and one hundred concurrent requests, including peak traffic. Track P50, P95, and P99 latency so tail behavior does not hide behind an average.
+### What is a web search API?
 
-## **Frequently asked questions**
+A web search API is an endpoint that takes a query and returns web results as structured JSON (URLs, titles, dates, and text excerpts) instead of a rendered page. AI agents and applications use one to bring current information from the public web into their code or a model’s context.
 
-**Is a web search API the same as an api search engine?** The terms are used interchangeably. "Web search API" emphasizes the interface while "API search engine" emphasizes the underlying search technology. Both refer to programmatic access to search capabilities.
+### Is there a free web search API?
 
-**Can I use a web search API for commercial products?** Most enterprise providers offer commercial licenses, but review terms of service before deploying to production. Some providers restrict certain use cases like building competing search products or reselling raw search data. Free tiers typically prohibit commercial use.
+Yes. Parallel’s Search MCP server is free to use anonymously at lower rate limits, and a Parallel account includes $5 in free credits every month (up to 5,000 Turbo or Fast searches). Brave includes $5 in monthly credits, Tavily gives 1,000 free credits a month, and SerpApi’s free plan covers 250 searches a month.
 
-**How fresh is the data returned by search APIs?** Freshness varies by provider. Some offer real-time indexing while others update daily or weekly depending on their crawling infrastructure. Check the provider's documentation for crawl frequency and test with time-sensitive queries to validate actual freshness.
+### What replaced the Bing Search API?
 
-**Do search APIs offer free tiers for testing?** Many providers offer free tiers with limited requests per month. Free tiers work well for prototyping and proof-of-concept development, though production applications typically require paid plans for higher rate limits and SLA guarantees.
+Microsoft retired the Bing Search APIs on August 11, 2025 and directed customers to Grounding with Bing Search, which works only inside Azure AI Agents. Teams that need raw results outside Azure moved to independent providers such as Brave, Parallel, Exa, or Tavily.
 
-## **Build with Parallel's Search API**
+### Is the Google Custom Search API shutting down?
 
-[Parallel's Search API](/products/search) returns structured outputs with transparent attribution, built for AI agents, so your agent can ground its answers in current, verifiable information from the web.
+Yes. Google’s Custom Search JSON API is closed to new customers, and existing customers have until January 1, 2027 to transition. Google points site search users to Vertex AI Search, which covers up to 50 domains.
 
-Get started at [https://platform.parallel.ai/home](https://platform.parallel.ai/home)
+### What’s the difference between a SERP API and an AI search API?
+
+A SERP API scrapes a search engine’s results page and returns its links and short snippets. An AI search API queries its own index and returns longer excerpts selected for a model to read, so an agent can answer without fetching each page.
+
+### Do AI agents always need a web search API?
+
+No. Agents answering from your own documents, working with stable facts, or running under a tight latency budget often do better without one. Add search when answers depend on recent events, changing facts, long-tail details, or citations a user needs to check.
+
+**Related reading: **[How we evaluate web search APIs](https://parallel.ai/articles/how-we-evaluate-web-search-apis) · [Best free web search MCP servers](https://parallel.ai/articles/best-free-web-search-mcp) · [How to benchmark web search APIs](https://parallel.ai/articles/how-to-benchmark-web-search-apis) · [The best Google Custom Search API alternative](https://parallel.ai/articles/the-best-google-custom-search-api-alternative-for-ai-agents)

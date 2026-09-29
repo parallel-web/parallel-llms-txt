@@ -8,7 +8,7 @@ This guide covers how MCP support works in OpenClaw, the servers that earn a pla
 
 ## You may already be running the best web search server
 
-Before you install anything, know that OpenClaw ships with [free, LLM-optimized web search by default, powered by the Parallel Search API](https://parallel.ai/blog/free-web-search-openclaw). A fresh OpenClaw install can already ground its answers in current web results without any configuration, an API key, or a paid plan.
+Before you install anything, know that OpenClaw has a [free, LLM-optimized web search provider powered by the Parallel Search API](https://parallel.ai/blog/free-web-search-openclaw). It needs no API key or paid plan, but it isn’t on by default: install the plugin with `openclaw plugins install @openclaw/parallel-plugin`, then set `tools.web.search.provider` to `parallel-free`. OpenClaw never auto-selects a key-free provider, so without that setting it falls back to the first keyed provider it finds, starting with Brave.
 
 So the direct answer to "what's the best web search MCP for OpenClaw" is that you probably have it already. Adding the Parallel Search MCP on top still makes sense in two cases: you want web page fetching exposed as an explicit tool alongside search, or you want to attach an API key for higher rate limits than the anonymous default.
 
@@ -90,7 +90,7 @@ As a rule of thumb, hosted services with OAuth and state (GitHub, Notion) fit MC
 
 **Is MCP the best way to extend OpenClaw?** It's one of two good ways. MCP is the right fit for hosted, authenticated services; skills are the right fit for local CLI tooling. OpenClaw can also run as an MCP server itself via `openclaw mcp serve`, so other agents like Claude Code can read and send your channel conversations.
 
-**Do I need to configure web search at all?** No. OpenClaw's default web search is free and powered by Parallel. Add the Search MCP or an API key when you want explicit page fetching or higher rate limits.
+**Do I need to configure web search at all?** Once. OpenClaw uses a key-free provider only when you select it, so install the Parallel plugin and set `tools.web.search.provider` to `parallel-free` for free Parallel search with no API key. Add the Search MCP or an API key when you want explicit page fetching or higher rate limits.
 
 **Are these servers free?** Parallel Search, GitHub, and Playwright cost nothing. The Task MCP is covered by Parallel's $5 recurring monthly free credit until you outgrow it. Notion is free with your existing plan.
 

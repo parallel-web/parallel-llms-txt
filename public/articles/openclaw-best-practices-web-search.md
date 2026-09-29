@@ -33,7 +33,7 @@ On [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026), wh
 
 ### **Brave Search API**
 
-Brave is OpenClaw's officially recommended and default search provider. It maintains its own independent web-scale index (one of only three in the Western world outside Big Tech) and serves results through a simple API. Brave has recently expanded its AI-focused offerings, including an "LLM Context" endpoint and new Skills support built in response to the OpenClaw ecosystem. For many use cases it works well with no extra setup.
+Brave is first in OpenClaw’s auto-detection order: if you set a `BRAVE_API_KEY` and don’t choose a provider, OpenClaw uses Brave. It maintains its own independent web-scale index (one of only three in the Western world outside Big Tech) and serves results through a simple API. Brave has recently expanded its AI-focused offerings, including an “LLM Context” endpoint and new Skills support built in response to the OpenClaw ecosystem. Once the key is set, it works well for many use cases.
 
 ### **Tavily**
 

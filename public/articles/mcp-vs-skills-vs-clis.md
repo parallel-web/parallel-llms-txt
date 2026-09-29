@@ -18,7 +18,7 @@ Those are all reasonable choices, because the right mechanism depends on the too
 
 ### Context cost
 
-Practitioners notice this difference first. Every connected MCP server injects its tool schemas into the context window on every turn, whether or not the tools get used; GitHub's server is the notorious example, and even GitHub's own install guides warn about it. Skills are lazier: only the one-line metadata is always present, and the body loads on demand. CLIs cost almost nothing until invoked. The ecosystem has built workarounds that concede the point, such as `pi-mcp-adapter` hiding every MCP tool behind a single proxy tool, and OpenCode letting you disable a server's tools per agent with globs. For a rarely used tool, the always-loaded schema costs context on every turn and returns almost nothing.
+Practitioners notice this difference first. In most clients, every connected MCP server injects its tool schemas into the context window on every turn, whether or not the tools get used; GitHub’s server is the notorious example, and even GitHub’s own install guides warn about it. Claude Code is the main exception: its [MCP tool search](https://code.claude.com/docs/en/mcp) is on by default and loads only tool names at session start, fetching a definition when the agent needs it. Skills are lazier: only the one-line metadata is always present, and the body loads on demand. CLIs cost almost nothing until invoked. The ecosystem has built other workarounds, such as `pi-mcp-adapter` hiding every MCP tool behind a single proxy tool, and OpenCode letting you disable a server’s tools per agent with globs. In a client that loads schemas up front, a rarely used tool costs context on every turn and returns almost nothing.
 
 ### Portability
 
@@ -62,7 +62,7 @@ Web search is a useful worked example because it's the one tool nearly every age
 
 **Is MCP replacing skills, or the other way around?** Neither. They're converging on a division of labor: MCP for hosted, authenticated, typed services; skills for local know-how and CLI orchestration. Every major harness now supports both.
 
-**Why not expose everything as MCP for consistency?** Context cost. Tool schemas are paid on every turn, and tool-selection accuracy degrades as the tool list grows.
+**Why not expose everything as MCP for consistency?** Context cost. In clients that load tool schemas up front, you pay for them on every turn, and tool-selection accuracy degrades as the tool list grows.
 
 **Can a skill call an MCP server?** Indirectly: tools like mcporter expose MCP servers as CLIs, which a skill can then drive. That's how OpenClaw's lineage handled MCP before native support.
 

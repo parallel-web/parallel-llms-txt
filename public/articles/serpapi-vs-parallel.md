@@ -54,13 +54,14 @@ SerpApi sells monthly search allowances, month to month:
 | Big Data | $275 | 30,000 |
 | Searcher | $725 | 100,000 |
 | Volume | $1,475 | 250,000 |
-| Infrastructure | $2,750 | 500,000, with Enterprise above that |
+| Infrastructure | $2,750 | 500,000 |
+| Cloud 1M | $3,750 | 1,000,000, with Enterprise above that |
 
 As an effective rate, that works out to $25 per 1,000 searches at the entry tier, $10 at Production, $7.25 at Searcher, and $5.50 at Infrastructure. Those rates assume you reliably consume the allowance you bought.
 
 Parallel charges per request, with no plan to commit to. Search is **$1 per 1,000 requests** in Fast or Turbo and $5 per 1,000 in Basic or Advanced, each including 10 results with excerpts and additional results at $1 per 1,000. Extract is $1 per 1,000 URLs. Above search sit the Task API at $5 to $2,400 per 1,000 runs, the Responses API at $10 to $250 per 1,000, Monitor from $3 per 1,000 executions, Entity Search at $5 per 1,000, and FindAll on a fixed-plus-per-match model. Parallel applies $5 in free credits every month automatically, which covers up to 5,000 Fast or Turbo searches.
 
-At a million searches a month, Parallel Fast or Turbo runs $1,000, excerpts included. Reaching that volume on SerpApi means an enterprise contract, and the response still needs a fetch-and-clean stage behind it. Lower down, at 5,000 searches a month, SerpApi's Developer plan is $75 and Parallel Fast or Turbo is $5, most of which the monthly free credit absorbs.
+At a million searches a month, Parallel Fast or Turbo runs $1,000, excerpts included. SerpApi’s self-serve Cloud 1M plan covers that volume at $3,750 a month, and the response still needs a fetch-and-clean stage behind it. Lower down, at 5,000 searches a month, SerpApi’s Developer plan is $75 and Parallel Fast or Turbo is $5, most of which the monthly free credit absorbs.
 
 _Note: For the latest pricing, always check official documentation._
 
@@ -78,7 +79,7 @@ SerpApi's advantage here is real. Its U.S. Legal Shield accepts liability for th
 
 The indemnity carries more weight since Google sued SerpApi in December 2025, alleging it circumvented SearchGuard, the anti-bot system on Google Search. In July 2026 the court dismissed Google’s DMCA claims, holding that the statute only protects measures guarding copyrighted works and that many search results contain none. Google refiled a narrower complaint in August, and a hearing is set for October 13, 2026. A separate suit from Reddit names SerpApi and Perplexity, one of its customers, and survived a motion to dismiss in July 2026. On the technical side, Google rolled out google.com/goto redirect links in August 2026, and SerpApi’s [release notes](https://serpapi.com/release-notes) show it shipping fixes for them within weeks. Our explainer on [why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) has the full timeline.
 
-SerpApi is SOC 2 Type II, SOC 3, and ISO 27001 certified, guarantees a 99.95% SLA on all plans, and offers ZeroTrace Mode, which discards your search parameters and results once a search completes. The pricing page lists it only on the high-volume Cloud plans (1 million searches a month and up), not on Free or the self-serve Starter through Volume plans.
+SerpApi is SOC 2 Type II, SOC 3, and ISO 27001 certified, advertises an SLA of up to 99.97%, and offers ZeroTrace Mode, which discards your search parameters and results once a search completes. The pricing page lists ZeroTrace only on the Cloud plans (1 million searches a month and up), not on Free or the Starter through Infrastructure plans.
 
 Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention, and commits contractually to not training on customer data. There is a public status page and a trust center.
 

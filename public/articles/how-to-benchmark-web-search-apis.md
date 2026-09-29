@@ -34,7 +34,7 @@ Two practical notes. First, answers on the live web change, so record the date y
 
 ## Step 2: Run every candidate through the same loop
 
-The harness is a loop, and the discipline is holding everything constant except the search tool. Same model, same system prompt, same temperature, same tool-call budget, same result count. In our own evals the agent gets up to 20 tool calls per question; whatever budget you pick, give every provider the same one.
+The harness is a loop, and the discipline is holding everything constant except the search tool. Same model, same system prompt, same temperature, same tool-call budget, same result count. Whatever budget you pick, give every provider the same one.
 
 ```py
 import json, time
@@ -163,7 +163,7 @@ b_only = sum(1 for q in ids if ok["B", q] and not ok["A", q])
 print(f"A wins {a_only} queries B loses; B wins {b_only} queries A loses")
 ```
 
-Two more rules. Run-to-run variance is real, so rerun a surprising result before you believe it. And decide before you start whether you report first-run numbers or best-of-N, then apply the same rule to every provider. In our own published benchmarks we ran multiple sessions and reported the best observed score per provider, applied uniformly; whichever convention you pick, write it down next to the results.
+Two more rules. Run-to-run variance is real, so rerun a surprising result before you believe it. And decide before you start whether you report first-run numbers or best-of-N, then apply the same rule to every provider. Whichever convention you pick, write it down next to the results. Our page on [how we evaluate web search APIs](https://parallel.ai/articles/how-we-evaluate-web-search-apis) lists what our own published setup includes and what it doesn’t state yet.
 
 ## Step 5: Read the results, then keep them honest
 

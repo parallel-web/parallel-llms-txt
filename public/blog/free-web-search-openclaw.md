@@ -1,8 +1,10 @@
 # OpenClaw now has free, LLM-optimized web search by default powered by Parallel
 
-## Free out of the box
+_Updated September 28, 2026: OpenClaw doesn’t select Parallel Search (Free) automatically. This post now shows the plugin install and the _`_parallel-free_`_ provider setting._
 
-New installs of OpenClaw run web searches through Parallel by default. For personal use, the included limits are generous enough to cover everyday research, coding lookups, and agent runs. 
+## Free, with no API key
+
+OpenClaw can run web searches through Parallel for free, with no API key, using the Parallel Search (Free) provider. For personal use, the included limits are generous enough to cover everyday research, coding lookups, and agent runs.
 
 Power users of OpenClaw with significant search volumes can still add a Parallel API key for pay-as-you-go usage.
 
@@ -10,7 +12,7 @@ Power users of OpenClaw with significant search volumes can still add a Parallel
 
 ### New installs
 
-Fresh installs of OpenClaw come with Parallel Web Search by default. Ask your agent something that needs the web, and it searches and returns grounded answers with sources.
+OpenClaw doesn’t auto-select key-free providers, so new installs need one setup step: tell your agent to switch to Parallel free web search, or run the commands below. Then ask your agent something that needs the web, and it searches and returns grounded answers with sources.
 
 ### Existing installs
 
@@ -20,12 +22,14 @@ Already running OpenClaw with a different search provider? You have two ways to 
 - Alternatively, run this command: 
 
 ```
-openclaw config set tools.web.search.provider parallel
+openclaw plugins install @openclaw/parallel-plugin
+openclaw gateway restart
+openclaw config set tools.web.search.provider parallel-free
 ```
 
 ## What else you can do with Parallel and OpenClaw
 
-Once your OpenClaw has default search, you can extend its capabilities further by installing the [Parallel CLI](https://docs.parallel.ai/integrations/cli). The CLI gives OpenClaw more ways to make the web work for you:
+Once your OpenClaw searches through Parallel, you can extend its capabilities further by installing the [Parallel CLI](https://docs.parallel.ai/integrations/cli). The CLI gives OpenClaw more ways to make the web work for you:
 
 - **Deep research with the ****[Task API](https://docs.parallel.ai/task-api/task-quickstart)****.** Have your OpenClaw hand off complex web research questions to a subagent. 
 - **Always-on web monitoring with the ****[Monitor API](https://docs.parallel.ai/monitor-api/monitor-quickstart)****.** Track news, product prices, or competitor moves, and get notified the moment something relevant appears.
@@ -40,7 +44,7 @@ We built our web index to serve AI, not human clicks. Results come back as dense
 In summary, Parallel Search is:
 
 - Easy to set up
-- Free by default, with pay-as-you-go available for heavy use
+- Free with no API key, with pay-as-you-go available for heavy use
 - High-quality with fresh results that go deeper
 - Token-efficient, which means saving on input tokens
 
@@ -54,6 +58,6 @@ With a search API, your agent simply declares what it's looking for, and Paralle
 
 ## Get started
 
-Install OpenClaw and set your web search provider to “Parallel Search (free)”. 
+Install OpenClaw and the Parallel plugin, then set your web search provider to “Parallel Search (Free)” (`parallel-free`).
 
 To go further with deep research, monitoring, and extraction, grab a Parallel API key at [platform.parallel.ai](https://platform.parallel.ai/) and explore the CLI and APIs in our [docs](https://docs.parallel.ai/).

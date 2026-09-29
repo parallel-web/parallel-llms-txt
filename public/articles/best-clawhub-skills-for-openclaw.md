@@ -70,7 +70,7 @@ In early 2026, researchers uncovered a coordinated campaign, ClawHavoc, that pub
 
 **Skills or MCP servers for OpenClaw?** Both have a place: skills for local, CLI-shaped capabilities (everything in this list), MCP for hosted OAuth services. Our [OpenClaw MCP guide](https://parallel.ai/articles/best-mcp-servers-for-openclaw) covers the other half.
 
-**Do I need any skill for web search?** For basic search, no: OpenClaw ships free Parallel-powered web search by default. The `parallel-search` and `parallel-extract` skills add domain/date filtering, explicit URL reading, and structured JSON output; deep-research and enrichment add capabilities the default doesn't have at all.
+**Do I need any skill for web search?** For basic search, no. OpenClaw’s built-in web search works with the key-free Parallel Search (Free) provider once you install the Parallel plugin and set `tools.web.search.provider` to `parallel-free`; OpenClaw never selects a key-free provider on its own. The `parallel-search` and `parallel-extract` skills add domain/date filtering, explicit URL reading, and structured JSON output; deep-research and enrichment add capabilities the built-in tool doesn’t have at all.
 
 **How many skills is too many?** Skills are cheaper than MCP servers (metadata only until used), but each one is also trusted code-adjacent text. Install what you use, uninstall what you don't, and re-vet after major updates.
 
