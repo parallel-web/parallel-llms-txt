@@ -2,6 +2,8 @@
 
 ### Comparison
 
+* [Parallel Search vs. SerpApi vs. Brave vs. Bing for AI agents](https://parallel.ai/articles/parallel-vs-serpapi-vs-brave-vs-bing)
+* [Web scraping vs. search API for LLM apps](https://parallel.ai/articles/web-scraping-vs-search-api)
 * [Best Cursor plugins for research and competitive analysis](https://parallel.ai/articles/best-cursor-plugins-for-research)
 * [Best Grok Bot plugins for research and GTM](https://parallel.ai/articles/best-grok-bot-plugins)
 * [Web unlocker vs. scraper vs. fetch: which layer does your pipeline need?](https://parallel.ai/articles/web-unlocker-vs-scraper-vs-fetch)
@@ -44,6 +46,11 @@
 
 ### Guides
 
+* [How to add free web search to your coding agent in 10 minutes (CLI and MCP)](https://parallel.ai/articles/add-free-web-search-to-coding-agent)
+* [Best free web search MCP servers for Claude, Cursor, and OpenClaw (2026)](https://parallel.ai/articles/best-free-web-search-mcp)
+* [How to build an agent harness with Parallel Search](https://parallel.ai/articles/build-an-agent-harness-with-parallel-search)
+* [How we evaluate web search APIs for AI agents](https://parallel.ai/articles/how-we-evaluate-web-search-apis)
+* [Fast vs. Turbo: choosing a Parallel Search mode for agent loops](https://parallel.ai/articles/parallel-search-fast-vs-turbo)
 * [Is scraping Google legal? What the 2026 court rulings say](https://parallel.ai/articles/is-scraping-google-legal)
 * [Why can’t AI agents just use Google Search?](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search)
 * [How to use Grok Bot for competitive research](https://parallel.ai/articles/grok-bot-competitive-research)
@@ -121,7 +128,7 @@
 * [What is web scraping?](https://parallel.ai/articles/what-is-web-scraping)
 * [What is a web index?](https://parallel.ai/articles/what-is-a-web-index)
 * [What is a web crawler?](https://parallel.ai/articles/what-is-a-web-crawler)
-* [What is a web search API?](https://parallel.ai/articles/what-is-a-web-search-api)
+* [What is a web search API, and when do AI agents need one?](https://parallel.ai/articles/what-is-a-web-search-api)
 * [Web enrichment for sales: how AI-powered sales tools transform CRM data](https://parallel.ai/articles/ai-web-enrichment-for-sales)
 
 ### Other
