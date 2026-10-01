@@ -1,8 +1,8 @@
 # MiMo v2.5 · Search Capability Leaderboard
 
-* Search Intelligence Score: **49.5** (#25 in Search Intelligence)
+* Search Intelligence Score: **49.5** (#27 in Search Intelligence)
 * Without search: 13.4 · Lift from search +36.1
-* Cost per 1K tasks: $23.5 (below the median score of 61.9, so not ranked on cost)
+* Cost per 1K tasks: $23.5 (below the median score of 62.7, so not ranked on cost)
 * Time per task: 894s
 * Lab: Xiaomi · Model id: xiaomi/mimo-v2.5
 
@@ -24,4 +24,4 @@
 | [DeepSeek V4 Flash](/leaderboard/deepseek-v4-flash)              | 53.1  | +33.7 | $24.4             | 358s          |
 | [DeepSeek V4 Pro (0813)](/leaderboard/deepseek-v4-pro-0813)      | 53.5  | +20.4 | $234              | 394s          |
 
-Latest update September 25, 2026\. Methodology: /leaderboard#methodology
+Latest update September 30, 2026\. Methodology: /leaderboard#methodology

@@ -8,13 +8,13 @@ npm tokens that bypass 2FA are being restricted — account changes (Aug 2026) a
 
 TypeScript icon, indicating that this package has built-in type declarations
 
-1\.3.3 • Public • Published a month ago
+1\.3.5 • Public • Published 13 hours ago
 
 * [Readme](https://www.npmjs.com/package/parallel-web?activeTab=readme)
 * [Code Beta](https://www.npmjs.com/package/parallel-web?activeTab=code)
 * [0 Dependencies](https://www.npmjs.com/package/parallel-web?activeTab=dependencies)
 * [13 Dependents](https://www.npmjs.com/package/parallel-web?activeTab=dependents)
-* [22 Versions](https://www.npmjs.com/package/parallel-web?activeTab=versions)
+* [24 Versions](https://www.npmjs.com/package/parallel-web?activeTab=versions)
 
 # Parallel TypeScript API Library
 
@@ -389,11 +389,11 @@ none
 
 ### Weekly Downloads
 
-205,569
+221,103
 
 ### Version
 
-1\.3.3
+1\.3.5
 
 ### License
 
@@ -401,7 +401,7 @@ MIT
 
 ### Last publish
 
-a month ago
+13 hours ago
 
 ### Collaborators
 
@@ -411,7 +411,7 @@ a month ago
 
 [**Analyze security** with Socket](https://socket.dev/npm/package/parallel-web) [**Check bundle size**](https://bundlephobia.com/package/parallel-web) [**View package health**](https://snyk.io/advisor/npm-package/parallel-web) [**Explore dependencies**](https://npmgraph.js.org/?q=parallel-web)
 
-[**Report** malware](https://www.npmjs.com/support?inquire=security&security-inquire=malware&package=parallel-web&version=1.3.3)
+[**Report** malware](https://www.npmjs.com/support?inquire=security&security-inquire=malware&package=parallel-web&version=1.3.5)
 
 ## Footer
 
