@@ -13,6 +13,7 @@ Trusted by
 * Notion
 * Poke.com
 * Tomo
+* Aside
 
 Use Cases
 

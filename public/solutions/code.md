@@ -12,6 +12,9 @@ Trusted by
 * Macroscope
 * Greptile
 * Rocket
+* Lovable
+* Replit
+* LangChain
 
 Use Cases
 
