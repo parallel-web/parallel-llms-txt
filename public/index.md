@@ -112,23 +112,23 @@ Your Content
 
 Index
 
-Harvey \+ 0.32
+Harvey \+ 0.30
 
-Formation Bio \+ 0.31
+Formation Bio \+ 0.32
 
-Opendoor \+ 0.30
+Opendoor \+ 0.32
 
-Granola \+ 0.33
+Granola \+ 0.31
 
-Macroscope \+ 0.33
+Macroscope \+ 0.31
 
-Rogo \+ 0.30
+Rogo \+ 0.32
 
 Starbridge \+ 0.30
 
 Dropbox \+ 0.32
 
-Coursera \+ 0.29
+Coursera \+ 0.30
 
 Monetization
 
