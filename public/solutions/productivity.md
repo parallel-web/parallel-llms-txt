@@ -53,7 +53,7 @@ Notion uses Parallel to bring fresh, fact-checked answers with clean, quotable s
 
 > “The best agentic search isn’t just the fastest or the cheapest. It’s net new information that language models don’t already know. Parallel delivers that.”
 
-Sarah Sacks, AI Lead, Notion
+Sarah Sachs, AI Lead, Notion
 
 Customer Story
 
