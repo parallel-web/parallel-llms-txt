@@ -38,6 +38,7 @@ The official Python library for the Parallel API
 pip install parallel-web Copy PIP instructions
 
 * Description
+* Metadata
 * Release files
 * Release history
 
@@ -511,6 +512,79 @@ MIT License (MIT)
 
 [Report project as malware](https://pypi.org/project/parallel-web/submit-malware-report/)
 
+## Metadata
+
+## Project links
+
+* [Homepage](https://github.com/parallel-web/parallel-sdk-python)
+* [Repository](https://github.com/parallel-web/parallel-sdk-python)
+
+## Key dates
+
+PyPI data
+
+Data sourced directly from PyPI's database.
+
+* **Released:** Sep 29, 2026
+
+Latest release
+
+## 1 maintainer
+
+PyPI data
+
+Data sourced directly from PyPI's database.
+
+[Avatar for parallel-developers from gravatar.com parallel-developers](https://pypi.org/user/parallel-developers/)
+
+## Credits
+
+**Author:** [Parallel](mailto:support@parallel.ai)
+
+## License
+
+MIT License (MIT)
+
+## Requires
+
+**Python** >=3.9
+
+## Provides Extra
+
+`aiohttp`
+
+## Classifiers
+
+* Intended Audience
+  
+    + [Developers](https://pypi.org/search/?c=Intended+Audience+%3A%3A+Developers)
+* License
+  
+    + [OSI Approved :: MIT License](https://pypi.org/search/?c=License+%3A%3A+OSI+Approved+%3A%3A+MIT+License)
+* Operating System
+  
+    + [MacOS](https://pypi.org/search/?c=Operating+System+%3A%3A+MacOS)
+    + [Microsoft :: Windows](https://pypi.org/search/?c=Operating+System+%3A%3A+Microsoft+%3A%3A+Windows)
+    + [OS Independent](https://pypi.org/search/?c=Operating+System+%3A%3A+OS+Independent)
+    + [POSIX](https://pypi.org/search/?c=Operating+System+%3A%3A+POSIX)
+    + [POSIX :: Linux](https://pypi.org/search/?c=Operating+System+%3A%3A+POSIX+%3A%3A+Linux)
+* Programming Language
+  
+    + [Python :: 3.9](https://pypi.org/search/?c=Programming+Language+%3A%3A+Python+%3A%3A+3.9)
+    + [Python :: 3.10](https://pypi.org/search/?c=Programming+Language+%3A%3A+Python+%3A%3A+3.10)
+    + [Python :: 3.11](https://pypi.org/search/?c=Programming+Language+%3A%3A+Python+%3A%3A+3.11)
+    + [Python :: 3.12](https://pypi.org/search/?c=Programming+Language+%3A%3A+Python+%3A%3A+3.12)
+    + [Python :: 3.13](https://pypi.org/search/?c=Programming+Language+%3A%3A+Python+%3A%3A+3.13)
+    + [Python :: 3.14](https://pypi.org/search/?c=Programming+Language+%3A%3A+Python+%3A%3A+3.14)
+* Topic
+  
+    + [Software Development :: Libraries :: Python Modules](https://pypi.org/search/?c=Topic+%3A%3A+Software+Development+%3A%3A+Libraries+%3A%3A+Python+Modules)
+* Typing
+  
+    + [Typed](https://pypi.org/search/?c=Typing+%3A%3A+Typed)
+
+[Report project as malware](https://pypi.org/project/parallel-web/submit-malware-report/)
+
 ## Release files for parallel-web 1.3.5
 
 For a detailed explanation of source distributions (sdists) and built distributions (wheels), please see the [package formats documentation](https://packaging.python.org/en/latest/discussions/package-formats/ "External link") .
@@ -692,4 +766,4 @@ Switch to desktop version
 * "PyPI", "Python Package Index", and the blocks logos are registered [trademarks](https://pypi.org/trademarks/) of the [Python Software Foundation](https://www.python.org/psf-landing) .
 
 * [Site map](https://pypi.org/sitemap/)
-* Deployed from [`8e4dc6d`](https://github.com/pypi/warehouse/commit/8e4dc6d6eb81c912b2070464166e8ece2be8b1f4 "External link")
+* Deployed from [`297fe8b`](https://github.com/pypi/warehouse/commit/297fe8bdd36e8a30d992207e605587ad02e29219 "External link")

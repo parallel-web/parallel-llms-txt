@@ -89,6 +89,68 @@
         ]
       }
     },
+    "/v1/images/search": {
+      "post": {
+        "tags": [
+          "Image Search"
+        ],
+        "summary": "Image search",
+        "description": "Searches the web for images.",
+        "operationId": "image_search_v1_images_search_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImageSearchRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageSearchResponse"
+                },
+                "example": {
+                  "search_id": "search_fcb2b4f3c75e418687bccaa1a8381331",
+                  "session_id": "session_fcb2b4f3c75e418687bccaa1a8381331",
+                  "results": [
+                    {
+                      "title": "Golden Gate Bridge at sunset",
+                      "image_url": "https://www.example.com/images/golden-gate.jpg",
+                      "source_page_url": "https://www.example.com/golden-gate-bridge",
+                      "width": 1920,
+                      "height": 1080
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Request validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "type": "error",
+                  "error": {
+                    "ref_id": "search_fcb2b4f3c75e418687bccaa1a8381331",
+                    "message": "Request validation error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/extract": {
       "post": {
         "tags": [
@@ -3833,6 +3895,45 @@
         "title": "AdvancedExtractSettings",
         "description": "Advanced extract configuration.\n\nThese settings may impact result quality and latency unless used carefully.\nSee https://docs.parallel.ai/search/advanced-extract-settings for more info."
       },
+      "AdvancedImageSearchSettings": {
+        "properties": {
+          "location": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Location",
+            "description": "ISO 3166-1 alpha-2 country code for geo-targeted image results.",
+            "examples": [
+              "us",
+              "gb",
+              "de",
+              "jp"
+            ]
+          },
+          "max_results": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Results",
+            "description": "Upper bound on the number of results to return. Defaults to 10 if not provided. Values above the mode's maximum are reduced to it, with a warning."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "AdvancedImageSearchSettings",
+        "description": "Advanced image search configuration."
+      },
       "AdvancedMonitorSettings": {
         "properties": {
           "source_policy": {
@@ -5684,6 +5785,210 @@
         },
         "type": "object",
         "title": "HTTPValidationError"
+      },
+      "ImageSearchRequest": {
+        "properties": {
+          "objective": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Objective",
+            "description": "Natural-language description of the images wanted. Used together with search_queries to focus results on the most relevant images."
+          },
+          "search_queries": {
+            "items": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "type": "array",
+            "maxItems": 5,
+            "title": "Search Queries",
+            "description": "Concise keyword image search queries. At least one query is required, and at most 5, each at most 200 characters."
+          },
+          "mode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "fast",
+                  "advanced"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mode",
+            "description": "`fast`: lowest latency and cost. `advanced` (default): slower, with higher-quality results."
+          },
+          "session_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 1000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Session Id",
+            "description": "Session identifier that groups related calls made as part of a larger task. Echoed back in the response; generated by the server if omitted."
+          },
+          "client_model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Model",
+            "description": "The model generating this request and consuming the results.",
+            "examples": [
+              "claude-opus-4-7",
+              "gpt-5.4",
+              "gemini-3.1-pro"
+            ]
+          },
+          "advanced_settings": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AdvancedImageSearchSettings"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Advanced configuration for location and result count."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "search_queries"
+        ],
+        "title": "ImageSearchRequest",
+        "description": "Image search request."
+      },
+      "ImageSearchResponse": {
+        "properties": {
+          "search_id": {
+            "type": "string",
+            "title": "Search Id",
+            "description": "Search ID. Example: `search_cad0a6d2dec046bd95ae900527d880e7`"
+          },
+          "session_id": {
+            "type": "string",
+            "title": "Session Id",
+            "description": "Session identifier, echoed back from the request if provided, otherwise generated by the server. Pass it to later calls made as part of the same task.",
+            "examples": [
+              "session_8a911eb27c7a4afaa20d0d9dc98d07c0"
+            ]
+          },
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/ImageSearchResult"
+            },
+            "type": "array",
+            "title": "Results",
+            "description": "A list of image results, ordered by decreasing relevance."
+          },
+          "warnings": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Warning"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Warnings",
+            "description": "Warnings for the search request, if any."
+          },
+          "usage": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/UsageItem"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Usage",
+            "description": "Usage metrics for the search request."
+          }
+        },
+        "type": "object",
+        "required": [
+          "search_id",
+          "session_id",
+          "results"
+        ],
+        "title": "ImageSearchResponse",
+        "description": "Image search response."
+      },
+      "ImageSearchResult": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "description": "Image title, alt text, or caption."
+          },
+          "image_url": {
+            "type": "string",
+            "title": "Image Url",
+            "description": "Direct URL of the full-size image."
+          },
+          "source_page_url": {
+            "type": "string",
+            "title": "Source Page Url",
+            "description": "URL of the page the image appears on, for attribution and context."
+          },
+          "width": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Width",
+            "description": "Image width in pixels, if known."
+          },
+          "height": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Height",
+            "description": "Image height in pixels, if known."
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "image_url",
+          "source_page_url"
+        ],
+        "title": "ImageSearchResult",
+        "description": "A single image search result."
       },
       "IncompleteDetails": {
         "additionalProperties": true,
@@ -12226,6 +12531,10 @@
     {
       "name": "Search",
       "description": "Search returns ranked URLs with extended excerpts suitable for LLM consumption. Inputs are a natural-language objective and optional keyword queries. Source policies allow including or excluding specific domains and have configurable output sizes. The returned extended snippets contain dense, relevant information from relevant pages.\n- Result: ranked list with URL, title, and long text excerpts"
+    },
+    {
+      "name": "Image Search",
+      "description": "Image Search returns ranked images from the web. Inputs are keyword queries and an optional natural-language objective. `fast`: lowest latency and cost. `advanced` (default): slower, with higher-quality results.\n- Result: title, direct image URL, source page URL, and dimensions"
     },
     {
       "name": "Extract",
