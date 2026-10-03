@@ -8,7 +8,7 @@ npm tokens that bypass 2FA are being restricted — account changes (Aug 2026) a
 
 TypeScript icon, indicating that this package has built-in type declarations
 
-1\.3.5 • Public • Published 13 hours ago
+1\.3.5 • Public • Published 3 days ago
 
 * [Readme](https://www.npmjs.com/package/parallel-web?activeTab=readme)
 * [Code Beta](https://www.npmjs.com/package/parallel-web?activeTab=code)
@@ -389,7 +389,7 @@ none
 
 ### Weekly Downloads
 
-221,103
+224,306
 
 ### Version
 
@@ -401,7 +401,7 @@ MIT
 
 ### Last publish
 
-13 hours ago
+3 days ago
 
 ### Collaborators
 
