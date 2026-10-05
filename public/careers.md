@@ -12,7 +12,9 @@ We recruit likeminded curious, optimistic, and ambitious people who see the work
 
 | Role                                                                                                                         | Team                 | Location                             | Type           |
 | ---------------------------------------------------------------------------------------------------------------------------- | -------------------- | ------------------------------------ | -------------- |
+| [Design Engineer](https://jobs.ashbyhq.com/parallel/18658250-041d-415d-8111-8cc5b353ee56)                                    | Design               | San Francisco / Palo Alto            | Full time      |
 | [Product Designer](https://jobs.ashbyhq.com/parallel/0231ced2-2ca8-4fb4-a105-8f81c6feab6d)                                   | Design               | San Francisco / Palo Alto            | Full time      |
+| [Senior Brand Designer](https://jobs.ashbyhq.com/parallel/68ea39b6-1ef1-4d97-82f5-b931c379a216)                              | Design               | Palo Alto                            | Full time      |
 | [Deployed Engineer](https://jobs.ashbyhq.com/parallel/bb00e740-3647-4ce8-b6e7-3dcf611f66b6)                                  | Engineering          | San Francisco / Palo Alto / New York | Full time      |
 | [Early Career Research Engineer](https://jobs.ashbyhq.com/parallel/056e41f8-7d5f-41c1-99fd-bf002dc072fd)                     | Engineering          | Palo Alto                            | Full time      |
 | [Member of Technical Staff, Back-end & API](https://jobs.ashbyhq.com/parallel/144b4be3-f46e-4e3a-af46-8ec6afc3a60f)          | Engineering          | San Francisco / Palo Alto            | Full time      |
