@@ -42,7 +42,7 @@ Parallel charges a flat rate per call:
 | Product | Price |
 | --- | --- |
 | Extract | $1 per 1,000 URLs, regardless of page size |
-| Search | $1 per 1,000 in Turbo, $5 per 1,000 in Basic and Advanced |
+| Search | $1 per 1,000 in Turbo and Fast, $5 per 1,000 in Basic and Advanced |
 | Task API | $5 to $2,400 per 1,000 runs |
 | Responses API | $10 to $250 per 1,000 |
 | Monitor | $3 per 1,000 executions |

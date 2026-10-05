@@ -1,8 +1,8 @@
 # OpenAI Responses agents: how to choose the right web search backend
 
-OpenAI's Responses API ships a built-in web search tool that costs one line of config and gives you no control over the index, the sources, the freshness policy, or the output format. This guide covers how the Responses API changes agent development, five production limits of the built-in tool, how custom function tools work, six search backends compared, and a Parallel integration in under 30 lines of Python.
+OpenAI's Responses API includes hosted web search with domain filters, source visibility, and live-access controls. This guide compares its production trade-offs with a dedicated retrieval backend, explains custom function tools, and shows how to connect Parallel Search to a Responses API agent.
 
-For prototypes, that trade-off is acceptable for most indie devs or low-use apps. For production agents processing thousands of queries a day, you need to make a deliberate choice about which search backend powers your agent's access to live information. We compare six search options below, with working code and a decision framework to help you choose.
+Hosted search is a convenient starting point. For production agents, compare retrieval quality, total task cost, and how much of the retrieval pipeline your application needs to own. The six options below support different trade-offs.
 
 ## How the Responses API changes agent development
 
@@ -32,25 +32,25 @@ print(response.output_text)
 
 The model now searches the web when it determines a query needs live information. OpenAI returns inline citations with source URLs and search context annotations. [OpenAI's web search documentation](https://developers.openai.com/api/docs/guides/tools-web-search) covers the full configuration surface.
 
-You can configure two parameters. `user_location` adjusts geo-targeting for location-sensitive queries. `search_context_size` controls how much search context the model ingests, with three options: `low`, `medium`, and `high`.
+Configuration includes `user_location` adjusts geo-targeting for location-sensitive queries. `search_context_size` controls how much search context the model ingests, with three options: `low`, `medium`, and `high`.
 
-OpenAI locks the index, the source filtering, the freshness policy, and the output format behind its implementation. You have no way to inspect what the model searched for or which results it evaluated before generating a response.
+Capability check: October 4, 2026. Responses API web_search supports filters.allowed_domains or filters.blocked_domains (up to 100 each), complete consulted URLs through include=["web_search_call.action.sources"], and search queries in web_search_call.action when available. external_web_access selects live access (default) or cache-only mode. These controls do not apply uniformly to web_search_preview or Chat Completions search.
 
 OpenAI charges $10 per 1,000 web search tool calls and bills the retrieved search content as input tokens at your model's rate. You pay that on top of your regular model token costs.
 
-For prototyping and low-volume applications, built-in web search removes friction. You skip the integration work and get a functional agent in minutes. But every production concern (accuracy, cost, source control, debuggability) sits inside OpenAI's implementation, where you can't inspect or change it.
+Built-in web search removes integration work and offers useful production controls. A dedicated backend such as Parallel gives your application a separate retrieval layer: you choose the provider, process its result payload before inference, and reuse it across model vendors.
 
-## Five production limits of the built-in tool
+## Five production trade-offs to evaluate
 
-Production agents need five capabilities that the built-in tool doesn't provide.
+Evaluate these five concerns against your application’s requirements.
 
-**Source control.** You can't include or exclude specific domains. A customer-facing agent might cite a competitor's marketing page, and you have no mechanism to prevent it.
+**Source control.** OpenAI supports domain allowlists and blocklists. Compare those controls with Parallel’s source policy and the specific source constraints your workload needs.
 
-**Freshness guarantees.** OpenAI doesn't publish how often its search index updates. Agents that monitor financial data or track regulatory changes can't tell how stale their results might be.
+**Freshness guarantees.** OpenAI provides a live/cache-only switch; live access is not a guarantee of every source’s age. Check whether either provider’s freshness controls satisfy your workload.
 
-**Token efficiency.** OpenAI embeds search results as annotations in the model's output. You can't intercept, parse, or compress them before the model processes them. Raw web pages carry ads, navigation menus, and boilerplate that consume context window space without adding useful information.
+**Token efficiency.** OpenAI exposes search_context_size and a returned-token budget control for supported reasoning models. A custom retrieval tool lets you inspect and transform the returned payload before passing it into your chosen model.
 
-**Retrieval transparency.** You can't see what queries the model generated, which results it found, or why it chose specific sources. When your agent produces a wrong answer, you can't tell whether a bad search result or a reasoning error caused the failure.
+**Retrieval transparency.** Inspect the consulted URL list and available search actions when debugging. Queries are usually, but not always, returned; this is not a complete explanation of source ranking. A dedicated API also lets you log the retrieval payload independently.
 
 **Volume pricing.** At 10,000 queries per day, you spend $100 a day on built-in web search call fees alone, before the search content tokens. Developers have raised [pricing concerns](https://community.openai.com/t/open-ai-charging-too-much-for-web-searches/1141592) in the OpenAI community forums. At scale, your search costs can exceed model inference costs.
 
@@ -90,14 +90,14 @@ The table compares six [web search APIs](https://parallel.ai/articles/what-is-a-
 
 | Provider | Best for | Key strengths | Key consideration |
 | --- | --- | --- | --- |
-| OpenAI built-in web_search | Prototyping, low-volume agents | Zero setup, native integration | No source control, $10/1K calls plus content tokens, opaque index |
+| OpenAI built-in web_search | Agents using OpenAI-hosted retrieval | Native integration, domain filters, source inspection | OpenAI-hosted retrieval; tool-call and content-token costs; less direct payload control |
 | Parallel Search API | Production agents needing accuracy and control | Published benchmark results, from $1/1K requests (Turbo), token-dense excerpts, source filtering | Requires function tool integration |
 | Tavily | Agent framework integrations | Pre-built connectors for LangChain, CrewAI | Accuracy trails on multi-hop benchmarks |
 | Exa | Semantic and neural search use cases | Embedding-based retrieval, content filtering | Higher latency on complex queries |
 | Brave Search API | Independent index, privacy-focused apps | Own index (not Google/Bing), competitive pricing | Results optimized for humans, not LLMs |
 | SerpAPI | Google SERP scraping and structured extraction | Access to Google results, knowledge panels | Wrapper over Google, no LLM optimization |
 
-**OpenAI built-in web_search** works as a starting point: you trade control for convenience, and at low volumes the cost is manageable. At scale, the per-call pricing and lack of source control push teams toward dedicated backends.
+**OpenAI built-in web_search** offers native integration, source controls, and inspection of available search activity. Evaluate a dedicated backend when you need model-independent retrieval, more direct result shaping, or different workload economics.
 
 **Parallel Search API** runs on a proprietary web-scale index built for AI agents. It accepts natural-language objectives instead of keyword queries, returns token-dense compressed excerpts optimized for LLM context windows, and supports domain-level source inclusion and exclusion. Parallel publishes [benchmark results](https://parallel.ai/benchmarks) for each Search mode on SimpleQA Verified, BrowseComp, and WideSearch, against Exa, Tavily, and Perplexity, with accuracy and cost side by side. OpenAI's built-in tool isn't in those runs. We cover more options in our [Bing API alternatives](https://parallel.ai/articles/bing-api-comparison) comparison.
 
@@ -186,9 +186,9 @@ Parallel's Search API also takes a natural-language objective. Instead of genera
 
 ## Choosing the right path for your use case
 
-**Start with built-in web_search if** you're prototyping, your query volume stays under 100 per day, and search quality isn't a differentiator for your product.
+**Start with built-in web_search if** you want native integration and its documented controls meet your workload. Validate quality and total task cost before scaling.
 
-**Switch to a custom backend if** you need source control, accuracy matters for your use case, you process 1,000+ queries daily, or you need to optimize token costs. Our [migration guide](https://parallel.ai/articles/openai-to-parallel-search-api) walks through the switch from OpenAI's web search to Parallel step by step.
+**Switch to a custom backend if** you need model-independent retrieval, direct result shaping before inference, or a different cost/quality trade-off. Our [migration guide](https://parallel.ai/articles/openai-to-parallel-search-api) walks through the switch from OpenAI's web search to Parallel step by step.
 
 **Run both.** You can include built-in web_search and a custom function tool in the same tools array. The model routes queries based on your system instructions. Use built-in search for simple lookups and route complex, high-stakes queries to a dedicated backend.
 
@@ -208,9 +208,9 @@ At high query volumes, the price gap is large. Built-in web search at $10 per 1,
 
 ## Key takeaways
 
-- The Responses API's built-in web_search tool works for prototyping but gives you zero control over sources, freshness, or output format in production.
+- Responses API web_search offers source and live-access controls; dedicated retrieval gives your application more direct ownership of result handling.
 - Custom search backends via function tools let you control retrieval quality, reduce cost, and optimize token usage at scale.
-- You choose based on accuracy requirements and cost at volume. Source control tips the scale as query counts grow.
+- Choose using workload quality, total task cost, model flexibility, and the retrieval controls your application needs.
 - Parallel's Search API integrates with the Responses API in under 30 lines of Python, at 2 to 10x lower call fees than the built-in option.
 - You can start with OpenAI's built-in search and swap to a custom backend later without changing your agent logic.
 

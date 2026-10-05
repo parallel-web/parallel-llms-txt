@@ -48,7 +48,7 @@ Because each request pulls from the live web, an AI-native API can return inform
 
 Suppose you have 500 CRM accounts and need three fields: last funding round date, funding amount, and lead investor. A traditional API queries its database. If the company exists and was updated recently, you get data; if it raised a round two weeks ago, you get stale data or nulls.
 
-An AI-native API like Parallel's [Task API](https://parallel.ai/products/task) works differently. You define your enrichment schema in plain language or JSON, and the system deploys AI agents that search [Crunchbase](https://data.crunchbase.com/docs/using-the-api), TechCrunch, [SEC filings](https://api.edgarfiling.sec.gov/), press releases, and company websites. Each agent reads source documents, [extracts relevant facts](https://parallel.ai/products/extract), cross-references across multiple sources, and returns structured output. Every field comes with citations pointing to source URLs, reasoning explaining how the agent reached its conclusion, and calibrated confidence scores indicating reliability.
+An AI-native API like Parallel's [Task API](https://parallel.ai/products/task) works differently. You define your enrichment schema in plain language or JSON, and the system deploys AI agents that search [Crunchbase](https://data.crunchbase.com/docs/using-the-api), TechCrunch, [SEC filings](https://api.edgarfiling.sec.gov/), press releases, and company websites. Each agent reads source documents, [extracts relevant facts](https://parallel.ai/products/extract), cross-references across multiple sources, and returns structured output. Research Basis associates fields with supporting reasoning and, when available, citations and confidence labels. Citation excerpts and confidence availability vary by processor; inspect the returned evidence before treating a value as verified.
 
 The _Basis framework_ underlying Task API provides verifiability at the field level: you can audit each value, trace it back to primary sources, and present citations to stakeholders who need to verify your data.
 
@@ -65,27 +65,100 @@ The _Basis framework_ underlying Task API provides verifiability at the field le
 - You're enriching at massive scale (millions of records per day) with tight cost constraints
 - You only need standard firmographic fields that static databases cover well
 
-A Task API enrichment call in Python:
+A complete Task API enrichment example in Python. Install with python -m pip install "parallel-web==1.3.5" and set PARALLEL_API_KEY in your environment. Both examples were checked on October 4, 2026 against this SDK using mocked HTTP responses; no live API integration test or paid run was performed. Running either example with your key starts billable work.
 
 ```python
-import parallel
+"""Article example, verified offline with parallel-web==1.3.5."""
 
-client = parallel.Client(api_key="your_api_key")
+import json
+import sys
 
-task = client.tasks.create(
-    processor="core",
-    input={"company_domain": "acmecorp.com"},
-    output_schema={
-        "last_funding_date": "string",
-        "funding_amount": "string",
-        "lead_investor": "string",
-        "headquarters_city": "string"
+from parallel import Parallel
+
+
+FIELDS = {
+    "last_funding_date": "Latest publicly announced funding date, YYYY-MM-DD",
+    "funding_amount": "Amount and currency of that same funding round",
+    "lead_investor": "Lead investor of that same funding round",
+    "headquarters_city": "Current headquarters city",
+}
+
+
+def enrich_company(client: Parallel, domain: str):
+    run = client.task_run.create(
+        processor="core",
+        input={"company_domain": domain},
+        task_spec={
+            "output_schema": {
+                "type": "json",
+                "json_schema": {
+                    "type": "object",
+                    "properties": {
+                        name: {
+                            "type": ["string", "null"],
+                            "description": description + "; null if not verifiable",
+                        }
+                        for name, description in FIELDS.items()
+                    },
+                    "required": list(FIELDS),
+                    "additionalProperties": False,
+                },
+            }
+        },
+    )
+    # Persist this ID in production so a timeout can resume the same run.
+    print(f"Task run: {run.run_id}", file=sys.stderr, flush=True)
+    result = client.task_run.result(
+        run.run_id, api_timeout=3600, timeout=3610
+    )
+    if result.run.status != "completed":
+        raise RuntimeError(f"Task {run.run_id}: {result.run.status}")
+    if result.output.type != "json":
+        raise ValueError("Expected JSON output")
+    basis = {item.field: item for item in result.output.basis}
+    review_fields = [
+        name for name in FIELDS
+        if result.output.content.get(name) is None
+        or name not in basis
+        or basis[name].confidence != "high"
+        or not basis[name].citations
+    ]
+    return {
+        "run_id": run.run_id,
+        "output": result.output.model_dump(mode="json", exclude_none=True),
+        "review_fields": review_fields,
     }
-)
 
-result = client.tasks.get(task.id)
-print(result.output)  # Structured JSON with citations
+
+if __name__ == "__main__":
+    # Reads PARALLEL_API_KEY from the environment. This creates a billable run.
+    with Parallel() as client:
+        print(json.dumps(enrich_company(client, "stripe.com"), indent=2))
 ```
+
+Task runs execute asynchronously. The result call waits for the saved run ID; api_timeout controls server waiting and timeout controls the HTTP request. JSON values are in result.output.content; evidence is a separate list in result.output.basis. The following synthetic result.output example illustrates the SDK shape, with basis shortened for readability. It is not a live result.
+
+```json
+{
+  "type": "json",
+  "content": {
+    "last_funding_date": null,
+    "funding_amount": null,
+    "lead_investor": null,
+    "headquarters_city": "Example City"
+  },
+  "basis": [
+    {
+      "field": "last_funding_date",
+      "reasoning": "No verifiable funding announcement in this synthetic fixture.",
+      "confidence": "low",
+      "citations": []
+    }
+  ]
+}
+```
+
+The example adds application-level review_fields: null or missing values, missing evidence, missing confidence, and confidence other than high require review. These flags are a conservative application policy, not an API accuracy guarantee. Confidence labels are not numeric probabilities. A timeout does not cancel the remote run: reuse its logged run ID to retrieve the result rather than automatically creating another billable run. Handle SDK APIError exceptions in your application.
 
 Task API offers processor tiers from lite ($5/1K runs) to ultra8x ($2,400/1K runs), so you can match compute to task complexity. A simple metadata lookup uses lite; cross-referencing funding data across SEC filings and press releases warrants core or higher.
 
@@ -101,7 +174,7 @@ Parallel's [FindAll API](https://parallel.ai/products/findall) implements a thre
 
 1. **Generate.** AI agents search the web to identify potential candidates matching your description. They examine company websites, job postings, press releases, industry directories, and technology review sites.
 2. **Evaluate.** Each candidate is validated against your match conditions, with multi-hop reasoning when needed. For example, verifying that a company [adopted Kubernetes](https://www.cncf.io/reports/cncf-annual-survey-2023/) requires finding evidence across multiple sources: job postings mentioning Kubernetes, engineering blog posts, or vendor case studies.
-3. **Enrich.** Matched entities receive structured fields via integrated Task API enrichment, so discovery and data come back in a single workflow.
+3. **Enrich.** Optionally add enrichment fields to an existing FindAll run through the enrich endpoint. FindAll then orchestrates Task API work for matched entities. The discovery example below only evaluates match conditions; it does not request extra enrichment fields.
 
 For example: "Find all B2B SaaS companies in North America with 50 to 200 employees that adopted Kubernetes in the last 12 months."
 
@@ -113,25 +186,123 @@ Standard firmographic databases don't track Kubernetes adoption dates, so a trad
 
 **Combining FindAll and Task.** FindAll discovers entities; Task adds depth. You might use FindAll to build a list of 200 companies matching your ICP, then run Task enrichments to add funding history, executive contacts, and tech stack details to each.
 
-A [FindAll API call](https://docs.parallel.ai/findall-api/findall-quickstart) in Python:
+A [FindAll API call](https://docs.parallel.ai/findall-api/findall-quickstart) in Python, using the same pinned SDK and environment variable. FindAll is a beta API. This example evaluates five candidates in paid preview mode and makes the adoption window explicit as the previous 365 days:
 
 ```python
-import parallel
+"""Article example, verified offline with parallel-web==1.3.5."""
 
-client = parallel.Client(api_key="your_api_key")
+import json
+import sys
+import time
+from datetime import date, timedelta
 
-run = client.findall.create(
-    generator="core",
-    query="B2B SaaS companies in North America with 50-200 employees that adopted Kubernetes in the last 12 months",
-    output_fields=["company_name", "domain", "employee_count", "kubernetes_adoption_evidence"]
-)
+from parallel import Parallel
 
-results = client.findall.get_results(run.id)
-for company in results.matches:
-    print(company)  # Structured output with citations
+
+def find_companies(client: Parallel, max_wait_seconds=3600, poll_seconds=5):
+    today = date.today()
+    since = today - timedelta(days=365)
+    conditions = [
+        {"name": "b2b_saas", "description": "Sells B2B SaaS products."},
+        {"name": "region", "description": "Headquartered in North America."},
+        {"name": "employee_count", "description": "Has 50 to 200 employees."},
+        {
+            "name": "kubernetes_adoption",
+            "description": (
+                f"Adopted Kubernetes between {since} and {today}. Require "
+                "dated evidence of adoption, not just current usage."
+            ),
+        },
+    ]
+    run = client.beta.findall.create(
+        objective="Find B2B SaaS companies matching every condition below.",
+        entity_type="companies",
+        match_conditions=conditions,
+        generator="preview",
+        match_limit=5,  # Preview evaluates five candidates, not five matches.
+    )
+    print(f"FindAll run: {run.findall_id}", file=sys.stderr, flush=True)
+    deadline = time.monotonic() + max_wait_seconds
+    while run.status.is_active:
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            # The remote run may still be active; do not create a duplicate.
+            raise TimeoutError(f"Resume FindAll run {run.findall_id}")
+        time.sleep(min(poll_seconds, remaining))
+        run = client.beta.findall.retrieve(run.findall_id)
+    if run.status.status != "completed":
+        raise RuntimeError(
+            f"FindAll {run.findall_id}: {run.status.status}; "
+            f"reason={run.status.termination_reason}"
+        )
+    snapshot = client.beta.findall.result(run.findall_id)
+    matches = []
+    for candidate in snapshot.candidates:
+        if candidate.match_status != "matched":
+            continue
+        basis = {item.field: item for item in (candidate.basis or [])}
+        output = candidate.output or {}
+        review_fields = [
+            condition["name"] for condition in conditions
+            if not isinstance(output.get(condition["name"]), dict)
+            or output[condition["name"]].get("value") is None
+            or output[condition["name"]].get("is_matched") is not True
+            or condition["name"] not in basis
+            or basis[condition["name"]].confidence != "high"
+            or not basis[condition["name"]].citations
+        ]
+        matches.append({
+            "candidate": candidate.model_dump(mode="json", exclude_none=True),
+            "review_fields": review_fields,
+        })
+    return {"findall_id": run.findall_id, "matches": matches}
+
+
+if __name__ == "__main__":
+    # Reads PARALLEL_API_KEY. Preview is also billable.
+    with Parallel() as client:
+        print(json.dumps(find_companies(client), indent=2))
 ```
 
-Each match includes source excerpts, reasoning chains, and confidence scores, so you can verify why the API included each company and show the evidence to stakeholders.
+The result endpoint returns a snapshot with run metadata and candidates, not a matches field. The example selects only candidates whose match_status is matched and retains their output and basis. Here is a synthetic, shortened snapshot illustrating one condition; it is not a live result.
+
+```json
+{
+  "candidates": [
+    {
+      "candidate_id": "candidate_fixture",
+      "name": "Example Company",
+      "url": "https://example.com",
+      "match_status": "matched",
+      "output": {
+        "employee_count": {
+          "type": "match_condition",
+          "value": "120",
+          "is_matched": true
+        }
+      },
+      "basis": [
+        {
+          "field": "employee_count",
+          "reasoning": "Synthetic fixture explanation.",
+          "confidence": "high",
+          "citations": [
+            {
+              "url": "https://example.com/about",
+              "title": "Synthetic fixture source",
+              "excerpts": [
+                "Synthetic excerpt: 120 employees."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+Inspect each candidate’s basis for source URLs, available excerpts, reasoning, and confidence. Null or absent output, unsupported conditions, missing evidence, or non-high confidence are flagged in the example’s application-level review_fields. A completed run can legitimately return no matches. Failed, cancelled, or action-required runs raise an error instead of being mistaken for success; a local polling timeout preserves the run ID without cancelling or resubmitting the remote job. Add durable state, SDK error handling, and your own review policy before production use.
 
 ## What to evaluate before choosing a data enrichment API
 

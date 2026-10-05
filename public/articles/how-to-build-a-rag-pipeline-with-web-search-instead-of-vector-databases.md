@@ -8,7 +8,7 @@ You can build a RAG pipeline without a vector database by searching the live web
 - Web RAG searches the live web at query time, eliminating the ingestion pipeline and keeping data current.
 - A web search RAG pipeline has three layers: search, extract, and context assembly.
 - Hybrid architectures route between vector and web retrieval based on query freshness signals and confidence thresholds.
-- Parallel's Search API delivers web RAG in a single API call, with 97% accuracy on SimpleQA Verified in Basic and Advanced modes on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026) at $0.005/request, plus a Turbo mode at $0.001/request with roughly 200ms median latency.
+- Parallel's Search API delivers web RAG in a single API call, with 97% accuracy on SimpleQA Verified in Basic and Advanced modes on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026) at $0.005/request, plus Fast and Turbo modes at $0.001/request (Fast at roughly 700ms average latency, Turbo at roughly 200ms median latency).
 
 ## Why vector databases are the wrong default for most RAG pipelines
 
@@ -177,7 +177,7 @@ This implementation needs no embedding model, no vector database, no document ch
 
 For queries that need deeper page content, add the Extract API as Layer 2. You can parallelize fetches across multiple sources using `asyncio` or `concurrent.futures` to reduce total latency on multi-source queries.
 
-The Search API returns structured excerpts at [$0.005 per request](https://parallel.ai/pricing) with 10 results included on the Basic and Advanced modes, or from $0.001 per request with Turbo mode. Compare that to the blended cost of vector database hosting, embedding API calls, and the engineering time your team spends maintaining ingestion infrastructure.
+The Search API returns structured excerpts at [$0.005 per request](https://parallel.ai/pricing) with 10 results included on the Basic and Advanced modes, or at $0.001 per request with Fast or Turbo mode. Compare that to the blended cost of vector database hosting, embedding API calls, and the engineering time your team spends maintaining ingestion infrastructure.
 
 ## When to go hybrid: combining vector and web retrieval
 
@@ -208,17 +208,17 @@ def route_query(query: str, vector_results) -> str:
 
 The function uses three routing signals. First, freshness keywords ("latest," "current," "today") indicate the user wants recent information that a static index can't provide. Second, low confidence scores from your vector store suggest the indexed corpus doesn't cover the query well. Third, you route queries with no vector results to web search as a fallback.
 
-Vector retrieval costs fractions of a cent at sub-50ms latency. Web RAG costs ~$0.001 per query at roughly 200ms median latency with Parallel's Turbo mode, or ~$0.005 per query at 1-3 seconds with the Basic and Advanced modes. Most queries in a typical application go to the vector store, so your blended cost stays low. Web search handles the long tail of queries where vector retrieval falls short. For complex multi-source research queries, you can escalate to Parallel's Task API for [deep research](https://parallel.ai/articles/what-is-deep-research) with built-in citations and confidence scoring.
+Vector retrieval costs fractions of a cent at sub-50ms latency. Web RAG costs ~$0.001 per query with Parallel's Fast mode (~700ms) or Turbo mode (~200ms median), or ~$0.005 per query at 1-3 seconds with the Basic and Advanced modes. Most queries in a typical application go to the vector store, so your blended cost stays low. Web search handles the long tail of queries where vector retrieval falls short. For complex multi-source research queries, you can escalate to Parallel's Task API for [deep research](https://parallel.ai/articles/what-is-deep-research) with built-in citations and confidence scoring.
 
 ## Production considerations
 
 A demo takes an afternoon; a reliable production web RAG system needs attention to five areas. You'll find these patterns documented in depth in [production RAG infrastructure](https://introl.com/blog/rag-infrastructure-production-retrieval-augmented-generation-guide).
 
-**Latency.** Web retrieval adds 1-3 seconds compared to vector search with the Basic and Advanced modes; Turbo mode cuts that to roughly 200ms. Three techniques reduce perceived latency: parallelize URL fetches when you need content from multiple sources, cache high-traffic queries, and stream the LLM response so users see output before generation completes.
+**Latency.** Web retrieval adds 1-3 seconds compared to vector search with the Basic and Advanced modes; Fast mode is roughly 700ms, and Turbo mode cuts that to roughly 200ms. Three techniques reduce perceived latency: parallelize URL fetches when you need content from multiple sources, cache high-traffic queries, and stream the LLM response so users see output before generation completes.
 
 **Caching.** Cache web RAG results with TTLs matched to your use case. Competitive intelligence might need 15-minute expiry. News summaries work with 1-hour caches. Product comparisons can tolerate 4-6 hours. Your cache hit rate determines your effective cost per query.
 
-**Cost at scale.** At [$0.005 per request](https://parallel.ai/pricing), 100,000 daily queries cost about $500 a day (roughly $15,000/month) for the retrieval layer, or $100 a day (roughly $3,000/month) with Turbo mode at $0.001 per request. Compare that to the combined cost of vector database hosting (managed instances start at $70/month and scale), embedding API calls ($0.0001 per 1K tokens adds up at volume), and the engineering hours your team spends on ingestion pipeline maintenance.
+**Cost at scale.** At [$0.005 per request](https://parallel.ai/pricing), 100,000 daily queries cost about $500 a day (roughly $15,000/month) for the retrieval layer, or $100 a day (roughly $3,000/month) with Fast or Turbo mode at $0.001 per request. Compare that to the combined cost of vector database hosting (managed instances start at $70/month and scale), embedding API calls ($0.0001 per 1K tokens adds up at volume), and the engineering hours your team spends on ingestion pipeline maintenance.
 
 **Reliability.** Handle search API errors with graceful fallbacks. Return cached results when the API is unavailable. Fall back to vector search if you run a hybrid setup. Implement rate-limit-aware retry logic with exponential backoff.
 
@@ -236,11 +236,11 @@ Web RAG retrieves content from the live web at inference time rather than from a
 Agentic RAG gives an AI agent tools (including search) to gather information iteratively. Web RAG is the specific retrieval pattern where web search replaces vector search. An agentic system often uses web RAG as one of its tools.
 
 **Which search API should I use for a RAG pipeline?**
-Choose based on accuracy, excerpt quality, latency, and cost. Parallel's Search API scores 97% on SimpleQA Verified in Basic and Advanced modes ([parallel.ai/benchmarks](https://parallel.ai/benchmarks), September 2026) at $0.005/request with structured, LLM-ready excerpts, or its Turbo mode at $0.001/request with roughly 200ms median latency. You can [switch from OpenAI web search](https://parallel.ai/articles/openai-to-parallel-search-api) in minutes.
+Choose based on accuracy, excerpt quality, latency, and cost. Parallel's Search API scores 97% on SimpleQA Verified in Basic and Advanced modes ([parallel.ai/benchmarks](https://parallel.ai/benchmarks), September 2026) at $0.005/request with structured, LLM-ready excerpts, or its Fast and Turbo modes at $0.001/request (Fast at roughly 700ms, Turbo at roughly 200ms median latency). You can [switch from OpenAI web search](https://parallel.ai/articles/openai-to-parallel-search-api) in minutes.
 
 **How do I handle stale data in RAG?**
 Replace or supplement your vector store with web retrieval for time-sensitive queries, using a hybrid routing pattern that detects freshness signals.
 
-Parallel's Search API gives you the retrieval layer for web RAG in a single API call. The [documentation](https://docs.parallel.ai/home) covers authentication, endpoint details, and advanced features. The free tier includes $5 in credits each month (up to 5,000 Turbo requests) to get your pipeline running.
+Parallel's Search API gives you the retrieval layer for web RAG in a single API call. The [documentation](https://docs.parallel.ai/home) covers authentication, endpoint details, and advanced features. The free tier includes $5 in credits each month (up to 5,000 Fast or Turbo requests) to get your pipeline running.
 
 [Start Building](https://docs.parallel.ai/home)

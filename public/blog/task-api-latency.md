@@ -28,16 +28,23 @@ Every lower latency Processor variant continues to include the Basis framework: 
 
 ## **Get started with lower-latency Processors on the Task API**
 
-```
-task_run = client.task_run.create(
-    input="Parallel Web Systems (parallel.ai)",
-    task_spec={"output_schema":"The founding date of the company in the format MM-YYYY"},
-    processor="lite-fast"
-)
-print(f"Run ID: {task_run.run_id}")
+```python
+import os
+from openai import OpenAI
 
-run_result = client.task_run.result(task_run.run_id, api_timeout=3600)
-print(run_result.output)
+client = OpenAI(
+    api_key=os.environ["PARALLEL_API_KEY"],
+    base_url="https://api.parallel.ai/v1",
+)
+
+response = client.responses.create(
+    model="parallel",
+    input="Who is the current CEO of the largest cloud provider by revenue?",
+    reasoning={"effort": "low"},  # low | medium | high
+)
+
+print(response.output_text)
+
 ```
 
 Lower-latency Processors are available today for the Parallel Task API. Start building in our [Developer Platform](https://platform.parallel.ai/) or dive into the [documentation](https://docs.parallel.ai/).

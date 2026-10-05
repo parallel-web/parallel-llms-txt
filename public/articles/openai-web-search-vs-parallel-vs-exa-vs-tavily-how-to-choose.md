@@ -22,15 +22,15 @@ OpenAI, Parallel, Exa, and Tavily each make a different architectural bet on how
 
 ## OpenAI's built-in web search: architecture and trade-offs
 
-OpenAI's [Responses API](https://developers.openai.com/api/docs/guides/tools-web-search) includes a `web_search` tool that models can invoke during inference. The model generates a search query when it needs external information, retrieves results, and incorporates them into its response. You don't write the search query or choose when the search runs; the model handles both.
+OpenAI's [Responses API](https://developers.openai.com/api/docs/guides/tools-web-search) includes a `web_search` tool that models can invoke during inference. The model generates queries and incorporates retrieved information into its response. With tool_choice set to auto, search is optional; you can require search when the application needs it.
 
 If you already use OpenAI for inference, adding web search requires zero integration work: you enable the tool, and the model decides when to search.
 
 According to [OpenAI's pricing page](https://developers.openai.com/api/docs/pricing), web search costs $10 to $25 per 1,000 calls depending on the model tier, plus search content tokens billed at model rates. You pay for every search the model triggers, including searches that don't improve the answer. At 10,000 searches per day, you're looking at $100 to $250 in search costs before you count inference tokens.
 
-You also give up control. You have no visibility into the underlying search index (OpenAI routes search queries through Bing), and you can't set freshness windows, filter by domain, or choose how the API delivers results to your context window.
+Capability check: October 4, 2026. Responses API web_search supports domain allowlists or blocklists, consulted-source inspection, and a live/cache-only switch. Search actions usually expose queries, but not always. OpenAI still manages the retrieval implementation; a dedicated backend gives your application a separate result payload to inspect and shape before inference.
 
-If you need fresher data, domain-specific sources, denser context, or a different model, this architecture gives you no way to change the index, the output format, or the model. Built-in search only works with OpenAI models, so teams evaluating Claude, Gemini, or open-source alternatives end up depending on a single vendor for both reasoning and retrieval.
+Built-in search is coupled to OpenAI models. If you want to use Claude, Gemini, or an open-source model with the same retrieval layer, a dedicated search API keeps that choice independent. Compare each provider’s documented source, freshness, and output controls against your workload.
 
 ## Dedicated search APIs: a different architecture
 
@@ -99,18 +99,18 @@ Tavily handles basic queries and standard web content without friction. For deve
 
 | Feature | OpenAI built-in search | Parallel | Exa | Tavily |
 | --- | --- | --- | --- | --- |
-| Search index | Bing (third-party) | Proprietary (AI-optimized) | Neural/semantic index | Web search (sourcing unclear) |
+| Search index | OpenAI-managed retrieval | Proprietary (AI-optimized) | Neural/semantic index | Web search (sourcing unclear) |
 | Pricing model | Per-search surcharge + token costs (~$10-25/1K calls) | Per-request ($0.001 Turbo, $0.005 Basic/Advanced; Responses from $10/1K) | Usage-based | Per-request (~$0.016) |
 | Median latency | ~1s | ~200ms (Turbo mode) | ~335-361ms (Instant) | ~150-357ms (Ultra Fast) |
 | Model lock-in | OpenAI only | Any model (OpenAI-compatible) | Any model | Any model |
-| Output format | Integrated into model response | Token-dense excerpts or full markdown | Structured results | Structured JSON |
-| Freshness control | None (model-managed) | Freshness policies, live-fetch toggle | Limited | Limited |
+| Output format | Model response, citations, and inspectable search actions/sources | Token-dense excerpts or full markdown | Structured results | Structured JSON |
+| Freshness control | Live access (default) or cache-only; no source-age guarantee | Freshness policies, live-fetch toggle | Limited | Limited |
 | Enterprise security | OpenAI's SOC 2 | SOC 2 Type 2, zero data retention | Varies | Varies |
 | Free tier | None | $5 in credits monthly (up to 5,000 Turbo searches) | Limited | Limited |
 
 ## Choosing the right approach
 
-Choose OpenAI's built-in search if you're prototyping a small-scale app and want zero integration work. The tight model coupling removes a moving part. The cost and flexibility constraints matter less when you're validating an idea.
+Choose OpenAI’s built-in search when native integration and its documented controls fit your app. Validate answer quality and total task cost on representative queries. Choose a dedicated API when model independence or pre-inference result shaping matters.
 
 Choose a dedicated search API if you need cost predictability, model flexibility, or control over retrieval quality. Any of the three third-party options here decouple your search layer from your inference provider. For a broader look at [search API alternatives](https://parallel.ai/articles/bing-api-comparison), see our comparison guide.
 
