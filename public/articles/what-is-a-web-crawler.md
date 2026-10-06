@@ -1,10 +1,14 @@
 # What is a web crawler?
 
-A web crawler downloads pages and follows links to discover content, and crawlers decide what gets indexed, how often it refreshes, and how it ranks. This guide covers how crawling works end to end, how it differs from scraping, the core crawling policies, types of crawler and well-known examples, why crawlers matter for SEO, how to manage or block them, and how AI-native crawlers differ.
+A web crawler downloads pages and follows links to discover content at scale. Crawlers decide what gets indexed, how often it refreshes, and how it ranks. This guide covers how crawling works end to end, how it differs from scraping, core crawling policies, crawler types and examples, SEO implications, how to manage or block crawlers, and how AI-native crawlers differ.
+
+## Quick answer
+
+A web crawler is software that downloads web pages and follows links to discover and collect content at scale. Search engines use crawlers to build indexes. AI systems use them to gather fresh, attributable web data for grounding and training.
 
 ## **What is a web crawler?**
 
-A web crawler systematically browses the internet by downloading pages and following links to discover new content. Search engines use crawlers to index billions of web pages: without crawlers, search engines wouldn't know what content exists or how to find it when someone searches.
+A web crawler is software that systematically downloads pages and follows their links to discover content across the web. Search engines rely on crawlers to learn what exists online and where to find it when someone searches.
 
 Beyond powering search, crawlers train AI models on web content, extract specific data for analysis, monitor websites for changes, and build datasets for research.
 
@@ -82,7 +86,7 @@ To crawl billions of pages efficiently, crawlers use multiple threads or distrib
 
 **Common Crawl** performs large-scale web crawls and releases datasets publicly. Researchers and developers use Common Crawl data for analysis, training AI models, and studying web evolution without running their own crawlers.
 
-**Parallel's crawler infrastructure** is built for AI agents and applications. Our crawler (ShapBot) extracts structured data with source links and provenance, and returns LLM-ready outputs. Traditional search crawlers build indexes for human browsing; ours targets what AI systems need: structured data, verifiable attribution, and machine-readable formats.
+**Parallel's crawler infrastructure** is built for AI agents and applications. Our crawler (ShapBot) extracts structured data with source links and provenance, and returns LLM-ready outputs through products like the [Extract API](https://docs.parallel.ai/extract/extract-quickstart). Traditional search crawlers build indexes for human browsing; ours targets what AI systems need: structured data, verifiable attribution, and machine-readable formats.
 
 **Wayback Machine bot** preserves historical snapshots of web pages for the Internet Archive. It creates a time-based archive of the web, enabling researchers to access how websites looked at specific points in the past.
 
