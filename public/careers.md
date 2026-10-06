@@ -12,7 +12,7 @@ We recruit likeminded curious, optimistic, and ambitious people who see the work
 
 | Role                                                                                                                         | Team                 | Location                             | Type           |
 | ---------------------------------------------------------------------------------------------------------------------------- | -------------------- | ------------------------------------ | -------------- |
-| [Brand Designer](https://jobs.ashbyhq.com/parallel/68ea39b6-1ef1-4d97-82f5-b931c379a216)                                     | Design               | Palo Alto                            | Full time      |
+| [Brand Designer](https://jobs.ashbyhq.com/parallel/68ea39b6-1ef1-4d97-82f5-b931c379a216)                                     | Design               | San Francisco / Palo Alto            | Full time      |
 | [Design Engineer](https://jobs.ashbyhq.com/parallel/18658250-041d-415d-8111-8cc5b353ee56)                                    | Design               | San Francisco / Palo Alto            | Full time      |
 | [Product Designer](https://jobs.ashbyhq.com/parallel/0231ced2-2ca8-4fb4-a105-8f81c6feab6d)                                   | Design               | San Francisco / Palo Alto            | Full time      |
 | [Deployed Engineer](https://jobs.ashbyhq.com/parallel/bb00e740-3647-4ce8-b6e7-3dcf611f66b6)                                  | Engineering          | San Francisco / Palo Alto / New York | Full time      |
@@ -32,6 +32,7 @@ We recruit likeminded curious, optimistic, and ambitious people who see the work
 | [GTM Leader, AI Native](https://jobs.ashbyhq.com/parallel/b7bd3dda-7504-48d7-a757-8d89b52ff985)                              | GTM                  | San Francisco / Palo Alto            | Full time      |
 | [GTM Leader, Enterprise](https://jobs.ashbyhq.com/parallel/4fac04bc-a15a-4b4b-9fe0-a5cbec27c687)                             | GTM                  | San Francisco / Palo Alto / New York | Full time      |
 | [GTM, Enterprise](https://jobs.ashbyhq.com/parallel/f3a80c31-90a1-4252-b4d3-a6274f4d205c)                                    | GTM                  | San Francisco / Palo Alto / New York | Full time      |
+| [Controller](https://jobs.ashbyhq.com/parallel/055cd8fd-ac80-4d76-9aa4-abcfc3244c87)                                         | Operations           | San Francisco / Palo Alto            | Full time      |
 | [GA Recruiter](https://jobs.ashbyhq.com/parallel/08b29fa6-eb90-4aac-b28a-8ef6a46edc15)                                       | Operations           | Palo Alto                            | Full time      |
 | [Legal Ops](https://jobs.ashbyhq.com/parallel/07e9f010-e7c8-4c01-b650-997b659c53fb)                                          | Operations           | Palo Alto                            | Full time      |
 | [Product & Privacy Counsel](https://jobs.ashbyhq.com/parallel/7e24dbb5-efcf-4b92-a13b-d08e515cde1d)                          | Operations           | San Francisco / Palo Alto            | Full time      |

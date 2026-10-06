@@ -15,6 +15,8 @@ Trusted by
 * Lovable
 * Replit
 * LangChain
+* Composio
+* Oh My Pi
 
 Use Cases
 
