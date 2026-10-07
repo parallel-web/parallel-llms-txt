@@ -66,8 +66,6 @@ Computer-vision shelf intelligence for product availability, planograms, promoti
 
 Coming soon
 
-[PitchBookPrivate-capital-market intelligence across companies, deals, investors, and funds.](https://platform.parallel.ai/settings?tab=data-connections&provider=pitchbook)
-
 ### Polymarket
 
 Prediction-market prices, probabilities, and trading activity across real-world events.
