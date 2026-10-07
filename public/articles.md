@@ -41,7 +41,6 @@
 * [The fastest deep research APIs for AI agents in 2026](https://parallel.ai/articles/the-fastest-deep-research-apis-for-ai-agents-in-2026)
 * [OpenClaw vs. Nous Research Hermes: understanding two open-source personal AI agents](https://parallel.ai/articles/openclaw-vs-nousresearch-hermes)
 * [Exa Websets vs. Parallel FindAll API: A comprehensive comparison](https://parallel.ai/articles/exa-vs-parallel-findall)
-* [Tavily vs. Parallel: choosing a search API for your AI agent](https://parallel.ai/articles/tavily-vs-parallel-search)
 * [Bing API alternatives: top solutions for 2026](https://parallel.ai/articles/bing-api-comparison)
 
 ### Guides

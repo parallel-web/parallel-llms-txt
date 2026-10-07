@@ -7,14 +7,14 @@ Today, we’re introducing **Fast mode** for Parallel Search: high-quality web s
 ## Fast mode highlights
 
 - $1 per 1,000 requests (10x cheaper than frontier labs, 5x cheaper than other APIs)
-- ~700ms average latency (#1 on [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) for speed per task)
+- ~700ms average latency (scores 73 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), August 2026 data)
 - #3 on [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) for intelligence (Parallel Search Advanced is SOTA)
 - Pairs well with models like GPT 5.6 Luna, DeepSeek V4 Pro, and Qwen3.8 27B
 - Best for most agent workflows, customer-support assistants, factual Q&A, and general-purpose search
 
 ![](https://cdn.sanity.io/images/5hzduz3y/production/4d28686b37e868cfbf8387f31b47856fd7b56b79-4512x2176.png)
 
-In an [independent evaluation by Artificial Analysis](https://artificialanalysis.ai/agents/search-api), Parallel Fast achieved a Search Index score of 73 while delivering the lowest measured per-task cost across 12 products from seven providers. Just two points shy of #1, Parallel Search Advanced. Without search, the same model scored 33 on the index.
+In an [independent evaluation by Artificial Analysis](https://artificialanalysis.ai/agents/search-api), Parallel Fast scored 73 on the Search Index with $8.41 in search cost per 1,000 benchmark tasks, against 75 for Parallel Search Advanced at $47.93 and 74 for Exa (auto) at $65.57 (August 2026 data). Without search, the same model scored 33 on the index.
 
 ## The economics of the AI stack have changed
 

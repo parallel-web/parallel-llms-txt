@@ -46,7 +46,7 @@ Since we published that run, an independent check has arrived. Artificial Analys
 
 Artificial Analysis's August 19 data added Parallel's fast mode: a Search Index score of 73, $8.41 in search cost per 1,000 benchmark tasks, and 15.7 seconds per task, against a 15.9-second model-only baseline. Exa's fast variant scores 68, at $78.11 and 22.6 seconds.
 
-That margin is why [Harvey](/blog/case-study-harvey) runs its international legal research on Parallel, and why [Kepler](/blog/case-study-kepler) built its finance research on it: work that professionals have to be able to trust.
+That margin is why [Harvey](/ai/blog/case-study-harvey) runs its international legal research on Parallel, and why [Kepler](/ai/blog/case-study-kepler) built its finance research on it: work that professionals have to be able to trust.
 
 Sources: [Parallel Search Turbo benchmark run](https://parallel.ai/blog/parallel-search-turbo), [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart), [Harvey case study](https://parallel.ai/blog/case-study-harvey), [Kepler case study](https://parallel.ai/blog/case-study-kepler)
 
@@ -82,7 +82,7 @@ BrowseComp and SimpleQA rows: Parallel-run evaluation, July 2026, all 1,266 Brow
 
 Parallel Turbo lists at $1 per 1,000 requests against Exa’s $7\. The spread widens on the endpoints that run continuously: monitoring costs $3 to $10 per 1,000 executions against $15, and a 100-result entity query costs $5 per 1,000 against roughly $97 once Exa’s per-extra-result charge is applied.
 
-Agents amplify that difference, because a single user request fans out into dozens of retrieval calls. Parallel prices each tier separately, so you can pin cheap retrieval to the broad sweep and reserve deep tiers for the queries that need them. [Nooks](/blog/case-study-nooks) cut its web search costs 70.5% by switching.
+Agents amplify that difference, because a single user request fans out into dozens of retrieval calls. Parallel prices each tier separately, so you can pin cheap retrieval to the broad sweep and reserve deep tiers for the queries that need them. [Nooks](/ai/blog/case-study-nooks) cut its web search costs 70.5% by switching.
 
 Artificial Analysis's August 2026 data measures the same effect independently. Search spend per 1,000 benchmark tasks was $8.41 for Parallel's fast mode (listed at the same $1 per 1,000 as turbo) and $13.64 for Parallel turbo, against $65.57 for Exa auto and $78.11 for Exa fast.
 

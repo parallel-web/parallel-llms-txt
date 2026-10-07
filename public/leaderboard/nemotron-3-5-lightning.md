@@ -1,6 +1,6 @@
 # Nemotron 3.5 Lightning · Search Capability Leaderboard
 
-* Search Intelligence Score: **37.9** (#29 in Search Intelligence)
+* Search Intelligence Score: **37.9** (#31 in Search Intelligence)
 * Without search: 9.8 · Lift from search +28.0
 * Cost per 1K tasks: $12.1 (below the median score of 62.7, so not ranked on cost)
 * Time per task: 176s
@@ -24,4 +24,4 @@
 | [MiMo v2.5](/leaderboard/mimo-v2-5)                              | 49.5  | +36.1 | $23.5             | 894s          |
 | [MiniMax M3](/leaderboard/minimax-m3)                            | 52.6  | +29.5 | $41.1             | 291s          |
 
-Latest update September 30, 2026\. Methodology: /leaderboard#methodology
+Latest update October 5, 2026\. Methodology: /leaderboard#methodology

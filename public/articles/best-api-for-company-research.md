@@ -88,7 +88,7 @@ Linkup's standard depth posted the highest precision of any configuration on eit
 
 ### Tavily
 
-Tavily advanced ties Linkup fast at 41.1 F1 on search-only and was the slowest configuration measured, at 92.2 seconds median per question and $0.910 per run. Framework integrations and a generous free tier have made it the default in a lot of RAG tutorials. For company research at volume, check the latency and cost numbers first. See [Tavily vs. Parallel](https://parallel.ai/articles/tavily-vs-parallel-search).
+Tavily advanced ties Linkup fast at 41.1 F1 on search-only and was the slowest configuration measured, at 92.2 seconds median per question and $0.910 per run. Framework integrations and a generous free tier have made it the default in a lot of RAG tutorials. For company research at volume, check the latency and cost numbers first. See [Tavily vs. Parallel](/compare/tavily-vs-parallel).
 
 ### Firecrawl and Brave
 
