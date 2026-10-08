@@ -36,6 +36,7 @@ We recruit likeminded curious, optimistic, and ambitious people who see the work
 | [GA Recruiter](https://jobs.ashbyhq.com/parallel/08b29fa6-eb90-4aac-b28a-8ef6a46edc15)                                       | Operations           | Palo Alto                            | Full time      |
 | [Legal Ops](https://jobs.ashbyhq.com/parallel/07e9f010-e7c8-4c01-b650-997b659c53fb)                                          | Operations           | Palo Alto                            | Full time      |
 | [Product & Privacy Counsel](https://jobs.ashbyhq.com/parallel/7e24dbb5-efcf-4b92-a13b-d08e515cde1d)                          | Operations           | San Francisco / Palo Alto            | Full time      |
+| [Recruiting Coordinator](https://jobs.ashbyhq.com/parallel/c5238a12-fcc2-45f0-8815-3ffd2c64ee76)                             | Operations           | Palo Alto                            | Full time      |
 | [AI Commercial Counsel, GTM](https://jobs.ashbyhq.com/parallel/485a039c-a176-4dfe-ba5f-475b63439651)                         | Other                | San Francisco / Palo Alto            | Full time      |
 | [Growth](https://jobs.ashbyhq.com/parallel/ec8dd697-1bec-4b23-9cfd-e899e9144e9e)                                             | Product              | San Francisco / Palo Alto            | Full time      |
 
