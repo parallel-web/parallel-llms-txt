@@ -45,6 +45,9 @@
 
 ### Guides
 
+* [How to save money on the Claude API in 2026](https://parallel.ai/articles/how-to-save-money-on-claude-api)
+* [How to save money on OpenAI inference in 2026](https://parallel.ai/articles/how-to-save-money-on-openai-api)
+* [LLM cost optimization for AI agents: where the money goes in 2026](https://parallel.ai/articles/llm-cost-optimization-for-ai-agents)
 * [How to add free web search to your coding agent in 10 minutes (CLI and MCP)](https://parallel.ai/articles/add-free-web-search-to-coding-agent)
 * [Best free web search MCP servers for Claude, Cursor, and OpenClaw (2026)](https://parallel.ai/articles/best-free-web-search-mcp)
 * [How to build an agent harness with Parallel Search](https://parallel.ai/articles/build-an-agent-harness-with-parallel-search)

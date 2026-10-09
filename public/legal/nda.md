@@ -4,8 +4,6 @@ Introducing Parallel Search Fast: A web search API for agents that’s fast, che
 
 Human Machine
 
-`/` | `CtrlK`
-
 On this page
 
 * 1\. Definition
