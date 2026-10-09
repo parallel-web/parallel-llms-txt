@@ -264,13 +264,13 @@ Parallel reviewed both providers’ live documentation and published price lists
 Trusted by
 
 * Harvey
-* Kepler
-* Nooks
+* Pfizer
+* Dropbox
 * Modal
-* Starbridge
+* Opendoor
 * Attio
-* Profound
-* Actively
+* Granola
+* Manus
 
 ## Where agents find answers
 
