@@ -766,4 +766,4 @@ Switch to desktop version
 * "PyPI", "Python Package Index", and the blocks logos are registered [trademarks](https://pypi.org/trademarks/) of the [Python Software Foundation](https://www.python.org/psf-landing) .
 
 * [Site map](https://pypi.org/sitemap/)
-* Deployed from [`b9dd37f`](https://github.com/pypi/warehouse/commit/b9dd37fe345f2143c7ad9ab30d8d1307e6055841 "External link")
+* Deployed from [`47b3476`](https://github.com/pypi/warehouse/commit/47b3476f034585edccbb2001af991929afaaf0aa "External link")

@@ -89,6 +89,8 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [How to Add Real-Time Web Data to Your AI Chatbot](https://llm.parallel.ai/articles/how-to-get-real-time-data-into-your-ai-chatbot.md): Learn how to connect live web search to your AI chatbot for real-time, cited answers using web grounding, search APIs, and production-ready patterns.
 - [How to Monitor Sales Trigger Events That Actually Convert](https://llm.parallel.ai/articles/how-to-monitor-sales-trigger-events-that-actually-convert.md): Learn how to track sales trigger events like funding, leadership changes, hiring, and tech shifts to improve timing, outreach, and conversion rates.
 - [How to Reduce LLM Hallucinations With Real-Time Web Search](https://llm.parallel.ai/articles/how-to-reduce-llm-hallucinations-by-connecting-your-app-to-real-time-web-search.md): Learn how real-time web search grounds LLMs, reduces hallucinations, improves factual accuracy, and helps AI agents stay current.
+- [How to Save Money on Claude API Costs (2026 Guide)](https://llm.parallel.ai/articles/how-to-save-money-on-claude-api.md): Cut Claude API costs 78-90% on search-heavy agents by replacing built-in web search, then stack prompt caching, Batch, effort tuning, and Haiku 5.5.
+- [How to Save Money on OpenAI API Costs (2026 Guide)](https://llm.parallel.ai/articles/how-to-save-money-on-openai-api.md): Cut OpenAI API costs 67-86% on search-heavy agents by replacing built-in web search, then stack prompt caching, Batch, Flex, and model routing.
 - [How to Set Up Company News Alerts That Actually Work](https://llm.parallel.ai/articles/how-to-set-up-company-news-alerts-that-actually-work.md): Learn how to set up company news alerts with Google Alerts, RSS, monitoring tools, and APIs to reduce noise and catch important updates faster.
 - [How to Set Up Competitor Feature Alerts That Detect What Shipped](https://llm.parallel.ai/articles/how-to-set-up-competitor-feature-alerts-that-tell-you-what-shipped.md): Learn how to build competitor feature alerts using AI to detect launches, classify changes, reduce noise, and route high-priority updates fast.
 - [How to Set Up Continuous Web Monitoring for Investment Research](https://llm.parallel.ai/articles/how-to-set-up-continuous-web-monitoring-for-investment-research.md): Learn how to build continuous web monitoring for investment research using SEC filings, news, career pages, and regulatory alerts.
@@ -97,6 +99,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Is Scraping Google Legal? What 2026 Court Rulings Say](https://llm.parallel.ai/articles/is-scraping-google-legal.md): Learn whether scraping Google is legal: the CFAA after hiQ, Google’s terms, the DMCA rulings in Google v. SerpApi and Reddit v. SerpApi, and EU rules.
 - [Jina AI Reader vs Parallel: Web Content for LLMs](https://llm.parallel.ai/articles/jina-ai-reader-vs-parallel.md): Compare Jina AI Reader and Parallel on extraction quality, latency, search, and token-versus-request pricing for turning web pages into model input.
 - [Linkup vs Parallel: Two Accuracy-First Search APIs](https://llm.parallel.ai/articles/linkup-vs-parallel.md): Compare Linkup and Parallel on benchmark accuracy claims, deep research, deployment options, pricing, reliability, and compliance for AI agents.
+- [LLM Cost Optimization for AI Agents: 2026 Guide](https://llm.parallel.ai/articles/llm-cost-optimization-for-ai-agents.md): Find where AI agent spend goes across OpenAI, Claude, and Gemini, from built-in search fees to cache misses, and the order to apply each cost lever.
 - [What Is llms.txt? Format, Setup, and Whether to Adopt It](https://llm.parallel.ai/articles/llms-txt.md): Learn what llms.txt is, how it differs from robots.txt and sitemaps, how to write and validate one, and whether the standard is worth adopting yet.
 - [MCP vs. Skills vs. CLIs for AI Agents](https://llm.parallel.ai/articles/mcp-vs-skills-vs-clis.md): MCP servers, agent skills, and CLIs are three ways to give an AI agent tools. A decision framework with context costs, portability, auth, and real harness…
 - [Meta Muse Custom Integrations: Connect Any API or MCP](https://llm.parallel.ai/articles/meta-muse-custom-integrations.md): Learn how Meta&#x27;s Muse AI agent builds custom connectors on its own VM, what it does with an MCP server URL, and the one-message prompt to connect a service.
@@ -259,7 +262,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Customer Terms and Conditions](https://llm.parallel.ai/customer-terms.md): The terms and conditions between customers and Parallel Web Systems Inc. governing access to and use of Parallel&#x27;s services and APIs.
 - [Data Connectors](https://llm.parallel.ai/data-connectors.md): Explore high-quality company, financial, research, life sciences, legal, news, and web data available through Parallel.
 - [Request a Data Source](https://llm.parallel.ai/data-connectors/request.md): Request a new data source for your Parallel agents, or apply to add your data to Parallel&#x27;s data connectors.
-- [Index by Parallel · INDEX by Parallel](https://llm.parallel.ai/index.md): Index is a platform for content owners to understand how AI agents use their work and earn compensation tied to the value they contribute.
+- [Index by Parallel · INDEX by Parallel](https://llm.parallel.ai/index.md): Web infrastructure for AI to search, extract, monitor, and reason over the world&#x27;s information.
 - [Integrations](https://llm.parallel.ai/integrations.md): Use Parallel web search across your entire stack to build more powerful agents and workflows. Browse verified integrations for agent frameworks, coding agents, model platforms, data platforms, and more.
 - [Use Parallel with Anthropic](https://llm.parallel.ai/integrations/anthropic.md): Give Anthropic-powered applications live web research through tool calling, or connect Parallel to Claude Desktop over MCP.
 - [Use Parallel with AWS Marketplace](https://llm.parallel.ai/integrations/aws-marketplace.md): Procure and manage Parallel through AWS Marketplace using your existing cloud purchasing workflow.
@@ -364,7 +367,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Sign In - Parallel](https://llm.parallel.ai/docs/index.md)
 - [parallel-web - npm](https://llm.parallel.ai/docs/package/parallel-web.md)
 - [parallel-web · PyPI](https://llm.parallel.ai/docs/project/parallel-web/index.md)
-- [public-openapi](https://llm.parallel.ai/docs/public-openapi.json.md)
+- [OpenAPI Spec](https://llm.parallel.ai/docs/public-openapi.json.md)
 
 ## SDKs
 
