@@ -113,6 +113,7 @@
 
 ### Industry Terms
 
+* [What is a web search MCP? How AI agents search the live web](https://parallel.ai/articles/what-is-a-web-search-mcp)
 * [Web crawling vs. web scraping: what's the difference, and do you need either?](https://parallel.ai/articles/web-crawling-vs-web-scraping)
 * [Web scraper vs. web extraction: what's the difference?](https://parallel.ai/articles/web-scraper-vs-web-extraction)
 * [What is WebMCP?](https://parallel.ai/articles/what-is-webmcp)

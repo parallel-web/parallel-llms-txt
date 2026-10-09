@@ -175,7 +175,7 @@ Most providers do not allow rollover. Parallel's $5 monthly credit expires at th
 
 ### **What's the cheapest paid web search API once the free tier runs out?**
 
-Serper is cheapest per query at $0.30 per 1,000, using scraped Google SERP data. Among APIs running their own index and returning LLM-ready excerpts, Parallel's Turbo and Fast modes at $1 per 1,000 requests are the lowest rate we're aware of. Compare on cost per resolved answer rather than per request: an API that needs four calls at $0.30 costs more than one that needs a single call at $1.
+Serper is cheapest per query at $0.30 per 1,000, using scraped Google SERP data. Among APIs running their own index and returning LLM-ready excerpts, Parallel's Turbo and Fast modes at $1 per 1,000 requests are the lowest rate we're aware of. Compare on cost per resolved answer rather than per request: an API that needs four calls at $0.30 costs more than one that needs a single call at $1. Openbenchmarks publishes that number for one task: on its [company news board](https://openbenchmarks.com/company-news/metric/cost-per-1k-correct) (300 questions, September 2026), TinyFish's free tier costs nothing per correct answer, and Parallel Fast is the cheapest paid option at $1.16 per 1,000 correct answers, against $5 to $17 for most others. Serper isn't on that board.
 
 ### **How do I move from the free MCP server to the API?**
 

@@ -26,7 +26,7 @@ The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) 
 }
 ```
 
-The underlying API's advanced mode scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. For an IDE agent the practical win is current documentation and error research without leaving the editor, and `web_fetch` keeps long docs pages from flooding the context window.
+The underlying API's advanced mode scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. On Openbenchmarks' [coding-agent board](https://openbenchmarks.com/web-search-for-coding-agents) (100 documentation tickets, September 2026), fast mode completed 66.7% from search alone, third of 14 behind Perplexity and Firecrawl. For an IDE agent the practical win is current documentation and error research without leaving the editor, and `web_fetch` keeps long docs pages from flooding the context window.
 
 **Best for:** grounding Cursor in the current web at zero cost.** Tradeoffs:** we're the vendor. Anonymous use runs personal-scale rate limits in fast basic mode; a free API key as a Bearer header lifts them.
 

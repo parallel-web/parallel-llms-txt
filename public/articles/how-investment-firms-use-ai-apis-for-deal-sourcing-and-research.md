@@ -63,7 +63,7 @@ response = requests.post(
 
 The response includes matched companies with sourced data for each field. Every claim traces back to a specific URL, so an analyst can check where each data point came from.
 
-For deal sourcing, recall matters: missing a high-potential target costs more than reviewing a few false positives. FindAll has no current benchmark on [parallel.ai/benchmarks](https://parallel.ai/benchmarks), so judge it on your own theses. A company is only returned as a match after it's checked against every condition, with citations, and the higher generators (core at $2 plus $0.15 per match, pro at $10 plus $1 per match) search more widely for hard queries.
+For deal sourcing, recall matters: missing a high-potential target costs more than reviewing a few false positives. FindAll has no current benchmark on [parallel.ai/benchmarks](https://parallel.ai/benchmarks), so judge it on your own theses. A company is only returned as a match after it's checked against every condition, with citations, and the higher generators (core at $2 plus $0.15 per match, pro at $10 plus $1 per match) search more widely for hard queries. The nearest independent evidence covers the Search API inside an agent loop. On Openbenchmarks’ [multi-turn company search board](https://openbenchmarks.com/multi-turn-company-search), where an agent hunts for companies matching three or four constraints such as investor backing and accelerator participation, Parallel Basic found 38.4% of the valid companies, the highest recall of 20 configurations, and 90.0% of the companies it returned were correct. Even the leader missed most of each set, so treat any single pass as a starting list.
 
 ### Research and enrichment: building company profiles from web intelligence
 

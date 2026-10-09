@@ -1,8 +1,8 @@
 # Kimi K3 · Search Capability Leaderboard
 
-* Search Intelligence Score: **64.2** (#14 in Search Intelligence)
+* Search Intelligence Score: **64.2** (#16 in Search Intelligence)
 * Without search: 30.6 · Lift from search +33.6
-* Cost per 1K tasks: $266 (#10 in Search Efficiency)
+* Cost per 1K tasks: $266 (#11 in Search Efficiency)
 * Time per task: 432s
 * Lab: Moonshot AI · Model id: moonshotai/kimi-k3
 
@@ -16,12 +16,12 @@
 
 ## Compared with
 
-| Model                                                   | Score | Lift  | Cost per 1K tasks | Time per task |
-| ------------------------------------------------------- | ----- | ----- | ----------------- | ------------- |
-| Kimi K3                                                 | 64.2  | +33.6 | $266              | 432s          |
-| [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash)       | 65.1  | +26.1 | $177              | 317s          |
-| [DeepSeek V4.1 Flash](/leaderboard/deepseek-v4-1-flash) | 62.7  | +35.7 | $35.8             | 549s          |
-| [GLM 5.3](/leaderboard/glm-5-3)                         | 62.7  | +40.8 | $78.5             | 308s          |
-| [Muse Spark 1.3](/leaderboard/muse-spark-1-3)           | 66.1  | +35.8 | $142              | 274s          |
+| Model                                               | Score | Lift  | Cost per 1K tasks | Time per task |
+| --------------------------------------------------- | ----- | ----- | ----------------- | ------------- |
+| Kimi K3                                             | 64.2  | +33.6 | $266              | 432s          |
+| [MiMo v2.6 Pro](/leaderboard/mimo-v2-6-pro)         | 64.4  | +34.7 | $76.5             | —             |
+| [Mistral Large 4.0](/leaderboard/mistral-large-4-0) | 64.4  | +43.0 | $136              | —             |
+| [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash)   | 65.1  | +26.1 | $177              | 317s          |
+| [Claude Haiku 5.5](/leaderboard/claude-haiku-5-5)   | 62.9  | +39.4 | $24.3             | 162s          |
 
-Latest update October 5, 2026\. Methodology: /leaderboard#methodology
+Latest update October 8, 2026\. Methodology: /leaderboard#methodology

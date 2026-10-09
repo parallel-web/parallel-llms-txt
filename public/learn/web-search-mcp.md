@@ -10,6 +10,8 @@ MCP is the open standard behind it. Anthropic [open-sourced the Model Context Pr
 
 Developers building AI agents use these servers. A model can't reach current web data on its own, so a web search MCP becomes its window to the live internet.
 
+For a longer walkthrough with a live tool call, a comparison of five web search MCP servers, and setup commands, read [What is a web search MCP?](https://parallel.ai/articles/what-is-a-web-search-mcp)
+
 ## Key characteristics
 
 - **Standardized interface:** web search is exposed as tool calls that any MCP client can discover and call, which makes [tool calling through MCP servers](https://parallel.ai/blog/mcp-tool-calling) consistent across agents.

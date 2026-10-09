@@ -118,7 +118,7 @@ Timing is the first advantage. A fintech startup that closed its Series B three 
 
 Coverage is the second. Pre-packaged databases focus on well-funded, English-language, US-centric companies. If your thesis targets vertical software in emerging markets, B2B startups in Europe, or bootstrapped companies that haven't raised institutional capital, database coverage drops off. Live-web discovery queries the same web your analysts would search by hand, at scale.
 
-Each target in the results maps to your schema fields, with a source citation for each data point, so your team can verify claims and keep an audit trail. The FindAll API achieves about 3x higher recall than comparable approaches on entity discovery benchmarks, meaning you're finding more of the targets that exist.
+Each target in the results maps to your schema fields, with a source citation for each data point, so your team can verify claims and keep an audit trail.
 
 ### Step 3: Enrich and validate each target
 

@@ -48,18 +48,18 @@ Parallel's current Search results on [parallel.ai/benchmarks](https://parallel.a
 
 Those are not comparable measurements. Linkup's 92% is an F-score from its own sub-second search setup; Parallel's figures are an agent's accuracy on a sample of the same dataset, with room to search more than once. SimpleQA Verified is a curated 1,000-prompt subset, not the full 4,326-question SimpleQA set, and an F-score is not the same statistic as accuracy. Linkup's SEAL-0 result has no current Parallel counterpart to set beside it. Every one of these figures is vendor-produced on a vendor-chosen harness.
 
-One independent head-to-head now exists. [Openbenchmarks](https://openbenchmarks.com/multi-turn-company-search) publishes its harness, its scoring code, and every raw vendor response, and its multi-turn company search board (first published August 22, 2026, last run August 28) includes both Linkup depths and all four Parallel modes. A fixed research agent running gpt-5.6-sol answers 45 hand-labelled questions, each combining three or four constraints such as investor backing, accelerator participation, headquarters, and founding period, with its native web search swapped for the vendor's API. Every configuration ran each question three times, and answers are scored against a frozen gold set of companies, so precision and recall are measured directly rather than inferred from an accuracy score.
+One independent head-to-head now exists. [Openbenchmarks](https://openbenchmarks.com/multi-turn-company-search) publishes its harness, its scoring code, and every raw vendor response, and its multi-turn company search board (first published August 22, 2026, last updated September 26) includes both Linkup depths and all four Parallel modes. A fixed research agent running gpt-5.6-sol answers 45 hand-labelled questions, each combining three or four constraints such as investor backing, accelerator participation, headquarters, and founding period, with its native web search swapped for the vendor's API. Every configuration ran each question three times, and answers are scored against a frozen gold set of companies, so precision and recall are measured directly rather than inferred from an accuracy score.
 
 | Configuration (search only) | F1 | Precision | Recall | Cost per agent run |
 | --- | --- | --- | --- | --- |
-| Parallel Basic | 46.5 | 88.7 | 34.4 | $0.98 |
-| Parallel Advanced | 44.2 | 87.6 | 32.0 | $0.57 |
-| Linkup Fast | 41.1 | 82.8 | 30.3 | $0.84 |
-| Linkup Standard | 40.6 | 84.0 | 29.7 | $0.84 |
-| Parallel Fast | 38.0 | 79.9 | 27.5 | $0.44 |
-| Parallel Turbo | 34.7 | 80.0 | 24.8 | $0.40 |
+| Parallel Basic | 50.2 | 90.0 | 38.4 | $1.18 |
+| Parallel Advanced | 43.4 | 86.6 | 31.2 | $0.62 |
+| Linkup Fast | 41.3 | 82.7 | 30.4 | $0.92 |
+| Linkup Standard | 40.8 | 83.8 | 30.0 | $0.94 |
+| Parallel Fast | 39.0 | 81.6 | 27.9 | $0.47 |
+| Parallel Turbo | 32.8 | 76.7 | 22.9 | $0.42 |
 
-On the search-only board, ranked by F1, Parallel Basic and Advanced finish first and third of the thirteen configurations tested, ahead of both Linkup depths. Parallel Fast and Turbo finish behind both at about half Linkup's cost per agent run. With page fetching enabled, Linkup Standard's precision rises to 90.7, the highest on that board, and its F1 of 42.0 sits within a point of Parallel Basic and Advanced. The trial-to-trial spread is one to two points, so adjacent rows are close, but the five-point gap between Parallel's premium modes and Linkup is larger than the noise, and so is the gap between Linkup and Parallel's two cheap modes.
+On the search-only board, ranked by F1, Parallel Basic finishes first of the 20 configurations tested, nine points ahead of either Linkup depth, well outside the trial-to-trial spread of a few points. Parallel Advanced (fourth) and Fast (eighth) sit within about two points of Linkup, close enough that the noise could reorder them, and Turbo finishes eight points behind. Fast and Turbo cost about half as much per agent run as either Linkup depth. With page fetching enabled, Linkup Standard's precision rises to 90.3, the highest on that board, and its F1 of 41.8 sits between Parallel Advanced (43.8) and Basic (41.2).
 
 Both are accuracy-first products with credible results. The one independent measurement covers a single task, multi-constraint company discovery, with a single agent, and on that task it favours Parallel's Basic and Advanced modes over Linkup, and Linkup over Parallel's Fast and Turbo. Running both against a sample of your own production queries takes about a day of work and answers the question for your workload.
 
@@ -143,6 +143,6 @@ Choose Linkup when the deployment model is the constraint. Bring Your Own Cloud 
 
 Choose Parallel when unit economics and breadth decide it. Turbo runs at 200ms and Fast at under a second, both $1 per 1,000 requests, a fifth to a sixth of Linkup Search, which changes what you can afford to do inside an agent loop. Nine research processors starting at $5 per 1,000 make per-row enrichment practical at volumes where a $250 floor does not, and the Basis on every Task field gives you per-field citations, reasoning, and confidence rather than document-level sources. FindAll, Entity Search, and Monitor cover list building and change tracking that Linkup does not sell.
 
-These two are close enough that published benchmarks will not decide it for you. The independent Artificial Analysis Search Index (September 2026 data) scores Parallel Search (advanced) at 75, behind Perplexity Search (medium) at 80 and Octen Search at 77, and its displayed leaderboard doesn't include Linkup. The Openbenchmarks company search board puts Parallel's premium modes ahead of Linkup and Linkup ahead of Parallel's cheap ones. The questions that will decide it: does your data need to stay in your own cloud, and how much of your workload sits at the cheap, high-volume end of the curve rather than the deep-research end?
+These two are close enough that published benchmarks will not decide it for you. The independent Artificial Analysis Search Index (September 2026 data) scores Parallel Search (advanced) at 75, behind Perplexity Search (medium) at 80 and Octen Search at 77, and its displayed leaderboard doesn't include Linkup. The Openbenchmarks company search board puts Parallel Basic clearly ahead of Linkup, Advanced and Fast within noise of it, and Turbo behind. The questions that will decide it: does your data need to stay in your own cloud, and how much of your workload sits at the cheap, high-volume end of the curve rather than the deep-research end?
 
 **Related reading: **[Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel) · [You.com vs. Parallel](https://parallel.ai/articles/you-com-vs-parallel) · [Perplexity Search API vs. Parallel Search API](https://parallel.ai/articles/perplexity-search-api-vs-parallel-search-api).

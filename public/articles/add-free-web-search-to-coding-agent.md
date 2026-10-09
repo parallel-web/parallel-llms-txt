@@ -107,7 +107,7 @@ parallel-cli extract https://nextjs.org/docs/app/guides/upgrading/version-16 \
   --objective "List the breaking changes" --json
 ```
 
-Pass `--mode fast` on purpose. The CLI defaults to Basic, which costs $5 per 1,000 requests; Fast costs $1 per 1,000 and is the mode our [search modes docs](https://docs.parallel.ai/search/modes) recommend starting with. Use `--mode turbo` (about 200ms, English and Japanese queries only) for simple lookups; our sibling guide on [Fast vs. Turbo](https://parallel.ai/articles/parallel-search-fast-vs-turbo) covers that choice in agent loops.
+Pass `--mode fast` on purpose. The CLI defaults to Basic, which costs $5 per 1,000 requests; Fast costs $1 per 1,000 and is the mode our [search modes docs](https://docs.parallel.ai/search/modes) recommend starting with. Use `--mode turbo` (about 200ms, English and Japanese queries only) for simple lookups; our sibling guide on [Fast vs. Turbo](https://parallel.ai/articles/parallel-search-fast-vs-turbo) covers that choice in agent loops. On Openbenchmarks’ [coding-agent board](https://openbenchmarks.com/web-search-for-coding-agents) (100 documentation tickets, September 2026), Fast completed 66.7% from search results alone and Turbo 64.7%, a gap inside the run-to-run noise, with Turbo’s searches averaging 333ms.
 
 Because every command takes `--json`, the agent can chain calls in one shell invocation. This pipeline searches, keeps the top three URLs, and extracts all of them:
 

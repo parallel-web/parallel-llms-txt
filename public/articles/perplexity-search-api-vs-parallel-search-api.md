@@ -54,6 +54,8 @@ We run Perplexity's Search API against ours inside the same agent on [parallel.a
 
 Perplexity comes out ahead on BrowseComp: it ties Advanced at 74% for about two-thirds of the cost and edges Fast at the low-cost tier. It also edges Fast on WideSearch at that tier, its frontier runs cost less than Advanced on all three benchmarks, and Perplexity Search medium leads the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (September 2026) at 80, ahead of Parallel advanced at 75. Parallel leads SimpleQA Verified and WideSearch at the frontier tier, and at the low-cost tier Fast matches Perplexity on SimpleQA Verified for $2.00 per 1,000 against $5.50. These are our runs on our harness, so test both on your own queries.
 
+Openbenchmarks, which publishes its harness and raw responses, gives an outside read that splits the same way. On its [coding-agent board](https://openbenchmarks.com/web-search-for-coding-agents) (100 documentation tickets, September 2026), Perplexity at low context completed 77.3% of tickets from search alone, first of 14, against 66.7% for Parallel Fast. On [multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), Parallel Basic leads search-only at 50.2 F1 against Perplexity’s 37.8, though Perplexity at high context rises to 46.6 when the agent can fetch pages.
+
 ## **What sits around each endpoint**
 
 Few teams buy a search endpoint in isolation, so the surrounding platform usually decides it.

@@ -48,7 +48,7 @@ This "build vs. buy" framing applies to competitive intelligence the same way it
 
 A complete market mapping system needs four capabilities.
 
-**Entity discovery.** Find every company that matches your criteria. Turn "AI startups in healthcare that raised Series A in the last 12 months" into a structured list of company names, URLs, and metadata.
+**Entity discovery.** Find every company that matches your criteria. Turn "AI startups in healthcare that raised Series A in the last 12 months" into a structured list of company names, URLs, and metadata. For a sense of how hard this is, Openbenchmarks’ [multi-turn company search board](https://openbenchmarks.com/multi-turn-company-search) asks a fixed agent for every company matching three or four constraints, and the best of 20 search configurations, Parallel’s Search API in basic mode, recovered 38.4% of the valid companies with 90.0% precision.
 
 **[Data enrichment](https://parallel.ai/articles/what-is-data-enrichment)****.** For each discovered entity, extract structured information from their website: product descriptions, pricing tiers, team size signals, technology stack, recent news.
 

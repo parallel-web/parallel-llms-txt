@@ -48,7 +48,7 @@ That creates three problems:
 - **Fixed schemas**: Breeze Intelligence (formerly Clearbit) and Hunter.io return preset fields, which may not map to your industry, your use case, or your qualification criteria.
 - **Shallow context**: Point solutions return surface attributes without the context a rep needs for a specific account.
 
-The [Parallel Task API](https://parallel.ai) takes the opposite approach. You define the schema and it runs the research, so the fields you collect are the ones your sales process uses. Parallel reports [state-of-the-art](https://parallel.ai/blog/parallel-task-api) accuracy across commercially available web research APIs.
+The [Parallel Task API](https://parallel.ai) takes the opposite approach. You define the schema and it runs the research, so the fields you collect are the ones your sales process uses. On standard firmographics, the independent [Openbenchmarks company enrichment benchmark](https://openbenchmarks.com/company-enrichment) (282 domains, 11 providers) found Parallel's Responses API filled the most fields (94.7%) and got 86.0% right, behind People Data Labs and Apollo, with a 21-second median per company. The case for web research is the fields a fixed schema doesn't hold.
 
 That changes four things:
 

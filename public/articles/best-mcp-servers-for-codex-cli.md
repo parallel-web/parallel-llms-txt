@@ -20,7 +20,7 @@ Web context is what coding agents most often lack: the error message that starte
 codex mcp add parallel-search --url https://search.parallel.ai/mcp
 ```
 
-Parallel Search (advanced) scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products across 12 providers (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. Restart Codex after adding the server and the tools appear.
+Parallel Search (advanced) scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products across 12 providers (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. On Openbenchmarks' [coding-agent board](https://openbenchmarks.com/web-search-for-coding-agents) (100 documentation tickets, September 2026), fast mode completed 66.7% from search alone, third of 14 behind Perplexity (77.3%) and Firecrawl (70.3%), and turbo had the fastest searches at 333ms. Restart Codex after adding the server and the tools appear.
 
 **Best for:** grounding Codex in current docs, errors, and releases without leaving the terminal.
 
