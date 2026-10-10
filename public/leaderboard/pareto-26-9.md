@@ -2,7 +2,7 @@
 
 * Search Intelligence Score: **72.5** (#3 in Search Intelligence)
 * Without search: 39.7 · Lift from search +32.8
-* Cost per 1K tasks: $184 (#9 in Search Efficiency)
+* Cost per 1K tasks: $184 (#10 in Search Efficiency)
 * Time per task: 211s
 * Medals: Bronze, Search Intelligence
 * Lab: Unbiased AI · Model id: unbiased/pareto-26.9
@@ -25,4 +25,4 @@
 | [GPT-6 Astra](/leaderboard/gpt-6-astra)           | 70.8  | +27.9 | $401              | 83.7s         |
 | [GPT-6.1 Sol](/leaderboard/gpt-6-1-sol)           | 70.4  | +30.6 | $130              | 353s          |
 
-Latest update October 5, 2026\. Methodology: /leaderboard#methodology
+Latest update October 8, 2026\. Methodology: /leaderboard#methodology

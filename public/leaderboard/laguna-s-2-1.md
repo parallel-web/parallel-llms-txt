@@ -1,8 +1,8 @@
 # Laguna S 2.1 · Search Capability Leaderboard
 
-* Search Intelligence Score: **39.5** (#30 in Search Intelligence)
+* Search Intelligence Score: **39.5** (#33 in Search Intelligence)
 * Without search: 12.3 · Lift from search +27.2
-* Cost per 1K tasks: $21.4 (below the median score of 62.7, so not ranked on cost)
+* Cost per 1K tasks: $21.4 (below the median score of 62.8, so not ranked on cost)
 * Time per task: 459s
 * Lab: Poolside · Model id: poolside/laguna-s-2.1
 
@@ -24,4 +24,4 @@
 | [MiniMax M3](/leaderboard/minimax-m3)                            | 52.6  | +29.5 | $41.1             | 291s          |
 | [Nemotron 3 Ultra 550B](/leaderboard/nemotron-3-ultra-550b-a55b) | 53.0  | +37.7 | $113              | 328s          |
 
-Latest update October 5, 2026\. Methodology: /leaderboard#methodology
+Latest update October 8, 2026\. Methodology: /leaderboard#methodology

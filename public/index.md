@@ -114,21 +114,21 @@ Index
 
 Harvey \+ 0.29
 
-Formation Bio \+ 0.34
+Formation Bio \+ 0.33
 
-Opendoor \+ 0.31
+Opendoor \+ 0.30
 
-Granola \+ 0.30
+Granola \+ 0.32
 
-Macroscope \+ 0.33
+Macroscope \+ 0.31
 
 Rogo \+ 0.31
 
-Starbridge \+ 0.31
+Starbridge \+ 0.33
 
-Dropbox \+ 0.30
+Dropbox \+ 0.32
 
-Coursera \+ 0.31
+Coursera \+ 0.34
 
 Monetization
 

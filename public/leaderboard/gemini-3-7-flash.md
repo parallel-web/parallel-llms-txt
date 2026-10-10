@@ -24,4 +24,4 @@
 | [GPT-6 Sol](/leaderboard/gpt-6-sol)                   | 66.6  | +28.7 | $183              | 260s          |
 | [Claude Sonnet 5](/leaderboard/claude-sonnet-5)       | 66.6  | +43.8 | $688              | 846s          |
 
-Latest update October 5, 2026\. Methodology: /leaderboard#methodology
+Latest update October 8, 2026\. Methodology: /leaderboard#methodology

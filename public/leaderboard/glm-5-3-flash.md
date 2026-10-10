@@ -1,8 +1,8 @@
 # GLM 5.3 Flash · Search Capability Leaderboard
 
-* Search Intelligence Score: **60.8** (#18 in Search Intelligence)
+* Search Intelligence Score: **60.8** (#21 in Search Intelligence)
 * Without search: 20.4 · Lift from search +40.4
-* Cost per 1K tasks: $16.6 (below the median score of 62.7, so not ranked on cost)
+* Cost per 1K tasks: $16.6 (below the median score of 62.8, so not ranked on cost)
 * Time per task: 99.1s
 * Lab: Z.ai · Model id: z-ai/glm-5.3-flash
 
@@ -24,4 +24,4 @@
 | [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna) | 60.7  | +33.9 | $36.2             | 98.0s         |
 | [GPT-6 Luna](/leaderboard/gpt-6-luna)     | 61.9  | +33.9 | $33.1             | 391s          |
 
-Latest update October 5, 2026\. Methodology: /leaderboard#methodology
+Latest update October 8, 2026\. Methodology: /leaderboard#methodology

@@ -6,7 +6,7 @@ Parallel is faster, more affordable, and more accurate than Exa on everything fr
 
 [Search, per 1,000 requests: $1 vs. $7](#cost) [Artificial Analysis Search Index, August 2026: 75 vs. 74](#accuracy) [Search latency, BrowseComp p50: 216ms vs. 361ms](#performance)
 
-Last updated October 1, 2026
+Last updated October 9, 2026
 
 ## What does Parallel do?
 
@@ -46,9 +46,11 @@ Since we published that run, an independent check has arrived. Artificial Analys
 
 Artificial Analysis's August 19 data added Parallel's fast mode: a Search Index score of 73, $8.41 in search cost per 1,000 benchmark tasks, and 15.7 seconds per task, against a 15.9-second model-only baseline. Exa's fast variant scores 68, at $78.11 and 22.6 seconds.
 
+Openbenchmarks, an independent hub that publishes its harness and every raw vendor response, splits the two by task on its September 2026 boards. On multi-turn company search, Parallel Basic leads search-only at 50.2 F1 against Exa deep’s 45.5, and Exa deep leads once the agent can fetch pages, 49.2 against Parallel advanced’s 43.8\. On single-fact company news, Exa fast is the most accurate API on the board at 99.3%, against 93.3% for Parallel Basic and 86.0% for Parallel Fast.
+
 That margin is why [Harvey](/ai/blog/case-study-harvey) runs its international legal research on Parallel, and why [Kepler](/ai/blog/case-study-kepler) built its finance research on it: work that professionals have to be able to trust.
 
-Sources: [Parallel Search Turbo benchmark run](https://parallel.ai/blog/parallel-search-turbo), [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart), [Harvey case study](https://parallel.ai/blog/case-study-harvey), [Kepler case study](https://parallel.ai/blog/case-study-kepler)
+Sources: [Parallel Search Turbo benchmark run](https://parallel.ai/blog/parallel-search-turbo), [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart), [Harvey case study](https://parallel.ai/blog/case-study-harvey), [Kepler case study](https://parallel.ai/blog/case-study-kepler)
 
 +17.3 points on BrowseComp, Turbo against Instant
 
@@ -84,9 +86,9 @@ Parallel Turbo lists at $1 per 1,000 requests against Exa’s $7\. The spread wi
 
 Agents amplify that difference, because a single user request fans out into dozens of retrieval calls. Parallel prices each tier separately, so you can pin cheap retrieval to the broad sweep and reserve deep tiers for the queries that need them. [Nooks](/ai/blog/case-study-nooks) cut its web search costs 70.5% by switching.
 
-Artificial Analysis's August 2026 data measures the same effect independently. Search spend per 1,000 benchmark tasks was $8.41 for Parallel's fast mode (listed at the same $1 per 1,000 as turbo) and $13.64 for Parallel turbo, against $65.57 for Exa auto and $78.11 for Exa fast.
+Artificial Analysis's August 2026 data measures the same effect independently. Search spend per 1,000 benchmark tasks was $8.41 for Parallel's fast mode (listed at the same $1 per 1,000 as turbo) and $13.64 for Parallel turbo, against $65.57 for Exa auto and $78.11 for Exa fast. Openbenchmarks’ company news board divides list price by accuracy: Parallel Fast cost $1.16 per 1,000 correct answers against $7.05 for Exa fast, despite answering fewer questions correctly.
 
-Sources: [Parallel pricing](https://parallel.ai/pricing), [Parallel Entity Search docs](https://docs.parallel.ai/findall-api/entity-search), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), [Nooks case study](https://parallel.ai/blog/case-study-nooks)
+Sources: [Parallel pricing](https://parallel.ai/pricing), [Parallel Entity Search docs](https://docs.parallel.ai/findall-api/entity-search), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [Nooks case study](https://parallel.ai/blog/case-study-nooks)
 
 7× lower list price per 1,000 searches
 
@@ -257,9 +259,9 @@ On agentic runs, yes. Task, FindAll, and Monitor return a Research Basis per fie
 * **Is Parallel a good Exa alternative for agentic research?**  
 Yes. Task Specs fix the input and output contract, Task Groups fan thousands of runs out across a dataset, and eight fixed-price processors let you match compute to query difficulty. Parallel accepts 2,000 task requests per minute by default.
 * **Where does Exa still win?**  
-Exa suits independent apps and side projects: its framework ecosystem spans LangChain, LlamaIndex, CrewAI, and 25+ others, search can add per-result AI summaries at extra cost, and subpage crawling is documented. Not latency, and not the index: Exa advertises sub-200ms but measured 335–361ms in our run.
+Exa suits independent apps and side projects: its framework ecosystem spans LangChain, LlamaIndex, CrewAI, and 25+ others, search can add per-result AI summaries at extra cost, and subpage crawling is documented. Not latency, and not the index: Exa advertises sub-200ms but measured 335–361ms in our run. On single-fact accuracy, though, Exa fast topped Openbenchmarks’ company news board at 99.3%.
 * **How current is this comparison?**  
-Parallel reviewed both providers’ live documentation and published price lists on July 27, 2026, and last updated this page on October 1, 2026\. BrowseComp, SimpleQA, and latency figures come from Parallel’s July 2026 evaluation; Search Index scores come from Artificial Analysis’s independent August 2026 benchmark. Both platforms ship often, so check the linked sources before you buy.
+Parallel reviewed both providers’ documentation and price lists on July 27, 2026, and updated this page on October 9\. BrowseComp, SimpleQA, and latency figures come from Parallel’s July 2026 evaluation, Search Index scores from Artificial Analysis’s August benchmark, and company search and news figures from Openbenchmarks’ September boards. Both platforms ship often, so check the linked sources before you buy.
 
 Trusted by
 

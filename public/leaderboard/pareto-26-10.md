@@ -25,4 +25,4 @@
 | [Claude Opus 5](/leaderboard/claude-opus-5)       | 70.0  | +32.8 | $1,012            | 342s          |
 | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash) | 66.8  | +27.4 | $130              | 229s          |
 
-Latest update October 5, 2026\. Methodology: /leaderboard#methodology
+Latest update October 8, 2026\. Methodology: /leaderboard#methodology

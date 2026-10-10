@@ -1,8 +1,8 @@
 # DeepSeek V4 Pro (0813) · Search Capability Leaderboard
 
-* Search Intelligence Score: **53.5** (#25 in Search Intelligence)
+* Search Intelligence Score: **53.5** (#28 in Search Intelligence)
 * Without search: 33.1 · Lift from search +20.4
-* Cost per 1K tasks: $234 (below the median score of 62.7, so not ranked on cost)
+* Cost per 1K tasks: $234 (below the median score of 62.8, so not ranked on cost)
 * Time per task: 394s
 * Lab: DeepSeek · Model id: deepseek/deepseek-v4-pro-0813
 
@@ -24,4 +24,4 @@
 | [DeepSeek V4 Flash (0731)](/leaderboard/deepseek-v4-flash-0731) | 59.2  | +35.2 | $13.6             | 292s          |
 | [DeepSeek V4.1 Flash](/leaderboard/deepseek-v4-1-flash)         | 62.7  | +35.7 | $35.8             | 549s          |
 
-Latest update October 5, 2026\. Methodology: /leaderboard#methodology
+Latest update October 8, 2026\. Methodology: /leaderboard#methodology
