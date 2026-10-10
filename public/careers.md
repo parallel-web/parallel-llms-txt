@@ -27,7 +27,6 @@ We recruit likeminded curious, optimistic, and ambitious people who see the work
 | [Member of Technical Staff, Search Ranking](https://jobs.ashbyhq.com/parallel/bc715d40-ec81-4d8d-8a5a-92db5227679c)          | Engineering          | San Francisco / Palo Alto            | Full time      |
 | [Research Scientist](https://jobs.ashbyhq.com/parallel/5fac39a3-a44d-470b-94ed-15b2239d410f)                                 | Engineering          | San Francisco / Palo Alto            | Full time      |
 | [Cloud Partnerships](https://jobs.ashbyhq.com/parallel/fe935559-4209-4736-baa8-6d2478d424ba)                                 | GTM                  | San Francisco / Palo Alto / New York | Full time      |
-| [Deployed Strategist](https://jobs.ashbyhq.com/parallel/760a3032-1888-40c7-b3a6-64bdfdb43499)                                | GTM                  | San Francisco / Palo Alto            | Full time      |
 | [GTM Enablement, Technical](https://jobs.ashbyhq.com/parallel/a550cc1c-6bec-416b-a2da-a7ef06f754bc)                          | GTM                  | Palo Alto / New York / San Francisco | Full time      |
 | [GTM Leader, AI Native](https://jobs.ashbyhq.com/parallel/b7bd3dda-7504-48d7-a757-8d89b52ff985)                              | GTM                  | San Francisco / Palo Alto            | Full time      |
 | [GTM Leader, Enterprise](https://jobs.ashbyhq.com/parallel/4fac04bc-a15a-4b4b-9fe0-a5cbec27c687)                             | GTM                  | San Francisco / Palo Alto / New York | Full time      |

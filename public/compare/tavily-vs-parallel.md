@@ -6,7 +6,7 @@ Parallel scores higher than Tavily on hard, multi-hop research at a fifth to an 
 
 [Fast-tier search, per 1,000 requests: $1 vs. $5–$8](#cost) [Artificial Analysis Search Index, basic modes: 73 vs. 66](#accuracy) [BrowseComp, same frontier agent: 74% vs. 66%](#accuracy)
 
-Last updated October 1, 2026
+Last updated October 9, 2026
 
 ## What does Parallel do?
 
@@ -45,9 +45,11 @@ With the cheaper GPT-5.6 Luna agent the results are closer. Parallel Fast led Br
 
 The independent Artificial Analysis Search Index tested Tavily in its basic mode. In its August 2026 launch table Tavily basic scored 66, against 73 for Parallel basic and 75 for Parallel advanced. On the three components Parallel basic scored DeepSearchQA F1 79 against 74, BrowseComp 73 against 59, and AA-Omniscience 68 against 64\. It took 20.4 seconds per task against 36.3.
 
+Openbenchmarks, an independent hub that publishes its harness and every raw vendor response, has since run both on two September 2026 boards. On multi-turn company search, where a fixed agent hunts for every company matching three or four constraints, Parallel Basic scored 50.2 F1 from search results alone against 42.0 for Tavily advanced and 36.5 for Tavily basic. On single-fact company news lookups, Tavily answered more accurately than Parallel Fast, 93.0% on advanced and 87.7% on basic against 86.0%, with Parallel Basic at 93.3%.
+
 Tavily publishes its own runs, most recently on SealQA and SimpleQA Verified, scored with a single-pass reader model rather than an agent. Different harnesses rank providers differently. [Harvey](/ai/blog/case-study-harvey) and [Kepler](/ai/blog/case-study-kepler) both evaluated on their own professional research before building on Parallel.
 
-Sources: [Parallel benchmarks, September 2026](https://parallel.ai/benchmarks), [Artificial Analysis Search Index launch results](https://artificialanalysis.ai/articles/search-api), [Harvey case study](https://parallel.ai/blog/case-study-harvey), [Kepler case study](https://parallel.ai/blog/case-study-kepler)
+Sources: [Parallel benchmarks, September 2026](https://parallel.ai/benchmarks), [Artificial Analysis Search Index launch results](https://artificialanalysis.ai/articles/search-api), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [Harvey case study](https://parallel.ai/blog/case-study-harvey), [Kepler case study](https://parallel.ai/blog/case-study-kepler)
 
 +8 points on BrowseComp, same frontier agent
 
@@ -83,9 +85,9 @@ Tavily sells credits. A basic, fast, or ultra-fast search costs 1 credit and an 
 
 Credits also make the bill harder to predict. Tavily’s auto\_parameters setting can promote a request to advanced depth, which doubles its cost. Tavily Research is priced dynamically at 4 to 250 credits per request. Every Parallel processor has a fixed price, so the cost of a run is known before it starts.
 
-Measured spend shows the same gap. In Artificial Analysis’s launch table, search spend per 1,000 benchmark tasks was $126 for Tavily basic against $45.14 for Parallel basic and $13.64 for Parallel turbo. In Parallel’s September run, Parallel Fast matched Tavily’s 94% on SimpleQA Verified for $2 per 1,000 questions against $17.40.
+Measured spend shows the same gap. In Artificial Analysis’s launch table, search spend per 1,000 benchmark tasks was $126 for Tavily basic against $45.14 for Parallel basic and $13.64 for Parallel turbo. In Parallel’s September run, Parallel Fast matched Tavily’s 94% on SimpleQA Verified for $2 per 1,000 questions against $17.40\. On Openbenchmarks’ company news board, which divides list price by accuracy, Parallel Fast cost $1.16 per 1,000 correct answers against $9.13 for Tavily basic and $17.20 for Tavily advanced.
 
-Sources: [Parallel pricing](https://parallel.ai/pricing), [Switching from Tavily to Parallel](https://parallel.ai/articles/tavily-to-parallel-search-api), [Parallel benchmarks, September 2026](https://parallel.ai/benchmarks), [Artificial Analysis Search Index launch results](https://artificialanalysis.ai/articles/search-api)
+Sources: [Parallel pricing](https://parallel.ai/pricing), [Switching from Tavily to Parallel](https://parallel.ai/articles/tavily-to-parallel-search-api), [Parallel benchmarks, September 2026](https://parallel.ai/benchmarks), [Artificial Analysis Search Index launch results](https://artificialanalysis.ai/articles/search-api), [Openbenchmarks company news search](https://openbenchmarks.com/company-news)
 
 5–8× lower list price per 1,000 fast-tier searches
 
@@ -280,9 +282,9 @@ Yes. Search maps to Search, Extract to Extract, and Research to Task or Response
 * **Is Tavily faster than Parallel?**  
 Per call, it depends on the query. In Parallel’s July 2026 run Tavily Ultra Fast measured 150 to 357ms p50 across five suites against 216 to 240ms for Parallel Turbo, faster on two and slower on three. Turbo was more accurate on all five. Per benchmark task, Artificial Analysis measured 20.4 seconds for Parallel basic against 36.3 for Tavily basic.
 * **Where does Tavily still win?**  
-Tavily has the broader framework ecosystem, led by LangChain, and ships Map and Crawl endpoints for whole-site extraction. It can return an LLM answer and images inline with search, allows 1,000 search requests per minute on production keys against Parallel’s 600, and states zero data retention by default.
+Tavily has the broader framework ecosystem, led by LangChain, and ships Map and Crawl endpoints for whole-site extraction. It can return an LLM answer and images inline with search, allows 1,000 search requests per minute on production keys against Parallel’s 600, and states zero data retention by default. On Openbenchmarks’ company news board, Tavily was also more accurate than Parallel Fast on single-fact lookups.
 * **How current is this comparison?**  
-Parallel reviewed both providers’ live documentation and published price lists on October 1, 2026\. BrowseComp, SimpleQA Verified, and WideSearch figures come from Parallel’s September 9, 2026 runs, latency from its July 2026 run, and Search Index scores from Artificial Analysis’s August 2026 launch table. Both platforms ship often, so check the linked sources before you buy.
+Parallel reviewed both providers’ documentation and price lists on October 1, 2026, and updated this page on October 9\. BrowseComp, SimpleQA Verified, and WideSearch figures come from Parallel’s September 9 runs, latency from its July run, Search Index scores from Artificial Analysis’s August launch table, and company search and news figures from Openbenchmarks’ September boards. Both platforms ship often, so check the linked sources.
 
 Trusted by
 
