@@ -2,6 +2,9 @@
 
 ### Comparison
 
+* [The best Firecrawl alternatives in 2026](https://parallel.ai/articles/firecrawl-alternatives)
+* [The best Exa alternatives for AI search in 2026](https://parallel.ai/articles/exa-alternatives)
+* [Cloudflare Web Search API: providers, pricing, and how it compares](https://parallel.ai/articles/cloudflare-web-search-api)
 * [The best Tavily alternatives for AI agents in 2026](https://parallel.ai/articles/tavily-alternatives)
 * [Parallel Search vs. SerpApi vs. Brave vs. Bing for AI agents](https://parallel.ai/articles/parallel-vs-serpapi-vs-brave-vs-bing)
 * [Web scraping vs. search API for LLM apps](https://parallel.ai/articles/web-scraping-vs-search-api)
@@ -40,12 +43,16 @@
 * [OpenAI Responses agents: how to choose the right web search backend](https://parallel.ai/articles/openai-responses-agents-how-to-choose-the-right-web-search-backend)
 * [The honest 2026 comparison: web search APIs for AI agents](https://parallel.ai/articles/the-honest-2026-comparison-web-search-apis-for-ai-agents)
 * [The fastest deep research APIs for AI agents in 2026](https://parallel.ai/articles/the-fastest-deep-research-apis-for-ai-agents-in-2026)
-* [OpenClaw vs. Nous Research Hermes: understanding two open-source personal AI agents](https://parallel.ai/articles/openclaw-vs-nousresearch-hermes)
+* [Hermes Agent vs. OpenClaw: how the two open-source personal AI agents compare in 2026](https://parallel.ai/articles/openclaw-vs-nousresearch-hermes)
 * [Exa Websets vs. Parallel FindAll API: A comprehensive comparison](https://parallel.ai/articles/exa-vs-parallel-findall)
 * [Bing API alternatives: top solutions for 2026](https://parallel.ai/articles/bing-api-comparison)
 
 ### Guides
 
+* [How to add web search to Kimi K3 and other open-weight models](https://parallel.ai/articles/kimi-k3-web-search)
+* [How to get better web search in Hermes Agent with Parallel’s free Search MCP](https://parallel.ai/articles/hermes-agent-web-search)
+* [How to add better web search to DeepSeek Harness: plugins and MCP setup](https://parallel.ai/articles/deepseek-harness-web-search)
+* [How to add web search to the Claude Agent SDK (Python and TypeScript)](https://parallel.ai/articles/claude-agent-sdk-web-search)
 * [How to save money on the Claude API in 2026](https://parallel.ai/articles/how-to-save-money-on-claude-api)
 * [How to save money on OpenAI inference in 2026](https://parallel.ai/articles/how-to-save-money-on-openai-api)
 * [LLM cost optimization for AI agents: where the money goes in 2026](https://parallel.ai/articles/llm-cost-optimization-for-ai-agents)
@@ -62,7 +69,7 @@
 * [The best ClawHub skills for OpenClaw in 2026](https://parallel.ai/articles/best-clawhub-skills-for-openclaw)
 * [Turn any CLI into an agent skill](https://parallel.ai/articles/turn-any-cli-into-an-agent-skill)
 * [How to add web search to a local AI agent (Ollama, LM Studio, Pi, and Goose)](https://parallel.ai/articles/web-search-for-local-ai-agents)
-* [The best MCP servers for Cursor in 2026](https://parallel.ai/articles/best-mcp-servers-for-cursor)
+* [The best Cursor MCP servers in 2026, with mcp.json config](https://parallel.ai/articles/best-mcp-servers-for-cursor)
 * [The best MCP servers for Gemini CLI in 2026](https://parallel.ai/articles/best-mcp-servers-for-gemini-cli)
 * [The best MCP servers for Windsurf in 2026](https://parallel.ai/articles/best-mcp-servers-for-windsurf)
 * [The best free MCP servers in 2026 (and what free actually means)](https://parallel.ai/articles/best-free-mcp-servers)
@@ -70,10 +77,10 @@
 * [Remote vs. local MCP servers: which should your agent use?](https://parallel.ai/articles/remote-vs-local-mcp-servers)
 * [The best MCP servers for Codex CLI in 2026](https://parallel.ai/articles/best-mcp-servers-for-codex-cli)
 * [The best MCP servers for OpenCode in 2026](https://parallel.ai/articles/best-mcp-servers-for-opencode)
-* [The best MCP servers for Claude Code in 2026](https://parallel.ai/articles/best-mcp-servers-for-claude-code)
+* [The best Claude Code MCP servers in 2026, with setup commands](https://parallel.ai/articles/best-mcp-servers-for-claude-code)
 * [Does Pi support MCP? The best MCP servers for Pi in 2026](https://parallel.ai/articles/best-mcp-servers-for-pi)
 * [The best MCP servers for Hermes Agent in 2026](https://parallel.ai/articles/best-mcp-servers-for-hermes-agent)
-* [The best MCP servers for OpenClaw in 2026](https://parallel.ai/articles/best-mcp-servers-for-openclaw)
+* [OpenClaw MCP: how to add MCP servers, and the 10 best to install in 2026](https://parallel.ai/articles/best-mcp-servers-for-openclaw)
 * [How to benchmark web search APIs on your own queries](https://parallel.ai/articles/how-to-benchmark-web-search-apis)
 * [Should you build a web research agent or use a deep research API?](https://parallel.ai/articles/should-you-build-a-web-research-agent-or-use-a-deep-research-api)
 * [How investment firms use AI APIs for deal sourcing and research](https://parallel.ai/articles/how-investment-firms-use-ai-apis-for-deal-sourcing-and-research)
@@ -114,6 +121,8 @@
 
 ### Industry Terms
 
+* [What is Hermes Agent? Nous Research's open-source personal agent explained](https://parallel.ai/articles/what-is-hermes-agent)
+* [What is context engineering? A guide for AI agent builders](https://parallel.ai/articles/what-is-context-engineering)
 * [What is a web search MCP? How AI agents search the live web](https://parallel.ai/articles/what-is-a-web-search-mcp)
 * [Web crawling vs. web scraping: what's the difference, and do you need either?](https://parallel.ai/articles/web-crawling-vs-web-scraping)
 * [Web scraper vs. web extraction: what's the difference?](https://parallel.ai/articles/web-scraper-vs-web-extraction)
