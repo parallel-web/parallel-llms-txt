@@ -123,6 +123,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [How to Switch From Serper to Parallel Search API](https://llm.parallel.ai/articles/serper-to-parallel-search-api.md): Migrate from Serper to Parallel Search API with an honest cost comparison, parameter mapping, what you give up, and the code change to make.
 - [Serper vs Parallel: Cheapest SERP JSON Compared](https://llm.parallel.ai/articles/serper-vs-parallel.md): Serper for the cheapest Google SERP JSON; Parallel for retrieval built for models. Compare price, total cost, throughput, coverage, and compliance. Parallel…
 - [Should You Build a Web Research Agent or Use a Deep Research API?](https://llm.parallel.ai/articles/should-you-build-a-web-research-agent-or-use-a-deep-research-api.md): Learn when to build a web research agent vs use a deep research API, with costs, tradeoffs, architecture tips, and a practical hybrid approach.
+- [Best Tavily Alternatives for AI Agents (2026)](https://llm.parallel.ai/articles/tavily-alternatives.md): Tavily is now part of Nebius. Compare six Tavily alternatives for AI agents on price per 1,000 searches and features, from $1 per 1,000 requests.
 - [How to Switch From Tavily to Parallel Search API](https://llm.parallel.ai/articles/tavily-to-parallel-search-api.md): Migrate from Tavily to Parallel Search API with a cost comparison, parameter mapping, the behavior that does not map, rate limits, and code changes.
 - [5 Essential AI APIs for Building a Research and Monitoring Stack](https://llm.parallel.ai/articles/the-ai-apis-you-need-to-build-a-research-and-monitoring-stack.md): Discover the 5 AI API categories needed for a complete research and monitoring stack, from web search and extraction to deep research and monitoring.
 - [Best Google Alerts Alternatives in 2026 for Developers and Marketers](https://llm.parallel.ai/articles/the-best-google-alerts-alternatives-in-2026-including-one-built-for-developers.md): Compare the best Google Alerts alternatives in 2026, including API-native tools with webhooks, structured JSON, and brand monitoring options.
@@ -259,7 +260,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Careers - Build the Open Web for AI](https://llm.parallel.ai/careers.md): Build the open web for AI at Parallel Web Systems. APIs, crawling, indexing, and retrieval — plus a values-driven team in Palo Alto and San Francisco.
 - [Compare Parallel with other web infrastructure](https://llm.parallel.ai/compare.md): Source-linked comparisons of Parallel and other web search and research platforms for AI agents.
 - [Parallel vs. Exa: AI Search API Comparison 2026](https://llm.parallel.ai/compare/exa-vs-parallel.md): Parallel returns cited, structured web research from $1 per 1,000 searches against Exa’s $7. Compare accuracy, pricing, and every API side by side.
-- [Parallel vs. Tavily: AI Search API Comparison 2026](https://llm.parallel.ai/compare/tavily-vs-parallel.md): Parallel scores higher than Tavily on multi-hop research from $1 per 1,000 searches against Tavily’s $5–$8. Compare accuracy, pricing, and every API.
+- [Tavily vs. Parallel: Pricing and Accuracy (2026)](https://llm.parallel.ai/compare/tavily-vs-parallel.md): How much does Tavily cost? $5 to $8 per 1,000 basic searches, $10 to $16 advanced. Parallel Search starts at $1 per 1,000 and scores higher on BrowseComp.
 - [Customer Terms and Conditions](https://llm.parallel.ai/customer-terms.md): The terms and conditions between customers and Parallel Web Systems Inc. governing access to and use of Parallel&#x27;s services and APIs.
 - [Data Connectors](https://llm.parallel.ai/data-connectors.md): Explore high-quality company, financial, research, life sciences, legal, news, and web data available through Parallel.
 - [Request a Data Source](https://llm.parallel.ai/data-connectors/request.md): Request a new data source for your Parallel agents, or apply to add your data to Parallel&#x27;s data connectors.
@@ -371,7 +372,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Sign In - Parallel](https://llm.parallel.ai/docs/index.md)
 - [parallel-web - npm](https://llm.parallel.ai/docs/package/parallel-web.md)
 - [parallel-web · PyPI](https://llm.parallel.ai/docs/project/parallel-web/index.md)
-- [public-openapi](https://llm.parallel.ai/docs/public-openapi.json.md)
+- [OpenAPI Spec](https://llm.parallel.ai/docs/public-openapi.json.md)
 
 ## SDKs
 
