@@ -31,11 +31,13 @@ Coming from Claude Code? `hermes import-agent claude-code` migrates the `mcpServ
 
 The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) is the three-line yaml entry above. It's a hosted server, free to use with no API key, that gives Hermes two tools: `web_search` for ranked, LLM-ready results with excerpts dense enough to answer from directly, and `web_fetch` for pulling token-efficient markdown from specific URLs, PDFs and JavaScript-rendered pages included.
 
-Hermes bundles its own web stack (search, extract, browse) through a Nous Portal subscription, and it's good. The case for the Parallel MCP is that it's free without any subscription, it works identically whichever model provider you point Hermes at, and the underlying Search API's advanced mode scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products across 12 providers (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. Since Hermes lets you run both side by side, the practical move is to try them on your own questions.
+Hermes ships its own web tools. With no search credentials they rotate across the free tiers of Exa, Parallel, Firecrawl, and Keenable, and a paid Nous Portal subscription adds managed search through the Tool Gateway. The case for connecting the Parallel MCP directly is that the model writes a full objective plus several keyword queries for every search, the same provider answers every call, it works identically whichever model provider you point Hermes at, and the underlying Search API's advanced mode scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of search APIs (October 2026), behind Perplexity Search (medium) at 80 and Octen Search at 77. Since Hermes lets you run both side by side, the practical move is to try them on your own questions.
 
 **Best for:** free, provider-neutral web search and page fetching for every Hermes surface, from CLI chats to Telegram.
 
-**Tradeoffs:** we're the vendor, so we're biased. The free hosted tier runs in low-latency basic mode with anonymous rate limits; an API key lifts the limits, and long research jobs belong on the Task MCP.
+**Tradeoffs:** we're the vendor, so we're biased. The free hosted tier runs in low-latency fast mode with anonymous rate limits; an API key lifts the limits, and long research jobs belong on the Task MCP.
+
+For the full setup, including a live connection test, restricting a session to the MCP, and adding an API key, see our [Hermes Agent web search guide](https://parallel.ai/articles/hermes-agent-web-search).
 
 ### 2. Parallel Task MCP
 
@@ -51,7 +53,7 @@ Linear's remote OAuth server is in the Nous-reviewed catalog, so `hermes mcp ins
 
 ### 4. n8n MCP
 
-Also a catalog entry. n8n is the self-hostable automation platform, and its MCP server lets Hermes inspect and manage your workflows: check why a run failed, trigger a job, or wire a new automation. If Hermes is your front door to a homelab or a small team's ops, this server connects it to the automations you already run.
+Also a catalog entry. n8n is the self-hostable automation platform, and `hermes mcp install n8n-official` connects Hermes to n8n's official MCP server on your n8n Cloud or self-hosted instance over browser OAuth, with no local bridge or n8n API key. Once an n8n admin turns on instance-level MCP, Hermes can inspect and run the workflows you expose to it. If Hermes is your front door to a homelab or a small team's ops, this server connects it to the automations you already run.
 
 **Best for:** driving existing automations by conversation.** Tradeoffs:** an agent that can trigger workflows can trigger the wrong one; scope credentials narrowly.
 
@@ -78,7 +80,7 @@ Deliberately absent. GitHub's hosted MCP requires each client to bring its own O
 | Parallel Search MCP | Web search + page fetching | config.yaml, 3 lines | Free; API key optional |
 | Parallel Task MCP | Deep research subagents | config.yaml + API key | $5/month free credit, then per request |
 | Linear MCP | Issues and projects from chat | hermes mcp install linear | Free with Linear |
-| n8n MCP | Inspect and drive automations | hermes mcp install n8n | Free, self-hosted |
+| n8n MCP | Inspect and run automations | hermes mcp install n8n-official | Included with n8n |
 | Sentry MCP | Errors and traces in context | Remote OAuth | Free with Sentry |
 | Filesystem MCP | Scoped local file access | config.yaml stdio entry | Free |
 
@@ -88,7 +90,7 @@ When a server exists in the catalog, install it from there: the manifest has bee
 
 ## Frequently asked questions
 
-**Is MCP the best way to add web search to Hermes?** It's the best free way. Hermes's bundled web tools require a Nous Portal subscription; the Parallel Search MCP costs nothing, needs no key, and runs on a Search API whose advanced mode scores 75 on the Artificial Analysis Search Index (September 2026 data). Run both on your own questions and keep the winner.
+**Is MCP the best way to add web search to Hermes?** It's the most controllable free way. Hermes's built-in web tools also work without a key, rotating across the free tiers of Exa, Parallel, Firecrawl, and Keenable, but each search goes out as a single query string. The Parallel Search MCP costs nothing, needs no key, lets the model send an objective plus several keyword queries, and runs on a Search API whose advanced mode scores 75 on the Artificial Analysis Search Index (October 2026). Run both on your own questions and keep the winner.
 
 **Does Hermes support remote OAuth MCP servers?** Yes. Set `auth: oauth` on an HTTP server and Hermes handles registration, PKCE, token exchange, and refresh via the MCP SDK.
 

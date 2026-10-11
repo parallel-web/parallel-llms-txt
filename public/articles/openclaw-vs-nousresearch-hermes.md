@@ -1,6 +1,6 @@
-# OpenClaw vs. Nous Research Hermes: understanding two open-source personal AI agents
+# Hermes Agent vs. OpenClaw: how the two open-source personal AI agents compare in 2026
 
-OpenClaw and the Nous Research Hermes Agent are both open source and self-hostable, both reach you through WhatsApp, Telegram, Slack, and Discord, and they answer different questions about what a personal agent should be. This comparison covers the core philosophical difference, how each is built, model support, the skills they share, the real overlap, pros and cons, and when to pick which.
+Hermes Agent vs. OpenClaw is the main choice for anyone self-hosting a personal AI agent in 2026: both are open source, both reach you through WhatsApp, Telegram, Slack, and Discord, and they answer different questions about what a personal agent should be. This comparison covers the core philosophical difference, how each is built, model support, shared skills, pros and cons, and when to pick which.
 
 ## **The core philosophical difference**
 
@@ -61,7 +61,7 @@ Hermes supports Nous Portal (300+ models on paid tiers), OpenRouter, OpenAI, Ant
 
 Both agents can browse the web, edit files, run shell commands, schedule recurring jobs, and chat from your phone. Both now cover more platforms than most comparisons acknowledge, and the differences are mostly in emphasis.
 
-OpenClaw covers more messaging surfaces (26 channels as of v2026.6, including Teams, Google Chat, IRC, LINE, Nostr, and Twitch alongside the mainstream platforms). Hermes covers 15+ platforms with strong enterprise and Asian platform support (DingTalk, WeCom, Feishu/Lark, QQ Bot), plus Email, SMS, and Home Assistant integrations that OpenClaw doesn't natively include. Both reach iMessage, but differently: OpenClaw goes through BlueBubbles, while Hermes added native iMessage via Photon in June 2026 and no longer needs a local Mac relay.
+OpenClaw lists 26 channels as of v2026.6, including Teams, Google Chat, IRC, LINE, Nostr, and Twitch alongside the mainstream platforms. Hermes's gateway docs list about 25 platforms as of October 2026, including Microsoft Teams, Google Chat, LINE, and IRC, with strong enterprise and Asian platform support (DingTalk, WeCom, Feishu/Lark, QQ Bot), plus Email, SMS, and Home Assistant. Both reach iMessage, but differently: OpenClaw goes through BlueBubbles, while Hermes supports BlueBubbles and added native iMessage via Photon in June 2026, which doesn't need a local Mac relay.
 
 Where they diverge more clearly: OpenClaw leans into environmental integration (device-level Nodes, Gmail Pub/Sub triggers, and the Canvas visual workspace). Hermes leans into programmatic depth and self-extension. The execute_code tool lets it collapse multi-step workflows into one sandboxed Python script (via RPC bridge). Add the skills system and subagent delegation, and Hermes is built to get more productive the longer you use it.
 
@@ -69,7 +69,7 @@ Where they diverge more clearly: OpenClaw leans into environmental integration (
 
 ### **OpenClaw strengths**
 
-Broadest multi-channel coverage in open-source agents (26 platforms as of v2026.6, including Teams, Google Chat, IRC, LINE, and other niche surfaces out of the box).
+Broad multi-channel coverage (26 platforms as of v2026.6, including Teams, Google Chat, IRC, LINE, Nostr, and Twitch out of the box).
 
 Deep, legible workspace model (markdown files are version-controllable and git-friendly).
 
@@ -113,7 +113,7 @@ Built-in OpenClaw migration path (hermes claw migrate) for users looking to swit
 
 Higher operational complexity (skills, memory, subagents, cron all need guardrails).
 
-Fewer messaging channels than OpenClaw (15+ vs. 26), with no Teams, Google Chat, IRC, LINE, or Twitch support.
+No Nostr or Twitch channels, and several platforms (SMS, ntfy, and IRC) are text-only, without voice, images, or threads.
 
 Subagent fan-out defaults to 3 concurrent children and a flat depth. Both are configurable, but nested delegation is opt-in and leaf subagents cannot delegate, call memory, or message the user.
 
@@ -133,7 +133,9 @@ Best for: developers and researchers who want a persistent collaborator they can
 
 ## **Leveling up web search with Parallel**
 
-OpenClaw and Hermes both depend on web search and deep research, and both ship with a menu of providers rather than a single hardcoded one. OpenClaw auto-detects Brave first among keyed providers and offers Parallel Search two ways: a free, key-free option and a paid API-backed one, each selected explicitly. Hermes defaults to Firecrawl and falls back to a DuckDuckGo skill when no key is present. Both support Parallel Search directly if you want web search infrastructure built specifically for agents.
+OpenClaw and Hermes both depend on web search and deep research, and both ship with a menu of providers rather than a single hardcoded one. OpenClaw auto-detects Brave first among keyed providers and offers Parallel Search two ways: a free, key-free option and a paid API-backed one, each selected explicitly. Hermes rotates across the free tiers of Exa, Parallel, Firecrawl, and Keenable when no key is set, and supports keyed backends including Firecrawl, Tavily, Exa, and Parallel. Both support Parallel Search directly if you want web search infrastructure built specifically for agents.
+
+For setup steps, see our [Hermes Agent web search guide](https://parallel.ai/articles/hermes-agent-web-search). New to Hermes? Start with [what Hermes Agent is](https://parallel.ai/articles/what-is-hermes-agent).
 
 ```
 openclaw plugins install @openclaw/parallel-plugin

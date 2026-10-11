@@ -2,6 +2,7 @@
 
 ### Comparison
 
+* [The best Tavily alternatives for AI agents in 2026](https://parallel.ai/articles/tavily-alternatives)
 * [Parallel Search vs. SerpApi vs. Brave vs. Bing for AI agents](https://parallel.ai/articles/parallel-vs-serpapi-vs-brave-vs-bing)
 * [Web scraping vs. search API for LLM apps](https://parallel.ai/articles/web-scraping-vs-search-api)
 * [Best Cursor plugins for research and competitive analysis](https://parallel.ai/articles/best-cursor-plugins-for-research)

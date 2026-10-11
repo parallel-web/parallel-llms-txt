@@ -84,7 +84,9 @@ At list price, Parallel Turbo and Fast and Perplexity Fast Search each cost $1 p
 
 ### Is there a free Tavily alternative?
 
-Most providers include a recurring free allowance. Parallel gives up to $80 at signup and $5 a month, Exa $10 a month, Brave $5 a month, and Firecrawl 1,000 credits a month. Our guide to [free web search APIs](https://parallel.ai/articles/best-free-web-search-api) compares them.
+Most providers include a recurring free allowance. Parallel gives up to $80 in free credits plus $5 a month with a card on file, Exa $10 a month, Brave $5 a month, and Firecrawl 1,000 credits a month. Our guide to [free web search APIs](https://parallel.ai/articles/best-free-web-search-api) compares them.
+
+Replacing a different provider? See our guides to [Exa alternatives](https://parallel.ai/articles/exa-alternatives) and [Firecrawl alternatives](https://parallel.ai/articles/firecrawl-alternatives).
 
 ## Sources
 

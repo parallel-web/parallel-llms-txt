@@ -6,7 +6,7 @@ Parallel scores higher than Tavily on hard, multi-hop research at a fifth to an 
 
 [Fast-tier search, per 1,000 requests: $1 vs. $5–$8](#cost) [Artificial Analysis Search Index, basic modes: 73 vs. 66](#accuracy) [BrowseComp, same frontier agent: 74% vs. 66%](#accuracy)
 
-Last updated October 9, 2026
+Last updated October 10, 2026
 
 ## What does Parallel do?
 
@@ -15,6 +15,7 @@ Parallel is one developer platform covering search, extraction, research, entity
 * [At a glance](#at-a-glance)
 * [Accuracy](#accuracy)
 * [Cost](#cost)
+* [Plans](#tavily-pricing)
 * [Research](#research)
 * [Features](#features)
 * [Which to pick](#decision)
@@ -124,6 +125,31 @@ Parallel: $2
 Tavily: $17.40
 
 Published list prices, October 2026\. Tavily prices search in credits, 1 for basic, fast, or ultra-fast and 2 for advanced, at $0.008 pay-as-you-go down to $0.005 on the $500-a-month Growth plan. Bar lengths use the pay-as-you-go rate. On Growth, Tavily basic matches Parallel Basic at $5\. Equal-accuracy row: Parallel’s September 9, 2026 run with a GPT-5.6 Luna agent, LLM tokens plus tool calls per 1,000 questions on a 100-question sample, Parallel Fast against Tavily, both at 94%. Enterprise pricing differs on both platforms.
+
+## How much does Tavily cost?
+
+Tavily bills in API credits. A basic, fast, or ultra-fast search uses 1 credit, and an advanced search uses 2\. Pay-as-you-go credits cost $0.008 each, and monthly plans bring that down to $0.005, so 1,000 basic searches cost $5 to $8 and 1,000 advanced searches cost $10 to $16\. Every account gets 1,000 free credits a month, and credits reset on the first day of each month.
+
+__Tavily plans, credits, and cost per 1,000 searches__
+| Plan          | Monthly price | Credits per month | Price per credit | Per 1,000 basic searches | Per 1,000 advanced searches |
+| ------------- | ------------- | ----------------- | ---------------- | ------------------------ | --------------------------- |
+| Researcher    | Free          | 1,000             | n/a              | Free up to 1,000         | Free up to 500              |
+| Project       | $30           | 4,000             | $0.0075          | $7.50                    | $15                         |
+| Bootstrap     | $100          | 15,000            | $0.0067          | $6.70                    | $13.40                      |
+| Startup       | $220          | 38,000            | $0.0058          | $5.80                    | $11.60                      |
+| Growth        | $500          | 100,000           | $0.005           | $5                       | $10                         |
+| Pay as you go | Per credit    | n/a               | $0.008           | $8                       | $16                         |
+| Enterprise    | Custom        | Custom            | Custom           | Custom                   | Custom                      |
+
+Costs use Tavily’s listed per-credit rates.
+
+Other endpoints draw from the same balance. Extract uses 1 credit per 5 successful URLs at basic depth and 2 at advanced, about $1.00 to $1.60 per 1,000 URLs at basic. Research is priced per request at 4 to 250 credits. Setting auto\_parameters can move a search to advanced depth and double its cost.
+
+Parallel charges per request, with no plans or credits. Search costs $1 per 1,000 requests on Turbo or Fast and $5 per 1,000 on Basic or Advanced, with 10 results included. Against Tavily’s lowest plan rate, that’s $1 versus $5 for 1,000 fast-tier searches, and $5 versus $10 for 1,000 advanced searches. New accounts get up to $80 in credits at signup and $5 more each month.
+
+Weighing more providers than these two? Read [Tavily alternatives](/ai/articles/tavily-alternatives) for a wider comparison.
+
+Sources: [tavily.com/pricing](https://www.tavily.com/pricing), [docs.tavily.com/documentation/api-credits](https://docs.tavily.com/documentation/api-credits), [parallel.ai/pricing](https://parallel.ai/pricing), [docs.parallel.ai/getting-started/pricing](https://docs.parallel.ai/getting-started/pricing), checked October 10, 2026.
 
 ## Deep research at batch scale
 
@@ -277,6 +303,8 @@ New accounts earn up to $80 at signup plus $5 in credits every month, which cove
 For accuracy on hard queries and for cost, yes. In the same harness Parallel scored higher on BrowseComp at both agent tiers, and the independent Artificial Analysis Search Index rates Parallel basic 73 against Tavily basic 66\. Parallel’s fast tiers list at a fifth to an eighth of Tavily’s. Tavily has the edge on framework integrations, site crawling, and default search rate limits.
 * **Parallel vs. Tavily: which is cheaper?**  
 Parallel, at published list prices. Tier for tier, search is $1 per 1,000 requests on Parallel Turbo or Fast against $5 to $8 for Tavily fast or ultra-fast, $5 against $5 to $8 on basic, and $5 against $10 to $16 on advanced. Tavily Research is priced dynamically per request, while Parallel’s Task processors have fixed prices from $5 to $2,400 per 1,000.
+* **How much does Tavily cost?**  
+Tavily includes 1,000 free credits a month. Beyond that, credits cost $0.008 each on pay-as-you-go, or $0.005 to $0.0075 on monthly plans from $30 for 4,000 credits to $500 for 100,000\. A basic search uses 1 credit and an advanced search 2, so 1,000 searches cost $5 to $8 at basic depth and $10 to $16 at advanced. Parallel Search costs $1 per 1,000 requests on Turbo or Fast and $5 on Basic or Advanced.
 * **Can I migrate from Tavily to Parallel?**  
 Yes. Search maps to Search, Extract to Extract, and Research to Task or Responses, with Python and TypeScript SDKs on both sides. Map and Crawl have no Parallel equivalent, and Tavily’s topic, answer, and image options have no direct parameter, so plan for those.
 * **Is Tavily faster than Parallel?**  
@@ -284,7 +312,7 @@ Per call, it depends on the query. In Parallel’s July 2026 run Tavily Ultra Fa
 * **Where does Tavily still win?**  
 Tavily has the broader framework ecosystem, led by LangChain, and ships Map and Crawl endpoints for whole-site extraction. It can return an LLM answer and images inline with search, allows 1,000 search requests per minute on production keys against Parallel’s 600, and states zero data retention by default. On Openbenchmarks’ company news board, Tavily was also more accurate than Parallel Fast on single-fact lookups.
 * **How current is this comparison?**  
-Parallel reviewed both providers’ documentation and price lists on October 1, 2026, and updated this page on October 9\. BrowseComp, SimpleQA Verified, and WideSearch figures come from Parallel’s September 9 runs, latency from its July run, Search Index scores from Artificial Analysis’s August launch table, and company search and news figures from Openbenchmarks’ September boards. Both platforms ship often, so check the linked sources.
+Parallel reviewed both providers’ documentation on October 1, 2026, and price lists on October 10, this page’s last update. BrowseComp, SimpleQA Verified, and WideSearch figures come from Parallel’s September 9 runs, latency from its July run, Search Index scores from Artificial Analysis’s August launch table, and company search and news figures from Openbenchmarks’ September boards. Both platforms ship often, so check the linked sources.
 
 Trusted by
 
