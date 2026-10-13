@@ -1,6 +1,6 @@
 # Search Capability Leaderboard
 
-Updated October 8, 2026
+Updated October 11, 2026
 
 What's the best model for agentic search?
 
@@ -8,9 +8,10 @@ Large language models rely on web search to find information that isn't availabl
 
 Insights
 
+* Average lift from search across all models: +33.3 points
 * [Claude Opus 5.5](/leaderboard/claude-opus-5-5) (Gold, Search Intelligence): Highest Search Intelligence Score (75.4). Great for tasks that require complex reasoning and maximum accuracy.
 * [Claude Haiku 5.5](/leaderboard/claude-haiku-5-5) (Gold, Search Efficiency): Most cost-efficient model ($24.3 per 1K tasks). Great for most queries, at 39× lower cost than the top model.
-* [Claude Sonnet 5](/leaderboard/claude-sonnet-5): Largest lift from search (+43.8). Most improved when paired with search.
+* [Grok 4.7 Medium](/leaderboard/grok-4-7): Largest lift from search (+44.8). Most improved when paired with search.
 
 ## Search Intelligence Leaderboard
 
@@ -28,28 +29,32 @@ Insights
 | 10   | [GPT-6 Sol](/leaderboard/gpt-6-sol)                              | 66.6              | 37.9                 | +28.7 | $183              | 260s          |
 | 11   | [Claude Sonnet 5](/leaderboard/claude-sonnet-5)                  | 66.6              | 22.8                 | +43.8 | $688              | 846s          |
 | 12   | [Muse Spark 1.3](/leaderboard/muse-spark-1-3)                    | 66.1              | 30.3                 | +35.8 | $142              | 274s          |
-| 13   | [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash)                | 65.1              | 39.0                 | +26.1 | $177              | 317s          |
-| 14   | [Mistral Large 4.0](/leaderboard/mistral-large-4-0)              | 64.4              | 21.4                 | +43.0 | $136              | —             |
-| 15   | [MiMo v2.6 Pro](/leaderboard/mimo-v2-6-pro)                      | 64.4              | 29.7                 | +34.7 | $76.5             | —             |
-| 16   | [Kimi K3](/leaderboard/kimi-k3)                                  | 64.2              | 30.6                 | +33.6 | $266              | 432s          |
-| 17   | [Claude Haiku 5.5](/leaderboard/claude-haiku-5-5)                | 62.9              | 23.5                 | +39.4 | $24.3             | 162s          |
-| 18   | [DeepSeek V4.1 Flash](/leaderboard/deepseek-v4-1-flash)          | 62.7              | 27.0                 | +35.7 | $35.8             | 549s          |
-| 19   | [GLM 5.3](/leaderboard/glm-5-3)                                  | 62.7              | 21.9                 | +40.8 | $78.5             | 308s          |
-| 20   | [GPT-6 Luna](/leaderboard/gpt-6-luna)                            | 61.9              | 28.0                 | +33.9 | $33.1             | 391s          |
-| 21   | [GLM 5.3 Flash](/leaderboard/glm-5-3-flash)                      | 60.8              | 20.4                 | +40.4 | $16.6             | 99.1s         |
-| 22   | [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna)                        | 60.7              | 26.9                 | +33.9 | $36.2             | 98.0s         |
-| 23   | [DeepSeek V4 Flash (0731)](/leaderboard/deepseek-v4-flash-0731)  | 59.2              | 24.0                 | +35.2 | $13.6             | 292s          |
-| 24   | [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview)            | 58.6              | 34.1                 | +24.5 | $114              | 276s          |
-| 25   | [DeepSeek V4 Pro](/leaderboard/deepseek-v4-pro)                  | 58.4              | 30.5                 | +27.9 | $110              | 383s          |
-| 26   | [Hunyuan 3](/leaderboard/hy3)                                    | 58.2              | 22.6                 | +35.6 | $28.4             | 363s          |
-| 27   | [GLM-5.2](/leaderboard/glm-5-2)                                  | 54.3              | 18.4                 | +35.9 | $66.6             | 301s          |
-| 28   | [DeepSeek V4 Pro (0813)](/leaderboard/deepseek-v4-pro-0813)      | 53.5              | 33.1                 | +20.4 | $234              | 394s          |
-| 29   | [DeepSeek V4 Flash](/leaderboard/deepseek-v4-flash)              | 53.1              | 19.5                 | +33.7 | $24.4             | 358s          |
-| 30   | [Nemotron 3 Ultra 550B](/leaderboard/nemotron-3-ultra-550b-a55b) | 53.0              | 15.3                 | +37.7 | $113              | 328s          |
-| 31   | [MiniMax M3](/leaderboard/minimax-m3)                            | 52.6              | 23.1                 | +29.5 | $41.1             | 291s          |
-| 32   | [MiMo v2.5](/leaderboard/mimo-v2-5)                              | 49.5              | 13.4                 | +36.1 | $23.5             | 894s          |
-| 33   | [Laguna S 2.1](/leaderboard/laguna-s-2-1)                        | 39.5              | 12.3                 | +27.2 | $21.4             | 459s          |
-| 34   | [Nemotron 3.5 Lightning](/leaderboard/nemotron-3-5-lightning)    | 37.9              | 9.8                  | +28.0 | $12.1             | 176s          |
+| 13   | [Grok 4.7 Medium](/leaderboard/grok-4-7)                         | 66.0              | 21.1                 | +44.8 | $252              | 521s          |
+| 14   | [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash)                | 65.1              | 39.0                 | +26.1 | $177              | 317s          |
+| 15   | [Hy4 Preview](/leaderboard/hy4-preview)                          | 64.6              | 30.6                 | +33.9 | $93.2             | 722s          |
+| 16   | [Mistral Large 4.0](/leaderboard/mistral-large-4-0)              | 64.4              | 21.4                 | +43.0 | $136              | —             |
+| 17   | [MiMo v2.6 Pro](/leaderboard/mimo-v2-6-pro)                      | 64.4              | 29.7                 | +34.7 | $76.5             | —             |
+| 18   | [Kimi K3](/leaderboard/kimi-k3)                                  | 64.2              | 30.6                 | +33.6 | $266              | 432s          |
+| 19   | [Claude Haiku 5.5](/leaderboard/claude-haiku-5-5)                | 62.9              | 23.5                 | +39.4 | $24.3             | 162s          |
+| 20   | [DeepSeek V4.1 Flash](/leaderboard/deepseek-v4-1-flash)          | 62.7              | 27.0                 | +35.7 | $35.8             | 549s          |
+| 21   | [GLM 5.3](/leaderboard/glm-5-3)                                  | 62.7              | 21.9                 | +40.8 | $78.5             | 308s          |
+| 22   | [GPT-6 Luna](/leaderboard/gpt-6-luna)                            | 61.9              | 28.0                 | +33.9 | $33.1             | 391s          |
+| 23   | [Step 5 Preview](/leaderboard/step-5-preview)                    | 61.1              | 27.8                 | +33.3 | $118              | 387s          |
+| 24   | [MiMo v2.6 Flash](/leaderboard/mimo-v2-6-flash)                  | 60.9              | 22.4                 | +38.5 | $25.2             | 1323s         |
+| 25   | [GLM 5.3 Flash](/leaderboard/glm-5-3-flash)                      | 60.8              | 20.4                 | +40.4 | $16.6             | 99.1s         |
+| 26   | [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna)                        | 60.7              | 26.9                 | +33.9 | $36.2             | 98.0s         |
+| 27   | [DeepSeek V4 Flash (0731)](/leaderboard/deepseek-v4-flash-0731)  | 59.2              | 24.0                 | +35.2 | $13.6             | 292s          |
+| 28   | [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview)            | 58.6              | 34.1                 | +24.5 | $114              | 276s          |
+| 29   | [DeepSeek V4 Pro](/leaderboard/deepseek-v4-pro)                  | 58.4              | 30.5                 | +27.9 | $110              | 383s          |
+| 30   | [Hunyuan 3](/leaderboard/hy3)                                    | 58.2              | 22.6                 | +35.6 | $28.4             | 363s          |
+| 31   | [GLM-5.2](/leaderboard/glm-5-2)                                  | 54.3              | 18.4                 | +35.9 | $66.6             | 301s          |
+| 32   | [DeepSeek V4 Pro (0813)](/leaderboard/deepseek-v4-pro-0813)      | 53.5              | 33.1                 | +20.4 | $234              | 394s          |
+| 33   | [DeepSeek V4 Flash](/leaderboard/deepseek-v4-flash)              | 53.1              | 19.5                 | +33.7 | $24.4             | 358s          |
+| 34   | [Nemotron 3 Ultra 550B](/leaderboard/nemotron-3-ultra-550b-a55b) | 53.0              | 15.3                 | +37.7 | $113              | 328s          |
+| 35   | [MiniMax M3](/leaderboard/minimax-m3)                            | 52.6              | 23.1                 | +29.5 | $41.1             | 291s          |
+| 36   | [MiMo v2.5](/leaderboard/mimo-v2-5)                              | 49.5              | 13.4                 | +36.1 | $23.5             | 894s          |
+| 37   | [Laguna S 2.1](/leaderboard/laguna-s-2-1)                        | 39.5              | 12.3                 | +27.2 | $21.4             | 459s          |
+| 38   | [Nemotron 3.5 Lightning](/leaderboard/nemotron-3-5-lightning)    | 37.9              | 9.8                  | +28.0 | $12.1             | 176s          |
 
 ## Search Efficiency Leaderboard
 
@@ -59,21 +64,23 @@ Most cost-efficient models scoring at or above the median Search Intelligence Sc
 | ---- | --------------------------------------------------- | ----------------- | ----------------- |
 | 1    | [Claude Haiku 5.5](/leaderboard/claude-haiku-5-5)   | $24.3             | 62.9              |
 | 2    | [MiMo v2.6 Pro](/leaderboard/mimo-v2-6-pro)         | $76.5             | 64.4              |
-| 3    | [Pareto 26.10](/leaderboard/pareto-26-10)           | $116              | 68.6              |
-| 4    | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash)   | $130              | 66.8              |
-| 5    | [GPT-6.1 Sol](/leaderboard/gpt-6-1-sol)             | $130              | 70.4              |
-| 6    | [Mistral Large 4.0](/leaderboard/mistral-large-4-0) | $136              | 64.4              |
-| 7    | [Muse Spark 1.3](/leaderboard/muse-spark-1-3)       | $142              | 66.1              |
-| 8    | [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash)   | $177              | 65.1              |
-| 9    | [GPT-6 Sol](/leaderboard/gpt-6-sol)                 | $183              | 66.6              |
-| 10   | [Pareto 26.9](/leaderboard/pareto-26-9)             | $184              | 72.5              |
-| 11   | [Kimi K3](/leaderboard/kimi-k3)                     | $266              | 64.2              |
-| 12   | [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)             | $269              | 67.7              |
-| 13   | [GPT-6 Astra](/leaderboard/gpt-6-astra)             | $401              | 70.8              |
-| 14   | [Claude Sonnet 5](/leaderboard/claude-sonnet-5)     | $688              | 66.6              |
-| 15   | [Claude Opus 5.5](/leaderboard/claude-opus-5-5)     | $949              | 75.4              |
-| 16   | [Claude Opus 5](/leaderboard/claude-opus-5)         | $1,012            | 70.0              |
-| 17   | [Claude Fable 5.1](/leaderboard/claude-fable-5-1)   | $1,655            | 72.7              |
+| 3    | [Hy4 Preview](/leaderboard/hy4-preview)             | $93.2             | 64.6              |
+| 4    | [Pareto 26.10](/leaderboard/pareto-26-10)           | $116              | 68.6              |
+| 5    | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash)   | $130              | 66.8              |
+| 6    | [GPT-6.1 Sol](/leaderboard/gpt-6-1-sol)             | $130              | 70.4              |
+| 7    | [Mistral Large 4.0](/leaderboard/mistral-large-4-0) | $136              | 64.4              |
+| 8    | [Muse Spark 1.3](/leaderboard/muse-spark-1-3)       | $142              | 66.1              |
+| 9    | [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash)   | $177              | 65.1              |
+| 10   | [GPT-6 Sol](/leaderboard/gpt-6-sol)                 | $183              | 66.6              |
+| 11   | [Pareto 26.9](/leaderboard/pareto-26-9)             | $184              | 72.5              |
+| 12   | [Grok 4.7 Medium](/leaderboard/grok-4-7)            | $252              | 66.0              |
+| 13   | [Kimi K3](/leaderboard/kimi-k3)                     | $266              | 64.2              |
+| 14   | [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)             | $269              | 67.7              |
+| 15   | [GPT-6 Astra](/leaderboard/gpt-6-astra)             | $401              | 70.8              |
+| 16   | [Claude Sonnet 5](/leaderboard/claude-sonnet-5)     | $688              | 66.6              |
+| 17   | [Claude Opus 5.5](/leaderboard/claude-opus-5-5)     | $949              | 75.4              |
+| 18   | [Claude Opus 5](/leaderboard/claude-opus-5)         | $1,012            | 70.0              |
+| 19   | [Claude Fable 5.1](/leaderboard/claude-fable-5-1)   | $1,655            | 72.7              |
 
 ## Methodology
 

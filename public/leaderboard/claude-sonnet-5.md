@@ -2,7 +2,7 @@
 
 * Search Intelligence Score: **66.6** (#11 in Search Intelligence)
 * Without search: 22.8 · Lift from search +43.8
-* Cost per 1K tasks: $688 (#14 in Search Efficiency)
+* Cost per 1K tasks: $688 (#16 in Search Efficiency)
 * Time per task: 846s
 * Lab: Anthropic · Model id: claude-sonnet-5
 
@@ -24,4 +24,4 @@
 | [Claude Fable 5.1](/leaderboard/claude-fable-5-1) | 72.7  | +30.3 | $1,655            | 512s          |
 | [Claude Opus 5.5](/leaderboard/claude-opus-5-5)   | 75.4  | +31.2 | $949              | 512s          |
 
-Latest update October 8, 2026\. Methodology: /leaderboard#methodology
+Latest update October 11, 2026\. Methodology: /leaderboard#methodology

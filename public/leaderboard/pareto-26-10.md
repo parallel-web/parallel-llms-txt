@@ -2,9 +2,8 @@
 
 * Search Intelligence Score: **68.6** (#7 in Search Intelligence)
 * Without search: 34.8 · Lift from search +33.8
-* Cost per 1K tasks: $116 (#3 in Search Efficiency)
+* Cost per 1K tasks: $116 (#4 in Search Efficiency)
 * Time per task: 436s
-* Medals: Bronze, Search Efficiency
 * Lab: Unbiased AI · Model id: unbiased/pareto-26.10
 
 ## Accuracy by benchmark
@@ -25,4 +24,4 @@
 | [Claude Opus 5](/leaderboard/claude-opus-5)       | 70.0  | +32.8 | $1,012            | 342s          |
 | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash) | 66.8  | +27.4 | $130              | 229s          |
 
-Latest update October 8, 2026\. Methodology: /leaderboard#methodology
+Latest update October 11, 2026\. Methodology: /leaderboard#methodology

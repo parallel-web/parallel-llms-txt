@@ -2,7 +2,7 @@
 
 * Search Intelligence Score: **70.0** (#6 in Search Intelligence)
 * Without search: 37.2 · Lift from search +32.8
-* Cost per 1K tasks: $1,012 (#16 in Search Efficiency)
+* Cost per 1K tasks: $1,012 (#18 in Search Efficiency)
 * Time per task: 342s
 * Lab: Anthropic · Model id: claude-opus-5
 
@@ -24,4 +24,4 @@
 | [Claude Opus 5.5](/leaderboard/claude-opus-5-5)   | 75.4  | +31.2 | $949              | 512s          |
 | [Claude Haiku 5.5](/leaderboard/claude-haiku-5-5) | 62.9  | +39.4 | $24.3             | 162s          |
 
-Latest update October 8, 2026\. Methodology: /leaderboard#methodology
+Latest update October 11, 2026\. Methodology: /leaderboard#methodology

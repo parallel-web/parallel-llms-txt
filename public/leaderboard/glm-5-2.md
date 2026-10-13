@@ -1,6 +1,6 @@
 # GLM-5.2 · Search Capability Leaderboard
 
-* Search Intelligence Score: **54.3** (#27 in Search Intelligence)
+* Search Intelligence Score: **54.3** (#31 in Search Intelligence)
 * Without search: 18.4 · Lift from search +35.9
 * Cost per 1K tasks: $66.6 (below the median score of 62.8, so not ranked on cost)
 * Time per task: 301s
@@ -24,4 +24,4 @@
 | [DeepSeek V4 Pro (0813)](/leaderboard/deepseek-v4-pro-0813) | 53.5  | +20.4 | $234              | 394s          |
 | [DeepSeek V4 Flash](/leaderboard/deepseek-v4-flash)         | 53.1  | +33.7 | $24.4             | 358s          |
 
-Latest update October 8, 2026\. Methodology: /leaderboard#methodology
+Latest update October 11, 2026\. Methodology: /leaderboard#methodology
