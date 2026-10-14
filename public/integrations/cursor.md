@@ -39,6 +39,7 @@ Cursor Plugin Marketplace; Agent Skill manual install; MCP one-click install
 
 Quick links
 
+* [Install Search MCP](https://parallel.ai/mcp)
 * [Setup and documentation](https://docs.parallel.ai/integrations/cursor-marketplace)
 * [Get a Parallel API key](https://platform.parallel.ai)
 

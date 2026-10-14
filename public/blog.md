@@ -1,5 +1,7 @@
-### \[Connect Lovable apps to the live web with Parallel\](https://parallel.ai/blog/lovable-parallel)
+### \[Using specialized data to improve research agent accuracy\](https://parallel.ai/blog/specialized-data-labbench2)
 
-By Parallel
+Measuring how biomedical databases change research agent accuracy on LABBench2
 
-September 28, 2026
+By Ethan Kam
+
+October 13, 2026

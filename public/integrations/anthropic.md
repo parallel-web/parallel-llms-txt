@@ -39,6 +39,7 @@ Anthropic API tool calling; Claude Desktop manual MCP
 
 Quick links
 
+* [Install Search MCP](https://parallel.ai/mcp)
 * [Setup and documentation](https://docs.parallel.ai/integrations/anthropic-tool-calling)
 * [Get a Parallel API key](https://platform.parallel.ai)
 
