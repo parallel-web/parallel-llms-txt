@@ -1,8 +1,8 @@
 # Claude Haiku 5.5 · Search Capability Leaderboard
 
-* Search Intelligence Score: **62.9** (#22 in Search Intelligence)
+* Search Intelligence Score: **62.9** (#23 in Search Intelligence)
 * Without search: 23.5 · Lift from search +39.4
-* Cost per 1K tasks: $24.3 (below the median score of 63.5, so not ranked on cost)
+* Cost per 1K tasks: $24.3 (below the median score of 64.2, so not ranked on cost)
 * Time per task: 162s
 * Lab: Anthropic · Model id: claude-haiku-5.5
 
@@ -24,4 +24,4 @@
 | [Claude Fable 5.1](/leaderboard/claude-fable-5-1)   | 72.7  | +30.3 | $1,655            | 512s          |
 | [Claude Sonnet 5.5](/leaderboard/claude-sonnet-5-5) | 74.1  | +40.9 | $796              | 500s          |
 
-Latest update October 12, 2026\. Methodology: /leaderboard#methodology
+Latest update October 13, 2026\. Methodology: /leaderboard#methodology

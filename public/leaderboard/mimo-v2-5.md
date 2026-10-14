@@ -1,8 +1,8 @@
 # MiMo v2.5 · Search Capability Leaderboard
 
-* Search Intelligence Score: **49.5** (#36 in Search Intelligence)
+* Search Intelligence Score: **49.5** (#40 in Search Intelligence)
 * Without search: 13.4 · Lift from search +36.1
-* Cost per 1K tasks: $23.5 (below the median score of 62.8, so not ranked on cost)
+* Cost per 1K tasks: $23.5 (below the median score of 64.2, so not ranked on cost)
 * Time per task: 894s
 * Lab: Xiaomi · Model id: xiaomi/mimo-v2.5
 
@@ -24,4 +24,4 @@
 | [MiniMax M3](/leaderboard/minimax-m3)                            | 52.6  | +29.5 | $41.1             | 291s          |
 | [Nemotron 3 Ultra 550B](/leaderboard/nemotron-3-ultra-550b-a55b) | 53.0  | +37.7 | $113              | 328s          |
 
-Latest update October 11, 2026\. Methodology: /leaderboard#methodology
+Latest update October 13, 2026\. Methodology: /leaderboard#methodology

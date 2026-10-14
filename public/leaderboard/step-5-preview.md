@@ -1,8 +1,8 @@
 # Step 5 Preview · Search Capability Leaderboard
 
-* Search Intelligence Score: **61.1** (#23 in Search Intelligence)
+* Search Intelligence Score: **61.1** (#27 in Search Intelligence)
 * Without search: 27.8 · Lift from search +33.3
-* Cost per 1K tasks: $118 (below the median score of 62.8, so not ranked on cost)
+* Cost per 1K tasks: $118 (below the median score of 64.2, so not ranked on cost)
 * Time per task: 387s
 * Lab: StepFun · Model id: stepfun/step-5-preview
 
@@ -24,4 +24,4 @@
 | [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna)       | 60.7  | +33.9 | $36.2             | 98.0s         |
 | [GPT-6 Luna](/leaderboard/gpt-6-luna)           | 61.9  | +33.9 | $33.1             | 391s          |
 
-Latest update October 11, 2026\. Methodology: /leaderboard#methodology
+Latest update October 13, 2026\. Methodology: /leaderboard#methodology

@@ -1,8 +1,8 @@
 # GPT-6 Sol · Search Capability Leaderboard
 
-* Search Intelligence Score: **66.6** (#10 in Search Intelligence)
+* Search Intelligence Score: **66.6** (#14 in Search Intelligence)
 * Without search: 37.9 · Lift from search +28.7
-* Cost per 1K tasks: $183 (#10 in Search Efficiency)
+* Cost per 1K tasks: $183 (#9 in Search Efficiency)
 * Time per task: 260s
 * Lab: OpenAI · Model id: gpt-6-sol
 
@@ -24,4 +24,4 @@
 | [GPT-6 Astra](/leaderboard/gpt-6-astra) | 70.8  | +27.9 | $401              | 83.7s         |
 | [GPT-6 Luna](/leaderboard/gpt-6-luna)   | 61.9  | +33.9 | $33.1             | 391s          |
 
-Latest update October 11, 2026\. Methodology: /leaderboard#methodology
+Latest update October 13, 2026\. Methodology: /leaderboard#methodology
