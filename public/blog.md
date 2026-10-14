@@ -1,7 +1,9 @@
-### \[Using specialized data to improve research agent accuracy\](https://parallel.ai/blog/specialized-data-labbench2)
+### \[Web Search for Browserbase is now powered by Parallel\](https://parallel.ai/blog/browserbase-search-powered-by-parallel)
 
-Measuring how biomedical databases change research agent accuracy on LABBench2
+Parallel is now the default search provider for the Browserbase Search API and Browserbase Agents, so agents can navigate the web end to end, from discovery and research to action.
 
-By Ethan Kam
+Tags:[Product](/blog?tag=product)
 
-October 13, 2026
+By Parallel
+
+October 14, 2026
