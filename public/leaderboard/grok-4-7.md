@@ -1,8 +1,8 @@
 # Grok 4.7 Medium · Search Capability Leaderboard
 
-* Search Intelligence Score: **66.0** (#17 in Search Intelligence)
+* Search Intelligence Score: **66.0** (#18 in Search Intelligence)
 * Without search: 21.1 · Lift from search +44.8
-* Cost per 1K tasks: $252 (#11 in Search Efficiency)
+* Cost per 1K tasks: $252 (#12 in Search Efficiency)
 * Time per task: 521s
 * Lab: xAI · Model id: x-ai/grok-4.7
 
@@ -24,4 +24,4 @@
 | [GPT-6 Sol](/leaderboard/gpt-6-sol)               | 66.6  | +28.7 | $183              | 260s          |
 | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash) | 66.8  | +27.4 | $130              | 229s          |
 
-Latest update October 13, 2026\. Methodology: /leaderboard#methodology
+Latest update October 15, 2026\. Methodology: /leaderboard#methodology

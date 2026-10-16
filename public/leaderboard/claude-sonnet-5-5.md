@@ -25,4 +25,4 @@
 | [Claude Opus 5](/leaderboard/claude-opus-5)       | 70.0  | +32.8 | $1,012            | 342s          |
 | [Claude Sonnet 5](/leaderboard/claude-sonnet-5)   | 66.6  | +43.8 | $688              | 846s          |
 
-Latest update October 13, 2026\. Methodology: /leaderboard#methodology
+Latest update October 15, 2026\. Methodology: /leaderboard#methodology
