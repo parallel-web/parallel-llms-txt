@@ -29,16 +29,12 @@
 * [ScrapingBee vs. Parallel: a scraping API with a search feature, or a search API](https://parallel.ai/articles/scrapingbee-vs-parallel)
 * [Apify vs. Parallel: a scraper marketplace against a retrieval API](https://parallel.ai/articles/apify-vs-parallel)
 * [Crawl4AI vs. Parallel: self-host the crawler, or buy the retrieval?](https://parallel.ai/articles/crawl4ai-vs-parallel)
-* [Perplexity Search API vs. Parallel Search API: a head-to-head on the search layer](https://parallel.ai/articles/perplexity-search-api-vs-parallel-search-api)
 * [You.com vs. Parallel: two near-identical API lineups, priced differently](https://parallel.ai/articles/you-com-vs-parallel)
 * [Bright Data SERP API vs. Parallel: unblocking infrastructure or retrieval infrastructure?](https://parallel.ai/articles/bright-data-serp-api-vs-parallel)
 * [Perplexity Sonar vs. Parallel (and what replaces Sonar)](https://parallel.ai/articles/perplexity-sonar-vs-parallel)
 * [Jina AI Reader vs. Parallel: two ways to turn the web into model input](https://parallel.ai/articles/jina-ai-reader-vs-parallel)
 * [Serper vs. Parallel: the cheapest SERP API against the cheapest agent search](https://parallel.ai/articles/serper-vs-parallel)
 * [Linkup vs. Parallel: comparing two accuracy-first search APIs](https://parallel.ai/articles/linkup-vs-parallel)
-* [Brave Search API vs. Parallel: independent index or agent-native retrieval?](https://parallel.ai/articles/brave-search-api-vs-parallel)
-* [SerpApi vs. Parallel: SERP JSON fidelity vs retrieval for models](https://parallel.ai/articles/serpapi-vs-parallel)
-* [Firecrawl vs. Parallel: scraping platform or search platform?](https://parallel.ai/articles/firecrawl-vs-parallel)
 * [OpenAI web search vs. Parallel vs. Exa vs. Tavily: how to choose](https://parallel.ai/articles/openai-web-search-vs-parallel-vs-exa-vs-tavily-how-to-choose)
 * [OpenAI Responses agents: how to choose the right web search backend](https://parallel.ai/articles/openai-responses-agents-how-to-choose-the-right-web-search-backend)
 * [The honest 2026 comparison: web search APIs for AI agents](https://parallel.ai/articles/the-honest-2026-comparison-web-search-apis-for-ai-agents)
@@ -49,6 +45,9 @@
 
 ### Guides
 
+* [Best web search APIs with EU data residency (2026)](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
+* [Build an EU research agent with the Parallel Search API](https://parallel.ai/articles/build-eu-research-agent-parallel-search)
+* [GDPR and AI agents: what web search and extraction change](https://parallel.ai/articles/gdpr-ai-agents-web-search-extraction)
 * [How to add web search to Kimi K3 and other open-weight models](https://parallel.ai/articles/kimi-k3-web-search)
 * [How to get better web search in Hermes Agent with Parallel’s free Search MCP](https://parallel.ai/articles/hermes-agent-web-search)
 * [How to add better web search to DeepSeek Harness: plugins and MCP setup](https://parallel.ai/articles/deepseek-harness-web-search)
@@ -119,8 +118,9 @@
 * [How to build an AI lead generation pipeline using live web data](https://parallel.ai/articles/how-to-build-an-ai-lead-generation-pipeline)
 * [OpenClaw web search best practices: getting maximum accuracy from Parallel](https://parallel.ai/articles/openclaw-best-practices-web-search)
 
-### Industry Terms
+### Industry terms
 
+* [Data residency vs data sovereignty for AI agents](https://parallel.ai/articles/data-residency-vs-data-sovereignty)
 * [What is Hermes Agent? Nous Research's open-source personal agent explained](https://parallel.ai/articles/what-is-hermes-agent)
 * [What is context engineering? A guide for AI agent builders](https://parallel.ai/articles/what-is-context-engineering)
 * [What is a web search MCP? How AI agents search the live web](https://parallel.ai/articles/what-is-a-web-search-mcp)

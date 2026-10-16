@@ -8,12 +8,12 @@ npm tokens that bypass 2FA are being restricted — account changes (Aug 2026) a
 
 TypeScript icon, indicating that this package has built-in type declarations
 
-1\.3.5 • Public • Published 14 days ago
+1\.3.5 • Public • Published 16 days ago
 
 * [Readme](https://www.npmjs.com/package/parallel-web?activeTab=readme)
 * [Code Beta](https://www.npmjs.com/package/parallel-web?activeTab=code)
 * [0 Dependencies](https://www.npmjs.com/package/parallel-web?activeTab=dependencies)
-* [14 Dependents](https://www.npmjs.com/package/parallel-web?activeTab=dependents)
+* [16 Dependents](https://www.npmjs.com/package/parallel-web?activeTab=dependents)
 * [24 Versions](https://www.npmjs.com/package/parallel-web?activeTab=versions)
 
 # Parallel TypeScript API Library
@@ -389,7 +389,7 @@ none
 
 ### Weekly Downloads
 
-251,699
+143,515
 
 ### Version
 
@@ -401,7 +401,7 @@ MIT
 
 ### Last publish
 
-14 days ago
+16 days ago
 
 ### Collaborators
 
