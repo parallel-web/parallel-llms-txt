@@ -1,10 +1,12 @@
 # Introducing Turbo mode for Parallel Search
 
-Today, we're releasing **Turbo **mode for [Parallel Search](https://parallel.ai/products/search), the fastest and most affordable way to ground your agents in high-quality information from the web.
+Today, we're releasing **Turbo **mode for [Parallel Search](https://parallel.ai/products/search), a low-latency, low-cost way to ground your agents in high-quality information from the web.
+
+**Update, October 2026:** Parallel Search has four modes. Turbo (about 200ms) and Fast (about 700ms) both cost $1 per 1,000 requests, and our [Search modes docs](https://docs.parallel.ai/search/modes) recommend Fast as the starting point for most agents. Pick Turbo when a user is waiting on the answer and your queries are in English or Japanese.
 
 ## Do 14x more research in 5x less time
 
-With a median latency of 200ms (p50) and a price of just $1 per 1,000 requests, Turbo is in a class of its own. It’s up to 14x cheaper than the default search in frontier models, while maintaining similar or better accuracy. 
+With a median latency of 200ms (p50) and a price of just $1 per 1,000 requests, Turbo remains the lowest-latency Search mode. It's up to 14x cheaper than the default search in frontier models, while maintaining similar or better accuracy. 
 
 ---
 
@@ -455,6 +457,10 @@ Agents change the shape of demand for web data. A typical person runs a handful 
 At $1 per 1,000 requests, there is less need to ration search, and developers can run it in more scenarios than ever: from every chat request to every row in a batch job. With web search this fast and affordable, every piece of software can be grounded in the web.
 
 Turbo is the first product powered by Parallel’s new search architecture: a re-engineered search stack with innovation across hardware, model training, and index design to bring the cost and speed of search closer to zero.
+
+## Choosing between Turbo and Fast
+
+Pick the mode per call. Turbo fits voice agents, realtime chat, and high-volume single lookups in English or Japanese. Fast fits interactive tool-calling agents. In our September 9, 2026 benchmarks at the low-cost tier, Fast scored 44% on BrowseComp and Turbo scored 32%, at the same per-request price. Send background multi-hop research to Advanced. Our guide, [Fast vs. Turbo: choosing a Parallel Search mode for agent loops](https://parallel.ai/articles/parallel-search-fast-vs-turbo), has the latency math for loops of 1 to 15 calls.
 
 ## Get started
 

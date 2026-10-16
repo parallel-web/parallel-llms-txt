@@ -19,7 +19,7 @@ Insights
 | ---- | ---------------------------------------------------------------- | ----------------- | -------------------- | ----- | ----------------- | ------------- |
 | 1    | [Claude Opus 5.5](/leaderboard/claude-opus-5-5)                  | 75.4              | 44.2                 | +31.2 | $949              | 512s          |
 | 2    | [Claude Sonnet 5.5](/leaderboard/claude-sonnet-5-5)              | 74.1              | 33.2                 | +40.9 | $796              | 500s          |
-| 3    | [Claude Fable 5.1](/leaderboard/claude-fable-5-1)                | 72.7              | 42.4                 | +30.3 | $1,655            | 512s          |
+| 3    | [Claude Fable 5.1](/leaderboard/claude-fable-5-1)                | 73.4              | 46.8                 | +26.5 | $1,762            | 416s          |
 | 4    | [Pareto 26.9](/leaderboard/pareto-26-9)                          | 72.5              | 39.7                 | +32.8 | $184              | 211s          |
 | 5    | [Gemini 4 Argon](/leaderboard/gemini-4-argon)                    | 72.2              | 34.9                 | +37.2 | $270              | 206s          |
 | 6    | [Muse Wonder 1.0](/leaderboard/muse-wonder-1-0)                  | 71.3              | 35.3                 | +36.0 | $709              | 287s          |
@@ -88,7 +88,7 @@ Most cost-efficient models scoring at or above the median Search Intelligence Sc
 | 19   | [Claude Sonnet 5.5](/leaderboard/claude-sonnet-5-5) | $796              | 74.1              |
 | 20   | [Claude Opus 5.5](/leaderboard/claude-opus-5-5)     | $949              | 75.4              |
 | 21   | [Claude Opus 5](/leaderboard/claude-opus-5)         | $1,012            | 70.0              |
-| 22   | [Claude Fable 5.1](/leaderboard/claude-fable-5-1)   | $1,655            | 72.7              |
+| 22   | [Claude Fable 5.1](/leaderboard/claude-fable-5-1)   | $1,762            | 73.4              |
 
 ## Methodology
 

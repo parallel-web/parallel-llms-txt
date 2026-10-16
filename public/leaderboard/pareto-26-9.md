@@ -20,8 +20,8 @@
 | ------------------------------------------------- | ----- | ----- | ----------------- | ------------- |
 | Pareto 26.9                                       | 72.5  | +32.8 | $184              | 211s          |
 | [Pareto 26.10](/leaderboard/pareto-26-10)         | 68.6  | +33.8 | $116              | 436s          |
-| [Claude Fable 5.1](/leaderboard/claude-fable-5-1) | 72.7  | +30.3 | $1,655            | 512s          |
 | [Gemini 4 Argon](/leaderboard/gemini-4-argon)     | 72.2  | +37.2 | $270              | 206s          |
+| [Claude Fable 5.1](/leaderboard/claude-fable-5-1) | 73.4  | +26.5 | $1,762            | 416s          |
 | [Muse Wonder 1.0](/leaderboard/muse-wonder-1-0)   | 71.3  | +36.0 | $709              | 287s          |
 
 Latest update October 13, 2026\. Methodology: /leaderboard#methodology
