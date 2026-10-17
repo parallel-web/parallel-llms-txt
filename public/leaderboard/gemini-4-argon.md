@@ -2,7 +2,7 @@
 
 * Search Intelligence Score: **72.2** (#5 in Search Intelligence)
 * Without search: 34.9 · Lift from search +37.2
-* Cost per 1K tasks: $270 (#14 in Search Efficiency)
+* Cost per 1K tasks: $270 (#15 in Search Efficiency)
 * Time per task: 206s
 * Lab: Google · Model id: google/gemini-4-argon
 
@@ -24,4 +24,4 @@
 | [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview) | 58.6  | +24.5 | $114              | 276s          |
 | [Pareto 26.9](/leaderboard/pareto-26-9)               | 72.5  | +32.8 | $184              | 211s          |
 
-Latest update October 15, 2026\. Methodology: /leaderboard#methodology
+Latest update October 16, 2026\. Methodology: /leaderboard#methodology

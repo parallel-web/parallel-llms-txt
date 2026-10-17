@@ -146,6 +146,12 @@
 
 ### Other
 
+* [Calculating a source’s value: how to score credibility and contribution](https://parallel.ai/articles/calculating-a-sources-value-how-to-score-credibility-and-contribution)
+* [Who pays for the visibility-value gap on the agentic web](https://parallel.ai/articles/who-pays-for-the-visibility-value-gap-on-the-agentic-web)
+* [The paywall paradox: why gating content loses readers, and what AI agents change](https://parallel.ai/articles/the-paywall-paradox-why-gating-content-loses-readers-and-what-ai-agents-change)
+* [How to create original content that AI search can’t replace](https://parallel.ai/articles/how-to-create-original-content-that-ai-search-cant-replace)
+* [The visibility value gap: why the most visible sites aren’t the most valuable to AI agents](https://parallel.ai/articles/the-visibility-value-gap-why-the-most-visible-sites-arent-the-most-valuable-to-ai-agents)
+* [What makes a source irreplaceable?](https://parallel.ai/articles/what-makes-a-source-irreplaceable)
 * [OpenClaw vs Claude Code: which AI agent should you actually use?](https://parallel.ai/articles/openclaw-vs-claude-code-which-ai-agent-should-you-actually-use)
 * [The best Google Custom Search API alternative for AI agents](https://parallel.ai/articles/the-best-google-custom-search-api-alternative-for-ai-agents)
 * [Gemini CLI vs Claude Code: which terminal coding agent should you use?](https://parallel.ai/articles/gemini-cli-vs-claude-code-which-terminal-coding-agent-should-you-use)

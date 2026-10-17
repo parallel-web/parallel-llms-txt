@@ -1,8 +1,8 @@
 # Claude Sonnet 5 · Search Capability Leaderboard
 
-* Search Intelligence Score: **66.6** (#15 in Search Intelligence)
+* Search Intelligence Score: **66.6** (#16 in Search Intelligence)
 * Without search: 22.8 · Lift from search +43.8
-* Cost per 1K tasks: $688 (#17 in Search Efficiency)
+* Cost per 1K tasks: $688 (#18 in Search Efficiency)
 * Time per task: 846s
 * Lab: Anthropic · Model id: claude-sonnet-5
 
@@ -24,4 +24,4 @@
 | [Claude Fable 5.1](/leaderboard/claude-fable-5-1)   | 73.4  | +26.5 | $1,762            | 416s          |
 | [Claude Sonnet 5.5](/leaderboard/claude-sonnet-5-5) | 74.1  | +40.9 | $796              | 500s          |
 
-Latest update October 13, 2026\. Methodology: /leaderboard#methodology
+Latest update October 16, 2026\. Methodology: /leaderboard#methodology

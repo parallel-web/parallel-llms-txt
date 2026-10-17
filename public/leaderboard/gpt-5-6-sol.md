@@ -24,4 +24,4 @@
 | [GPT-6 Astra](/leaderboard/gpt-6-astra) | 70.8  | +27.9 | $401              | 83.7s         |
 | [GPT-6 Luna](/leaderboard/gpt-6-luna)   | 61.9  | +33.9 | $33.1             | 391s          |
 
-Latest update October 13, 2026\. Methodology: /leaderboard#methodology
+Latest update October 15, 2026\. Methodology: /leaderboard#methodology

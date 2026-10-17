@@ -1,6 +1,6 @@
 # Mistral Large 4.0 · Search Capability Leaderboard
 
-* Search Intelligence Score: **64.4** (#20 in Search Intelligence)
+* Search Intelligence Score: **64.4** (#21 in Search Intelligence)
 * Without search: 21.4 · Lift from search +43.0
 * Cost per 1K tasks: $136 (#6 in Search Efficiency)
 * Time per task: —
@@ -24,4 +24,4 @@
 | [Kimi K3](/leaderboard/kimi-k3)                   | 64.2  | +33.6 | $266              | 432s          |
 | [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash) | 65.1  | +26.1 | $177              | 317s          |
 
-Latest update October 13, 2026\. Methodology: /leaderboard#methodology
+Latest update October 15, 2026\. Methodology: /leaderboard#methodology

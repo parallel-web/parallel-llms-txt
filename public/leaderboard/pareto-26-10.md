@@ -17,12 +17,12 @@
 
 ## Compared with
 
-| Model                                       | Score | Lift  | Cost per 1K tasks | Time per task |
-| ------------------------------------------- | ----- | ----- | ----------------- | ------------- |
-| Pareto 26.10                                | 68.6  | +33.8 | $116              | 436s          |
-| [Pareto 26.9](/leaderboard/pareto-26-9)     | 72.5  | +32.8 | $184              | 211s          |
-| [Ember-1](/leaderboard/ember-1)             | 67.9  | +38.0 | $335              | 487s          |
-| [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)     | 67.7  | +26.3 | $269              | 107s          |
-| [Claude Opus 5](/leaderboard/claude-opus-5) | 70.0  | +32.8 | $1,012            | 342s          |
+| Model                                           | Score | Lift  | Cost per 1K tasks | Time per task |
+| ----------------------------------------------- | ----- | ----- | ----------------- | ------------- |
+| Pareto 26.10                                    | 68.6  | +33.8 | $116              | 436s          |
+| [Pareto 26.9](/leaderboard/pareto-26-9)         | 72.5  | +32.8 | $184              | 211s          |
+| [Ember-1](/leaderboard/ember-1)                 | 67.9  | +38.0 | $335              | 487s          |
+| [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)         | 67.7  | +26.3 | $269              | 107s          |
+| [Muse Spark Open](/leaderboard/muse-spark-open) | 67.2  | +31.8 | $171              | 360s          |
 
-Latest update October 13, 2026\. Methodology: /leaderboard#methodology
+Latest update October 15, 2026\. Methodology: /leaderboard#methodology

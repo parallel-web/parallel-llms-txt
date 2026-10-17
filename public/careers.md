@@ -31,7 +31,6 @@ We recruit likeminded curious, optimistic, and ambitious people who see the work
 | [GTM Leader, AI Native](https://jobs.ashbyhq.com/parallel/b7bd3dda-7504-48d7-a757-8d89b52ff985)                              | GTM                  | San Francisco / Palo Alto            | Full time      |
 | [GTM Leader, Enterprise](https://jobs.ashbyhq.com/parallel/4fac04bc-a15a-4b4b-9fe0-a5cbec27c687)                             | GTM                  | San Francisco / Palo Alto / New York | Full time      |
 | [GTM, Enterprise](https://jobs.ashbyhq.com/parallel/f3a80c31-90a1-4252-b4d3-a6274f4d205c)                                    | GTM                  | San Francisco / Palo Alto / New York | Full time      |
-| [Controller](https://jobs.ashbyhq.com/parallel/055cd8fd-ac80-4d76-9aa4-abcfc3244c87)                                         | Operations           | San Francisco / Palo Alto            | Full time      |
 | [GA Recruiter](https://jobs.ashbyhq.com/parallel/08b29fa6-eb90-4aac-b28a-8ef6a46edc15)                                       | Operations           | Palo Alto                            | Full time      |
 | [GTM Recruiter](https://jobs.ashbyhq.com/parallel/8516b163-698e-4359-98a5-cc573749e13e)                                      | Operations           | San Francisco / Palo Alto / New York | Full time      |
 | [Legal Ops](https://jobs.ashbyhq.com/parallel/07e9f010-e7c8-4c01-b650-997b659c53fb)                                          | Operations           | Palo Alto                            | Full time      |

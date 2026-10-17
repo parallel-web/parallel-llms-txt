@@ -1,6 +1,6 @@
 # Best web search APIs with EU data residency (2026)
 
-Few web search APIs document a way to process requests in the EU. As of October 14, 2026, Staan hosts its service in Europe, Linkup offers guaranteed local processing on enterprise agreements, and Parallel offers EU data residency for Search API requests in basic mode. Brave, Exa, Tavily, and Perplexity don't document an EU processing option.
+Few web search APIs document a way to process requests in the EU. As of October 14, 2026, Staan hosts its service in Europe, Linkup offers guaranteed local processing on enterprise agreements, and Parallel offers EU data residency for Search API requests in basic mode. Brave, Exa, Tavily, Perplexity, Firecrawl, and SerpApi don't document an EU processing option.
 
 Parallel makes one of the products in this guide. We held every vendor, including ourselves, to the same rule. A claim goes in only if the vendor states it in its own public documentation. Vendor pages change, so treat each fact as true on the date we checked it, and ask vendors directly about anything that matters to you.
 
@@ -21,6 +21,8 @@ Two things often get mistaken for residency. A country or location setting chang
 | Exa | None documented | Offers zero data retention on Enterprise plans |
 | Tavily | None documented | Relies on Standard Contractual Clauses for transfers to the US |
 | Perplexity | None documented | Hosted in North America |
+| Firecrawl | None documented for its cloud service | Its open-source version can be self-hosted on EU servers |
+| SerpApi | None documented | A US company. ZeroTrace mode stops search data being stored |
 
 ## Parallel
 
@@ -40,14 +42,16 @@ Staan's [FAQ](https://www.staan.ai/faq) says its infrastructure is hosted in Eur
 
 **In Staan's favor.** If you need a European provider on European infrastructure, Staan makes the strongest claim of any vendor here.
 
-## Brave, Exa, Tavily, and Perplexity
+## Brave, Exa, Tavily, Perplexity, Firecrawl, and SerpApi
 
-None of these four documents an EU processing option. Each offers other privacy controls.
+None of these six documents an EU processing option. Each offers other privacy controls.
 
 - **Brave.** Its [API privacy notice](https://api-dashboard.search.brave.com/documentation/resources/privacy-notice) says the service is provided by Brave Software Inc. in the US, with zero data retention for enterprise customers. Brave runs its [own index](https://brave.com/search/api/).
 - **Exa.** Its docs offer [zero data retention](https://exa.ai/docs/admin/security/zero-data-retention) on Enterprise plans.
 - **Tavily.** Its [privacy policy](https://docs.tavily.com/documentation/privacy) names a US company and says transfers to US service providers rely on Standard Contractual Clauses.
 - **Perplexity.** Its [FAQ](https://docs.perplexity.ai/docs/resources/faq) says compute is hosted on AWS in North America.
+- **Firecrawl.** Its [privacy policy](https://www.firecrawl.dev/privacy-policy) tells users in Europe that their information is transferred to the United States. Firecrawl is open source, and its [self-hosting guide](https://docs.firecrawl.dev/contributing/self-host) lets a team run it on its own servers, which puts data location in the team's hands along with the operations.
+- **SerpApi.** Its [privacy policy](https://serpapi.com/legal) names a Texas company and says international transfers rely on safeguards such as Standard Contractual Clauses. Its ZeroTrace mode stops search data from being stored.
 
 ## How to choose an EU search API
 
@@ -66,7 +70,7 @@ To use Parallel in the EU, see [parallel.ai/europe](https://parallel.ai/europe) 
 
 ### Which web search APIs offer EU data residency?
 
-As of October 14, 2026, Parallel, Linkup, and Staan document a way to process search requests in the EU. Brave, Exa, Tavily, and Perplexity don't document one.
+As of October 14, 2026, Parallel, Linkup, and Staan document a way to process search requests in the EU. Brave, Exa, Tavily, Perplexity, Firecrawl, and SerpApi don't document one.
 
 ### Does Parallel's EU endpoint keep all data in the EU?
 
@@ -86,7 +90,7 @@ No. A country or location setting changes which results come back. It doesn't ch
 
 ## Sources
 
-All accessed October 14, 2026.
+All accessed October 14, 2026, except Firecrawl and SerpApi, accessed October 16, 2026.
 
 - Parallel: [Privacy Policy](https://parallel.ai/privacy-policy)
 - Linkup: [Data processing and privacy](https://docs.linkup.so/pages/security-and-privacy/data-processing-privacy), [Security and compliance](https://docs.linkup.so/pages/security-and-privacy/security-compliance)
@@ -95,3 +99,5 @@ All accessed October 14, 2026.
 - Exa: [Zero data retention](https://exa.ai/docs/admin/security/zero-data-retention)
 - Tavily: [Privacy policy](https://docs.tavily.com/documentation/privacy)
 - Perplexity: [FAQ](https://docs.perplexity.ai/docs/resources/faq)
+- Firecrawl: [Privacy policy](https://www.firecrawl.dev/privacy-policy), [Self-hosting Firecrawl](https://docs.firecrawl.dev/contributing/self-host)
+- SerpApi: [Legal documents and privacy policy](https://serpapi.com/legal)

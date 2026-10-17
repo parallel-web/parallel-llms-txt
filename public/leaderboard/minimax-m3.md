@@ -1,8 +1,8 @@
 # MiniMax M3 · Search Capability Leaderboard
 
-* Search Intelligence Score: **52.6** (#39 in Search Intelligence)
+* Search Intelligence Score: **52.6** (#40 in Search Intelligence)
 * Without search: 23.1 · Lift from search +29.5
-* Cost per 1K tasks: $41.1 (below the median score of 64.2, so not ranked on cost)
+* Cost per 1K tasks: $41.1 (below the median score of 64.3, so not ranked on cost)
 * Time per task: 291s
 * Lab: MiniMax · Model id: minimax/minimax-m3
 
@@ -24,4 +24,4 @@
 | [DeepSeek V4 Pro (0813)](/leaderboard/deepseek-v4-pro-0813)      | 53.5  | +20.4 | $234              | 394s          |
 | [GLM-5.2](/leaderboard/glm-5-2)                                  | 54.3  | +35.9 | $66.6             | 301s          |
 
-Latest update October 13, 2026\. Methodology: /leaderboard#methodology
+Latest update October 15, 2026\. Methodology: /leaderboard#methodology
