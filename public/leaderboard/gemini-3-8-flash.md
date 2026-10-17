@@ -24,4 +24,4 @@
 | [Gemini 4 Argon](/leaderboard/gemini-4-argon)         | 72.2  | +37.2 | $270              | 206s          |
 | [Hy4 Preview](/leaderboard/hy4-preview)               | 64.6  | +33.9 | $93.2             | 722s          |
 
-Latest update October 15, 2026\. Methodology: /leaderboard#methodology
+Latest update October 16, 2026\. Methodology: /leaderboard#methodology

@@ -24,4 +24,4 @@
 | [GPT-6 Sol](/leaderboard/gpt-6-sol)               | 66.6  | +28.7 | $183              | 260s          |
 | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash) | 66.8  | +27.4 | $130              | 229s          |
 
-Latest update October 15, 2026\. Methodology: /leaderboard#methodology
+Latest update October 16, 2026\. Methodology: /leaderboard#methodology

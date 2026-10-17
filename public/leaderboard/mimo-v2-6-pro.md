@@ -25,4 +25,4 @@
 | [Mistral Large 4.0](/leaderboard/mistral-large-4-0) | 64.4  | +43.0 | $136              | —             |
 | [Kimi K3](/leaderboard/kimi-k3)                     | 64.2  | +33.6 | $266              | 432s          |
 
-Latest update October 15, 2026\. Methodology: /leaderboard#methodology
+Latest update October 16, 2026\. Methodology: /leaderboard#methodology

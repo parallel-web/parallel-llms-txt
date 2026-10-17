@@ -25,4 +25,4 @@
 | [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)         | 67.7  | +26.3 | $269              | 107s          |
 | [Muse Spark Open](/leaderboard/muse-spark-open) | 67.2  | +31.8 | $171              | 360s          |
 
-Latest update October 15, 2026\. Methodology: /leaderboard#methodology
+Latest update October 16, 2026\. Methodology: /leaderboard#methodology

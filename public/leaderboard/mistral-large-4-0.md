@@ -24,4 +24,4 @@
 | [Kimi K3](/leaderboard/kimi-k3)                   | 64.2  | +33.6 | $266              | 432s          |
 | [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash) | 65.1  | +26.1 | $177              | 317s          |
 
-Latest update October 15, 2026\. Methodology: /leaderboard#methodology
+Latest update October 16, 2026\. Methodology: /leaderboard#methodology

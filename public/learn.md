@@ -1,5 +1,6 @@
 ## Learn
 
+* [Data residency](https://parallel.ai/learn/data-residency)
 * [Web unlocker](https://parallel.ai/learn/web-unlocker)
 * [RAG (Retrieval-Augmented Generation)](https://parallel.ai/learn/rag-retrieval-augmented-generation)
 * [Citations API](https://parallel.ai/learn/citations-api)

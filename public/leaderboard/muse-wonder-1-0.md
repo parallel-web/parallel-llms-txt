@@ -2,7 +2,7 @@
 
 * Search Intelligence Score: **71.3** (#6 in Search Intelligence)
 * Without search: 35.3 · Lift from search +36.0
-* Cost per 1K tasks: $709 (#18 in Search Efficiency)
+* Cost per 1K tasks: $709 (#19 in Search Efficiency)
 * Time per task: 287s
 * Lab: Meta · Model id: meta/muse-wonder-1.0
 
@@ -24,4 +24,4 @@
 | [GPT-6 Astra](/leaderboard/gpt-6-astra)         | 70.8  | +27.9 | $401              | 83.7s         |
 | [Gemini 4 Argon](/leaderboard/gemini-4-argon)   | 72.2  | +37.2 | $270              | 206s          |
 
-Latest update October 15, 2026\. Methodology: /leaderboard#methodology
+Latest update October 16, 2026\. Methodology: /leaderboard#methodology
