@@ -4,7 +4,7 @@
 * Without search: 39.4 · Lift from search +27.4
 * Cost per 1K tasks: $130 (#4 in Search Efficiency)
 * Time per task: 229s
-* Lab: Google · Model id: google/gemini-3.7-flash
+* Lab: Google · Weights: Closed · Model id: google/gemini-3.7-flash
 
 ## Accuracy by benchmark
 
@@ -24,4 +24,4 @@
 | [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview) | 58.6  | +24.5 | $114              | 276s          |
 | [GPT-6 Sol](/leaderboard/gpt-6-sol)                   | 66.6  | +28.7 | $183              | 260s          |
 
-Latest update October 16, 2026\. Methodology: /leaderboard#methodology
+Latest update October 17, 2026\. Methodology: /leaderboard#methodology

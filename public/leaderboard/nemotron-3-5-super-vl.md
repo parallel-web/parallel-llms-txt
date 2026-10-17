@@ -2,9 +2,9 @@
 
 * Search Intelligence Score: **59.1** (#33 in Search Intelligence)
 * Without search: 17.0 · Lift from search +42.2
-* Cost per 1K tasks: $93.9 (below the median score of 64.2, so not ranked on cost)
+* Cost per 1K tasks: $93.9 (below the median score of 63.5, so not ranked on cost)
 * Time per task: 181s
-* Lab: NVIDIA · Model id: nvidia/nemotron-3.5-super-vl
+* Lab: NVIDIA · Weights: Open weights · Model id: nvidia/nemotron-3.5-super-vl
 
 ## Accuracy by benchmark
 
@@ -24,4 +24,4 @@
 | [DeepSeek V4 Flash (0731)](/leaderboard/deepseek-v4-flash-0731)  | 59.2  | +35.2 | $13.6             | 292s          |
 | [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview)            | 58.6  | +24.5 | $114              | 276s          |
 
-Latest update October 16, 2026\. Methodology: /leaderboard#methodology
+Latest update October 17, 2026\. Methodology: /leaderboard#methodology

@@ -2,9 +2,9 @@
 
 * Search Intelligence Score: **60.9** (#29 in Search Intelligence)
 * Without search: 22.4 · Lift from search +38.5
-* Cost per 1K tasks: $25.2 (below the median score of 64.2, so not ranked on cost)
+* Cost per 1K tasks: $25.2 (below the median score of 63.5, so not ranked on cost)
 * Time per task: 1323s
-* Lab: Xiaomi · Model id: xiaomi/mimo-v2.6-flash
+* Lab: Xiaomi · Weights: Open weights · Model id: xiaomi/mimo-v2.6-flash
 
 ## Accuracy by benchmark
 
@@ -24,4 +24,4 @@
 | [GLM 5.3 Flash](/leaderboard/glm-5-3-flash)   | 60.8  | +40.4 | $16.6             | 99.1s         |
 | [Step 5 Preview](/leaderboard/step-5-preview) | 61.1  | +33.3 | $118              | 387s          |
 
-Latest update October 16, 2026\. Methodology: /leaderboard#methodology
+Latest update October 17, 2026\. Methodology: /leaderboard#methodology

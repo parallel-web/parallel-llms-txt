@@ -5,7 +5,7 @@
 * Cost per 1K tasks: $76.5 (#1 in Search Efficiency)
 * Time per task: —
 * Medals: Gold, Search Efficiency
-* Lab: Xiaomi · Model id: xiaomi/mimo-v2.6-pro
+* Lab: Xiaomi · Weights: Open weights · Model id: xiaomi/mimo-v2.6-pro
 
 ## Accuracy by benchmark
 
@@ -25,4 +25,4 @@
 | [Mistral Large 4.0](/leaderboard/mistral-large-4-0) | 64.4  | +43.0 | $136              | —             |
 | [Kimi K3](/leaderboard/kimi-k3)                     | 64.2  | +33.6 | $266              | 432s          |
 
-Latest update October 16, 2026\. Methodology: /leaderboard#methodology
+Latest update October 17, 2026\. Methodology: /leaderboard#methodology

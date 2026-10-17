@@ -2,9 +2,9 @@
 
 * Search Intelligence Score: **62.7** (#26 in Search Intelligence)
 * Without search: 21.9 · Lift from search +40.8
-* Cost per 1K tasks: $78.5 (below the median score of 64.2, so not ranked on cost)
+* Cost per 1K tasks: $78.5 (below the median score of 63.5, so not ranked on cost)
 * Time per task: 308s
-* Lab: Z.ai · Model id: z-ai/glm-5.3-openrouter
+* Lab: Z.ai · Weights: Open weights · Model id: z-ai/glm-5.3-openrouter
 
 ## Accuracy by benchmark
 
@@ -24,4 +24,4 @@
 | [DeepSeek V4.1 Flash](/leaderboard/deepseek-v4-1-flash) | 62.7  | +35.7 | $35.8             | 549s          |
 | [Claude Haiku 5.5](/leaderboard/claude-haiku-5-5)       | 62.9  | +39.4 | $24.3             | 162s          |
 
-Latest update October 16, 2026\. Methodology: /leaderboard#methodology
+Latest update October 17, 2026\. Methodology: /leaderboard#methodology
