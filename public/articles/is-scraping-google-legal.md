@@ -81,7 +81,7 @@ Legal exposure depends on who runs the scraper, what they bypass, and what happe
 - **Don’t republish what you collect.** Keep scraped snippets and images out of your product’s output unless you have rights to them.
 - **Treat personal data as regulated.** Names, photos, and profiles in results bring privacy law with them, especially for EU residents.
 
-We built our Search API on our own crawl and index, so agents get ranked URLs with excerpts from each page without anyone scraping a search engine. Our [SerpApi vs. Parallel comparison](https://parallel.ai/articles/serpapi-vs-parallel) covers where each approach fits, and [web unlocker vs. scraper vs. fetch](https://parallel.ai/articles/web-unlocker-vs-scraper-vs-fetch) explains the unblocking layer SERP vendors run.
+We built our Search API on our own crawl and index, so agents get ranked URLs with excerpts from each page without anyone scraping a search engine. Our [SerpApi vs. Parallel comparison](https://parallel.ai/compare/serpapi-vs-parallel) covers where each approach fits, and [web unlocker vs. scraper vs. fetch](https://parallel.ai/articles/web-unlocker-vs-scraper-vs-fetch) explains the unblocking layer SERP vendors run.
 
 This article is general information about public court records and terms of service as of September 26, 2026, not legal advice. Talk to a lawyer about your own situation.
 
@@ -103,4 +103,4 @@ Not by itself. Robots.txt is a voluntary protocol, but Google’s terms of servi
 
 On July 20, 2026, the court dismissed Google’s DMCA claims. Claims about results with no copyrighted content can’t be refiled; claims about licensed content, such as Knowledge Panel images, can. The court also found that Google had standing to sue and had adequately alleged circumvention, without deciding whether those allegations are true. Google refiled on August 10, and a hearing on SerpApi’s second motion to dismiss is set for October 13, 2026.
 
-**Related reading: **[Why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) · [What is web scraping?](https://parallel.ai/articles/what-is-web-scraping) · [SerpApi vs. Parallel](https://parallel.ai/articles/serpapi-vs-parallel) · [Web crawling vs. web scraping](https://parallel.ai/articles/web-crawling-vs-web-scraping)
+**Related reading: **[Why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) · [What is web scraping?](https://parallel.ai/articles/what-is-web-scraping) · [SerpApi vs. Parallel](https://parallel.ai/compare/serpapi-vs-parallel) · [Web crawling vs. web scraping](https://parallel.ai/articles/web-crawling-vs-web-scraping)

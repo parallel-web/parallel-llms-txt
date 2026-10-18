@@ -86,4 +86,4 @@ Take a sample of production questions, run your current Serper-plus-fetch pipeli
 
 Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention, and commits contractually to not training on customer data.
 
-**Related reading: **[Serper vs. Parallel](https://parallel.ai/articles/serper-vs-parallel) · [SerpApi vs. Parallel](https://parallel.ai/articles/serpapi-vs-parallel) · [Switching from Firecrawl](https://parallel.ai/articles/firecrawl-to-parallel-search-api).
+**Related reading: **[Serper vs. Parallel](https://parallel.ai/articles/serper-vs-parallel) · [SerpApi vs. Parallel](https://parallel.ai/compare/serpapi-vs-parallel) · [Switching from Firecrawl](https://parallel.ai/articles/firecrawl-to-parallel-search-api).

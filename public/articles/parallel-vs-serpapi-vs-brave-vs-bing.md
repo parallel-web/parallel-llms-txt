@@ -51,7 +51,7 @@ Brave is the only provider here besides Parallel that runs its own index and sel
 
 Brave also wins on burst capacity. The Search plan allows 50 requests per second, or 3,000 a minute, against Parallel’s default of 600 a minute. Goggles lets you re-rank and filter results with your own source rules.
 
-The price sits at parity with our Basic and Advanced modes and five times our Turbo and Fast. And Brave’s [terms of service](https://api-dashboard.search.brave.com/documentation/resources/terms-of-service) bar storing or caching results beyond transient use, so vector-store caching, audit logs of what an agent saw, or eval sets built from production traffic need a plan that grants storage rights. Our [Brave vs. Parallel](https://parallel.ai/articles/brave-search-api-vs-parallel) comparison goes deeper.
+The price sits at parity with our Basic and Advanced modes and five times our Turbo and Fast. And Brave’s [terms of service](https://api-dashboard.search.brave.com/documentation/resources/terms-of-service) bar storing or caching results beyond transient use, so vector-store caching, audit logs of what an agent saw, or eval sets built from production traffic need a plan that grants storage rights. Our [Brave vs. Parallel](https://parallel.ai/compare/brave-vs-parallel) comparison goes deeper.
 
 ## Bing: an option only for Azure agents
 
@@ -144,4 +144,4 @@ It depends on the test. The Artificial Analysis Search Index ties Brave LLM Cont
 
 SerpApi is operating, and Google’s DMCA case against it is still open: the court dismissed the original claims in July 2026, Google amended in August, and a hearing is set for October 13, 2026. SerpApi offers a U.S. Legal Shield of up to $2 million on Production plans and above.
 
-**Related reading: **[SerpApi vs. Parallel](https://parallel.ai/articles/serpapi-vs-parallel) · [Brave Search API vs. Parallel](https://parallel.ai/articles/brave-search-api-vs-parallel) · [Bing API alternatives](https://parallel.ai/articles/bing-api-comparison) · [Best fast search APIs](https://parallel.ai/articles/best-fast-search-apis)
+**Related reading: **[SerpApi vs. Parallel](https://parallel.ai/compare/serpapi-vs-parallel) · [Brave Search API vs. Parallel](https://parallel.ai/compare/brave-vs-parallel) · [Bing API alternatives](https://parallel.ai/articles/bing-api-comparison) · [Best fast search APIs](https://parallel.ai/articles/best-fast-search-apis)

@@ -152,4 +152,4 @@ You can evaluate our Search API with $5 in free credits every month, applied aut
 
 [Start Building](https://docs.parallel.ai/home)
 
-**Deeper comparisons: **[Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel) · [Linkup vs. Parallel](https://parallel.ai/articles/linkup-vs-parallel) · [Perplexity Search API vs. Parallel Search API](https://parallel.ai/articles/perplexity-search-api-vs-parallel-search-api).
+**Deeper comparisons: **[Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel) · [Linkup vs. Parallel](https://parallel.ai/articles/linkup-vs-parallel) · [Perplexity Search API vs. Parallel Search API](https://parallel.ai/compare/perplexity-vs-parallel).

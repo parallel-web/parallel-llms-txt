@@ -2,8 +2,7 @@
 
 * Search Intelligence Score: **72.5** (#4 in Search Intelligence)
 * Without search: 39.7 · Lift from search +32.8
-* Cost per 1K tasks: $184 (#11 in Search Efficiency)
-* Time per task: 211s
+* Cost per 1K tasks: $184 (#12 in Search Efficiency)
 * Lab: Unbiased AI · Weights: Closed · Model id: unbiased/pareto-26.9
 
 ## Accuracy by benchmark
@@ -16,12 +15,12 @@
 
 ## Compared with
 
-| Model                                             | Score | Lift  | Cost per 1K tasks | Time per task |
-| ------------------------------------------------- | ----- | ----- | ----------------- | ------------- |
-| Pareto 26.9                                       | 72.5  | +32.8 | $184              | 211s          |
-| [Pareto 26.10](/leaderboard/pareto-26-10)         | 68.6  | +33.8 | $116              | 436s          |
-| [Gemini 4 Argon](/leaderboard/gemini-4-argon)     | 72.2  | +37.2 | $270              | 206s          |
-| [Claude Fable 5.1](/leaderboard/claude-fable-5-1) | 73.4  | +26.5 | $1,762            | 416s          |
-| [Muse Wonder 1.0](/leaderboard/muse-wonder-1-0)   | 71.3  | +36.0 | $709              | 287s          |
+| Model                                             | Score | Lift  | Cost per 1K tasks |
+| ------------------------------------------------- | ----- | ----- | ----------------- |
+| Pareto 26.9                                       | 72.5  | +32.8 | $184              |
+| [Pareto 26.10](/leaderboard/pareto-26-10)         | 68.6  | +33.8 | $116              |
+| [Gemini 4 Argon](/leaderboard/gemini-4-argon)     | 72.2  | +37.2 | $270              |
+| [Claude Fable 5.1](/leaderboard/claude-fable-5-1) | 73.4  | +26.5 | $1,762            |
+| [Muse Wonder 1.0](/leaderboard/muse-wonder-1-0)   | 71.3  | +36.0 | $709              |
 
-Latest update October 17, 2026\. Methodology: /leaderboard#methodology
+Latest update October 18, 2026\. Methodology: /leaderboard#methodology

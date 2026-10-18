@@ -18,7 +18,7 @@ A web scraping API fetches a URL, handles JavaScript and anti-bot defenses, and 
 
 A _web scraping API_ is a hosted service that fetches, renders, and returns web page data through a standard HTTP interface. You send a request with a URL and get structured content back. Behind that request, the service handles browser rendering, JavaScript execution, proxy management, CAPTCHA solving, and rate limiting. Our guide on [web scraping](https://parallel.ai/articles/what-is-web-scraping) covers the fundamentals if you're starting from scratch.
 
-If you are deciding between a dedicated scraper and a retrieval API, start with [Firecrawl vs Parallel](https://parallel.ai/articles/firecrawl-vs-parallel), [Jina AI Reader vs Parallel](https://parallel.ai/articles/jina-ai-reader-vs-parallel), [ScrapingBee vs Parallel](https://parallel.ai/articles/scrapingbee-vs-parallel), or [Apify vs Parallel](https://parallel.ai/articles/apify-vs-parallel).
+If you are deciding between a dedicated scraper and a retrieval API, start with [Firecrawl vs Parallel](https://parallel.ai/compare/firecrawl-vs-parallel), [Jina AI Reader vs Parallel](https://parallel.ai/articles/jina-ai-reader-vs-parallel), [ScrapingBee vs Parallel](https://parallel.ai/articles/scrapingbee-vs-parallel), or [Apify vs Parallel](https://parallel.ai/articles/apify-vs-parallel).
 
 Most developers have built some version of the traditional scraping stack: headless browsers with Puppeteer or Playwright, CSS selectors to parse the HTML, a pool of rotating proxies, and retry logic for CAPTCHAs. Then a site updates its layout, and half your selectors break the next morning. The maintenance burden compounds with each new data source.
 
@@ -200,7 +200,7 @@ Clean markdown is the best output format for AI workflows because it preserves s
 
 ### **How does Parallel compare to Firecrawl, ScrapingBee, or Apify?**
 
-Scraping APIs fetch and parse the pages you point them at. Parallel is a retrieval API. Read [Firecrawl vs Parallel](https://parallel.ai/articles/firecrawl-vs-parallel), [ScrapingBee vs Parallel](https://parallel.ai/articles/scrapingbee-vs-parallel), or [Apify vs Parallel](https://parallel.ai/articles/apify-vs-parallel).
+Scraping APIs fetch and parse the pages you point them at. Parallel is a retrieval API. Read [Firecrawl vs Parallel](https://parallel.ai/compare/firecrawl-vs-parallel), [ScrapingBee vs Parallel](https://parallel.ai/articles/scrapingbee-vs-parallel), or [Apify vs Parallel](https://parallel.ai/articles/apify-vs-parallel).
 
 ## Start building with Parallel
 

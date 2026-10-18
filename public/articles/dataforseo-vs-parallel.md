@@ -72,4 +72,4 @@ Parallel fits when the work is synchronous and the consumer is a model. Fast ret
 
 The cheapest number on the page belongs to a queue that takes five minutes, so the choice comes down to whether anything is waiting for the answer.
 
-**Related reading: **[Serper vs. Parallel](https://parallel.ai/articles/serper-vs-parallel) · [SerpApi vs. Parallel](https://parallel.ai/articles/serpapi-vs-parallel) · [Bright Data SERP API vs. Parallel](https://parallel.ai/articles/bright-data-serp-api-vs-parallel) · [Why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search).
+**Related reading: **[Serper vs. Parallel](https://parallel.ai/articles/serper-vs-parallel) · [SerpApi vs. Parallel](https://parallel.ai/compare/serpapi-vs-parallel) · [Bright Data SERP API vs. Parallel](https://parallel.ai/articles/bright-data-serp-api-vs-parallel) · [Why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search).

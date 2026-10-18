@@ -1,9 +1,8 @@
 # DeepSeek V4.1 Flash · Search Capability Leaderboard
 
-* Search Intelligence Score: **62.7** (#25 in Search Intelligence)
+* Search Intelligence Score: **62.7** (#26 in Search Intelligence)
 * Without search: 27.0 · Lift from search +35.7
-* Cost per 1K tasks: $35.8 (below the median score of 63.5, so not ranked on cost)
-* Time per task: 549s
+* Cost per 1K tasks: $35.8 (below the median score of 64.4, so not ranked on cost)
 * Lab: DeepSeek · Weights: Open weights · Model id: deepseek/deepseek-v4.1-flash
 
 ## Accuracy by benchmark
@@ -16,12 +15,12 @@
 
 ## Compared with
 
-| Model                                                           | Score | Lift  | Cost per 1K tasks | Time per task |
-| --------------------------------------------------------------- | ----- | ----- | ----------------- | ------------- |
-| DeepSeek V4.1 Flash                                             | 62.7  | +35.7 | $35.8             | 549s          |
-| [DeepSeek V4 Flash (0731)](/leaderboard/deepseek-v4-flash-0731) | 59.2  | +35.2 | $13.6             | 292s          |
-| [DeepSeek V4 Pro](/leaderboard/deepseek-v4-pro)                 | 58.4  | +27.9 | $110              | 383s          |
-| [DeepSeek V4 Pro (0813)](/leaderboard/deepseek-v4-pro-0813)     | 53.5  | +20.4 | $234              | 394s          |
-| [DeepSeek V4 Flash](/leaderboard/deepseek-v4-flash)             | 53.1  | +33.7 | $24.4             | 358s          |
+| Model                                                               | Score | Lift  | Cost per 1K tasks |
+| ------------------------------------------------------------------- | ----- | ----- | ----------------- |
+| DeepSeek V4.1 Flash                                                 | 62.7  | +35.7 | $35.8             |
+| [DeepSeek V4 Pro](/leaderboard/deepseek-v4-pro)                     | 58.4  | +27.9 | $110              |
+| [DeepSeek V4.1 Flash (1017)](/leaderboard/deepseek-v4-1-flash-1017) | 68.9  | +36.0 | $125              |
+| [GLM 5.3](/leaderboard/glm-5-3)                                     | 62.7  | +40.8 | $78.5             |
+| [Claude Haiku 5.5](/leaderboard/claude-haiku-5-5)                   | 62.9  | +39.4 | $24.3             |
 
-Latest update October 17, 2026\. Methodology: /leaderboard#methodology
+Latest update October 18, 2026\. Methodology: /leaderboard#methodology

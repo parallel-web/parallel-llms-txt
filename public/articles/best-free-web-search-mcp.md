@@ -69,7 +69,7 @@ Jina’s official server at `https://mcp.jina.ai/v1` connected keyless, but its 
 
 ### 6. Brave Search MCP
 
-Brave’s [official MCP server](https://github.com/brave/brave-search-mcp-server) runs locally over stdio by default and requires `BRAVE_API_KEY`. Brave moved to a credit model: $5 per 1,000 requests with $5 in free credits every month. Its FAQ says a card is required even on free plans, as an anti-fraud check. Our [Brave comparison](https://parallel.ai/articles/brave-search-api-vs-parallel) covers the API itself.
+Brave’s [official MCP server](https://github.com/brave/brave-search-mcp-server) runs locally over stdio by default and requires `BRAVE_API_KEY`. Brave moved to a credit model: $5 per 1,000 requests with $5 in free credits every month. Its FAQ says a card is required even on free plans, as an anti-fraud check. Our [Brave comparison](https://parallel.ai/compare/brave-vs-parallel) covers the API itself.
 
 **Where it wins:** its own independent index, plus a `brave_llm_context` tool that returns model-ready context.
 

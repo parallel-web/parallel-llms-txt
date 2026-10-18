@@ -1,8 +1,8 @@
 # Muse Spark 1.3 · Search Capability Leaderboard
 
-* Search Intelligence Score: **66.1** (#17 in Search Intelligence)
+* Search Intelligence Score: **66.1** (#18 in Search Intelligence)
 * Without search: 30.3 · Lift from search +35.8
-* Cost per 1K tasks: $142 (#7 in Search Efficiency)
+* Cost per 1K tasks: $142 (#8 in Search Efficiency)
 * Time per task: 274s
 * Lab: Meta · Weights: Closed · Model id: meta/muse-spark-1.3
 
@@ -24,4 +24,4 @@
 | [Grok 4.7 Medium](/leaderboard/grok-4-7)        | 66.0  | +44.8 | $252              | 521s          |
 | [Claude Sonnet 5](/leaderboard/claude-sonnet-5) | 66.6  | +43.8 | $688              | 846s          |
 
-Latest update October 17, 2026\. Methodology: /leaderboard#methodology
+Latest update October 18, 2026\. Methodology: /leaderboard#methodology

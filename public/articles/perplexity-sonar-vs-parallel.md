@@ -93,4 +93,4 @@ Choose Parallel when a system consumes the output. Typed schemas mean no parsing
 
 Perplexity's Agent API is a model runtime that searches, and Parallel is a pipeline that researches. If your output goes on a screen, Perplexity is less work. If it goes into a table, Parallel saves you from building the missing half yourself.
 
-**Related reading: **[Perplexity Search API vs. Parallel Search API](https://parallel.ai/articles/perplexity-search-api-vs-parallel-search-api) · [Claude's web search tool vs. Parallel](https://parallel.ai/articles/claude-web-search-vs-parallel) · [Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel).
+**Related reading: **[Perplexity Search API vs. Parallel Search API](https://parallel.ai/compare/perplexity-vs-parallel) · [Claude's web search tool vs. Parallel](https://parallel.ai/articles/claude-web-search-vs-parallel) · [Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel).

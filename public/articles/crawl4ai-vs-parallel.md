@@ -65,4 +65,4 @@ Choose Parallel when you need to find pages rather than fetch known ones, or whe
 
 The pairing is common and sensible: a hosted search API to discover URLs, Crawl4AI to fetch them in bulk on your own hardware.
 
-**Related reading: **[SearXNG vs. Parallel](https://parallel.ai/articles/searxng-vs-parallel) · [Firecrawl vs. Parallel](https://parallel.ai/articles/firecrawl-vs-parallel) · [Jina AI Reader vs. Parallel](https://parallel.ai/articles/jina-ai-reader-vs-parallel).
+**Related reading: **[SearXNG vs. Parallel](https://parallel.ai/articles/searxng-vs-parallel) · [Firecrawl vs. Parallel](https://parallel.ai/compare/firecrawl-vs-parallel) · [Jina AI Reader vs. Parallel](https://parallel.ai/articles/jina-ai-reader-vs-parallel).

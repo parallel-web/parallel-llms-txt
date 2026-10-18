@@ -83,4 +83,4 @@ Choose Parallel when a model consumes the output. Fast is the recommended defaul
 
 Serper is the better buy if your bottleneck is the price of a Google SERP query for SEO tooling. Parallel is the better buy if your bottleneck is the cost and quality of the context your model reasons over.
 
-**Related reading: **[Switching from Serper to Parallel](https://parallel.ai/articles/serper-to-parallel-search-api) · [SerpApi vs. Parallel](https://parallel.ai/articles/serpapi-vs-parallel) · [DataForSEO vs. Parallel](https://parallel.ai/articles/dataforseo-vs-parallel) · [Why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search).
+**Related reading: **[Switching from Serper to Parallel](https://parallel.ai/articles/serper-to-parallel-search-api) · [SerpApi vs. Parallel](https://parallel.ai/compare/serpapi-vs-parallel) · [DataForSEO vs. Parallel](https://parallel.ai/articles/dataforseo-vs-parallel) · [Why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search).
