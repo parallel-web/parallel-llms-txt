@@ -2,6 +2,8 @@
 
 ### Comparison
 
+* [The best DeepSeek Search API alternatives for AI agents in 2026](https://parallel.ai/articles/deepseek-search-api-alternatives)
+* [DeepSeek Search API vs. Parallel: pricing, data handling, and model lock-in](https://parallel.ai/articles/deepseek-search-api-vs-parallel)
 * [The best Firecrawl alternatives in 2026](https://parallel.ai/articles/firecrawl-alternatives)
 * [The best Exa alternatives for AI search in 2026](https://parallel.ai/articles/exa-alternatives)
 * [Cloudflare Web Search API: providers, pricing, and how it compares](https://parallel.ai/articles/cloudflare-web-search-api)
