@@ -2,9 +2,9 @@
 
 * Search Intelligence Score: **58.6** (#34 in Search Intelligence)
 * Without search: 34.1 · Lift from search +24.5
-* Cost per 1K tasks: $114 (below the median score of 64.2, so not ranked on cost)
+* Cost per 1K tasks: $114 (below the median score of 63.5, so not ranked on cost)
 * Time per task: 276s
-* Lab: Google · Model id: google/gemini-3-flash-preview
+* Lab: Google · Weights: Closed · Model id: google/gemini-3-flash-preview
 
 ## Accuracy by benchmark
 
@@ -24,4 +24,4 @@
 | [Gemini 4 Argon](/leaderboard/gemini-4-argon)     | 72.2  | +37.2 | $270              | 206s          |
 | [DeepSeek V4 Pro](/leaderboard/deepseek-v4-pro)   | 58.4  | +27.9 | $110              | 383s          |
 
-Latest update October 16, 2026\. Methodology: /leaderboard#methodology
+Latest update October 17, 2026\. Methodology: /leaderboard#methodology

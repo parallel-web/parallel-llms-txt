@@ -2,9 +2,9 @@
 
 * Search Intelligence Score: **58.2** (#36 in Search Intelligence)
 * Without search: 22.6 · Lift from search +35.6
-* Cost per 1K tasks: $28.4 (below the median score of 64.2, so not ranked on cost)
+* Cost per 1K tasks: $28.4 (below the median score of 63.5, so not ranked on cost)
 * Time per task: 363s
-* Lab: Tencent · Model id: tencent/hy3
+* Lab: Tencent · Weights: Open weights · Model id: tencent/hy3
 
 ## Accuracy by benchmark
 
@@ -24,4 +24,4 @@
 | [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview)       | 58.6  | +24.5 | $114              | 276s          |
 | [Nemotron 3.5 Super VL](/leaderboard/nemotron-3-5-super-vl) | 59.1  | +42.2 | $93.9             | 181s          |
 
-Latest update October 16, 2026\. Methodology: /leaderboard#methodology
+Latest update October 17, 2026\. Methodology: /leaderboard#methodology

@@ -62,6 +62,8 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Data Residency vs Data Sovereignty for AI Agents](https://llm.parallel.ai/articles/data-residency-vs-data-sovereignty.md): Data residency is where data is processed. Data sovereignty is whose laws govern it. What the difference means for AI agents that search the web.
 - [DataForSEO vs Parallel: SEO and Bulk SERP Data Compared](https://llm.parallel.ai/articles/dataforseo-vs-parallel.md): DataForSEO for cheap async SERP, keyword, backlink, and on-page data; Parallel for retrieval built for models. Compare delivery modes, pricing, and fit…
 - [DeepSeek Harness Web Search: Plugins and MCP Setup](https://llm.parallel.ai/articles/deepseek-harness-web-search.md): Set up better web search in DeepSeek Harness: compare the built-in tool, ModSearch and other plugins, and add Parallel&#x27;s free Search MCP in one YAML row.
+- [Best DeepSeek Search API Alternatives (2026)](https://llm.parallel.ai/articles/deepseek-search-api-alternatives.md): Compare seven DeepSeek Search API alternatives on price per 1,000 requests, data handling, and model independence, including Parallel, Exa, Brave, and Tavily.
+- [DeepSeek Search API vs Parallel: Pricing and Limits (2026)](https://llm.parallel.ai/articles/deepseek-search-api-vs-parallel.md): Compare DeepSeek’s Search and Fetch APIs with Parallel on price, data handling, model lock-in, rate limits, and controls, using DeepSeek’s own docs.
 - [Exa Alternatives: 9 AI Search APIs Compared (2026)](https://llm.parallel.ai/articles/exa-alternatives.md): Compare nine Exa alternatives for AI search on price per 1,000 requests, latency, content returned, and keyless MCP, from $0.25 Ceramic to $1 Parallel Fast.
 - [How to Switch From Exa to Parallel Search API](https://llm.parallel.ai/articles/exa-to-parallel-search-api.md): Migrate from Exa to Parallel Search API with a side-by-side cost comparison, full parameter mapping, rate limits, and the code change you need.
 - [Exa Websets vs Parallel FindAll API: Entity Discovery](https://llm.parallel.ai/articles/exa-vs-parallel-findall.md): Compare Exa Websets and Parallel FindAll on architecture, features, recall, accuracy, and developer experience for entity discovery and enrichment.
@@ -285,7 +287,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Customer Terms and Conditions](https://llm.parallel.ai/customer-terms.md): The terms and conditions between customers and Parallel Web Systems Inc. governing access to and use of Parallel&#x27;s services and APIs.
 - [Data Connectors](https://llm.parallel.ai/data-connectors.md): Explore high-quality company, financial, research, life sciences, legal, news, and web data available through Parallel.
 - [Request a Data Source](https://llm.parallel.ai/data-connectors/request.md): Request a new data source for your Parallel agents, or apply to add your data to Parallel&#x27;s data connectors.
-- [Index by Parallel · INDEX by Parallel](https://llm.parallel.ai/index.md): Web infrastructure for AI to search, extract, monitor, and reason over the world&#x27;s information.
+- [Index by Parallel · INDEX by Parallel](https://llm.parallel.ai/index.md): Index is a platform for content owners to understand how AI agents use their work and earn compensation tied to the value they contribute.
 - [Integrations](https://llm.parallel.ai/integrations.md): Use Parallel web search across your entire stack to build more powerful agents and workflows. Browse verified integrations for agent frameworks, coding agents, model platforms, data platforms, and more.
 - [Use Parallel with Anthropic](https://llm.parallel.ai/integrations/anthropic.md): Give Anthropic-powered applications live web research through tool calling, or connect Parallel to Claude Desktop over MCP.
 - [Use Parallel with AWS Marketplace](https://llm.parallel.ai/integrations/aws-marketplace.md): Procure and manage Parallel through AWS Marketplace using your existing cloud purchasing workflow.
@@ -407,7 +409,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Sign In - Parallel](https://llm.parallel.ai/docs/index.md)
 - [parallel-web - npm](https://llm.parallel.ai/docs/package/parallel-web.md)
 - [parallel-web · PyPI](https://llm.parallel.ai/docs/project/parallel-web/index.md)
-- [OpenAPI Spec](https://llm.parallel.ai/docs/public-openapi.json.md)
+- [public-openapi](https://llm.parallel.ai/docs/public-openapi.json.md)
 
 ## SDKs
 

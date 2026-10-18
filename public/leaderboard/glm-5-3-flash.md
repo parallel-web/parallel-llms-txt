@@ -2,9 +2,9 @@
 
 * Search Intelligence Score: **60.8** (#30 in Search Intelligence)
 * Without search: 20.4 · Lift from search +40.4
-* Cost per 1K tasks: $16.6 (below the median score of 64.2, so not ranked on cost)
+* Cost per 1K tasks: $16.6 (below the median score of 63.5, so not ranked on cost)
 * Time per task: 99.1s
-* Lab: Z.ai · Model id: z-ai/glm-5.3-flash
+* Lab: Z.ai · Weights: Open weights · Model id: z-ai/glm-5.3-flash
 
 ## Accuracy by benchmark
 
@@ -24,4 +24,4 @@
 | [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna)       | 60.7  | +33.9 | $36.2             | 98.0s         |
 | [MiMo v2.6 Flash](/leaderboard/mimo-v2-6-flash) | 60.9  | +38.5 | $25.2             | 1323s         |
 
-Latest update October 16, 2026\. Methodology: /leaderboard#methodology
+Latest update October 17, 2026\. Methodology: /leaderboard#methodology

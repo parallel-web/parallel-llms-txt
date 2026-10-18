@@ -4,7 +4,7 @@
 * Without search: 35.5 · Lift from search +31.8
 * Cost per 1K tasks: $171 (#8 in Search Efficiency)
 * Time per task: 360s
-* Lab: Meta · Model id: meta/muse-spark-open
+* Lab: Meta · Weights: Open weights · Model id: meta/muse-spark-open
 
 ## Accuracy by benchmark
 
@@ -24,4 +24,4 @@
 | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash) | 66.8  | +27.4 | $130              | 229s          |
 | [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)           | 67.7  | +26.3 | $269              | 107s          |
 
-Latest update October 16, 2026\. Methodology: /leaderboard#methodology
+Latest update October 17, 2026\. Methodology: /leaderboard#methodology

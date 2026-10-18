@@ -1,10 +1,10 @@
 # Command A Plus · Search Capability Leaderboard
 
-* Search Intelligence Score: **34.8** (#45 in Search Intelligence)
+* Search Intelligence Score: **34.8** (#46 in Search Intelligence)
 * Without search: 5.0 · Lift from search +29.8
-* Cost per 1K tasks: $40.1 (below the median score of 64.2, so not ranked on cost)
+* Cost per 1K tasks: $40.1 (below the median score of 63.5, so not ranked on cost)
 * Time per task: 149s
-* Lab: Cohere · Model id: cohere/command-a-plus
+* Lab: Cohere · Weights: Open weights · Model id: cohere/command-a-plus
 
 ## Accuracy by benchmark
 
@@ -24,4 +24,4 @@
 | [MiMo v2.5](/leaderboard/mimo-v2-5)                           | 49.5  | +36.1 | $23.5             | 894s          |
 | [MiniMax M3](/leaderboard/minimax-m3)                         | 52.6  | +29.5 | $41.1             | 291s          |
 
-Latest update October 16, 2026\. Methodology: /leaderboard#methodology
+Latest update October 17, 2026\. Methodology: /leaderboard#methodology

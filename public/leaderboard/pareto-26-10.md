@@ -5,7 +5,7 @@
 * Cost per 1K tasks: $116 (#3 in Search Efficiency)
 * Time per task: 436s
 * Medals: Bronze, Search Efficiency
-* Lab: Unbiased AI · Model id: unbiased/pareto-26.10
+* Lab: Unbiased AI · Weights: Closed · Model id: unbiased/pareto-26.10
 
 ## Accuracy by benchmark
 
@@ -25,4 +25,4 @@
 | [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)         | 67.7  | +26.3 | $269              | 107s          |
 | [Muse Spark Open](/leaderboard/muse-spark-open) | 67.2  | +31.8 | $171              | 360s          |
 
-Latest update October 16, 2026\. Methodology: /leaderboard#methodology
+Latest update October 17, 2026\. Methodology: /leaderboard#methodology

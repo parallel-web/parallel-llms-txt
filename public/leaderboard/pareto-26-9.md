@@ -4,7 +4,7 @@
 * Without search: 39.7 · Lift from search +32.8
 * Cost per 1K tasks: $184 (#11 in Search Efficiency)
 * Time per task: 211s
-* Lab: Unbiased AI · Model id: unbiased/pareto-26.9
+* Lab: Unbiased AI · Weights: Closed · Model id: unbiased/pareto-26.9
 
 ## Accuracy by benchmark
 
@@ -24,4 +24,4 @@
 | [Claude Fable 5.1](/leaderboard/claude-fable-5-1) | 73.4  | +26.5 | $1,762            | 416s          |
 | [Muse Wonder 1.0](/leaderboard/muse-wonder-1-0)   | 71.3  | +36.0 | $709              | 287s          |
 
-Latest update October 16, 2026\. Methodology: /leaderboard#methodology
+Latest update October 17, 2026\. Methodology: /leaderboard#methodology

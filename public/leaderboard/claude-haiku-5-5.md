@@ -2,9 +2,9 @@
 
 * Search Intelligence Score: **62.9** (#24 in Search Intelligence)
 * Without search: 23.5 · Lift from search +39.4
-* Cost per 1K tasks: $24.3 (below the median score of 64.2, so not ranked on cost)
+* Cost per 1K tasks: $24.3 (below the median score of 63.5, so not ranked on cost)
 * Time per task: 162s
-* Lab: Anthropic · Model id: claude-haiku-5.5
+* Lab: Anthropic · Weights: Closed · Model id: claude-haiku-5.5
 
 ## Accuracy by benchmark
 
@@ -24,4 +24,4 @@
 | [Claude Fable 5.1](/leaderboard/claude-fable-5-1)   | 73.4  | +26.5 | $1,762            | 416s          |
 | [Claude Sonnet 5.5](/leaderboard/claude-sonnet-5-5) | 74.1  | +40.9 | $796              | 500s          |
 
-Latest update October 16, 2026\. Methodology: /leaderboard#methodology
+Latest update October 17, 2026\. Methodology: /leaderboard#methodology

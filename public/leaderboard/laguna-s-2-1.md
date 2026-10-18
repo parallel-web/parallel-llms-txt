@@ -1,10 +1,10 @@
 # Laguna S 2.1 · Search Capability Leaderboard
 
-* Search Intelligence Score: **39.5** (#43 in Search Intelligence)
+* Search Intelligence Score: **39.5** (#44 in Search Intelligence)
 * Without search: 12.3 · Lift from search +27.2
-* Cost per 1K tasks: $21.4 (below the median score of 64.2, so not ranked on cost)
+* Cost per 1K tasks: $21.4 (below the median score of 63.5, so not ranked on cost)
 * Time per task: 459s
-* Lab: Poolside · Model id: poolside/laguna-s-2.1
+* Lab: Poolside · Weights: Open weights · Model id: poolside/laguna-s-2.1
 
 ## Accuracy by benchmark
 
@@ -24,4 +24,4 @@
 | [MiMo v2.5](/leaderboard/mimo-v2-5)                           | 49.5  | +36.1 | $23.5             | 894s          |
 | [MiniMax M3](/leaderboard/minimax-m3)                         | 52.6  | +29.5 | $41.1             | 291s          |
 
-Latest update October 16, 2026\. Methodology: /leaderboard#methodology
+Latest update October 17, 2026\. Methodology: /leaderboard#methodology

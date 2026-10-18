@@ -4,7 +4,7 @@
 * Without search: 29.9 · Lift from search +38.0
 * Cost per 1K tasks: $335 (#16 in Search Efficiency)
 * Time per task: 487s
-* Lab: Fireworks AI · Model id: fireworks/ember-1
+* Lab: Fireworks AI · Weights: Closed · Model id: fireworks/ember-1
 
 ## Accuracy by benchmark
 
@@ -24,4 +24,4 @@
 | [Pareto 26.10](/leaderboard/pareto-26-10)         | 68.6  | +33.8 | $116              | 436s          |
 | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash) | 66.8  | +27.4 | $130              | 229s          |
 
-Latest update October 16, 2026\. Methodology: /leaderboard#methodology
+Latest update October 17, 2026\. Methodology: /leaderboard#methodology
