@@ -3,6 +3,7 @@
 * Search Intelligence Score: **64.2** (#24 in Search Intelligence)
 * Without search: 30.6 · Lift from search +33.6
 * Cost per 1K tasks: $266 (below the median score of 64.4, so not ranked on cost)
+* Evaluated: Sep 22, 2026
 * Lab: Moonshot AI · Weights: Open weights · Model id: moonshotai/kimi-k3
 
 ## Accuracy by benchmark
@@ -23,4 +24,4 @@
 | [Hy4 Preview](/leaderboard/hy4-preview)             | 64.6  | +33.9 | $93.2             |
 | [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash)   | 65.1  | +26.1 | $177              |
 
-Latest update October 18, 2026\. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology
