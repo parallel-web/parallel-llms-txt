@@ -4,6 +4,7 @@
 * Without search: 44.2 · Lift from search +31.2
 * Cost per 1K tasks: $949 (#21 in Search Efficiency)
 * Medals: Gold, Search Intelligence
+* Evaluated: Sep 24, 2026
 * Lab: Anthropic · Weights: Closed · Model id: claude-opus-5.5
 
 ## Accuracy by benchmark
@@ -24,4 +25,4 @@
 | [Claude Opus 5](/leaderboard/claude-opus-5)         | 70.0  | +32.8 | $1,012            |
 | [Claude Sonnet 5](/leaderboard/claude-sonnet-5)     | 66.6  | +43.8 | $688              |
 
-Latest update October 18, 2026\. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology

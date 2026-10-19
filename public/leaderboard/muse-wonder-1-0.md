@@ -3,6 +3,7 @@
 * Search Intelligence Score: **71.3** (#6 in Search Intelligence)
 * Without search: 35.3 · Lift from search +36.0
 * Cost per 1K tasks: $709 (#19 in Search Efficiency)
+* Evaluated: Oct 12, 2026
 * Lab: Meta · Weights: Closed · Model id: meta/muse-wonder-1.0
 
 ## Accuracy by benchmark
@@ -23,4 +24,4 @@
 | [GPT-6 Astra](/leaderboard/gpt-6-astra)         | 70.8  | +27.9 | $401              |
 | [Gemini 4 Argon](/leaderboard/gemini-4-argon)   | 72.2  | +37.2 | $270              |
 
-Latest update October 18, 2026\. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology

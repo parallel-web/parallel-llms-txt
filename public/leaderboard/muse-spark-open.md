@@ -3,6 +3,7 @@
 * Search Intelligence Score: **67.2** (#14 in Search Intelligence)
 * Without search: 35.5 · Lift from search +31.8
 * Cost per 1K tasks: $171 (#9 in Search Efficiency)
+* Evaluated: Oct 15, 2026
 * Lab: Meta · Weights: Open weights · Model id: meta/muse-spark-open
 
 ## Accuracy by benchmark
@@ -23,4 +24,4 @@
 | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash) | 66.8  | +27.4 | $130              |
 | [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)           | 67.7  | +26.3 | $269              |
 
-Latest update October 18, 2026\. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology

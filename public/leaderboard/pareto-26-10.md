@@ -4,6 +4,7 @@
 * Without search: 34.8 · Lift from search +33.8
 * Cost per 1K tasks: $116 (#3 in Search Efficiency)
 * Medals: Bronze, Search Efficiency
+* Evaluated: Oct 1, 2026
 * Lab: Unbiased AI · Weights: Closed · Model id: unbiased/pareto-26.10
 
 ## Accuracy by benchmark
@@ -24,4 +25,4 @@
 | [Ember-1](/leaderboard/ember-1)                                     | 67.9  | +38.0 | $335              |
 | [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)                             | 67.7  | +26.3 | $269              |
 
-Latest update October 18, 2026\. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology

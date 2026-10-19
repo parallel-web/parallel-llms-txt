@@ -3,6 +3,7 @@
 * Search Intelligence Score: **61.1** (#30 in Search Intelligence)
 * Without search: 24.0 · Lift from search +37.1
 * Cost per 1K tasks: $87.2 (below the median score of 64.4, so not ranked on cost)
+* Evaluated: Oct 17, 2026
 * Lab: Paper Instruments · Weights: Open weights · Model id: paperinstruments/ultramarine-1-flash
 
 ## Accuracy by benchmark
@@ -23,4 +24,4 @@
 | [GLM 5.3 Flash](/leaderboard/glm-5-3-flash)     | 60.8  | +40.4 | $16.6             |
 | [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna)       | 60.7  | +33.9 | $36.2             |
 
-Latest update October 18, 2026\. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology

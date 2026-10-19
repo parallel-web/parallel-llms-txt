@@ -3,6 +3,7 @@
 * Search Intelligence Score: **54.3** (#39 in Search Intelligence)
 * Without search: 18.4 · Lift from search +35.9
 * Cost per 1K tasks: $66.6 (below the median score of 64.4, so not ranked on cost)
+* Evaluated: Sep 22, 2026
 * Lab: Z.ai · Weights: Open weights · Model id: z-ai/glm-5.2
 
 ## Accuracy by benchmark
@@ -23,4 +24,4 @@
 | [Nemotron 3 Ultra 550B](/leaderboard/nemotron-3-ultra-550b-a55b) | 53.0  | +37.7 | $113              |
 | [Beam](/leaderboard/beam)                                        | 56.0  | +27.2 | $161              |
 
-Latest update October 18, 2026\. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology

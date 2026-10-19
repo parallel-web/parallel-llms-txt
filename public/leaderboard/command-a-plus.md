@@ -3,6 +3,7 @@
 * Search Intelligence Score: **34.8** (#45 in Search Intelligence)
 * Without search: 5.0 · Lift from search +29.8
 * Cost per 1K tasks: $40.1 (below the median score of 64.4, so not ranked on cost)
+* Evaluated: Oct 12, 2026
 * Lab: Cohere · Weights: Open weights · Model id: cohere/command-a-plus
 
 ## Accuracy by benchmark
@@ -23,4 +24,4 @@
 | [MiMo v2.5](/leaderboard/mimo-v2-5)                           | 49.5  | +36.1 | $23.5             |
 | [MiniMax M3](/leaderboard/minimax-m3)                         | 52.6  | +29.5 | $41.1             |
 
-Latest update October 18, 2026\. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology

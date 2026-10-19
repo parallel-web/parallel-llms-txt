@@ -3,6 +3,7 @@
 * Search Intelligence Score: **67.9** (#12 in Search Intelligence)
 * Without search: 29.9 · Lift from search +38.0
 * Cost per 1K tasks: $335 (#16 in Search Efficiency)
+* Evaluated: Oct 12, 2026
 * Lab: Fireworks AI · Weights: Closed · Model id: fireworks/ember-1
 
 ## Accuracy by benchmark
@@ -23,4 +24,4 @@
 | [Pareto 26.10](/leaderboard/pareto-26-10)                           | 68.6  | +33.8 | $116              |
 | [DeepSeek V4.1 Flash (1017)](/leaderboard/deepseek-v4-1-flash-1017) | 68.9  | +36.0 | $125              |
 
-Latest update October 18, 2026\. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology

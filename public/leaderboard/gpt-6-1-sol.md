@@ -3,6 +3,7 @@
 * Search Intelligence Score: **70.4** (#8 in Search Intelligence)
 * Without search: 39.8 · Lift from search +30.6
 * Cost per 1K tasks: $130 (#6 in Search Efficiency)
+* Evaluated: Sep 30, 2026
 * Lab: OpenAI · Weights: Closed · Model id: gpt-6.1-sol
 
 ## Accuracy by benchmark
@@ -23,4 +24,4 @@
 | [GPT-6 Sol](/leaderboard/gpt-6-sol)     | 66.6  | +28.7 | $183              |
 | [GPT-6 Luna](/leaderboard/gpt-6-luna)   | 61.9  | +33.9 | $33.1             |
 
-Latest update October 18, 2026\. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology

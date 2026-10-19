@@ -3,6 +3,7 @@
 * Search Intelligence Score: **56.0** (#38 in Search Intelligence)
 * Without search: 28.8 · Lift from search +27.2
 * Cost per 1K tasks: $161 (below the median score of 64.4, so not ranked on cost)
+* Evaluated: Oct 16, 2026
 * Lab: Reflection AI · Weights: Open weights · Model id: reflection/beam
 
 ## Accuracy by benchmark
@@ -23,4 +24,4 @@
 | [DeepSeek V4 Pro](/leaderboard/deepseek-v4-pro)       | 58.4  | +27.9 | $110              |
 | [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview) | 58.6  | +24.5 | $114              |
 
-Latest update October 18, 2026\. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology

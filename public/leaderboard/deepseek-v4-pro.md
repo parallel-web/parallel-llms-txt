@@ -3,6 +3,7 @@
 * Search Intelligence Score: **58.4** (#36 in Search Intelligence)
 * Without search: 30.5 · Lift from search +27.9
 * Cost per 1K tasks: $110 (below the median score of 64.4, so not ranked on cost)
+* Evaluated: Sep 22, 2026
 * Lab: DeepSeek · Weights: Open weights · Model id: deepseek/deepseek-v4-pro
 
 ## Accuracy by benchmark
@@ -23,4 +24,4 @@
 | [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview)               | 58.6  | +24.5 | $114              |
 | [Hunyuan 3](/leaderboard/hy3)                                       | 58.2  | +35.6 | $28.4             |
 
-Latest update October 18, 2026\. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology

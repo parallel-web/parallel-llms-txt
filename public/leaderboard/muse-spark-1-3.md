@@ -3,6 +3,7 @@
 * Search Intelligence Score: **66.1** (#18 in Search Intelligence)
 * Without search: 30.3 · Lift from search +35.8
 * Cost per 1K tasks: $142 (#8 in Search Efficiency)
+* Evaluated: Sep 22, 2026
 * Lab: Meta · Weights: Closed · Model id: meta/muse-spark-1.3
 
 ## Accuracy by benchmark
@@ -23,4 +24,4 @@
 | [Grok 4.7 Medium](/leaderboard/grok-4-7)        | 66.0  | +44.8 | $252              |
 | [Claude Sonnet 5](/leaderboard/claude-sonnet-5) | 66.6  | +43.8 | $688              |
 
-Latest update October 18, 2026\. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology
