@@ -1,9 +1,8 @@
 # Hy4 Preview · Search Capability Leaderboard
 
-* Search Intelligence Score: **64.6** (#20 in Search Intelligence)
+* Search Intelligence Score: **64.6** (#21 in Search Intelligence)
 * Without search: 30.6 · Lift from search +33.9
 * Cost per 1K tasks: $93.2 (#2 in Search Efficiency)
-* Time per task: 722s
 * Medals: Silver, Search Efficiency
 * Lab: Tencent · Weights: Open weights · Model id: tencent/hy4-preview
 
@@ -17,12 +16,12 @@
 
 ## Compared with
 
-| Model                                               | Score | Lift  | Cost per 1K tasks | Time per task |
-| --------------------------------------------------- | ----- | ----- | ----------------- | ------------- |
-| Hy4 Preview                                         | 64.6  | +33.9 | $93.2             | 722s          |
-| [Hunyuan 3](/leaderboard/hy3)                       | 58.2  | +35.6 | $28.4             | 363s          |
-| [Mistral Large 4.0](/leaderboard/mistral-large-4-0) | 64.4  | +43.0 | $136              | —             |
-| [MiMo v2.6 Pro](/leaderboard/mimo-v2-6-pro)         | 64.4  | +34.7 | $76.5             | —             |
-| [Kimi K3](/leaderboard/kimi-k3)                     | 64.2  | +33.6 | $266              | 432s          |
+| Model                                               | Score | Lift  | Cost per 1K tasks |
+| --------------------------------------------------- | ----- | ----- | ----------------- |
+| Hy4 Preview                                         | 64.6  | +33.9 | $93.2             |
+| [Hunyuan 3](/leaderboard/hy3)                       | 58.2  | +35.6 | $28.4             |
+| [Mistral Large 4.0](/leaderboard/mistral-large-4-0) | 64.4  | +43.0 | $136              |
+| [MiMo v2.6 Pro](/leaderboard/mimo-v2-6-pro)         | 64.4  | +34.7 | $76.5             |
+| [Kimi K3](/leaderboard/kimi-k3)                     | 64.2  | +33.6 | $266              |
 
-Latest update October 17, 2026\. Methodology: /leaderboard#methodology
+Latest update October 18, 2026\. Methodology: /leaderboard#methodology

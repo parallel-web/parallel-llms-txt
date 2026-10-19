@@ -1,6 +1,6 @@
 # Search Capability Leaderboard
 
-Updated October 18, 2026
+Last updated Oct 17, 2026
 
 What's the best model for agentic search?
 

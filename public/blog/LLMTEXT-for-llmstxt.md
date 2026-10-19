@@ -2,6 +2,10 @@
 
 TL;DR: We're launching LLMTEXT, an open source toolkit that helps developers create, validate, and use llms.txt files—making any website instantly accessible to AI agents through standardized markdown documentation and MCP servers.
 
+> **Deprecated**
+>
+> The LLMTEXT tool has been deprecated.
+
 ## The web wasn't built for AI agents.
 
 Wikipedia [recently reported](https://flowingdata.com/2025/10/27/wikipedia-losing-human-views-to-ai-summaries/#:~:text=Topic,and%20a%20lot%20of%20bots) an 8% decline in human visitors, and [AI has overtaken humans](https://cpl.thalesgroup.com/blog/access-management/ai-bots-internet-traffic-imperva-2025-report) as the primary user of the web this year. As LLMs increasingly become the primary way people interact with online information, websites face a critical challenge: how do you serve both human visitors and AI agents effectively?

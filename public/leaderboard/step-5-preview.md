@@ -1,9 +1,8 @@
 # Step 5 Preview · Search Capability Leaderboard
 
-* Search Intelligence Score: **61.1** (#28 in Search Intelligence)
+* Search Intelligence Score: **61.1** (#29 in Search Intelligence)
 * Without search: 27.8 · Lift from search +33.3
-* Cost per 1K tasks: $118 (below the median score of 63.5, so not ranked on cost)
-* Time per task: 387s
+* Cost per 1K tasks: $118 (below the median score of 64.4, so not ranked on cost)
 * Lab: StepFun · Weights: Open weights · Model id: stepfun/step-5-preview
 
 ## Accuracy by benchmark
@@ -16,12 +15,12 @@
 
 ## Compared with
 
-| Model                                           | Score | Lift  | Cost per 1K tasks | Time per task |
-| ----------------------------------------------- | ----- | ----- | ----------------- | ------------- |
-| Step 5 Preview                                  | 61.1  | +33.3 | $118              | 387s          |
-| [MiMo v2.6 Flash](/leaderboard/mimo-v2-6-flash) | 60.9  | +38.5 | $25.2             | 1323s         |
-| [GLM 5.3 Flash](/leaderboard/glm-5-3-flash)     | 60.8  | +40.4 | $16.6             | 99.1s         |
-| [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna)       | 60.7  | +33.9 | $36.2             | 98.0s         |
-| [GPT-6 Luna](/leaderboard/gpt-6-luna)           | 61.9  | +33.9 | $33.1             | 391s          |
+| Model                                                   | Score | Lift  | Cost per 1K tasks |
+| ------------------------------------------------------- | ----- | ----- | ----------------- |
+| Step 5 Preview                                          | 61.1  | +33.3 | $118              |
+| [Ultramarine 1 Flash](/leaderboard/ultramarine-1-flash) | 61.1  | +37.1 | $87.2             |
+| [MiMo v2.6 Flash](/leaderboard/mimo-v2-6-flash)         | 60.9  | +38.5 | $25.2             |
+| [GLM 5.3 Flash](/leaderboard/glm-5-3-flash)             | 60.8  | +40.4 | $16.6             |
+| [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna)               | 60.7  | +33.9 | $36.2             |
 
-Latest update October 17, 2026\. Methodology: /leaderboard#methodology
+Latest update October 18, 2026\. Methodology: /leaderboard#methodology

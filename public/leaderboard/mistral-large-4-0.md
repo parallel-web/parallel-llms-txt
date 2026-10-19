@@ -1,9 +1,8 @@
 # Mistral Large 4.0 · Search Capability Leaderboard
 
-* Search Intelligence Score: **64.4** (#21 in Search Intelligence)
+* Search Intelligence Score: **64.4** (#22 in Search Intelligence)
 * Without search: 21.4 · Lift from search +43.0
-* Cost per 1K tasks: $136 (#6 in Search Efficiency)
-* Time per task: —
+* Cost per 1K tasks: $136 (#7 in Search Efficiency)
 * Lab: Mistral AI · Weights: Closed · Model id: mistral/mistral-large-4.0
 
 ## Accuracy by benchmark
@@ -16,12 +15,12 @@
 
 ## Compared with
 
-| Model                                             | Score | Lift  | Cost per 1K tasks | Time per task |
-| ------------------------------------------------- | ----- | ----- | ----------------- | ------------- |
-| Mistral Large 4.0                                 | 64.4  | +43.0 | $136              | —             |
-| [MiMo v2.6 Pro](/leaderboard/mimo-v2-6-pro)       | 64.4  | +34.7 | $76.5             | —             |
-| [Hy4 Preview](/leaderboard/hy4-preview)           | 64.6  | +33.9 | $93.2             | 722s          |
-| [Kimi K3](/leaderboard/kimi-k3)                   | 64.2  | +33.6 | $266              | 432s          |
-| [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash) | 65.1  | +26.1 | $177              | 317s          |
+| Model                                             | Score | Lift  | Cost per 1K tasks |
+| ------------------------------------------------- | ----- | ----- | ----------------- |
+| Mistral Large 4.0                                 | 64.4  | +43.0 | $136              |
+| [MiMo v2.6 Pro](/leaderboard/mimo-v2-6-pro)       | 64.4  | +34.7 | $76.5             |
+| [Hy4 Preview](/leaderboard/hy4-preview)           | 64.6  | +33.9 | $93.2             |
+| [Kimi K3](/leaderboard/kimi-k3)                   | 64.2  | +33.6 | $266              |
+| [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash) | 65.1  | +26.1 | $177              |
 
-Latest update October 17, 2026\. Methodology: /leaderboard#methodology
+Latest update October 18, 2026\. Methodology: /leaderboard#methodology

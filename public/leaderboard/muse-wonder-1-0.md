@@ -3,7 +3,6 @@
 * Search Intelligence Score: **71.3** (#6 in Search Intelligence)
 * Without search: 35.3 · Lift from search +36.0
 * Cost per 1K tasks: $709 (#19 in Search Efficiency)
-* Time per task: 287s
 * Lab: Meta · Weights: Closed · Model id: meta/muse-wonder-1.0
 
 ## Accuracy by benchmark
@@ -16,12 +15,12 @@
 
 ## Compared with
 
-| Model                                           | Score | Lift  | Cost per 1K tasks | Time per task |
-| ----------------------------------------------- | ----- | ----- | ----------------- | ------------- |
-| Muse Wonder 1.0                                 | 71.3  | +36.0 | $709              | 287s          |
-| [Muse Spark Open](/leaderboard/muse-spark-open) | 67.2  | +31.8 | $171              | 360s          |
-| [Muse Spark 1.3](/leaderboard/muse-spark-1-3)   | 66.1  | +35.8 | $142              | 274s          |
-| [GPT-6 Astra](/leaderboard/gpt-6-astra)         | 70.8  | +27.9 | $401              | 83.7s         |
-| [Gemini 4 Argon](/leaderboard/gemini-4-argon)   | 72.2  | +37.2 | $270              | 206s          |
+| Model                                           | Score | Lift  | Cost per 1K tasks |
+| ----------------------------------------------- | ----- | ----- | ----------------- |
+| Muse Wonder 1.0                                 | 71.3  | +36.0 | $709              |
+| [Muse Spark Open](/leaderboard/muse-spark-open) | 67.2  | +31.8 | $171              |
+| [Muse Spark 1.3](/leaderboard/muse-spark-1-3)   | 66.1  | +35.8 | $142              |
+| [GPT-6 Astra](/leaderboard/gpt-6-astra)         | 70.8  | +27.9 | $401              |
+| [Gemini 4 Argon](/leaderboard/gemini-4-argon)   | 72.2  | +37.2 | $270              |
 
-Latest update October 17, 2026\. Methodology: /leaderboard#methodology
+Latest update October 18, 2026\. Methodology: /leaderboard#methodology

@@ -1,9 +1,8 @@
 # MiMo v2.5 · Search Capability Leaderboard
 
-* Search Intelligence Score: **49.5** (#43 in Search Intelligence)
+* Search Intelligence Score: **49.5** (#42 in Search Intelligence)
 * Without search: 13.4 · Lift from search +36.1
-* Cost per 1K tasks: $23.5 (below the median score of 63.5, so not ranked on cost)
-* Time per task: 894s
+* Cost per 1K tasks: $23.5 (below the median score of 64.4, so not ranked on cost)
 * Lab: Xiaomi · Weights: Open weights · Model id: xiaomi/mimo-v2.5
 
 ## Accuracy by benchmark
@@ -16,12 +15,12 @@
 
 ## Compared with
 
-| Model                                                            | Score | Lift  | Cost per 1K tasks | Time per task |
-| ---------------------------------------------------------------- | ----- | ----- | ----------------- | ------------- |
-| MiMo v2.5                                                        | 49.5  | +36.1 | $23.5             | 894s          |
-| [MiMo v2.6 Flash](/leaderboard/mimo-v2-6-flash)                  | 60.9  | +38.5 | $25.2             | 1323s         |
-| [MiMo v2.6 Pro](/leaderboard/mimo-v2-6-pro)                      | 64.4  | +34.7 | $76.5             | —             |
-| [MiniMax M3](/leaderboard/minimax-m3)                            | 52.6  | +29.5 | $41.1             | 291s          |
-| [Nemotron 3 Ultra 550B](/leaderboard/nemotron-3-ultra-550b-a55b) | 53.0  | +37.7 | $113              | 328s          |
+| Model                                                            | Score | Lift  | Cost per 1K tasks |
+| ---------------------------------------------------------------- | ----- | ----- | ----------------- |
+| MiMo v2.5                                                        | 49.5  | +36.1 | $23.5             |
+| [MiMo v2.6 Flash](/leaderboard/mimo-v2-6-flash)                  | 60.9  | +38.5 | $25.2             |
+| [MiMo v2.6 Pro](/leaderboard/mimo-v2-6-pro)                      | 64.4  | +34.7 | $76.5             |
+| [MiniMax M3](/leaderboard/minimax-m3)                            | 52.6  | +29.5 | $41.1             |
+| [Nemotron 3 Ultra 550B](/leaderboard/nemotron-3-ultra-550b-a55b) | 53.0  | +37.7 | $113              |
 
-Latest update October 17, 2026\. Methodology: /leaderboard#methodology
+Latest update October 18, 2026\. Methodology: /leaderboard#methodology

@@ -1,9 +1,9 @@
 # MiniMax M3 · Search Capability Leaderboard
 
-* Search Intelligence Score: **52.6** (#42 in Search Intelligence)
+* Search Intelligence Score: **52.6** (#41 in Search Intelligence)
 * Without search: 23.1 · Lift from search +29.5
-* Cost per 1K tasks: $41.1 (below the median score of 63.5, so not ranked on cost)
-* Time per task: 291s
+* Cost per 1K tasks: $41.1 (below the median score of 64.4, so not ranked on cost)
+* Evaluated: Sep 22, 2026
 * Lab: MiniMax · Weights: Open weights · Model id: minimax/minimax-m3
 
 ## Accuracy by benchmark
@@ -16,12 +16,12 @@
 
 ## Compared with
 
-| Model                                                            | Score | Lift  | Cost per 1K tasks | Time per task |
-| ---------------------------------------------------------------- | ----- | ----- | ----------------- | ------------- |
-| MiniMax M3                                                       | 52.6  | +29.5 | $41.1             | 291s          |
-| [Nemotron 3 Ultra 550B](/leaderboard/nemotron-3-ultra-550b-a55b) | 53.0  | +37.7 | $113              | 328s          |
-| [DeepSeek V4 Flash](/leaderboard/deepseek-v4-flash)              | 53.1  | +33.7 | $24.4             | 358s          |
-| [DeepSeek V4 Pro (0813)](/leaderboard/deepseek-v4-pro-0813)      | 53.5  | +20.4 | $234              | 394s          |
-| [GLM-5.2](/leaderboard/glm-5-2)                                  | 54.3  | +35.9 | $66.6             | 301s          |
+| Model                                                            | Score | Lift  | Cost per 1K tasks |
+| ---------------------------------------------------------------- | ----- | ----- | ----------------- |
+| MiniMax M3                                                       | 52.6  | +29.5 | $41.1             |
+| [Nemotron 3 Ultra 550B](/leaderboard/nemotron-3-ultra-550b-a55b) | 53.0  | +37.7 | $113              |
+| [GLM-5.2](/leaderboard/glm-5-2)                                  | 54.3  | +35.9 | $66.6             |
+| [MiMo v2.5](/leaderboard/mimo-v2-5)                              | 49.5  | +36.1 | $23.5             |
+| [Beam](/leaderboard/beam)                                        | 56.0  | +27.2 | $161              |
 
-Latest update October 17, 2026\. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology

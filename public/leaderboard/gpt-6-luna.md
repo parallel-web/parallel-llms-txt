@@ -1,9 +1,8 @@
 # GPT-6 Luna · Search Capability Leaderboard
 
-* Search Intelligence Score: **61.9** (#27 in Search Intelligence)
+* Search Intelligence Score: **61.9** (#28 in Search Intelligence)
 * Without search: 28.0 · Lift from search +33.9
-* Cost per 1K tasks: $33.1 (below the median score of 63.5, so not ranked on cost)
-* Time per task: 391s
+* Cost per 1K tasks: $33.1 (below the median score of 64.4, so not ranked on cost)
 * Lab: OpenAI · Weights: Closed · Model id: gpt-6-luna
 
 ## Accuracy by benchmark
@@ -16,12 +15,12 @@
 
 ## Compared with
 
-| Model                                     | Score | Lift  | Cost per 1K tasks | Time per task |
-| ----------------------------------------- | ----- | ----- | ----------------- | ------------- |
-| GPT-6 Luna                                | 61.9  | +33.9 | $33.1             | 391s          |
-| [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna) | 60.7  | +33.9 | $36.2             | 98.0s         |
-| [GPT-6 Sol](/leaderboard/gpt-6-sol)       | 66.6  | +28.7 | $183              | 260s          |
-| [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)   | 67.7  | +26.3 | $269              | 107s          |
-| [GPT-6.1 Sol](/leaderboard/gpt-6-1-sol)   | 70.4  | +30.6 | $130              | 353s          |
+| Model                                     | Score | Lift  | Cost per 1K tasks |
+| ----------------------------------------- | ----- | ----- | ----------------- |
+| GPT-6 Luna                                | 61.9  | +33.9 | $33.1             |
+| [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna) | 60.7  | +33.9 | $36.2             |
+| [GPT-6 Sol](/leaderboard/gpt-6-sol)       | 66.6  | +28.7 | $183              |
+| [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)   | 67.7  | +26.3 | $269              |
+| [GPT-6.1 Sol](/leaderboard/gpt-6-1-sol)   | 70.4  | +30.6 | $130              |
 
-Latest update October 17, 2026\. Methodology: /leaderboard#methodology
+Latest update October 18, 2026\. Methodology: /leaderboard#methodology

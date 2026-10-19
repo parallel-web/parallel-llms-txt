@@ -3,7 +3,6 @@
 * Search Intelligence Score: **75.4** (#1 in Search Intelligence)
 * Without search: 44.2 · Lift from search +31.2
 * Cost per 1K tasks: $949 (#21 in Search Efficiency)
-* Time per task: 512s
 * Medals: Gold, Search Intelligence
 * Lab: Anthropic · Weights: Closed · Model id: claude-opus-5.5
 
@@ -17,12 +16,12 @@
 
 ## Compared with
 
-| Model                                               | Score | Lift  | Cost per 1K tasks | Time per task |
-| --------------------------------------------------- | ----- | ----- | ----------------- | ------------- |
-| Claude Opus 5.5                                     | 75.4  | +31.2 | $949              | 512s          |
-| [Claude Sonnet 5.5](/leaderboard/claude-sonnet-5-5) | 74.1  | +40.9 | $796              | 500s          |
-| [Claude Fable 5.1](/leaderboard/claude-fable-5-1)   | 73.4  | +26.5 | $1,762            | 416s          |
-| [Claude Opus 5](/leaderboard/claude-opus-5)         | 70.0  | +32.8 | $1,012            | 342s          |
-| [Claude Sonnet 5](/leaderboard/claude-sonnet-5)     | 66.6  | +43.8 | $688              | 846s          |
+| Model                                               | Score | Lift  | Cost per 1K tasks |
+| --------------------------------------------------- | ----- | ----- | ----------------- |
+| Claude Opus 5.5                                     | 75.4  | +31.2 | $949              |
+| [Claude Sonnet 5.5](/leaderboard/claude-sonnet-5-5) | 74.1  | +40.9 | $796              |
+| [Claude Fable 5.1](/leaderboard/claude-fable-5-1)   | 73.4  | +26.5 | $1,762            |
+| [Claude Opus 5](/leaderboard/claude-opus-5)         | 70.0  | +32.8 | $1,012            |
+| [Claude Sonnet 5](/leaderboard/claude-sonnet-5)     | 66.6  | +43.8 | $688              |
 
 Latest update October 18, 2026\. Methodology: /leaderboard#methodology

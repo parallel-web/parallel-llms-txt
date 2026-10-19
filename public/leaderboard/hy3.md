@@ -1,9 +1,8 @@
 # Hunyuan 3 · Search Capability Leaderboard
 
-* Search Intelligence Score: **58.2** (#36 in Search Intelligence)
+* Search Intelligence Score: **58.2** (#37 in Search Intelligence)
 * Without search: 22.6 · Lift from search +35.6
-* Cost per 1K tasks: $28.4 (below the median score of 63.5, so not ranked on cost)
-* Time per task: 363s
+* Cost per 1K tasks: $28.4 (below the median score of 64.4, so not ranked on cost)
 * Lab: Tencent · Weights: Open weights · Model id: tencent/hy3
 
 ## Accuracy by benchmark
@@ -16,12 +15,12 @@
 
 ## Compared with
 
-| Model                                                       | Score | Lift  | Cost per 1K tasks | Time per task |
-| ----------------------------------------------------------- | ----- | ----- | ----------------- | ------------- |
-| Hunyuan 3                                                   | 58.2  | +35.6 | $28.4             | 363s          |
-| [Hy4 Preview](/leaderboard/hy4-preview)                     | 64.6  | +33.9 | $93.2             | 722s          |
-| [DeepSeek V4 Pro](/leaderboard/deepseek-v4-pro)             | 58.4  | +27.9 | $110              | 383s          |
-| [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview)       | 58.6  | +24.5 | $114              | 276s          |
-| [Nemotron 3.5 Super VL](/leaderboard/nemotron-3-5-super-vl) | 59.1  | +42.2 | $93.9             | 181s          |
+| Model                                                       | Score | Lift  | Cost per 1K tasks |
+| ----------------------------------------------------------- | ----- | ----- | ----------------- |
+| Hunyuan 3                                                   | 58.2  | +35.6 | $28.4             |
+| [Hy4 Preview](/leaderboard/hy4-preview)                     | 64.6  | +33.9 | $93.2             |
+| [DeepSeek V4 Pro](/leaderboard/deepseek-v4-pro)             | 58.4  | +27.9 | $110              |
+| [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview)       | 58.6  | +24.5 | $114              |
+| [Nemotron 3.5 Super VL](/leaderboard/nemotron-3-5-super-vl) | 59.1  | +42.2 | $93.9             |
 
-Latest update October 17, 2026\. Methodology: /leaderboard#methodology
+Latest update October 18, 2026\. Methodology: /leaderboard#methodology
