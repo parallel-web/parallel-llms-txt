@@ -510,12 +510,6 @@ MIT License (MIT)
   
     + [Typed](https://pypi.org/search/?c=Typing+%3A%3A+Typed)
 
-[Sponsored: Python Software Foundation](https://server.ethicalads.io/proxy/click/10404/01a15013-3571-7be1-9ff4-5504e4303415/)
-
-SerpApi is a Maintaining sponsor of the Python Software Foundation.
-
-_[PSF Sponsor](https://www.python.org/psf/sponsorship/?ref=ethicalads-placement) · [Served ethically](https://www.ethicalads.io/sponsorship-platform/?ref=psf)_
-
 [Report project as malware](https://pypi.org/project/parallel-web/submit-malware-report/)
 
 ## Metadata
@@ -589,12 +583,6 @@ MIT License (MIT)
   
     + [Typed](https://pypi.org/search/?c=Typing+%3A%3A+Typed)
 
-[Sponsored: Python Software Foundation](https://server.ethicalads.io/proxy/click/10113/01a15013-3578-7e03-868c-48bde03e0cba/)
-
-Anthropic, PBC is a Visionary sponsor of the Python Software Foundation.
-
-_[PSF Sponsor](https://www.python.org/psf/sponsorship/?ref=ethicalads-placement) · [Served ethically](https://www.ethicalads.io/sponsorship-platform/?ref=psf)_
-
 [Report project as malware](https://pypi.org/project/parallel-web/submit-malware-report/)
 
 ## Release files for parallel-web 1.3.5
@@ -618,6 +606,36 @@ For a detailed explanation of source distributions (sdists) and built distributi
 * * *
 
 **Total release size:** 341\.9 kB
+
+## Release files / parallel\_web-1.3.5.tar.gz
+
+|Download URL |[parallel\_web-1.3.5.tar.gz](https://files.pythonhosted.org/packages/22/56/94d725d6c22626554388979ce5b71d4679473053f9e3f4202d001c77ee65/parallel_web-1.3.5.tar.gz) |
+| --- | --- |
+|Size |163\.5 kB |
+|Tags |Source |
+|SHA-256 checksum  
+[How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`f45e4504845b60d090b62c6f4040cdd6b0b184616cf6809702e5d90364a0241d` |
+|BLAKE2b-256 checksum  
+[How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`225694d725d6c22626554388979ce5b71d4679473053f9e3f4202d001c77ee65` |
+|Upload date |Sep 29, 2026 |
+|Uploaded using Trusted Publishing?  
+[What is trusted publishing?](https://docs.pypi.org/trusted-publishers/) |No |
+|Uploaded via |`twine/5.1.1 CPython/3.12.9` |
+
+## Release files / parallel\_web-1.3.5-py3-none-any.whl
+
+|Download URL |[parallel\_web-1.3.5-py3-none-any.whl](https://files.pythonhosted.org/packages/87/c4/b688ad99a5ac7b6983c2871e83a62f70b186df37e7a21a6362abb5d2b8fc/parallel_web-1.3.5-py3-none-any.whl) |
+| --- | --- |
+|Size |178\.3 kB |
+|Tags |Python 3 |
+|SHA-256 checksum  
+[How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`a8614ce0376d6c0754faae117369ccdb1e3f48743c2218cb912701973210186b` |
+|BLAKE2b-256 checksum  
+[How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`87c4b688ad99a5ac7b6983c2871e83a62f70b186df37e7a21a6362abb5d2b8fc` |
+|Upload date |Sep 29, 2026 |
+|Uploaded using Trusted Publishing?  
+[What is trusted publishing?](https://docs.pypi.org/trusted-publishers/) |No |
+|Uploaded via |`twine/5.1.1 CPython/3.12.9` |
 
 ## Release history [Release notifications](https://pypi.org/help/) | [RSS feed](https://pypi.org/rss/project/parallel-web/releases.xml)
 
@@ -739,7 +757,7 @@ Apr 24, 2025 [2 release files](https://pypi.org/project/parallel-web/0.1.0/)
 
 Developed and maintained by the [Python Software Foundation](https://www.python.org/psf/ "External link") and Python community, for the Python community.
 
-[Status: All Systems Operational](https://status.python.org/ "External link")
+[Status: all systems operational](https://status.python.org/ "External link")
 
 [Donate today!](https://donate.pypi.org/)
 
@@ -748,4 +766,4 @@ Switch to desktop version
 * "PyPI", "Python Package Index", and the blocks logos are registered [trademarks](https://pypi.org/trademarks/) of the [Python Software Foundation](https://www.python.org/psf-landing) .
 
 * [Site map](https://pypi.org/sitemap/)
-* Deployed from [`f9ce836`](https://github.com/pypi/warehouse/commit/f9ce83647318089c485c3d66378d559f0e7cdeed "External link")
+* Deployed from [`24a09ca`](https://github.com/pypi/warehouse/commit/24a09ca690a61eeab6fc136998106e657bab4229 "External link")
