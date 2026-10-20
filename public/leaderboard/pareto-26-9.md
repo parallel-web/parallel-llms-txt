@@ -24,4 +24,4 @@
 | [Claude Fable 5.1](/leaderboard/claude-fable-5-1) | 73.4  | +26.5 | $1,762            |
 | [Muse Wonder 1.0](/leaderboard/muse-wonder-1-0)   | 71.3  | +36.0 | $709              |
 
-Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 19, 2026. Methodology: /leaderboard#methodology

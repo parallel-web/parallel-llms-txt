@@ -1,6 +1,6 @@
 # GPT-6 Sol · Search Capability Leaderboard
 
-* Search Intelligence Score: **66.6** (#16 in Search Intelligence)
+* Search Intelligence Score: **66.6** (#17 in Search Intelligence)
 * Without search: 37.9 · Lift from search +28.7
 * Cost per 1K tasks: $183 (#11 in Search Efficiency)
 * Evaluated: Sep 23, 2026
@@ -24,4 +24,4 @@
 | [GPT-6 Astra](/leaderboard/gpt-6-astra) | 70.8  | +27.9 | $401              |
 | [GPT-6 Luna](/leaderboard/gpt-6-luna)   | 61.9  | +33.9 | $33.1             |
 
-Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 19, 2026. Methodology: /leaderboard#methodology

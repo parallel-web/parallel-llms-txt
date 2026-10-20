@@ -1,6 +1,6 @@
 # Gemini 3.8 Flash · Search Capability Leaderboard
 
-* Search Intelligence Score: **65.1** (#20 in Search Intelligence)
+* Search Intelligence Score: **65.1** (#22 in Search Intelligence)
 * Without search: 39.0 · Lift from search +26.1
 * Cost per 1K tasks: $177 (#10 in Search Efficiency)
 * Evaluated: Sep 22, 2026
@@ -24,4 +24,4 @@
 | [Gemini 4 Argon](/leaderboard/gemini-4-argon)         | 72.2  | +37.2 | $270              |
 | [Hy4 Preview](/leaderboard/hy4-preview)               | 64.6  | +33.9 | $93.2             |
 
-Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 19, 2026. Methodology: /leaderboard#methodology

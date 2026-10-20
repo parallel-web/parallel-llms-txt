@@ -1,8 +1,8 @@
 # Nemotron 3.5 Super VL · Search Capability Leaderboard
 
-* Search Intelligence Score: **59.1** (#35 in Search Intelligence)
+* Search Intelligence Score: **59.1** (#37 in Search Intelligence)
 * Without search: 17.0 · Lift from search +42.2
-* Cost per 1K tasks: $93.9 (below the median score of 64.3, so not ranked on cost)
+* Cost per 1K tasks: $93.9 (below the median score of 64.4, so not ranked on cost)
 * Evaluated: Oct 16, 2026
 * Lab: NVIDIA · Weights: Open weights · Model id: nvidia/nemotron-3.5-super-vl
 
@@ -24,4 +24,4 @@
 | [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview)            | 58.6  | +24.5 | $114              |
 | [DeepSeek V4 Pro](/leaderboard/deepseek-v4-pro)                  | 58.4  | +27.9 | $110              |
 
-Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 19, 2026. Methodology: /leaderboard#methodology

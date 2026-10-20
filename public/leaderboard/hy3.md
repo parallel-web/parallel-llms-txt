@@ -1,8 +1,8 @@
 # Hunyuan 3 · Search Capability Leaderboard
 
-* Search Intelligence Score: **58.2** (#38 in Search Intelligence)
+* Search Intelligence Score: **58.2** (#40 in Search Intelligence)
 * Without search: 22.6 · Lift from search +35.6
-* Cost per 1K tasks: $28.4 (below the median score of 64.3, so not ranked on cost)
+* Cost per 1K tasks: $28.4 (below the median score of 64.4, so not ranked on cost)
 * Evaluated: Sep 22, 2026
 * Lab: Tencent · Weights: Open weights · Model id: tencent/hy3
 
@@ -24,4 +24,4 @@
 | [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview)       | 58.6  | +24.5 | $114              |
 | [Nemotron 3.5 Super VL](/leaderboard/nemotron-3-5-super-vl) | 59.1  | +42.2 | $93.9             |
 
-Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 19, 2026. Methodology: /leaderboard#methodology

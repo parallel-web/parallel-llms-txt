@@ -1,8 +1,8 @@
 # Mercury 3 · Search Capability Leaderboard
 
-* Search Intelligence Score: **63.6** (#25 in Search Intelligence)
+* Search Intelligence Score: **63.6** (#27 in Search Intelligence)
 * Without search: 28.1 · Lift from search +35.5
-* Cost per 1K tasks: $43.4 (below the median score of 64.3, so not ranked on cost)
+* Cost per 1K tasks: $43.4 (below the median score of 64.4, so not ranked on cost)
 * Evaluated: Oct 14, 2026
 * Lab: Inception Labs · Weights: Closed · Model id: inception/mercury-3
 
@@ -24,4 +24,4 @@
 | [MiMo v2.6 Pro](/leaderboard/mimo-v2-6-pro)         | 64.4  | +34.7 | $76.5             |
 | [Mistral Large 4.0](/leaderboard/mistral-large-4-0) | 64.4  | +43.0 | $136              |
 
-Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 19, 2026. Methodology: /leaderboard#methodology

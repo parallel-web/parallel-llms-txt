@@ -21,7 +21,7 @@
 | DeepSeek V4.1 Flash (1017)                              | 68.9  | +36.0 | $125              |
 | [DeepSeek V4.1 Flash](/leaderboard/deepseek-v4-1-flash) | 62.7  | +35.7 | $35.8             |
 | [DeepSeek V4 Pro](/leaderboard/deepseek-v4-pro)         | 58.4  | +27.9 | $110              |
+| [MiniMax M3.1 Flash](/leaderboard/minimax-m3-1-flash)   | 68.8  | +41.7 | $43.8             |
 | [Pareto 26.10](/leaderboard/pareto-26-10)               | 68.6  | +33.8 | $116              |
-| [Ember-1](/leaderboard/ember-1)                         | 67.9  | +38.0 | $335              |
 
-Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 19, 2026. Methodology: /leaderboard#methodology

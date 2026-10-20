@@ -1,6 +1,6 @@
 # Hy4 Preview · Search Capability Leaderboard
 
-* Search Intelligence Score: **64.6** (#21 in Search Intelligence)
+* Search Intelligence Score: **64.6** (#23 in Search Intelligence)
 * Without search: 30.6 · Lift from search +33.9
 * Cost per 1K tasks: $93.2 (#2 in Search Efficiency)
 * Medals: Silver, Search Efficiency
@@ -25,4 +25,4 @@
 | [MiMo v2.6 Pro](/leaderboard/mimo-v2-6-pro)         | 64.4  | +34.7 | $76.5             |
 | [Kimi K3](/leaderboard/kimi-k3)                     | 64.2  | +33.6 | $266              |
 
-Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 19, 2026. Methodology: /leaderboard#methodology
