@@ -1,8 +1,8 @@
 # GLM 5.3 Flash · Search Capability Leaderboard
 
-* Search Intelligence Score: **60.8** (#32 in Search Intelligence)
+* Search Intelligence Score: **60.8** (#33 in Search Intelligence)
 * Without search: 20.4 · Lift from search +40.4
-* Cost per 1K tasks: $16.6 (below the median score of 64.4, so not ranked on cost)
+* Cost per 1K tasks: $16.6 (below the median score of 64.3, so not ranked on cost)
 * Evaluated: Oct 5, 2026
 * Lab: Z.ai · Weights: Open weights · Model id: z-ai/glm-5.3-flash
 

@@ -1,8 +1,8 @@
 # GPT-6 Luna · Search Capability Leaderboard
 
-* Search Intelligence Score: **61.9** (#28 in Search Intelligence)
+* Search Intelligence Score: **61.9** (#29 in Search Intelligence)
 * Without search: 28.0 · Lift from search +33.9
-* Cost per 1K tasks: $33.1 (below the median score of 64.4, so not ranked on cost)
+* Cost per 1K tasks: $33.1 (below the median score of 64.3, so not ranked on cost)
 * Evaluated: Sep 23, 2026
 * Lab: OpenAI · Weights: Closed · Model id: gpt-6-luna
 

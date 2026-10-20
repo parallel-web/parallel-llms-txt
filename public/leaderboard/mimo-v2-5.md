@@ -1,8 +1,8 @@
 # MiMo v2.5 · Search Capability Leaderboard
 
-* Search Intelligence Score: **49.5** (#42 in Search Intelligence)
+* Search Intelligence Score: **49.5** (#43 in Search Intelligence)
 * Without search: 13.4 · Lift from search +36.1
-* Cost per 1K tasks: $23.5 (below the median score of 64.4, so not ranked on cost)
+* Cost per 1K tasks: $23.5 (below the median score of 64.3, so not ranked on cost)
 * Evaluated: Sep 23, 2026
 * Lab: Xiaomi · Weights: Open weights · Model id: xiaomi/mimo-v2.5
 

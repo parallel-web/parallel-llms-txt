@@ -1,8 +1,8 @@
 # Hunyuan 3 · Search Capability Leaderboard
 
-* Search Intelligence Score: **58.2** (#37 in Search Intelligence)
+* Search Intelligence Score: **58.2** (#38 in Search Intelligence)
 * Without search: 22.6 · Lift from search +35.6
-* Cost per 1K tasks: $28.4 (below the median score of 64.4, so not ranked on cost)
+* Cost per 1K tasks: $28.4 (below the median score of 64.3, so not ranked on cost)
 * Evaluated: Sep 22, 2026
 * Lab: Tencent · Weights: Open weights · Model id: tencent/hy3
 

@@ -2,7 +2,7 @@
 
 * Search Intelligence Score: **64.2** (#24 in Search Intelligence)
 * Without search: 30.6 · Lift from search +33.6
-* Cost per 1K tasks: $266 (below the median score of 64.4, so not ranked on cost)
+* Cost per 1K tasks: $266 (below the median score of 64.3, so not ranked on cost)
 * Evaluated: Sep 22, 2026
 * Lab: Moonshot AI · Weights: Open weights · Model id: moonshotai/kimi-k3
 
@@ -22,6 +22,6 @@
 | [MiMo v2.6 Pro](/leaderboard/mimo-v2-6-pro)         | 64.4  | +34.7 | $76.5             |
 | [Mistral Large 4.0](/leaderboard/mistral-large-4-0) | 64.4  | +43.0 | $136              |
 | [Hy4 Preview](/leaderboard/hy4-preview)             | 64.6  | +33.9 | $93.2             |
-| [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash)   | 65.1  | +26.1 | $177              |
+| [Mercury 3](/leaderboard/mercury-3)                 | 63.6  | +35.5 | $43.4             |
 
 Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology

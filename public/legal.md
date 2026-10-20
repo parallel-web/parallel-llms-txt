@@ -47,9 +47,3 @@ Information related to Parallel's agreements, policies, and compliance documenta
 * [## \## Privacy Policy How user information is collected, used, and disclosed.](https://parallel.ai/privacy-policy)
 * [## \## Customer Terms Terms governing paid accounts, including commercial rights and obligations.](https://parallel.ai/customer-terms)
 * [## \## Acceptable Use Activities permitted and prohibited across Parallel's products and APIs.](https://parallel.ai/acceptable-use-policy)
-
-## Your Privacy Choices
-
-[Privacy Policy](https://parallel.ai/privacy-policy) | Manage Preferences
-
-Accept all Reject all

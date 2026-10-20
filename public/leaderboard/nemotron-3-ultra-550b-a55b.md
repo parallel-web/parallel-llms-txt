@@ -1,8 +1,8 @@
 # Nemotron 3 Ultra 550B · Search Capability Leaderboard
 
-* Search Intelligence Score: **53.0** (#40 in Search Intelligence)
+* Search Intelligence Score: **53.0** (#41 in Search Intelligence)
 * Without search: 15.3 · Lift from search +37.7
-* Cost per 1K tasks: $113 (below the median score of 64.4, so not ranked on cost)
+* Cost per 1K tasks: $113 (below the median score of 64.3, so not ranked on cost)
 * Evaluated: Sep 22, 2026
 * Lab: NVIDIA · Weights: Open weights · Model id: nvidia/nemotron-3-ultra-550b-a55b
 

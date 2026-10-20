@@ -1,8 +1,8 @@
 # GLM-5.2 · Search Capability Leaderboard
 
-* Search Intelligence Score: **54.3** (#39 in Search Intelligence)
+* Search Intelligence Score: **54.3** (#40 in Search Intelligence)
 * Without search: 18.4 · Lift from search +35.9
-* Cost per 1K tasks: $66.6 (below the median score of 64.4, so not ranked on cost)
+* Cost per 1K tasks: $66.6 (below the median score of 64.3, so not ranked on cost)
 * Evaluated: Sep 22, 2026
 * Lab: Z.ai · Weights: Open weights · Model id: z-ai/glm-5.2
 

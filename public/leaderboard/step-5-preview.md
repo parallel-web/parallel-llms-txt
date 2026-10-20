@@ -1,8 +1,8 @@
 # Step 5 Preview · Search Capability Leaderboard
 
-* Search Intelligence Score: **61.1** (#29 in Search Intelligence)
+* Search Intelligence Score: **61.1** (#30 in Search Intelligence)
 * Without search: 27.8 · Lift from search +33.3
-* Cost per 1K tasks: $118 (below the median score of 64.4, so not ranked on cost)
+* Cost per 1K tasks: $118 (below the median score of 64.3, so not ranked on cost)
 * Evaluated: Oct 11, 2026
 * Lab: StepFun · Weights: Open weights · Model id: stepfun/step-5-preview
 

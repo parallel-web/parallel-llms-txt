@@ -1,8 +1,8 @@
 # MiniMax M3 · Search Capability Leaderboard
 
-* Search Intelligence Score: **52.6** (#41 in Search Intelligence)
+* Search Intelligence Score: **52.6** (#42 in Search Intelligence)
 * Without search: 23.1 · Lift from search +29.5
-* Cost per 1K tasks: $41.1 (below the median score of 64.4, so not ranked on cost)
+* Cost per 1K tasks: $41.1 (below the median score of 64.3, so not ranked on cost)
 * Evaluated: Sep 22, 2026
 * Lab: MiniMax · Weights: Open weights · Model id: minimax/minimax-m3
 
