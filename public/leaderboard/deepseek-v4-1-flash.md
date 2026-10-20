@@ -1,8 +1,8 @@
 # DeepSeek V4.1 Flash · Search Capability Leaderboard
 
-* Search Intelligence Score: **62.7** (#27 in Search Intelligence)
+* Search Intelligence Score: **62.7** (#29 in Search Intelligence)
 * Without search: 27.0 · Lift from search +35.7
-* Cost per 1K tasks: $35.8 (below the median score of 64.3, so not ranked on cost)
+* Cost per 1K tasks: $35.8 (below the median score of 64.4, so not ranked on cost)
 * Evaluated: Sep 22, 2026
 * Lab: DeepSeek · Weights: Open weights · Model id: deepseek/deepseek-v4.1-flash
 
@@ -24,4 +24,4 @@
 | [GLM 5.3](/leaderboard/glm-5-3)                                     | 62.7  | +40.8 | $78.5             |
 | [Claude Haiku 5.5](/leaderboard/claude-haiku-5-5)                   | 62.9  | +39.4 | $24.3             |
 
-Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 19, 2026. Methodology: /leaderboard#methodology

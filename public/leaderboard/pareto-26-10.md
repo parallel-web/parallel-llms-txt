@@ -1,6 +1,6 @@
 # Pareto 26.10 · Search Capability Leaderboard
 
-* Search Intelligence Score: **68.6** (#11 in Search Intelligence)
+* Search Intelligence Score: **68.6** (#12 in Search Intelligence)
 * Without search: 34.8 · Lift from search +33.8
 * Cost per 1K tasks: $116 (#3 in Search Efficiency)
 * Medals: Bronze, Search Efficiency
@@ -21,8 +21,8 @@
 | ------------------------------------------------------------------- | ----- | ----- | ----------------- |
 | Pareto 26.10                                                        | 68.6  | +33.8 | $116              |
 | [Pareto 26.9](/leaderboard/pareto-26-9)                             | 72.5  | +32.8 | $184              |
+| [MiniMax M3.1 Flash](/leaderboard/minimax-m3-1-flash)               | 68.8  | +41.7 | $43.8             |
 | [DeepSeek V4.1 Flash (1017)](/leaderboard/deepseek-v4-1-flash-1017) | 68.9  | +36.0 | $125              |
 | [Ember-1](/leaderboard/ember-1)                                     | 67.9  | +38.0 | $335              |
-| [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)                             | 67.7  | +26.3 | $269              |
 
-Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 19, 2026. Methodology: /leaderboard#methodology

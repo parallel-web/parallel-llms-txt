@@ -1,8 +1,8 @@
 # Beam · Search Capability Leaderboard
 
-* Search Intelligence Score: **56.0** (#39 in Search Intelligence)
+* Search Intelligence Score: **56.0** (#41 in Search Intelligence)
 * Without search: 28.8 · Lift from search +27.2
-* Cost per 1K tasks: $161 (below the median score of 64.3, so not ranked on cost)
+* Cost per 1K tasks: $161 (below the median score of 64.4, so not ranked on cost)
 * Evaluated: Oct 16, 2026
 * Lab: Reflection AI · Weights: Open weights · Model id: reflection/beam
 
@@ -24,4 +24,4 @@
 | [DeepSeek V4 Pro](/leaderboard/deepseek-v4-pro)       | 58.4  | +27.9 | $110              |
 | [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview) | 58.6  | +24.5 | $114              |
 
-Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 19, 2026. Methodology: /leaderboard#methodology

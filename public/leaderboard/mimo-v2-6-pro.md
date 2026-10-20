@@ -1,9 +1,8 @@
 # MiMo v2.6 Pro · Search Capability Leaderboard
 
-* Search Intelligence Score: **64.4** (#23 in Search Intelligence)
+* Search Intelligence Score: **64.4** (#25 in Search Intelligence)
 * Without search: 29.7 · Lift from search +34.7
-* Cost per 1K tasks: $76.5 (#1 in Search Efficiency)
-* Medals: Gold, Search Efficiency
+* Cost per 1K tasks: $76.5 (below the median score of 64.4, so not ranked on cost)
 * Evaluated: Oct 8, 2026
 * Lab: Xiaomi · Weights: Open weights · Model id: xiaomi/mimo-v2.6-pro
 
@@ -25,4 +24,4 @@
 | [Mistral Large 4.0](/leaderboard/mistral-large-4-0) | 64.4  | +43.0 | $136              |
 | [Kimi K3](/leaderboard/kimi-k3)                     | 64.2  | +33.6 | $266              |
 
-Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 19, 2026. Methodology: /leaderboard#methodology

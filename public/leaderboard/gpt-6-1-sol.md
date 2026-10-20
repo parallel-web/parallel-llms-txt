@@ -24,4 +24,4 @@
 | [GPT-6 Sol](/leaderboard/gpt-6-sol)     | 66.6  | +28.7 | $183              |
 | [GPT-6 Luna](/leaderboard/gpt-6-luna)   | 61.9  | +33.9 | $33.1             |
 
-Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 19, 2026. Methodology: /leaderboard#methodology

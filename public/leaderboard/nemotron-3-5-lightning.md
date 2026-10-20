@@ -1,8 +1,8 @@
 # Nemotron 3.5 Lightning · Search Capability Leaderboard
 
-* Search Intelligence Score: **37.9** (#45 in Search Intelligence)
+* Search Intelligence Score: **37.9** (#47 in Search Intelligence)
 * Without search: 9.8 · Lift from search +28.0
-* Cost per 1K tasks: $12.1 (below the median score of 64.3, so not ranked on cost)
+* Cost per 1K tasks: $12.1 (below the median score of 64.4, so not ranked on cost)
 * Evaluated: Sep 22, 2026
 * Lab: NVIDIA · Weights: Open weights · Model id: nvidia/nemotron-3.5-lightning
 
@@ -24,4 +24,4 @@
 | [Laguna S 2.1](/leaderboard/laguna-s-2-1)                        | 39.5  | +27.2 | $21.4             |
 | [Command A Plus](/leaderboard/command-a-plus)                    | 34.8  | +29.8 | $40.1             |
 
-Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 19, 2026. Methodology: /leaderboard#methodology

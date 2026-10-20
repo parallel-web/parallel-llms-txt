@@ -47,6 +47,7 @@
 
 ### Guides
 
+* [Best web grounding for Gemini Enterprise Agent Platform (2026)](https://parallel.ai/articles/web-grounding-gemini-enterprise-agent-platform)
 * [Best web search APIs with EU data residency (2026)](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
 * [Build an EU research agent with the Parallel Search API](https://parallel.ai/articles/build-eu-research-agent-parallel-search)
 * [GDPR and AI agents: what web search and extraction change](https://parallel.ai/articles/gdpr-ai-agents-web-search-extraction)
@@ -120,8 +121,14 @@
 * [How to build an AI lead generation pipeline using live web data](https://parallel.ai/articles/how-to-build-an-ai-lead-generation-pipeline)
 * [OpenClaw web search best practices: getting maximum accuracy from Parallel](https://parallel.ai/articles/openclaw-best-practices-web-search)
 
-### Industry terms
+### Industry Terms
 
+* [BrowseComp explained: what it measures and how search APIs compare](https://parallel.ai/articles/browsecomp-benchmark)
+* [DeepSearchQA explained: how deep research agents are scored](https://parallel.ai/articles/deepsearchqa-benchmark)
+* [The FRAMES benchmark explained: multi-hop retrieval for RAG and search agents](https://parallel.ai/articles/frames-benchmark)
+* [SealQA explained: testing search agents on conflicting and noisy results](https://parallel.ai/articles/sealqa-benchmark)
+* [SimpleQA and SimpleQA Verified explained: what they measure and how search APIs compare](https://parallel.ai/articles/simpleqa-benchmark)
+* [WideSearch explained: benchmarking broad information collection for agents](https://parallel.ai/articles/widesearch-benchmark)
 * [Data residency vs data sovereignty for AI agents](https://parallel.ai/articles/data-residency-vs-data-sovereignty)
 * [What is Hermes Agent? Nous Research's open-source personal agent explained](https://parallel.ai/articles/what-is-hermes-agent)
 * [What is context engineering? A guide for AI agent builders](https://parallel.ai/articles/what-is-context-engineering)

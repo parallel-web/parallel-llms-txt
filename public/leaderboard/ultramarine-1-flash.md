@@ -1,8 +1,8 @@
 # Ultramarine 1 Flash · Search Capability Leaderboard
 
-* Search Intelligence Score: **61.1** (#31 in Search Intelligence)
+* Search Intelligence Score: **61.1** (#33 in Search Intelligence)
 * Without search: 24.0 · Lift from search +37.1
-* Cost per 1K tasks: $87.2 (below the median score of 64.3, so not ranked on cost)
+* Cost per 1K tasks: $87.2 (below the median score of 64.4, so not ranked on cost)
 * Evaluated: Oct 17, 2026
 * Lab: Paper Instruments · Weights: Open weights · Model id: paperinstruments/ultramarine-1-flash
 
@@ -24,4 +24,4 @@
 | [GLM 5.3 Flash](/leaderboard/glm-5-3-flash)     | 60.8  | +40.4 | $16.6             |
 | [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna)       | 60.7  | +33.9 | $36.2             |
 
-Leaderboard last updated Oct 17, 2026. Methodology: /leaderboard#methodology
+Leaderboard last updated Oct 19, 2026. Methodology: /leaderboard#methodology
