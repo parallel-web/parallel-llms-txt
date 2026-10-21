@@ -30,7 +30,7 @@ These habits make a privacy review shorter.
 
 ## How Parallel handles this
 
-For API customers, Parallel acts as a processor under its Data Processing Addendum, according to its [privacy policy](https://parallel.ai/privacy-policy). Its [FAQ](https://docs.parallel.ai/resources/faqs) says it doesn't use customer data to train models.
+For API customers, Parallel acts as a processor under its Data Processing Addendum, according to its [privacy policy](https://parallel.ai/privacy-policy). Under its standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services. Enterprise plans with zero data retention and Search API traffic sent to the EU endpoint are excluded from that use.
 
 For teams that need EU residency, Parallel offers it as an optional feature, with the commitments set out in the customer's DPA. It covers [Search API](https://parallel.ai/products/search) requests in basic mode sent to the EU endpoint. The endpoint, the full search index, and inference run in the EU, and EU traffic has zero data retention by default. Only minimal billing metadata, such as IDs, the SKU, and a timestamp, goes to the US. It never includes inputs or outputs. Live fetch, which retrieves public pages at request time, runs globally. It's optional and can be turned off. The Extract API isn't covered and runs on the default endpoint. Parallel is a US company, so read [data residency vs data sovereignty](https://parallel.ai/articles/data-residency-vs-data-sovereignty) if jurisdiction matters to you. More detail is at [parallel.ai/europe](https://parallel.ai/europe).
 
@@ -50,7 +50,7 @@ Not necessarily. It reduces how much data leaves the EU, but other parts of a se
 
 ### Does Parallel train on the queries my agent sends?
 
-No. Parallel's FAQ says it doesn't use customer data to train models.
+It may. Under the standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services. Enterprise plans with zero data retention and Search API traffic sent to the EU endpoint are excluded from that use.
 
 ## Sources
 

@@ -61,7 +61,7 @@ search = client.search(
 )
 ```
 
-Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention on Enterprise plans, and commits contractually to not training on customer data, with a public status page and trust center.
+Parallel is SOC 2 Type 2 certified and offers a Data Processing Addendum, with a public status page and trust center. Under the standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services. Enterprise plans with zero data retention exclude that use.
 
 ## **When to use each**
 

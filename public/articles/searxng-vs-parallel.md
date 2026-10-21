@@ -38,7 +38,7 @@ _Note: For the latest pricing, always check official documentation._
 
 ## **Where SearXNG is simply right**
 
-If your queries cannot leave your infrastructure, no hosted API solves that and SearXNG does. Some workloads carry that constraint absolutely: internal tooling over sensitive matters, classified environments, or products whose whole promise is that nothing is sent to a third party. Parallel offers zero data retention, a Data Processing Addendum, SOC 2 Type 2 certification, and a contractual commitment not to train on customer data, but the queries still go to Parallel.
+If your queries cannot leave your infrastructure, no hosted API solves that and SearXNG does. Some workloads carry that constraint absolutely: internal tooling over sensitive matters, classified environments, or products whose whole promise is that nothing is sent to a third party. Parallel offers a Data Processing Addendum and SOC 2 Type 2 certification, but the queries still go to Parallel. Under the standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services. Enterprise plans with zero data retention exclude that use.
 
 There is also no vendor risk: an open-source project cannot raise prices, deprecate an endpoint, or change its terms in a way that breaks you.
 

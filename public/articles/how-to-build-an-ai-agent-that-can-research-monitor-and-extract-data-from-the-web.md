@@ -264,7 +264,7 @@ Enterprise deployments require compliance and security guarantees.
 
 **Data retention policies**: Understand what providers store and for how long. Parallel offers zero data retention on Enterprise plans.
 
-**No training on customer data**: Your queries and results shouldn't improve competitor products. Parallel does not train on customer data.
+**Training terms**: Check whether a provider can train on your queries and results, and whether an enterprise or zero data retention plan excludes that. Under Parallel's standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services. Enterprise plans with zero data retention exclude that use.
 
 **Audit trails**: Logging and traceability support compliance requirements. Track which queries produced which outputs, when, and for whom.
 

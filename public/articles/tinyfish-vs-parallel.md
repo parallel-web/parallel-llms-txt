@@ -86,7 +86,7 @@ Anonymous traffic runs at lower rate limits. Passing an API key as a Bearer toke
 
 ## **Compliance**
 
-TinyFish is ISO 27001:2022 certified with a public trust center, and its enterprise tier adds SSO, audit logs, VPC deployment, and a 99.99 percent uptime commitment. It also offers credential handling through a vault integration, so an agent can log into a site without the model seeing the secret. Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention, and commits contractually to not training on customer data. It runs a public status page and trust center.
+TinyFish is ISO 27001:2022 certified with a public trust center, and its enterprise tier adds SSO, audit logs, VPC deployment, and a 99.99 percent uptime commitment. It also offers credential handling through a vault integration, so an agent can log into a site without the model seeing the secret. Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum, and runs a public status page and trust center. Under the standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services. Enterprise plans with zero data retention exclude that use.
 
 The two hold different certifications, and neither implies more rigor than the other. Match them against what your own procurement asks for, and if you need both, ask each vendor directly.
 

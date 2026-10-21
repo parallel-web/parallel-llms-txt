@@ -77,7 +77,7 @@ search = client.search(
 
 ## **Rate limits and compliance**
 
-Parallel's defaults are 600 requests per minute for Search, Extract, and Entity Search, 300 for Monitor, and 25 per hour for FindAll runs, with GET polling excluded and custom limits available on enterprise plans. Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention, and commits contractually to not training on customer data.
+Parallel's defaults are 600 requests per minute for Search, Extract, and Entity Search, 300 for Monitor, and 25 per hour for FindAll runs, with GET polling excluded and custom limits available on enterprise plans. Parallel is SOC 2 Type 2 certified and offers a Data Processing Addendum. Under the standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services. Enterprise plans with zero data retention exclude that use.
 
 ## **Get started**
 

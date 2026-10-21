@@ -66,7 +66,7 @@ Parallel's defaults are 600 per minute for Search, Extract, and Entity Search, 3
 
 Reader is open source and Jina's embedding and reranking models ship with open weights under Apache 2.0. You can self-host the extraction layer, run the models on your own hardware, and cap your worst-case cost at whatever infrastructure you are willing to run. Jina is also a Berlin company, which some European buyers weigh separately.
 
-Parallel is a hosted service with no self-host path. It is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention, and commits contractually to not training on customer data, but the calls go to Parallel's infrastructure.
+Parallel is a hosted service with no self-host path. It is SOC 2 Type 2 certified and offers a Data Processing Addendum, but the calls go to Parallel's infrastructure. Under the standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services. Enterprise plans with zero data retention exclude that use.
 
 ## **Developer experience**
 

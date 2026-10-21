@@ -6,7 +6,7 @@ In Parallel’s August 2026 run, the Task API scored higher than Perplexity’s 
 
 [Multi-hop company search F1, search only: 46.5 vs. 37.8](#accuracy) [DeepSearchQA, deep research APIs: 76% vs. 68%](#research) [BrowseComp deep research, per 1,000 questions: $5 vs. $441.50](#research)
 
-Last updated October 14, 2026
+Last updated October 16, 2026
 
 ## What does Parallel do?
 
@@ -17,6 +17,7 @@ Parallel is one developer platform covering search, extraction, research, entity
 * [Research](#research)
 * [Evidence](#evidence)
 * [Monitor and FindAll](#monitoring)
+* [EU residency](#eu-data-residency)
 * [Features](#features)
 * [Which to pick](#decision)
 
@@ -164,6 +165,16 @@ FindAll turns a description into a verified, structured list of matching entitie
 
 Sources: [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [Parallel FindAll docs](https://docs.parallel.ai/findall-api/findall-quickstart), [Parallel Entity Search docs](https://docs.parallel.ai/findall-api/entity-search), [Parallel pricing](https://parallel.ai/pricing)
 
+## EU data residency for search, which Perplexity doesn’t document
+
+Parallel serves its Search and Extract APIs from the EU at eu.parallel.ai, under an enterprise agreement. The API, SDKs, and keys are the same as api.parallel.ai, and only the base URL changes. Search runs in basic mode only, with up to 20 results per request, answered from the EU index with no live fetching. Extract takes up to 20 URLs per request. Queries, objectives, results, excerpts, and model inference stay in the EU, and request and response content is not retained.
+
+The EU endpoint has limits. Billing, metrics, and edge logs, which contain no content, go to the US. Extract looks up each URL in Parallel’s cache of public web pages, which is hosted outside the EU. Only the URL is sent, and under zero data retention it isn’t saved. Extract is cache-only when advanced\_settings.fetch\_policy.timeout\_seconds is 0, and uncached URLs then return an error. Other Search modes, Task, FindAll, Monitor, Chat, Responses, and MCP aren’t served in the EU. They return an error and are never forwarded to the US. Our [guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency) compares every vendor’s documented option.
+
+Perplexity doesn’t document an EU processing option. Its API FAQ says compute is hosted on Amazon Web Services in North America. By default the API keeps no prompt data, so retention is covered but location isn’t. Perplexity’s position was read from its own documentation on October 16, 2026.
+
+Sources: [Parallel privacy policy](https://parallel.ai/privacy-policy), [Parallel guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
+
 ## Feature by feature
 
 Pricing, capabilities, performance, integrations, and enterprise readiness, side by side.
@@ -242,15 +253,16 @@ Sources: [Parallel Responses docs](https://docs.parallel.ai/responses-api/respon
 Both hold SOC 2 Type II. Parallel is HIPAA compliant. Perplexity lists a 2025 HIPAA gap assessment and states zero data retention for its Chat Completions API.
 
 __Security, compliance, and support: Parallel compared with Perplexity__
-| Feature                  | Parallel             | Perplexity                          |
-| ------------------------ | -------------------- | ----------------------------------- |
-| SOC 2 Type II            | Yes                  | Yes                                 |
-| HIPAA compliance         | Yes (Leads)          | 2025 HIPAA gap assessment listed    |
-| Zero data retention      | Enterprise           | Stated for the Chat Completions API |
-| Data Processing Addendum | Yes                  | Not stated in API docs              |
-| Cloud marketplaces       | AWS and Google Cloud | AWS                                 |
+| Feature                  | Parallel                                             | Perplexity                          |
+| ------------------------ | ---------------------------------------------------- | ----------------------------------- |
+| SOC 2 Type II            | Yes                                                  | Yes                                 |
+| HIPAA compliance         | Yes (Leads)                                          | 2025 HIPAA gap assessment listed    |
+| Zero data retention      | Enterprise                                           | Stated for the Chat Completions API |
+| Data Processing Addendum | Yes                                                  | Not stated in API docs              |
+| Cloud marketplaces       | AWS and Google Cloud                                 | AWS                                 |
+| EU data residency        | Search (basic mode) and Extract (cache-only) (Leads) | Not documented                      |
 
-Sources: [Parallel pricing](https://parallel.ai/pricing), [Parallel Trust Center](https://trust.parallel.ai), [Parallel integrations](https://docs.parallel.ai/integrations/developer-quickstart), [Perplexity Sonar vs. Parallel](https://parallel.ai/articles/perplexity-sonar-vs-parallel)
+Sources: [Parallel pricing](https://parallel.ai/pricing), [Parallel Trust Center](https://trust.parallel.ai), [Parallel integrations](https://docs.parallel.ai/integrations/developer-quickstart), [Perplexity Sonar vs. Parallel](https://parallel.ai/articles/perplexity-sonar-vs-parallel), [Parallel privacy policy](https://parallel.ai/privacy-policy), [Parallel guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
 
 ## Which one should you pick?
 
@@ -300,6 +312,8 @@ Perplexity ended Sonar Chat Completions support on September 27, 2026\. Synchron
 Search costs the same, $1 per 1,000 on the fast tiers and $5 on standard. Perplexity is cheaper for page fetches and short cited answers. Parallel was far cheaper on deep research in its August run, at $5 per 1,000 BrowseComp questions against $441.50, and its processors have fixed prices.
 * **Where does Perplexity still win?**  
 Perplexity scores higher on the Artificial Analysis Search Index, 80 against 75, and on OpenRouter’s BrowseComp, WideSearch, and HLE runs. It was more accurate on Openbenchmarks’ single-fact news lookups. It offers the Decisions API, embeddings, a code sandbox, and model choice. Its search rate limit is about 3,000 requests a minute against Parallel’s 600.
+* **Does Perplexity offer EU data residency?**  
+Not as of October 16, 2026\. Perplexity’s API FAQ says its compute is hosted on Amazon Web Services in North America. Parallel’s EU endpoint serves Search (basic mode) and Extract (cache-only). Other APIs aren’t served there. Billing, metrics, and edge logs (no content) go to the US, and Extract sends only URLs to its page cache outside the EU.
 * **How current is this comparison?**  
 Parallel reviewed Perplexity’s docs, pricing, and changelog on October 14, 2026\. Deep research figures come from Parallel’s August 26 run, search figures from its September 9 run, and the Openbenchmarks figures from its October 2 boards. Artificial Analysis data is from September 28, and OpenRouter runs from August and September. Check the linked sources for updates.
 

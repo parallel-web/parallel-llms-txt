@@ -55,7 +55,7 @@ Bright Data's Web MCP is MIT licensed, and the free Rapid mode gives 5,000 credi
 
 Bright Data has spent years building a compliance story around web data collection, which is why it shows up in regulated industries where a scraping vendor would normally be a hard sell. If your legal team's objection is to the collection method itself, that track record is the product you are buying as much as the API.
 
-Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention, and commits contractually to not training on customer data, with a public status page and trust center. The compliance question is different in kind: Parallel runs its own crawl and index, so there is no proxy network or engine-scraping activity to account for.
+Parallel is SOC 2 Type 2 certified and offers a Data Processing Addendum, with a public status page and trust center. Under the standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services. Enterprise plans with zero data retention exclude that use. The compliance question is different in kind: Parallel runs its own crawl and index, so there is no proxy network or engine-scraping activity to account for.
 
 ## **Developer experience**
 

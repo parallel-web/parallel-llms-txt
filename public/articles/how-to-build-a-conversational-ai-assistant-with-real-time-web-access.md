@@ -191,7 +191,7 @@ We optimize Parallel's excerpts for the LLM's next reasoning step rather than fo
 
 We hold SOC 2 Type 2 certification. An independent auditor has verified our security controls over an extended observation period. Your compliance team can request the report.
 
-We enforce zero data retention. Your queries and their results do not persist in our systems after the response completes. We do not train on customer data.
+We offer zero data retention on Enterprise plans. With it, your queries and their results do not persist in our systems after the response completes. Under our standard [Customer Terms](https://parallel.ai/customer-terms), we may use inputs and outputs, not linked to any individual, to train and improve the models behind our services. Enterprise plans with zero data retention exclude that use.
 
 **Source control** gives you domain-level filtering. Include only trusted domains for compliance-sensitive applications. Exclude competitors or unreliable sources.
 

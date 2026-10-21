@@ -180,4 +180,4 @@ We maintain a proprietary web-scale index of billions of pages, with millions of
 
 ### **Is Parallel SOC 2 compliant for enterprise OpenClaw deployments?**
 
-Yes. We hold SOC 2 Type 2 certification and offer zero data retention on Enterprise plans. We don't train on customer data. Enterprise teams can typically proceed without additional security review.
+Yes. We hold SOC 2 Type 2 certification and offer zero data retention on Enterprise plans, which excludes training. Under our standard [Customer Terms](https://parallel.ai/customer-terms), we may use inputs and outputs, not linked to any individual, to train and improve the models behind our services. Enterprise teams can typically proceed without additional security review.

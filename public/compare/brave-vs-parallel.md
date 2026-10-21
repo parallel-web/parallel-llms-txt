@@ -6,7 +6,7 @@ On Openbenchmarks, Parallel Fast completed 66.7% of coding-agent retrieval tasks
 
 [Coding-agent retrieval, search only: 66.7% vs. 38.0%](#accuracy) [Multi-hop company search F1, search only: 46.5 vs. 28.0](#accuracy) [Lowest search list price, per 1,000 requests: $1 vs. $5](#cost)
 
-Last updated October 14, 2026
+Last updated October 16, 2026
 
 ## What does Parallel do?
 
@@ -18,6 +18,7 @@ Parallel is one developer platform covering search, extraction, research, entity
 * [Cost](#cost)
 * [Plans](#brave-pricing)
 * [Tasks](#research)
+* [EU residency](#eu-data-residency)
 * [Features](#features)
 * [Which to pick](#decision)
 
@@ -226,6 +227,16 @@ Brave: 120
 
 Default limits from each provider’s documentation, checked October 14, 2026\. Parallel counts Task runs created per minute. Brave allows 2 Answers requests per second, shown here as 120 per minute. Both raise limits on request.
 
+## EU data residency for search, which Brave doesn’t document
+
+Parallel serves its Search and Extract APIs from the EU at eu.parallel.ai, under an enterprise agreement. The API, SDKs, and keys are the same as api.parallel.ai, and only the base URL changes. Search runs in basic mode only, with up to 20 results per request, answered from the EU index with no live fetching. Extract takes up to 20 URLs per request. Queries, objectives, results, excerpts, and model inference stay in the EU, and request and response content is not retained.
+
+The EU endpoint has limits. Billing, metrics, and edge logs, which contain no content, go to the US. Extract looks up each URL in Parallel’s cache of public web pages, which is hosted outside the EU. Only the URL is sent, and under zero data retention it isn’t saved. Extract is cache-only when advanced\_settings.fetch\_policy.timeout\_seconds is 0, and uncached URLs then return an error. Other Search modes, Task, FindAll, Monitor, Chat, Responses, and MCP aren’t served in the EU. They return an error and are never forwarded to the US. Our [guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency) compares every vendor’s documented option.
+
+Brave doesn’t document an EU processing option. Its API privacy notice says the service is provided by Brave Software Inc. in the US. Brave keeps query logs for up to 90 days and offers zero data retention to Enterprise customers. Brave’s position was read from its own documentation on October 16, 2026.
+
+Sources: [Parallel privacy policy](https://parallel.ai/privacy-policy), [Parallel guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
+
 ## Feature by feature
 
 Pricing, capabilities, performance, integrations, and data terms, side by side.
@@ -308,8 +319,9 @@ __Security, privacy, and data terms: Parallel compared with Brave__
 | Rights to results          | Build on output for one end customer per query (Leads)  | Brave owns results, transient storage only            |
 | Use of your queries        | May train Parallel’s models, de-linked from individuals | Licensed to serve results and run the service (Leads) |
 | Training models on results | Barred                                                  | Barred, and so is benchmarking AI models              |
+| EU data residency          | Search (basic mode) and Extract (cache-only) (Leads)    | Not documented                                        |
 
-Sources: [Parallel Trust Center](https://trust.parallel.ai), [Parallel Customer Terms, effective August 11, 2026](https://parallel.ai/customer-terms), [Parallel pricing](https://parallel.ai/pricing)
+Sources: [Parallel Trust Center](https://trust.parallel.ai), [Parallel Customer Terms, effective August 11, 2026](https://parallel.ai/customer-terms), [Parallel pricing](https://parallel.ai/pricing), [Parallel privacy policy](https://parallel.ai/privacy-policy), [Parallel guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
 
 ## Which one should you pick?
 
@@ -361,8 +373,10 @@ Brave Web Search returns titles, URLs, and short snippets. Brave LLM Context ret
 Yes. Brave crawls and ranks the web itself rather than reselling Google or Bing. Its API page claims more than 40 billion pages and 100 million page updates a day, and its security docs describe 20 billion or more indexed pages out of 100 billion known URLs. Parallel also runs its own index, and publishes no page count.
 * **Where does Brave still win?**  
 Brave publishes its index size and serves news, video, image, and place search. It allows about 3,000 search requests a minute against Parallel’s 600, includes up to 50 sources per call, and offers Goggles rules that reorder its results. It answered single-fact news lookups more accurately, finished Artificial Analysis tasks in less time, and its terms license your queries only to serve results.
+* **Does Brave offer EU data residency?**  
+Not as of October 16, 2026\. Brave’s API privacy notice names Brave Software Inc. in the US as the provider. Enterprise customers get zero data retention. Parallel’s EU endpoint serves Search (basic mode) and Extract (cache-only). Other APIs aren’t served there. Billing, metrics, and edge logs (no content) go to the US, and Extract sends only URLs to its page cache outside the EU.
 * **How current is this comparison?**  
-Parallel reviewed Brave’s docs, prices, terms, and privacy notice on October 14, 2026, this page’s last update. Artificial Analysis data is from September 28\. Openbenchmarks figures come from its coding-agent board of September 26, company search board of October 2, and company news board. Parallel’s own runs and OpenRouter’s boards do not include Brave.
+Parallel reviewed Brave’s docs, prices, terms, and privacy notice on October 14, 2026\. Artificial Analysis data is from September 28\. Openbenchmarks figures come from its coding-agent board of September 26, company search board of October 2, and company news board. Parallel’s own runs and OpenRouter’s boards do not include Brave.
 
 Trusted by
 

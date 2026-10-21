@@ -36,7 +36,7 @@ A standalone search API is model-agnostic by construction. The same Parallel cal
 
 Web search is not uniformly available across every deployment of Claude. It runs on the Claude API, Microsoft Foundry, and Google Cloud, though Google Cloud supports only the basic tool without dynamic filtering, and it is not available on Amazon Bedrock. Administrators can disable it organisation-wide or restrict which domains it reaches. Zero data retention eligibility depends on how the tool is configured. If you deploy across clouds, check this before designing around it.
 
-Parallel is one hosted API reachable from anywhere, SOC 2 Type 2 certified, with a Data Processing Addendum, zero data retention, a contractual commitment not to train on customer data, and a public status page and trust center. Default rate limits are 600 requests per minute for Search and Extract, 300 for Monitor.
+Parallel is one hosted API reachable from anywhere, SOC 2 Type 2 certified, with a Data Processing Addendum and a public status page and trust center. Under the standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services. Enterprise plans with zero data retention exclude that use. Default rate limits are 600 requests per minute for Search and Extract, 300 for Monitor.
 
 ## **Developer experience**
 

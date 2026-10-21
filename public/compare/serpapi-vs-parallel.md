@@ -6,7 +6,7 @@ SerpApi returns a parsed copy of a search results page. Parallel returns ranked 
 
 [Search price per 1,000, self-serve plans: $1 vs. $1.96 to $25](#cost) [BrowseComp, same GPT-5.4 agent: 51% vs. 23.3%](#accuracy) [Search latency p50, BrowseComp run: 216ms vs. 999ms](#speed)
 
-Last updated October 14, 2026
+Last updated October 16, 2026
 
 ## What does Parallel do?
 
@@ -18,6 +18,7 @@ Parallel is one developer platform covering search, extraction, research, entity
 * [Cost](#cost)
 * [Plans](#serpapi-pricing)
 * [Speed](#speed)
+* [EU residency](#eu-data-residency)
 * [Features](#features)
 * [Which to pick](#decision)
 
@@ -208,6 +209,16 @@ SerpApi: 652ms
 
 Parallel-run evaluation, July 10 to 12, 2026\. Latency is the client-side wall clock around a single search API request from us-central, p50 across all questions, best across runs. SerpApi’s 30-day averages are from its own API metrics pages, read October 14, 2026.
 
+## EU data residency for search, which SerpApi doesn’t document
+
+Parallel serves its Search and Extract APIs from the EU at eu.parallel.ai, under an enterprise agreement. The API, SDKs, and keys are the same as api.parallel.ai, and only the base URL changes. Search runs in basic mode only, with up to 20 results per request, answered from the EU index with no live fetching. Extract takes up to 20 URLs per request. Queries, objectives, results, excerpts, and model inference stay in the EU, and request and response content is not retained.
+
+The EU endpoint has limits. Billing, metrics, and edge logs, which contain no content, go to the US. Extract looks up each URL in Parallel’s cache of public web pages, which is hosted outside the EU. Only the URL is sent, and under zero data retention it isn’t saved. Extract is cache-only when advanced\_settings.fetch\_policy.timeout\_seconds is 0, and uncached URLs then return an error. Other Search modes, Task, FindAll, Monitor, Chat, Responses, and MCP aren’t served in the EU. They return an error and are never forwarded to the US. Our [guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency) compares every vendor’s documented option.
+
+SerpApi doesn’t document an EU processing option. It is a Texas company, and its privacy policy says international transfers rely on safeguards such as Standard Contractual Clauses. Its ZeroTrace mode stops search data from being stored at all, which settles retention but not location. SerpApi’s position was read from its own documentation on October 16, 2026.
+
+Sources: [Parallel privacy policy](https://parallel.ai/privacy-policy), [Parallel guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
+
 ## Feature by feature
 
 Pricing, output, performance, integrations, and compliance, side by side.
@@ -286,16 +297,17 @@ Sources: [Parallel MCP docs](https://docs.parallel.ai/integrations/mcp/quickstar
 Both hold SOC 2 Type II. SerpApi lists more ISO certifications and offers legal indemnity for scraping. Parallel offers a HIPAA-ready option.
 
 __Security, compliance, and legal: Parallel compared with SerpApi__
-| Feature                      | Parallel                     | SerpApi                                                        |
-| ---------------------------- | ---------------------------- | -------------------------------------------------------------- |
-| SOC 2 Type II                | Yes                          | Yes                                                            |
-| Other certifications         | Not listed in these sources  | SOC 3, ISO 27001, ISO 42001 (Leads)                            |
-| HIPAA                        | HIPAA-ready offering (Leads) | Not listed on its security page                                |
-| Zero data retention          | Enterprise                   | ZeroTrace Mode on Cloud plans and Enterprise                   |
-| Legal indemnity for scraping | Not offered                  | U.S. Legal Shield, up to $2 million, Production and up (Leads) |
-| Published SLA                | Enterprise contract only     | Up to 99.97% advertised                                        |
+| Feature                      | Parallel                                             | SerpApi                                                        |
+| ---------------------------- | ---------------------------------------------------- | -------------------------------------------------------------- |
+| SOC 2 Type II                | Yes                                                  | Yes                                                            |
+| Other certifications         | Not listed in these sources                          | SOC 3, ISO 27001, ISO 42001 (Leads)                            |
+| HIPAA                        | HIPAA-ready offering (Leads)                         | Not listed on its security page                                |
+| Zero data retention          | Enterprise                                           | ZeroTrace Mode on Cloud plans and Enterprise                   |
+| Legal indemnity for scraping | Not offered                                          | U.S. Legal Shield, up to $2 million, Production and up (Leads) |
+| Published SLA                | Enterprise contract only                             | Up to 99.97% advertised                                        |
+| EU data residency            | Search (basic mode) and Extract (cache-only) (Leads) | Not documented                                                 |
 
-Sources: [Parallel Trust Center](https://trust.parallel.ai), [Parallel pricing](https://parallel.ai/pricing)
+Sources: [Parallel Trust Center](https://trust.parallel.ai), [Parallel pricing](https://parallel.ai/pricing), [Parallel privacy policy](https://parallel.ai/privacy-policy), [Parallel guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
 
 ## Which one should you pick?
 
@@ -352,8 +364,10 @@ Not in Parallel’s July 2026 run. Turbo’s median search call took 216 to 240m
 Engine and vertical coverage, exact Google results pages with positions and SERP features, and city-level geo targeting. It also offers U.S. Legal Shield indemnity, free cached repeats, more client libraries, ISO 27001, and higher hourly caps on its largest plans. Its search-only agent cost less than Turbo on three of five suites in Parallel’s July run.
 * **Has an independent evaluator compared them?**  
 Not that this review found. Artificial Analysis and Openbenchmarks do not test SerpApi, and Openbenchmarks’ Google SERP row is a different vendor. The figures here come from Parallel’s own July 2026 run, which publishes its method and test dates. Run both on your own queries before you decide.
+* **Does SerpApi offer EU data residency?**  
+Not as of October 16, 2026\. SerpApi is a Texas company that covers international transfers with Standard Contractual Clauses. ZeroTrace mode stores no search data. Parallel’s EU endpoint serves Search (basic mode) and Extract (cache-only). Other APIs aren’t served there. Billing, metrics, and edge logs (no content) go to the US, and Extract sends only URLs to its page cache outside the EU.
 * **How current is this comparison?**  
-Parallel read SerpApi’s pricing page, API docs, and metrics pages on October 14, 2026, this page’s last update, the day after SerpApi launched its Extract API. Benchmark figures come from Parallel’s July 10 to 12, 2026 run, before that launch. Both products ship often, so check the linked sources.
+Parallel read SerpApi’s pricing page, API docs, and metrics pages on October 14, 2026, the day after SerpApi launched its Extract API. Benchmark figures come from Parallel’s July 10 to 12, 2026 run, before that launch. Both products ship often, so check the linked sources.
 
 Trusted by
 

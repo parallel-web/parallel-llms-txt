@@ -174,7 +174,7 @@ Output quality is the most important dimension for agent performance. An API ret
 
 Verifiability matters for any production agent making decisions or generating content from web data. Citations let downstream systems audit agent behavior. Confidence scores let agents know when to ask for human review.
 
-Compliance is a business requirement. SOC 2 Type 2 certification means an auditor has verified the provider's security controls. Zero data retention means your queries don't train a competitor's model. See Parallel's [pricing details](https://parallel.ai/pricing) for full rate limit and tier information.
+Compliance is a business requirement. SOC 2 Type 2 certification means an auditor has verified the provider's security controls. Check the provider's training terms, and whether an enterprise or zero data retention plan excludes training on your queries. Parallel's standard [Customer Terms](https://parallel.ai/customer-terms) allow it to use inputs and outputs, not linked to any individual, to train and improve the models behind its services, and its Enterprise plans with zero data retention exclude that use. See Parallel's [pricing details](https://parallel.ai/pricing) for full rate limit and tier information.
 
 ## Frequently asked questions
 

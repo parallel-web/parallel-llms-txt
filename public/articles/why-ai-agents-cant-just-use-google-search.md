@@ -107,7 +107,7 @@ for result in search.results:
         print(excerpt)
 ```
 
-The response holds everything the model needs to answer and cite, with no browser and no scraper in the loop. Parallel is SOC 2 Type 2 certified, offers zero data retention, and commits contractually to not training on customer data.
+The response holds everything the model needs to answer and cite, with no browser and no scraper in the loop. Parallel is SOC 2 Type 2 certified. Under the standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services. Enterprise plans with zero data retention exclude that use.
 
 Note: For the latest pricing, always check official documentation.
 

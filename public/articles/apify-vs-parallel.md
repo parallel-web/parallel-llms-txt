@@ -58,7 +58,7 @@ search = client.search(
 
 Most Actors are maintained by third parties, so quality and upkeep vary. When a target site changes its markup, how fast the scraper gets fixed depends on whoever wrote it. Apify publishes success rates and user counts per Actor, which helps, but it is a different reliability model from a first-party API with an SLA.
 
-Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention on Enterprise plans, and commits contractually to not training on customer data, with a public status page and trust center. Default rate limits are 600 requests per minute for Search, Extract, and Entity Search, 300 for Monitor, and 25 per hour for FindAll runs.
+Parallel is SOC 2 Type 2 certified and offers a Data Processing Addendum, with a public status page and trust center. Under the standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services. Enterprise plans with zero data retention exclude that use. Default rate limits are 600 requests per minute for Search, Extract, and Entity Search, 300 for Monitor, and 25 per hour for FindAll runs.
 
 ## **When to use each**
 

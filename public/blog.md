@@ -1,9 +1,9 @@
-### \[Web Search for Browserbase is now powered by Parallel\](https://parallel.ai/blog/browserbase-search-powered-by-parallel)
+### \[See the whole picture: A brand campaign built with Parallel\](https://parallel.ai/blog/see-the-whole-picture)
 
-Parallel is now the default search provider for the Browserbase Search API and Browserbase Agents, so agents can navigate the web end to end, from discovery and research to action.
+For our first out-of-home campaign, we used Parallel's own research APIs to build six collages, each grounded in a real Task API run with part of the response inside the artwork.
 
-Tags:[Product](/blog?tag=product)
+Tags:[Company](/blog?tag=company)
 
-By Parallel
+By Yang You
 
-October 14, 2026
+October 20, 2026

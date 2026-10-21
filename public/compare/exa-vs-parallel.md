@@ -6,7 +6,7 @@ Parallel is faster, more affordable, and more accurate than Exa on everything fr
 
 [Search, per 1,000 requests: $1 vs. $7](#cost) [Artificial Analysis Search Index, August 2026: 75 vs. 74](#accuracy) [Search latency, BrowseComp p50: 216ms vs. 361ms](#performance)
 
-Last updated October 9, 2026
+Last updated October 16, 2026
 
 ## What does Parallel do?
 
@@ -15,6 +15,7 @@ Parallel is one developer platform covering search, extraction, research, entity
 * [At a glance](#at-a-glance)
 * [Accuracy](#accuracy)
 * [Cost](#cost)
+* [EU residency](#eu-data-residency)
 * [Features](#features)
 * [Which to pick](#decision)
 
@@ -118,6 +119,16 @@ Exa: \~$97
 
 Published list prices, July 2026\. Exa charges $7 per 1,000 requests for the first 10 results and $1 per additional result, so 100 results reach about $97\. Enterprise pricing differs on both platforms.
 
+## EU data residency for search, which Exa doesn’t document
+
+Parallel serves its Search and Extract APIs from the EU at eu.parallel.ai, under an enterprise agreement. The API, SDKs, and keys are the same as api.parallel.ai, and only the base URL changes. Search runs in basic mode only, with up to 20 results per request, answered from the EU index with no live fetching. Extract takes up to 20 URLs per request. Queries, objectives, results, excerpts, and model inference stay in the EU, and request and response content is not retained.
+
+The EU endpoint has limits. Billing, metrics, and edge logs, which contain no content, go to the US. Extract looks up each URL in Parallel’s cache of public web pages, which is hosted outside the EU. Only the URL is sent, and under zero data retention it isn’t saved. Extract is cache-only when advanced\_settings.fetch\_policy.timeout\_seconds is 0, and uncached URLs then return an error. Other Search modes, Task, FindAll, Monitor, Chat, Responses, and MCP aren’t served in the EU. They return an error and are never forwarded to the US. Our [guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency) compares every vendor’s documented option.
+
+Exa doesn’t document an EU processing option. Its docs offer zero data retention on Enterprise plans, which controls whether data is stored, not where requests run. Exa’s position was read from its own documentation on October 16, 2026.
+
+Sources: [Parallel privacy policy](https://parallel.ai/privacy-policy), [Parallel guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
+
 ## Feature by feature
 
 Pricing, capabilities, performance, integrations, and enterprise readiness, side by side.
@@ -201,15 +212,16 @@ Sources: [Parallel Responses docs](https://docs.parallel.ai/responses-api/respon
 The two platforms line up closely here. Neither publishes SLA numbers outside an enterprise contract.
 
 __Security, compliance, and support: Parallel compared with Exa__
-| Feature               | Parallel                 | Exa                      |
-| --------------------- | ------------------------ | ------------------------ |
-| SOC 2 Type II         | Yes                      | Yes                      |
-| Zero data retention   | Enterprise               | Enterprise               |
-| HIPAA compliance      | Yes                      | Yes                      |
-| SSO and DPA           | Yes                      | Yes                      |
-| Published SLA numbers | Enterprise contract only | Enterprise contract only |
+| Feature               | Parallel                                             | Exa                      |
+| --------------------- | ---------------------------------------------------- | ------------------------ |
+| SOC 2 Type II         | Yes                                                  | Yes                      |
+| Zero data retention   | Enterprise                                           | Enterprise               |
+| HIPAA compliance      | Yes                                                  | Yes                      |
+| SSO and DPA           | Yes                                                  | Yes                      |
+| Published SLA numbers | Enterprise contract only                             | Enterprise contract only |
+| EU data residency     | Search (basic mode) and Extract (cache-only) (Leads) | Not documented           |
 
-Sources: [Parallel pricing](https://parallel.ai/pricing), [Parallel Trust Center](https://trust.parallel.ai)
+Sources: [Parallel pricing](https://parallel.ai/pricing), [Parallel Trust Center](https://trust.parallel.ai), [Parallel privacy policy](https://parallel.ai/privacy-policy), [Parallel guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
 
 ## Which one should you pick?
 
@@ -260,8 +272,10 @@ On agentic runs, yes. Task, FindAll, and Monitor return a Research Basis per fie
 Yes. Task Specs fix the input and output contract, Task Groups fan thousands of runs out across a dataset, and eight fixed-price processors let you match compute to query difficulty. Parallel accepts 2,000 task requests per minute by default.
 * **Where does Exa still win?**  
 Exa suits independent apps and side projects: its framework ecosystem spans LangChain, LlamaIndex, CrewAI, and 25+ others, search can add per-result AI summaries at extra cost, and subpage crawling is documented. Not latency, and not the index: Exa advertises sub-200ms but measured 335–361ms in our run. On single-fact accuracy, though, Exa fast topped Openbenchmarks’ company news board at 99.3%.
+* **Does Exa offer EU data residency?**  
+Not as of October 16, 2026\. Exa’s documentation describes no EU processing option, though it offers zero data retention on Enterprise plans. Parallel’s EU endpoint serves Search (basic mode) and Extract (cache-only). Other APIs aren’t served there. Billing, metrics, and edge logs (no content) go to the US, and Extract sends only URLs to its page cache outside the EU.
 * **How current is this comparison?**  
-Parallel reviewed both providers’ documentation and price lists on July 27, 2026, and updated this page on October 9\. BrowseComp, SimpleQA, and latency figures come from Parallel’s July 2026 evaluation, Search Index scores from Artificial Analysis’s August benchmark, and company search and news figures from Openbenchmarks’ September boards. Both platforms ship often, so check the linked sources before you buy.
+Parallel reviewed both providers’ documentation and price lists on July 27, 2026, and last updated this page on October 16\. BrowseComp, SimpleQA, and latency figures come from Parallel’s July 2026 evaluation, Search Index scores from Artificial Analysis’s August benchmark, and company search and news figures from Openbenchmarks’ September boards. Both platforms ship often, so check the linked sources before you buy.
 
 Trusted by
 

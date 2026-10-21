@@ -35,7 +35,7 @@ There is also no vendor risk. An Apache-2.0 crawler cannot deprecate an endpoint
 
 Crawl4AI has no SLA, no status page, and no support contract beyond community channels and a sponsorship programme. That is normal for open source, but you should choose it knowingly rather than discover it during an incident.
 
-Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention, and commits contractually to not training on customer data, with a public status page and trust center. Default rate limits are 600 requests per minute for Search and Extract, 300 for Monitor, with GET polling excluded.
+Parallel is SOC 2 Type 2 certified and offers a Data Processing Addendum, with a public status page and trust center. Under the standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services. Enterprise plans with zero data retention exclude that use. Default rate limits are 600 requests per minute for Search and Extract, 300 for Monitor, with GET polling excluded.
 
 For a regulated buyer, a signed DPA and a SOC 2 report are often hard requirements, and open-source quality can't substitute for them.
 

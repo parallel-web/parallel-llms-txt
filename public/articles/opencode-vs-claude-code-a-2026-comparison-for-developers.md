@@ -88,7 +88,7 @@ OpenCode offers the stronger story for teams that cannot send code off the machi
 
 With either agent, the moment you add an external MCP server or web tool, that tool's security posture becomes part of your own. A local agent loses much of its privacy advantage if it sends every query to a search tool that logs and trains on your data.
 
-Check whether any web data provider you bolt on is SOC 2 Type 2 certified and offers zero data retention before you route production traffic through it. Parallel meets both.
+Before you route production traffic through any web data provider you bolt on, check that it is SOC 2 Type 2 certified, offers zero data retention, and has training terms you accept. Parallel is SOC 2 Type 2 certified and offers zero data retention on Enterprise plans, which excludes training. Under its standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services.
 
 ## The decision both comparisons miss: live web access
 

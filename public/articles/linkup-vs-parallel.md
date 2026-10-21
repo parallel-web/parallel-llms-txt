@@ -75,7 +75,7 @@ Parallel also offers the Responses API for synchronous research, OpenAI-compatib
 
 Linkup offers two enterprise deployment modes that Parallel does not match. A Private Index builds a dedicated, access-controlled index over your proprietary data, so retrieval spans your own corpus without exposing it. Bring Your Own Cloud runs the full indexing layer inside your own infrastructure, which keeps queries inside your environment.
 
-For a bank, a government department, or a legal AI product working under strict data sovereignty rules, that is a decisive capability, and it shows in Linkup's customer list. Parallel is a hosted API. It offers zero data retention on Enterprise plans and a contractual commitment not to train on customer data, but the queries do go to Parallel's infrastructure.
+For a bank, a government department, or a legal AI product working under strict data sovereignty rules, that is a decisive capability, and it shows in Linkup's customer list. Parallel is a hosted API, and the queries do go to Parallel's infrastructure. Under the standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services; Enterprise plans with zero data retention exclude that use.
 
 ## **Pricing**
 
@@ -117,7 +117,7 @@ Linkup commits to 99.9% uptime backed by an SLA. Parallel publishes default rate
 
 Linkup includes SOC 2 Type II on all plans and states that it does not train on user data. Zero data retention is available with the Enterprise plan, alongside IP whitelisting, a dedicated index refresh rate, and a private environment.
 
-Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention on Enterprise plans, and commits contractually to not training on customer data, with a public status page and trust center.
+Parallel is SOC 2 Type 2 certified and offers a Data Processing Addendum, with a public status page and trust center. Under the standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services. Enterprise plans with zero data retention exclude that use.
 
 Both hold the certification, so the substantive difference is the deployment envelope: Linkup will run inside your cloud, and Parallel will not.
 

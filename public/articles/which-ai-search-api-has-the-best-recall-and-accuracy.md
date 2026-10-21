@@ -59,7 +59,7 @@ curl -X POST https://api.parallel.ai/v1/search \
 
 The response includes ranked URLs, page titles, publish dates, and compressed excerpts for each result. See the full [Search API documentation](https://docs.parallel.ai/search/search-quickstart) for all available parameters. You can configure freshness policies, toggle live fetch for the most current content, and include or exclude specific domains.
 
-On the enterprise side, we hold [SOC 2 Type 2 certification](https://trust.parallel.ai/), offer zero data retention on Enterprise plans, and don't train on customer data. Our rate limit supports 600 requests per minute with synchronous latency under 5 seconds, or roughly 200ms median with Turbo mode. Our free tier gives you $5 in credits every month, applied automatically (up to 5,000 Turbo requests) to evaluate the API in your own environment before committing to a paid plan.
+On the enterprise side, we hold [SOC 2 Type 2 certification](https://trust.parallel.ai/) and offer zero data retention on Enterprise plans, which excludes training. Under our standard [Customer Terms](https://parallel.ai/customer-terms), we may use inputs and outputs, not linked to any individual, to train and improve the models behind our services. Our rate limit supports 600 requests per minute with synchronous latency under 5 seconds, or roughly 200ms median with Turbo mode. Our free tier gives you $5 in credits every month, applied automatically (up to 5,000 Turbo requests) to evaluate the API in your own environment before committing to a paid plan.
 
 ### Exa
 

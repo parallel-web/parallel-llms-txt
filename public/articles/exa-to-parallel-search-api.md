@@ -78,7 +78,7 @@ search = client.search(
 
 ## **Rate limits**
 
-Exa defaults to 10 requests per second on search and 100 on contents, with 50 concurrent Agent runs. Parallel defaults to 600 requests per minute on Search, Extract, and Entity Search, 300 on Monitor, and 25 per hour on FindAll runs, with GET polling excluded and custom limits available on enterprise plans. Parallel is SOC 2 Type 2 certified, with a Data Processing Addendum, zero data retention on Enterprise plans, and a contractual commitment not to train on customer data.
+Exa defaults to 10 requests per second on search and 100 on contents, with 50 concurrent Agent runs. Parallel defaults to 600 requests per minute on Search, Extract, and Entity Search, 300 on Monitor, and 25 per hour on FindAll runs, with GET polling excluded and custom limits available on enterprise plans. Parallel is SOC 2 Type 2 certified and offers a Data Processing Addendum. Under the standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services. Enterprise plans with zero data retention exclude that use.
 
 ## **Get started**
 

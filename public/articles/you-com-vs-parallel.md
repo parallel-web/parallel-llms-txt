@@ -70,7 +70,7 @@ On benchmarks, the two companies overlap on one name. You.com cites DeepSearchQA
 
 ## **Compliance and developer experience**
 
-On compliance the two are close to a tie. You.com is SOC 2 certified, offers zero data retention, and does not train on your data. Parallel is SOC 2 Type 2 certified, offers a Data Processing Addendum and zero data retention, and commits contractually to not training on customer data, with a public status page and trust center.
+On compliance the two are close, with one difference on training. You.com is SOC 2 certified, offers zero data retention, and does not train on your data. Parallel is SOC 2 Type 2 certified and offers a Data Processing Addendum, with a public status page and trust center. Under the standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services. Enterprise plans with zero data retention exclude that use.
 
 Both ship a Python SDK, an MCP server, and REST access. You.com maintains an open-source agent-skills repository with guided integrations for Claude, OpenAI, the Vercel AI SDK, and Teams.ai, and publishes llms.txt indexes throughout its docs, which helps coding agents navigate them. Parallel adds a TypeScript SDK and OpenAI SDK compatibility on the Responses API:
 
