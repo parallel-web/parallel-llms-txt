@@ -1,9 +1,9 @@
-### \[See the whole picture: A brand campaign built with Parallel\](https://parallel.ai/blog/see-the-whole-picture)
+### \[Introducing data residency in Europe\](https://parallel.ai/blog/eu-data-residency)
 
-For our first out-of-home campaign, we used Parallel's own research APIs to build six collages, each grounded in a real Task API run with part of the response inside the artwork.
+Run Parallel Search and Extract requests in the European Union.
 
-Tags:[Company](/blog?tag=company)
+Tags:[Product](/blog?tag=product)
 
-By Yang You
+By Parallel
 
-October 20, 2026
+October 22, 2026
