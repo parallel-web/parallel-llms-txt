@@ -8,15 +8,16 @@ Ground coding agents in live docs, changelogs, and dev forums. One API call repl
 
 Trusted by
 
+* OpenClaw
 * Amp
+* LangChain
+* Lovable
+* Nous Research
+* Replit
+* Oh My Pi
 * Macroscope
 * Greptile
-* Rocket
-* Lovable
-* Replit
-* LangChain
 * Composio
-* Oh My Pi
 
 Use Cases
 

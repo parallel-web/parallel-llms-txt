@@ -204,7 +204,7 @@ Zero data retention
 
 SOC 2 Type 2
 
-No training
+No training with ZDR
 
 ## FAQ
 

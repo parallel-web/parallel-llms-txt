@@ -311,15 +311,15 @@ Sources: [Parallel MCP docs](https://docs.parallel.ai/integrations/mcp/quickstar
 Both hold SOC 2 Type II and offer zero data retention on enterprise plans. Parallel lets you build on results for your own customers. Brave’s terms give it narrower rights over your queries.
 
 __Security, privacy, and data terms: Parallel compared with Brave__
-| Feature                    | Parallel                                                | Brave                                                 |
-| -------------------------- | ------------------------------------------------------- | ----------------------------------------------------- |
-| SOC 2 Type II              | Yes                                                     | Yes                                                   |
-| HIPAA compliance           | Yes (Leads)                                             | Not stated in API docs                                |
-| Zero data retention        | Enterprise                                              | Enterprise, query logs kept up to 90 days otherwise   |
-| Rights to results          | Build on output for one end customer per query (Leads)  | Brave owns results, transient storage only            |
-| Use of your queries        | May train Parallel’s models, de-linked from individuals | Licensed to serve results and run the service (Leads) |
-| Training models on results | Barred                                                  | Barred, and so is benchmarking AI models              |
-| EU data residency          | Search (basic mode) and Extract (cache-only) (Leads)    | Not documented                                        |
+| Feature                    | Parallel                                                                             | Brave                                                 |
+| -------------------------- | ------------------------------------------------------------------------------------ | ----------------------------------------------------- |
+| SOC 2 Type II              | Yes                                                                                  | Yes                                                   |
+| HIPAA compliance           | Yes (Leads)                                                                          | Not stated in API docs                                |
+| Zero data retention        | Enterprise                                                                           | Enterprise, query logs kept up to 90 days otherwise   |
+| Rights to results          | Build on output for one end customer per query (Leads)                               | Brave owns results, transient storage only            |
+| Use of your queries        | May train Parallel’s models, de-linked from individuals (not on Enterprise with ZDR) | Licensed to serve results and run the service (Leads) |
+| Training models on results | Barred                                                                               | Barred, and so is benchmarking AI models              |
+| EU data residency          | Search (basic mode) and Extract (cache-only) (Leads)                                 | Not documented                                        |
 
 Sources: [Parallel Trust Center](https://trust.parallel.ai), [Parallel Customer Terms, effective August 11, 2026](https://parallel.ai/customer-terms), [Parallel pricing](https://parallel.ai/pricing), [Parallel privacy policy](https://parallel.ai/privacy-policy), [Parallel guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
 

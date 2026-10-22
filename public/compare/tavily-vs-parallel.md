@@ -6,7 +6,7 @@ Parallel scores higher than Tavily on hard, multi-hop research at a fifth to an 
 
 [Fast-tier search, per 1,000 requests: $1 vs. $5–$8](#cost) [Artificial Analysis Search Index, basic modes: 73 vs. 66](#accuracy) [BrowseComp, same frontier agent: 74% vs. 66%](#accuracy)
 
-Last updated October 10, 2026
+Last updated October 16, 2026
 
 ## What does Parallel do?
 
@@ -17,6 +17,7 @@ Parallel is one developer platform covering search, extraction, research, entity
 * [Cost](#cost)
 * [Plans](#tavily-pricing)
 * [Research](#research)
+* [EU residency](#eu-data-residency)
 * [Features](#features)
 * [Which to pick](#decision)
 
@@ -173,6 +174,16 @@ Tavily: 20
 
 Default limits from each provider’s documentation, October 2026\. Parallel counts Task Runs created per minute, and GET polling does not count. Tavily counts research tasks created per minute, on development and production keys alike. Both offer custom limits on enterprise plans.
 
+## EU data residency for search, which Tavily doesn’t document
+
+Parallel serves its Search and Extract APIs from the EU at eu.parallel.ai, under an enterprise agreement. The API, SDKs, and keys are the same as api.parallel.ai, and only the base URL changes. Search runs in basic mode only, with up to 20 results per request, answered from the EU index with no live fetching. Extract takes up to 20 URLs per request. Queries, objectives, results, excerpts, and model inference stay in the EU, and request and response content is not retained.
+
+The EU endpoint has limits. Billing, metrics, and edge logs, which contain no content, go to the US. Extract looks up each URL in Parallel’s cache of public web pages, which is hosted outside the EU. Only the URL is sent, and under zero data retention it isn’t saved. Extract is cache-only when advanced\_settings.fetch\_policy.timeout\_seconds is 0, and uncached URLs then return an error. Other Search modes, Task, FindAll, Monitor, Chat, Responses, and MCP aren’t served in the EU. They return an error and are never forwarded to the US. Our [guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency) compares every vendor’s documented option.
+
+Tavily doesn’t document an EU processing option. Its privacy policy names a US company, AlphaAI Technologies Inc., and says transfers to US service providers rely on Standard Contractual Clauses. A transfer mechanism makes sending data to the US lawful. It doesn’t keep data in the EU. Tavily’s position was read from its own documentation on October 16, 2026.
+
+Sources: [Parallel privacy policy](https://parallel.ai/privacy-policy), [Parallel guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
+
 ## Feature by feature
 
 Pricing, capabilities, performance, integrations, and enterprise readiness, side by side.
@@ -251,15 +262,16 @@ Sources: [Parallel Responses docs](https://docs.parallel.ai/responses-api/respon
 Both hold SOC 2 Type II and offer zero data retention. Parallel is HIPAA compliant. Tavily’s platform terms bar protected health information from requests.
 
 __Security, compliance, and support: Parallel compared with Tavily__
-| Feature                  | Parallel                 | Tavily                                             |
-| ------------------------ | ------------------------ | -------------------------------------------------- |
-| SOC 2 Type II            | Yes                      | Yes                                                |
-| HIPAA compliance         | Yes (Leads)              | Terms bar protected health information in requests |
-| Zero data retention      | Enterprise               | Stated as the default (Leads)                      |
-| Data Processing Addendum | Yes                      | On request                                         |
-| Published SLA numbers    | Enterprise contract only | 99.99% uptime advertised; terms on request         |
+| Feature                  | Parallel                                             | Tavily                                             |
+| ------------------------ | ---------------------------------------------------- | -------------------------------------------------- |
+| SOC 2 Type II            | Yes                                                  | Yes                                                |
+| HIPAA compliance         | Yes (Leads)                                          | Terms bar protected health information in requests |
+| Zero data retention      | Enterprise                                           | Stated as the default (Leads)                      |
+| Data Processing Addendum | Yes                                                  | On request                                         |
+| Published SLA numbers    | Enterprise contract only                             | 99.99% uptime advertised; terms on request         |
+| EU data residency        | Search (basic mode) and Extract (cache-only) (Leads) | Not documented                                     |
 
-Sources: [Parallel pricing](https://parallel.ai/pricing), [Parallel Trust Center](https://trust.parallel.ai), [Switching from Tavily to Parallel](https://parallel.ai/articles/tavily-to-parallel-search-api)
+Sources: [Parallel pricing](https://parallel.ai/pricing), [Parallel Trust Center](https://trust.parallel.ai), [Switching from Tavily to Parallel](https://parallel.ai/articles/tavily-to-parallel-search-api), [Parallel privacy policy](https://parallel.ai/privacy-policy), [Parallel guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
 
 ## Which one should you pick?
 
@@ -311,8 +323,10 @@ Yes. Search maps to Search, Extract to Extract, and Research to Task or Response
 Per call, it depends on the query. In Parallel’s July 2026 run Tavily Ultra Fast measured 150 to 357ms p50 across five suites against 216 to 240ms for Parallel Turbo, faster on two and slower on three. Turbo was more accurate on all five. Per benchmark task, Artificial Analysis measured 20.4 seconds for Parallel basic against 36.3 for Tavily basic.
 * **Where does Tavily still win?**  
 Tavily has the broader framework ecosystem, led by LangChain, and ships Map and Crawl endpoints for whole-site extraction. It can return an LLM answer and images inline with search, allows 1,000 search requests per minute on production keys against Parallel’s 600, and states zero data retention by default. On Openbenchmarks’ company news board, Tavily was also more accurate than Parallel Fast on single-fact lookups.
+* **Does Tavily offer EU data residency?**  
+Not as of October 16, 2026\. Tavily’s privacy policy describes transfers to US service providers under Standard Contractual Clauses, and no EU processing option. Parallel’s EU endpoint serves Search (basic mode) and Extract (cache-only). Other APIs aren’t served there. Billing, metrics, and edge logs (no content) go to the US, and Extract sends only URLs to its page cache outside the EU.
 * **How current is this comparison?**  
-Parallel reviewed both providers’ documentation on October 1, 2026, and price lists on October 10, this page’s last update. BrowseComp, SimpleQA Verified, and WideSearch figures come from Parallel’s September 9 runs, latency from its July run, Search Index scores from Artificial Analysis’s August launch table, and company search and news figures from Openbenchmarks’ September boards. Both platforms ship often, so check the linked sources.
+Parallel reviewed both providers’ documentation on October 1, 2026, and price lists on October 10\. BrowseComp, SimpleQA Verified, and WideSearch figures come from Parallel’s September 9 runs, latency from its July run, Search Index scores from Artificial Analysis’s August launch table, and company search and news figures from Openbenchmarks’ September boards. Both platforms ship often, so check the linked sources.
 
 Trusted by
 

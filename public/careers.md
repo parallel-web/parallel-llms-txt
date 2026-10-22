@@ -38,7 +38,6 @@ We recruit likeminded curious, optimistic, and ambitious people who see the work
 | [Controller](https://jobs.ashbyhq.com/parallel/055cd8fd-ac80-4d76-9aa4-abcfc3244c87)                                         | Operations           | San Francisco / Palo Alto            | Full time      |
 | [Legal Ops](https://jobs.ashbyhq.com/parallel/07e9f010-e7c8-4c01-b650-997b659c53fb)                                          | Operations           | Palo Alto                            | Full time      |
 | [Recruiting Coordinator](https://jobs.ashbyhq.com/parallel/c5238a12-fcc2-45f0-8815-3ffd2c64ee76)                             | Operations           | Palo Alto                            | Full time      |
-| [Growth](https://jobs.ashbyhq.com/parallel/ec8dd697-1bec-4b23-9cfd-e899e9144e9e)                                             | Product              | San Francisco / Palo Alto            | Full time      |
 
 ## Our values
 

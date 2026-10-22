@@ -6,7 +6,7 @@ In independent tests, Parallel scored higher than Firecrawl on multi-step resear
 
 [Multi-turn company search F1, search only: 46.5 vs. 30.4](#accuracy) [Artificial Analysis Search Index, Parallel advanced: 75 vs. 73](#accuracy) [Artificial Analysis time per task, Parallel basic: 25.6s vs. 60.7s](#accuracy)
 
-Last updated October 14, 2026
+Last updated October 16, 2026
 
 ## What does Parallel do?
 
@@ -17,6 +17,7 @@ Parallel is one developer platform covering search, extraction, research, entity
 * [Cost](#cost)
 * [Plans](#firecrawl-pricing)
 * [Research](#research)
+* [EU residency](#eu-data-residency)
 * [Features](#features)
 * [Which to pick](#decision)
 
@@ -188,6 +189,16 @@ Both platforms run scheduled monitors. Parallel adds FindAll, which builds verif
 
 Sources: [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel FindAll docs](https://docs.parallel.ai/findall-api/findall-quickstart), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [Switching from Firecrawl to Parallel](https://parallel.ai/articles/firecrawl-to-parallel-search-api)
 
+## Managed EU data residency for search, which Firecrawl doesn’t document
+
+Parallel serves its Search and Extract APIs from the EU at eu.parallel.ai, under an enterprise agreement. The API, SDKs, and keys are the same as api.parallel.ai, and only the base URL changes. Search runs in basic mode only, with up to 20 results per request, answered from the EU index with no live fetching. Extract takes up to 20 URLs per request. Queries, objectives, results, excerpts, and model inference stay in the EU, and request and response content is not retained.
+
+The EU endpoint has limits. Billing, metrics, and edge logs, which contain no content, go to the US. Extract looks up each URL in Parallel’s cache of public web pages, which is hosted outside the EU. Only the URL is sent, and under zero data retention it isn’t saved. Extract is cache-only when advanced\_settings.fetch\_policy.timeout\_seconds is 0, and uncached URLs then return an error. Other Search modes, Task, FindAll, Monitor, Chat, Responses, and MCP aren’t served in the EU. They return an error and are never forwarded to the US. Our [guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency) compares every vendor’s documented option.
+
+Firecrawl doesn’t document an EU processing option for its cloud service, and its privacy policy tells European users their information is transferred to the United States. Firecrawl is open source, though. A team that self-hosts it on EU servers decides where scraping runs, and takes on the upgrades, security, and storage that come with it. Firecrawl’s position was read from its own documentation on October 16, 2026.
+
+Sources: [Parallel privacy policy](https://parallel.ai/privacy-policy), [Parallel guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
+
 ## Feature by feature
 
 Pricing, capabilities, performance, integrations, and enterprise readiness, side by side.
@@ -288,16 +299,17 @@ Sources: [Parallel Responses docs](https://docs.parallel.ai/responses-api/respon
 Both hold SOC 2 Type II and offer zero data retention on enterprise plans. Parallel offers a HIPAA-ready plan, which Firecrawl does not document. Firecrawl adds PII redaction on every plan.
 
 __Security, compliance, and support: Parallel compared with Firecrawl__
-| Feature                  | Parallel                     | Firecrawl                                                   |
-| ------------------------ | ---------------------------- | ----------------------------------------------------------- |
-| SOC 2 Type II            | Yes                          | Yes                                                         |
-| HIPAA                    | HIPAA-ready offering (Leads) | Not documented                                              |
-| Zero data retention      | Enterprise                   | Enterprise, 10 credits per 10 results for end-to-end search |
-| PII redaction            | Not documented               | On scrape and parse, 4 credits per page (Leads)             |
-| Data Processing Addendum | Yes                          | On paid plans from Standard up                              |
-| Published SLA            | Enterprise contract only     | Enterprise contract only                                    |
+| Feature                  | Parallel                                     | Firecrawl                                                   |
+| ------------------------ | -------------------------------------------- | ----------------------------------------------------------- |
+| SOC 2 Type II            | Yes                                          | Yes                                                         |
+| HIPAA                    | HIPAA-ready offering (Leads)                 | Not documented                                              |
+| Zero data retention      | Enterprise                                   | Enterprise, 10 credits per 10 results for end-to-end search |
+| PII redaction            | Not documented                               | On scrape and parse, 4 credits per page (Leads)             |
+| Data Processing Addendum | Yes                                          | On paid plans from Standard up                              |
+| Published SLA            | Enterprise contract only                     | Enterprise contract only                                    |
+| EU data residency        | Search (basic mode) and Extract (cache-only) | Self-hosted only                                            |
 
-Sources: [Parallel pricing](https://parallel.ai/pricing), [Parallel Trust Center](https://trust.parallel.ai), [Switching from Firecrawl to Parallel](https://parallel.ai/articles/firecrawl-to-parallel-search-api)
+Sources: [Parallel pricing](https://parallel.ai/pricing), [Parallel Trust Center](https://trust.parallel.ai), [Switching from Firecrawl to Parallel](https://parallel.ai/articles/firecrawl-to-parallel-search-api), [Parallel privacy policy](https://parallel.ai/privacy-policy), [Parallel guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
 
 ## Which one should you pick?
 
@@ -350,8 +362,10 @@ Yes, for search and extraction. Search maps to Search, Scrape to Extract, and sc
 Per call, sometimes. On Openbenchmarks’ company news board Firecrawl returned results in 510ms against 1.68s for Parallel Basic, while Parallel Turbo took 348ms. Per task, Parallel took less time: 25.6 seconds for Parallel basic against 60.7 for Firecrawl in Artificial Analysis’s September 2026 data, and 67.6 against 75.0 seconds on Openbenchmarks’ company search.
 * **Where does Firecrawl still win?**  
 Firecrawl crawls and maps whole sites, drives a browser through Interact, and has an open-source core you can self-host. It ships SDKs in nine languages, wide framework coverage, and up to 10,000 search requests a minute on Scale. It answered single-fact news lookups more accurately on Openbenchmarks, and its measured cost per task was lower on several boards.
+* **Does Firecrawl offer EU data residency?**  
+Only by self-hosting the open-source version, as of October 16, 2026\. Its privacy policy says the cloud service sends European users’ data to the US. Parallel’s EU endpoint serves Search (basic mode) and Extract (cache-only). Other APIs aren’t served there. Billing, metrics, and edge logs (no content) go to the US, and Extract sends only URLs to its page cache outside the EU.
 * **How current is this comparison?**  
-Parallel reviewed Firecrawl’s docs and pricing on October 14, 2026, this page’s last update. Artificial Analysis figures come from its September 28 data, and Openbenchmarks figures from its company search and news boards of October 2 and its coding-agent board of September 26\. Parallel’s own benchmark runs do not include Firecrawl. Both platforms ship often, so check the linked sources.
+Parallel reviewed Firecrawl’s docs and pricing on October 14, 2026\. Artificial Analysis figures come from its September 28 data, and Openbenchmarks figures from its company search and news boards of October 2 and its coding-agent board of September 26\. Parallel’s own benchmark runs do not include Firecrawl. Both platforms ship often, so check the linked sources.
 
 Trusted by
 
