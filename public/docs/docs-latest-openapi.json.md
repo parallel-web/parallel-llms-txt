@@ -3701,7 +3701,7 @@
           "Responses API"
         ],
         "summary": "Create Response",
-        "description": "Create a response.\n\nGenerates an answer to the given input, grounded in live web research and\nannotated with URL citations. Set `model` to `parallel`; `reasoning.effort`\n(`low`/`medium`/`high`) controls how much research is performed, trading\nresponse time for answer quality. Returns an OpenAI-format `Response` as\n`application/json`, or a `text/event-stream` of OpenAI Responses SSE\nevents when `stream=true`.",
+        "description": "Create a response.\n\nGenerates an answer to the given input, grounded in live web research and\nannotated with URL citations. Set `model` to `parallel`; `reasoning.effort`\n(`low`/`medium`/`high`/`auto`) controls how much research is performed, trading\nresponse time for answer quality. Returns an OpenAI-format `Response` as\n`application/json`, or a `text/event-stream` of OpenAI Responses SSE\nevents when `stream=true`.",
         "operationId": "create_response_v1_responses_post",
         "requestBody": {
           "content": {
@@ -8020,6 +8020,24 @@
             ],
             "default": null,
             "title": "User"
+          },
+          "effort_used": {
+            "anyOf": [
+              {
+                "enum": [
+                  "low",
+                  "medium",
+                  "high"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "The effort this response was served and billed at. For `auto`, the effort it picked for this query (either `low` or `medium`). Null until the response completes.",
+            "title": "Effort Used"
           }
         },
         "required": [
@@ -8037,7 +8055,7 @@
           "model": {
             "type": "string",
             "title": "Model",
-            "description": "The model to run. `parallel` is the only supported value (matched case-insensitively); any other value is rejected. To trade response time for answer quality, set `reasoning.effort` (low/medium/high) rather than changing the model name.",
+            "description": "The model to run. `parallel` is the only supported value (matched case-insensitively); any other value is rejected. To trade response time for answer quality, set `reasoning.effort` (low/medium/high/auto) rather than changing the model name.",
             "examples": [
               "parallel"
             ]
@@ -8132,7 +8150,7 @@
                 "type": "null"
               }
             ],
-            "description": "Reasoning configuration. `effort` (low/medium/high) controls how much research is performed; defaults to `medium`."
+            "description": "Reasoning configuration. `effort` (low/medium/high/auto) controls how much research is performed; defaults to `medium`."
           },
           "background": {
             "anyOf": [
@@ -8844,7 +8862,8 @@
                 "enum": [
                   "low",
                   "medium",
-                  "high"
+                  "high",
+                  "auto"
                 ],
                 "type": "string"
               },
@@ -8853,7 +8872,7 @@
               }
             ],
             "default": null,
-            "description": "Controls how much research is performed, trading response time for answer quality. Defaults to `medium` when omitted.",
+            "description": "Controls how much research is performed, trading response time for answer quality. Defaults to `medium` when omitted. `auto` uses the right effort for each query.",
             "examples": [
               "high"
             ],
@@ -12568,7 +12587,7 @@
     },
     {
       "name": "Responses API",
-      "description": "An OpenAI-Responses-compatible interface for answers grounded in live web research, with URL citations. Point any Responses-API client \u2014 the OpenAI Python SDK, OpenAI TypeScript SDK, the Agents SDK, or raw HTTP \u2014 at `https://api.parallel.ai` with your Parallel API key, set `model` to `parallel`, and call `/v1/responses`.\n- `input` accepts a plain string or an array of role/content messages (canonical OpenAI shape; text content only).\n- `reasoning.effort` (`low`/`medium`/`high`) controls how much research is performed, trading response time for answer quality.\n- Multi-turn via `previous_response_id`.\n- Structured outputs via `text.format = {\"type\": \"json_schema\", \"name\": ..., \"schema\": {...}}`.\n- Streaming (`stream=true`) emits the standard OpenAI Responses SSE lifecycle: `response.created` and `response.in_progress`, then output item / content part / text delta events with URL-citation annotations, the matching `*.done` events, and a terminal `response.completed` \u2014 or `response.failed` if the request fails mid-stream."
+      "description": "An OpenAI-Responses-compatible interface for answers grounded in live web research, with URL citations. Point any Responses-API client \u2014 the OpenAI Python SDK, OpenAI TypeScript SDK, the Agents SDK, or raw HTTP \u2014 at `https://api.parallel.ai` with your Parallel API key, set `model` to `parallel`, and call `/v1/responses`.\n- `input` accepts a plain string or an array of role/content messages (canonical OpenAI shape; text content only).\n- `reasoning.effort` (`low`/`medium`/`high`/`auto`) controls how much research is performed, trading response time for answer quality.\n- Multi-turn via `previous_response_id`.\n- Structured outputs via `text.format = {\"type\": \"json_schema\", \"name\": ..., \"schema\": {...}}`.\n- Streaming (`stream=true`) emits the standard OpenAI Responses SSE lifecycle: `response.created` and `response.in_progress`, then output item / content part / text delta events with URL-citation annotations, the matching `*.done` events, and a terminal `response.completed` \u2014 or `response.failed` if the request fails mid-stream."
     }
   ],
   "servers": [
