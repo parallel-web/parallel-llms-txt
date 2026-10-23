@@ -2,6 +2,7 @@
 
 ### Comparison
 
+* [Keenable vs. Parallel: the fastest search call or the best agent result?](https://parallel.ai/articles/keenable-vs-parallel)
 * [The best DeepSeek Search API alternatives for AI agents in 2026](https://parallel.ai/articles/deepseek-search-api-alternatives)
 * [DeepSeek Search API vs. Parallel: pricing, data handling, and model lock-in](https://parallel.ai/articles/deepseek-search-api-vs-parallel)
 * [The best Firecrawl alternatives in 2026](https://parallel.ai/articles/firecrawl-alternatives)

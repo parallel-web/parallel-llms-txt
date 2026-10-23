@@ -37,6 +37,7 @@ We recruit likeminded curious, optimistic, and ambitious people who see the work
 | [AI Commercial Counsel, GTM](https://jobs.ashbyhq.com/parallel/485a039c-a176-4dfe-ba5f-475b63439651)                         | Operations           | San Francisco / Palo Alto            | Full time      |
 | [Controller](https://jobs.ashbyhq.com/parallel/055cd8fd-ac80-4d76-9aa4-abcfc3244c87)                                         | Operations           | San Francisco / Palo Alto            | Full time      |
 | [Legal Ops](https://jobs.ashbyhq.com/parallel/07e9f010-e7c8-4c01-b650-997b659c53fb)                                          | Operations           | Palo Alto                            | Full time      |
+| [Procurement Lead](https://jobs.ashbyhq.com/parallel/eba53dae-be93-44a8-a550-7dc56da4df66)                                   | Operations           | San Francisco / Palo Alto            | Full time      |
 | [Recruiting Coordinator](https://jobs.ashbyhq.com/parallel/c5238a12-fcc2-45f0-8815-3ffd2c64ee76)                             | Operations           | Palo Alto                            | Full time      |
 
 ## Our values

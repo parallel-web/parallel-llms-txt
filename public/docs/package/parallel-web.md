@@ -4,17 +4,34 @@ npm tokens that bypass 2FA are being restricted — account changes (Aug 2026) a
 
 ×
 
+skip to: content package search sign in
+
+Light mode — click for dark
+
+* [Pro](https://www.npmjs.com/products/pro)
+* [Teams](https://www.npmjs.com/products/teams)
+* [Pricing](https://www.npmjs.com/products)
+* [Documentation](https://docs.npmjs.com/)
+
+npm
+
+[](https://www.npmjs.com/)
+
+Search
+
+ 
+
 # parallel-web
 
 TypeScript icon, indicating that this package has built-in type declarations
 
-1\.3.5 • Public • Published 20 days ago
+1\.3.6 • Public • Published a day ago
 
 * [Readme](https://www.npmjs.com/package/parallel-web?activeTab=readme)
 * [Code Beta](https://www.npmjs.com/package/parallel-web?activeTab=code)
 * [0 Dependencies](https://www.npmjs.com/package/parallel-web?activeTab=dependencies)
 * [16 Dependents](https://www.npmjs.com/package/parallel-web?activeTab=dependents)
-* [24 Versions](https://www.npmjs.com/package/parallel-web?activeTab=versions)
+* [25 Versions](https://www.npmjs.com/package/parallel-web?activeTab=versions)
 
 # Parallel TypeScript API Library
 
@@ -371,6 +388,24 @@ none
 
 # Provenance
 
+Built and signed on
+
+## GitHub Actions
+
+[View build summary](https://github.com/parallel-web/parallel-sdk-typescript/actions/runs/39660834819/attempts/1)
+
+Source Commit
+
+[github.com/parallel-web/parallel-sdk-typescript@7efb9f8](https://github.com/parallel-web/parallel-sdk-typescript/tree/7efb9f80035bb4355c31cfb8c52384f278ffc524)
+
+Build File
+
+[.github/workflows/publish-npm.yml](https://github.com/parallel-web/parallel-sdk-typescript/actions/runs/39660834819/workflow)
+
+Public Ledger
+
+[Transparency log entry](https://search.sigstore.dev/?logIndex=3362215206)
+
 [Share feedback](https://github.com/npm/feedback)
 
 ## Package Sidebar
@@ -393,7 +428,7 @@ none
 
 ### Version
 
-1\.3.5
+1\.3.6
 
 ### License
 
@@ -401,7 +436,7 @@ MIT
 
 ### Last publish
 
-20 days ago
+a day ago
 
 ### Collaborators
 
@@ -411,7 +446,7 @@ MIT
 
 [**Analyze security** with Socket](https://socket.dev/npm/package/parallel-web) [**Check bundle size**](https://bundlephobia.com/package/parallel-web) [**View package health**](https://snyk.io/advisor/npm-package/parallel-web) [**Explore dependencies**](https://npmgraph.js.org/?q=parallel-web)
 
-[**Report** malware](https://www.npmjs.com/support?inquire=security&security-inquire=malware&package=parallel-web&version=1.3.5)
+[**Report** malware](https://www.npmjs.com/support?inquire=security&security-inquire=malware&package=parallel-web&version=1.3.6)
 
 ## Footer
 
@@ -438,3 +473,5 @@ MIT
 * [Terms of Use](https://www.npmjs.com/policies/terms)
 * [Code of Conduct](https://www.npmjs.com/policies/conduct)
 * [Privacy](https://www.npmjs.com/policies/privacy)
+
+Viewing parallel-web version 1.3.6

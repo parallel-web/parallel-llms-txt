@@ -171,7 +171,7 @@ These criteria separate production-ready infrastructure from MVP tooling. For a 
 
 **Infrastructure ownership.** An API that wraps a third-party search provider inherits that provider's latency, freshness constraints, and pricing. We own our index, which gives us direct control over freshness, token optimization, and cost.
 
-**Security.** SOC 2 Type 2 certification, zero data retention, and no training on customer data are baseline requirements for enterprise workloads. Verify these explicitly from a provider's [Trust Center](https://trust.parallel.ai/), not from a marketing page.
+**Security.** SOC 2 Type 2 certification and zero data retention are baseline requirements for enterprise workloads. Check the provider's training terms too, and whether an enterprise or zero data retention plan excludes training on your data. Verify these explicitly from a provider's [Trust Center](https://trust.parallel.ai/) and legal terms, not from a marketing page.
 
 **Composability.** APIs that share authentication, output formats, and conceptual models compose cleanly. APIs that don't compose require integration work that accumulates over time.
 
