@@ -6,6 +6,8 @@ Parallel uses robots and user agents to gather public web content for its produc
 
 ShapBot collects publicly available web content to build and maintain Parallel's search index, maximizing site visibility in search results. Restricting ShapBot prevents our system from indexing your content, which may reduce your site's visibility and discoverability through Parallel's web APIs and search features. Webmasters can manage automated access using robots.txt with the User-agent: ShapBot directive.
 
+ShapBot signs its requests with Web Bot Auth (HTTP Message Signatures). Public keys are published at [shapbot.parallel.ai/.well-known/http-message-signatures-directory](https://shapbot.parallel.ai/.well-known/http-message-signatures-directory).
+
 _Full user-agent string: Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; ShapBot/0.1.0_
 
 For the complete list of ShapBot IPs, see [shapbot.json](https://docs.parallel.ai/resources/shapbot.json).
@@ -13,6 +15,8 @@ For the complete list of ShapBot IPs, see [shapbot.json](https://docs.parallel.a
 ## **Shap-User**
 
 Shap-User identifies itself when accessing content on behalf of users, giving content owners visibility into user-initiated requests. Shap-User is not used for crawling the web in an automatic fashion. Shap-User is intended to provide visibility rather than to be managed through automated controls. To manage automated crawling, see ShapBot above.
+
+Shap-User signs its requests with Web Bot Auth (HTTP Message Signatures). Public keys are published at [shap-user.parallel.ai/.well-known/http-message-signatures-directory](https://shap-user.parallel.ai/.well-known/http-message-signatures-directory).
 
 _Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; Shap-User/0.1.0_
 
