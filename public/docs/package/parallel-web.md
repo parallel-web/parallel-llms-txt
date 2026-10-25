@@ -25,7 +25,7 @@ Search
 
 TypeScript icon, indicating that this package has built-in type declarations
 
-1\.3.6 • Public • Published a day ago
+1\.3.6 • Public • Published 3 days ago
 
 * [Readme](https://www.npmjs.com/package/parallel-web?activeTab=readme)
 * [Code Beta](https://www.npmjs.com/package/parallel-web?activeTab=code)
@@ -388,24 +388,6 @@ none
 
 # Provenance
 
-Built and signed on
-
-## GitHub Actions
-
-[View build summary](https://github.com/parallel-web/parallel-sdk-typescript/actions/runs/39660834819/attempts/1)
-
-Source Commit
-
-[github.com/parallel-web/parallel-sdk-typescript@7efb9f8](https://github.com/parallel-web/parallel-sdk-typescript/tree/7efb9f80035bb4355c31cfb8c52384f278ffc524)
-
-Build File
-
-[.github/workflows/publish-npm.yml](https://github.com/parallel-web/parallel-sdk-typescript/actions/runs/39660834819/workflow)
-
-Public Ledger
-
-[Transparency log entry](https://search.sigstore.dev/?logIndex=3362215206)
-
 [Share feedback](https://github.com/npm/feedback)
 
 ## Package Sidebar
@@ -424,7 +406,7 @@ Public Ledger
 
 ### Weekly Downloads
 
-106,160
+89,662
 
 ### Version
 
@@ -436,7 +418,7 @@ MIT
 
 ### Last publish
 
-a day ago
+3 days ago
 
 ### Collaborators
 
@@ -473,5 +455,3 @@ a day ago
 * [Terms of Use](https://www.npmjs.com/policies/terms)
 * [Code of Conduct](https://www.npmjs.com/policies/conduct)
 * [Privacy](https://www.npmjs.com/policies/privacy)
-
-Viewing parallel-web version 1.3.6

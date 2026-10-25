@@ -6,13 +6,13 @@ Security notice: Upgrade certifi, pip, and uv in response to CA certificate inci
 
 Search PyPI Search
 
-* [Help](https://pypi.org/help/)
 * [Docs](https://docs.pypi.org/)
+* [Blog](https://blog.pypi.org/)
 * 
 * 
 
-* [Help](https://pypi.org/help/)
 * [Docs](https://docs.pypi.org/)
+* [Blog](https://blog.pypi.org/)
 * 
 * 
 
@@ -33,7 +33,7 @@ Search PyPI Search
 
 Search PyPI Search
 
-# parallel-web 1.3.6
+# parallel-web 1.3.7
 
 The official Python library for the Parallel API
 
@@ -455,7 +455,7 @@ PyPI data
 
 Data sourced directly from PyPI's database.
 
-* **Released:** Oct 21, 2026
+* **Released:** Oct 23, 2026
 
 Latest release
 
@@ -513,9 +513,9 @@ MIT License (MIT)
   
     + [Typed](https://pypi.org/search/?c=Typing+%3A%3A+Typed)
 
-[Sponsored: Python Software Foundation](https://server.ethicalads.io/proxy/click/10404/01a1661f-546b-7a83-965b-84a0c48014a0/)
+[Sponsored: Python Software Foundation](https://server.ethicalads.io/proxy/click/9619/01a1706c-de40-7562-a60d-a787a1cff2d5/)
 
-SerpApi is a Maintaining sponsor of the Python Software Foundation.
+Bloomberg is a Visionary sponsor of the Python Software Foundation.
 
 _[PSF Sponsor](https://www.python.org/psf/sponsorship/?ref=ethicalads-placement) · [Served ethically](https://www.ethicalads.io/sponsorship-platform/?ref=psf)_
 
@@ -532,7 +532,7 @@ PyPI data
 
 Data sourced directly from PyPI's database.
 
-* **Released:** Oct 21, 2026
+* **Released:** Oct 23, 2026
 
 Latest release
 
@@ -590,13 +590,13 @@ MIT License (MIT)
   
     + [Typed](https://pypi.org/search/?c=Typing+%3A%3A+Typed)
 
-[Sponsored: Python Software Foundation](https://server.ethicalads.io/proxy/click/10113/01a1661f-5464-7f93-bbc8-b0a147cbb753/)
+[Sponsored: Python Software Foundation](https://server.ethicalads.io/proxy/click/10404/01a1706c-de38-73b2-ad18-2ac35b6b0bc4/)
 
-Anthropic, PBC is a Visionary sponsor of the Python Software Foundation.
+SerpApi is a Maintaining sponsor of the Python Software Foundation.
 
 _[PSF Sponsor](https://www.python.org/psf/sponsorship/?ref=ethicalads-placement) · [Served ethically](https://www.ethicalads.io/sponsorship-platform/?ref=psf)_
 
-## Release files for parallel-web 1.3.6
+## Release files for parallel-web 1.3.7
 
 For a detailed explanation of source distributions (sdists) and built distributions (wheels), please see the [package formats documentation](https://packaging.python.org/en/latest/discussions/package-formats/ "External link") .
 
@@ -604,7 +604,7 @@ For a detailed explanation of source distributions (sdists) and built distributi
 
 |File |Size |Uploaded |Provenance | |
 | --- | --- | --- | --- | --- |
-|[parallel\_web-1.3.6.tar.gz](https://files.pythonhosted.org/packages/64/ed/d76bcaed327428ba8c8eccf68ef8ae72b84c298c316260983d867c71c050/parallel_web-1.3.6.tar.gz) |163\.7 kB |Oct 21, 2026 |Without provenance |Details |
+|[parallel\_web-1.3.7.tar.gz](https://files.pythonhosted.org/packages/a6/0d/bce4ca73561d8a676801c5ebbeb36ab4d0f2f93eb78b1fc6f4ab4c08ba52/parallel_web-1.3.7.tar.gz) |163\.7 kB |Oct 23, 2026 |Without provenance |Details |
 
 * * *
 
@@ -612,19 +612,19 @@ For a detailed explanation of source distributions (sdists) and built distributi
 
 |File |Interpreter |ABI |Platform |[Reset](https://pypi.org/project/parallel-web/) |
 | --- | --- | --- | --- | --- |
-|[parallel\_web-1.3.6-py3-none-any.whl](https://files.pythonhosted.org/packages/8e/d1/047c7a3fe2b67903f9b801459c8d131e89bbaa6fa5afc204ed94707bf4c8/parallel_web-1.3.6-py3-none-any.whl) 178\.3 kB Oct 21, 2026 Without provenance |Python 3 |none |any |Details |
+|[parallel\_web-1.3.7-py3-none-any.whl](https://files.pythonhosted.org/packages/43/d5/adbd4732dd3204ed6dcc32241e8da302b45f9824a04b109cab2c9c9ab86f/parallel_web-1.3.7-py3-none-any.whl) 178\.3 kB Oct 23, 2026 Without provenance |Python 3 |none |any |Details |
 
 * * *
 
 **Total release size:** 342\.0 kB
 
-## Security for parallel-web 1.3.6
+## Security for parallel-web 1.3.7
 
 [Report project as malware](https://pypi.org/project/parallel-web/submit-malware-report/)
 
 ### Provenance
 
-**Provenance** describes where a file came from. On PyPI, provenance is shared via **attestations** , which provide a verifiable record of the build or publishing details. [View details, limitations and caveats.](https://docs.pypi.org/attestations/)
+**Provenance** describes where a file came from. On PyPI, provenance is shared via **attestations** , which provide a verifiable record of the build or publishing details. [View details, limitations and caveats.](https://docs.pypi.org/using-pypi/package-security/provenance/)
 
 ### No provenance found
 
@@ -634,11 +634,17 @@ None of the files in this release were uploaded with provenance metadata.
 
 PyPI is a repository for distributing packages, not a service for auditing them. While third-party security researchers and our staff do their best to detect and remove malicious packages, PyPI cannot guarantee the quality, security or suitability of any given package.
 
-## Release history [Release notifications](https://pypi.org/help/) | [RSS feed](https://pypi.org/rss/project/parallel-web/releases.xml)
+To learn more about protecting yourself from malicious actors, visit our [package security documentation](https://docs.pypi.org/using-pypi/package-security/introduction/) .
+
+## Release history [Release notifications](https://docs.pypi.org/api/feeds/) | [RSS feed](https://pypi.org/rss/project/parallel-web/releases.xml)
 
 This release
 
-[1\.3.6](https://pypi.org/project/parallel-web/1.3.6/) This release
+[1\.3.7](https://pypi.org/project/parallel-web/1.3.7/) This release
+
+Oct 23, 2026 [2 release files](https://pypi.org/project/parallel-web/1.3.7/) [No provenance](https://pypi.org/project/parallel-web/1.3.7/)
+
+[1\.3.6](https://pypi.org/project/parallel-web/1.3.6/)
 
 Oct 21, 2026 [2 release files](https://pypi.org/project/parallel-web/1.3.6/) [No provenance](https://pypi.org/project/parallel-web/1.3.6/)
 
@@ -767,4 +773,4 @@ Switch to desktop version
 * "PyPI", "Python Package Index", and the blocks logos are registered [trademarks](https://pypi.org/trademarks/) of the [Python Software Foundation](https://www.python.org/psf-landing) .
 
 * [Site map](https://pypi.org/sitemap/)
-* Deployed from [`4969cf8`](https://github.com/pypi/warehouse/commit/4969cf8c4598fb3a5503e1ae88b90db5541240a6 "External link")
+* Deployed from [`80b2c65`](https://github.com/pypi/warehouse/commit/80b2c65749769b3eee41dc10e788c1663e67a5ac "External link")
