@@ -2,7 +2,7 @@
 
 Exa alternatives are worth a look if you want a cheaper price per search, a different index, raw Google results, or search bundled with extraction and research. This guide covers what Exa still does best, a side-by-side table of nine alternatives with verified October 2026 pricing and free MCP options, a script to test two keyless servers yourself, and who should switch to what.
 
-Exa lists search at $4 per 1,000 requests for Instant and $7 for Fast or Auto, with up to 10 results and page text included, and it runs its own embeddings-based index rather than reselling Google or Bing. In the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (October 2026), Exa auto scored 74, one point behind Parallel Search advanced at 75 and six behind Perplexity Search at 80. That makes Exa a strong default, and it means most teams that switch do it for price, latency, a specific index, or the rest of the stack around search. We make Parallel, so read our ranking of ourselves with that in mind; every competitor figure below comes from the vendor’s own pricing page or docs, checked October 10, 2026.
+Exa lists search at $4 per 1,000 requests for Instant and $7 for Fast or Auto, with up to 10 results and page text included, and it runs its own embeddings-based index rather than reselling Google or Bing. In the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (October 2026), Exa auto scored 74, one point behind Parallel Search advanced at 75 and six behind Perplexity Search at 80. That makes Exa a strong default, so a switch usually comes down to price, latency, a specific index, or the rest of the stack around search. We make Parallel, so read our ranking of ourselves with that in mind; every competitor figure below comes from the vendor’s own pricing page or docs, checked October 10, 2026.
 
 ## Exa alternatives at a glance
 
@@ -23,11 +23,11 @@ Prices are list rates per 1,000 requests from each provider’s pricing page on 
 
 ## What Exa does well
 
-Exa’s index combines keyword and embeddings-based retrieval, which works well when a query describes a kind of page (“seed-stage startups building voice agents for dentists“) rather than naming it. It also runs dedicated indexes for people (1B+ profiles, per its changelog), companies, and 350 million scholarly publications, which few rivals match.
+Exa’s index combines keyword and embeddings-based retrieval, which works well when a query describes a kind of page (“seed-stage startups building voice agents for dentists”) rather than naming it. It also runs dedicated indexes for people (1B+ profiles, per its changelog), companies, and 350 million scholarly publications, which few rivals match.
 
-The product range is wide. Search has five main types, from `instant` (sub-150ms, per Exa’s changelog) to `deep-reasoning`, and every search returns page text or highlights at the base price. [Exa’s pricing page](https://exa.ai/pricing) also lists Contents at $1 per 1,000 pages, Monitors at $15 per 1,000 runs, Answer at $5 per 1,000, and an asynchronous Agent API at $0.012 to $1.00 per run. Websets, Exa’s list-building product, is billed in its own credits. The hosted MCP server at `https://mcp.exa.ai/mcp` works with no API key, so trying it in Claude Code or Cursor takes one line of config.
+Search has five main types, from `instant` (sub-150ms, per Exa’s changelog) to `deep-reasoning`, and every search returns page text or highlights at the base price. [Exa’s pricing page](https://exa.ai/pricing) also lists Contents at $1 per 1,000 pages, Monitors at $15 per 1,000 runs, Answer at $5 per 1,000, and an asynchronous Agent API at $0.012 to $1.00 per run. Websets, Exa’s list-building product, is billed in its own credits. The hosted MCP server at `https://mcp.exa.ai/mcp` works with no API key, so trying it in Claude Code or Cursor takes one line of config.
 
-Two things have moved recently. Exa retired the `/research` endpoint in April 2026 in favor of `/search` with `type: "deep-reasoning"`, and its OpenAPI spec now marks `/findSimilar` as deprecated, telling developers to describe the source page in a `/search` query instead. If you built on either, you’re migrating anyway.
+Exa retired the `/research` endpoint in April 2026 in favor of `/search` with `type: "deep-reasoning"`, and its OpenAPI spec now marks `/findSimilar` as deprecated, telling developers to describe the source page in a `/search` query instead. If you built on either, you’re migrating anyway.
 
 ## The best Exa alternatives
 
@@ -61,7 +61,7 @@ Firecrawl started as a scraper and crawler, and its search endpoint can return s
 
 ### Ceramic.ai
 
-Ceramic.ai is the newest name here and the cheapest: $0.25 per 1,000 queries on pay-as-you-go, with 1,000 free queries and 20 QPS ([pricing](https://www.ceramic.ai/pricing)). It runs its own index of more than 40 billion pages. On October 2, 2026, Cloudflare launched a Web Search API inside AI Gateway and made Ceramic.ai the default provider, ahead of Exa ($7 per 1,000, no zero data retention) and Linkup ([Cloudflare docs](https://developers.cloudflare.com/web-search/providers/)). Know the trade-offs: Ceramic’s own FAQ calls it a lexical, not semantic, engine and recommends query rewriting, and its docs say it supports English pages only for now.
+Ceramic.ai is the newest name here and the cheapest: $0.25 per 1,000 queries on pay-as-you-go, with 1,000 free queries and 20 QPS ([pricing](https://www.ceramic.ai/pricing)). It runs its own index of more than 40 billion pages. On October 2, 2026, Cloudflare launched a Web Search API inside AI Gateway and made Ceramic.ai the default provider, ahead of Exa ($7 per 1,000, no zero data retention) and Linkup ([Cloudflare docs](https://developers.cloudflare.com/web-search/providers/)). Ceramic’s own FAQ calls it a lexical, not semantic, engine and recommends query rewriting, and its docs say it supports English pages only for now.
 
 ### Serper and SerpApi for raw Google results
 

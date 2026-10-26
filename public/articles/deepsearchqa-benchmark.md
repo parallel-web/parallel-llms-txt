@@ -58,15 +58,15 @@ The paper also sorts every response into one of four categories:
 
 Semantic equivalence between a submitted item and a gold item is judged by an LLM. The paper uses Gemini 2.5 Flash zero-shot with the prompt in its appendix, and the dataset card warns that a different autorater model or grading prompt will "likely result in statistically significant deviation in results."
 
-The gap between F1 and fully correct is the paper's most useful finding. In its Kaggle-evaluated results table, Gemini Deep Research Agent scored 81.90 F1 but only 66.09% fully correct; GPT-5 Pro (high reasoning) scored 78.98 F1 and 65.18% fully correct. The authors call this roughly 15-point gap the "Last Mile Problem": agents get most of the list and then miss one item or include one too many. These are the paper's own numbers for models that have since been replaced.
+The gap between F1 and fully correct is the paper's most useful finding. In its Kaggle-evaluated results table, Gemini Deep Research Agent scored 81.90 F1 but only 66.09% fully correct; GPT-5 Pro (high reasoning) scored 78.98 F1 and 65.18% fully correct. The authors call this roughly 15-point gap the "Last Mile Problem," where agents get most of the list and then miss one item or include one too many. These are the paper's own numbers for models that have since been replaced.
 
 ## Why set answers reward recall and stopping criteria
 
-A single-answer benchmark lets an agent stop the moment it finds a plausible answer. DeepSearchQA removes that shortcut for 65% of prompts. Stopping after three of four items caps recall at 0.75. Continuing to add borderline items to be safe lowers precision. In our toy example below, both mistakes land near 0.86 to 0.89 F1, and neither counts as fully correct.
+A single-answer benchmark lets an agent stop the moment it finds a plausible answer, and DeepSearchQA removes that shortcut for 65% of prompts. Stopping after three of four items caps recall at 0.75, while adding borderline items to be safe lowers precision. In our toy example below, both mistakes land near 0.86 to 0.89 F1, and neither counts as fully correct.
 
 For agent design, this means:
 
-- **Search breadth has to be planned.** The agent needs to recognize when a question defines a population ("all airports that...") and go find the authoritative source for that population, not a handful of mentions.
+- **Search breadth has to be planned.** The agent needs to recognize when a question defines a population ("all airports that...") and go find the authoritative source for that population instead of collecting a handful of mentions.
 - **Verification is a separate step.** Every candidate should be checked against every constraint before it goes in the answer. The paper's failure table includes a case where a top model failed to filter data points by the prompt's requirements, which it describes as a breakdown in stopping criteria.
 - **Stopping should be explicit.** An agent that knows the expected size of a set (from a source table or a stated count) can stop with confidence. One that doesn't will either quit early or keep padding.
 - **Deduplication matters.** "U.S. Department of Transportation" and "DOT" are one entity. Counting them twice costs precision.
@@ -77,11 +77,11 @@ The Gemini blog post adds that DeepSearchQA showed large gains from more "thinki
 
 The dataset card lists two limitations. Because grading ignores the trajectory, a lucky guess and a careful derivation score the same. And although prompts are time-anchored, a gold answer can go stale if a source site is removed or rewritten, which requires periodic manual review.
 
-Two more are worth adding. The full 900 prompts and answers are public on Hugging Face and Kaggle, so contamination is a real risk for models trained after December 2025. The public release has no held-out split. And because the LLM judge decides equivalence, scores are only comparable when the same grader and prompt are used. A run graded by a different model isn't the same number.
+We'd add two more. The full 900 prompts and answers are public on Hugging Face and Kaggle with no held-out split, so contamination is a real risk for models trained after December 2025. And because the LLM judge decides equivalence, scores are comparable only when the same grader model and prompt are used.
 
 ## How Parallel and other providers score on DeepSearchQA
 
-Two different kinds of DeepSearchQA result exist for Parallel, and they measure different products. They shouldn't be compared with each other.
+Parallel has DeepSearchQA results for two different products, the Task API and the Search API, and the two sets of numbers shouldn't be compared with each other.
 
 ### Deep research agents (Task API)
 
@@ -122,7 +122,7 @@ The [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/sear
 | Firecrawl | 74 | 73 |
 | Model only, no search | 45 | 33 |
 
-Exa leads this column, with auto mode at 86 and lite at 85. Parallel Search advanced scores 81, tied with both Perplexity modes, and basic scores 79. Every search API lifts the model well above its no-search baseline of 45, which shows how much of DeepSearchQA depends on retrieval rather than recall from training data.
+Exa leads this column, with auto mode at 86 and lite at 85. Parallel Search advanced scores 81, tied with both Perplexity modes, and basic scores 79. With no search the model scores 45, and every search API lifts it well above that, so much of DeepSearchQA depends on retrieval rather than on what the model learned in training.
 
 ### Why the two tables can't be compared
 

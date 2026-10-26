@@ -8,7 +8,7 @@ We make Parallel, a web search API for agents, and we publish our own WideSearch
 
 ## Wide search vs. deep search
 
-Most agent search benchmarks are deep. [BrowseComp](https://parallel.ai/articles/browsecomp-benchmark) asks for one short answer that is buried behind several layers of clues, and the hard part is finding it at all. WideSearch flips that. The individual facts are usually sitting on a ranking page, a government statistics table, or a company's investor site, and a person could find any one of them in a minute. The difficulty is volume: dozens or hundreds of entities, several attributes each, and no tolerance for a missing row.
+Most agent search benchmarks are deep. [BrowseComp](https://parallel.ai/articles/browsecomp-benchmark) asks for one short answer buried behind several layers of clues, and the hard part is finding it at all. In WideSearch, the individual facts usually sit on a ranking page, a government statistics table, or a company's investor site, and a person could find any one of them in a minute. The work is in covering dozens or hundreds of entities, several attributes each, without dropping a single row.
 
 The authors frame it as the gap between "I can't find it" (deep search) and "I could do it, but the sheer volume is overwhelming" (wide search). Wide search rewards planning, bookkeeping of which cells are still empty, and restraint about guessing.
 
@@ -35,7 +35,7 @@ The university task alone has a 25-row, nine-column gold table, pulled from rank
 
 Scoring starts by aligning the agent's rows with the gold rows using the key columns (for the university task, subject plus university). Each aligned cell is then checked with the rule its column specifies: exact match for strings like names, numeric tolerance for figures such as revenue or visitor counts, date normalization so "July 4th, 2024" matches "2024-07-04", URL normalization, and an LLM judge for free-text fields where wording varies. The authors report that this pipeline agreed with human graders more than 97.8% of the time across the judge models they tried.
 
-Three metrics come out of that:
+The paper reports results as three metrics:
 
 - **Success rate** is the headline. A task counts only if the whole table matches the gold table, content and structure. One extra, missing, or wrong cell is a failure.
 - **Row-level F1** treats each row as a unit, so it measures how many complete and correct records the agent returned.
@@ -47,7 +47,7 @@ The paper runs every system four times per task and reports Avg@4 (the mean over
 
 The results in the paper, from August 2025, were bleak on the strict metric. The authors tested more than 10 systems in three setups: single agents, a multi-agent framework where a lead agent splits the task across parallel sub-agents, and commercial end-to-end products used through their web interfaces. Most success rates were near zero. The best, OpenAI o3 in the multi-agent framework, reached 5.1% (Avg@4). Claude Sonnet 4 (Thinking) reached 3.6% and Gemini 2.5 Pro 2.0% in the same framework, and DeepSeek-R1 scored 0.4% as a single agent.
 
-Item-level F1 tells a different story. The same systems scored between 41.3% and 62.2% item-level F1 (Avg@4), so they were finding most of the facts. In a test-time scaling run with Kimi K2, item-level F1 approached 80% with enough retries, while success rate stayed below 20% even at 128 attempts. Humans were not perfect either. On a 20-task sample, a single person working alone reached a 20% success rate, while teams of annotators cross-checking each other got close to 100%.
+On item-level F1, the same systems scored between 41.3% and 62.2% (Avg@4), so they were finding most of the facts. In a test-time scaling run with Kimi K2, item-level F1 approached 80% with enough retries, while success rate stayed below 20% even at 128 attempts. Humans were not perfect either. On a 20-task sample, a single person working alone reached a 20% success rate, while teams of annotators cross-checking each other got close to 100%.
 
 The error analysis traced the failures to four advanced-capability problems:
 
@@ -62,11 +62,11 @@ The paper also lists basic failures, such as missing or malformed Markdown table
 
 WideSearch is small. With 200 tasks, and many third-party runs using a 100-task sample, a few tasks can move a score by several points. The tasks are also uneven in size: the largest gold table has more cells than the smallest 50 tasks put together, so averaging per task and averaging per cell can rank systems differently.
 
-The answers are public. The full gold tables have been public on Hugging Face since the August 2025 release, in the same repository as the queries, which makes contamination through training data or a lucky crawl plausible.
+The answers are public too. The full gold tables have sat on Hugging Face since the August 2025 release, in the same repository as the queries, which makes contamination through training data or a lucky crawl plausible.
 
 Ground truth also ages: pages move, and a 2025 application fee may no longer be on the page an agent finds today. LLM-judged cells add a little grader noise. Half the tasks are in Chinese, so results depend on a search provider's Chinese-language coverage as much as on the agent.
 
-Finally, the metric choice changes the story. Success rate is close to zero for every system, which makes it hard to rank anything. Most published comparisons, including ours and OpenRouter's live board (which reports item-weighted F1 for WideSearch), use a partial-credit score instead. Those numbers are not comparable to the paper's success rates, or to each other unless the harness, model, and sample match.
+Success rate is close to zero for every system, which makes it hard to rank anything with it. Most published comparisons, including ours and OpenRouter's live board (which reports item-weighted F1 for WideSearch), use a partial-credit score instead. Those numbers are not comparable to the paper's success rates, or to each other unless the harness, model, and sample match.
 
 ## How search APIs compare on WideSearch
 
@@ -89,7 +89,7 @@ The score is a partial-credit item-level score: the share of required items coll
 
 At the low-cost tier, Exa Auto is the clear leader at 53, well ahead of Parallel Fast at 45.5. Parallel Turbo and Fast are the cheapest runs on the board at about $10 per 1,000 tasks, but on this benchmark they trail every competitor at the same tier. At the frontier tier, Parallel Advanced scores highest at 57.6, and does so at a lower cost than Exa Auto or Tavily, though the spread from 53.5 to 57.6 is small for a 100-task sample.
 
-The bigger pattern is that the stronger agent matters more than the provider. Every frontier run beats every low-cost run, and the frontier runs cost roughly 10 to 95 times as much per task. That fits the paper's error analysis, since much of WideSearch is planning and bookkeeping.
+Across both tiers, the agent model matters more than the search provider. Every frontier run beats every low-cost run, and the frontier runs cost roughly 10 to 95 times as much per task. That fits the paper's error analysis, since much of WideSearch is planning and bookkeeping.
 
 ## When a table-filling job needs a different tool
 

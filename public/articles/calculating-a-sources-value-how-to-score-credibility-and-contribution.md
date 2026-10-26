@@ -1,6 +1,6 @@
 # Calculating a source’s value: how to score credibility and contribution
 
-Calculating a source’s value means estimating how much a source should shape your conclusion. You judge it on two questions: can you trust it (credibility), and what does it add that you couldn’t get anywhere else (contribution, or irreplaceability)? A source earns high value when it scores well on both.
+Calculating a source’s value tells you how much weight a source deserves before you, or an AI agent, rely on it. This guide compares CRAAP, SIFT, and other evaluation frameworks, walks through the credibility criteria and a uniqueness test, and shows a weighted scoring method, how agents measure contribution with Shapley values, and a reusable checklist.
 
 ## What does calculating a source’s value mean?
 
@@ -12,8 +12,6 @@ Parallel’s research team separated these two measurements in its [Visibility-V
 
 The two rankings overlap less than you might expect, so the number of times you see a source tells you little about its worth.
 
-Below, you’ll compare the main evaluation frameworks and publication types, then apply five credibility criteria. A weighted scoring method, a look at how agents calculate contribution, and a reusable checklist follow.
-
 ## Why source evaluation matters more when AI does the reading
 
 People struggle to judge sources. The Digital Inquiry Group, once called the Stanford History Education Group, tested a national sample of US high school students between June 2018 and May 2019.
@@ -22,7 +20,7 @@ In the group’s [Stanford study of 3,446 students](https://www.inquirygroup.org
 
 AI tools struggle too. In February 2025, the Tow Center for Digital Journalism asked eight AI search tools to name the original article behind pasted news excerpts across 1,600 queries. In the [Tow Center’s AI citation study](https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php), published in March 2025, the tools gave incorrect answers to more than 60% of queries.
 
-More than half of Gemini and Grok 3 responses in that test cited fabricated or broken URLs. An agent reads far more pages per task than you do, so source weighting becomes part of the infrastructure.
+More than half of Gemini and Grok 3 responses in that test cited fabricated or broken URLs. An agent reads far more pages per task than you do, so it needs source weighting built into its pipeline.
 
 We argue in [The Web as Ground Truth](https://parallel.ai/the-web-as-ground-truth) that retrieval quality sets the ceiling on an agent’s answer. Serious research also needs control over which parts of the web to trust. In multistep research, missing a single source can invert a conclusion, such as the result of a drug trial.
 
@@ -69,9 +67,9 @@ Treat venue as a starting estimate that you update as you read. Peer review appl
 
 ## The five criteria behind a source’s value
 
-Strip away the acronyms and the frameworks above reduce to five credibility criteria: authority, currency, accuracy, objectivity, and relevance.
+Underneath the acronyms, the frameworks above share five credibility criteria: authority, currency, accuracy, objectivity, and relevance.
 
-Each section below gives you the question to ask, the signals to check, and the agent’s version of the same test. Add uniqueness, and these become the scored inputs for the weighted method.
+For each one, you get the question to ask, the signals to check, and the agent’s version of the same test. With uniqueness added, they become the scored inputs for the weighted method.
 
 ### Authority: who created the source?
 
@@ -85,13 +83,13 @@ Agents face the same trap with polished pages that hold little evidence. We trai
 
 Check the publication date, the last update, the age of the works the source cites, and whether its links still resolve. Recency standards vary by field, so a 2015 history monograph can still be current while a 2015 pricing page can’t.
 
-For agents, the Search API’s freshness policies set page-age triggers for live crawls, with timeout thresholds that cap latency. Your agent reads today’s version of a page when the task needs it. Currency depends on the task, which is why it carries its own weight in the scoring method.
+For agents, the Search API’s freshness policies set page-age triggers for live crawls, with timeout thresholds that cap latency, so your agent reads today’s version of a page when the task needs it. Currency depends on the task, which is why it carries its own weight in the scoring method.
 
 ### Accuracy: can the information be verified?
 
 Look for citations, a stated methodology, internal consistency, and corroboration from independent sources. Trace each number to the original study and confirm the source reports it with the same sample and scope.
 
-Checking each claim by hand doesn’t scale for an agent that reads hundreds of pages. [Basis with calibrated confidences](https://parallel.ai/blog/introducing-basis-with-calibrated-confidences) attaches citations, reasoning, excerpts, and a calibrated confidence rating (low, medium, or high) to each output field from the Task API. We’ve found that reviewing just the outputs rated low confidence tends to produce about a 2x reduction in error rate.
+Checking each claim by hand doesn’t scale for an agent that reads hundreds of pages. [Basis with calibrated confidences](https://parallel.ai/blog/introducing-basis-with-calibrated-confidences) attaches citations, reasoning, excerpts, and a calibrated confidence rating (low, medium, or high) to each output field from the Task API. We’ve found that reviewing only the outputs rated low confidence tends to produce about a 2x reduction in error rate.
 
 ### Bias and objectivity: whose point of view is this?
 
@@ -103,7 +101,7 @@ A biased source still has uses. An advocacy group’s report works as evidence o
 
 A strong source can still be worthless for your question. Check that it addresses your exact question at the right depth, for the right population and time period.
 
-Skip sources that repeat what you’ve already cited. If three sources say the same thing, the third adds little to your conclusion, and that redundancy leads straight to the sixth criterion, uniqueness.
+Skip sources that repeat what you’ve already cited. If three sources say the same thing, the third adds little to your conclusion. The sixth criterion, uniqueness, measures that redundancy.
 
 ## How to calculate a source’s value with a weighted score
 
@@ -148,7 +146,7 @@ Add a knockout rule. An accuracy score of 1 disqualifies the source whatever its
 
 Imagine removing the source and ask whether your conclusion would change or lose evidence. Score 5 when the source holds information you can’t find elsewhere, such as original data or the primary record. Score 1 when ten other sources say the same thing.
 
-This manual test approximates marginal contribution, the change in an outcome when you add or remove one input. AI agents can compute that change with Shapley values, as the next section explains.
+This manual test approximates marginal contribution, the change in an outcome when you add or remove one input. AI agents can compute that change with Shapley values.
 
 ### 4. Calculate the score and decide
 
@@ -176,9 +174,9 @@ Treat these thresholds as starting points and calibrate them against sources you
 
 ## How AI agents calculate a source’s value
 
-Agents can measure contribution in a way a human reviewer can’t, because they can rerun the same answer with and without a source. With that ability, you can turn the uniqueness test into a calculation.
+Agents can measure contribution in a way a human reviewer can’t, because they can rerun the same answer with and without a source. That turns the uniqueness test into a calculation.
 
-Keep credibility and contribution separate. We’d argue that a source can have a large effect on an answer that turns out wrong. You have to decide how to combine contribution scores with credibility scores, and neither one alone captures the full value.
+We keep credibility and contribution separate, because a source can have a large effect on an answer that turns out wrong. You have to decide how to combine contribution scores with credibility scores, since neither one alone captures the full value.
 
 ### Shapley value: what a source adds at the margin
 
@@ -224,7 +222,7 @@ Parallel’s research team reports each domain’s value rank and the size of it
 | Overexposed | medium.com | 108 | 57 |
 | Overexposed | whitepages.com | 135 | 56 |
 
-Uniqueness explains the split. In the report’s words, “Visibility rewards ubiquity, while Shapley value rewards irreplaceability,” so if a hundred sites report the same fact, each one earns very little.
+Uniqueness explains the split. In the report’s words, “Visibility rewards ubiquity, while Shapley value rewards irreplaceability,” so if a hundred sites report the same fact, each one earns little.
 
 Agents rely on arxiv.org for the original finding and on fda.gov for the official record. A retailer like homedepot.com answers narrow product tasks that no other site can.
 
@@ -263,7 +261,7 @@ In the screenshot, Basis pairs the “competitors” field with a High confidenc
 | Uniqueness | Would your conclusion change without it? | Ten other sources say the same thing |
 | Final score | Does it clear your threshold? | An accuracy score of 1, or a total under 50 |
 
-## The path forward for source value
+## Pricing sources by contribution
 
 For two decades, the web priced content by attention. Agents make it possible to price content by contribution, because you can measure what an answer loses without a source.
 

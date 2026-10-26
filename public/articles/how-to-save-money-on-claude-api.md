@@ -1,10 +1,10 @@
 # How to save money on the Claude API in 2026
 
-Claude API costs come from four places, input tokens, output and thinking tokens, cache writes, and server tool fees, and agents that search the web pay on all four. This guide covers what Claude’s web search tool really costs across a conversation, how much switching to Parallel Search saves, and the other levers that stack with it, from prompt caching and Batch to effort settings and model choice.
+Claude API costs come from four places (input tokens, output and thinking tokens, cache writes, and server tool fees), and agents that search the web pay on all four. This guide covers what Claude’s web search tool costs across a conversation, how much switching to Parallel Search saves, and the other levers that stack with it, from prompt caching and Batch to effort settings and model choice.
 
 Claude’s web search tool costs $10 per 1,000 searches, and that’s the smaller part of what it costs you. Anthropic’s [pricing docs](https://platform.claude.com/docs/en/about-claude/pricing) add that “web search results retrieved throughout a conversation are counted as input tokens, in search iterations executed during a single turn and in subsequent conversation turns.” A search on turn two is still on the bill at turn ten.
 
-We sell a search API, so we’ll be specific about where switching saves money and where it doesn’t. The rest of the guide covers the levers that apply to any Claude workload, search or not.
+We sell a search API, so we’ll be specific about where switching saves money and where it doesn’t. Most of the levers below apply to any Claude workload, search or not.
 
 ## Where a Claude bill comes from
 
@@ -36,7 +36,7 @@ The token line moved more than the fee. On October 8, 2026 we ran the same 20 cu
 
 Fast came in 90% cheaper than Claude’s tool on Haiku 5.5 and 78% cheaper on Opus 5.5. Advanced, at $5 per 1,000 requests, still saved 64% and 71%. The Advanced column comes from a single run; the others average three. Each Claude search added a median of roughly 13,000 to 20,000 input tokens across runs, against about 2,000 for a Parallel call capped with `max_chars_total=8000`. You set Parallel’s cap per request; Claude’s tool decides how much of its results enter the context.
 
-Two findings cut the other way, and you should know them before you switch. First, freshness: on questions about releases from the previous one or two weeks (Rust 1.99.0, Python 3.14.8), Parallel Fast often returned the prior version, because its cached index hadn’t caught up. Claude’s tool and Parallel Advanced mostly got them right. Route questions that hinge on “latest“, “current“, or “this week” to Advanced, which is still half Claude’s per-search fee. Second, this is a cost test on 20 questions. We read the answers but didn’t grade them formally, so test on your own traffic.
+Some results cut the other way, and you should know them before you switch. On questions about releases from the previous one or two weeks (Rust 1.99.0, Python 3.14.8), Parallel Fast often returned the prior version, because its cached index hadn’t caught up. Claude’s tool and Parallel Advanced mostly got them right, so route questions that hinge on “latest”, “current”, or “this week” to Advanced, which is still half Claude’s per-search fee. This was also a cost test on 20 questions: we read the answers but didn’t grade them formally, so test on your own traffic.
 
 Claude also has its own answer to token bloat. With `web_search_20260209` and later versions, Claude can run **dynamic filtering**: it writes code that filters results before they enter the context window, and Anthropic doesn’t charge for the code execution. Anthropic describes it as reducing tokens on search-heavy requests. On our short factual questions it went the other way: on Haiku 5.5, the dynamic-filtering tool averaged 23,053 input tokens per question against 13,749 for the basic tool, because the filtering step adds turns of its own. Test both on your workload. Dynamic filtering runs on Claude 4.6 and later models on the Claude API; Google Cloud supports only the basic tool, and web search isn’t available on Amazon Bedrock.
 
@@ -138,11 +138,11 @@ Effort controls how much Claude thinks and how many tokens it spends, and it’s
 
 ## 5. Choose the model per task
 
-Claude Haiku 5.5, released October 7, 2026, costs a fortieth of Opus 5.5 per token, and Sonnet 5.5 costs half. Haiku 5.5’s low rate applies to prompts up to 100,000 tokens; above that, input and output cost five times as much, so long-running Haiku agents should cap their context. Judge them on cost per completed task, not cost per request. A cheaper model that needs extra turns or retries can cost more in total. Fast mode on Opus 5.5 runs the same model at up to 2.5x the output speed for twice the price ($8 and $40 per 1M), so keep it for latency-critical paths. US-only inference adds 10% to every token category.
+Claude Haiku 5.5, released October 7, 2026, costs a fortieth of Opus 5.5 per token, and Sonnet 5.5 costs half. Haiku 5.5’s low rate applies to prompts up to 100,000 tokens; above that, input and output cost five times as much, so long-running Haiku agents should cap their context. Compare models on cost per completed task, since a cheaper model that needs extra turns or retries can cost more in total. Fast mode on Opus 5.5 runs the same model at up to 2.5x the output speed for twice the price ($8 and $40 per 1M), so keep it for latency-critical paths. US-only inference adds 10% to every token category.
 
 ## 6. Keep tool schemas and tool results small
 
-Every tool definition is input on every request. If you connect several MCP servers, schemas can run past 10,000 tokens before the user says anything. Anthropic’s tool search lets you mark rarely used tools `defer_loading: true` so their definitions load only when Claude needs them; below roughly 10,000 schema tokens, the search step costs more than it saves. The same logic applies to results: return the fields Claude needs, not the full API response, and use `max_content_tokens` on web fetch to cap page size.
+Every tool definition is input on every request. If you connect several MCP servers, schemas can run past 10,000 tokens before the user says anything. Anthropic’s tool search lets you mark rarely used tools `defer_loading: true` so their definitions load only when Claude needs them; below roughly 10,000 schema tokens, the search step costs more than it saves. Results work the same way: return only the fields Claude needs, and use `max_content_tokens` on web fetch to cap page size.
 
 ## How the levers stack
 

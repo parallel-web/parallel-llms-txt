@@ -8,7 +8,7 @@ We make Parallel, a web search API that isn’t one of Cloudflare’s three prov
 
 ## How the Cloudflare Web Search API works
 
-A request names a query, an optional provider, a result limit, and the AI Gateway to route through. Cloudflare forwards the query to the provider, maps the response into a shared shape (URL, title, and an optional description, image, favicon, and last-modified date per result), and logs the request on your gateway, according to the [About page](https://developers.cloudflare.com/web-search/about/). Because the shape is shared, switching providers means changing one string.
+A request names a query, an optional provider, a result limit, and the AI Gateway to route through. Cloudflare forwards the query to the provider, maps the response into a shared shape (URL, title, and an optional description, image, favicon, and last-modified date per result), and logs the request on your gateway, according to the [About page](https://developers.cloudflare.com/web-search/about/). Because the shape is shared, you switch providers by changing one string.
 
 Every provider has also committed to Cloudflare’s [verified bot](https://developers.cloudflare.com/bots/concepts/bot/verified-bots/) rules: the crawler identifies itself, respects `robots.txt`, and every result links to its source. If you care about how your search vendor treats publishers, Cloudflare has written that requirement into the program.
 
@@ -76,13 +76,11 @@ Cloudflare’s [Providers page](https://developers.cloudflare.com/web-search/pro
 | What fills description | Long page text, up to 8,000 characters | Query-relevant highlights | Text snippets |
 | Published latency | “As fast as 50ms” ([Ceramic](https://www.ceramic.ai/)) | ~1 second for auto ([Exa docs](https://exa.ai/docs/reference/search-api-guide-for-coding-agents)) | 1 to 3 seconds for search ([Linkup](https://www.linkup.so/pricing)) |
 
-A few details matter more than the table suggests.
-
 **Ceramic is lexical.** Its [best practices](https://docs.ceramic.ai/api/search/best-practices) say it matches exact keywords and doesn’t infer intent or synonyms, and it recommends having an LLM write several short keyword queries per question. Cloudflare’s sample query is a full natural-language sentence. If your agent passes the user’s question straight through, rewrite it into keywords first when you use Ceramic. Ceramic’s price makes the multi-query pattern cheap: 10 queries cost $0.0025.
 
 **The prices match each provider’s list price, with one wrinkle.** Exa lists auto search at [$7 per 1,000 requests](https://exa.ai/pricing) and Linkup lists search from $0.005 per request, so those match. Ceramic’s homepage says $0.25 per 1,000 queries, while its [pricing page](https://ceramic.ai/pricing) currently shows a $0.05 pay-as-you-go rate with ZDR reserved for Enterprise. Check both if you’re comparing direct and Cloudflare-billed costs at volume.
 
-**The ZDR column has a conflict.** The launch changelog says all three providers support Zero Data Retention through Cloudflare. The Providers page, updated the same day, lists Exa as “No“. Treat Exa as non-ZDR until Cloudflare reconciles the two. Linkup’s own pricing page says ZDR is Enterprise-only when you buy direct, so routing through Cloudflare is a way to get ZDR from Linkup without that plan.
+**The ZDR column has a conflict.** The launch changelog says all three providers support Zero Data Retention through Cloudflare. The Providers page, updated the same day, lists Exa as “No”. Treat Exa as non-ZDR until Cloudflare reconciles the two. Linkup’s own pricing page says ZDR is Enterprise-only when you buy direct, so routing through Cloudflare is a way to get ZDR from Linkup without that plan.
 
 **You can’t change the provider’s mode.** Exa always runs `auto`, so you can’t reach Exa’s cheaper `instant` type ($4 per 1K) or its `deep` types through Cloudflare. Linkup always runs `fast`. If you need those knobs, call the provider directly or through AI Gateway’s provider proxy.
 
@@ -147,7 +145,7 @@ export default {
 };
 ```
 
-Store the key with `wrangler secret put PARALLEL_API_KEY`. For the question “Which providers does the Cloudflare Web Search API support?“, the call returned 200 in 665ms (round trip from our machine) with five results, trimmed here:
+Store the key with `wrangler secret put PARALLEL_API_KEY`. For the question “Which providers does the Cloudflare Web Search API support?”, the call returned 200 in 665ms (round trip from our machine) with five results, trimmed here:
 
 ```text
 status 200 ms 665 n 5
@@ -170,7 +168,7 @@ If your agent speaks MCP, the [Parallel Search MCP](https://docs.parallel.ai/int
 
 On quality, the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (October 2026) scores Parallel Search advanced at 75 and Exa auto, the setting Cloudflare uses, at 74. Ceramic and Linkup aren’t listed in the figures we checked, so we can’t compare them there.
 
-The two aren’t exclusive. A reasonable setup uses Ceramic through Cloudflare for cheap, high-volume keyword lookups and Parallel for objective-driven searches, filtered searches, and page extraction.
+You can use both. Ceramic through Cloudflare suits cheap, high-volume keyword lookups, and Parallel handles objective-driven searches, filtered searches, and page extraction.
 
 ## Frequently asked questions
 

@@ -6,7 +6,7 @@ Hermes Agent, the open-source agent from Nous Research, ships a built-in web too
 
 ## Why connect the Search MCP directly
 
-Hermes’s keyless Parallel route already calls the same endpoint, `https://search.parallel.ai/mcp`. The difference is what reaches it. In Hermes’s [keyless adapter](https://github.com/NousResearch/hermes-agent/blob/main/plugins/web/keyless_mcp.py), the agent’s single query string becomes both the objective and the only keyword query. Connect the server yourself and the model fills in the full `web_search` schema: a natural-language objective plus several keyword queries, which Parallel uses to pick the excerpts it returns.
+Hermes’s keyless Parallel route already calls the same endpoint, `https://search.parallel.ai/mcp`, but it sends that endpoint less. In Hermes’s [keyless adapter](https://github.com/NousResearch/hermes-agent/blob/main/plugins/web/keyless_mcp.py), the agent’s single query string becomes both the objective and the only keyword query. Connect the server yourself and the model fills in the full `web_search` schema: a natural-language objective plus several keyword queries, which Parallel uses to pick the excerpts it returns.
 
 Here’s a real call from our test. We asked Hermes what shipped in the latest release, and it sent this to the Search MCP:
 
@@ -96,7 +96,7 @@ hermes chat -q "What changed in the latest Hermes Agent release? Search the web 
 
 You don’t have to name the tool. Hermes sees `mcp_parallel_search_web_search` in its tool list and calls it when a question needs the web. In our test, the search call came back in 0.7 seconds.
 
-Hermes registers each MCP server as its own toolset, named after the config key. That makes it easy to run a session where the Search MCP is the only web tool:
+Hermes registers each MCP server as its own toolset, named after the config key, so you can run a session where the Search MCP is the only web tool:
 
 ```bash
 hermes chat -t "parallel_search,terminal"
@@ -112,7 +112,7 @@ Hermes also wraps MCP results in an untrusted-content block and tells the model 
 
 ## Add an API key for higher limits
 
-The free endpoint runs searches in Parallel’s `fast` mode at anonymous rate limits. That covers personal use. For a gateway that serves a team, or a scheduled job that searches all day, create a key on the [Parallel Platform](https://platform.parallel.ai) and store it in `~/.hermes/.env`:
+The free endpoint runs searches in Parallel’s `fast` mode at anonymous rate limits, which is enough for personal use. For a gateway that serves a team, or a scheduled job that searches all day, create a key on the [Parallel Platform](https://platform.parallel.ai) and store it in `~/.hermes/.env`:
 
 ```bash
 PARALLEL_API_KEY=your-parallel-key

@@ -2,9 +2,9 @@
 
 SealQA asks what happens when an AI agent searches the web and the web disagrees with itself, returning conflicting, outdated, or unhelpful pages. This guide covers how its three question sets were curated, how answers are graded, why extra reasoning effort often failed to help in the paper's tests, and what the benchmark implies for anyone designing a search tool.
 
-SealQA is a question-answering benchmark from researchers at Virginia Tech, first posted to arXiv on June 1, 2025 and published at ICLR 2026, that tests search-augmented language models on fact-seeking questions where web search returns conflicting, noisy, or unhelpful results. It ships in three flavors: Seal-0 (111 questions), Seal-Hard (254 questions), and LongSeal (254 questions in a "needle-in-a-haystack" format). Every question was written so that a naive search surfaces misleading evidence.
+SealQA is a question-answering benchmark from researchers at Virginia Tech that tests search-augmented language models on fact-seeking questions where web search returns conflicting, noisy, or unhelpful results. The paper was first posted to arXiv on June 1, 2025 and published at ICLR 2026. The benchmark ships in three flavors: Seal-0 (111 questions), Seal-Hard (254 questions), and LongSeal (254 questions in a "needle-in-a-haystack" format). Every question was written so that a naive search surfaces misleading evidence.
 
-We make Parallel, a web search API for AI agents, so read with that in mind. This article explains the benchmark and what it implies for search tool design. It doesn't report any Parallel SealQA scores, for reasons covered below.
+We make Parallel, a web search API for AI agents, so read with that in mind. This article doesn't report any Parallel SealQA scores, for reasons covered below.
 
 ## What the SealQA benchmark measures
 
@@ -24,7 +24,7 @@ LongSeal moves the problem from retrieval to reading. It reuses the Seal-Hard qu
 
 ## How the questions were built
 
-Six NLP researchers wrote and refined the questions over eight months. The paper says each question took more than an hour on average, roughly 45 minutes to draft plus review time, and many drafts were thrown out because they didn't trouble frontier models. The small size is deliberate.
+Six NLP researchers wrote and refined the questions over eight months, and they kept the set small on purpose. The paper says each question took more than an hour on average, roughly 45 minutes to draft plus review time, and many drafts were thrown out because they didn't trouble frontier models.
 
 Annotators followed rules that make grading possible:
 
@@ -82,11 +82,11 @@ The findings that matter most for anyone building a search agent:
 
 **Recency has to be explicit.** A quarter of SealQA questions are fast-changing, and LongSeal deliberately mixes in pre-2023 pages to create stale-versus-current conflicts. An agent can only prefer the newer source if the search results carry dates and the tool lets it filter by them. In the Parallel Search API, `advanced_settings.source_policy.after_date` limits results to content published on or after a given date, and each result includes a `publish_date` field when one is available.
 
-**One right source beats many plausible ones.** LongSeal shows accuracy falling as hard negatives are added, even for models with large context windows. Dumping 30 loosely relevant pages into context is a retrieval strategy that SealQA penalizes directly. A search tool that ranks well and returns compact, query-relevant excerpts reduces the number of distractors the model has to reject.
+**One right source beats many plausible ones.** LongSeal shows accuracy falling as hard negatives are added, even for models with large context windows, so SealQA directly penalizes dumping 30 loosely relevant pages into context. A search tool that ranks well and returns compact, query-relevant excerpts leaves the model fewer distractors to reject.
 
 **Domain control helps when the authority is known.** For questions where the answer lives with a specific publisher (a sports league's record book, a regulator's filings, an official results page), restricting search to that domain removes most of the noise. Parallel's `source_policy` supports `include_domains` and `exclude_domains`, though the docs warn that hard filters can cut out relevant pages and suggest steering in the `objective` when you only want to prefer certain sources.
 
-**Abstention is a feature.** SealQA's grader separates "incorrect" from "not attempted". In production, a wrong confident answer usually costs more than a flagged gap. If your agent can say it found conflicting evidence and name the sources, measure that rate alongside accuracy.
+**Abstention is a feature.** SealQA's grader separates "incorrect" from "not attempted", and in production a wrong confident answer usually costs more than a flagged gap. If your agent can say it found conflicting evidence and name the sources, measure that rate alongside accuracy.
 
 ## Where Parallel stands on SealQA
 
@@ -127,7 +127,7 @@ for r in result.results[:5]:
     print(r.publish_date or "no date", r.url)
 ```
 
-When we ran this on October 19, 2026, the first Seal-0 question was labeled fast-changing and conflicting, and the top results mixed dated 2024 news articles with undated reference pages. That mix is the situation SealQA is built to test: the agent has to decide whether the dated articles are still current.
+When we ran this on October 19, 2026, the first Seal-0 question was labeled fast-changing and conflicting, and the top results mixed dated 2024 news articles with undated reference pages. SealQA is built around that kind of mix, where the agent has to decide whether the dated articles are still current.
 
 To turn this into an eval, wrap the search call in your agent loop, send the final answer to the authors' grader prompt, and report correct, incorrect, and not-attempted rates separately. Split results by the `freshness` and `search_results` fields; an aggregate score hides whether your stack fails on stale data or on conflicting sources. See our guide to [benchmarking web search APIs](https://parallel.ai/articles/how-to-benchmark-web-search-apis) for sampling and judge setup.
 

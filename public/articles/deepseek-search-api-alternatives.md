@@ -6,7 +6,7 @@ DeepSeek’s Search and Fetch APIs cost $0.75 per 1,000 successful requests, and
 
 Keep the DeepSeek Search API if price per call is your main constraint. At list price Parallel costs more ($1 vs $0.75 per 1,000 requests on Turbo and Fast). DeepSeek is the better pick if you run DeepSeek models, stay under 5 requests per second per endpoint, and accept DeepSeek’s data terms.
 
-Choose Parallel when you want search that works with any model, DeepSeek’s included, so that changing your model never means changing your search integration. Parallel Search is a REST API with SDKs and a free hosted MCP server that needs no key.
+Choose Parallel when you want search that works with any model, DeepSeek’s included, so you can change models without changing your search integration. Parallel Search is a REST API with SDKs and a free hosted MCP server that needs no key.
 
 Among the other alternatives, Exa fits entity and semantic search, and Brave has an independent index with Goggles. Perplexity returns raw ranked results with filters. Tavily is a framework default and bills in credits. Linkup prices per request with no credit conversion, and Firecrawl scrapes whole pages next to search.
 
@@ -14,7 +14,7 @@ On data handling, Parallel, Exa, Brave, Linkup, and Firecrawl each document a ze
 
 ## When is the DeepSeek Search API still the right choice?
 
-When price, result volume, date filtering, or DeepSeek-native agents matter most. The [Search and Fetch APIs](https://api-docs.deepseek.com/guides/search) went live to all developers on October 17, 2026, as plain JSON endpoints with bearer authentication and no model parameter, and they have four advantages.
+It’s still the right pick when price, result volume, date filtering, or DeepSeek-native agents matter most. The [Search and Fetch APIs](https://api-docs.deepseek.com/guides/search) went live to all developers on October 17, 2026, as plain JSON endpoints with bearer authentication and no model parameter.
 
 - **Price.** Search and Fetch each cost $0.75 per 1,000 successful requests, and failed or empty requests are free.
 - **Result volume.** One request returns up to 50 results at a flat price, with `snippet`, `summary`, `rerank_score`, and `authority` fields in the same response.
@@ -23,13 +23,13 @@ When price, result volume, date filtering, or DeepSeek-native agents matter most
 
 ## Why look beyond the DeepSeek Search API?
 
-DeepSeek’s own documentation shows five constraints.
+These constraints come from DeepSeek’s own documentation.
 
 - **Account and model coupling.** You need a DeepSeek API key and prepaid balance. DeepSeek’s built-in server-side search works with DeepSeek models alone, and Codex search needs `deepseek-v4-pro`.
 - **Throughput.** Search and Fetch are each capped at 5 requests per second per account, with no documented way to raise the limit.
 - **Query length.** Search queries are capped at 128 characters.
 - **Data handling.** The privacy policy says DeepSeek stores personal data in the People’s Republic of China and may use personal data, including inputs, to train its models. Retention, training, and storage terms specific to Search and Fetch are not documented, and neither is a zero-retention option.
-- **Evidence.** No independent benchmark of the DeepSeek Search API was found. The Artificial Analysis Search Index data dated September 28, 2026 predates the launch.
+- **Evidence.** We found no independent benchmark of the DeepSeek Search API. The Artificial Analysis Search Index data dated September 28, 2026 predates the launch.
 
 The [DeepSeek Search API vs. Parallel](https://parallel.ai/articles/deepseek-search-api-vs-parallel) comparison covers each of these in detail.
 
@@ -62,7 +62,7 @@ On the downside, Parallel costs more per call than DeepSeek. Turbo supports Engl
 
 ### Exa
 
-Exa searches its own index with embeddings and returns page text and highlights. Instant search costs $4 per 1,000 requests, Fast and Auto cost $7, and Deep and Deep-Reasoning cost $12 and $15, each with up to 10 results. Contents cost $1 per 1,000 pages per content type. Exa supports `category` filters such as `people`, `company`, and `publication`, plus `includeDomains`, `excludeDomains`, and `startPublishedDate`. The Starter plan allows 10 queries per second and pay as you go up to 25. Exa Search (auto) scores 74 on the Artificial Analysis index. Its per-call prices are higher than DeepSeek’s, and zero data retention is listed on the Enterprise plan.
+Exa searches its own index with embeddings and returns page text and highlights. Instant search costs $4 per 1,000 requests, Fast and Auto cost $7, and Deep and Deep-Reasoning cost $12 and $15, each with up to 10 results. Contents cost $1 per 1,000 pages per content type. Exa supports `category` filters such as `people`, `company`, and `publication`, plus `includeDomains`, `excludeDomains`, and `startPublishedDate`. The Starter plan allows 10 queries per second, and pay as you go allows up to 25. Exa Search (auto) scores 74 on the Artificial Analysis index, and the Enterprise plan lists zero data retention.
 
 ### Brave Search API
 
@@ -74,11 +74,11 @@ Perplexity’s Search API returns raw ranked web results at $5 per 1,000 request
 
 ### Tavily
 
-Tavily bills in API credits. A basic search uses 1 credit and an advanced search uses 2. Credits cost $0.008 on pay as you go, so 1,000 basic searches cost $8 and 1,000 advanced searches cost $16, and the free plan includes 1,000 credits a month. Search accepts `include_domains`, `exclude_domains`, `time_range`, `start_date`, and `country`, and Tavily also sells Extract, Map, and Crawl. Nebius [announced an agreement to acquire Tavily](https://nebius.com/newsroom/nebius-announces-agreement-to-acquire-tavily-to-add-agentic-search-to-its-ai-cloud-platform) on February 10, 2026, [its May 20 post](https://nebius.com/blog/posts/bringing-agentic-search-into-the-production-ai-stack) says it has acquired the company, and Tavily continues under its own brand. Per-search cost is above DeepSeek’s and above Parallel’s fast modes, and its pricing and Search reference pages list no zero data retention terms.
+Tavily bills in API credits. A basic search uses 1 credit and an advanced search uses 2. Credits cost $0.008 on pay as you go, so 1,000 basic searches cost $8 and 1,000 advanced searches cost $16, and the free plan includes 1,000 credits a month. Search accepts `include_domains`, `exclude_domains`, `time_range`, `start_date`, and `country`, and Tavily also sells Extract, Map, and Crawl. Nebius [announced an agreement to acquire Tavily](https://nebius.com/newsroom/nebius-announces-agreement-to-acquire-tavily-to-add-agentic-search-to-its-ai-cloud-platform) on February 10, 2026, and [its May 20 post](https://nebius.com/blog/posts/bringing-agentic-search-into-the-production-ai-stack) says it has acquired the company. Tavily continues under its own brand. Per-search cost is above DeepSeek’s and above Parallel’s fast modes, and its pricing and Search reference pages list no zero data retention terms.
 
 ### Linkup
 
-Linkup charges per request with no credit conversion. A search costs $0.005 to $0.006 depending on depth, a fetch costs $0.001 to $0.006, and an asynchronous research request costs $0.25 to $2.50. New accounts get 4,000 free queries. Search takes `includeDomains`, `excludeDomains`, `fromDate`, and `toDate`, which gives it both date bounds, and it can return a sourced answer or structured output. Linkup lists SOC 2 Type II on all plans and zero data retention on its Enterprise plan. Its per-call price is higher than DeepSeek’s and Parallel’s fast modes.
+Linkup charges per request with no credit conversion. A search costs $0.005 to $0.006 depending on depth, a fetch costs $0.001 to $0.006, and an asynchronous research request costs $0.25 to $2.50. New accounts get 4,000 free queries. Search takes `includeDomains`, `excludeDomains`, `fromDate`, and `toDate`, which gives it both date bounds, and it can return a sourced answer or structured output. Linkup lists SOC 2 Type II on all plans and zero data retention on its Enterprise plan.
 
 ### Firecrawl
 
@@ -139,7 +139,7 @@ Neither is documented. DeepSeek’s privacy policy says it stores personal data 
 
 ### Which alternative has the best accuracy?
 
-On the Artificial Analysis Search Index, Perplexity Search (medium) scored highest at 80 in the September 2026 data, ahead of Octen Search at 77 and Parallel Search Advanced and Brave LLM Context at 75. No independent benchmark that includes the DeepSeek Search API was found.
+On the Artificial Analysis Search Index, Perplexity Search (medium) scored highest at 80 in the September 2026 data, ahead of Octen Search at 77 and Parallel Search Advanced and Brave LLM Context at 75. We found no independent benchmark that includes the DeepSeek Search API.
 
 ### Is there a free alternative to the DeepSeek Search API?
 

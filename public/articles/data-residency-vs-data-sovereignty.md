@@ -1,6 +1,6 @@
 # Data residency vs data sovereignty for AI agents
 
-Data residency is about where data is stored and processed. Data sovereignty is about whose laws govern that data and who can compel access to it. An EU data center gives you residency. It doesn't give you sovereignty if the provider is subject to another country's laws. For AI agents, both questions apply to every tool call.
+Data residency is where data is stored and processed; data sovereignty is whose laws govern that data and who can compel access to it, so an EU data center doesn't deliver sovereignty when the provider answers to another country's laws. This guide covers both terms, what the GDPR does and doesn't require, why European buyers ask about sovereignty, and how both questions apply to every tool call an AI agent makes.
 
 This article isn't legal advice. It explains the two terms and how they apply to agents that search the web.
 
@@ -20,7 +20,7 @@ Data sovereignty is the principle that data is governed by the laws of a particu
 | What decides it | The provider's infrastructure | The provider's ownership and legal obligations |
 | Can a US company offer it in the EU | Yes | Not on its own |
 
-Requirements often use the words loosely. A form that asks for "sovereign" hosting may only need residency, and a form that asks for "EU hosting" may really be asking about jurisdiction. Settle which one is meant before you shortlist vendors, because the two lead to different answers.
+Requirements often use the words loosely. A form that asks for "sovereign" hosting may only need residency, and a form that asks for "EU hosting" may be asking about jurisdiction. Settle which one is meant before you shortlist vendors, because the two lead to different answers.
 
 ## The GDPR doesn't require data residency
 
@@ -28,19 +28,19 @@ The [GDPR](https://eur-lex.europa.eu/eli/reg/2016/679/oj) allows personal data t
 
 ## Why European buyers ask about sovereignty
 
-Two public sources come up most. The US CLOUD Act, [18 U.S.C. § 2713](https://www.law.cornell.edu/uscode/text/18/2713), requires covered US providers to disclose data in their possession, custody, or control regardless of where it's stored. And the Court of Justice invalidated the earlier EU-US Privacy Shield in [Schrems II](https://curia.europa.eu/juris/liste.jsf?num=C-311/18) in 2020. Its replacement, the [EU-US Data Privacy Framework](https://ec.europa.eu/commission/presscorner/detail/en/ip_23_3721), was adopted in 2023 and is under legal challenge. That history is why some buyers want more than a valid transfer mechanism.
+The US CLOUD Act, [18 U.S.C. § 2713](https://www.law.cornell.edu/uscode/text/18/2713), requires covered US providers to disclose data in their possession, custody, or control regardless of where it's stored. The Court of Justice also invalidated the earlier EU-US Privacy Shield in [Schrems II](https://curia.europa.eu/juris/liste.jsf?num=C-311/18) in 2020. Its replacement, the [EU-US Data Privacy Framework](https://ec.europa.eu/commission/presscorner/detail/en/ip_23_3721), was adopted in 2023 and is under legal challenge. That history is why some buyers want more than a valid transfer mechanism.
 
 ## What changes for AI agents
 
-A database sits in one place. An agent calls many services to answer one request, including a model provider, a web search API, a page extraction API, and logging tools. Residency and sovereignty have to be checked for each of them.
+A database sits in one place. An agent calls many services to answer one request, including a model provider, a web search API, a page extraction API, and logging tools. You have to check residency and sovereignty for each of them.
 
-Web search is the call teams overlook. Agents write search queries from user tasks, so those queries can contain names, companies, and other details the user typed. Where those queries go matters as much as where the database sits.
+Teams often overlook the web search call. Agents write search queries from user tasks, so a query can carry names, companies, and other details the user typed, and where those queries go matters as much as where the database sits.
 
 ## Where Parallel fits
 
-Parallel offers EU data residency as an optional feature, with the commitments set out in the customer's DPA. It covers [Search API](https://parallel.ai/products/search) requests in basic mode sent to the EU endpoint. For those requests, the endpoint, the full search index, and inference run in the EU, and EU traffic has zero data retention by default. That is a residency offering, not a sovereignty one, and we'd rather say so plainly.
+Parallel offers EU data residency as an optional feature, with the commitments set out in the customer's DPA. It covers [Search API](https://parallel.ai/products/search) requests in basic mode sent to the EU endpoint. For those requests, the endpoint, the full search index, and inference run in the EU, and EU traffic has zero data retention by default. That is a residency offering, not a sovereignty one.
 
-Parallel is a US company, as its [privacy policy](https://parallel.ai/privacy-policy) states, so EU residency doesn't change its jurisdiction. Only minimal billing metadata, such as IDs, the SKU, and a timestamp, goes to the US. It never includes inputs or outputs. Live fetch, which retrieves public pages at request time, runs globally. It's optional and can be turned off. The Extract API isn't covered. If your requirement is residency for web search, the EU endpoint is built for it. If your requirement is sovereignty, our [guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency) covers other options. More detail is at [parallel.ai/europe](https://parallel.ai/europe).
+Parallel is a US company, as its [privacy policy](https://parallel.ai/privacy-policy) states, so EU residency doesn't change its jurisdiction. Only minimal billing metadata, such as IDs, the SKU, and a timestamp, goes to the US, and it never includes inputs or outputs. Live fetch, which retrieves public pages at request time, runs globally, though it's optional and you can turn it off. The Extract API isn't covered. If your requirement is residency for web search, the EU endpoint is built for it. If your requirement is sovereignty, our [guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency) covers other options. More detail is at [parallel.ai/europe](https://parallel.ai/europe).
 
 ## FAQ
 

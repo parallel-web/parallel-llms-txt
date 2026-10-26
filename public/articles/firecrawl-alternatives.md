@@ -8,9 +8,9 @@ We make Parallel, which appears on this list, and we’ve tried to keep the comp
 
 ## What Firecrawl does well
 
-Firecrawl earns its popularity. The [GitHub repository](https://github.com/firecrawl/firecrawl) has more than 180,000 stars, and you can [self-host it](https://docs.firecrawl.dev/contributing/self-host) with Docker Compose. Its [keyless MCP server](https://docs.firecrawl.dev/mcp-server/keyless-api-key) at `https://mcp.firecrawl.dev/v2/mcp` exposes search, scrape, and parse with no credential, and we confirmed that its REST search endpoint also answers without a key. On search quality, Firecrawl scored 73 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (October 2026), close to Exa auto at 74 and Parallel advanced at 75.
+Firecrawl’s [GitHub repository](https://github.com/firecrawl/firecrawl) has more than 180,000 stars, and you can [self-host it](https://docs.firecrawl.dev/contributing/self-host) with Docker Compose. Its [keyless MCP server](https://docs.firecrawl.dev/mcp-server/keyless-api-key) at `https://mcp.firecrawl.dev/v2/mcp` exposes search, scrape, and parse with no credential, and we confirmed that its REST search endpoint also answers without a key. On search quality, Firecrawl scored 73 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (October 2026), close to Exa auto at 74 and Parallel advanced at 75.
 
-The tradeoffs show up at the edges. Keyless limits are shared per IP address per day, the self-hosted build leaves out Fire-engine anti-bot handling, screenshots, and the Agent and Browser features, and the AGPL license matters if you modify and serve the code. Credits don’t roll over on Hobby, Standard, or Growth plans.
+It has tradeoffs too. Keyless limits are shared per IP address per day, the self-hosted build leaves out Fire-engine anti-bot handling, screenshots, and the Agent and Browser features, and the AGPL license matters if you modify and serve the code. Credits don’t roll over on Hobby, Standard, or Growth plans.
 
 ## Firecrawl alternatives at a glance
 
@@ -41,9 +41,7 @@ Parallel Search takes a natural-language objective plus keyword queries and retu
 
 ### Exa
 
-Exa runs its own embeddings-based index and returns page text and highlights with results. [Pricing](https://exa.ai/pricing) is $4 per 1,000 for Instant, $7 for Fast or Auto, and $12 to $15 for Deep search, each with up to 10 results. Contents costs $1 per 1,000 pages, and Monitors cost $15 per 1,000. The free tier gives $10 a month with no card. Exa doesn’t crawl whole sites.
-
-**Best for:** semantic and similarity search, and research agents that want an index-first API.
+Exa runs its own embeddings-based index and returns page text and highlights with results. [Pricing](https://exa.ai/pricing) is $4 per 1,000 for Instant, $7 for Fast or Auto, and $12 to $15 for Deep search, each with up to 10 results. Contents costs $1 per 1,000 pages, and Monitors cost $15 per 1,000. The free tier gives $10 a month with no card. Exa is strongest at semantic and similarity search and suits research agents that want an index-first API, but it doesn’t crawl whole sites.
 
 ### Tavily
 
@@ -57,9 +55,7 @@ If you use Firecrawl mainly to get past bot protection on specific sites, a dedi
 
 ### Bright Data
 
-Bright Data’s [unblocking API](https://brightdata.com/pricing/web-unlocker) costs $1.50 per 1,000 requests on pay-as-you-go, charges only for successful requests, and drops to $1.30 per 1,000 above the 383,000 requests included in its $499 Scale plan. A free tier covers 5,000 requests a month. Bright Data also sells proxies, a scraping browser, SERP APIs, and prebuilt datasets.
-
-**Best for:** enterprise scraping where block rate and compliance review matter more than developer ergonomics.
+Bright Data’s [unblocking API](https://brightdata.com/pricing/web-unlocker) costs $1.50 per 1,000 requests on pay-as-you-go, charges only for successful requests, and drops to $1.30 per 1,000 above the 383,000 requests included in its $499 Scale plan. A free tier covers 5,000 requests a month. Bright Data also sells proxies, a scraping browser, SERP APIs, and prebuilt datasets, and it fits enterprise scraping where block rate and compliance review matter more than developer ergonomics.
 
 ### ScraperAPI
 
@@ -69,9 +65,7 @@ Bright Data’s [unblocking API](https://brightdata.com/pricing/web-unlocker) co
 
 ### Zyte API
 
-[Zyte](https://www.zyte.com/pricing/) prices each website in one of five difficulty tiers. On pay-as-you-go, HTTP responses cost $0.13 to $1.27 per 1,000 and browser-rendered pages $1.01 to $16.08, with lower rates at $100, $200, and $500 monthly commitments. You get $5 of free credit. Zyte maintains Scrapy, so it fits teams already running Scrapy spiders.
-
-**Best for:** Python teams on Scrapy who want per-site pricing instead of flat credits.
+[Zyte](https://www.zyte.com/pricing/) prices each website in one of five difficulty tiers. On pay-as-you-go, HTTP responses cost $0.13 to $1.27 per 1,000 and browser-rendered pages $1.01 to $16.08, with lower rates at $100, $200, and $500 monthly commitments. You get $5 of free credit. Zyte maintains Scrapy, so it fits Python teams already running Scrapy spiders who want per-site pricing instead of flat credits.
 
 ### Apify
 
@@ -93,9 +87,7 @@ If you like Firecrawl’s API but not the cloud bill, run it yourself. The [self
 
 ### Jina Reader
 
-[Jina Reader](https://jina.ai/reader/) converts a URL to markdown when you prepend `r.jina.ai/` to it. Without a key you get 20 requests a minute, and a free key raises that to 500 and comes with 10 million tokens. Billing counts output tokens. It reads PDFs and images, but it doesn’t crawl.
-
-**Best for:** quick single-page reads in prototypes and scripts.
+[Jina Reader](https://jina.ai/reader/) converts a URL to markdown when you prepend `r.jina.ai/` to it. Without a key you get 20 requests a minute, and a free key raises that to 500 and comes with 10 million tokens. Billing counts output tokens. It reads PDFs and images but doesn’t crawl, which makes it a good fit for quick single-page reads in prototypes and scripts.
 
 ## If you need crawling
 

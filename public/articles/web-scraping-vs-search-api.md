@@ -4,7 +4,7 @@ The web scraping vs API choice for an LLM app comes down to whether the app alre
 
 Scraping answers “get me this page.” A search API answers “find me the pages that answer this.” If your app starts from a known URL and needs exact fields from it, scrape. If it starts from a question, use a search API, and add an extract step when the excerpts aren’t enough.
 
-Most LLM apps end up with a mix. The rest of the decision is about how many tokens, how much plumbing, and how much access risk you’re willing to own, and those are measurable.
+Most LLM apps end up using both. Past that first cut, the choice turns on how many tokens, how much plumbing, and how much access risk you’re willing to own, and you can measure each of those.
 
 ## What we measured on five real pages
 
@@ -71,7 +71,7 @@ Per 1,000 pages, model input tokens usually cost more than the fetch itself, so 
 
 Scraping services fetch pages you already know about. If your app starts from a question, you also need a way to find the URLs, which a search API does in the same call.
 
-Now the model side. Averaged over our five pages, sending raw HTML to Claude Sonnet 5.5 at $2 per million input tokens costs about $95 per 1,000 pages. Rendered text drops that to about $12. Extract excerpts cost about $3.14 in tokens plus $1 for the Extract call, or about $4.14. With GPT-6 Luna at $0.10 per million input tokens, raw HTML costs about $4.76 per 1,000 pages and excerpts about $0.16, so the $1 Extract fee is most of that total. On a cheap model, a well-cleaned scrape can come out cheaper than excerpts; on a frontier model, the token count dominates. Output tokens and prompt caching change the totals, and neither is included here.
+On the model side, averaged over our five pages, sending raw HTML to Claude Sonnet 5.5 at $2 per million input tokens costs about $95 per 1,000 pages. Rendered text drops that to about $12. Extract excerpts cost about $3.14 in tokens plus $1 for the Extract call, or about $4.14. With GPT-6 Luna at $0.10 per million input tokens, raw HTML costs about $4.76 per 1,000 pages and excerpts about $0.16, so the $1 Extract fee is most of that total. On a cheap model, a well-cleaned scrape can come out cheaper than excerpts; on a frontier model, the token count dominates. Output tokens and prompt caching change the totals, and neither is included here.
 
 ## Access, terms, and legal context
 
@@ -79,7 +79,7 @@ Access to pages is narrowing for every automated client, scraper and search prov
 
 On the legal side, Judge Edward Chen granted Bright Data summary judgment in [Meta v. Bright Data](https://www.govinfo.gov/app/details/USCOURTS-cand-3_23-cv-00077/USCOURTS-cand-3_23-cv-00077-7) on January 23, 2024, holding that Facebook’s and Instagram’s terms don’t bar logged-off scraping of public data. That’s a narrow ruling about one contract. Logged-in scraping, personal data, and search engine results carry different risks; our explainer on [whether scraping Google is legal](https://parallel.ai/articles/is-scraping-google-legal) covers the SERP case.
 
-A search API doesn’t make these limits disappear. Our Extract API doesn’t solve CAPTCHAs or bypass anti-bot systems, and the BBC result above shows what happens when a publisher restricts automated access. What changes is who operates the crawler and keeps up with robots.txt and blocking rules: you, or your provider.
+A search API doesn’t make these limits disappear. Our Extract API doesn’t solve CAPTCHAs or bypass anti-bot systems, and the BBC result above shows what happens when a publisher restricts automated access. The difference is who operates the crawler and keeps up with robots.txt and blocking rules, you or your provider.
 
 ## When scraping still wins
 

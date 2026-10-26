@@ -4,7 +4,7 @@ If your OpenAI agents search the web, the built-in web search tool is often the 
 
 On a cheap model, OpenAI’s web search fee costs more than the model. When Artificial Analysis added OpenAI Web Search to its [Search Index](https://artificialanalysis.ai/agents/search-api) (data as of September 28, 2026), it measured $40.19 in search fees and $9.40 in model tokens per 1,000 benchmark tasks with a GPT-5.6 Luna agent. That’s 81% of the bill going to search, at roughly four $0.01 search calls per task.
 
-Most of this guide covers levers that apply to any OpenAI workload. We start with search because it’s where we see the largest single saving, and it’s what we sell, so we’ve been specific about where the numbers come from and where they stop.
+We start with search because it’s where we see the largest single saving. It’s also what we sell, so we’ve been specific about where the numbers come from and where they stop. The rest of the levers apply to any OpenAI workload.
 
 ## Where an OpenAI bill comes from
 
@@ -19,7 +19,7 @@ OpenAI bills each request on four lines: uncached input tokens, cached input tok
 
 The web search tool adds two charges of its own. The current `web_search` tool costs $10 per 1,000 calls on every model, plus “search content tokens billed at model rates,” meaning the pages it retrieves land in your input bill. On gpt-4o-mini and gpt-4.1-mini, OpenAI bills those content tokens as a fixed block of 8,000 input tokens per call. The legacy `web_search_preview` tool charges $25 per 1,000 calls on non-reasoning models with content tokens free.
 
-Two details make the search line hard to predict. The model decides how many searches to run, so one request can produce several billable calls. And you get coarse control over how much content comes back: `search_context_size` takes `low`, `medium`, or `high`, and OpenAI’s [web search guide](https://developers.openai.com/api/docs/guides/tools-web-search) says the setting “does not set an exact token count.” The newer `return_token_budget` accepts only `default` or `unlimited`.
+The search line is also hard to predict. The model decides how many searches to run, so one request can produce several billable calls, and you get only coarse control over how much content comes back: `search_context_size` takes `low`, `medium`, or `high`, and OpenAI’s [web search guide](https://developers.openai.com/api/docs/guides/tools-web-search) says the setting “does not set an exact token count.” The newer `return_token_budget` accepts only `default` or `unlimited`.
 
 ## 1. Replace the built-in web search tool with Parallel Search
 
@@ -41,7 +41,7 @@ On October 8, 2026 we ran the same 20 current-events and factual questions throu
 
 Each built-in search added a median of about 8,600 input tokens on Luna and 9,700 to 10,600 on Sol, against roughly 2,000 for a Parallel call capped with `max_chars_total=8000`. On Luna the fee was most of the bill; on Sol the injected tokens were. The models made more searches with Parallel and still spent less, and median time per question was similar in both setups (about 5 to 8 seconds).
 
-The answers matched on most questions, and we didn’t run a formal accuracy grade, so read this as a cost measurement. The misses that did show up were about freshness. On questions about releases from the previous week or two, such as Rust 1.99.0, Parallel Fast often surfaced the prior version because its cached index hadn’t caught up, and Luna with Fast cited an older Rust release in all three runs. In a spot check, Parallel Advanced returned the current version for all three recent-release questions we tried, and the Advanced run above still cost 36% less than built-in search on Luna and 50% less on Sol. Send questions that hinge on “latest“, “current“, or “this week” to Advanced. Twenty questions is a small sample, so run your own traffic before you switch.
+The answers matched on most questions, but we didn’t run a formal accuracy grade, so read this as a cost measurement. The differences that did show up came down to freshness. On questions about releases from the previous week or two, such as Rust 1.99.0, Parallel Fast often surfaced the prior version because its cached index hadn’t caught up, and Luna with Fast cited an older Rust release in all three runs. In a spot check, Parallel Advanced returned the current version for all three recent-release questions we tried, and the Advanced run above still cost 36% less than built-in search on Luna and 50% less on Sol. Send questions that hinge on “latest”, “current”, or “this week” to Advanced. Twenty questions is a small sample, so test on your own traffic before you switch.
 
 Our per-call payload measurement from October 7, on the same questions, tokenized with OpenAI’s o200k tokenizer:
 

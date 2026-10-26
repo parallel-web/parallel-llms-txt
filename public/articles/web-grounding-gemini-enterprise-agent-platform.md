@@ -15,7 +15,7 @@ Google's [grounding overview](https://docs.cloud.google.com/gemini-enterprise-ag
 - **Grounding with Parallel Web Search**, a native grounding tool sold as a Separate Offering under your Google Cloud Agreement.
 - **Grounding with your search API**, which calls any HTTP search endpoint you expose.
 
-There is also a path outside the grounding feature entirely: give an agent built with the Agent Development Kit (ADK), or any function-calling Gemini app, a web search tool directly. That can be Parallel's Search API or Search MCP server, or another provider.
+You can also skip the grounding feature entirely and give an agent built with the Agent Development Kit (ADK), or any function-calling Gemini app, a web search tool directly. That can be Parallel's Search API or Search MCP server, or another provider.
 
 ## Comparison table
 
@@ -34,7 +34,7 @@ Prices are Google's and Parallel's published list prices as of October 19, 2026.
 
 Google Search grounding has the largest index and the freshest coverage of any option here, and it needs no extra subscription. On Gemini 3 and Gemini 4 models, Google bills per grounding query, so a prompt that leads Gemini to run three searches is billed as three. The first 5,000 queries a month are free across Gemini 3 and 4, and input tokens from Google Search are not charged. On Gemini 2.5, billing is per grounding prompt at $35 per 1,000 after a daily free allowance.
 
-The terms matter as much as the price. Under the Grounding with Google Search section of Google Cloud's [Service Specific Terms](https://cloud.google.com/terms/service-terms), customers may not "cache, frame, syndicate, resell, analyze, train on, or otherwise learn from Grounded Results or Search Suggestions." Storage is allowed in limited cases, such as an end user's chat history or for evaluating display, for up to two years. The grounding docs say Search Suggestions must be displayed in production, while the pricing page lets customers skip them at standard pricing below 1 million grounding prompts a day. For a chat assistant that shows answers to the person who asked, those rules fit. For a pipeline that writes web facts into a CRM, they don't.
+The terms matter as much as the price. Under the Grounding with Google Search section of Google Cloud's [Service Specific Terms](https://cloud.google.com/terms/service-terms), customers may not "cache, frame, syndicate, resell, analyze, train on, or otherwise learn from Grounded Results or Search Suggestions." Storage is allowed in limited cases, such as an end user's chat history or for evaluating display, for up to two years. The grounding docs say Search Suggestions must be displayed in production, while the pricing page lets customers skip them at standard pricing below 1 million grounding prompts a day. Those rules fit a chat assistant that shows answers to the person who asked, but not a pipeline that writes web facts into a CRM.
 
 Google's Search grounding page also says the Gemini API doesn't support combining search tools such as `googleSearch` with non-search tools such as function calling in the same `generateContent` request.
 
@@ -165,7 +165,7 @@ A grounded response carries `groundingMetadata` with three useful fields. `webSe
 
 Gemini decides whether to search at all. When it answers from its own knowledge, `groundingMetadata` is absent, so check for it before rendering anything.
 
-Two details trip people up when they insert inline citation markers. The `startIndex` and `endIndex` values in each segment are byte offsets, not character positions, so slicing a Python string with them misplaces markers in any answer with non-ASCII text. They are also relative to a single `Part`, identified by `partIndex`, not to the whole answer. Encode each part to UTF-8, insert markers in byte space, and walk each part's supports from the end backward so earlier offsets stay valid. Parallel's integration guide includes a Python snippet that does this.
+Inline citation markers go wrong in two ways. The `startIndex` and `endIndex` values in each segment are byte offsets, not character positions, so slicing a Python string with them misplaces markers in any answer with non-ASCII text. They're also relative to a single `Part`, identified by `partIndex`, rather than to the whole answer. Encode each part to UTF-8, insert markers in byte space, and walk each part's supports from the end backward so earlier offsets stay valid. Parallel's integration guide includes a Python snippet that does this.
 
 ## What grounding with Parallel costs
 

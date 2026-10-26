@@ -2,11 +2,11 @@
 
 A free web search MCP server gives Claude Code, Claude Desktop, Cursor, or OpenClaw live web access without a bill, but “free” means a different deal at almost every vendor. This guide covers the three kinds of free, eight servers ranked by what you can use at $0, the built-in tools they compete with, and exact Parallel Search MCP config for each client.
 
-We tested the claim before writing it down. On September 28, 2026 we sent raw JSON-RPC requests to `https://search.parallel.ai/mcp` with no account, no key, and no auth header: `initialize`, then `tools/list`, then a `web_search` call. All three returned HTTP 200, and the search came back in 0.8 seconds with ten ranked results. That’s the bar for this list. Every server below either works for you at $0 today or tells you exactly what you have to hand over first.
+Before writing this list, we tested the keyless claim ourselves. On September 28, 2026 we sent raw JSON-RPC requests to `https://search.parallel.ai/mcp` with no account, no key, and no auth header: `initialize`, then `tools/list`, then a `web_search` call. All three returned HTTP 200, and the search came back in 0.8 seconds with ten ranked results. Every server below either works at $0 today or states up front what you have to provide first.
 
 ## Three kinds of free
 
-Vendors use one word for three different arrangements, and each one breaks in its own way.
+Vendors use “free” for three different arrangements, and each one runs out differently.
 
 **Keyless** means you paste a server URL into your client and it works, with no account. The vendor protects itself with anonymous rate limits, which it usually doesn’t publish as a number.
 
@@ -57,9 +57,7 @@ Tavily’s remote server returns a 401 to plain anonymous requests, but its [key
 
 ### 4. Firecrawl MCP
 
-`https://mcp.firecrawl.dev/v2/mcp` works keyless with search, scrape, and parse. Firecrawl caps keyless use per IP address per day, by requests and by credits. Everyone behind the same office NAT or CI runner shares that cap. A free key raises it to 1,000 credits a month, and a search costs 2 credits per 10 results, so that’s about 500 searches.
-
-**Where it wins:** scraping specific sites into clean markdown, with search as the supporting act.
+`https://mcp.firecrawl.dev/v2/mcp` works keyless with search, scrape, and parse. Firecrawl is built for scraping specific sites into clean markdown, and search plays a supporting role. It caps keyless use per IP address per day, by requests and by credits, so everyone behind the same office NAT or CI runner shares that cap. A free key raises it to 1,000 credits a month, and a search costs 2 credits per 10 results, so that’s about 500 searches.
 
 ### 5. Jina MCP
 
@@ -75,15 +73,11 @@ Brave’s [official MCP server](https://github.com/brave/brave-search-mcp-server
 
 ### 7. SearXNG MCP (self-hosted)
 
-[mcp-searxng](https://github.com/ihor-sokoliuk/mcp-searxng) connects your client to a SearXNG metasearch instance you run. It needs `SEARXNG_URL` and an instance with JSON output enabled, and no quota applies beyond your own hardware.
-
-**Where it wins:** privacy and total control, if you already run infrastructure.
+[mcp-searxng](https://github.com/ihor-sokoliuk/mcp-searxng) connects your client to a SearXNG metasearch instance you run. It needs `SEARXNG_URL` and an instance with JSON output enabled, and no quota applies beyond your own hardware. Pick it for privacy and full control if you already run infrastructure.
 
 ### 8. DuckDuckGo MCP (community)
 
-[duckduckgo-mcp-server](https://github.com/nickclyde/duckduckgo-mcp-server) installs with `uvx duckduckgo-mcp-server` and needs no key. It doesn’t use an official API; it requests DuckDuckGo’s HTML results. The README itself notes that Cloudflare bot filtering can return an empty 202 page, which your agent sees as “no results.” OpenClaw’s docs describe its own DuckDuckGo provider the same way: unofficial and HTML-based.
-
-**Where it wins:** a zero-account local fallback for light personal use. Don’t build anything you depend on around it.
+[duckduckgo-mcp-server](https://github.com/nickclyde/duckduckgo-mcp-server) installs with `uvx duckduckgo-mcp-server` and needs no key. Instead of an official API, it requests DuckDuckGo’s HTML results. The README itself notes that Cloudflare bot filtering can return an empty 202 page, which your agent sees as “no results.” OpenClaw’s docs describe its own DuckDuckGo provider the same way: unofficial and HTML-based. It works as a zero-account local fallback for light personal use, but don’t build anything you depend on around it.
 
 ## The built-in baseline
 
@@ -93,7 +87,7 @@ Claude’s built-in web search costs $10 per 1,000 searches on the API, plus tok
 
 Cursor’s agent includes a Web tool that generates queries and searches without setup, so for occasional lookups you may not need anything else.
 
-OpenClaw never routes searches to a key-free provider unless you pick one. Its [web search docs](https://docs.openclaw.ai/tools/web) list a key-free **Parallel Search (Free)** provider, id `parallel-free`, that routes through the same free Search MCP. Key-free providers never win OpenClaw’s auto-detection, so you install the plugin (`openclaw plugins install @openclaw/parallel-plugin`) and then select it explicitly with `tools.web.search.provider` or `openclaw configure --section web`.
+OpenClaw’s [web search docs](https://docs.openclaw.ai/tools/web) list a key-free **Parallel Search (Free)** provider, id `parallel-free`, that routes through the same free Search MCP. Key-free providers never win OpenClaw’s auto-detection, so you install the plugin (`openclaw plugins install @openclaw/parallel-plugin`) and then select it explicitly with `tools.web.search.provider` or `openclaw configure --section web`.
 
 ## Set up Parallel Search MCP in each client
 
@@ -152,7 +146,7 @@ openclaw mcp set parallel-search '{"url":"https://search.parallel.ai/mcp","trans
 
 ### Test it without a client
 
-This is the one-shot call we ran. It needs no key:
+Here’s the one-shot call we ran, which needs no key:
 
 ```bash
 curl -s https://search.parallel.ai/mcp \

@@ -4,7 +4,7 @@ Why can’t AI agents just use Google Search? Google doesn’t sell its results 
 
 ## What changed in 2025 and 2026
 
-Two years ago a developer who wanted web results for software had three mainstream choices: Google’s Custom Search JSON API, Microsoft’s Bing Search API, or a scraper pointed at google.com. By the end of 2026 the first is gone, the second is already gone, and the third is harder and riskier to run than at any point in the last decade. The dates below come from Google’s developer documentation, Microsoft’s lifecycle notices, and the court dockets.
+Two years ago a developer who wanted web results for software had three mainstream choices: Google’s Custom Search JSON API, Microsoft’s Bing Search API, or a scraper pointed at google.com. Microsoft’s API is already gone, Google’s closes by the end of 2026, and scraping is harder and riskier to run than at any point in the last decade. The dates below come from Google’s developer documentation, Microsoft’s lifecycle notices, and the court dockets.
 
 | Date | What happened | What it means for agents |
 | --- | --- | --- |
@@ -27,11 +27,11 @@ The [Custom Search JSON API](https://developers.google.com/custom-search/v1/over
 
 Google’s documentation now says the API “is closed to new customers,” and existing customers have until January 1, 2027 to move. In the [January 20, 2026 announcement](https://programmablesearchengine.googleblog.com/2026/01/updates-to-our-web-search-products.html), Google also required every new engine to use the “Sites to search” feature, capped at 50 domains, which ended whole-web search for new projects. The suggested replacement, Vertex AI Search, also covers up to 50 domains. Anyone who needs the full index gets an interest form.
 
-On September 9, 2026, Google published documentation for the [Web Search Service API](https://developers.google.com/web-search-service/overview), which does perform a full web search and returns JSON over REST or gRPC. Every request needs a client ID tied to a partner agreement, plus the end user’s IP address, and returns at most 20 results. [Search Engine Journal](https://www.searchenginejournal.com/google-documents-partner-only-api-for-full-web-search-results/589194) noted that the pages don’t explain how to become a partner, what the service costs, or what the query limits are. For a team building an agent today, there’s no signup button. Our [Google Custom Search API alternative guide](https://parallel.ai/articles/the-best-google-custom-search-api-alternative-for-ai-agents) covers the migration options in detail.
+On September 9, 2026, Google published documentation for the [Web Search Service API](https://developers.google.com/web-search-service/overview), which does perform a full web search and returns JSON over REST or gRPC. Every request needs a client ID tied to a partner agreement, plus the end user’s IP address, and returns at most 20 results. [Search Engine Journal](https://www.searchenginejournal.com/google-documents-partner-only-api-for-full-web-search-results/589194) noted that the pages don’t explain how to become a partner, what the service costs, or what the query limits are, so an agent team has no way to sign up today. Our [Google Custom Search API alternative guide](https://parallel.ai/articles/the-best-google-custom-search-api-alternative-for-ai-agents) covers the migration options in detail.
 
 ## Grounding with Google Search sells answers, with conditions attached
 
-What Google does sell openly is Grounding with Google Search: Gemini runs Google searches on your behalf and writes an answer with citations. It’s the best index on the market behind a model, and for a chat product built on Gemini it can be the right choice. For an agent pipeline, the pricing and the terms both matter.
+Google does sell one product openly, Grounding with Google Search: Gemini runs Google searches on your behalf and writes an answer with citations. The index behind it is the best on the market, and for a chat product built on Gemini it can be the right choice. An agent pipeline also has to live with the pricing and the terms.
 
 On Gemini 3 models, Google bills $14 per 1,000 search queries after 5,000 free queries a month. Gemini 2.5 billed $35 per 1,000 grounded prompts. The unit changed from prompts to queries, and the model decides how many queries a prompt triggers, so one question that fans out into four searches costs four units.
 
@@ -79,8 +79,6 @@ The judgment targets rival general search engines, describing syndication as a �
 
 ## What agent builders use instead
 
-Three kinds of product fill the gap, and they solve different problems.
-
 **SERP APIs** such as SerpApi, Serper, DataForSEO, and Bright Data return a structured copy of what Google showed. For rank tracking, ad monitoring, and Google’s verticals like Flights and Shopping, nothing else gives you that data. They also inherit the blocking and the litigation described above, and they return snippets, so an agent still needs a fetch-and-clean stage behind them.
 
 **Independent indexes** such as Brave Search crawl the web themselves and sell API access to their own results, which avoids scraping anyone.
@@ -107,7 +105,7 @@ for result in search.results:
         print(excerpt)
 ```
 
-The response holds everything the model needs to answer and cite, with no browser and no scraper in the loop. Parallel is SOC 2 Type 2 certified. Under the standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services. Enterprise plans with zero data retention exclude that use.
+The response carries what the model needs to answer and cite, without a browser or scraper in the loop. Parallel is SOC 2 Type 2 certified. Under the standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services. Enterprise plans with zero data retention exclude that use.
 
 Note: For the latest pricing, always check official documentation.
 

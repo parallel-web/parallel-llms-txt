@@ -8,7 +8,7 @@ The harness is everything around the model: the loop that runs tools, the rules 
 
 ## What the harness contains
 
-Each piece gets its own section below; the snippets are excerpts from the full script.
+The snippets in each section below are excerpts from the full script.
 
 | Piece | Job | Prevents |
 | --- | --- | --- |
@@ -155,7 +155,7 @@ CONTEXT_MANAGEMENT = {"edits": [{
 }]}
 ```
 
-Don’t truncate old tool results in your own `messages` list. Anthropic’s [context editing docs](https://platform.claude.com/docs/en/build-with-claude/context-editing) say server-side context management never invalidates thinking blocks on Claude Opus 5.5, while client-side edits to earlier turns can, and for accounts created on or after August 31, 2026, the API rejects a request that replays an invalidated block. Each clear resets the prompt cache, so `clear_at_least` makes every clear worth it.
+Don’t truncate old tool results in your own `messages` list. Anthropic’s [context editing docs](https://platform.claude.com/docs/en/build-with-claude/context-editing) say server-side context management never invalidates thinking blocks on Claude Opus 5.5, while client-side edits to earlier turns can, and for accounts created on or after August 31, 2026, the API rejects a request that replays an invalidated block. Each clear resets the prompt cache, so `clear_at_least` keeps each clear large enough to pay for the reset.
 
 ## Step and cost budgets
 

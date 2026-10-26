@@ -1,6 +1,6 @@
 # What makes a source irreplaceable?
 
-A source is irreplaceable when removing it makes the answer worse, because it holds information no other source can supply. It’s the origin of a finding, the authoritative record, the holder of live, specific data, or the keeper of first-hand expertise and proprietary data. A trustworthy page that repeats a fact from a hundred other pages adds little, so trust alone falls short of what makes a source irreplaceable.
+A source is irreplaceable when removing it makes the answer worse, because it holds information no other source can supply. Trust alone doesn’t get a source there, since a reliable page that repeats a fact from a hundred other pages adds little. This guide covers the four traits of an irreplaceable source, how AI agents measure them, and a four-step test you can run on your own sources.
 
 _Irreplaceability_ means non-substitutability, and you measure it by _marginal contribution_, the change in an outcome when you add or remove one contributor. Our research frames this as a removal test: “If you removed this player from the team, how much worse would the outcome be?” We borrowed the question from the Shapley value, a game theory method for dividing credit within a team.
 
@@ -58,7 +58,7 @@ Plenty of sites describe a drug approval, but the FDA’s own record settles wha
 
 Our research uses homedepot.com to show the third route. An agent might need a specific refrigerator’s price today, or whether a SKU (stock keeping unit) is in stock. Those tasks form a small share of agent work, and we call them “a kind of task nothing else can answer.”
 
-In our data, homedepot.com ranked 56th by value with a gap of 64, and target.com ranked 44th with a gap of 36. A summary of last month’s prices can’t stand in for the retailer that sets today’s price.
+In our data, homedepot.com ranked 56th by value with a gap of 64, and target.com ranked 44th with a gap of 36. Only the retailer’s own page has today’s price.
 
 ### It adds first-hand expertise or proprietary data
 
@@ -76,7 +76,7 @@ The _Shapley value_ is a game theory method that credits each player by its aver
 
 In our application, a source is valuable to the degree that answer quality would suffer without it. In [Parallel’s visibility-value gap research](https://index.parallel.ai/the-visibility-value-gap), we ranked every domain two ways, by visibility and by Shapley value. Visibility counts the times a domain’s pages surface when an AI system looks for answers.
 
-The two lists overlap less than you’d expect. We drew on one week of Index activity, and the data skews toward enterprise use cases. We tracked 381 domains and plotted 219 of them in the chart, which covers the week of May 25, 2026.
+The two lists overlap less than you’d expect. For the week of May 25, 2026, we tracked 381 domains and plotted 219 of them in the chart.
 
 ![Parallel scatter plot of domains by AI visibility versus Shapley value for the week of May 25, 2026, divided into expected winners, overexposed, underrated, and long-tail quadrants](https://cdn.sanity.io/images/5hzduz3y/production/c14aa8665054193bfdc2f4b96a288a01ee7cc5d3-2716x1962.png)
 
@@ -109,9 +109,9 @@ The most overexposed domains, on the same measures:
 - investing.com (value rank 107, gap 52)
 - globaldata.com (value rank 117, gap 51)
 
-Those numbers describe one week of agent behavior in an enterprise sample. Our interpretation is that popularity and value diverge in measurable ways, and more weeks of data would test each quadrant’s stability.
+Those numbers describe one week of agent behavior in an enterprise sample. We read them as evidence that popularity and value diverge in measurable ways, and more weeks of data would show whether each quadrant holds.
 
-Publishers can’t see their contribution to agent work in pageview reports. Index by Parallel pays participating content owners by estimated Shapley value at the moment of inference, and you can read [how Index calculates compensation](https://parallel.ai/blog/introducing-index-by-parallel). Content that’s hard to replace earns more.
+Publishers can’t see their contribution to agent work in pageview reports. Index by Parallel pays participating content owners by estimated Shapley value at the moment of inference, so content that’s hard to replace earns more. For the method, see [how Index calculates compensation](https://parallel.ai/blog/introducing-index-by-parallel).
 
 ## How to test whether a source is irreplaceable
 
@@ -125,7 +125,7 @@ Ask what the answer loses if this source disappears. If the answer stays the sam
 
 Follow each fact back to the page where it first appeared. If the source cites someone else for its key claims, the original is the irreplaceable one. AI search tools misattribute copies, which makes the original harder to find and more important to verify.
 
-In [Tow Center’s citation accuracy study](https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php), Columbia’s Tow Center for Digital Journalism ran 1,600 queries across eight AI search tools in March 2025. The tools failed to identify the correct source article, publisher, or URL more than 60% of the time. The researchers scoped the study to news citations, and the result is a reason to trace a citation before you trust it.
+In [Tow Center’s citation accuracy study](https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php), Columbia’s Tow Center for Digital Journalism ran 1,600 queries across eight AI search tools in March 2025. The tools failed to identify the correct source article, publisher, or URL more than 60% of the time. The study covered only news citations, but it’s a reason to trace a citation before you trust it.
 
 ### 3. Search for substitutes
 
@@ -133,17 +133,15 @@ Look for other pages that carry the same fact. Many matches mark the information
 
 With [Parallel’s Search API](https://parallel.ai/products/search), you state the claim as a natural language objective and get ranked URLs with dense excerpts. You then use [the Extract API](https://parallel.ai/products/extract) to pull each page’s content, including PDFs and JavaScript pages, and compare what each page adds. Treat a low substitute count as a hypothesis until you’ve checked it against the origin.
 
-Guides we reviewed on what makes content valuable to AI list originality as a pillar without counting the sources that carry each claim. We see a count of substitute pages per claim as a research direction worth pursuing.
+Guides we reviewed on what makes content valuable to AI list originality as a pillar without counting the sources that carry each claim. We think a per-claim count of substitute pages is worth pursuing as a research direction.
 
 ### 4. Verify with citations and confidence
 
-Builders need agents that show which source each claim came from. Basis gives each Task API output [citations with calibrated confidence](https://parallel.ai/blog/introducing-basis-with-calibrated-confidences), plus the reasoning and excerpts behind them. If you review the Low confidence outputs alone, you can expect about a 2x reduction in error rate in typical cases.
+If you build agents, you need them to show which source each claim came from. Basis gives each Task API output [citations with calibrated confidence](https://parallel.ai/blog/introducing-basis-with-calibrated-confidences), plus the reasoning and excerpts behind them. If you review the Low confidence outputs alone, you can expect about a 2x reduction in error rate in typical cases.
 
-Source Policy works in the Search API and Task API. You can use it to [control which sources agents use](https://parallel.ai/blog/source-policy) by including or excluding domains, steering agents toward primary and authoritative sources.
+Source Policy works in the Search API and Task API. You can use it to [control which sources agents use](https://parallel.ai/blog/source-policy) by including or excluding domains, for example to keep agents on primary and authoritative sources.
 
 ## Signs a source is replaceable
-
-These red flags mark a source as replaceable.
 
 - **Syndicated or rewritten content:** The page restates what the origin already published.
 - **Aggregation without new data:** Lists and roundups repackage primary information and add none of their own.
@@ -156,7 +154,7 @@ Our research observes that domains behind heavy paywalls can see their Shapley v
 
 ## How to become an irreplaceable source
 
-Content teams that want agents to depend on them can set uniqueness as the target. Publish original findings first, own the record for your domain, keep specific data current, and add first-hand expertise.
+If you want agents to depend on your content, aim for uniqueness: publish original findings first, own the record for your domain, keep specific data current, and add first-hand expertise.
 
 Google asks the same of publishers. [Google’s people-first content guidance](https://developers.google.com/search/docs/fundamentals/creating-helpful-content) asks, “Does the content provide original information, reporting, research, or analysis?” Google’s May 15, 2026 resource, [Google’s guidance for generative AI features](https://developers.google.com/search/blog/2026/05/a-new-resource-for-optimizing), stresses “valuable, unique, non-commodity content.”
 
@@ -190,4 +188,4 @@ Irreplaceability depends on what else exists, so a source can lose it. Other out
 
 ### What makes a person irreplaceable, and does it apply to sources?
 
-Career advice on irreplaceable people centers on a unique contribution that others struggle to replicate. The same logic applies to sources, where the measure is what the team, or the answer, loses without you.
+Career advice on irreplaceable people centers on a unique contribution that others struggle to replicate. The same logic applies to sources: measure what the answer loses without them.

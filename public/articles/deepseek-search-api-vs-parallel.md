@@ -1,6 +1,6 @@
 # DeepSeek Search API vs. Parallel: pricing, data handling, and model lock-in
 
-The DeepSeek Search API and its companion Fetch API cost $0.75 per 1,000 successful requests, less than Parallel Search at $1 per 1,000 on Turbo and Fast. Parallel’s case is model independence. It works with any model, DeepSeek’s included, on an account separate from your model vendor. Every DeepSeek claim here comes from DeepSeek’s own documentation, and where those docs are silent, the article says “not documented.”
+The DeepSeek Search API and its companion Fetch API cost $0.75 per 1,000 successful requests, less than Parallel Search at $1 per 1,000 on Turbo and Fast, but you need a DeepSeek account and balance to call them. This comparison covers pricing and billing dates, model lock-in, data handling, technical controls, and when to pick each, with every DeepSeek claim taken from DeepSeek’s own documentation.
 
 ## Quick answer
 
@@ -10,7 +10,7 @@ The reason to pay more is model independence. Parallel Search is a REST API, an 
 
 DeepSeek’s privacy policy says it stores personal data in China and may use personal data, including inputs, to train its models, and it doesn’t mention Search or Fetch. Parallel stores data in US data centers by default and offers zero data retention under an enterprise agreement. Its optional EU data residency covers Search API requests in Basic mode sent to its EU endpoint. EU residency doesn’t cover Extract, and Parallel is a US company, so it doesn’t change Parallel’s jurisdiction.
 
-Which API returns better results is unknown. No authenticated DeepSeek calls were made for this comparison, and no independent benchmark of the DeepSeek Search API was found as of October 17, 2026, so this article makes no quality claim in either direction.
+We don’t know which API returns better results. We made no authenticated DeepSeek calls for this comparison and found no independent benchmark of the DeepSeek Search API as of October 17, 2026, so this article makes no quality claim in either direction.
 
 ## What does the DeepSeek Search API cost?
 
@@ -45,7 +45,7 @@ It means DeepSeek runs the search itself for a client that talks to a DeepSeek m
 
 - **Claude Code.** Point Claude Code at DeepSeek’s Anthropic-compatible endpoint, and its built-in Web Search tool performs the search through DeepSeek’s API. DeepSeek’s guide says each use also generates extra model requests to summarize what was retrieved, so you pay model tokens on top of the search fee.
 - **Codex.** Codex’s `web_search` feature works with `deepseek-v4-pro` and no other model. The setup script disables it, and `web_search = "live"` in `~/.codex/config.toml` turns it back on. The Responses API ignores `web_search` for `deepseek-flash`.
-- **DeepSeek Harness.** DeepSeek’s pricing page says Harness server-side tool calls already hit the Search and Fetch APIs. Harness has not been tested against the new endpoints for this article. [The October 11 guide to Harness search](https://parallel.ai/articles/deepseek-harness-web-search) predates them and describes the older built-in tool, which spent a full model call per search.
+- **DeepSeek Harness.** DeepSeek’s pricing page says Harness server-side tool calls already hit the Search and Fetch APIs. We haven’t tested Harness against the new endpoints. [The October 11 guide to Harness search](https://parallel.ai/articles/deepseek-harness-web-search) predates them and describes the older built-in tool, which spent a full model call per search.
 
 Outside those integrations, a function-calling loop with any model can call the raw endpoints. A missing or invalid key returns HTTP 401, and an empty balance returns HTTP 402. The Search & Fetch guide doesn’t address storing results or using them with other vendors’ models. The [Open Platform Terms](https://cdn.deepseek.com/policies/en-US/deepseek-open-platform-terms-of-service.html) say you can use the Inputs and Outputs of DeepSeek’s services for purposes that include training other models, but they don’t say whether that covers search results, which contain third-party web content.
 
@@ -53,7 +53,7 @@ Outside those integrations, a function-calling loop with any model can call the 
 
 Parallel Search works with any model. It is an HTTP API with Python and TypeScript SDKs and a [hosted Search MCP server](https://docs.parallel.ai/integrations/mcp/search-mcp) at `https://search.parallel.ai/mcp`. The MCP server is free, needs no API key, and exposes `web_search` and `web_fetch` tools. Changing models leaves your search integration untouched. The guide to [adding web search to Kimi K3 and other open-weight models](https://parallel.ai/articles/kimi-k3-web-search) walks through the same loop on any chat-completions endpoint.
 
-In a test on October 17, 2026, DeepSeek-V4.1-Flash-1017 called Parallel Search as a function tool through OpenRouter. It was asked for the DeepSeek Search API price and the Claude Code billing start date. The model issued one `web_search` call, the script ran Parallel Search in `fast` mode, and the model answered from the results. It reported $0.75 per 1,000 successful requests and a billing start of 16:00 UTC on October 31, citing DeepSeek’s pricing page and the Search & Fetch guide. It credited the date to the guide, but the date comes from the pricing page, so check citations either way. OpenRouter’s usage report put the two model turns at about $0.0007. That was a single run, so treat it as a smoke test.
+In a test on October 17, 2026, DeepSeek-V4.1-Flash-1017 called Parallel Search as a function tool through OpenRouter. We asked it for the DeepSeek Search API price and the Claude Code billing start date. The model issued one `web_search` call, the script ran Parallel Search in `fast` mode, and the model answered from the results. It reported $0.75 per 1,000 successful requests and a billing start of 16:00 UTC on October 31, citing DeepSeek’s pricing page and the Search & Fetch guide. It credited the date to the guide, but the date comes from the pricing page, so check citations either way. OpenRouter’s usage report put the two model turns at about $0.0007. It was a single run, so treat it as a smoke test.
 
 ```python
 import json
@@ -101,11 +101,11 @@ for turn in range(4):
 print(messages[-1].get("content"))
 ```
 
-To call DeepSeek’s own API instead, change the base URL to `https://api.deepseek.com` and the model to `deepseek-flash`. That route was not tested.
+To call DeepSeek’s own API instead, change the base URL to `https://api.deepseek.com` and the model to `deepseek-flash`. We didn’t test that route.
 
 ## How do DeepSeek and Parallel handle your data?
 
-DeepSeek documents storage in China and nothing specific to Search or Fetch. Parallel documents US storage, zero data retention, and an optional EU endpoint, each with limits. A search API sees every query your agent writes, and a fetch call shows which URLs it reads. This summary of public documents is not legal advice.
+DeepSeek documents storage in China and nothing specific to Search or Fetch. Parallel documents US storage, zero data retention, and an optional EU endpoint, each with limits. A search API sees every query your agent writes, and a fetch call shows which URLs it reads. This is a summary of public documents, not legal advice.
 
 ### DeepSeek
 
@@ -179,7 +179,7 @@ Parallel’s `include_domains` accepts plain domains, domain and path prefixes s
 
 DeepSeek allows 5 requests per second each for Search and Fetch, which is 300 requests per minute per endpoint. Parallel’s default for Search and Extract is 600 requests per minute each, with custom limits on enterprise plans.
 
-DeepSeek counts its limit per account across all API keys, with separate quotas for the two endpoints. Fetch also has a per-domain limit whose value is not documented. Going over returns HTTP 429. For one agent, 5 per second is plenty. For a pool of workers that each fan out several queries, it is the first limit you’ll hit. DeepSeek’s capacity expansion form covers model concurrency, and the guide doesn’t describe a way to raise search limits.
+DeepSeek counts its limit per account across all API keys, with separate quotas for the two endpoints. Fetch also has a per-domain limit whose value is not documented. Going over returns HTTP 429. A limit of 5 per second covers one agent, but a pool of workers that each fan out several queries will hit this limit before any other. DeepSeek’s capacity expansion form covers model concurrency, and the guide doesn’t describe a way to raise search limits.
 
 DeepSeek’s errors follow the OpenAI-compatible format. Retry 408, 429, and 5xx after a wait, top up on 402, and change the request before retrying other 4xx errors.
 
@@ -189,9 +189,9 @@ DeepSeek uses `Authorization: Bearer <key>` with a key from the DeepSeek platfor
 
 ## Is there an independent benchmark of the DeepSeek Search API?
 
-No. DeepSeek publishes no quality numbers for its Search API, and no independent benchmark of it was found as of October 17, 2026.
+No. DeepSeek publishes no quality numbers for its Search API, and we found no independent benchmark of it as of October 17, 2026.
 
-On the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (data dated September 28, 2026, before DeepSeek’s launch), Parallel Search Advanced scores 75 and Basic scores 73 out of 100, behind Perplexity Search (medium) at 80 and Octen Search (highlights) at 77. The index runs the same answer model and harness for every provider and changes nothing but the search API, and its [methodology](https://artificialanalysis.ai/methodology/search-api) is public. Parallel’s [benchmarks page](https://parallel.ai/benchmarks) reports SimpleQA Verified, BrowseComp, and WideSearch results from runs on September 9, 2026 that pair a GPT-5.6 agent with each provider. DeepSeek is in neither. Until someone runs the DeepSeek Search API through the same harness, any statement about its answer quality relative to Parallel is a guess, and this article makes none.
+On the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (data dated September 28, 2026, before DeepSeek’s launch), Parallel Search Advanced scores 75 and Basic scores 73 out of 100, behind Perplexity Search (medium) at 80 and Octen Search (highlights) at 77. The index runs the same answer model and harness for every provider and changes nothing but the search API, and its [methodology](https://artificialanalysis.ai/methodology/search-api) is public. Parallel’s [benchmarks page](https://parallel.ai/benchmarks) reports SimpleQA Verified, BrowseComp, and WideSearch results from runs on September 9, 2026 that pair a GPT-5.6 agent with each provider. DeepSeek is in neither. Until someone runs the DeepSeek Search API through the same harness, its answer quality relative to Parallel is unmeasured.
 
 ## When to pick DeepSeek
 
@@ -256,7 +256,7 @@ It allows 5 requests per second for Search and 5 for Fetch, counted per account,
 
 ### Which API returns better results?
 
-No public evidence answers that yet. No independent benchmark covers the DeepSeek Search API, and no authenticated DeepSeek calls were made for this comparison.
+No public evidence answers that yet. No independent benchmark covers the DeepSeek Search API, and we made no authenticated DeepSeek calls for this comparison.
 
 **Related reading: **[The best DeepSeek Search API alternatives](https://parallel.ai/articles/deepseek-search-api-alternatives) · [Web search APIs with EU data residency](https://parallel.ai/articles/best-web-search-apis-eu-data-residency) · [Data residency vs. data sovereignty](https://parallel.ai/articles/data-residency-vs-data-sovereignty) · [How to add better web search to DeepSeek Harness](https://parallel.ai/articles/deepseek-harness-web-search) · [Claude’s web search tool vs. Parallel](https://parallel.ai/articles/claude-web-search-vs-parallel) · [Gemini’s Google Search grounding vs. Parallel](https://parallel.ai/articles/gemini-google-search-grounding-vs-parallel) · [Brave Search API vs. Parallel](https://parallel.ai/compare/brave-vs-parallel).
 

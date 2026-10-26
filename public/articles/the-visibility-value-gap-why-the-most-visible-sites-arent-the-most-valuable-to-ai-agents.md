@@ -1,6 +1,6 @@
 # The visibility value gap: why the most visible sites aren’t the most valuable to AI agents
 
-The visibility value gap is the distance between how much exposure something gets and how much value it contributes. On the agentic web, we measure it for each domain as the difference between two ranks. One rank tracks AI visibility, and the other tracks value: the domain’s Shapley value based on its marginal contribution to answers.
+The visibility value gap is the difference between how often AI agents surface a domain and how much that domain contributes to their answers. This guide covers where the term comes from, how Shapley values measure contribution, the four quadrants we found in agent data, and what publishers and AI builders can do about the gap.
 
 ## What is the visibility value gap?
 
@@ -10,11 +10,11 @@ Visibility counts the times a domain’s pages surface as [AI agents](https://pa
 
 In [Parallel’s Visibility-Value Gap research](https://index.parallel.ai/the-visibility-value-gap), we ranked domains both ways and found the two lists overlap less than you’d expect. Some sites show up across a large share of results and add little at the margin. Others rank low on traffic leaderboards and carry outsized weight in agent answers.
 
-You can measure exposure and contribution as separate quantities, and uniqueness decides which sources earn value.
+Exposure and contribution are separate quantities, and you can measure both. In our data, uniqueness determines which sources earn value.
 
 ## Where the term comes from: visibility vs. value in business
 
-The phrase predates AI search. Business writers use it for any setting where the activity people can see diverges from the work that creates value, and three uses dominate.
+The phrase predates AI search. Business writers use it wherever the activity people can see diverges from the work that creates value: at work, in customer onboarding, and in brand monitoring for AI answers.
 
 ### Productivity theater at work
 
@@ -28,15 +28,11 @@ Customer success teams talk about a “visibility-to-value” gap, meaning they 
 
 OnRamp found that 62% can’t see customer progress in real time during onboarding. OnRamp sells onboarding software, so read the figure as vendor research.
 
-If you can’t see whether a customer has reached first value, your team can’t act on that value.
-
 ### Brand visibility in AI answers
 
-Marketers track how many times AI assistants mention or cite their brand. A mention count shows where your brand appears and can’t tell you whether the answer depended on your source.
+Marketers track how many times AI assistants mention or cite their brand. A mention count shows where your brand appears, but it can’t tell you whether the answer depended on your source.
 
 Profound helps brands with answer engine optimization (AEO). In [Profound’s AEO workflow](https://parallel.ai/blog/case-study-profound), the team pairs AI visibility monitoring with our Search API and Task API. Profound uses them to fact-check drafts and research content that answer engines cite.
-
-This context is where the term matters most, and our research adds the value measure.
 
 ## Why AI agents separate visibility from value
 
@@ -83,7 +79,7 @@ Parag Agrawal, founder and CEO of Parallel Web Systems, described the goal in th
 
 ## The four quadrants of the visibility value gap
 
-Plot each domain by visibility against value, and you get four groups.
+Plotting each domain by visibility against value gives four groups.
 
 - **Expected winners:** High visibility and high value. Agents surface these domains at high rates, and answers draw real weight from them.
 - **Overexposed:** High visibility and low value. Agents cite them at high rates, and other sources can replace them with little loss.
@@ -107,13 +103,13 @@ We tracked 381 domains over one week of Index activity, the week of May 25, 2026
 
 ## Why the gap happens: uniqueness beats ubiquity
 
-The mechanism is uniqueness. Marginal contribution collapses once information becomes substitutable. If a hundred sites report the same fact, each earns little at the margin, though agents may cite all of them.
+Uniqueness drives the gap, because marginal contribution collapses once information becomes substitutable. If a hundred sites report the same fact, each earns little at the margin, though agents may cite all of them.
 
 A single source that holds information no other site has is worth more at the margin. In our framing, visibility rewards ubiquity and Shapley value rewards irreplaceability.
 
-We observed several patterns in the data. Local news punches above global news, and niche Substack categories outcompete traditional outlets. Domains behind heavy paywalls can see their Shapley values collapse as their visibility grows.
+Other patterns showed up in the data. Local news punches above global news, and niche Substack categories outcompete traditional outlets, while domains behind heavy paywalls can see their Shapley values collapse as their visibility grows.
 
-Columbia researchers documented one way copies absorb credit. A March 2025 [Tow Center study](https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php) in Columbia Journalism Review tested eight AI search tools on matching quotes to their sources. The researchers found the tools fabricated links and cited syndicated and copied versions of articles, so copies can collect visibility the original earned.
+A March 2025 [Tow Center study](https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php) in Columbia Journalism Review documented one way copies absorb credit. Researchers tested eight AI search tools on matching quotes to their sources and found the tools fabricated links and cited syndicated and copied versions of articles. Copies can collect visibility the original earned.
 
 [BuzzStream’s 2025 robots.txt study](https://www.buzzstream.com/blog/publishers-block-ai-study/) covered the top 50 US and top 50 UK news sites. It found that 79% block AI training bots and about 71% block retrieval bots. Robots.txt sets a directive that bots can ignore, and we haven’t tested whether blocking relates to the paywall pattern in our data.
 
@@ -146,9 +142,9 @@ The public [arxiv.org demo dashboard](https://index.parallel.ai/preview/arxiv.or
 
 ### 3. Publish the primary source
 
-The underrated domains share one trait. Agents go to them for the original record, such as a study’s findings or a regulator’s approval.
+Agents go to the underrated domains for the original record, such as a study’s findings or a regulator’s approval.
 
-Invest in original reporting, proprietary data, firsthand expertise, and clear primary records. [Google’s helpful content guidance](https://developers.google.com/search/docs/fundamentals/creating-helpful-content) asks a matching self-assessment question: “Does the content provide original information, reporting, research, or analysis?” Google asks whether content avoids copying or rewriting its sources, which points the same direction as agent value.
+Invest in original reporting, proprietary data, firsthand expertise, and clear primary records. [Google’s helpful content guidance](https://developers.google.com/search/docs/fundamentals/creating-helpful-content) asks a matching self-assessment question: “Does the content provide original information, reporting, research, or analysis?” Google also asks whether content avoids copying or rewriting its sources, which is the same quality agents reward.
 
 ### 4. Watch for new substitutes
 
@@ -156,13 +152,13 @@ Uniqueness decays once others restate your data. [Parallel Monitor API](https://
 
 ## What the visibility value gap means for AI builders
 
-If you build agents, the gap points to the source of answer quality. Your agent’s best answers depend on the sources it can’t replace. Retrieval that ranks by human popularity signals will overweight overexposed domains and add tokens without adding value.
+If you build agents, your agent’s best answers depend on the sources it can’t replace. Retrieval that ranks by human popularity signals will overweight overexposed domains and add tokens without adding value.
 
-Our Search API ranks URLs by how useful the page content is for the agent’s next reasoning step. Traditional SEO signals don’t set the order. Transparent attribution lets you trace which sources an answer depended on, so you can check where your agent’s quality comes from.
+Our Search API ranks URLs by how useful the page content is for the agent’s next reasoning step, instead of by traditional SEO signals. Transparent attribution lets you trace which sources an answer depended on, so you can check where your agent’s quality comes from.
 
-## The path forward: contribution as the currency of the agentic web
+## The path forward: measuring contribution on the agentic web
 
-The visibility value gap changes how you plan content. Exposure counts, and contribution decides what a source is worth to agents.
+Exposure still counts, but contribution decides what a source is worth to agents, and that should change how you plan content.
 
 We built Index by Parallel to measure contribution and route value back to the sources that earn it. Our first read skews toward enterprise use cases, and we expect the picture to broaden as the mix of agent work grows.
 
@@ -184,7 +180,7 @@ Visibility at work is how noticeable your contributions are to the people who de
 
 ### Why isn’t strong work translating into recognition?
 
-Recognition follows what decision makers can see. Decision makers don’t record quiet work unless someone connects it to outcomes. Following the Forbes contributor’s idea of proof of impact, tie each deliverable to the decision or metric it affects.
+Recognition follows what decision makers can see, and they don’t record quiet work unless someone connects it to outcomes. Following the Forbes contributor’s idea of proof of impact, tie each deliverable to the decision or metric it affects.
 
 ### How does AI widen the visibility value gap?
 

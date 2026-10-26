@@ -1,16 +1,16 @@
 # How to add web search to the Claude Agent SDK (Python and TypeScript)
 
-The Claude Agent SDK ships its own WebSearch tool, but you can't change the provider behind it, so the real choice is whether to keep it or connect a search MCP server instead. This guide covers how the built-in tools work and what they cost, runnable Python and TypeScript examples with Parallel's free Search MCP, how to disable built-in search, and when each option fits.
+The Claude Agent SDK ships its own WebSearch tool, but you can't change the provider behind it, so your choice is whether to keep it or connect a search MCP server instead. This guide covers how the built-in tools work and what they cost, runnable Python and TypeScript examples with Parallel's free Search MCP, how to disable built-in search, and when each option fits.
 
 The Claude Agent SDK is the library version of Claude Code: the same agent loop, built-in tools, permissions, and MCP client, driven from Python (`claude-agent-sdk`, v0.2.165 on PyPI as of October 8, 2026) or TypeScript (`@anthropic-ai/claude-agent-sdk`, v0.3.296 on npm as of October 9, 2026). It ships with two web tools, `WebSearch` and `WebFetch`, and Anthropic’s own [tools reference](https://code.claude.com/docs/en/tools-reference) says the search backend isn’t configurable: “To search with a different provider, add an MCP server that exposes a search tool.” That’s what this guide does, with working code in both languages.
 
 ## How the built-in WebSearch and WebFetch tools work
 
-`WebSearch` runs queries against Anthropic’s [web search](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool) backend and returns result titles and URLs. It doesn’t read the pages. Per the tools reference, one `WebSearch` call can issue up to eight backend searches as it refines the query. To read a result, Claude follows up with `WebFetch`, which fetches the page, converts it to Markdown, and runs a separate model call over it with a prompt Claude writes. Anthropic calls this “lossy by design“: Claude sees the answer to its prompt, not the page.
+`WebSearch` runs queries against Anthropic’s [web search](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool) backend and returns result titles and URLs. It doesn’t read the pages. Per the tools reference, one `WebSearch` call can issue up to eight backend searches as it refines the query. To read a result, Claude follows up with `WebFetch`, which fetches the page, converts it to Markdown, and runs a separate model call over it with a prompt Claude writes. Anthropic calls this “lossy by design”: Claude sees the answer to its prompt, not the page.
 
 In our test runs, the SDK’s usage report billed the searches to a separate Claude Haiku 5.5 call, and each `WebSearch` result came back as a list of links plus a short summary. On three of three factual questions, Claude then called `WebFetch` on a result before answering.
 
-A few limits worth knowing before you ship:
+Check these limits before you ship:
 
 - **Price:** Anthropic charges $10 per 1,000 searches on the Claude API, plus tokens for the search content ([pricing](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool#usage-and-pricing)).
 - **Availability:** `WebSearch` works on the Claude API, Claude Platform on AWS, and Microsoft Foundry, and on Google Cloud’s Agent Platform with Claude 4 and later models. Amazon Bedrock doesn’t expose the server-side search tool.
@@ -164,7 +164,7 @@ for await (const message of query({
 
 Run it with `npx tsx agent.ts`. We ran it with v0.3.296 on Node 22. Claude called `mcp__parallel__web_fetch` on the npm registry entry and the package changelog, then answered correctly that 0.3.296 was the newest release and listed its three changes, in 4 turns for $0.2028.
 
-That run also showed a detail worth knowing: Claude tried `Bash` first, to run `npm view`. The SDK’s default tool set includes Claude Code’s file and shell tools, and `allowedTools` only pre-approves tools. It doesn’t remove the rest. The next section covers how to scope that.
+In that run, Claude first tried `Bash`, to run `npm view`. The SDK’s default tool set includes Claude Code’s file and shell tools, and `allowedTools` only pre-approves tools without removing the rest.
 
 ## How to turn off built-in WebSearch
 
@@ -178,7 +178,7 @@ Also check the `system` init message for the server’s `status`. If it reads `f
 
 ## Cost in practice
 
-Search fees are easy to compare. At two searches per task, 1,000 tasks cost $20 in Anthropic search fees, or more when one `WebSearch` call fans out into several backend searches. The same 1,000 tasks cost nothing on the keyless Search MCP; with an API key, calls bill at [Search API rates](https://docs.parallel.ai/search/modes), which run $1 to $5 per 1,000 requests depending on mode.
+Search fees are straightforward to compare. At two searches per task, 1,000 tasks cost $20 in Anthropic search fees, or more when one `WebSearch` call fans out into several backend searches. The same 1,000 tasks cost nothing on the keyless Search MCP; with an API key, calls bill at [Search API rates](https://docs.parallel.ai/search/modes), which run $1 to $5 per 1,000 requests depending on mode.
 
 Token costs usually dominate, though, and they depend on how many turns the agent takes. In our test runs, the built-in path usually needed a `WebFetch` call after `WebSearch` before Claude could answer, which adds a turn. With the Search MCP, Claude often answered from the `web_search` excerpts alone. Measure turns and total cost on your own workload before you decide.
 

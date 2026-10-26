@@ -1,8 +1,8 @@
 # GDPR and AI agents: what web search and extraction change
 
-Web search and extraction raise three GDPR questions for an AI agent. The queries an agent writes can contain personal data. The pages it reads can contain personal data about other people. And each service it calls runs somewhere, which decides whether the GDPR's rules on international transfers apply. Each question has a practical answer.
+Web search and extraction raise three GDPR questions for an AI agent: whether its queries contain personal data, how to treat personal data in the pages it reads, and where each service it calls runs, which decides whether the GDPR's transfer rules apply. This guide answers each question, lists the habits that shorten a privacy review, and explains how Parallel handles them.
 
-This article isn't legal advice. It's for teams that need to explain an agent's web access to a privacy reviewer.
+This article isn't legal advice. It's written for you if you need to explain an agent's web access to a privacy reviewer.
 
 ## Agent search queries can contain personal data
 
@@ -32,7 +32,7 @@ These habits make a privacy review shorter.
 
 For API customers, Parallel acts as a processor under its Data Processing Addendum, according to its [privacy policy](https://parallel.ai/privacy-policy). Under its standard [Customer Terms](https://parallel.ai/customer-terms), Parallel may use inputs and outputs, not linked to any individual, to train and improve the models behind its services. Enterprise plans with zero data retention and Search API traffic sent to the EU endpoint are excluded from that use.
 
-For teams that need EU residency, Parallel offers it as an optional feature, with the commitments set out in the customer's DPA. It covers [Search API](https://parallel.ai/products/search) requests in basic mode sent to the EU endpoint. The endpoint, the full search index, and inference run in the EU, and EU traffic has zero data retention by default. Only minimal billing metadata, such as IDs, the SKU, and a timestamp, goes to the US. It never includes inputs or outputs. Live fetch, which retrieves public pages at request time, runs globally. It's optional and can be turned off. The Extract API isn't covered and runs on the default endpoint. Parallel is a US company, so read [data residency vs data sovereignty](https://parallel.ai/articles/data-residency-vs-data-sovereignty) if jurisdiction matters to you. More detail is at [parallel.ai/europe](https://parallel.ai/europe).
+For teams that need EU residency, Parallel offers it as an optional feature, with the commitments set out in the customer's DPA. It covers [Search API](https://parallel.ai/products/search) requests in basic mode sent to the EU endpoint. The endpoint, the full search index, and inference run in the EU, and EU traffic has zero data retention by default. Only minimal billing metadata, such as IDs, the SKU, and a timestamp, goes to the US, and it never includes inputs or outputs. Live fetch, which retrieves public pages at request time, runs globally, but it's optional and you can turn it off. The Extract API isn't covered and runs on the default endpoint. Parallel is a US company, so read [data residency vs data sovereignty](https://parallel.ai/articles/data-residency-vs-data-sovereignty) if jurisdiction matters to you. More detail is at [parallel.ai/europe](https://parallel.ai/europe).
 
 ## FAQ
 

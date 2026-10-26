@@ -1,6 +1,6 @@
 # How to add better web search to DeepSeek Harness: plugins and MCP setup
 
-DeepSeek Harness web search works from the first launch, but the default tool spends a full DeepSeek model call on every search and needs DeepSeek credentials, so it's worth knowing the alternatives. This guide covers the built-in providers, the main community search plugins, a tested setup for Parallel's free Search MCP, and how to add an API key for higher limits.
+DeepSeek Harness web search works from the first launch, but the default tool spends a full DeepSeek model call on every search and needs DeepSeek credentials. This guide covers the built-in providers, the main community search plugins, a tested setup for Parallel's free Search MCP, and how to add an API key for higher limits.
 
 DeepSeek open-sourced [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (`dsh`) under the MIT license on August 13, 2026. It’s an agent harness built on Cordis, where every capability, from the model route to the file tools, is a plugin you can swap. The shipped profiles give the model a `web_search` tool backed by the `@deepseek-ai/dsh-web-search-deepseek` provider. Per [that package’s README](https://github.com/deepseek-ai/deepseek-harness/blob/main/packages/web/web-search-deepseek/README.md), each search is a full auxiliary Messages call to a DeepSeek model, with up to five server-side searches per request, and it needs either a DeepSeek account sign-in or a `DEEPSEEK_API_KEY`. The companion `web_fetch` tool downloads public pages anonymously over HTTP.
 
@@ -12,11 +12,11 @@ dsh is a developer preview, and the README warns that compatibility-breaking cha
 
 The `web` service picks one search provider and one fetch provider. The repo ships three search providers: DeepSeek native search (the default, id `deepseek-official`), Exa, and Perplexity. The Exa and Perplexity providers read `EXA_API_KEY` and `PERPLEXITY_API_KEY` and are published to npm, but the shipped profiles don’t mount them, so you’d add them as patch rows yourself. The upside of the built-in route is that the model sees one stable `web_search` tool no matter which backend sits behind it.
 
-The tradeoff with the default is cost and latency. DeepSeek exposes no dedicated search endpoint, so the provider README tells you to “expect one Messages call’s latency and generated tokens per search” and to avoid it “when per-search cost or latency dominates.” If you route chat through another provider, search still needs DeepSeek credentials.
+The default costs you money and latency. DeepSeek exposes no dedicated search endpoint, so the provider README tells you to “expect one Messages call’s latency and generated tokens per search” and to avoid it “when per-search cost or latency dominates.” If you route chat through another provider, search still needs DeepSeek credentials.
 
 ### Community search plugins
 
-Plugins install into a profile with `dsh plugin`, which forwards to pnpm. Three search plugins stand out on the [`dsh-plugin` GitHub topic](https://github.com/topics/dsh-plugin):
+Plugins install into a profile with `dsh plugin`, which forwards to pnpm. These are the most visible search plugins on the [`dsh-plugin` GitHub topic](https://github.com/topics/dsh-plugin):
 
 - **[ModSearch](https://github.com/liustack/modsearch)** (`@liustack/modsearch`, v5.10.6) calls itself “the strongest free web search plugin for DeepSeek Harness.” It defaults to Firecrawl’s keyless tier, which its README puts at 1,000 free credits a month, and fails over to Antigravity CLI, Tavily, Exa, Grok for X search, and a local engine.
 - **[dsh-free-search](https://github.com/DDDMUC/dsh-free-search)** (v0.8.5) registers a provider on the same `ctx.web` seam and takes over `web_search` at runtime. It defaults to Bing and can fall back across more than 20 engines, including DuckDuckGo, SearXNG, Exa, Tavily, and Parallel’s anonymous MCP tier.

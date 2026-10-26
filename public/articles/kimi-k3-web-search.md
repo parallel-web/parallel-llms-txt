@@ -10,9 +10,9 @@ We make Parallel, so the example below uses our Search API. The loop itself is p
 
 Every model stops learning at a training cutoff. Reflection’s developer docs list a knowledge cutoff of [June 30, 2026](https://developers.reflection.ai/models) for Beam, a model announced on October 5, so it’s already three months behind on day one. Ask any of these models about a price, a version number, or a deprecation date, and they’ll answer from memory unless something hands them fresh text.
 
-Closed APIs from OpenAI, Anthropic, and Google bundle a hosted search tool. With open-weight models, it depends on who serves them. Some first-party APIs include one, others don’t, and inference hosts that serve the same weights usually don’t expose the lab’s own search at all. Function calling is the portable answer: you describe a `web_search` function, the model decides when to call it, your code runs the search, and the results go back as a tool message.
+Closed APIs from OpenAI, Anthropic, and Google bundle a hosted search tool. With open-weight models, it depends on who serves them. Some first-party APIs include one, others don’t, and inference hosts that serve the same weights usually don’t expose the lab’s own search at all. Function calling works everywhere: you describe a `web_search` function, the model decides when to call it, your code runs the search, and the results go back as a tool message.
 
-Running models on your own hardware is a different setup. Our guide to [web search for local AI agents](https://parallel.ai/articles/web-search-for-local-ai-agents) covers Ollama, LM Studio, Goose, and Pi. This article is about models you call over an API.
+This article covers models you call over an API. If you run models on your own hardware, our guide to [web search for local AI agents](https://parallel.ai/articles/web-search-for-local-ai-agents) covers Ollama, LM Studio, Goose, and Pi.
 
 ## Which open-weight APIs include web search
 
@@ -32,7 +32,7 @@ A few details behind the table:
 - **DeepSeek.** The [models and pricing page](https://api-docs.deepseek.com/quick_start/pricing) lists tool calls, JSON output, and an Anthropic-compatible endpoint, but no search tool. Peak rates for `deepseek-flash` are $0.30 input and $1.20 output per million tokens, and off-peak rates are half that.
 - **Reflection Beam.** Reflection [announced Beam](https://reflection.ai/blog/introducing-beam) on October 5 and says the Apache 2.0 weights ship later this month. The API is an OpenAI-compatible beta with no published rate card yet, and Beam wasn’t in the OpenRouter catalog when we checked.
 
-OpenRouter has its own option: the [`openrouter:web_search` server tool](https://openrouter.ai/docs/guides/features/server-tools/web-search) runs searches on its side for any model. None of the four labs above appear on its native-search list, so the default engine for these models is Exa at $0.007 per request. You can set `engine` to `parallel` with `mode: "fast"` for $0.001 per request. That’s a good choice if you want zero search code. The loop below is for when you want to control the queries, cap result size, or keep the same code across Moonshot, Z.ai, DeepSeek, and Reflection.
+OpenRouter has its own option. Its [`openrouter:web_search` server tool](https://openrouter.ai/docs/guides/features/server-tools/web-search) runs searches on its side for any model. None of the four labs above appear on its native-search list, so the default engine for these models is Exa at $0.007 per request. If you want zero search code, set `engine` to `parallel` with `mode: "fast"` for $0.001 per request. Use the loop below when you want to control the queries, cap result size, or keep the same code across Moonshot, Z.ai, DeepSeek, and Reflection.
 
 ## Build a web search tool loop in Python
 

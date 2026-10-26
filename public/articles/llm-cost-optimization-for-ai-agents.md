@@ -8,7 +8,7 @@ That changes where to look first. The usual advice (cache your prompts, batch yo
 
 ## How an agent’s bill breaks down
 
-An agent task costs the sum of four things: input tokens on every model turn (and agents resend their context every turn), output and reasoning tokens, per-call fees for hosted tools such as web search, and any fixed charges for code execution or storage. The first two are well known. The third is where most surprises come from.
+An agent task costs the sum of four things: input tokens on every model turn (and agents resend their context every turn), output and reasoning tokens, per-call fees for hosted tools such as web search, and any fixed charges for code execution or storage. Most teams watch the first two; the surprises usually come from the third.
 
 Each major model provider bundles a search tool with its own fee:
 
@@ -37,9 +37,9 @@ The [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/sear
 | Parallel Search (basic) | 73 | $45.14 | $21.65 | $66.79 |
 | Model only, no search | 33 | n/a | $2.92 | $2.92 |
 
-Three things stand out. Search adds at least 40 points to the index for every provider here, so dropping search to save money isn’t an option for questions that need current facts. Search fees are the larger cost line for most configurations on a cheap model. And our Advanced and Basic modes cost more per task than OpenAI’s tool on this board, so if cost is your goal, they’re the wrong modes to switch to.
+Search adds at least 40 points to the index for every provider here, so dropping search to save money isn’t an option for questions that need current facts. Search fees are also the larger cost line for most configurations on a cheap model. Our Advanced and Basic modes cost more per task than OpenAI’s tool on this board, so if cost is your goal, they’re the wrong modes to switch to.
 
-The modes to compare are Turbo and Fast at $1 per 1,000. Fast isn’t on the current board, but in AA’s September 8 data it scored 73 with $8.41 in search cost per 1,000 tasks, about a fifth of OpenAI’s $40.19 search line in the later snapshot. We publish our own runs at the low-cost tier on [our benchmarks page](https://parallel.ai/benchmarks): with a GPT-5.6 Luna agent, Fast answered 94% of SimpleQA Verified at $2.00 per 1,000 questions, search and tokens included. Openbenchmarks measures the same trade on single-fact lookups: on its [company news board](https://openbenchmarks.com/company-news/metric/cost-per-1k-correct) (300 questions, September 2026), Fast answered 86.0% correctly and cost $1.16 per 1,000 correct answers, the cheapest paid option, against $7.05 for Exa Fast at 99.3% accuracy. Cheap per call isn’t always cheap per answer, so check accuracy beside price.
+The modes to compare are Turbo and Fast at $1 per 1,000. Fast isn’t on the current board, but in AA’s September 8 data it scored 73 with $8.41 in search cost per 1,000 tasks, about a fifth of OpenAI’s $40.19 search line in the later snapshot. We publish our own runs at the low-cost tier on [our benchmarks page](https://parallel.ai/benchmarks): with a GPT-5.6 Luna agent, Fast answered 94% of SimpleQA Verified at $2.00 per 1,000 questions, search and tokens included. Openbenchmarks measures the same trade on single-fact lookups: on its [company news board](https://openbenchmarks.com/company-news/metric/cost-per-1k-correct) (300 questions, September 2026), Fast answered 86.0% correctly and cost $1.16 per 1,000 correct answers, the cheapest paid option, against $7.05 for Exa Fast at 99.3% accuracy. A low price per call doesn’t guarantee a low price per correct answer, so check accuracy beside price.
 
 ## The levers, in the order to apply them
 

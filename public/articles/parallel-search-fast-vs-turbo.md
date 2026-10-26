@@ -2,7 +2,7 @@
 
 Parallel Search Fast versus Turbo is a choice between roughly 700ms and 200ms per call at the same $1 per 1,000 requests, and the right pick depends on how many searches your agent makes and how hard its questions are. This guide covers the four Search modes, the current benchmark evidence, the latency math for loops of 1 to 15 calls, and how to set the mode in the API, CLI, and MCP.
 
-Turbo and Fast cost exactly the same, $1 per 1,000 requests with 10 results included, so the decision comes down to about 500ms per call against accuracy on harder questions. That trade compounds inside an agent loop: an agent that searches 15 times pays the latency gap 15 times, and a wrong answer on a multi-hop question costs more than the seconds you saved. Our [roundup of fast search APIs](https://parallel.ai/articles/best-fast-search-apis) compares vendors against each other. This guide stays inside Parallel and helps you pick a mode per workload, and per call.
+Turbo and Fast cost the same, $1 per 1,000 requests with 10 results included, so the decision comes down to about 500ms per call against accuracy on harder questions. That trade compounds inside an agent loop: an agent that searches 15 times pays the latency gap 15 times, and a wrong answer on a multi-hop question costs more than the seconds you saved. Our [roundup of fast search APIs](https://parallel.ai/articles/best-fast-search-apis) compares vendors against each other. Here we compare only Parallel’s own modes, so you can pick one per workload or per call.
 
 ## The four Parallel Search modes
 
@@ -17,11 +17,11 @@ Parallel Search has four modes, ordered by latency: Turbo (~200ms), Fast (~700ms
 
 Turbo currently supports English and Japanese queries. For broader multilingual coverage, the docs point to Basic or Advanced. Turbo also ignores path-level source filtering: the docs say domain/path prefixes in `include_domains` and `exclude_domains` require Fast, Basic, or Advanced.
 
-We don’t publish much about the internals. The docs describe Turbo as the lowest-latency, lowest-cost mode “built to ground every call,” Fast as “high-quality search with sub-second latency,” and Advanced as using “a more advanced retrieval and compression pipeline.” The [Turbo launch post](https://parallel.ai/blog/parallel-search-turbo) (July 2026) frames Turbo around workloads where a user is waiting, such as voice agents and consumer chat, and the [Fast launch post](https://parallel.ai/blog/parallel-search-fast) (August 2026) positions Fast for most agent workflows, support assistants, and factual Q&A. Beyond that, treat the modes as a black box and measure them.
+We don’t publish much about the internals. The docs describe Turbo as the lowest-latency, lowest-cost mode “built to ground every call,” Fast as “high-quality search with sub-second latency,” and Advanced as using “a more advanced retrieval and compression pipeline.” The [Turbo launch post](https://parallel.ai/blog/parallel-search-turbo) (July 2026) frames Turbo around workloads where a user is waiting, such as voice agents and consumer chat, and the [Fast launch post](https://parallel.ai/blog/parallel-search-fast) (August 2026) positions Fast for most agent workflows, support assistants, and factual Q&A. Beyond that, you’ll need to measure the modes yourself.
 
 ## What the benchmarks say about Fast and Turbo quality
 
-On simple lookups, Fast and Turbo land within a few points of each other; on hard multi-hop questions, Fast pulls clearly ahead. Our [benchmarks](https://parallel.ai/benchmarks) (evals run September 9, 2026) test both modes at the low-cost tier, where a GPT-5.6 Luna agent at low reasoning effort calls the provider’s search tool plus its extract tool where one exists.
+On simple lookups, Fast and Turbo land within a few points of each other; on hard multi-hop questions, Fast pulls ahead. Our [benchmarks](https://parallel.ai/benchmarks) (evals run September 9, 2026) test both modes at the low-cost tier, where a GPT-5.6 Luna agent at low reasoning effort calls the provider’s search tool plus its extract tool where one exists.
 
 | Benchmark (low-cost tier) | Fast | Turbo | Fast cost per 1,000 | Turbo cost per 1,000 |
 | --- | --- | --- | --- | --- |

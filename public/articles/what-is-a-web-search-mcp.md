@@ -1,6 +1,6 @@
 # What is a web search MCP? How AI agents search the live web
 
-A web search MCP decides how an AI agent reaches the live web from inside Claude Code, Cursor, Codex, or any other MCP client, and the server you connect shapes what the model reads, what it costs, and how much context it uses. This guide covers how a web search MCP works, what a tool call returns, how five popular servers differ, and how to choose and install one.
+A web search MCP is how an AI agent reaches the live web from Claude Code, Cursor, Codex, or any other MCP client, and the server you connect shapes what the model reads, what it costs, and how much context it uses. This guide covers how a web search MCP works, what a tool call returns, how five popular servers differ, and how to choose and install one.
 
 A web search MCP is a Model Context Protocol (MCP) server that exposes web search, and usually page fetching, as tools an AI model can call. The client lists the server’s tools, the model decides when it needs current information, and the server runs the query and returns ranked results with text the model can read and cite.
 
@@ -10,7 +10,7 @@ MCP is the open standard underneath. Anthropic open-sourced it on November 25, 2
 
 Every model stops learning at a training cutoff. A library released last month, a price changed last week, or a regulation published yesterday doesn’t exist for the model until something retrieves it. Long-tail facts are the other gap: a model may never have seen the changelog of a mid-sized open-source project, even if it predates the cutoff.
 
-A web search MCP closes both gaps from inside the tools developers already use. Ask a coding agent how to configure a library and it can check the current docs before it writes code, so you don’t have to paste them in. That’s why web search is usually the first MCP server people add.
+A web search MCP closes both gaps from inside the tools you already use. Ask a coding agent how to configure a library, and it can check the current docs before it writes code instead of waiting for you to paste them in. Web search is usually the first MCP server people add for that reason.
 
 ## How a web search MCP works
 
@@ -102,7 +102,7 @@ Use a web search MCP when the agent runs inside an MCP client you didn’t build
 
 ## How to choose a web search MCP
 
-Five things separate one server from another once it’s installed:
+Once a server is installed, these are the differences that matter:
 
 - **What comes back.** A server that returns query-relevant excerpts lets the model answer from search alone. One that returns short snippets forces a fetch per result, and each fetch costs a turn and more tokens.
 - **Accuracy inside an agent.** Vendor claims vary in method, so check independent results. The [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) runs every search API through the same agent harness and publishes accuracy, cost, and time per task.

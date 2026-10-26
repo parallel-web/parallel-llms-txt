@@ -1,6 +1,6 @@
 # What is context engineering? A guide for AI agent builders
 
-Context engineering decides what an AI agent knows at each step, so it shapes reliability, cost, and latency more than any single prompt does. This guide covers where the term came from, how it differs from prompt engineering, the ways a context window breaks down, and the techniques teams use to keep it lean, including how live web search results should enter the window.
+Context engineering is how AI agent builders control what a model sees on every call, from tool definitions to live web search results. This guide covers where the term came from, how it differs from prompt engineering, the ways a context window breaks down, and the techniques that keep it lean, including how search results should enter the window.
 
 Context engineering is the practice of deciding which tokens a language model sees on each call: the instructions, tool definitions, retrieved documents, memory, conversation history, and tool results that fill its context window. Anthropic defines it as “the set of strategies for curating and maintaining the optimal set of tokens (information) during LLM inference.” For an agent that runs dozens of model calls in a loop, that curation happens again on every turn, and it decides more about output quality than the wording of any single prompt.
 
@@ -27,7 +27,7 @@ Anthropic calls context engineering “the natural progression of prompt enginee
 | Main levers | Wording, structure, examples | Selection, compression, ordering, isolation, persistence |
 | Who owns it | Whoever writes the prompt | Whoever builds the agent harness |
 
-The two don’t compete. A well-written system prompt is still part of good context; it’s one input among several.
+The two don’t compete. A well-written system prompt is still part of good context, as one input among several.
 
 ## What goes into an agent’s context
 
@@ -63,7 +63,7 @@ Most techniques fall into LangChain’s four verbs: write context somewhere outs
 
 ### Retrieve context at runtime
 
-Instead of loading everything up front, the agent keeps lightweight references (file paths, URLs, stored queries) and pulls content in with tools when it needs it. Anthropic describes Claude Code working this way: project instruction files load at the start, while glob and grep fetch files on demand. The trade-off is speed: runtime exploration is slower than reading pre-computed data.
+Instead of loading everything up front, the agent keeps lightweight references (file paths, URLs, stored queries) and pulls content in with tools when it needs it. Anthropic describes Claude Code working this way: project instruction files load at the start, while glob and grep fetch files on demand. You pay for this in speed, since runtime exploration is slower than reading pre-computed data.
 
 ### Compact the history
 
@@ -71,7 +71,7 @@ Compaction summarizes a conversation nearing its limit and restarts with the sum
 
 ### Delegate to sub-agents
 
-A sub-agent explores in its own clean window and returns a summary. Anthropic notes that each sub-agent “might explore extensively, using tens of thousands of tokens or more, but returns only a condensed, distilled summary of its work (often 1,000-2,000 tokens).” Cognition’s June 2025 post is the counterweight: sub-agents that can’t see each other’s decisions produce inconsistent work, so isolation suits read-heavy research better than parallel writing.
+A sub-agent explores in its own clean window and returns a summary. Anthropic notes that each sub-agent “might explore extensively, using tens of thousands of tokens or more, but returns only a condensed, distilled summary of its work (often 1,000-2,000 tokens).” Cognition’s June 2025 post argues the other side: sub-agents that can’t see each other’s decisions produce inconsistent work, so isolation suits read-heavy research better than parallel writing.
 
 ### Load tools on demand
 

@@ -37,7 +37,7 @@ The paper's own illustrations (Table 2) show the flavor without exposing any tes
 - **Multiple constraints:** "I'm thinking of an airport near the intersection of US-52 and I-95. Can you remind me which one it is?"
 - **Post-processing:** "What is five years after the founding of the largest country in North America in Roman numerals?" A lookup, an addition, then a format conversion.
 
-None of these require obscure sources. The difficulty comes from chaining: each hop depends on getting the previous one right, and a single wrong intermediate fact sinks the final answer.
+None of these require obscure sources. They're hard because each hop depends on getting the previous one right, and a single wrong intermediate fact sinks the final answer.
 
 ## How FRAMES is scored
 
@@ -59,7 +59,7 @@ The baselines are from the paper's 2024 experiments, mostly on Gemini-Pro-1.5-05
 
 Source: [Krishna et al., arXiv 2409.12941](https://arxiv.org/abs/2409.12941), Table 3 and Section 3.2.
 
-Single-shot retrieval barely helped: four BM25 documents added under 7 points over no retrieval, because recall of the gold articles in context was only 0.12 to 0.15. Letting the model write its own queries over several rounds closed most of the gap to the oracle. And even with every gold article in context, the model still missed 27% of questions, roughly 80% of them in the numerical, tabular, and post-processing categories. Retrieval gets you the facts; the arithmetic and table reading still fail on their own.
+Single-shot retrieval barely helped: four BM25 documents added under 7 points over no retrieval, because recall of the gold articles in context was only 0.12 to 0.15. Letting the model write its own queries over several rounds closed most of the gap to the oracle. Even with every gold article in context, the model still missed 27% of questions, roughly 80% of them in the numerical, tabular, and post-processing categories, so good retrieval alone doesn't fix arithmetic and table reading.
 
 ## What FRAMES does and doesn't tell you about web search
 
@@ -89,7 +89,7 @@ The dataset is a single `test.tsv` file with 824 rows. The columns you need:
 - `wiki_links`: a Python-style list of the gold Wikipedia URLs for that question. The same URLs are also spread across `wikipedia_link_1` through `wikipedia_link_11+`.
 - `reasoning_types`: pipe-separated tags such as `Numerical reasoning | Temporal reasoning`.
 
-A minimal harness has three parts. Your agent answers each `Prompt` using whatever retrieval you are testing. A judge model compares each response to `Answer` and returns correct or incorrect. Then you report accuracy overall and per reasoning type, since the per-type split tells you whether failures come from retrieval or from arithmetic.
+In a minimal harness, your agent answers each `Prompt` using whatever retrieval you are testing. A judge model compares each response to `Answer` and returns correct or incorrect. Then you report accuracy overall and per reasoning type, since the per-type split tells you whether failures come from retrieval or from arithmetic.
 
 The `wiki_links` column also lets you score retrieval on its own, without a judge. Compare the articles your search step returned with the gold list and you get recall per question. The paper's BM25 recall of 0.12 to 0.15 gives you a floor to beat.
 
@@ -142,7 +142,7 @@ A team of seven Google researchers; Satyapriya Krishna is the first author. The 
 
 ### How many questions are in FRAMES?
 
-1. Each needs information from 2 to 15 Wikipedia articles, and each is tagged with one or more of five reasoning types.
+FRAMES has 824 questions. Each needs information from 2 to 15 Wikipedia articles, and each is tagged with one or more of five reasoning types.
 
 ### Is FRAMES a web search benchmark?
 

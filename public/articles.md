@@ -124,6 +124,7 @@
 
 ### Industry Terms
 
+* [What is a Decisions API? How decision models give software answers instead of text](https://parallel.ai/articles/what-is-a-decisions-api)
 * [BrowseComp explained: what it measures and how search APIs compare](https://parallel.ai/articles/browsecomp-benchmark)
 * [DeepSearchQA explained: how deep research agents are scored](https://parallel.ai/articles/deepsearchqa-benchmark)
 * [The FRAMES benchmark explained: multi-hop retrieval for RAG and search agents](https://parallel.ai/articles/frames-benchmark)

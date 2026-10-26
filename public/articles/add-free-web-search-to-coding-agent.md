@@ -2,9 +2,9 @@
 
 You can add web search to Claude Code, Cursor, Codex CLI, or OpenClaw for $0 by pointing the agent at Parallel’s keyless Search MCP, then add the Parallel CLI and Agent Skills when you want scripting and research. This guide covers the two-minute MCP setup, the eight-minute CLI setup, a test prompt, and fixes for the usual errors.
 
-Coding agents guess when they can’t read the web. They’ll write against a deprecated API, cite a flag that was renamed two releases ago, or miss the migration note that explains your build error. Web search fixes that, and you can wire it up in about 10 minutes without paying anything.
+A coding agent that can’t read the web guesses. It writes against a deprecated API, cites a flag that was renamed two releases ago, or misses the migration note that explains your build error. You can give it web search in about 10 minutes without paying anything.
 
-We tested every command below on September 28, 2026 against the live service, with Parallel CLI 0.9.3 and Claude Code 2.1.284. There are two paths. The first takes about two minutes and needs no account. The second takes about eight more, uses the free monthly credits on a Parallel account, and gives the agent a command-line tool it can script.
+We tested every command below on September 28, 2026 against the live service, with Parallel CLI 0.9.3 and Claude Code 2.1.284. The first path takes about two minutes and needs no account. The second takes about eight more, uses the free monthly credits on a Parallel account, and gives the agent a command-line tool it can script.
 
 ## The 10-minute checklist
 
@@ -107,7 +107,7 @@ parallel-cli extract https://nextjs.org/docs/app/guides/upgrading/version-16 \
   --objective "List the breaking changes" --json
 ```
 
-Pass `--mode fast` on purpose. The CLI defaults to Basic, which costs $5 per 1,000 requests; Fast costs $1 per 1,000 and is the mode our [search modes docs](https://docs.parallel.ai/search/modes) recommend starting with. Use `--mode turbo` (about 200ms, English and Japanese queries only) for simple lookups; our sibling guide on [Fast vs. Turbo](https://parallel.ai/articles/parallel-search-fast-vs-turbo) covers that choice in agent loops. On Openbenchmarks’ [coding-agent board](https://openbenchmarks.com/web-search-for-coding-agents) (100 documentation tickets, September 2026), Fast completed 66.7% from search results alone and Turbo 64.7%, a gap inside the run-to-run noise, with Turbo’s searches averaging 333ms.
+Pass `--mode fast` explicitly. The CLI defaults to Basic, which costs $5 per 1,000 requests; Fast costs $1 per 1,000 and is the mode our [search modes docs](https://docs.parallel.ai/search/modes) recommend starting with. Use `--mode turbo` (about 200ms, English and Japanese queries only) for simple lookups; our sibling guide on [Fast vs. Turbo](https://parallel.ai/articles/parallel-search-fast-vs-turbo) covers that choice in agent loops. On Openbenchmarks’ [coding-agent board](https://openbenchmarks.com/web-search-for-coding-agents) (100 documentation tickets, September 2026), Fast completed 66.7% from search results alone and Turbo 64.7%, a gap inside the run-to-run noise, with Turbo’s searches averaging 333ms.
 
 Because every command takes `--json`, the agent can chain calls in one shell invocation. This pipeline searches, keeps the top three URLs, and extracts all of them:
 

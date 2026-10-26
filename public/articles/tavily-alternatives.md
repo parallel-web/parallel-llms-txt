@@ -1,6 +1,6 @@
 # The best Tavily alternatives for AI agents in 2026
 
-Nebius completed its acquisition of Tavily in 2026, and Tavily still runs under its own brand. If you’re comparing options, this guide covers six Tavily alternatives for AI agents on price per 1,000 searches, free allowance, and fit.
+Tavily alternatives for AI agents differ most on price per 1,000 searches, free allowance, and whether one API key covers search, extraction, and research. Nebius completed its acquisition of Tavily in 2026, and Tavily still runs under its own brand. This guide covers six alternatives, what Tavily costs today, how to choose among them, and how to switch.
 
 ## Quick answer
 
@@ -10,7 +10,7 @@ Parallel is the closest match for agent search workloads. Its Turbo and Fast mod
 
 Nebius, the AI cloud company listed on Nasdaq as NBIS, [announced an agreement to acquire Tavily](https://nebius.com/newsroom/nebius-announces-agreement-to-acquire-tavily-to-add-agentic-search-to-its-ai-cloud-platform) on February 10, 2026. Bloomberg reported a price of $275 million, and [Calcalist](https://www.calcalistech.com/ctechnews/article/byzggtiqgx) reported that the total could reach $400 million if Tavily meets performance targets. In a [May 20, 2026 post](https://nebius.com/blog/posts/bringing-agentic-search-into-the-production-ai-stack), Nebius said it has acquired Tavily and is bringing it into its Token Factory inference platform.
 
-Under the deal, Tavily keeps its brand, and founder and CEO Rotem Weiss and his team joined Nebius, as Weiss wrote in [Tavily is Joining Nebius](https://www.tavily.com/blog/tavily-is-joining-nebius). Neither company’s announcement mentioned changes to the API or to pricing. What it does change is ownership: Tavily’s roadmap is now set inside a cloud company that says it wants one stack for inference, search, and deployment.
+Under the deal, Tavily keeps its brand, and founder and CEO Rotem Weiss and his team joined Nebius, as Weiss wrote in [Tavily is Joining Nebius](https://www.tavily.com/blog/tavily-is-joining-nebius). Neither company’s announcement mentioned changes to the API or to pricing. The change is in ownership, which puts Tavily’s roadmap inside a cloud company that says it wants one stack for inference, search, and deployment.
 
 ## What Tavily costs today
 
@@ -38,11 +38,11 @@ Parallel Search takes a natural-language objective, with optional keyword querie
 
 ### Exa
 
-Exa searches its own index using embeddings and returns page text and highlights with results. Instant search costs $4 per 1,000 requests, Fast and Auto cost $7, and Deep and Deep-Reasoning cost $12 and $15, each with up to 10 results. Exa also sells Contents at $1 per 1,000 pages, an Answer endpoint at $5 per 1,000, and Monitors at $15 per 1,000. Accounts get $10 in free credits a month.
+Exa runs its own embeddings-based index and returns page text and highlights alongside results. Pricing goes by tier: Instant is $4 per 1,000 requests, Fast and Auto $7, Deep $12, and Deep-Reasoning $15, each with up to 10 results. Contents ($1 per 1,000 pages), an Answer endpoint ($5 per 1,000), and Monitors ($15 per 1,000) are billed separately. Accounts get $10 in free credits a month.
 
 ### Brave Search API
 
-Brave Search API serves results from Brave’s independent web index, the one behind Brave Search. Search costs $5 per 1,000 requests, Brave also offers an LLM Context service, and the Answers endpoint costs $4 per 1,000 plus $5 per million tokens. Every account gets $5 in free credits a month, and Brave asks for a card to verify free accounts.
+Brave’s API serves results from the same independent web index that runs Brave Search, at $5 per 1,000 requests. The Answers endpoint costs $4 per 1,000 plus $5 per million tokens, and Brave also offers an LLM Context service. Free accounts get $5 in credits a month but need a card for verification.
 
 ### Perplexity Search API
 
@@ -54,15 +54,15 @@ Linkup charges per request, with no credit conversion. Search costs $0.005 to $0
 
 ### Firecrawl
 
-Firecrawl is the closest replacement for Tavily’s Map and Crawl endpoints. It bills in credits shared across endpoints, with a search of 10 results costing 2 credits. The free plan includes 1,000 credits a month, and paid plans start at $16 a month billed yearly for 5,000 credits. You can pair it with any search API on this list: the search API finds pages, and Firecrawl pulls whole sites.
+Firecrawl is the closest replacement for Tavily’s Map and Crawl endpoints. It bills in credits shared across endpoints, with a search of 10 results costing 2 credits. The free plan includes 1,000 credits a month, and paid plans start at $16 a month billed yearly for 5,000 credits. You can pair it with any search API on this list, using search to find pages and Firecrawl to pull whole sites.
 
 ## How to choose
 
 - If cost per search matters most, compare fast tiers. Parallel Turbo and Fast and Perplexity Fast Search list at $1 per 1,000 requests.
-- If your agent also extracts pages and runs research, Parallel and Exa both cover search, page contents, and research runs on one account.
+- Parallel and Exa both cover search, page contents, and research runs on one account, which helps if your agent also extracts pages and runs research.
 - If you crawl whole sites, add Firecrawl next to your search API.
-- If you want results from an independent index with full result metadata, start with Brave.
-- If you pay per request and want simple billing, Parallel, Perplexity, and Linkup all charge per call.
+- Brave is the place to start for results from an independent index with full result metadata.
+- Parallel, Perplexity, and Linkup all charge per call, which keeps billing predictable.
 
 ## Switching from Tavily
 

@@ -10,7 +10,7 @@ No single US statute says “scraping is legal” or “scraping is illegal.” 
 | --- | --- | --- | --- |
 | Computer Fraud and Abuse Act (CFAA) | Did you access a computer without authorization? | Weak claim for public pages; Google hasn’t relied on it | Van Buren v. United States (2021); hiQ v. LinkedIn (9th Cir. 2022) |
 | Contract (terms of service) | Did you agree to terms that forbid automated access? | Google’s terms forbid it; whether they bind a logged-out scraper is untested for Google | Meta v. Bright Data (N.D. Cal. 2024); hiQ v. LinkedIn (N.D. Cal. 2022) |
-| DMCA Section 1201 | Did you circumvent a measure that controls access to copyrighted works? | The live battleground: Google v. SerpApi and Reddit v. SerpApi | Google v. SerpApi (N.D. Cal. 2026); Reddit v. SerpApi (S.D.N.Y. 2026) |
+| DMCA Section 1201 | Did you circumvent a measure that controls access to copyrighted works? | Contested now in Google v. SerpApi and Reddit v. SerpApi | Google v. SerpApi (N.D. Cal. 2026); Reddit v. SerpApi (S.D.N.Y. 2026) |
 | Copyright | Did you copy and reuse protected expression? | Results link to third-party works, and some panels hold licensed images | Case by case |
 | EU database, contract, and privacy law | Did you extract a protected database, breach terms, or process personal data? | Terms can forbid scraping; meta-search can re-utilize a database; GDPR applies to personal data | Ryanair v. PR Aviation (CJEU 2015); Innoweb v. Wegener (CJEU 2013) |
 
@@ -67,13 +67,13 @@ The EU’s text and data mining exception, in Article 4 of the Digital Single Ma
 
 ## Google also enforces through technology and contracts
 
-Most scrapers will never see a courtroom. They’ll see SearchGuard, the September 2025 removal of the num=100 parameter, and the google.com/goto redirect links Google rolled out in August 2026. Around September 13, 2026, rank-tracking vendors reported losing most of their Google data to new blocking. Our explainer on [why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) covers that timeline.
+Most scrapers run into Google’s technical barriers long before a courtroom: SearchGuard, the September 2025 removal of the num=100 parameter, and the google.com/goto redirect links Google rolled out in August 2026. Around September 13, 2026, rank-tracking vendors reported losing most of their Google data to new blocking. Our explainer on [why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) covers that timeline.
 
 Google also writes the restriction into its own contracts. The [Google Cloud Marketplace product terms](https://cloud.google.com/terms/marketplace-product-terms) require sellers of a “Web Search Product” to warrant that they don’t use automated means against Google services in violation of robots.txt, bypass technical access restrictions, or circumvent measures that control access to copyrighted content.
 
 ## How to lower your risk
 
-Legal exposure depends on who runs the scraper, what they bypass, and what happens to the data. A few choices reduce it:
+Legal exposure depends on who runs the scraper, what they bypass, and what happens to the data. These choices reduce it:
 
 - **Use a licensed source.** Google’s Grounding with Google Search and its partner-only Web Search Service API are the sanctioned routes, each with its own terms.
 - **Use an independent index.** Search APIs that crawl the web themselves, such as Brave Search or our Search API, don’t touch google.com.

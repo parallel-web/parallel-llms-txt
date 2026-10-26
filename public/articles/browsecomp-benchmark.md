@@ -42,7 +42,7 @@ The reference implementation lives in OpenAI's [simple-evals](https://github.com
 
 ## Baseline results from the 2025 paper
 
-These are the paper's own numbers from April 2025, on all 1,266 questions. They are useful as history, not as a picture of current models.
+These are the paper's own numbers from April 2025, on all 1,266 questions. They're useful as history but say little about current models.
 
 | Model (April 2025) | Accuracy | Calibration error |
 | --- | --- | --- |
@@ -54,7 +54,7 @@ These are the paper's own numbers from April 2025, on all 1,266 questions. They 
 
 OpenAI notes that Deep Research was trained on data that specifically teaches BrowseComp-style tasks. Humans did poorly too. Of 1,255 questions attempted in the verification campaign, trainers gave up on 888 (70.8%) after about two hours and solved 367 (29.2%). On the solved ones, the trainer's answer matched the reference 86.4% of the time.
 
-Two findings from the paper still shape how people use the benchmark. First, accuracy scales smoothly with test-time compute: more browsing effort per question produced higher scores. Second, sampling 64 answers per question and picking one by majority vote, confidence-weighted vote, or best-of-N improved performance by 15% to 25% over a single attempt, with best-of-N highest. Because answers are easy to verify once found, a model can often tell when it has the right one.
+Two findings from the paper still shape how people use the benchmark. Accuracy scales smoothly with test-time compute: more browsing effort per question produced higher scores. And sampling 64 answers per question, then picking one by majority vote, confidence-weighted vote, or best-of-N, improved performance by 15% to 25% over a single attempt, with best-of-N highest. Because answers are easy to verify once found, a model can often tell when it has the right one.
 
 The paper also shows how uneven the questions are. Across 64 trials per question, Deep Research solved 16% of tasks every time and 14% never. BrowseComp originally had 1,287 questions; OpenAI removed 21 with bad or ambiguous labels after reviewing the ones Deep Research never solved, which is how it arrived at 1,266.
 
@@ -70,7 +70,7 @@ This is why BrowseComp separates search providers more than SimpleQA-style bench
 
 ## How search APIs compare on BrowseComp
 
-We cite three sets of numbers here. They measure different things, so keep them apart.
+The three sets of numbers below measure different things, so don't compare across them.
 
 ### Search APIs in an agent loop (parallel.ai/benchmarks, September 9, 2026)
 
@@ -131,7 +131,7 @@ On this board Perplexity medium leads BrowseComp at 87, ten points ahead of Para
 
 ### Read small samples with care
 
-None of these runs uses all 1,266 questions, and that matters. For a score near 70%, the standard error of an accuracy estimate is about 6.5 points at 50 questions, 4.6 points at 100, and 3.2 points at 200. A two-point gap on a 50-question sample (46% vs 44%) is well inside the noise, while the ten-point AA gap on 200 questions is large enough to take seriously. Different samples, agents, judges, and dates also explain why the same provider can score 74 in one table and 87 in another.
+None of these runs uses all 1,266 questions. For a score near 70%, the standard error of an accuracy estimate is about 6.5 points at 50 questions, 4.6 points at 100, and 3.2 points at 200. A two-point gap on a 50-question sample (46% vs 44%) is well inside the noise, while the ten-point AA gap on 200 questions is large enough to take seriously. Different samples, agents, judges, and dates also explain why the same provider can score 74 in one table and 87 in another.
 
 ## Limitations, contamination, and saturation
 
@@ -139,11 +139,11 @@ None of these runs uses all 1,266 questions, and that matters. For a score near 
 
 **Narrow scope.** BrowseComp measures finding one short fact. It says little about long-form synthesis, freshness, or ambiguous user requests. Pair it with [WideSearch](https://parallel.ai/articles/widesearch-benchmark) for breadth and [SimpleQA](https://parallel.ai/articles/simpleqa-benchmark) for single-hop accuracy.
 
-**Saturation.** Deep Research scored 51.5% in April 2025. The best deep-research systems in the Task API table now score in the 90s on a 100-question subset, so the headroom at the top is shrinking. Search-endpoint scores at the low-cost tier still sit in the 30s and 40s, so the benchmark still separates cheaper setups.
+**Saturation.** Deep Research scored 51.5% in April 2025. The best deep-research systems in the Task API table now score in the 90s on a 100-question subset, so the headroom at the top is shrinking. Search-endpoint scores at the low-cost tier sit in the 30s and 40s, so the benchmark still separates cheaper setups.
 
 ## Variants: BrowseComp-Plus and BrowseComp-ZH
 
-**BrowseComp-Plus** ([arXiv 2508.06600](https://arxiv.org/abs/2508.06600), submitted August 8, 2025, by Zijian Chen, Xueguang Ma, and 18 co-authors including Jimmy Lin; accepted to ACL 2026) replaces the live web with a fixed corpus. It keeps 830 BrowseComp queries and pairs them with 100,195 documents: human-verified evidence documents plus mined hard negatives. Because the corpus is fixed, you can test a retriever and an agent separately and get reproducible results. In the paper, the open-source Search-R1 with a BM25 retriever scored 3.86%, GPT-5 scored 55.9%, and GPT-5 with the Qwen3-Embedding-8B retriever reached 70.1% with fewer search calls. The trade-off is realism: it tests retrieval over a 100K-document corpus rather than the open web.
+**BrowseComp-Plus** ([arXiv 2508.06600](https://arxiv.org/abs/2508.06600), submitted August 8, 2025, by Zijian Chen, Xueguang Ma, and 18 co-authors including Jimmy Lin; accepted to ACL 2026) replaces the live web with a fixed corpus. It keeps 830 BrowseComp queries and pairs them with 100,195 documents: human-verified evidence documents plus mined hard negatives. Because the corpus is fixed, you can test a retriever and an agent separately and get reproducible results. In the paper, the open-source Search-R1 with a BM25 retriever scored 3.86%, GPT-5 scored 55.9%, and GPT-5 with the Qwen3-Embedding-8B retriever reached 70.1% with fewer search calls. It gives up some realism in exchange, since it tests retrieval over a 100K-document corpus rather than the open web.
 
 **BrowseComp-ZH** ([arXiv 2504.19314](https://arxiv.org/abs/2504.19314), April 27, 2025) has 289 multi-hop questions written natively for the Chinese web, across 11 domains. In the original paper the best system, OpenAI's DeepResearch, reached 42.9%.
 

@@ -8,7 +8,7 @@ Hermes Agent is an open-source personal AI agent from [Nous Research](https://no
 
 Nous calls Hermes “the agent that grows with you.” In practice that means a long-running process with three parts: a model of your choice, a set of tools it can call (shell, files, browser, web search, code execution, and more), and a memory layer that persists between conversations. The docs list more than 60 built-in tools, grouped into toolsets you can switch on or off per platform with `hermes tools`.
 
-What sets it apart from a chat window is that it keeps working when you close the window. A messaging gateway keeps it reachable from your phone, a built-in scheduler runs tasks while you sleep, and its skills system means a workflow it figured out on Monday is a saved procedure by Tuesday.
+Unlike a chat window, it keeps working after you close it. A messaging gateway keeps it reachable from your phone, a built-in scheduler runs tasks while you sleep, and the skills system can turn a workflow it figured out on Monday into a saved procedure by Tuesday.
 
 ## How Hermes Agent works
 
@@ -18,7 +18,7 @@ Hermes doesn’t ship with a model. You connect one: [Nous Portal](https://porta
 
 ### Persistent memory
 
-Two small files sit in every system prompt: `MEMORY.md` for the agent’s own notes (capped at 2,200 characters) and `USER.md` for your preferences (capped at 1,375 characters). The caps are deliberate: when memory fills up, the agent has to consolidate entries instead of piling them up. Older conversations live in a SQLite session store with full-text search, so Hermes can look up what you discussed weeks ago without loading all of it. You can plug in an external memory provider such as Honcho or Mem0 instead, and you can require approval for every memory write with `memory.write_approval`.
+Two small files sit in every system prompt: `MEMORY.md` for the agent’s own notes (capped at 2,200 characters) and `USER.md` for your preferences (capped at 1,375 characters). The caps force the agent to consolidate entries when memory fills up instead of piling them up. Older conversations live in a SQLite session store with full-text search, so Hermes can look up what you discussed weeks ago without loading all of it. You can plug in an external memory provider such as Honcho or Mem0 instead, and you can require approval for every memory write with `memory.write_approval`.
 
 ### Skills it writes for itself
 
@@ -114,7 +114,7 @@ Paid tiers include access to more than 200 models and hosted tool usage. Nous al
 ## Hermes Agent use cases
 
 - **A personal assistant in your pocket.** Run the gateway on a home server or a small VPS and message Hermes from Telegram or Signal to check calendars, draft replies, or look things up.
-- **Scheduled briefings and reports.** Cron jobs that search the web, summarize, and post to Slack or email every morning.
+- **Scheduled briefings and reports.** Cron jobs can search the web, summarize what they find, and post to Slack or email every morning.
 - **Server and homelab watchdogs.** `hermes cron create --script ... --no-agent` runs a script on a schedule and forwards its output without calling a model, which suits disk and uptime alerts.
 - **Coding help.** Hermes speaks the Agent Client Protocol, so it works inside VS Code, Zed, and JetBrains editors, and subagents can work in separate git worktrees.
 - **Research tasks.** Subagents fan out across sources in parallel, and `execute_code` lets one Python script call several tools in a single step.
@@ -122,11 +122,11 @@ Paid tiers include access to more than 200 models and hosted tool usage. Nous al
 
 ## Hermes Agent vs. OpenClaw
 
-[OpenClaw](https://github.com/openclaw/openclaw) is the other big open-source personal agent, with 391,638 GitHub stars on October 10, 2026, and also MIT-licensed. Both self-host, connect to the same chat apps, and run cron jobs. The difference is philosophy: OpenClaw treats the agent as a workspace of human-edited markdown files with a central gateway and a visual Canvas, while Hermes bets on a learning loop where the agent writes and refines its own skills. OpenClaw leans toward device integration; Hermes leans toward programmatic depth with subagents and `execute_code`. Hermes ships a `hermes claw` command for migrating from OpenClaw. Our [full OpenClaw vs. Hermes comparison](https://parallel.ai/articles/openclaw-vs-nousresearch-hermes) goes through architecture, channels, and when to choose which.
+[OpenClaw](https://github.com/openclaw/openclaw) is the other big open-source personal agent, with 391,638 GitHub stars on October 10, 2026, and also MIT-licensed. Both self-host, connect to the same chat apps, and run cron jobs. They differ in design. OpenClaw treats the agent as a workspace of human-edited markdown files with a central gateway and a visual Canvas, while Hermes bets on a learning loop where the agent writes and refines its own skills. OpenClaw also leans toward device integration, and Hermes toward programmatic depth with subagents and `execute_code`. Hermes ships a `hermes claw` command for migrating from OpenClaw. Our [full OpenClaw vs. Hermes comparison](https://parallel.ai/articles/openclaw-vs-nousresearch-hermes) goes through architecture, channels, and when to choose which.
 
 ## Is Hermes Agent safe?
 
-Hermes is legitimate, widely used software, but an agent with shell access and your API keys deserves care.
+Hermes is legitimate, widely used software, but an agent with shell access and your API keys needs careful setup.
 
 - **Install only from official sources.** Lookalike “one-click installer” repositories such as `hermesagent-nousresearch/hermes-agent` and `hermes-agent-nousresearch/hermes-agent` appeared on GitHub in 2026 offering Windows executables. Nous didn’t publish them, and both returned 404 when we checked on October 10, 2026, but new ones keep appearing.
 - **Treat web content as untrusted.** Any page, email, or file the agent reads can carry prompt-injection instructions. Hermes scans memory writes, context files, skills, and cron prompts for injection patterns, but no scanner catches everything. Keep approvals on `smart` or `manual`, and avoid `--yolo` on machines with sensitive data.

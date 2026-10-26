@@ -20,23 +20,21 @@ OpenAI released GPT-6 Sol and GPT-6 Luna on September 22, 2026, after these runs
 
 ## The three suites and what each one stresses
 
-Each suite tests a different kind of search work, and we report a sample of each rather than the full dataset.
-
 **SimpleQA Verified** measures short factual lookups. Our page describes it as “a 1,000-question refinement of OpenAI’s SimpleQA with corrected labels and balanced topics,” created by Google DeepMind, and reports “a sample of 100 questions.” Every configuration scores 91% or higher, so it mostly separates cost and catches regressions.
 
-**BrowseComp** measures persistence. OpenAI built it from “1,266 questions that require persistent browsing to locate hard-to-find, entangled information on the web,” and we report “a sample of 50 questions.” Its questions stack several constraints, so it rewards results the agent can chain across many hops.
+**BrowseComp** tests persistence. OpenAI built it from “1,266 questions that require persistent browsing to locate hard-to-find, entangled information on the web,” and we report “a sample of 50 questions.” Its questions stack several constraints, so it rewards results the agent can chain across many hops.
 
-**WideSearch** measures breadth. ByteDance Seed built “200 broad information-seeking tasks that require collecting many verifiable facts from across the web and assembling them into a structured table,” and we report “a sample of 100 tasks.” It uses partial credit, in the page’s words: “each task’s score reflects the share of required items collected correctly, averaged across tasks, so it is not directly comparable to the exact-match accuracy on the other benchmarks.” A WideSearch score of 57.6 means the agent collected about 58% of the required items correctly on average. It doesn’t mean it finished 58% of tasks.
+**WideSearch** is about breadth. ByteDance Seed built “200 broad information-seeking tasks that require collecting many verifiable facts from across the web and assembling them into a structured table,” and we report “a sample of 100 tasks.” It uses partial credit, in the page’s words: “each task’s score reflects the share of required items collected correctly, averaged across tasks, so it is not directly comparable to the exact-match accuracy on the other benchmarks.” A WideSearch score of 57.6 means the agent collected about 58% of the required items correctly on average, not that it finished 58% of tasks.
 
 ## How we compute cost per 1,000 questions
 
 Cost sits on the x-axis because the same accuracy at a tenth of the price is a different product decision. The methodology says: “Cost includes LLM token costs and tool call costs, averaged per question and shown on a log scale.” We multiply that per-question average by 1,000 and label it CPM.
 
-The search bill is only part of it. A provider with $1 per 1,000 requests list pricing can still produce an expensive run if its results make the agent search many more times and read long pages. That’s why Parallel Fast and Turbo cost $2.0 per 1,000 questions on SimpleQA Verified while the same modes cost $11.8 and $13.2 on BrowseComp: the agent works much harder per question. Our Search pricing (Turbo and Fast at $1 per 1,000 requests, Basic and Advanced at $5) is only one input.
+List price is only part of the cost. A provider with $1 per 1,000 requests list pricing can still produce an expensive run if its results make the agent search many more times and read long pages. That’s why Parallel Fast and Turbo cost $2.0 per 1,000 questions on SimpleQA Verified while the same modes cost $11.8 and $13.2 on BrowseComp: the agent works much harder per question. Our Search list prices (Turbo and Fast at $1 per 1,000 requests, Basic and Advanced at $5) are one input to that total.
 
 ## Current Search API results
 
-Here are all three Search API suites from parallel.ai/benchmarks in one table, accuracy (or WideSearch score) followed by CPM.
+The table below puts all three Search API suites from parallel.ai/benchmarks side by side, with accuracy (or WideSearch score) followed by CPM.
 
 | Configuration | Tier | SimpleQA Verified | BrowseComp | WideSearch |
 | --- | --- | --- | --- | --- |
@@ -73,11 +71,11 @@ The [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/sear
 
 ## Limits that apply to every search benchmark
 
-Sample sizes are small everywhere: our 50 BrowseComp questions, Openbenchmarks’ 45 multi-hop questions, and AA’s 200-question BrowseComp subset all leave several points of noise. Vendor-run numbers, ours included, come from a party that picked the suites and the harness. Public benchmarks leak: BrowseComp and SimpleQA answers now appear on the open web and in training data, which is why AA filters them and Openbenchmarks builds lookups around facts dated after the model’s cutoff. Latency boards measure from wherever the benchmark client runs, under one concurrency profile, so your numbers from another region will differ. And every suite here uses an LLM grader, which can misjudge hedged or partially right answers in ways a human reviewer wouldn’t.
+Sample sizes are small everywhere: our 50 BrowseComp questions, Openbenchmarks’ 45 multi-hop questions, and AA’s 200-question BrowseComp subset all leave several points of noise. Vendor-run numbers, ours included, come from a party that picked the suites and the harness. Public benchmarks leak: BrowseComp and SimpleQA answers now appear on the open web and in training data, which is why AA filters them and Openbenchmarks builds lookups around facts dated after the model’s cutoff. Latency boards measure from wherever the benchmark client runs, under one concurrency profile, so your numbers from another region will differ. Every suite here also uses an LLM grader, which can misjudge hedged or partially right answers in ways a human reviewer wouldn’t.
 
 ## Run it on your own queries
 
-A public benchmark tells you how providers did on someone else’s task mix. Your production queries settle the choice. Our guide to [benchmarking web search APIs on your own queries](https://parallel.ai/articles/how-to-benchmark-web-search-apis) walks through building a query set with correctness criteria, a fixed harness, a judge you spot-check, and paired scoring with error bars. If you’re wiring the harness itself, [build an agent harness with Parallel Search](https://parallel.ai/articles/build-an-agent-harness-with-parallel-search) covers the loop, and [Fast vs. Turbo](https://parallel.ai/articles/parallel-search-fast-vs-turbo) helps you pick which of our modes to test.
+A public benchmark shows how providers did on someone else’s task mix, so test on your production queries before you choose. Our guide to [benchmarking web search APIs on your own queries](https://parallel.ai/articles/how-to-benchmark-web-search-apis) walks through building a query set with correctness criteria, a fixed harness, a judge you spot-check, and paired scoring with error bars. If you’re wiring the harness itself, [build an agent harness with Parallel Search](https://parallel.ai/articles/build-an-agent-harness-with-parallel-search) covers the loop, and [Fast vs. Turbo](https://parallel.ai/articles/parallel-search-fast-vs-turbo) helps you pick which of our modes to test.
 
 ## Get started
 

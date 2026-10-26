@@ -30,7 +30,7 @@ client = Parallel(
 
 ## Step 1: Keep personal data out of queries
 
-Agents write search queries from user tasks, so personal details can end up in tool calls. A small redaction step removes the obvious ones before anything leaves your system.
+Agents write search queries from user tasks, so personal details can end up in tool calls. A small redaction step strips the obvious ones before a query leaves your system.
 
 ```python
 import re

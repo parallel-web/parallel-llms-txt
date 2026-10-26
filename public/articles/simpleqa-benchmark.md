@@ -6,7 +6,7 @@ SimpleQA is OpenAI's short-answer factuality benchmark, and its cleaned successo
 
 SimpleQA is a factuality benchmark that OpenAI released on October 30, 2024, made up of 4,326 short, fact-seeking questions that each have a single, indisputable answer. It tests whether a language model can answer from its own trained knowledge, and whether it knows when to decline instead of guessing. SimpleQA Verified is a cleaned 1,000-prompt version that Google DeepMind and Google Research published on September 9, 2025.
 
-Both versions were built to measure what a model knows without tools. Once you give an agent a web search API, the picture changes, and that change is the main reason this benchmark matters to anyone choosing a search provider. We make Parallel, a web search API for AI agents, and we publish SimpleQA Verified results on our [benchmarks page](https://parallel.ai/benchmarks), so read the comparison sections with that in mind.
+Both versions were built to measure what a model knows without tools. Give an agent a web search API and the scores change, which is why the benchmark matters if you're choosing a search provider. We make Parallel, a web search API for AI agents, and we publish SimpleQA Verified results on our [benchmarks page](https://parallel.ai/benchmarks), so read the comparison sections with that in mind.
 
 ## How SimpleQA was built
 
@@ -59,9 +59,9 @@ The dataset is on [Kaggle](https://www.kaggle.com/benchmarks/deepmind/simpleqa-v
 
 ## Limitations, saturation, and contamination
 
-The most important limitation for search users is written into the SimpleQA Verified paper itself. All models there were evaluated without tools, and the authors state that "Enabling tools on SimpleQA Verified results in near perfect performance, emphasizing that SimpleQA Verified should be employed for measuring parametric factuality only."
+For search users, the main limitation comes from the SimpleQA Verified paper itself. All models there were evaluated without tools, and the authors state that "Enabling tools on SimpleQA Verified results in near perfect performance, emphasizing that SimpleQA Verified should be employed for measuring parametric factuality only."
 
-That makes sense given how the questions were made. Every answer was found by a person browsing the web, and the original rules required at least two sources on different domains. A question that a trained annotator could answer with a few searches is usually one a search API can answer too. With retrieval, SimpleQA stops being a test of memory and becomes a test of whether the search tool returns a page containing one well-documented fact.
+The result follows from how the questions were made. Every answer was found by a person browsing the web, and the original rules required at least two sources on different domains. A question that a trained annotator could answer with a few searches is usually one a search API can answer too. With retrieval, SimpleQA measures whether the search tool returns a page containing one well-documented fact.
 
 Contamination is the second issue. Both datasets are public, and SimpleQA has been on GitHub since 2024. The questions, and in many cases the answers, now appear in papers, blog posts, leaderboards, and dataset mirrors. Newer models may have trained on the answers, and a search agent's query can land on a page that lists the benchmark item itself. Either way, a high score can reflect exposure to the benchmark rather than general skill.
 
@@ -86,11 +86,11 @@ We run SimpleQA Verified as part of our Search API evaluation, and the numbers b
 
 Every configuration lands between 91% and 97%. On a 100-question sample, the gap between 94% and 91% is three questions, so most of the accuracy differences here are small. At the low-cost tier, Parallel Fast, Perplexity, and Tavily tie at 94%. At the frontier tier, Parallel Advanced and Basic reach 97%, two points above Perplexity, but Perplexity gets to 95% at $20.2 per 1,000 questions, which is cheaper than either Parallel frontier mode.
 
-Cost is where the providers separate. Parallel Fast reaches 94% at $2 per 1,000 questions, against $5.5 for Perplexity and $17.4 for Tavily at the same accuracy. So with search enabled, SimpleQA Verified mostly tells you two things. It shows what a simple factual lookup costs on each provider, and it works as a regression check, since a search tool that suddenly drops well below the 90s on single-fact questions has a retrieval problem. It does not tell you much about hard, multi-hop research. For that, look at [BrowseComp](https://parallel.ai/articles/browsecomp-benchmark), where the same agents spread from 32% to 74%, or at [DeepSearchQA](https://parallel.ai/articles/deepsearchqa-benchmark), which scores complete answer lists.
+The providers separate on cost. Parallel Fast reaches 94% at $2 per 1,000 questions, against $5.5 for Perplexity and $17.4 for Tavily at the same accuracy. With search enabled, SimpleQA Verified mostly shows what a simple factual lookup costs on each provider. It also works as a regression check, since a search tool that suddenly drops well below the 90s on single-fact questions has a retrieval problem. It says little about hard, multi-hop research. For that, look at [BrowseComp](https://parallel.ai/articles/browsecomp-benchmark), where the same agents spread from 32% to 74%, or at [DeepSearchQA](https://parallel.ai/articles/deepsearchqa-benchmark), which scores complete answer lists.
 
 ## How to run SimpleQA in your own evals
 
-The original dataset and grader live in OpenAI's [simple-evals](https://github.com/openai/simple-evals) repository, and SimpleQA Verified is on Kaggle with a starter notebook. A search-enabled run needs an agent loop that calls your search tool and a grader prompt that compares the final answer to the reference. These choices change results more than people expect.
+The original dataset and grader live in OpenAI's [simple-evals](https://github.com/openai/simple-evals) repository, and SimpleQA Verified is on Kaggle with a starter notebook. A search-enabled run needs an agent loop that calls your search tool and a grader prompt that compares the final answer to the reference. The setup choices below affect results.
 
 - **Grader model and prompt.** The SimpleQA Verified grader prompt handles numeric ranges and hedged answers better than the original. Use the same grader for every provider you compare.
 - **Sample size.** At 100 questions, each question is one point. If two providers are within a few points, run the full 1,000 or several samples before drawing conclusions.
@@ -139,7 +139,7 @@ SimpleQA is OpenAI's original 4,326-question set from October 2024. SimpleQA Ver
 
 ### Is SimpleQA a good benchmark for web search APIs?
 
-It is a useful sanity check and cost comparison, but it doesn't separate search APIs much on accuracy. With search enabled, every provider in our September 9, 2026 run scored between 91% and 97%. Use harder benchmarks such as BrowseComp to compare retrieval quality.
+It's a useful sanity check and cost comparison, but it doesn't separate search APIs much on accuracy. With search enabled, every provider in our September 9, 2026 run scored between 91% and 97%. Use harder benchmarks such as BrowseComp to compare retrieval quality.
 
 ### How is SimpleQA scored?
 

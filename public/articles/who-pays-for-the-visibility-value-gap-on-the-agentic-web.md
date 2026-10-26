@@ -1,6 +1,6 @@
 # Who pays for the visibility-value gap on the agentic web
 
-The visibility-value gap is the distance between how often a domain appears in AI results and how much value it adds, measured as Shapley value. Underrated sources pay through lost credit, publishers through lost traffic, and agent builders through worse answers as sources close off. The visibility-value gap study by Parallel’s research team, published July 31, 2026, measured that gap, and the fix is to pay each source for its contribution.
+The visibility-value gap on the agentic web is the difference between how often AI systems surface a source and how much that source adds to their answers. This article covers who pays for that gap, why citation counts can’t close it, how Index by Parallel prices contribution, and how to find where your own site sits.
 
 _Parallel’s research team measured how often AI agents surface each source and how much each one adds. See who pays for the visibility-value gap and how to close it._
 
@@ -52,15 +52,15 @@ The table lists the six most underrated and the six most overexposed domains in 
 | investing.com | Overexposed | 107 | 52 |
 | globaldata.com | Overexposed | 117 | 51 |
 
-The arxiv.org site is the original location of specific findings, which gives it priority. The FDA publishes the record itself on fda.gov, so the site carries authority that a summary can’t match.
+Specific findings often appear first on arxiv.org, which gives the site priority. The FDA publishes its records directly on fda.gov, and no summary elsewhere carries the same authority.
 
 Home Depot’s site holds the live price and stock of a specific SKU (stock keeping unit), which no other page can answer. In our data, primary records and live inventory carry outsized value, and sites such as scribd.com and medium.com carry outsized visibility.
 
-Read these numbers with the method in mind. The study draws on one week of recent Index activity, and the chart covers the week of May 25, 2026. The data skews toward enterprise use cases, and we expect the picture to broaden toward consumer interest.
+The study draws on one week of recent Index activity, and the chart covers the week of May 25, 2026. The data skews toward enterprise use cases, and we expect the picture to broaden toward consumer interest.
 
 ## Who pays, and how
 
-If you price content on visibility, value flows to the sites agents see most and away from the sites they need most. The cost lands on three groups, and each pays in a different way.
+If you price content on visibility, value flows to the sites agents see most and away from the sites they need most. Underrated sources, publishers, and agent builders each absorb part of that cost.
 
 ### Underrated sources pay first
 
@@ -74,7 +74,7 @@ The [Tow Center’s Journalism Zero report](https://www.cjr.org/tow_center_repor
 
 ### Publishers pay when traffic stops coming back
 
-The visibility bargain is eroding, and Google users who see an AI summary click fewer links than users who don’t see one. [Pew Research Center’s browsing study](https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/) tracked the Google searches of 900 US adults in March 2025. Users who saw an AI summary clicked a traditional result in 8% of visits, compared with 15% of visits without one.
+Google users who see an AI summary click fewer links than users who don’t see one. [Pew Research Center’s browsing study](https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/) tracked the Google searches of 900 US adults in March 2025. Users who saw an AI summary clicked a traditional result in 8% of visits, compared with 15% of visits without one.
 
 Those users clicked a link inside the summary in 1% of visits. Pew’s study is observational, so the fair reading is that AI summaries are associated with fewer clicks to sources.
 
@@ -96,19 +96,19 @@ Blocking is rational without a value exchange, and everyone downstream pays for 
 
 Swapping pageviews for citation counts or crawl counts keeps the same flaw. Each one counts an event, and none measures what changed in the answer.
 
-Uniqueness drives the gap. Parallel’s research team found that “if a hundred sites report the same fact, each earns very little, even if all hundred are cited often.” Visibility rewards ubiquity, and Shapley value rewards irreplaceability.
+The gap comes from uniqueness. Parallel’s research team found that “if a hundred sites report the same fact, each earns very little, even if all hundred are cited often.” Visibility rewards a source for appearing everywhere, while Shapley value rewards a source that’s hard to replace.
 
 Cloudflare reached a similar conclusion. In a July 1, 2026 post on [Cloudflare’s Pay Per Use experiments](https://blog.cloudflare.com/making-ai-search-smarter/), the company called crawling “a crude measure of value.” Cloudflare noted that a crawler might fetch a page once while thousands of answers cite it.
 
 Patel, Zhou, and Fanti’s [MaxShapley attribution research](https://arxiv.org/abs/2512.05958), a December 2025 preprint, calls for “fair mechanisms to attribute and compensate content providers.” The authors note that exact Shapley values carry an exponential compute cost. MaxShapley, a special case of the Shapley value, computes attributions in polynomial time in the number of documents. The authors report up to a 9x cut in resource use over prior methods at the same attribution accuracy.
 
-Contributions are entangled and depend on order, so the Shapley method averages each source’s marginal contribution across combinations of sources. Payment based on counts favors the sites that appear everywhere, which describes the overexposed quadrant.
+Contributions are entangled and depend on order, so the Shapley method averages each source’s marginal contribution across combinations of sources. Payment based on counts favors the sites that appear everywhere, the overexposed quadrant.
 
 As a research direction, we propose worked examples that split one answer’s value across its sources and compare Shapley value with citation counts.
 
 ## The missing layer is contribution accounting
 
-We treat the gap as an infrastructure problem, because policy and intent can’t price a source without a measurement. The industry has started building the pipes.
+We treat the gap as an infrastructure problem, because policy and intent can’t price a source without a measurement. Standards for licensing terms and content monetization have started to appear.
 
 The RSL Technical Steering Committee calls the [RSL 1.0 licensing standard](https://rslstandard.org/press/rsl-1-specification-2025) “an industry-first, open web standard” for publishers and creators to define licensing terms. The group published version 1.0 on December 10, 2025.
 
@@ -141,19 +141,17 @@ You can watch the launch walkthrough below.
 You can place your site on the visibility-value chart with a few checks. Traffic and citation dashboards show exposure alone, so start with contribution data to learn whether agents depend on your content.
 
 1. Check your domain on Index to [see what your content is worth](https://index.parallel.ai/). The dashboard shows the queries you answer, agent references, and uniqueness.
+2. Compare your visibility signals with your value signals. High citations with low uniqueness point to overexposure, and low impressions with high value point to an underrated site.
+3. Audit which of your facts exist on your site and nowhere else. Facts that repeat across many pages are substitutable. The [Parallel Search API](https://parallel.ai/products/search) finds the pages that cover your topic for an objective you write in plain language. The [Extract API](https://parallel.ai/products/extract) returns their content as clean markdown. Compare those pages with yours to see which claims repeat everywhere.
+4. Invest in what’s irreplaceable. Our research found that “original reporting, proprietary data, and first-hand expertise outperform syndicated content.”
 
 As an example, [arxiv.org’s public Index preview](https://index.parallel.ai/preview/arxiv.org) shows April 2026 scores of 73 for impressions, 74 for citations, 100 for value, and 76 for uniqueness.
 
 ![Index by Parallel preview dashboard for arxiv.org showing April 2026 scores: impressions 73, citations 74, value 100, and uniqueness 76.](https://cdn.sanity.io/images/5hzduz3y/production/b05d65a7582f491d1b56064637809c3b685587e8-1100x820.png)
 
 _arxiv.org’s public Index preview, April 2026_
-2. Compare your visibility signals with your value signals. High citations with low uniqueness point to overexposure, and low impressions with high value point to an underrated site.
-3. Audit which of your facts exist on your site and nowhere else. Facts that repeat across many pages are substitutable.
 
-The [Parallel Search API](https://parallel.ai/products/search) finds the pages that cover your topic for an objective you write in plain language. The [Extract API](https://parallel.ai/products/extract) returns their content as clean markdown. Compare those pages with yours to see which claims repeat everywhere.
-4. Invest in what’s irreplaceable. Our research found that “original reporting, proprietary data, and first-hand expertise outperform syndicated content.”
-
-Parallel’s research team states that “on the agentic web, uniqueness is a better target.” Differentiation, built on facts other sites don’t have, is how you leave the overexposed quadrant.
+Parallel’s research team states that “on the agentic web, uniqueness is a better target.” To leave the overexposed quadrant, publish facts other sites don’t have.
 
 ## Should you block AI crawlers?
 
@@ -161,13 +159,13 @@ Block agents that take your content with no value exchange, and keep access open
 
 Parallel’s crawler, ShapBot, respects robots.txt, and you can read [how ShapBot accesses content](https://parallel.ai/parallel-web-systems-bots). Restricting ShapBot removes your content from Parallel’s index and can reduce your visibility through Parallel’s APIs.
 
-Weigh blocking specific agents against a market that pays on contribution. We recommend sorting agents into those that pay for contribution and those that don’t, then setting robots.txt rules for each group.
+Before you block specific agents, compare that choice with a market that pays on contribution. We recommend sorting agents into those that pay for contribution and those that don’t, then setting robots.txt rules for each group.
 
 ## The path forward: pay for what the answer needed
 
-Publishers and agent builders face the same pair of questions. Ask whether you can see what agents do with your work between visits, and ask who pays when you can’t.
+Publishers and agent builders face the same two questions: can you see what agents do with your work between visits, and who pays when you can’t?
 
-The web’s price signal is moving away from eyeballs and toward usefulness. We’re building a web where staying open is the superior economic choice for publishers, because agents pay sources for what each answer needed.
+The web has priced content on attention. We’re building toward pricing on contribution, where agents pay sources for what each answer needed and staying open is the better economic choice for publishers.
 
 **Ready to get started?**
 
@@ -178,8 +176,6 @@ The web’s price signal is moving away from eyeballs and toward usefulness. We�
 - **AI agents:** [Are you an agent? Read this to onboard Parallel](https://parallel.ai/agents.md) to set up access.
 
 ## FAQs about the visibility-value gap
-
-The answers below cover common points of confusion about the term and draw on our study and the sources cited.
 
 ### Is the visibility-value gap the same as the “visibility gap” in comp plans or value-based care?
 

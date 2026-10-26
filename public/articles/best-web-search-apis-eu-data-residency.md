@@ -8,7 +8,7 @@ Parallel makes one of the products in this guide. We held every vendor, includin
 
 Data residency means your requests are processed, and any stored data is kept, in the EU. For a search API, that applies to the whole request, not only the server that receives it. Ask where queries are processed, where the index lives, where inference runs, where pages are fetched from, and what leaves the region.
 
-Two things often get mistaken for residency. A country or location setting changes which results you get back, not where your request runs. And residency is a different question from sovereignty, which is about whose laws apply to the provider. Our explainer on [data residency vs data sovereignty](https://parallel.ai/articles/data-residency-vs-data-sovereignty) covers the difference.
+A country or location setting is often mistaken for residency, but it changes which results you get back, not where your request runs. Sovereignty is a separate question: it's about whose laws apply to the provider. Our explainer on [data residency vs data sovereignty](https://parallel.ai/articles/data-residency-vs-data-sovereignty) covers the difference.
 
 ## Search APIs that offer EU data residency
 
@@ -44,7 +44,7 @@ Staan's [FAQ](https://www.staan.ai/faq) says its infrastructure is hosted in Eur
 
 ## Brave, Exa, Tavily, Perplexity, Firecrawl, and SerpApi
 
-None of these six documents an EU processing option. Each offers other privacy controls.
+None of these six documents an EU processing option, though some offer other privacy controls.
 
 - **Brave.** Its [API privacy notice](https://api-dashboard.search.brave.com/documentation/resources/privacy-notice) says the service is provided by Brave Software Inc. in the US, with zero data retention for enterprise customers. Brave runs its [own index](https://brave.com/search/api/).
 - **Exa.** Its docs offer [zero data retention](https://exa.ai/docs/admin/security/zero-data-retention) on Enterprise plans.
