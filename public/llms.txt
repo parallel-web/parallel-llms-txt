@@ -142,6 +142,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [SimpleQA Benchmark and SimpleQA Verified Explained](https://llm.parallel.ai/articles/simpleqa-benchmark.md): Learn what SimpleQA and SimpleQA Verified measure, why search nearly saturates them, and how search APIs compare on accuracy and cost per 1,000 questions.
 - [Best Tavily Alternatives for AI Agents (2026)](https://llm.parallel.ai/articles/tavily-alternatives.md): Tavily is now part of Nebius. Compare six Tavily alternatives for AI agents on price per 1,000 searches and features, from $1 per 1,000 requests.
 - [How to Switch From Tavily to Parallel Search API](https://llm.parallel.ai/articles/tavily-to-parallel-search-api.md): Migrate from Tavily to Parallel Search API with a cost comparison, parameter mapping, the behavior that does not map, rate limits, and code changes.
+- [Tavily vs Parallel: Choosing a Search API for AI Agents](https://llm.parallel.ai/articles/tavily-vs-parallel-search.md): Compare Tavily and Parallel on output, source control, capabilities beyond search, developer experience, pricing, and rate limits for AI agents.
 - [5 Essential AI APIs for Building a Research and Monitoring Stack](https://llm.parallel.ai/articles/the-ai-apis-you-need-to-build-a-research-and-monitoring-stack.md): Discover the 5 AI API categories needed for a complete research and monitoring stack, from web search and extraction to deep research and monitoring.
 - [Best Google Alerts Alternatives in 2026 for Developers and Marketers](https://llm.parallel.ai/articles/the-best-google-alerts-alternatives-in-2026-including-one-built-for-developers.md): Compare the best Google Alerts alternatives in 2026, including API-native tools with webhooks, structured JSON, and brand monitoring options.
 - [Best Google Custom Search API Alternative for AI Agents in 2026](https://llm.parallel.ai/articles/the-best-google-custom-search-api-alternative-for-ai-agents.md): Google Custom Search API is closing. Compare the best alternative for AI agents with ranked URLs, dense excerpts, scalable pricing, and no daily cap.
@@ -375,7 +376,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Sign In - Parallel](https://llm.parallel.ai/docs/index.md)
 - [parallel-web - npm](https://llm.parallel.ai/docs/package/parallel-web.md)
 - [parallel-web · PyPI](https://llm.parallel.ai/docs/project/parallel-web/index.md)
-- [public-openapi](https://llm.parallel.ai/docs/public-openapi.json.md)
+- [OpenAPI Spec](https://llm.parallel.ai/docs/public-openapi.json.md)
 
 ## SDKs
 
