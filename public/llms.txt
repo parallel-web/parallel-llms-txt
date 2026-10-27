@@ -224,6 +224,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Parallel AI releases new Core2x processor for Task API](https://llm.parallel.ai/blog/core2x-processor.md): The new Core2x processor now is available in the Parallel Task API to offer developers finer control.
 - [How We Built Customer Watch, an Always-On Support Agent](https://llm.parallel.ai/blog/customer-watch-background-agent.md): See how Parallel built Customer Watch, an always-on agent that monitors account signals in Hex, Attio, and the web, then posts alerts to Slack.
 - [Bring trusted data into Parallel with Data Connectors](https://llm.parallel.ai/blog/data-connectors.md): Parallel is expanding how customers put trusted, specialized data to work in their agentic workflows.
+- [Parallel Decisions API: web-grounded classification](https://llm.parallel.ai/blog/decisions-api.md): A decision engine with world knowledge built in. Fast, typed answers grounded in real-time web data, with a citation behind every decision.
 - [A new pareto-frontier for Deep Research price-performance](https://llm.parallel.ai/blog/deep-research-benchmarks.md): Expanded BrowseComp and DeepResearch Bench results show Parallel Deep Research delivers the highest accuracy at every price point, up to 17x cheaper.
 - [State of the Art Deep Research APIs](https://llm.parallel.ai/blog/deep-research-browsecomp.md): Parallel Task API processors achieve state-of-the-art 27% accuracy on the BrowseComp benchmark—beating every other commercial API.
 - [Parallel Deep Research Reports](https://llm.parallel.ai/blog/deep-research-reports.md): The Parallel Task API now supports comprehensive markdown Deep Research report generation with in-line citations and relevant excerpts.
@@ -304,11 +305,13 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Integrations](https://llm.parallel.ai/integrations.md): Use Parallel web search across your entire stack to build more powerful agents and workflows. Browse verified integrations for agent frameworks, coding agents, model platforms, data platforms, and more.
 - [Use Parallel with Anthropic](https://llm.parallel.ai/integrations/anthropic.md): Give Anthropic-powered applications live web research through tool calling, or connect Parallel to Claude Desktop over MCP.
 - [Use Parallel with AWS Marketplace](https://llm.parallel.ai/integrations/aws-marketplace.md): Procure and manage Parallel through AWS Marketplace using your existing cloud purchasing workflow.
+- [Use Parallel with Baseten](https://llm.parallel.ai/integrations/baseten.md): Ground open-source models on Baseten with Parallel web search through Baseten Hosted Tools.
 - [Use Parallel with Cursor](https://llm.parallel.ai/integrations/cursor.md): Add Parallel to Cursor through the plugin marketplace, an Agent Skill, or one-click MCP setup.
 - [Use Parallel with ElevenLabs](https://llm.parallel.ai/integrations/elevenlabs.md): Give ElevenAgents live web search and research with Parallel as a custom integration.
 - [Use Parallel with Google Cloud Marketplace](https://llm.parallel.ai/integrations/google-cloud-marketplace.md): Procure and manage Parallel through Google Cloud Marketplace using your existing cloud purchasing workflow.
 - [Use Parallel with Google Gemini Enterprise](https://llm.parallel.ai/integrations/google-gemini-enterprise.md): Use Parallel as a grounding provider in Gemini Enterprise for current, source-backed web information.
 - [Use Parallel with Merge AI Gateway](https://llm.parallel.ai/integrations/merge-ai-gateway.md): Route web search through Parallel from Merge AI Gateway.
+- [Use Parallel with Microsoft Azure AI Foundry](https://llm.parallel.ai/integrations/microsoft-azure-ai-foundry.md): Add Parallel Search MCP to Microsoft Azure AI Foundry agents for live web search and page extraction.
 - [Use Parallel with Ollama](https://llm.parallel.ai/integrations/ollama.md): Give local Ollama models access to the live web by exposing Parallel as a callable tool.
 - [Use Parallel with OpenAI](https://llm.parallel.ai/integrations/openai.md): Add current web search and research to OpenAI-powered applications with Parallel tool calling.
 - [Use Parallel with OpenCode](https://llm.parallel.ai/integrations/opencode.md): Add Parallel web search and research to OpenCode with the Parallel plugin.

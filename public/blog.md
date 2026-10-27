@@ -1,9 +1,9 @@
-### \[Introducing data residency in Europe\](https://parallel.ai/blog/eu-data-residency)
+### \[Introducing the Parallel Decisions API: fast classification grounded in live web data\](https://parallel.ai/blog/decisions-api)
 
-Run Parallel Search and Extract requests in the European Union.
+A decision engine with world knowledge built in.
 
 Tags:[Product](/blog?tag=product)
 
 By Parallel
 
-October 22, 2026
+October 25, 2026
