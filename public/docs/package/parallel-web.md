@@ -25,7 +25,7 @@ Search
 
 TypeScript icon, indicating that this package has built-in type declarations
 
-1\.3.6 • Public • Published 3 days ago
+1\.3.6 • Public • Published 5 days ago
 
 * [Readme](https://www.npmjs.com/package/parallel-web?activeTab=readme)
 * [Code Beta](https://www.npmjs.com/package/parallel-web?activeTab=code)
@@ -406,7 +406,7 @@ none
 
 ### Weekly Downloads
 
-89,662
+196,001
 
 ### Version
 
@@ -418,7 +418,7 @@ MIT
 
 ### Last publish
 
-3 days ago
+5 days ago
 
 ### Collaborators
 

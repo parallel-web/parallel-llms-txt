@@ -1,7 +1,5 @@
 Skip to main content Switch to mobile version
 
-Security notice: Upgrade certifi, pip, and uv in response to CA certificate incident [See more](https://discuss.python.org/t/information-for-python-users-regarding-emudhra-emsign-ca-certificate-security-incident/109576)
-
 [PyPI](https://pypi.org/)
 
 Search PyPI Search
@@ -513,12 +511,6 @@ MIT License (MIT)
   
     + [Typed](https://pypi.org/search/?c=Typing+%3A%3A+Typed)
 
-[Sponsored: Python Software Foundation](https://server.ethicalads.io/proxy/click/9619/01a1706c-de40-7562-a60d-a787a1cff2d5/)
-
-Bloomberg is a Visionary sponsor of the Python Software Foundation.
-
-_[PSF Sponsor](https://www.python.org/psf/sponsorship/?ref=ethicalads-placement) · [Served ethically](https://www.ethicalads.io/sponsorship-platform/?ref=psf)_
-
 ## Metadata
 
 ## Project links
@@ -590,12 +582,6 @@ MIT License (MIT)
   
     + [Typed](https://pypi.org/search/?c=Typing+%3A%3A+Typed)
 
-[Sponsored: Python Software Foundation](https://server.ethicalads.io/proxy/click/10404/01a1706c-de38-73b2-ad18-2ac35b6b0bc4/)
-
-SerpApi is a Maintaining sponsor of the Python Software Foundation.
-
-_[PSF Sponsor](https://www.python.org/psf/sponsorship/?ref=ethicalads-placement) · [Served ethically](https://www.ethicalads.io/sponsorship-platform/?ref=psf)_
-
 ## Release files for parallel-web 1.3.7
 
 For a detailed explanation of source distributions (sdists) and built distributions (wheels), please see the [package formats documentation](https://packaging.python.org/en/latest/discussions/package-formats/ "External link") .
@@ -617,6 +603,36 @@ For a detailed explanation of source distributions (sdists) and built distributi
 * * *
 
 **Total release size:** 342\.0 kB
+
+## Release files / parallel\_web-1.3.7.tar.gz
+
+|Download URL |[parallel\_web-1.3.7.tar.gz](https://files.pythonhosted.org/packages/a6/0d/bce4ca73561d8a676801c5ebbeb36ab4d0f2f93eb78b1fc6f4ab4c08ba52/parallel_web-1.3.7.tar.gz) |
+| --- | --- |
+|Size |163\.7 kB |
+|Tags |Source |
+|SHA-256 checksum  
+[How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`b45076f4552f1aa8c60f7270df2a0b7f3f5f6b4bb2709d6eddeb49fe25d43405` |
+|BLAKE2b-256 checksum  
+[How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`a60dbce4ca73561d8a676801c5ebbeb36ab4d0f2f93eb78b1fc6f4ab4c08ba52` |
+|Upload date |Oct 23, 2026 |
+|Uploaded using Trusted Publishing?  
+[What is trusted publishing?](https://docs.pypi.org/trusted-publishers/) |No |
+|Uploaded via |`twine/5.1.1 CPython/3.12.9` |
+
+## Release files / parallel\_web-1.3.7-py3-none-any.whl
+
+|Download URL |[parallel\_web-1.3.7-py3-none-any.whl](https://files.pythonhosted.org/packages/43/d5/adbd4732dd3204ed6dcc32241e8da302b45f9824a04b109cab2c9c9ab86f/parallel_web-1.3.7-py3-none-any.whl) |
+| --- | --- |
+|Size |178\.3 kB |
+|Tags |Python 3 |
+|SHA-256 checksum  
+[How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`a276c149d69673cb5ce101f025f74e088308053fb20e7ee9dcd35d5fb3441d35` |
+|BLAKE2b-256 checksum  
+[How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`43d5adbd4732dd3204ed6dcc32241e8da302b45f9824a04b109cab2c9c9ab86f` |
+|Upload date |Oct 23, 2026 |
+|Uploaded using Trusted Publishing?  
+[What is trusted publishing?](https://docs.pypi.org/trusted-publishers/) |No |
+|Uploaded via |`twine/5.1.1 CPython/3.12.9` |
 
 ## Security for parallel-web 1.3.7
 
@@ -764,7 +780,7 @@ Apr 24, 2025 [2 release files](https://pypi.org/project/parallel-web/0.1.0/) [No
 
 Developed and maintained by the [Python Software Foundation](https://www.python.org/psf/ "External link") and Python community, for the Python community.
 
-[Status: All Systems Operational](https://status.python.org/ "External link")
+[Status: all systems operational](https://status.python.org/ "External link")
 
 [Donate today!](https://donate.pypi.org/)
 
@@ -773,4 +789,4 @@ Switch to desktop version
 * "PyPI", "Python Package Index", and the blocks logos are registered [trademarks](https://pypi.org/trademarks/) of the [Python Software Foundation](https://www.python.org/psf-landing) .
 
 * [Site map](https://pypi.org/sitemap/)
-* Deployed from [`80b2c65`](https://github.com/pypi/warehouse/commit/80b2c65749769b3eee41dc10e788c1663e67a5ac "External link")
+* Deployed from [`68dc61b`](https://github.com/pypi/warehouse/commit/68dc61bfbf31633506f3f03c3a93b34220857cfc "External link")
