@@ -79,7 +79,7 @@ A public benchmark shows how providers did on someone else’s task mix, so test
 
 ## Get started
 
-Create an API key at [platform.parallel.ai](https://platform.parallel.ai). The free tier includes $5 in free credits every month (up to 5,000 Turbo or Fast searches), enough to run a first comparison. To try results before writing code, connect the free [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) at `https://search.parallel.ai/mcp` with no account.
+Create an API key at [platform.parallel.ai](https://platform.parallel.ai). The free tier includes $5 in free credits every month (up to 5,000 Turbo or Fast searches), enough to run a first comparison. To try results before writing code, connect the free [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) at `https://mcp.parallel.ai/mcp` with no account.
 
 ## Frequently asked questions
 

@@ -110,7 +110,7 @@ search = client.search(
 )
 ```
 
-Both companies offer a hosted MCP server that works without an account. Keenable's is at api.keenable.ai/mcp and Parallel's at search.parallel.ai/mcp, which exposes `web_search` and `web_fetch` over the Search and Extract APIs with no key. Adding a Parallel API key as a Bearer token raises the limits and lets you pin a mode, location, or result count for the connection.
+Both companies offer a hosted MCP server that works without an account. Keenable's is at api.keenable.ai/mcp and Parallel's at mcp.parallel.ai/mcp, which exposes `web_search` and `web_fetch` over the Search and Extract APIs with no key. Adding a Parallel API key as a Bearer token raises the limits and lets you pin a mode, location, or result count for the connection.
 
 ## Compliance
 

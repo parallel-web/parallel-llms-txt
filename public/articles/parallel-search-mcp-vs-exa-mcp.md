@@ -10,13 +10,13 @@ Parallel optimizes for answer-ready context: declarative objectives in, ranked t
 
 ## Tools and setup
 
-**Parallel** (`[https://search.parallel.ai/mcp](https://docs.parallel.ai/integrations/mcp/search-mcp)`) exposes exactly two tools: `web_search` and `web_fetch`. That's deliberate; two well-described tools keep tool selection accurate and context lean. Search runs in low-latency fast mode with excerpts capped around 25,000 characters per call, and fetch returns clean markdown from URLs including PDFs and JavaScript-rendered pages.
+**Parallel** (`[https://mcp.parallel.ai/mcp](https://docs.parallel.ai/integrations/mcp/quickstart)`) exposes exactly two tools: `web_search` and `web_fetch`. That's deliberate; two well-described tools keep tool selection accurate and context lean. Search runs in low-latency fast mode with excerpts capped around 25,000 characters per call, and fetch returns clean markdown from URLs including PDFs and JavaScript-rendered pages.
 
 **Exa** (`https://mcp.exa.ai/mcp`, open source) enables `web_search_exa` and `web_fetch_exa` by default, with more behind URL parameters: advanced search with category, domain, and date filters, code search over GitHub content, and the usage-based Exa Agent for multi-step research. The surface is wider, but you opt into each tool explicitly, and the heavier ones require authentication.
 
 ## Free tiers and auth
 
-Both are usable without paying. Parallel's default endpoint is anonymous, no key or account, at personal-use rate limits; a free account adds [$5 in recurring monthly credits](https://parallel.ai/pricing) and a Bearer key raises limits, with an OAuth endpoint (`/mcp-oauth`) for organization-attributed or zero-data-retention deployments. Exa's free plan covers casual use, with an `x-api-key` header to lift limits and auth required for the Agent tool. In practice, Parallel's entry point requires no signup at all, while Exa's heavier tools want an account sooner.
+Both are usable without paying. Parallel's default endpoint is anonymous, no key or account, at personal-use rate limits; a free account adds [$5 in recurring monthly credits](https://parallel.ai/pricing) and a Bearer key raises limits, with an OAuth endpoint (`/mcp?login`) for organization-attributed or zero-data-retention deployments. Exa's free plan covers casual use, with an `x-api-key` header to lift limits and auth required for the Agent tool. In practice, Parallel's entry point requires no signup at all, while Exa's heavier tools want an account sooner.
 
 ## Accuracy, independently benchmarked
 
@@ -52,4 +52,4 @@ Choose Exa when your workload is semantic discovery: competitor mapping, similar
 
 ## The test costs nothing
 
-Both servers are free to try, which makes this the rare vendor comparison you can settle empirically in an afternoon. [Add ours](https://docs.parallel.ai/integrations/mcp/search-mcp), add theirs, run your real queries, and keep whichever makes your agent right more often.
+Both servers are free to try, which makes this the rare vendor comparison you can settle empirically in an afternoon. [Add ours](https://docs.parallel.ai/integrations/mcp/quickstart), add theirs, run your real queries, and keep whichever makes your agent right more often.

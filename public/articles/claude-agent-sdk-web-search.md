@@ -19,12 +19,12 @@ Check these limits before you ship:
 
 ## What changes when you add a search MCP server
 
-An MCP server gives Claude its own tools, which the SDK names `mcp__<server-name>__<tool-name>`. Connect [Parallel’s Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) under the name `parallel` and the agent gets two tools:
+An MCP server gives Claude its own tools, which the SDK names `mcp__<server-name>__<tool-name>`. Connect [Parallel’s Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) under the name `parallel` and the agent gets two tools:
 
 - `mcp__parallel__web_search` takes a natural-language `objective` plus a list of short keyword `search_queries`, and returns ranked URLs with excerpts chosen for that objective, plus a publish date when we have one.
 - `mcp__parallel__web_fetch` reads up to 20 URLs per call and returns excerpts focused on an objective, or the full page as Markdown with `full_content: true`.
 
-The server is at `https://search.parallel.ai/mcp`, speaks Streamable HTTP, and is free with no API key in `fast` mode at anonymous rate limits. Add an `Authorization: Bearer` header with a [Parallel API key](https://platform.parallel.ai) for higher limits. We make Parallel, so weigh our description accordingly, and test both paths on your own prompts.
+The server is at `https://mcp.parallel.ai/mcp`, speaks Streamable HTTP, and is free with no API key in `fast` mode at anonymous rate limits. Add an `Authorization: Bearer` header with a [Parallel API key](https://platform.parallel.ai) for higher limits. We make Parallel, so weigh our description accordingly, and test both paths on your own prompts.
 
 |  | Built-in WebSearch + WebFetch | Parallel Search MCP |
 | --- | --- | --- |
@@ -80,7 +80,7 @@ options = ClaudeAgentOptions(
     mcp_servers={
         "parallel": {
             "type": "http",
-            "url": "https://search.parallel.ai/mcp",
+            "url": "https://mcp.parallel.ai/mcp",
             "headers": headers,
         }
     },
@@ -142,7 +142,7 @@ for await (const message of query({
   prompt: "What changed in the newest release of @anthropic-ai/claude-agent-sdk on npm? Cite sources.",
   options: {
     mcpServers: {
-      parallel: { type: "http", url: "https://search.parallel.ai/mcp", headers },
+      parallel: { type: "http", url: "https://mcp.parallel.ai/mcp", headers },
     },
     allowedTools: ["mcp__parallel__web_search", "mcp__parallel__web_fetch"],
     disallowedTools: ["WebSearch", "WebFetch"],
@@ -212,8 +212,8 @@ No. Anthropic’s docs say Amazon Bedrock doesn’t expose the server-side web s
 
 ### Do I need an API key for Parallel’s Search MCP?
 
-No. `https://search.parallel.ai/mcp` works anonymously in fast mode at anonymous rate limits. Add `Authorization: Bearer <PARALLEL_API_KEY>` to the server’s headers for higher limits and to pin settings such as the search mode.
+No. `https://mcp.parallel.ai/mcp` works anonymously in fast mode at anonymous rate limits. Add `Authorization: Bearer <PARALLEL_API_KEY>` to the server’s headers for higher limits and to pin settings such as the search mode.
 
 ## Get started
 
-Copy the Python or TypeScript example above, run it without a key, and check that the first tool call is `mcp__parallel__web_search`. When you need higher limits, create a key on the [Parallel Platform](https://platform.parallel.ai) and set `PARALLEL_API_KEY`. For the full tool reference and configuration options, see the [Search MCP docs](https://docs.parallel.ai/integrations/mcp/search-mcp), and for the bigger picture of how agents and tools fit together, read [what is an agent harness](https://parallel.ai/articles/what-is-an-agent-harness).
+Copy the Python or TypeScript example above, run it without a key, and check that the first tool call is `mcp__parallel__web_search`. When you need higher limits, create a key on the [Parallel Platform](https://platform.parallel.ai) and set `PARALLEL_API_KEY`. For the full tool reference and configuration options, see the [Search MCP docs](https://docs.parallel.ai/integrations/mcp/quickstart), and for the bigger picture of how agents and tools fit together, read [what is an agent harness](https://parallel.ai/articles/what-is-an-agent-harness).

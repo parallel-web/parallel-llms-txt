@@ -40,7 +40,7 @@ Plugins are the right call when you want to keep the native `web_search` tool na
 
 ## Add Parallel’s free Search MCP to DeepSeek Harness
 
-We make Parallel, so weigh our recommendation accordingly. The [Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) runs at `https://search.parallel.ai/mcp` over Streamable HTTP and needs no account or API key. It exposes two tools. `web_search` takes a natural-language `objective` plus a list of keyword `search_queries` and returns ranked URLs with excerpts. `web_fetch` takes up to 20 URLs and returns excerpts focused on an objective, or full page content when the model asks for it. Results are capped at about 25,000 characters per call.
+We make Parallel, so weigh our recommendation accordingly. The [Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) runs at `https://mcp.parallel.ai/mcp` over Streamable HTTP and needs no account or API key. It exposes two tools. `web_search` takes a natural-language `objective` plus a list of keyword `search_queries` and returns ranked URLs with excerpts. `web_fetch` takes up to 20 URLs and returns excerpts focused on an objective, or full page content when the model asks for it. Results are capped at about 25,000 characters per call.
 
 ### Step 1: Write the overlay
 
@@ -54,7 +54,7 @@ dsh composes its configuration from YAML patch layers. Save this as `parallel-se
       config:
         serverName: parallel
         transport: streamable-http
-        url: https://search.parallel.ai/mcp
+        url: https://mcp.parallel.ai/mcp
 ```
 
 The `serverName` becomes the tool prefix, so this row produces `mcp__parallel__web_search` and `mcp__parallel__web_fetch`. It must match `[A-Za-z0-9_-]{1,32}`.
@@ -117,7 +117,7 @@ Anonymous calls run in Fast mode at shared rate limits. For steadier throughput,
       config:
         serverName: parallel
         transport: streamable-http
-        url: https://search.parallel.ai/mcp
+        url: https://mcp.parallel.ai/mcp
         headers: !!js >-
           process.env.PARALLEL_API_KEY
             ? { Authorization: `Bearer ${process.env.PARALLEL_API_KEY}` }
@@ -155,7 +155,7 @@ In YAML patch layers. Use `$DSH_HOME/profiles/<profile>/cordis.patch.yml` for on
 
 ### Is Parallel’s Search MCP free in DeepSeek Harness?
 
-Yes. `https://search.parallel.ai/mcp` works with no account or API key at anonymous rate limits. Adding a Parallel API key as a bearer header raises those limits.
+Yes. `https://mcp.parallel.ai/mcp` works with no account or API key at anonymous rate limits. Adding a Parallel API key as a bearer header raises those limits.
 
 ### Should I use a search plugin or an MCP server in dsh?
 

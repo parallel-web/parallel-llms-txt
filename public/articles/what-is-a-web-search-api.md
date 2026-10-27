@@ -116,13 +116,13 @@ Per-request pricing is the easiest to forecast. Credit and plan pricing need a c
 
 ## How to start free
 
-You can try live web search in an agent without an account. Our [Search MCP server](https://docs.parallel.ai/integrations/mcp/search-mcp) at `https://search.parallel.ai/mcp` is free to use anonymously at lower rate limits, with no signup or API key. It exposes `web_search` and `web_fetch` tools and runs in `fast` mode. Add it to Cursor with one entry in `~/.cursor/mcp.json`, or to Codex with `codex mcp add parallel-search --url https://search.parallel.ai/mcp`.
+You can try live web search in an agent without an account. Our [Search MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) at `https://mcp.parallel.ai/mcp` is free to use anonymously at lower rate limits, with no signup or API key. It exposes `web_search` and `web_fetch` tools and runs in `fast` mode. Add it to Cursor with one entry in `~/.cursor/mcp.json`, or to Codex with `codex mcp add parallel-search --url https://mcp.parallel.ai/mcp`.
 
 When you want the raw API, sign up at [platform.parallel.ai](https://platform.parallel.ai). Accounts get $5 in free credits every month, which covers up to 5,000 Turbo or Fast searches. Passing that key to the MCP server as a Bearer token raises its rate limits. Our roundup of [free web search MCP servers](https://parallel.ai/articles/best-free-web-search-mcp) compares the keyless options, and [adding free web search to a coding agent](https://parallel.ai/articles/add-free-web-search-to-coding-agent) walks through the setup with both the MCP server and the Parallel CLI.
 
 ## Get started
 
-Point your agent at `https://search.parallel.ai/mcp` to test search with no key, or create a key on [platform.parallel.ai](https://platform.parallel.ai) and run the Python example above. The [Search API quickstart](https://docs.parallel.ai/search/search-quickstart) covers the SDKs, modes, and source policies.
+Point your agent at `https://mcp.parallel.ai/mcp` to test search with no key, or create a key on [platform.parallel.ai](https://platform.parallel.ai) and run the Python example above. The [Search API quickstart](https://docs.parallel.ai/search/search-quickstart) covers the SDKs, modes, and source policies.
 
 ## Frequently asked questions
 

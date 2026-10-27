@@ -10,13 +10,13 @@ We make Parallel and our search server is the first pick here, so weigh that as 
 
 ### 1. Parallel Search MCP
 
-The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) gives Cascade two tools: `web_search` for ranked, token-dense results it can usually answer from directly, and `web_fetch` for clean markdown from specific URLs, PDFs and JavaScript-heavy pages included. It's hosted, free, and needs no API key:
+The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) gives Cascade two tools: `web_search` for ranked, token-dense results it can usually answer from directly, and `web_fetch` for clean markdown from specific URLs, PDFs and JavaScript-heavy pages included. It's hosted, free, and needs no API key:
 
 ```json
 {
   "mcpServers": {
     "Parallel Search MCP": {
-      "serverUrl": "https://search.parallel.ai/mcp"
+      "serverUrl": "https://mcp.parallel.ai/mcp"
     }
   }
 }

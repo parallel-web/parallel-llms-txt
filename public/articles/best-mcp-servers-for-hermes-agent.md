@@ -16,7 +16,7 @@ Hermes differs from most harnesses in two ways. First, the curated catalog: `her
 # ~/.hermes/config.yaml
 mcp_servers:
   parallel_search:
-    url: "https://search.parallel.ai/mcp"
+    url: "https://mcp.parallel.ai/mcp"
 
   filesystem:
     command: "npx"
@@ -29,7 +29,7 @@ Coming from Claude Code? `hermes import-agent claude-code` migrates the `mcpServ
 
 ### 1. Parallel Search MCP
 
-The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) is the three-line yaml entry above. It's a hosted server, free to use with no API key, that gives Hermes two tools: `web_search` for ranked, LLM-ready results with excerpts dense enough to answer from directly, and `web_fetch` for pulling token-efficient markdown from specific URLs, PDFs and JavaScript-rendered pages included.
+The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) is the three-line yaml entry above. It's a hosted server, free to use with no API key, that gives Hermes two tools: `web_search` for ranked, LLM-ready results with excerpts dense enough to answer from directly, and `web_fetch` for pulling token-efficient markdown from specific URLs, PDFs and JavaScript-rendered pages included.
 
 Hermes ships its own web tools. With no search credentials they rotate across the free tiers of Exa, Parallel, Firecrawl, and Keenable, and a paid Nous Portal subscription adds managed search through the Tool Gateway. The case for connecting the Parallel MCP directly is that the model writes a full objective plus several keyword queries for every search, the same provider answers every call, it works identically whichever model provider you point Hermes at, and the underlying Search API's advanced mode scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of search APIs (October 2026), behind Perplexity Search (medium) at 80 and Octen Search at 77. Since Hermes lets you run both side by side, the practical move is to try them on your own questions.
 

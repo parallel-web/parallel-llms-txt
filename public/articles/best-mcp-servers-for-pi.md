@@ -30,13 +30,13 @@ Before you pick servers, note that by default the adapter exposes everything thr
 
 ### 1. Parallel Search MCP
 
-Pi has no built-in web search, so this is the gap most worth closing first. The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) is a hosted server, free with no API key, that adds two tools: `web_search`, which returns ranked results with excerpts dense enough to answer from directly, and `web_fetch`, which pulls token-efficient markdown from specific URLs, including PDFs and JavaScript-heavy pages. Because these two earn constant use, they're the textbook case for `directTools`:
+Pi has no built-in web search, so this is the gap most worth closing first. The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) is a hosted server, free with no API key, that adds two tools: `web_search`, which returns ranked results with excerpts dense enough to answer from directly, and `web_fetch`, which pulls token-efficient markdown from specific URLs, including PDFs and JavaScript-heavy pages. Because these two earn constant use, they're the textbook case for `directTools`:
 
 ```json
 {
   "mcpServers": {
     "parallel-search": {
-      "url": "https://search.parallel.ai/mcp",
+      "url": "https://mcp.parallel.ai/mcp",
       "directTools": true
     }
   }

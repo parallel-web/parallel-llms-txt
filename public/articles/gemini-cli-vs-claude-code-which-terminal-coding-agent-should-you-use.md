@@ -62,10 +62,10 @@ Every model has a training cutoff. Beyond that date it knows nothing, and it wil
 
 A web search tool solves this, and MCP is how you add one. Instead of reasoning from memory, the agent queries the live web mid-task and works from verifiable sources. Say an agent is about to edit code that depends on a library: before it writes anything, it looks up the latest release notes, spots a breaking change, and adjusts, rather than guessing from stale training data.
 
-Parallel's Search API [ships as an MCP server](https://parallel.ai/blog/search-api-benchmark), hosted at [https://search.parallel.ai/mcp](https://search.parallel.ai/mcp), so it plugs into Gemini CLI and Claude Code alike. It's free to use for light exploration, with no API key required. In Claude Code, you [register it with one command](https://docs.parallel.ai/integrations/mcp/search-mcp):
+Parallel's Search API [ships as an MCP server](https://parallel.ai/blog/search-api-benchmark), hosted at [https://mcp.parallel.ai/mcp](https://mcp.parallel.ai/mcp), so it plugs into Gemini CLI and Claude Code alike. It's free to use for light exploration, with no API key required. In Claude Code, you [register it with one command](https://docs.parallel.ai/integrations/mcp/quickstart):
 
 ```sh
-claude mcp add --transport http "Parallel-Search-MCP" https://search.parallel.ai/mcp
+claude mcp add --transport http "Parallel-Search-MCP" https://mcp.parallel.ai/mcp
 ```
 
 Gemini CLI connects to the same hosted MCP server through its own MCP configuration. Either way, this registers Parallel Search as a tool the agent can call whenever it needs current information from the web.

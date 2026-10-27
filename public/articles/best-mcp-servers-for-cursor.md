@@ -14,13 +14,13 @@ Config lives at `~/.cursor/mcp.json` for your personal setup or `.cursor/mcp.jso
 
 ### 1. Parallel Search MCP
 
-The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) gives Cursor's agent two tools: `web_search`, returning ranked results with excerpts dense enough to answer from directly, and `web_fetch`, pulling token-efficient markdown from specific URLs, PDFs and JavaScript-heavy pages included. It's hosted, free, and needs no API key:
+The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) gives Cursor's agent two tools: `web_search`, returning ranked results with excerpts dense enough to answer from directly, and `web_fetch`, pulling token-efficient markdown from specific URLs, PDFs and JavaScript-heavy pages included. It's hosted, free, and needs no API key:
 
 ```json
 {
   "mcpServers": {
     "Parallel Search MCP": {
-      "url": "https://search.parallel.ai/mcp"
+      "url": "https://mcp.parallel.ai/mcp"
     }
   }
 }

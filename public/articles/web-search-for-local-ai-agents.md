@@ -4,7 +4,7 @@ A local model has no idea what happened after its training cutoff, and most sear
 
 Running a model locally solves cost, privacy, and control in one move, and creates a new problem in the same move: the agent's knowledge ends at its training cutoff, and a local machine has no web index. Ask a local Gemma or Llama about a library released last month and you get confident fiction. Web search fills that gap, provided you can add it without reintroducing the API bill your local stack exists to avoid.
 
-The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) is free with no API key or account, so a fully local agent gains real web search and page fetching for exactly $0. Disclosure: it's ours, which is why this guide uses it; the setup patterns below work with any hosted MCP server if you'd rather bring a different one.
+The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) is free with no API key or account, so a fully local agent gains real web search and page fetching for exactly $0. Disclosure: it's ours, which is why this guide uses it; the setup patterns below work with any hosted MCP server if you'd rather bring a different one.
 
 ## One caveat before setup
 
@@ -18,7 +18,7 @@ LM Studio runs models locally and speaks MCP natively, with one-click install li
 {
   "mcpServers": {
     "Parallel Search MCP": {
-      "url": "https://search.parallel.ai/mcp"
+      "url": "https://mcp.parallel.ai/mcp"
     }
   }
 }
@@ -26,7 +26,7 @@ LM Studio runs models locally and speaks MCP natively, with one-click install li
 
 ## Goose
 
-Goose, Block's open-source agent, runs against local models and adds MCP servers as extensions. Use the one-click `goose://` install link from our docs, or add an extension manually with type `streamable_http` and the URL `https://search.parallel.ai/mcp`. It works without a key.
+Goose, Block's open-source agent, runs against local models and adds MCP servers as extensions. Use the one-click `goose://` install link from our docs, or add an extension manually with type `streamable_http` and the URL `https://mcp.parallel.ai/mcp`. It works without a key.
 
 ## Pi (with Ollama)
 
@@ -41,7 +41,7 @@ Cline in VS Code can drive Ollama-served models, and it treats remote MCP server
   "mcpServers": {
     "Parallel Search MCP": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "https://search.parallel.ai/mcp"]
+      "args": ["-y", "mcp-remote", "https://mcp.parallel.ai/mcp"]
     }
   }
 }

@@ -35,7 +35,7 @@ If your agent calls Firecrawl’s `/search` and then scrapes the top results, yo
 
 ### Parallel
 
-Parallel Search takes a natural-language objective plus keyword queries and returns ranked URLs with excerpts already compressed for a context window, so many agents skip the separate scrape step. Turbo and Fast cost $1 per 1,000 requests with 10 results, and Basic and Advanced cost $5. When you need a full page, [Extract](https://docs.parallel.ai/extract/extract-quickstart) costs $1 per 1,000 URLs. The free [Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) at `https://search.parallel.ai/mcp` needs no API key and exposes `web_search` and `web_fetch`, the closest match to Firecrawl’s keyless MCP. Parallel has no crawl, map, or browser interaction endpoint, so keep a crawler if you depend on those. See [pricing](https://parallel.ai/pricing) and our [Firecrawl vs. Parallel comparison](https://parallel.ai/compare/firecrawl-vs-parallel).
+Parallel Search takes a natural-language objective plus keyword queries and returns ranked URLs with excerpts already compressed for a context window, so many agents skip the separate scrape step. Turbo and Fast cost $1 per 1,000 requests with 10 results, and Basic and Advanced cost $5. When you need a full page, [Extract](https://docs.parallel.ai/extract/extract-quickstart) costs $1 per 1,000 URLs. The free [Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) at `https://mcp.parallel.ai/mcp` needs no API key and exposes `web_search` and `web_fetch`, the closest match to Firecrawl’s keyless MCP. Parallel has no crawl, map, or browser interaction endpoint, so keep a crawler if you depend on those. See [pricing](https://parallel.ai/pricing) and our [Firecrawl vs. Parallel comparison](https://parallel.ai/compare/firecrawl-vs-parallel).
 
 **Best for:** agents that search, read, and cite, where cost per call and context size matter.
 
@@ -160,4 +160,4 @@ No. Parallel offers Search, Extract, Task, FindAll, Monitor, and Responses APIs,
 
 ## Get started
 
-Connect the free Parallel Search MCP at `https://search.parallel.ai/mcp` to your agent, or get an API key on [Platform](https://platform.parallel.ai) and run the curl request above. For scraper-specific tradeoffs, read our [ScrapingBee vs. Parallel comparison](https://parallel.ai/articles/scrapingbee-vs-parallel).
+Connect the free Parallel Search MCP at `https://mcp.parallel.ai/mcp` to your agent, or get an API key on [Platform](https://platform.parallel.ai) and run the curl request above. For scraper-specific tradeoffs, read our [ScrapingBee vs. Parallel comparison](https://parallel.ai/articles/scrapingbee-vs-parallel).

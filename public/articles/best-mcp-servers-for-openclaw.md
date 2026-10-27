@@ -19,10 +19,10 @@ OpenClaw stores MCP server definitions in `~/.openclaw/openclaw.json` under `mcp
 Three details trip people up. First, set `"transport": "streamable-http"` for Streamable HTTP servers, because OpenClaw defaults to SSE when it’s omitted, and some hosted servers (Zapier’s, for one) don’t accept SSE. Second, CLI changes to saved servers (`add`, `set`, `configure`, `unset`) need the local Gateway stopped, and saving proves nothing about reachability: finish with `openclaw mcp doctor <name> --probe`, which connects and lists the server’s tools. Third, OAuth-protected servers (`"auth": "oauth"`) authenticate through `openclaw mcp login`, which stores tokens in a shared SQLite store so parallel OpenClaw processes don’t fight over refresh tokens.
 
 ```bash
-openclaw mcp set parallel-search '{"url":"https://search.parallel.ai/mcp","transport":"streamable-http"}'
+openclaw mcp set parallel-search '{"url":"https://mcp.parallel.ai/mcp","transport":"streamable-http"}'
 
 # or build the same entry from flags
-openclaw mcp add parallel-search --url https://search.parallel.ai/mcp --transport streamable-http
+openclaw mcp add parallel-search --url https://mcp.parallel.ai/mcp --transport streamable-http
 
 # verify: connects and lists tools
 openclaw mcp doctor parallel-search --probe
@@ -37,7 +37,7 @@ openclaw mcp status --verbose
 
 ### 1. Parallel Search MCP
 
-The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) is a hosted server at `https://search.parallel.ai/mcp` that exposes two tools: `web_search`, which returns ranked results with token-dense excerpts an agent can usually answer from directly, and `web_fetch`, which pulls token-efficient markdown from specific URLs, including PDFs and JavaScript-heavy pages. It's free to use with no API key or account, and it runs on our own web-scale index rather than reselling another engine's results.
+The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) is a hosted server at `https://mcp.parallel.ai/mcp` that exposes two tools: `web_search`, which returns ranked results with token-dense excerpts an agent can usually answer from directly, and `web_fetch`, which pulls token-efficient markdown from specific URLs, including PDFs and JavaScript-heavy pages. It's free to use with no API key or account, and it runs on our own web-scale index rather than reselling another engine's results.
 
 Parallel Search (advanced) scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), an independent benchmark of 26 search API products across 13 providers (October 2026), behind Perplexity Search (medium) at 80 and Octen Search at 77. OpenClaw also ships Parallel as a built-in search provider (paid, or a key-free Parallel Search (Free) option you select explicitly), so installing the MCP mainly buys you explicit fetching and, with an API key from `platform.parallel.ai` passed as a Bearer header, higher rate limits. Our notes on [getting maximum search accuracy out of OpenClaw](https://parallel.ai/articles/openclaw-best-practices-web-search) cover the prompting side.
 

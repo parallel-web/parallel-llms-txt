@@ -20,14 +20,14 @@ Do Path 1 first; it works on its own. Path 2 is optional and adds capabilities r
 
 ## Path 1: the keyless Search MCP (about 2 minutes, $0)
 
-The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) is a hosted server at `https://search.parallel.ai/mcp`. It’s free to use anonymously at lower rate limits, with no account and no API key. It exposes two tools: `web_search`, which takes an objective plus a few keyword queries and returns ranked URLs with excerpts, and `web_fetch`, which returns markdown from up to 20 URLs. Anonymous calls run in Fast mode, and each call’s excerpts are capped at roughly 25,000 characters so they fit inside typical MCP client output limits.
+The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) is a hosted server at `https://mcp.parallel.ai/mcp`. It’s free to use anonymously at lower rate limits, with no account and no API key. It exposes two tools: `web_search`, which takes an objective plus a few keyword queries and returns ranked URLs with excerpts, and `web_fetch`, which returns markdown from up to 20 URLs. Anonymous calls run in Fast mode, and each call’s excerpts are capped at roughly 25,000 characters so they fit inside typical MCP client output limits.
 
 ### Claude Code
 
 Run this in your terminal:
 
 ```bash
-claude mcp add --transport http "Parallel-Search-MCP" https://search.parallel.ai/mcp
+claude mcp add --transport http "Parallel-Search-MCP" https://mcp.parallel.ai/mcp
 ```
 
 Start a new session and run `/mcp` to confirm the server shows as connected. The `/mcp` endpoint doesn’t ask for a login. If you want the config checked into a repo so teammates get it too, add `--scope project`; Claude Code then writes a `.mcp.json` file in the project root with `"type": "http"` and the URL.
@@ -40,7 +40,7 @@ Add this to `~/.cursor/mcp.json`, or to `.cursor/mcp.json` for one project:
 {
   "mcpServers": {
     "Parallel Search MCP": {
-      "url": "https://search.parallel.ai/mcp"
+      "url": "https://mcp.parallel.ai/mcp"
     }
   }
 }
@@ -49,7 +49,7 @@ Add this to `~/.cursor/mcp.json`, or to `.cursor/mcp.json` for one project:
 ### Codex CLI
 
 ```bash
-codex mcp add parallel-search --url https://search.parallel.ai/mcp
+codex mcp add parallel-search --url https://mcp.parallel.ai/mcp
 ```
 
 The command writes a `[mcp_servers.parallel-search]` entry to `~/.codex/config.toml`. Restart Codex afterward.
@@ -57,12 +57,12 @@ The command writes a `[mcp_servers.parallel-search]` entry to `~/.codex/config.t
 ### OpenClaw
 
 ```bash
-openclaw mcp set parallel-search '{"url":"https://search.parallel.ai/mcp","transport":"streamable-http"}'
+openclaw mcp set parallel-search '{"url":"https://mcp.parallel.ai/mcp","transport":"streamable-http"}'
 ```
 
 Keep the `transport` field. OpenClaw treats a server without it as SSE, and the Search MCP speaks Streamable HTTP, so the connection fails. `openclaw mcp set` only writes config; start a new agent session for the tools to appear. Our [OpenClaw web search best practices](https://parallel.ai/articles/openclaw-best-practices-web-search) guide covers prompting and accuracy once it’s connected.
 
-Other clients (Windsurf, Gemini CLI, VS Code, Zed, Claude Desktop) use slightly different field names; the [Search MCP docs](https://docs.parallel.ai/integrations/mcp/search-mcp) list each one. For a wider look at what else is free, see our roundup of the [best free web search MCP servers](https://parallel.ai/articles/best-free-web-search-mcp).
+Other clients (Windsurf, Gemini CLI, VS Code, Zed, Claude Desktop) use slightly different field names; the [Search MCP docs](https://docs.parallel.ai/integrations/mcp/quickstart) list each one. For a wider look at what else is free, see our roundup of the [best free web search MCP servers](https://parallel.ai/articles/best-free-web-search-mcp).
 
 ## Verify it works
 
@@ -160,13 +160,13 @@ You can run both: keep the MCP for everyday lookups and let the agent reach for 
 
 ## Get started
 
-Add the [free Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) now; it takes one command. When you want scripting and research, create an account at [platform.parallel.ai](https://platform.parallel.ai), install the [Parallel CLI](https://parallel.ai/blog/parallel-cli), and run `parallel-cli skills install`. For picking other servers to pair with it, see the [best MCP servers for Claude Code](https://parallel.ai/articles/best-mcp-servers-for-claude-code).
+Add the [free Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) now; it takes one command. When you want scripting and research, create an account at [platform.parallel.ai](https://platform.parallel.ai), install the [Parallel CLI](https://parallel.ai/blog/parallel-cli), and run `parallel-cli skills install`. For picking other servers to pair with it, see the [best MCP servers for Claude Code](https://parallel.ai/articles/best-mcp-servers-for-claude-code).
 
 ## Frequently asked questions
 
 ### How do I add web search to Claude Code?
 
-Run `claude mcp add --transport http "Parallel-Search-MCP" https://search.parallel.ai/mcp`, then start a new session. The server is free and needs no API key.
+Run `claude mcp add --transport http "Parallel-Search-MCP" https://mcp.parallel.ai/mcp`, then start a new session. The server is free and needs no API key.
 
 ### Is there a free web search API for coding agents?
 

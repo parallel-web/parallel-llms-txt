@@ -120,7 +120,7 @@ for r in resp.json()["results"][:3]:
 
 ## Get started
 
-Create a key at [platform.parallel.ai](https://platform.parallel.ai), where $5 in free credits every month covers up to 5,000 Turbo or Fast searches. To try it without an account, connect the free Search MCP at `https://search.parallel.ai/mcp` to Claude, Cursor, or another MCP client; our [free web search MCP roundup](https://parallel.ai/articles/best-free-web-search-mcp) compares it with the alternatives.
+Create a key at [platform.parallel.ai](https://platform.parallel.ai), where $5 in free credits every month covers up to 5,000 Turbo or Fast searches. To try it without an account, connect the free Search MCP at `https://mcp.parallel.ai/mcp` to Claude, Cursor, or another MCP client; our [free web search MCP roundup](https://parallel.ai/articles/best-free-web-search-mcp) compares it with the alternatives.
 
 ## Frequently asked questions
 

@@ -8,7 +8,7 @@ Disclosure up front: we make Parallel and it's our first pick; the benchmark fig
 
 ## 1. Parallel Search MCP
 
-Server URL: `https://search.parallel.ai/mcp`. Two tools: `web_search`, which returns ranked results with excerpts dense enough that agents usually answer without a follow-up fetch, and `web_fetch`, which pulls token-efficient markdown from specific URLs including PDFs and JavaScript-heavy pages. It's [free with no API key or account](https://docs.parallel.ai/integrations/mcp/search-mcp); a key raises the rate limits, and an OAuth endpoint (`/mcp-oauth`) exists for teams that need every request attributed to an account. It runs on our own web-scale index rather than reselling another engine's results.
+Server URL: `https://mcp.parallel.ai/mcp`. Two tools: `web_search`, which returns ranked results with excerpts dense enough that agents usually answer without a follow-up fetch, and `web_fetch`, which pulls token-efficient markdown from specific URLs including PDFs and JavaScript-heavy pages. It's [free with no API key or account](https://docs.parallel.ai/integrations/mcp/quickstart); a key raises the rate limits, and an OAuth endpoint (`/mcp?login`) exists for teams that need every request attributed to an account. It runs on our own web-scale index rather than reselling another engine's results.
 
 On the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products across 12 providers (September 2026 data), Parallel Search (advanced) scores 75, level with Brave’s LLM context mode and behind Perplexity Search (medium) at 80 and Octen Search at 77. Parallel's fast mode recorded $8.41 in search cost per 1,000 benchmark tasks in AA's September 8 data, among the lowest measured. OpenClaw also made it the engine behind its default web search.
 
@@ -64,4 +64,4 @@ Every server here installs in a minute and four of the five have some free path,
 
 ## Run the test
 
-Start with the one that costs nothing to try: [add ](https://docs.parallel.ai/integrations/mcp/search-mcp)`[https://search.parallel.ai/mcp](https://docs.parallel.ai/integrations/mcp/search-mcp)`[ to your client](https://docs.parallel.ai/integrations/mcp/search-mcp), ask your agent twenty real questions, and compare against whatever it uses today. Keep the winner.
+Start with the one that costs nothing to try: [add ](https://docs.parallel.ai/integrations/mcp/quickstart)`[https://mcp.parallel.ai/mcp](https://docs.parallel.ai/integrations/mcp/quickstart)`[ to your client](https://docs.parallel.ai/integrations/mcp/quickstart), ask your agent twenty real questions, and compare against whatever it uses today. Keep the winner.

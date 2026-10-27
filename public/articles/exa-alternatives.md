@@ -33,7 +33,7 @@ Exa retired the `/research` endpoint in April 2026 in favor of `/search` with `t
 
 ### Parallel Search API
 
-Parallel Search takes a natural-language objective plus optional keyword queries and returns ranked URLs with excerpts compressed for a model’s context window. It has four modes: Turbo (about 200ms, English and Japanese only) and Fast (about 700ms) at $1 per 1,000 requests, and Basic (about 1s) and Advanced (about 3s) at $5, with 10 results included ([modes docs](https://docs.parallel.ai/search/modes)). Fast at $1 undercuts Exa Instant at $4, and Advanced scored 75 against Exa auto’s 74 on the Artificial Analysis index. The same key covers Extract at $1 per 1,000 URLs, the Task API for deep research and enrichment at $5 to $2,400 per 1,000 runs, FindAll for entity discovery, and Monitor. The [Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) at `https://search.parallel.ai/mcp` is free with no key, like Exa’s. We don’t have dedicated people or scholarly indexes, and Turbo doesn’t cover every language.
+Parallel Search takes a natural-language objective plus optional keyword queries and returns ranked URLs with excerpts compressed for a model’s context window. It has four modes: Turbo (about 200ms, English and Japanese only) and Fast (about 700ms) at $1 per 1,000 requests, and Basic (about 1s) and Advanced (about 3s) at $5, with 10 results included ([modes docs](https://docs.parallel.ai/search/modes)). Fast at $1 undercuts Exa Instant at $4, and Advanced scored 75 against Exa auto’s 74 on the Artificial Analysis index. The same key covers Extract at $1 per 1,000 URLs, the Task API for deep research and enrichment at $5 to $2,400 per 1,000 runs, FindAll for entity discovery, and Monitor. The [Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) at `https://mcp.parallel.ai/mcp` is free with no key, like Exa’s. We don’t have dedicated people or scholarly indexes, and Turbo doesn’t cover every language.
 
 ### Tavily
 
@@ -103,7 +103,7 @@ def call(url, tool, args):
 q = "Exa search API pricing per 1,000 requests"
 for name, url, tool, args in [
     ("exa", "https://mcp.exa.ai/mcp", "web_search_exa", {"query": q}),
-    ("parallel", "https://search.parallel.ai/mcp", "web_search",
+    ("parallel", "https://mcp.parallel.ai/mcp", "web_search",
      {"objective": q, "search_queries": ["Exa API pricing"]}),
 ]:
     secs, text = call(url, tool, args)
@@ -160,4 +160,4 @@ Parallel, Exa, Firecrawl, Tavily, and You.com all run hosted MCP servers with a 
 
 ## Get started
 
-Add `https://search.parallel.ai/mcp` to your MCP client with no key, or get an API key on [Parallel’s platform](https://platform.parallel.ai) and run the script above against your own queries. For the full head-to-head, read [Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel), and for the wider field, see [the best web search APIs](https://parallel.ai/articles/best-web-search-api).
+Add `https://mcp.parallel.ai/mcp` to your MCP client with no key, or get an API key on [Parallel’s platform](https://platform.parallel.ai) and run the script above against your own queries. For the full head-to-head, read [Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel), and for the wider field, see [the best web search APIs](https://parallel.ai/articles/best-web-search-api).

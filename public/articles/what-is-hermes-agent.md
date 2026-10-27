@@ -142,7 +142,7 @@ We make Parallel, and our free Search MCP server is one way to pin a single prov
 ```yaml
 mcp_servers:
   parallel_search:
-    url: "https://search.parallel.ai/mcp"
+    url: "https://mcp.parallel.ai/mcp"
     timeout: 120
 ```
 
@@ -150,7 +150,7 @@ Then confirm Hermes can reach it. We ran this on October 10, 2026, in a scratch 
 
 ```text
 Testing 'parallel_search'...
-Transport: HTTP → https://search.parallel.ai/mcp
+Transport: HTTP → https://mcp.parallel.ai/mcp
 Auth: none
 ✓ Connected (349ms)
 ✓ Tools discovered: 2

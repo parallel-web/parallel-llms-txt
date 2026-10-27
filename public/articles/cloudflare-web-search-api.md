@@ -154,7 +154,7 @@ https://developers.cloudflare.com/ai-gateway/usage/web-search | Web Search · Cl
 https://imasters.com/news/cloudflare-launches-web-search-api-to-give-ai-agents-real-time-search | Cloudflare's Web Search API: search for AI agents - iMasters
 ```
 
-If your agent speaks MCP, the [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) at `https://search.parallel.ai/mcp` works without an API key and adds a `web_fetch` tool that reads up to 20 URLs per call, which covers the page-reading gap in Cloudflare’s API.
+If your agent speaks MCP, the [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) at `https://mcp.parallel.ai/mcp` works without an API key and adds a `web_fetch` tool that reads up to 20 URLs per call, which covers the page-reading gap in Cloudflare’s API.
 
 |  | Cloudflare Web Search API | Parallel Search API |
 | --- | --- | --- |

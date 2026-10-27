@@ -4,13 +4,13 @@ Most “best web search API” comparisons are published by vendors who rank the
 
 ## Quick answer
 
-- **Best overall for AI agents and RAG:** Parallel - proprietary web-scale index, LLM-ready excerpts in one call. Turbo ~200ms and Fast under 1s, both $1 / 1,000 requests. ([Try Search](/products/search) / [Free MCP](https://docs.parallel.ai/integrations/mcp/search-mcp))
+- **Best overall for AI agents and RAG:** Parallel - proprietary web-scale index, LLM-ready excerpts in one call. Turbo ~200ms and Fast under 1s, both $1 / 1,000 requests. ([Try Search](/products/search) / [Free MCP](https://docs.parallel.ai/integrations/mcp/quickstart))
 - **Best multi-engine and vertical coverage:** SerpAPI, dozens of engines plus Google Scholar, Patents, and Shopping.
 - **Best native grounding inside one model:** OpenAI and Anthropic web search tools, with no separate retrieval pipeline to run.
 
 > **Try it free**
 >
-> Point any MCP client at [search.parallel.ai/mcp](https://search.parallel.ai/mcp) (no account), or start on the [Search product](/products/search) with $5/mo free credits.
+> Point any MCP client at [mcp.parallel.ai/mcp](https://mcp.parallel.ai/mcp) (no account), or start on the [Search product](/products/search) with $5/mo free credits.
 
 The web search API market shifted fast after Microsoft retired the Bing Search APIs in August 2025, and a wave of AI-native search engines moved in to fill the gap. The options now split into three categories that solve different problems, and picking the wrong category costs more than picking the wrong vendor.
 
@@ -84,7 +84,7 @@ import parallel  client = parallel.Parallel()  results = client.search.create(  
 
 > **Start free**
 >
-> MCP with no signup: [search.parallel.ai/mcp](https://search.parallel.ai/mcp). Production: [platform.parallel.ai](https://platform.parallel.ai) + [Search quickstart](https://docs.parallel.ai/search/search-quickstart).
+> MCP with no signup: [mcp.parallel.ai/mcp](https://mcp.parallel.ai/mcp). Production: [platform.parallel.ai](https://platform.parallel.ai) + [Search quickstart](https://docs.parallel.ai/search/search-quickstart).
 
 ### 2. Exa
 

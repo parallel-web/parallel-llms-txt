@@ -135,7 +135,7 @@ Our run returned Cloudflare’s developer docs and press release in the top resu
 
 ## Get started
 
-Create a key at [platform.parallel.ai](https://platform.parallel.ai); every account gets $5 in free credits every month (up to 5,000 Turbo or Fast searches). The [Search API quickstart](https://docs.parallel.ai/search/search-quickstart) and [Extract API quickstart](https://docs.parallel.ai/extract/extract-quickstart) have SDK examples in Python and TypeScript. To try search in an agent without writing code, connect the free Search MCP at `https://search.parallel.ai/mcp`; it needs no account or key.
+Create a key at [platform.parallel.ai](https://platform.parallel.ai); every account gets $5 in free credits every month (up to 5,000 Turbo or Fast searches). The [Search API quickstart](https://docs.parallel.ai/search/search-quickstart) and [Extract API quickstart](https://docs.parallel.ai/extract/extract-quickstart) have SDK examples in Python and TypeScript. To try search in an agent without writing code, connect the free Search MCP at `https://mcp.parallel.ai/mcp`; it needs no account or key.
 
 ## Frequently asked questions
 

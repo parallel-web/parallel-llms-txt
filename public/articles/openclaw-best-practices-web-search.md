@@ -55,7 +55,7 @@ Parallel ships a production MCP server that works with any MCP-aware client, inc
 
 **2. Add the Parallel Search MCP to OpenClaw.** You can add MCP servers through OpenClaw's configuration. The Parallel Search MCP server URL is:
 
-**https://search.parallel.ai/mcp**
+**https://mcp.parallel.ai/mcp**
 
 This provides two tools to your agent: web_search for searching the web with semantic objectives, and web_fetch for extracting content from specific URLs.
 
@@ -148,7 +148,7 @@ We build web search and research APIs purpose-built for AI agents. Our platform 
 
 ### **Does Parallel work with OpenClaw's MCP protocol?**
 
-Yes. We ship a production [MCP server](https://docs.parallel.ai/integrations/mcp/search-mcp) at https://search.parallel.ai/mcp that provides web_search and web_fetch tools to any MCP-aware client, including OpenClaw. This is the recommended integration path.
+Yes. We ship a production [MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) at https://mcp.parallel.ai/mcp that provides web_search and web_fetch tools to any MCP-aware client, including OpenClaw. This is the recommended integration path.
 
 ### **Does Parallel have Agent Skills available on Skills.sh?**
 

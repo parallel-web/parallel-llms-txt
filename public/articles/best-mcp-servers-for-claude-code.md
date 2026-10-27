@@ -14,10 +14,10 @@ Servers are added with the `[claude mcp add](https://code.claude.com/docs/en/mcp
 
 ### 1. Parallel Search MCP
 
-The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) adds two tools: `web_search`, which returns ranked results with excerpts dense enough that the agent usually answers without a follow-up fetch, and `web_fetch`, which pulls token-efficient markdown from specific URLs, PDFs and JavaScript-rendered pages included. It's hosted, free, and needs no API key:
+The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) adds two tools: `web_search`, which returns ranked results with excerpts dense enough that the agent usually answers without a follow-up fetch, and `web_fetch`, which pulls token-efficient markdown from specific URLs, PDFs and JavaScript-rendered pages included. It's hosted, free, and needs no API key:
 
 ```bash
-claude mcp add --transport http "Parallel-Search-MCP" https://search.parallel.ai/mcp
+claude mcp add --transport http "Parallel-Search-MCP" https://mcp.parallel.ai/mcp
 ```
 
 Claude Code has a built-in web search tool, and for casual lookups it's fine; we've written a direct [comparison of Claude's built-in search against Parallel](https://parallel.ai/articles/claude-web-search-vs-parallel) if you want the details. In brief, a dedicated engine returns denser, more complete context per call, and Parallel Search (advanced) scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products across 12 providers (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. On a coding-specific test, [Openbenchmarks’ web search for coding agents board](https://openbenchmarks.com/web-search-for-coding-agents) (100 tickets where an agent patches an API client against current vendor docs, September 2026) found the API’s fast mode completed 66.7% of tickets from search results alone, third of 14 behind Perplexity (77.3%) and Firecrawl (70.3%), and turbo [searched fastest](https://openbenchmarks.com/web-search-for-coding-agents/metric/avg-search-time-search-only) at 333ms.

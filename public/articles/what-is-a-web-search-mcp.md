@@ -80,7 +80,7 @@ Here’s how the default tool sets of five widely used servers compare, per each
 
 | Server | How you connect | Default tools | API key |
 | --- | --- | --- | --- |
-| Parallel Search MCP | Hosted: https://search.parallel.ai/mcp | web_search, web_fetch | Optional; keyless use is free at lower rate limits |
+| Parallel Search MCP | Hosted: https://mcp.parallel.ai/mcp | web_search, web_fetch | Optional; keyless use is free at lower rate limits |
 | Exa MCP | Hosted: https://mcp.exa.ai/mcp | web_search_exa, web_fetch_exa; advanced search and agent_run are opt-in | Optional for search; agent_run needs an API key or OAuth |
 | Firecrawl MCP | Hosted: https://mcp.firecrawl.dev/v2/mcp | firecrawl_search, firecrawl_scrape, firecrawl_parse on the keyless endpoint | Optional for those three; the full server adds crawl, interact, and research tools |
 | Tavily MCP | Hosted: https://mcp.tavily.com/mcp/ | tavily-search, tavily-extract | Optional; keyless use needs the X-Tavily-Access-Mode: keyless header |
@@ -107,7 +107,7 @@ Once a server is installed, these are the differences that matter:
 - **What comes back.** A server that returns query-relevant excerpts lets the model answer from search alone. One that returns short snippets forces a fetch per result, and each fetch costs a turn and more tokens.
 - **Accuracy inside an agent.** Vendor claims vary in method, so check independent results. The [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) runs every search API through the same agent harness and publishes accuracy, cost, and time per task.
 - **Context cost.** Every tool schema sits in the model’s context. Two focused tools cost less context than a dozen general ones.
-- **Access and limits.** Keyless access is fine for trying a server. Production use needs an API key or OAuth for higher rate limits, and organization-wide deployments may need enforced sign-in. Parallel serves OAuth on a separate endpoint, `https://search.parallel.ai/mcp-oauth`.
+- **Access and limits.** Keyless access is fine for trying a server. Production use needs an API key or OAuth for higher rate limits, and organization-wide deployments may need enforced sign-in. Parallel serves OAuth on a separate endpoint, `https://mcp.parallel.ai/mcp?login`.
 - **Controls.** Check whether you can restrict sources, set freshness, or pick a speed tier. Parallel’s Search MCP accepts the Search API’s settings, including [search modes](https://docs.parallel.ai/search/modes) and source policy, as connection-level overrides.
 
 ## Treat search results as untrusted input
@@ -121,13 +121,13 @@ A few habits reduce the risk. Keep search tools read-only and check their annota
 Parallel’s Search MCP needs no account. In Claude Code, run:
 
 ```bash
-claude mcp add --transport http parallel-search https://search.parallel.ai/mcp
+claude mcp add --transport http parallel-search https://mcp.parallel.ai/mcp
 ```
 
 In Codex CLI:
 
 ```bash
-codex mcp add parallel-search --url https://search.parallel.ai/mcp
+codex mcp add parallel-search --url https://mcp.parallel.ai/mcp
 ```
 
 In Cursor, add the server to `~/.cursor/mcp.json`:
@@ -136,13 +136,13 @@ In Cursor, add the server to `~/.cursor/mcp.json`:
 {
   "mcpServers": {
     "parallel-search": {
-      "url": "https://search.parallel.ai/mcp"
+      "url": "https://mcp.parallel.ai/mcp"
     }
   }
 }
 ```
 
-Restart the client if it doesn’t pick up the change, then ask about something recent enough to fall after the model’s training cutoff. For higher rate limits, create a key on the [Parallel Platform](https://platform.parallel.ai) and send it as an `Authorization: Bearer` header. The [Search MCP docs](https://docs.parallel.ai/integrations/mcp/search-mcp) cover VS Code, Claude Desktop, Windsurf, Gemini CLI, and stdio-only clients such as Zed, which connect through the `mcp-remote` bridge.
+Restart the client if it doesn’t pick up the change, then ask about something recent enough to fall after the model’s training cutoff. For higher rate limits, create a key on the [Parallel Platform](https://platform.parallel.ai) and send it as an `Authorization: Bearer` header. The [Search MCP docs](https://docs.parallel.ai/integrations/mcp/quickstart) cover VS Code, Claude Desktop, Windsurf, Gemini CLI, and stdio-only clients such as Zed, which connect through the `mcp-remote` bridge.
 
 ## Frequently asked questions
 

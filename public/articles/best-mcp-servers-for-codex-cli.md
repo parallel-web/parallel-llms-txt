@@ -14,10 +14,10 @@ Servers live under [`mcp_servers`.<name>] entries in `config.toml`, and `[codex 
 
 ### 1. Parallel Search MCP
 
-Web context is what coding agents most often lack: the error message that started appearing last month, the docs page for the version you actually installed, the changelog behind a breaking change. The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) closes that gap with two tools: `web_search`, returning ranked results with excerpts dense enough to answer from directly, and `web_fetch`, which pulls token-efficient markdown from specific URLs, PDFs and JavaScript-heavy pages included. It's hosted and free, with no API key required.
+Web context is what coding agents most often lack: the error message that started appearing last month, the docs page for the version you actually installed, the changelog behind a breaking change. The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) closes that gap with two tools: `web_search`, returning ranked results with excerpts dense enough to answer from directly, and `web_fetch`, which pulls token-efficient markdown from specific URLs, PDFs and JavaScript-heavy pages included. It's hosted and free, with no API key required.
 
 ```bash
-codex mcp add parallel-search --url https://search.parallel.ai/mcp
+codex mcp add parallel-search --url https://mcp.parallel.ai/mcp
 ```
 
 Parallel Search (advanced) scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products across 12 providers (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. On Openbenchmarks' [coding-agent board](https://openbenchmarks.com/web-search-for-coding-agents) (100 documentation tickets, September 2026), fast mode completed 66.7% from search alone, third of 14 behind Perplexity (77.3%) and Firecrawl (70.3%), and turbo had the fastest searches at 333ms. Restart Codex after adding the server and the tools appear.

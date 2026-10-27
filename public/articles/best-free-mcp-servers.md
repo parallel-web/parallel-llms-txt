@@ -10,7 +10,7 @@ These are the seven servers we'd install, grouped by category. Disclosure: the f
 
 ### 1. Parallel Search MCP (web search + fetching)
 
-`https://search.parallel.ai/mcp` is [free with no API key and no account](https://docs.parallel.ai/integrations/mcp/search-mcp): `web_search` for ranked, LLM-dense results and `web_fetch` for clean markdown from any URL, running on Parallel's Search API, whose advanced mode scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products across 12 providers (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. Free here means anonymous rate limits suited to personal and hobbyist use; production scale needs a free account (with $5 in recurring monthly credits) and a Bearer key.
+`https://mcp.parallel.ai/mcp` is [free with no API key and no account](https://docs.parallel.ai/integrations/mcp/quickstart): `web_search` for ranked, LLM-dense results and `web_fetch` for clean markdown from any URL, running on Parallel's Search API, whose advanced mode scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products across 12 providers (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. Free here means anonymous rate limits suited to personal and hobbyist use; production scale needs a free account (with $5 in recurring monthly credits) and a Bearer key.
 
 ### 2. DeepWiki (open-source repo docs)
 
@@ -66,4 +66,4 @@ Firecrawl's keyless tier is real but its daily limits are shared across everyone
 
 ## Start with the keyless two
 
-Add `[https://search.parallel.ai/mcp](https://docs.parallel.ai/integrations/mcp/search-mcp)` and DeepWiki, neither of which asks for an account, and see what your agent does with a live web and real library internals. Add the account-gated ones only when a task actually calls for them.
+Add `[https://mcp.parallel.ai/mcp](https://docs.parallel.ai/integrations/mcp/quickstart)` and DeepWiki, neither of which asks for an account, and see what your agent does with a live web and real library internals. Add the account-gated ones only when a task actually calls for them.

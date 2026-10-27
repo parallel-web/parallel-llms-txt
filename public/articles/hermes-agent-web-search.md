@@ -6,7 +6,7 @@ Hermes Agent, the open-source agent from Nous Research, ships a built-in web too
 
 ## Why connect the Search MCP directly
 
-Hermes’s keyless Parallel route already calls the same endpoint, `https://search.parallel.ai/mcp`, but it sends that endpoint less. In Hermes’s [keyless adapter](https://github.com/NousResearch/hermes-agent/blob/main/plugins/web/keyless_mcp.py), the agent’s single query string becomes both the objective and the only keyword query. Connect the server yourself and the model fills in the full `web_search` schema: a natural-language objective plus several keyword queries, which Parallel uses to pick the excerpts it returns.
+Hermes’s keyless Parallel route already calls the same endpoint, `https://mcp.parallel.ai/mcp`, but it sends that endpoint less. In Hermes’s [keyless adapter](https://github.com/NousResearch/hermes-agent/blob/main/plugins/web/keyless_mcp.py), the agent’s single query string becomes both the objective and the only keyword query. Connect the server yourself and the model fills in the full `web_search` schema: a natural-language objective plus several keyword queries, which Parallel uses to pick the excerpts it returns.
 
 Here’s a real call from our test. We asked Hermes what shipped in the latest release, and it sent this to the Search MCP:
 
@@ -51,7 +51,7 @@ Hermes reads MCP servers from `~/.hermes/config.yaml`. Add this block, or add th
 ```yaml
 mcp_servers:
   parallel_search:
-    url: "https://search.parallel.ai/mcp"
+    url: "https://mcp.parallel.ai/mcp"
     timeout: 120
 ```
 
@@ -60,7 +60,7 @@ The key you choose, `parallel_search` here, becomes part of every tool name. Her
 You can also use the CLI:
 
 ```bash
-hermes mcp add parallel_search --url https://search.parallel.ai/mcp
+hermes mcp add parallel_search --url https://mcp.parallel.ai/mcp
 ```
 
 In our test, the command asked whether the server requires authentication. Answer `n`, since the free endpoint takes no key, then press Enter to enable both tools.
@@ -77,7 +77,7 @@ Our run returned:
 
 ```text
 Testing 'parallel_search'...
-Transport: HTTP → https://search.parallel.ai/mcp
+Transport: HTTP → https://mcp.parallel.ai/mcp
 Auth: none
 ✓ Connected (396ms)
 ✓ Tools discovered: 2
@@ -123,7 +123,7 @@ Then reference it from the server entry. Hermes resolves `${VAR}` placeholders i
 ```yaml
 mcp_servers:
   parallel_search:
-    url: "https://search.parallel.ai/mcp"
+    url: "https://mcp.parallel.ai/mcp"
     timeout: 120
     headers:
       Authorization: "Bearer ${PARALLEL_API_KEY}"
@@ -141,7 +141,7 @@ Choose the native backend if you want Hermes’s own tool names and its long-pag
 
 **The tools don’t appear.** Run `hermes mcp test parallel_search` first. If it connects, start a new session or run `/reload-mcp`, since a running session keeps the tool set it started with. Hermes also writes a startup line to `agent.log` naming every server that failed to register and why.
 
-**You get a 401.** The `/mcp` endpoint accepts anonymous requests. A 401 means you’re pointing at `https://search.parallel.ai/mcp-oauth`, which requires a key or OAuth, or your Bearer header holds an invalid key.
+**You get a 401.** The `/mcp` endpoint accepts anonymous requests. A 401 means you’re pointing at `https://mcp.parallel.ai/mcp?login`, which requires a key or OAuth, or your Bearer header holds an invalid key.
 
 **You hit rate limits.** Anonymous requests get lower rate limits than keyed ones. Add an API key as shown above.
 
@@ -163,7 +163,7 @@ Yes. The server exposes standard MCP tools, so it works with any model provider 
 
 ### Can I use OAuth instead of an API key?
 
-Parallel serves an OAuth-capable endpoint at `https://search.parallel.ai/mcp-oauth`, and Hermes supports OAuth for remote MCP servers with `auth: oauth` on the server entry. For a single machine, the Bearer key in `~/.hermes/.env` is simpler.
+Parallel serves an OAuth-capable endpoint at `https://mcp.parallel.ai/mcp?login`, and Hermes supports OAuth for remote MCP servers with `auth: oauth` on the server entry. For a single machine, the Bearer key in `~/.hermes/.env` is simpler.
 
 ### What’s the difference between web_search and web_fetch?
 

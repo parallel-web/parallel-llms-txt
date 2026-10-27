@@ -2,7 +2,7 @@
 
 A free web search MCP server gives Claude Code, Claude Desktop, Cursor, or OpenClaw live web access without a bill, but “free” means a different deal at almost every vendor. This guide covers the three kinds of free, eight servers ranked by what you can use at $0, the built-in tools they compete with, and exact Parallel Search MCP config for each client.
 
-Before writing this list, we tested the keyless claim ourselves. On September 28, 2026 we sent raw JSON-RPC requests to `https://search.parallel.ai/mcp` with no account, no key, and no auth header: `initialize`, then `tools/list`, then a `web_search` call. All three returned HTTP 200, and the search came back in 0.8 seconds with ten ranked results. Every server below either works at $0 today or states up front what you have to provide first.
+Before writing this list, we tested the keyless claim ourselves. On September 28, 2026 we sent raw JSON-RPC requests to `https://mcp.parallel.ai/mcp` with no account, no key, and no auth header: `initialize`, then `tools/list`, then a `web_search` call. All three returned HTTP 200, and the search came back in 0.8 seconds with ten ranked results. Every server below either works at $0 today or states up front what you have to provide first.
 
 ## Three kinds of free
 
@@ -37,7 +37,7 @@ Figures come from each vendor’s pricing page or docs on September 28, 2026. Th
 
 ### 1. Parallel Search MCP
 
-We make this one, so weigh our ranking accordingly. The [Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) is free to use anonymously with no account, and anonymous calls run in Fast mode, which the docs describe as the recommended default for most agents at about 700ms. `web_search` returns ranked results with dense excerpts, and `web_fetch` reads up to 20 URLs per call, including PDFs and JavaScript-heavy pages. Excerpts are capped at roughly 25,000 characters per call so they fit inside client output limits.
+We make this one, so weigh our ranking accordingly. The [Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) is free to use anonymously with no account, and anonymous calls run in Fast mode, which the docs describe as the recommended default for most agents at about 700ms. `web_search` returns ranked results with dense excerpts, and `web_fetch` reads up to 20 URLs per call, including PDFs and JavaScript-heavy pages. Excerpts are capped at roughly 25,000 characters per call so they fit inside client output limits.
 
 On [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026), at the low-cost tier with a GPT-5.6 Luna agent, Parallel Fast scored 94% on SimpleQA Verified and 44% on BrowseComp. Tavily tied on SimpleQA at 94%, Exa Auto scored 91% and 36%, and Perplexity edged Fast on BrowseComp at 46%. Those runs used the API with search and extract tools, and Fast is the same mode the keyless MCP uses.
 
@@ -91,32 +91,32 @@ OpenClaw’s [web search docs](https://docs.openclaw.ai/tools/web) list a key-fr
 
 ## Set up Parallel Search MCP in each client
 
-Each config below comes from our [Search MCP docs](https://docs.parallel.ai/integrations/mcp/search-mcp) or the client’s own docs, checked on September 28, 2026.
+Each config below comes from our [Search MCP docs](https://docs.parallel.ai/integrations/mcp/quickstart) or the client’s own docs, checked on September 28, 2026.
 
 ### Claude Code
 
 ```bash
-claude mcp add --transport http "Parallel-Search-MCP" https://search.parallel.ai/mcp
+claude mcp add --transport http "Parallel-Search-MCP" https://mcp.parallel.ai/mcp
 ```
 
 Add `--scope user` to make it available in every project, then run `/mcp` inside a session to confirm it’s connected. For higher rate limits, add `--header "Authorization: Bearer $PARALLEL_API_KEY"` to the same command.
 
 ### Claude Desktop
 
-The quickest path is Settings → Connectors → Add custom connector, with the URL `https://search.parallel.ai/mcp`. Organization accounts may not allow custom connectors; in that case, use Settings → Developer → Edit Config and add this entry, which needs Node.js for `npx`:
+The quickest path is Settings → Connectors → Add custom connector, with the URL `https://mcp.parallel.ai/mcp`. Organization accounts may not allow custom connectors; in that case, use Settings → Developer → Edit Config and add this entry, which needs Node.js for `npx`:
 
 ```json
 {
   "mcpServers": {
     "Parallel Search MCP": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "https://search.parallel.ai/mcp"]
+      "args": ["-y", "mcp-remote", "https://mcp.parallel.ai/mcp"]
     }
   }
 }
 ```
 
-To authenticate, append `"--header", "authorization: Bearer YOUR-PARALLEL-API-KEY"` to `args`, or point the connector at `https://search.parallel.ai/mcp-oauth` to sign in with OAuth.
+To authenticate, append `"--header", "authorization: Bearer YOUR-PARALLEL-API-KEY"` to `args`, or point the connector at `https://mcp.parallel.ai/mcp?login` to sign in with OAuth.
 
 ### Cursor
 
@@ -126,7 +126,7 @@ Add this to `~/.cursor/mcp.json`, or to `.cursor/mcp.json` in a repo to share it
 {
   "mcpServers": {
     "Parallel Search MCP": {
-      "url": "https://search.parallel.ai/mcp"
+      "url": "https://mcp.parallel.ai/mcp"
     }
   }
 }
@@ -139,7 +139,7 @@ For a key, add `"headers": {"Authorization": "Bearer ${env:PARALLEL_API_KEY}"}`;
 As an MCP server, OpenClaw needs the `transport` field. It defaults to SSE when you leave it out, and the Search MCP speaks Streamable HTTP:
 
 ```bash
-openclaw mcp set parallel-search '{"url":"https://search.parallel.ai/mcp","transport":"streamable-http"}'
+openclaw mcp set parallel-search '{"url":"https://mcp.parallel.ai/mcp","transport":"streamable-http"}'
 ```
 
 `openclaw mcp set` only writes config, so start a new agent session before the tools appear. Add a `headers` map with `"Authorization": "Bearer YOUR-PARALLEL-API-KEY"` for higher limits. To use Parallel as OpenClaw’s own `web_search` provider instead, install `@openclaw/parallel-plugin` and set `tools.web.search.provider` to `parallel-free`, or to `parallel` with a `PARALLEL_API_KEY`.
@@ -149,7 +149,7 @@ openclaw mcp set parallel-search '{"url":"https://search.parallel.ai/mcp","trans
 Here’s the one-shot call we ran, which needs no key:
 
 ```bash
-curl -s https://search.parallel.ai/mcp \
+curl -s https://mcp.parallel.ai/mcp \
   -H "Content-Type: application/json" \
   -H "Accept: application/json, text/event-stream" \
   -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"web_search","arguments":{"objective":"Current Claude API web search tool price","search_queries":["Claude web search tool pricing"]}}}'
@@ -161,7 +161,7 @@ Anonymous limits suit exploration and personal use. Once you hit them, [create a
 
 ## Get started
 
-Paste `https://search.parallel.ai/mcp` into whichever client you use, ask your agent something that happened this week, and check that it made a tool call. If you’d rather give a terminal agent search through a CLI, our [10-minute coding agent guide](https://parallel.ai/articles/add-free-web-search-to-coding-agent) covers both routes.
+Paste `https://mcp.parallel.ai/mcp` into whichever client you use, ask your agent something that happened this week, and check that it made a tool call. If you’d rather give a terminal agent search through a CLI, our [10-minute coding agent guide](https://parallel.ai/articles/add-free-web-search-to-coding-agent) covers both routes.
 
 ## Frequently asked questions
 
@@ -171,7 +171,7 @@ Yes. Parallel Search MCP, Exa MCP, and Firecrawl MCP all work keyless at hosted 
 
 ### How do I add web search to Claude Code for free?
 
-Run `claude mcp add --transport http "Parallel-Search-MCP" https://search.parallel.ai/mcp`, then start a session and run `/mcp` to confirm it’s connected. No account or key is needed.
+Run `claude mcp add --transport http "Parallel-Search-MCP" https://mcp.parallel.ai/mcp`, then start a session and run `/mcp` to confirm it’s connected. No account or key is needed.
 
 ### Does OpenClaw have free web search built in?
 

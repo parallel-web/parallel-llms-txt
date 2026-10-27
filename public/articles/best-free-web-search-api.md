@@ -32,7 +32,7 @@ A free tier measured in requests tells you nothing about how many requests you'l
 
 We built the [**Parallel Search API**](https://parallel.ai/products/search) for AI agents rather than for humans reading a results page. It runs on our own web-scale index (billions of pages, millions added or updated daily) and returns ranked results with dense, token-efficient excerpts rather than snippets. There are three ways to use it for free, and they stack:
 
-- **A free hosted MCP server.** Point any MCP client at [search.parallel.ai/mcp](https://docs.parallel.ai/integrations/mcp/search-mcp) and your agent has web search and page fetching immediately. No account, no API key, no credit card. It's intended for personal and hobbyist use, with rate limits set generously enough for a daily-driver coding agent.
+- **A free hosted MCP server.** Point any MCP client at [mcp.parallel.ai/mcp](https://docs.parallel.ai/integrations/mcp/quickstart) and your agent has web search and page fetching immediately. No account, no API key, no credit card. It's intended for personal and hobbyist use, with rate limits set generously enough for a daily-driver coding agent.
 - **A signup credit.** New accounts created at [platform.parallel.ai](https://platform.parallel.ai) receive a starting credit balance you can spend across any Parallel API: Search, Extract, Task, Responses, FindAll, Entity Search, or Monitor.
 - **$5 in free credits every month.** Eligible organizations with a card on file receive [$5 in credits automatically each month](https://parallel.ai/blog/free-tier-parallel), usable across Parallel products. Free credit applies before a paid balance, so you only pay once you've used it up. Unused balance expires at the end of the month, one credit per organization, and marketplace and postpaid organizations aren't eligible.
 
@@ -90,7 +90,7 @@ _Check official documentation for current pricing._
 
 ## **The fastest free start: our hosted MCP server**
 
-Every other entry on this list requires an account before your agent can run a single query. The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) doesn't. It's a hosted, streamable-HTTP MCP server at **https://search.parallel.ai/mcp**, free and usable anonymously, and it exposes two tools:
+Every other entry on this list requires an account before your agent can run a single query. The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) doesn't. It's a hosted, streamable-HTTP MCP server at **https://mcp.parallel.ai/mcp**, free and usable anonymously, and it exposes two tools:
 
 - **web_search**: real-time search returning ranked URLs with compressed, query-relevant excerpts, running the Search API in Fast mode.
 - **web_fetch**: clean markdown from any public URL, including JavaScript-heavy pages and PDFs.
@@ -98,7 +98,7 @@ Every other entry on this list requires an account before your agent can run a s
 Results are capped at roughly 25,000 characters per call to stay inside typical MCP client output limits. For Claude Code, one command:
 
 ```sh
-claude mcp add --transport http "Parallel-Search-MCP" https://search.parallel.ai/mcp
+claude mcp add --transport http "Parallel-Search-MCP" https://mcp.parallel.ai/mcp
 ```
 
 For clients configured through JSON (Cursor, Windsurf, Cline, Claude Desktop, and most others) the entry is three lines:
@@ -108,15 +108,15 @@ For clients configured through JSON (Cursor, Windsurf, Cline, Claude Desktop, an
   "mcpServers": {
     "parallel-search": {
       "type": "http",
-      "url": "https://search.parallel.ai/mcp"
+      "url": "https://mcp.parallel.ai/mcp"
     }
   }
 }
 ```
 
-There are one-click installers for [Cursor](https://cursor.com/en/install-mcp?name=Parallel%20Search%20MCP&config=eyJ1cmwiOiJodHRwczovL3NlYXJjaC5wYXJhbGxlbC5haS9tY3AifQ==) and [VS Code](https://insiders.vscode.dev/redirect/mcp/install?name=Parallel%20Search%20MCP&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fsearch.parallel.ai%2Fmcp%22%7D), plus setup instructions for 25+ clients in the [MCP quickstart](https://docs.parallel.ai/integrations/mcp/quickstart). It works with Claude and Claude Code, ChatGPT and Codex, Cursor, Cline, OpenClaw, Hermes Agent, OpenCode, Windsurf, Goose, LM Studio, and anything else that speaks MCP.
+There are one-click installers for [Cursor](https://cursor.com/en/install-mcp?name=Parallel%20Search%20MCP&config=eyJ1cmwiOiJodHRwczovL3NlYXJjaC5wYXJhbGxlbC5haS9tY3AifQ==) and [VS Code](https://insiders.vscode.dev/redirect/mcp/install?name=Parallel%20Search%20MCP&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmcp.parallel.ai%2Fmcp%22%7D), plus setup instructions for 25+ clients in the [MCP quickstart](https://docs.parallel.ai/integrations/mcp/quickstart). It works with Claude and Claude Code, ChatGPT and Codex, Cursor, Cline, OpenClaw, Hermes Agent, OpenCode, Windsurf, Goose, LM Studio, and anything else that speaks MCP.
 
-Anonymous use gets rate limits sized for hobby and personal agents; if you want higher limits and usage analytics, create an account at [platform.parallel.ai](https://platform.parallel.ai) and pass your API key as a Bearer token, or point your client at https://search.parallel.ai/mcp-oauth to authenticate over OAuth instead. For production traffic, call the Search API directly, which is where mode selection, result counts, and per-request cost control live.
+Anonymous use gets rate limits sized for hobby and personal agents; if you want higher limits and usage analytics, create an account at [platform.parallel.ai](https://platform.parallel.ai) and pass your API key as a Bearer token, or point your client at https://mcp.parallel.ai/mcp?login to authenticate over OAuth instead. For production traffic, call the Search API directly, which is where mode selection, result counts, and per-request cost control live.
 
 ## **Four modes, and why Turbo and Fast change the free-tier math**
 
@@ -159,7 +159,7 @@ Or any combination. 5,000 Turbo searches a month is around 165 a day, which is m
 
 ### **Is there a web search API that's free with no credit card and no signup?**
 
-The Parallel Search MCP server at https://search.parallel.ai/mcp requires neither. Several providers (Tavily, Exa, Firecrawl, Serper) offer free tiers without a card but do require an account. Brave requires a card at signup.
+The Parallel Search MCP server at https://mcp.parallel.ai/mcp requires neither. Several providers (Tavily, Exa, Firecrawl, Serper) offer free tiers without a card but do require an account. Brave requires a card at signup.
 
 ### **Can I run a production application on a free tier?**
 

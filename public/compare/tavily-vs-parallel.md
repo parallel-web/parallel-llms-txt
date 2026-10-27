@@ -223,7 +223,7 @@ __Core capabilities: Parallel compared with Tavily__
 | Site map and crawl         | Crawler is internal to the index, not an endpoint               | Map and Crawl with depth, breadth, and path filters (Leads) |
 | Source controls            | Domain include and exclude, freshness date, live fetch          | Domain filters, topic, date range, country, language        |
 
-Sources: [Parallel Search docs](https://docs.parallel.ai/search/search-quickstart), [Parallel Extract docs](https://docs.parallel.ai/extract/extract-quickstart), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel FindAll docs](https://docs.parallel.ai/findall-api/findall-quickstart), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [Switching from Tavily to Parallel](https://parallel.ai/articles/tavily-to-parallel-search-api)
+Sources: [Parallel Search docs](https://docs.parallel.ai/search/search-quickstart), [Parallel Extract docs](https://docs.parallel.ai/extract/extract-quickstart), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel FindAll docs](https://docs.parallel.ai/findall-api/findall-quickstart), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [Switching from Tavily to Parallel](https://parallel.ai/articles/tavily-to-parallel-search-api), [Tavily vs. Parallel: choosing a search API](https://parallel.ai/articles/tavily-vs-parallel-search)
 
 ### Performance and scale
 

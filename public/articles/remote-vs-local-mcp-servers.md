@@ -30,7 +30,7 @@ A few clients still speak only stdio (Zed, Warp, and Raycast among them). The st
 
 If the tool needs your machine (browsers, files, local databases, dev servers), it must be local. For everything else, choose remote and take the zero-install, auto-update, works-in-CI bundle. The exceptions run the other way only when data governance demands it: a team that can't send queries to a vendor runs the self-hosted or local variant and accepts the maintenance.
 
-Web search is the cleanest case for remote: the index lives in the cloud regardless, so a local server would just be a proxy you have to maintain. It's why we ship the [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) as a hosted endpoint with three auth rungs: anonymous and free at `https://search.parallel.ai/mcp`, a Bearer API key for higher limits, and an OAuth endpoint (`/mcp-oauth`) for teams that need every request attributed to an account, for example under zero-data-retention agreements.
+Web search is the cleanest case for remote: the index lives in the cloud regardless, so a local server would just be a proxy you have to maintain. It's why we ship the [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) as a hosted endpoint with three auth rungs: anonymous and free at `https://mcp.parallel.ai/mcp`, a Bearer API key for higher limits, and an OAuth endpoint (`/mcp?login`) for teams that need every request attributed to an account, for example under zero-data-retention agreements.
 
 ## Security notes for each
 
@@ -48,4 +48,4 @@ Web search is the cleanest case for remote: the index lives in the cloud regardl
 
 ## Try the remote path in one minute
 
-Paste `https://search.parallel.ai/mcp` into any MCP client and you get the remote-server experience described above: no install, no key, tools available immediately. For how it compares to the other hosted search options, see our [web search MCP comparison](https://parallel.ai/articles/best-web-search-mcp).
+Paste `https://mcp.parallel.ai/mcp` into any MCP client and you get the remote-server experience described above: no install, no key, tools available immediately. For how it compares to the other hosted search options, see our [web search MCP comparison](https://parallel.ai/articles/best-web-search-mcp).

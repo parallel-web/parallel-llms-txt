@@ -16,7 +16,7 @@ Servers are declared in the [mcp block of ](https://opencode.ai/docs/mcp-servers
   "mcp": {
     "parallel-search": {
       "type": "remote",
-      "url": "https://search.parallel.ai/mcp",
+      "url": "https://mcp.parallel.ai/mcp",
       "enabled": true
     }
   }
@@ -27,7 +27,7 @@ Servers are declared in the [mcp block of ](https://opencode.ai/docs/mcp-servers
 
 ### 1. Parallel Search MCP
 
-The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) is the nine-line config above: a hosted server, free with no API key, exposing `web_search` for ranked, excerpt-dense results and `web_fetch` for token-efficient markdown from specific URLs, PDFs and JavaScript-rendered pages included.
+The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) is the nine-line config above: a hosted server, free with no API key, exposing `web_search` for ranked, excerpt-dense results and `web_fetch` for token-efficient markdown from specific URLs, PDFs and JavaScript-rendered pages included.
 
 OpenCode also has a built-in websearch tool backed by Exa's hosted service. On the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products (September 2026 data), Parallel Search (advanced) scores 75, one point ahead of Exa (auto) at 74, and both trail Perplexity Search (medium) at 80. The margin is thin, so [test on your own queries](https://parallel.ai/articles/best-web-search-api). Both options are free inside OpenCode, so the comparison costs you nothing but a config entry, and the Parallel server adds explicit page fetching either way.
 

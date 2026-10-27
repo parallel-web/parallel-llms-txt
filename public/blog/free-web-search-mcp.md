@@ -4,7 +4,7 @@ Parallel Search gives AI agents real-time web access built for LLMs, with dense 
 
 Starting today, it's free by default for agents and AI tools like Cursor, Claude Code, OpenClaw, Hermes Agent, and OpenCode. No account or API key necessary.
 
-Get started: [docs.parallel.ai/integrations/mcp/search-mcp](https://docs.parallel.ai/integrations/mcp/search-mcp)
+Get started: [docs.parallel.ai/integrations/mcp/quickstart](https://docs.parallel.ai/integrations/mcp/quickstart)
 
 ## What is the Parallel Search MCP?
 
@@ -26,20 +26,20 @@ Parallel Search is compatible with any MCP
 One-click installs:
 
 1. [Cursor](https://cursor.com/en/install-mcp?name=Parallel%20Search%20MCP&config=eyJ1cmwiOiJodHRwczovL3NlYXJjaC5wYXJhbGxlbC5haS9tY3AifQ==)
-2. [VSCode](https://insiders.vscode.dev/redirect/mcp/install?name=Parallel%20Search%20MCP&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fsearch.parallel.ai%2Fmcp%22%7D)
+2. [VSCode](https://insiders.vscode.dev/redirect/mcp/install?name=Parallel%20Search%20MCP&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmcp.parallel.ai%2Fmcp%22%7D)
 
 ```sh
-claude mcp add --transport http "Parallel-Search-MCP" https://search.parallel.ai/mcp
+claude mcp add --transport http "Parallel-Search-MCP" https://mcp.parallel.ai/mcp
 ```
 
 ```
 Please install the Parallel Search MCP so that YOU (the coding agent I'm currently talking to) can call it.
 
-- Server URL: https://search.parallel.ai/mcp
+- Server URL: https://mcp.parallel.ai/mcp
 
 - Transport: Streamable HTTP
 
-- Authentication: default to no auth — the server is free to use without an API key or OAuth. If I want higher rate limits I can create an account at https://platform.parallel.ai and either pass my API key as a Bearer token in the Authorization header OR point the config at https://search.parallel.ai/mcp-oauth (OAuth flow). Ask me which I prefer before wiring up auth; don't configure auth if I haven't opted in.
+- Authentication: default to no auth — the server is free to use without an API key or OAuth. If I want higher rate limits I can create an account at https://platform.parallel.ai and either pass my API key as a Bearer token in the Authorization header OR point the config at https://mcp.parallel.ai/mcp?login (OAuth flow). Ask me which I prefer before wiring up auth; don't configure auth if I haven't opted in.
 
 First, identify which MCP client harness you're running inside (Claude Code, Codex, Cursor, VS Code Copilot, etc.) — this is your own host, not a third-party tool. Then add the server to THAT client's MCP config, using the mechanism that host expects (e.g., claude mcp add for Claude Code, editing ~/.codex/config.toml for Codex, editing ~/.cursor/mcp.json for Cursor). Do not install it into a different client's config.
 
@@ -56,7 +56,7 @@ Parallel runs its own web-scale index (billions of pages, millions added daily) 
 
 Yes. You can drop the API key and keep using the MCP server. Keep the key configured if you want higher rate limits, usage analytics on [platform.parallel.ai](https://platform.parallel.ai), or access to paid agentic endpoints like the Task API and FindAll API.
 
-Please note that you’ll need to update from the old URL ([https://search-mcp.parallel.ai/mcp](https://search-mcp.parallel.ai/mcp)) to the new one: [https://search.parallel.ai/mcp](https://search.parallel.ai/mcp)
+Please note that you’ll need to update from the old URL ([https://search-mcp.parallel.ai/mcp](https://search-mcp.parallel.ai/mcp)) to the new one: [https://mcp.parallel.ai/mcp](https://mcp.parallel.ai/mcp)
 
 **What rate limits does the Parallel MCP server have?**
 

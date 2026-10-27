@@ -33,12 +33,12 @@ The list is consumer-shaped by design. There is nothing for web research beyond 
 
 ### 1. Parallel Search MCP
 
-Muse can browse the web, and browsing is the slow way to look something up. The browser sub-agent loads a results page, picks a link, reads the page, and repeats, and each step is a large chunk of context that counts against your usage meter. The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) replaces that loop with two tool calls: `web_search` returns ranked results with excerpts dense enough to answer from directly, and `web_fetch` returns any page, including PDFs, as compact markdown.
+Muse can browse the web, and browsing is the slow way to look something up. The browser sub-agent loads a results page, picks a link, reads the page, and repeats, and each step is a large chunk of context that counts against your usage meter. The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) replaces that loop with two tool calls: `web_search` returns ranked results with excerpts dense enough to answer from directly, and `web_fetch` returns any page, including PDFs, as compact markdown.
 
-It is a hosted server at `https://search.parallel.ai/mcp`, free to use with no account or API key, and it runs on our own web-scale index. Parallel Search (advanced) scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), an independent benchmark of 25 search API products across 12 providers (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. This is the prompt we used, and Muse had both tools working and saved as a skill in under a minute:
+It is a hosted server at `https://mcp.parallel.ai/mcp`, free to use with no account or API key, and it runs on our own web-scale index. Parallel Search (advanced) scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), an independent benchmark of 25 search API products across 12 providers (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. This is the prompt we used, and Muse had both tools working and saved as a skill in under a minute:
 
 ```text
-Build a custom integration to the Parallel Search MCP server at https://search.parallel.ai/mcp. It is a remote MCP server over streamable HTTP with two tools, web_search and web_fetch. No authentication is needed. Connect to it with the official MCP SDK, test both tools end to end, and save the integration as a reusable skill so you can use it for web research in any future conversation. If I later give you a Parallel API key, add it as an Authorization: Bearer header.
+Build a custom integration to the Parallel Search MCP server at https://mcp.parallel.ai/mcp. It is a remote MCP server over streamable HTTP with two tools, web_search and web_fetch. No authentication is needed. Connect to it with the official MCP SDK, test both tools end to end, and save the integration as a reusable skill so you can use it for web research in any future conversation. If I later give you a Parallel API key, add it as an Authorization: Bearer header.
 ```
 
 Muse offered on its own to add a Parallel API key as a bearer token for higher rate limits. A free account at [platform.parallel.ai](https://platform.parallel.ai) comes with $5 in credits every month, applied automatically, and the key can be handed over through Muse's credential prompt whenever you want it.
@@ -99,7 +99,7 @@ This one is for the developers among Muse's users. GitHub's hosted server at `ht
 
 | Server | URL or entry point | Auth | What it adds |
 | --- | --- | --- | --- |
-| Parallel Search MCP | https://search.parallel.ai/mcp | None; optional API key | Web search and page fetch in one call |
+| Parallel Search MCP | https://mcp.parallel.ai/mcp | None; optional API key | Web search and page fetch in one call |
 | Parallel Task MCP | https://task-mcp.parallel.ai/mcp | API key required | Background deep research and enrichment |
 | Notion MCP | https://mcp.notion.com/mcp | OAuth | Read and write your Notion workspace |
 | Todoist | https://ai.todoist.net/mcp or @doist/todoist-cli | OAuth, or API token via CLI | Tasks in the list you already keep |

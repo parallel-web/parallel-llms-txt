@@ -80,9 +80,9 @@ search = client.search(
 
 TinyFish takes a goal and a page to work on, then returns a stream of what the agent did. Parallel takes an objective and a set of queries, then returns ranked URLs with compressed excerpts sized for a model's context window.
 
-The free entry points differ in shape as well as price. TinyFish's MCP server sits behind OAuth 2.1, so an account comes first even though the Search and Fetch calls themselves cost nothing. Parallel's hosted Search MCP at search.parallel.ai/mcp takes anonymous requests with no account and no key. Point a client at the URL and web_search and web_fetch appear, backed by the Search and Extract APIs, running Search in basic mode with excerpts capped at roughly 25,000 characters per call to fit typical MCP client limits.
+The free entry points differ in shape as well as price. TinyFish's MCP server sits behind OAuth 2.1, so an account comes first even though the Search and Fetch calls themselves cost nothing. Parallel's hosted Search MCP at mcp.parallel.ai/mcp takes anonymous requests with no account and no key. Point a client at the URL and web_search and web_fetch appear, backed by the Search and Extract APIs, running Search in basic mode with excerpts capped at roughly 25,000 characters per call to fit typical MCP client limits.
 
-Anonymous traffic runs at lower rate limits. Passing an API key as a Bearer token raises them and unlocks per-connection overrides, so you can pin fast mode, a location, or a result count for every call on that connection. A second endpoint at search.parallel.ai/mcp-oauth requires authentication and returns 401 to anonymous requests; use that one when every call has to be attributed to an account, as with Zero Data Retention or an organization-wide rollout.
+Anonymous traffic runs at lower rate limits. Passing an API key as a Bearer token raises them and unlocks per-connection overrides, so you can pin fast mode, a location, or a result count for every call on that connection. A second endpoint at mcp.parallel.ai/mcp?login requires authentication and returns 401 to anonymous requests; use that one when every call has to be attributed to an account, as with Zero Data Retention or an organization-wide rollout.
 
 ## **Compliance**
 

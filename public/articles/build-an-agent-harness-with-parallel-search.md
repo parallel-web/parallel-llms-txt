@@ -285,7 +285,7 @@ You can exercise every code path without a model key. We pointed the real Anthro
 
 ## The MCP alternative
 
-You can skip the tool code by connecting Claude to the [Parallel Search MCP server](https://docs.parallel.ai/integrations/mcp/search-mcp), which exposes `web_search` and `web_fetch`. With the Anthropic MCP connector, Anthropic’s servers make the MCP calls:
+You can skip the tool code by connecting Claude to the [Parallel Search MCP server](https://docs.parallel.ai/integrations/mcp/quickstart), which exposes `web_search` and `web_fetch`. With the Anthropic MCP connector, Anthropic’s servers make the MCP calls:
 
 ```python
 response = client.beta.messages.create(
@@ -294,7 +294,7 @@ response = client.beta.messages.create(
     betas=["mcp-client-2025-11-20"],
     mcp_servers=[{
         "type": "url",
-        "url": "https://search.parallel.ai/mcp",
+        "url": "https://mcp.parallel.ai/mcp",
         "name": "parallel-search",
         "authorization_token": os.environ["PARALLEL_API_KEY"],  # optional
     }],
@@ -308,7 +308,7 @@ In the Claude Agent SDK, the server is one `mcp_servers` entry:
 ```python
 options = ClaudeAgentOptions(
     model="claude-opus-5-5",
-    mcp_servers={"parallel-search": {"type": "http", "url": "https://search.parallel.ai/mcp"}},
+    mcp_servers={"parallel-search": {"type": "http", "url": "https://mcp.parallel.ai/mcp"}},
     allowed_tools=["mcp__parallel-search__*"],
 )
 ```
@@ -317,7 +317,7 @@ The Search MCP is free without a key at lower rate limits; anonymous calls run i
 
 ## Get started
 
-Create a key at [platform.parallel.ai](https://platform.parallel.ai), which includes $5 in free credits every month (up to 5,000 Turbo or Fast searches). The [Search](https://docs.parallel.ai/search/search-quickstart) and [Extract](https://docs.parallel.ai/extract/extract-quickstart) quickstarts document every parameter used here, and `https://search.parallel.ai/mcp` works in any MCP client with no account.
+Create a key at [platform.parallel.ai](https://platform.parallel.ai), which includes $5 in free credits every month (up to 5,000 Turbo or Fast searches). The [Search](https://docs.parallel.ai/search/search-quickstart) and [Extract](https://docs.parallel.ai/extract/extract-quickstart) quickstarts document every parameter used here, and `https://mcp.parallel.ai/mcp` works in any MCP client with no account.
 
 ## Frequently asked questions
 

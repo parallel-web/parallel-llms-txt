@@ -14,13 +14,13 @@ Servers are declared under `mcpServers` in `~/.gemini/settings.json`. Remote Str
 
 ### 1. Parallel Search MCP
 
-Grounding and agent-grade retrieval are different jobs. Built-in grounding returns what a search engine returns: good links, thin snippets. The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) returns ranked results with token-dense excerpts an agent can usually answer from in one call, plus `web_fetch` for reading full pages, PDFs included, as clean markdown. It's free with no API key:
+Grounding and agent-grade retrieval are different jobs. Built-in grounding returns what a search engine returns: good links, thin snippets. The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) returns ranked results with token-dense excerpts an agent can usually answer from in one call, plus `web_fetch` for reading full pages, PDFs included, as clean markdown. It's free with no API key:
 
 ```json
 {
   "mcpServers": {
     "Parallel Search MCP": {
-      "httpUrl": "https://search.parallel.ai/mcp"
+      "httpUrl": "https://mcp.parallel.ai/mcp"
     }
   }
 }
