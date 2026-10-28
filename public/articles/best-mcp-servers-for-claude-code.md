@@ -24,7 +24,7 @@ Claude Code has a built-in web search tool, and for casual lookups it's fine; we
 
 **Best for:** researching libraries, errors, and APIs mid-task, and reading long docs pages without flooding the context window.
 
-**Tradeoffs:** we’re the vendor. Anonymous use has lower rate limits and runs the `fast` search mode; a free API key passed as a Bearer token lifts the limits and lets you pin a different mode with a URL parameter such as `?mode=basic`.
+**Tradeoffs:** we’re the vendor. Anonymous use has lower rate limits and runs the `fast` search mode; a free API key passed as a Bearer token lifts the limits and lets you pin a different mode in an `x-parallel-mcp-config` header, such as `{"web_search":{"override":{"mode":"basic"}}}`.
 
 ### 2. Parallel Task MCP
 

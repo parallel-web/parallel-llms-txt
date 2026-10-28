@@ -105,19 +105,22 @@ parallel-cli search "Who is the current CEO of Airbus?" --mode fast --json
 
 Use `parallel-cli` 0.9.2 or later. Version 0.8.x treats `--mode fast` as a deprecated Beta alias, prints a warning, and runs the search in Basic at $5 per 1,000 requests; 0.9.3 accepted both modes without a warning in our test.
 
-The free [Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) at `https://search.parallel.ai/mcp` runs anonymous calls in Fast mode with server-managed settings, and it ignores mode overrides from anonymous clients. To pin Turbo, authenticate with a Bearer API key and add `?mode=turbo` to the URL, or send the setting in an `x-parallel-search-config` header. In Codex:
+The free [Parallel MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) at `https://mcp.parallel.ai/mcp` runs anonymous calls in Fast mode. To pin Turbo, authenticate with an API key and set the mode in the `x-parallel-mcp-config` header. In Codex:
 
 ```bash
-codex mcp add parallel-search-turbo \
-  --url "https://search.parallel.ai/mcp?mode=turbo" \
-  --bearer-token-env-var PARALLEL_API_KEY
+cat >> ~/.codex/config.toml <<'EOF'
+[mcp_servers.parallel-turbo]
+url = "https://mcp.parallel.ai/mcp"
+bearer_token_env_var = "PARALLEL_API_KEY"
+http_headers = { "x-parallel-mcp-config" = '{"web_search":{"override":{"mode":"turbo"}}}' }
+EOF
 ```
 
-The server validates the mode at the MCP handshake, and an unknown value returns HTTP 400. If you want OAuth instead of a key, use `https://search.parallel.ai/mcp-oauth`.
+The server validates the header when the client connects, and an invalid mode value returns HTTP 400. To sign in with OAuth instead of a key, connect to `https://mcp.parallel.ai/mcp?login` and send the same header.
 
 ## Get started
 
-You get $5 in free credits every month, enough for up to 5,000 Turbo or Fast searches. Create a key on [platform.parallel.ai](https://platform.parallel.ai), run the snippet above in both modes against 20 or so of your own queries, and score end-task accuracy alongside latency. If you’d rather not create an account yet, the keyless Search MCP already runs Fast. For a fuller test plan, see [how we evaluate web search APIs](https://parallel.ai/articles/how-we-evaluate-web-search-apis) and our guide to [benchmarking search APIs on your own queries](https://parallel.ai/articles/how-to-benchmark-web-search-apis).
+You get $5 in free credits every month, enough for up to 5,000 Turbo or Fast searches. Create a key on [platform.parallel.ai](https://platform.parallel.ai), run the snippet above in both modes against 20 or so of your own queries, and score end-task accuracy alongside latency. If you’d rather not create an account yet, the keyless Parallel MCP server already runs Fast. For a fuller test plan, see [how we evaluate web search APIs](https://parallel.ai/articles/how-we-evaluate-web-search-apis) and our guide to [benchmarking search APIs on your own queries](https://parallel.ai/articles/how-to-benchmark-web-search-apis).
 
 ## Frequently asked questions
 
@@ -133,9 +136,9 @@ Yes. Both cost $1 per 1,000 requests with 10 results included, and each addition
 
 On our September 2026 benchmarks with a GPT-5.6 Luna agent, Turbo scored 91% on SimpleQA Verified against Fast’s 94%, and 32% on BrowseComp against 44%. The gap is small on simple lookups and larger on multi-hop questions.
 
-### Which mode does the free Parallel Search MCP use?
+### Which mode does the free Parallel MCP server use?
 
-Anonymous calls to `https://search.parallel.ai/mcp` run in Fast mode. To use Turbo, authenticate with an API key and add `?mode=turbo` to the server URL.
+Anonymous calls to `https://mcp.parallel.ai/mcp` run in Fast mode. To use Turbo, authenticate with an API key or OAuth and set `mode` to `turbo` in the `x-parallel-mcp-config` header.
 
 ### Which languages does Parallel Search Turbo support?
 

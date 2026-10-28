@@ -157,7 +157,7 @@ curl -s https://mcp.parallel.ai/mcp \
 
 ## When to add a key
 
-Anonymous limits suit exploration and personal use. Once you hit them, [create a free account](https://platform.parallel.ai) and pass your key as a Bearer token. The account includes [$5 in free credits every month](https://parallel.ai/pricing), which covers up to 5,000 Turbo or Fast searches. Authenticated connections can also pin settings on the URL, such as `?mode=turbo` for about 200ms searches in English and Japanese; our [Fast vs. Turbo guide](https://parallel.ai/articles/parallel-search-fast-vs-turbo) covers that choice. For a wider look at free search APIs you call from code rather than through MCP, see [the best free web search APIs](https://parallel.ai/articles/best-free-web-search-api).
+Anonymous limits suit exploration and personal use. Once you hit them, [create a free account](https://platform.parallel.ai) and pass your key as a Bearer token. The account includes [$5 in free credits every month](https://parallel.ai/pricing), which covers up to 5,000 Turbo or Fast searches. Authenticated connections can also pin settings in an `x-parallel-mcp-config` header, such as `{"web_search":{"override":{"mode":"turbo"}}}` for about 200ms searches in English and Japanese; our [Fast vs. Turbo guide](https://parallel.ai/articles/parallel-search-fast-vs-turbo) covers that choice. For a wider look at free search APIs you call from code rather than through MCP, see [the best free web search APIs](https://parallel.ai/articles/best-free-web-search-api).
 
 ## Get started
 

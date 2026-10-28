@@ -126,7 +126,7 @@ Anonymous calls run in Fast mode at shared rate limits. For steadier throughput,
 
 Export `PARALLEL_API_KEY` in your shell, or put `PARALLEL_API_KEY=...` in `$DSH_HOME/.env`; dsh loaded it from that file in our test. The conditional sends no header when the variable is unset, so the server falls back to anonymous access. A one-line header that interpolates the variable directly also works, but when the variable is missing it sends `Bearer undefined`, and the server rejects that.
 
-Keyed calls bill at Search API rates. Per the [Search modes docs](https://docs.parallel.ai/search/modes), Fast costs $1 per 1,000 requests and Basic and Advanced cost $5 per 1,000. With a key you can pin the mode for every call on the connection, for example `https://search.parallel.ai/mcp?mode=fast`, or send the same settings in an `x-parallel-search-config` header. The server ignores those settings on anonymous calls, which always run in Fast mode.
+Keyed calls bill at Search API rates. Per the [Search modes docs](https://docs.parallel.ai/search/modes), Fast costs $1 per 1,000 requests and Basic and Advanced cost $5 per 1,000. With a key, you can pin the mode for every call on the connection. Add an `x-parallel-mcp-config` header next to `Authorization` with a value such as `{"web_search":{"override":{"mode":"basic"}}}`. Anonymous calls always run in Fast mode, and the server rejects the header on a connection without a key.
 
 ## Troubleshooting
 

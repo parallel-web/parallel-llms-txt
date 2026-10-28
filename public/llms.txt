@@ -27,7 +27,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Best Deep Research APIs in 2026: Benchmark Report](https://llm.parallel.ai/articles/best-deep-research-apis.md): Five deep research APIs tested on DeepSearchQA and BrowseComp in August 2026. Accuracy ran from 65% to 86%. See the rankings, costs, and how to test.
 - [Best Fast Search APIs in 2026](https://llm.parallel.ai/articles/best-fast-search-apis.md): Compare 5 fast search APIs on independent latency, accuracy, and agent cost data. See how Parallel, Exa, Brave, SerpAPI, and Tavily fit real-time AI retrieval.
 - [Best Free MCP Servers in 2026](https://llm.parallel.ai/articles/best-free-mcp-servers.md): The 7 best free MCP servers in 2026: web search, browser automation, docs, GitHub, and more, sorted by what free actually means: keyless, free tier, or…
-- [Best Free Web Search APIs for AI Agents in 2026](https://llm.parallel.ai/articles/best-free-web-search-api.md): Compare free web search API tiers in 2026 on credits, card requirements, and rate limits to find the right option for prototypes or production agents.
+- [Best Free Web Search APIs for AI Agents in 2026](https://llm.parallel.ai/articles/best-free-web-search-api.md): Free web search and search engine APIs compared on credits, card rules, and rate limits, checked October 27, 2026, plus what happened to Google’s free API.
 - [Free Web Search MCP Servers for Claude and Cursor (2026)](https://llm.parallel.ai/articles/best-free-web-search-mcp.md): Compare 8 free web search MCP servers for Claude Code, Cursor, and OpenClaw by kind of free, published limits, and upgrade price, with tested setup config.
 - [Best Grok Bot plugins for research and GTM](https://llm.parallel.ai/articles/best-grok-bot-plugins.md): Compare six Grok Bot plugins for web research, SEO, team knowledge, and product work, with setup guidance and prompts for research and GTM teams.
 - [Claude Code MCP Servers: The 12 Best to Install (2026)](https://llm.parallel.ai/articles/best-mcp-servers-for-claude-code.md): Install the 12 best Claude Code MCP servers in 2026: web search, Context7, GitHub, Playwright, Linear, Supabase, Figma, and more, with claude mcp add commands.
@@ -115,7 +115,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Jina AI Reader vs Parallel: Web Content for LLMs](https://llm.parallel.ai/articles/jina-ai-reader-vs-parallel.md): Compare Jina AI Reader and Parallel on extraction quality, latency, search, and token-versus-request pricing for turning web pages into model input.
 - [Keenable vs Parallel: Search API Comparison (2026)](https://llm.parallel.ai/articles/keenable-vs-parallel.md): Compare Keenable and Parallel on independent benchmark scores, per-task cost, latency, free tiers, SELECT vs FindAll, rate limits, and compliance for AI agents.
 - [Kimi K3 Web Search: Add Live Search to Open-Weight Models](https://llm.parallel.ai/articles/kimi-k3-web-search.md): Set up web search for Kimi K3, GLM 5.3, DeepSeek, and Reflection Beam with one tool-calling loop. Moonshot set $web_search to retire on October 20, 2026.
-- [Linkup vs Parallel: Two Accuracy-First Search APIs](https://llm.parallel.ai/articles/linkup-vs-parallel.md): Compare Linkup and Parallel on benchmark accuracy claims, deep research, deployment options, pricing, reliability, and compliance for AI agents.
+- [Linkup vs Parallel: Search API Accuracy, Pricing, Deployment](https://llm.parallel.ai/articles/linkup-vs-parallel.md): Linkup and Parallel compared on independent benchmarks, search and research pricing, EU data processing, deployment, and compliance, checked October 27, 2026.
 - [LLM Cost Optimization for AI Agents: 2026 Guide](https://llm.parallel.ai/articles/llm-cost-optimization-for-ai-agents.md): Find where AI agent spend goes across OpenAI, Claude, and Gemini, from built-in search fees to cache misses, and the order to apply each cost lever.
 - [What Is llms.txt? Format, Setup, and Whether to Adopt It](https://llm.parallel.ai/articles/llms-txt.md): Learn what llms.txt is, how it differs from robots.txt and sitemaps, how to write and validate one, and whether the standard is worth adopting yet.
 - [MCP vs. Skills vs. CLIs for AI Agents](https://llm.parallel.ai/articles/mcp-vs-skills-vs-clis.md): MCP servers, agent skills, and CLIs are three ways to give an AI agent tools. A decision framework with context costs, portability, auth, and real harness…
@@ -301,7 +301,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Customer Terms and Conditions](https://llm.parallel.ai/customer-terms.md): The terms and conditions between customers and Parallel Web Systems Inc. governing access to and use of Parallel&#x27;s services and APIs.
 - [Data Connectors](https://llm.parallel.ai/data-connectors.md): Explore high-quality company, financial, research, life sciences, legal, news, and web data available through Parallel.
 - [Request a Data Source](https://llm.parallel.ai/data-connectors/request.md): Request a new data source for your Parallel agents, or apply to add your data to Parallel&#x27;s data connectors.
-- [Index by Parallel · INDEX by Parallel](https://llm.parallel.ai/index.md): Web infrastructure for AI to search, extract, monitor, and reason over the world&#x27;s information.
+- [Index by Parallel · INDEX by Parallel](https://llm.parallel.ai/index.md): Index is a platform for content owners to understand how AI agents use their work and earn compensation tied to the value they contribute.
 - [Integrations](https://llm.parallel.ai/integrations.md): Use Parallel web search across your entire stack to build more powerful agents and workflows. Browse verified integrations for agent frameworks, coding agents, model platforms, data platforms, and more.
 - [Use Parallel with Anthropic](https://llm.parallel.ai/integrations/anthropic.md): Give Anthropic-powered applications live web research through tool calling, or connect Parallel to Claude Desktop over MCP.
 - [Use Parallel with AWS Marketplace](https://llm.parallel.ai/integrations/aws-marketplace.md): Procure and manage Parallel through AWS Marketplace using your existing cloud purchasing workflow.
@@ -379,7 +379,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Sign In - Parallel](https://llm.parallel.ai/docs/index.md)
 - [parallel-web - npm](https://llm.parallel.ai/docs/package/parallel-web.md)
 - [parallel-web · PyPI](https://llm.parallel.ai/docs/project/parallel-web/index.md)
-- [OpenAPI Spec](https://llm.parallel.ai/docs/public-openapi.json.md)
+- [public-openapi](https://llm.parallel.ai/docs/public-openapi.json.md)
 
 ## SDKs
 

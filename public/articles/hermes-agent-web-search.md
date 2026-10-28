@@ -129,7 +129,7 @@ mcp_servers:
       Authorization: "Bearer ${PARALLEL_API_KEY}"
 ```
 
-With a key, you can also pin Search API settings for every call through the connection, such as a different [search mode](https://docs.parallel.ai/search/modes) or a source policy, by adding query parameters to the URL (for example `?mode=basic`). Parallel ignores those overrides on anonymous requests. Keyed calls bill against your account at Search API rates; see [pricing](https://parallel.ai/pricing).
+With a key, you can also pin Search API settings for every call through the connection, such as a different [search mode](https://docs.parallel.ai/search/modes) or a source policy, by sending an `x-parallel-mcp-config` header (for example `{"web_search":{"override":{"mode":"basic"}}}`). A connection without a key that sends the header gets HTTP 401 and is asked to sign in. Keyed calls bill against your account at Search API rates; see [pricing](https://parallel.ai/pricing).
 
 ## MCP or the built-in Parallel backend?
 
