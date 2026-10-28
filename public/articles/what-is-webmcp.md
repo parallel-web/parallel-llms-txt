@@ -156,7 +156,7 @@ A browser agent still needs another method when a site provides no WebMCP tools 
 
 Web search operates earlier in many workflows: the agent needs to find relevant websites and retrieve evidence before it can decide where to act. WebMCP does not provide a web-wide index of sites or tools. Chrome's [WebMCP overview](https://developer.chrome.com/docs/ai/webmcp) documents the discovery limitation: a client must visit a site to learn which tools it exposes.
 
-For example, an agent researching a prospect might use **Parallel Search MCP** to find the company's technical documentation and read relevant pages. Our server exposes `web_search` for discovery and `web_fetch` for retrieving specific URLs. A separate, WebMCP-enabled CRM could then let the agent prepare the researched update in its interface. Each integration would still require its own support and permissions. The [Search MCP documentation](https://docs.parallel.ai/integrations/mcp/search-mcp) covers the search and retrieval side.
+For example, an agent researching a prospect might use **Parallel Search MCP** to find the company's technical documentation and read relevant pages. Our server exposes `web_search` for discovery and `web_fetch` for retrieving specific URLs. A separate, WebMCP-enabled CRM could then let the agent prepare the researched update in its interface. Each integration would still require its own support and permissions. The [Search MCP documentation](https://docs.parallel.ai/integrations/mcp/quickstart) covers the search and retrieval side.
 
 ## Browser support and getting started
 
@@ -196,4 +196,4 @@ Not for its own sake. Keep MCP for clients and workflows that need it, and add W
 
 WebMCP gives site authors a way to replace guesswork about an interface with named, testable actions. Evaluate it where an agent and a user need to work in the same application, and keep the MCP integrations that serve clients outside that page.
 
-When the task begins with finding information across the web, start with [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp). It supplies web search and page retrieval. A participating site's WebMCP tools can handle the next step inside its application.
+When the task begins with finding information across the web, start with [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart). It supplies web search and page retrieval. A participating site's WebMCP tools can handle the next step inside its application.

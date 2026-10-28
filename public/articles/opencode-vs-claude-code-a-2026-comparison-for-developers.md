@@ -111,7 +111,7 @@ To add the Parallel Search MCP server to an MCP-aware agent, drop this block int
   "mcpServers": {
     "parallel-search": {
       "type": "http",
-      "url": "https://search-mcp.parallel.ai/mcp",
+      "url": "https://mcp.parallel.ai/mcp",
       "headers": {
         "x-api-key": "YOUR_PARALLEL_API_KEY"
       }

@@ -48,7 +48,7 @@ A skill grants knowledge, not access. The instructions can only direct capabilit
 | Best at | Local know-how, CLI workflows | Hosted, stateful, authenticated services |
 | Inspectable before install | Fully (plain text) | Partially (code or a remote endpoint) |
 
-The two complement each other, and vendors increasingly ship both. We do: Parallel publishes [official skills on ClawHub](https://docs.parallel.ai/integrations/clawhub) (search, extract, deep research, enrichment, all wrapping the Parallel CLI) and a [free hosted MCP server](https://docs.parallel.ai/integrations/mcp/search-mcp) for harnesses where remote tools fit better.
+The two complement each other, and vendors increasingly ship both. We do: Parallel publishes [official skills on ClawHub](https://docs.parallel.ai/integrations/clawhub) (search, extract, deep research, enrichment, all wrapping the Parallel CLI) and a [free hosted MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) for harnesses where remote tools fit better.
 
 ## The security lesson: read before you install
 

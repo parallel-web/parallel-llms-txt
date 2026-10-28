@@ -56,7 +56,7 @@ CLIs win this one outright: pipes, xargs, exit codes, and scripts let an agent c
 
 Pick MCP when the tool is a hosted service: it needs OAuth, holds state on someone else's server, benefits from typed schemas and approval gating, or must work in a harness without shell access. Pick a skill wrapping a CLI when the tool is local, composable, or used only occasionally: you get near-zero context cost and full shell composition. Pick a bare CLI when the agent is already shell-first and the tool's `--help` is self-explanatory.
 
-Web search is a useful worked example because it's the one tool nearly every agent needs. We ship it as a [free hosted MCP server](https://docs.parallel.ai/integrations/mcp/search-mcp) (right answer for Claude Code, Cursor, OpenCode: remote, no install, no key) and as a [CLI that installs as a skill](https://docs.parallel.ai/integrations/cli) (right answer for OpenClaw and Pi: shell-first, composable, context-cheap), both backed by the same API.
+Web search is a useful worked example because it's the one tool nearly every agent needs. We ship it as a [free hosted MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) (right answer for Claude Code, Cursor, OpenCode: remote, no install, no key) and as a [CLI that installs as a skill](https://docs.parallel.ai/integrations/cli) (right answer for OpenClaw and Pi: shell-first, composable, context-cheap), both backed by the same API.
 
 ## Frequently asked questions
 

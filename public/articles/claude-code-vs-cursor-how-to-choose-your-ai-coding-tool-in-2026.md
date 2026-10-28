@@ -105,7 +105,7 @@ We ship a [production Search MCP server](https://parallel.ai/blog/search-mcp-ser
 {
   "mcpServers": {
     "parallel-search": {
-      "url": "https://search-mcp.parallel.ai/mcp",
+      "url": "https://mcp.parallel.ai/mcp",
       "headers": { "x-api-key": "YOUR_PARALLEL_API_KEY" }
     }
   }

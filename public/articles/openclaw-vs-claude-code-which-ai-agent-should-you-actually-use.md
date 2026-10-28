@@ -95,13 +95,13 @@ Web grounding deserves as much attention as model choice, because an agent that 
 
 MCP handles this for either tool. Because both OpenClaw and Claude Code speak MCP, you can point either one at a search server and give it ranked, citation-backed excerpts instead of leaving it to guess. We build web search and research APIs made for AI agents, running on our own web-scale index, and our [published search benchmarks](https://parallel.ai/blog/search-api-benchmark) show higher accuracy than native model search at lower total cost. Every result carries citations through our Basis framework, so the agent can show its sources.
 
-Our [production Search MCP server](https://docs.parallel.ai/integrations/mcp/search-mcp) plugs into either agent. Add it to your MCP configuration, and the agent gains two tools, `web_search` and `web_fetch`.
+Our [production Search MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) plugs into either agent. Add it to your MCP configuration, and the agent gains two tools, `web_search` and `web_fetch`.
 
 ```json
 {
   "mcpServers": {
     "parallel-search": {
-      "url": "https://search-mcp.parallel.ai/mcp",
+      "url": "https://mcp.parallel.ai/mcp",
       "headers": { "x-api-key": "YOUR_PARALLEL_API_KEY" }
     }
   }

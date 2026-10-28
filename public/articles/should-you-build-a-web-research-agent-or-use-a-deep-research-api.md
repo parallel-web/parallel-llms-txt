@@ -285,7 +285,7 @@ Costs vary by provider and task complexity. Parallel's Task API ranges from [$5 
 
 ### Can I use a deep research API with my existing agent framework?
 
-Yes. Deep research APIs return structured JSON that any framework can consume. Parallel also offers an [MCP server](https://docs.parallel.ai/integrations/mcp/search-mcp) for direct integration with agent harnesses like Claude Code, Cursor, and OpenAI Agents SDK.
+Yes. Deep research APIs return structured JSON that any framework can consume. Parallel also offers an [MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) for direct integration with agent harnesses like Claude Code, Cursor, and OpenAI Agents SDK.
 
 ### How accurate are deep research APIs compared to human researchers?
 
