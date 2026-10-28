@@ -1,9 +1,9 @@
-### \[Introducing the Parallel Decisions API: fast classification grounded in live web data\](https://parallel.ai/blog/decisions-api)
+### \[How Bretton runs AI compliance, fraud, and risk investigations with 3x faster web research using Parallel\](https://parallel.ai/blog/case-study-bretton-ai)
 
-A decision engine with world knowledge built in.
+Bretton grounds every AI compliance investigation in Parallel, making cases 40% faster with a cited source for every finding.
 
-Tags:[Product](/blog?tag=product)
+Tags:[Customers](/blog?tag=customers)
 
 By Parallel
 
-October 25, 2026
+October 27, 2026

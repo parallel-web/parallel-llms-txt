@@ -198,6 +198,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Actively Case Study: AI Sales Agents on Parallel](https://llm.parallel.ai/blog/case-study-actively.md): Actively&#x27;s per-account agents use Parallel to reason over the live web, surfacing buying signals that drive 23% higher win rates and 25% more revenue per rep.
 - [AirOps Case Study: Citation-Worthy Content at Scale](https://llm.parallel.ai/blog/case-study-airops.md): AirOps runs every web-touching step on Parallel: deep research, citation discovery, fact-checking, and refresh triggers via Task, Search, and Monitor APIs.
 - [How Amp’s coding agents build better software with Parallel Search](https://llm.parallel.ai/blog/case-study-amp.md): Amp&#x27;s coding agents use Parallel Search to look up current docs, changelogs, and best practices, so generated code reflects the latest library versions.
+- [Bretton Case Study: Web Research for Compliance Agents](https://llm.parallel.ai/blog/case-study-bretton-ai.md): Bretton grounds AI compliance, fraud, and risk investigations in Parallel, cutting case time 40% with a cited source for every finding.
 - [Build Case Study: Geofenced Alerts for Real Estate](https://llm.parallel.ai/blog/case-study-build.md): Build tracks zoning changes, grid upgrades, and regulatory shifts across thousands of sites with web monitoring and enrichment powered by Parallel.
 - [Case Study for Day AI using Parallel Task API](https://llm.parallel.ai/blog/case-study-day-ai.md): With Parallel’s web search technology backing it, Day provides superior visibility of insights across private and public data.
 - [Finch Case Study: Scaling Plaintiff Law with AI Agents](https://llm.parallel.ai/blog/case-study-finch.md): Finch replaced a three-step search-extract-validate pipeline with a single Parallel Task API call, cutting per-query costs 96% with zero timeouts in production.
@@ -379,7 +380,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Sign In - Parallel](https://llm.parallel.ai/docs/index.md)
 - [parallel-web - npm](https://llm.parallel.ai/docs/package/parallel-web.md)
 - [parallel-web · PyPI](https://llm.parallel.ai/docs/project/parallel-web/index.md)
-- [public-openapi](https://llm.parallel.ai/docs/public-openapi.json.md)
+- [OpenAPI Spec](https://llm.parallel.ai/docs/public-openapi.json.md)
 
 ## SDKs
 

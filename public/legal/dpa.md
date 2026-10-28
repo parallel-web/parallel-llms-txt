@@ -1,6 +1,6 @@
-[](https://parallel.ai/blog/parallel-search-fast)
+[](https://parallel.ai/blog/decisions-api)
 
-Introducing Parallel Search Fast: A web search API for agents that’s fast, cheap, and accurate. [Learn more.](https://parallel.ai/blog/parallel-search-fast) [[Learn more.] (https://parallel.ai/blog/parallel-search-fast)](https://parallel.ai/ai/blog/parallel-search-fast) Introducing Parallel Search Fast. [Learn more.](https://parallel.ai/blog/parallel-search-fast)
+Introducing Parallel Decisions API: the first decision engine with world knowledge built in. [Learn more.](https://parallel.ai/blog/decisions-api) [[Learn more.] (https://parallel.ai/blog/decisions-api)](https://parallel.ai/ai/blog/decisions-api) Introducing Parallel Decisions API. [Learn more.](https://parallel.ai/blog/decisions-api)
 
 Human Machine
 
@@ -341,3 +341,9 @@ Parallel will not make changes that materially decrease the level of protection 
 **Part 2: Mandatory Clauses**
 
 The Mandatory Clauses of the UK Addendum are incorporated herein by reference.
+
+## Your Privacy Choices
+
+[Privacy Policy](https://parallel.ai/privacy-policy) | Manage Preferences
+
+Accept all Reject all
