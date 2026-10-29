@@ -341,9 +341,3 @@ Parallel will not make changes that materially decrease the level of protection 
 **Part 2: Mandatory Clauses**
 
 The Mandatory Clauses of the UK Addendum are incorporated herein by reference.
-
-## Your Privacy Choices
-
-[Privacy Policy](https://parallel.ai/privacy-policy) | Manage Preferences
-
-Accept all Reject all
