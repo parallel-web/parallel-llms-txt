@@ -99,4 +99,4 @@ BrowseComp is an OpenAI benchmark of 1,266 hard questions that require persisten
 
 In the September 22, 2026 data, Parallel Search (advanced) scores 75, tied with Brave LLM context and behind Perplexity Search (medium) at 80, Perplexity (high) at 79, and Octen at 77.
 
-**Related reading: **[How to benchmark web search APIs on your own queries](https://parallel.ai/articles/how-to-benchmark-web-search-apis) · [Perplexity Search API vs. Parallel Search API](https://parallel.ai/compare/perplexity-vs-parallel) · [Exa vs. Parallel](https://parallel.ai/articles/exa-vs-parallel) · [Fast vs. Turbo](https://parallel.ai/articles/parallel-search-fast-vs-turbo)
+**Related reading: **[How to benchmark web search APIs on your own queries](https://parallel.ai/articles/how-to-benchmark-web-search-apis) / [Perplexity Search API vs. Parallel Search API](https://parallel.ai/compare/perplexity-vs-parallel) / [Exa vs. Parallel](https://parallel.ai/articles/exa-vs-parallel) / [Fast vs. Turbo](https://parallel.ai/articles/parallel-search-fast-vs-turbo)

@@ -141,4 +141,4 @@ Parallel's Search API and Responses API give you benchmark-leading accuracy, tok
 
 [Start Building](https://docs.parallel.ai/home)
 
-**Related reading: **[Claude's web search tool vs. Parallel](https://parallel.ai/articles/claude-web-search-vs-parallel) · [Gemini's Google Search grounding vs. Parallel](https://parallel.ai/articles/gemini-google-search-grounding-vs-parallel) · [Switching from OpenAI web search](https://parallel.ai/articles/openai-to-parallel-search-api).
+**Related reading: **[Claude's web search tool vs. Parallel](https://parallel.ai/articles/claude-web-search-vs-parallel) / [Gemini's Google Search grounding vs. Parallel](https://parallel.ai/articles/gemini-google-search-grounding-vs-parallel) / [Switching from OpenAI web search](https://parallel.ai/articles/openai-to-parallel-search-api).

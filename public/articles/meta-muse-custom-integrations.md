@@ -99,4 +99,4 @@ Muse is available in the US only and to adults only at launch, on iOS, Android, 
 
 _Note: Muse is new and Meta is changing it quickly. Check Meta's Help Center for the current connector list and settings._
 
-Related reading: [The best MCP servers and connectors for Meta Muse in 2026](https://parallel.ai/articles/best-mcp-servers-for-meta-muse) · [What is MCP: Model Context Protocol fundamentals](https://parallel.ai/articles/what-is-mcp) · [Remote vs. local MCP servers](https://parallel.ai/articles/remote-vs-local-mcp-servers) · [MCP servers vs. agent skills vs. CLIs](https://parallel.ai/articles/mcp-vs-skills-vs-clis)
+Related reading: [The best MCP servers and connectors for Meta Muse in 2026](https://parallel.ai/articles/best-mcp-servers-for-meta-muse) / [What is MCP: Model Context Protocol fundamentals](https://parallel.ai/articles/what-is-mcp) / [Remote vs. local MCP servers](https://parallel.ai/articles/remote-vs-local-mcp-servers) / [MCP servers vs. agent skills vs. CLIs](https://parallel.ai/articles/mcp-vs-skills-vs-clis)

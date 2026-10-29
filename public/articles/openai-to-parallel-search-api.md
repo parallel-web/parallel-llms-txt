@@ -179,4 +179,4 @@ You get Parallel's search accuracy and excerpt quality with your choice of LLM f
 
 Full documentation is at [docs.parallel.ai](https://docs.parallel.ai/). If you have questions about migrating a production workload, reach out at support@parallel.ai.
 
-**Related reading: **[OpenAI web search vs. Parallel vs. Exa vs. Tavily](https://parallel.ai/articles/openai-web-search-vs-parallel-vs-exa-vs-tavily-how-to-choose) · [Switching from Tavily](https://parallel.ai/articles/tavily-to-parallel-search-api) · [Switching from Exa](https://parallel.ai/articles/exa-to-parallel-search-api).
+**Related reading: **[OpenAI web search vs. Parallel vs. Exa vs. Tavily](https://parallel.ai/articles/openai-web-search-vs-parallel-vs-exa-vs-tavily-how-to-choose) / [Switching from Tavily](https://parallel.ai/articles/tavily-to-parallel-search-api) / [Switching from Exa](https://parallel.ai/articles/exa-to-parallel-search-api).

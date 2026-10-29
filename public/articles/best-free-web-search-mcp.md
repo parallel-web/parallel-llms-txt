@@ -185,4 +185,4 @@ Not for occasional lookups, because Cursor’s agent has a built-in Web tool. Ad
 
 It depends on the vendor. Parallel and Exa ask you to add a key, Tavily and Firecrawl stop until the next reset, and credit-based plans with a card on file bill for usage past the credit.
 
-**Related reading: **[The best web search MCP server in 2026](https://parallel.ai/articles/best-web-search-mcp) · [The best free MCP servers in 2026](https://parallel.ai/articles/best-free-mcp-servers) · [The best MCP servers for OpenClaw](https://parallel.ai/articles/best-mcp-servers-for-openclaw) · [How to add free web search to your coding agent](https://parallel.ai/articles/add-free-web-search-to-coding-agent)
+**Related reading: **[The best web search MCP server in 2026](https://parallel.ai/articles/best-web-search-mcp) / [The best free MCP servers in 2026](https://parallel.ai/articles/best-free-mcp-servers) / [The best MCP servers for OpenClaw](https://parallel.ai/articles/best-mcp-servers-for-openclaw) / [How to add free web search to your coding agent](https://parallel.ai/articles/add-free-web-search-to-coding-agent)

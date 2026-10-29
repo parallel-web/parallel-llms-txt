@@ -68,4 +68,4 @@ Choose Parallel when you want search to be a solved problem. $1 per 1,000 reques
 
 Don't treat SearXNG as the cheap version of a search API; it is a query router with no index and no content layer. If free is the appeal, price the fetch pipeline and the blocking maintenance before deciding.
 
-**Related reading: **[Crawl4AI vs. Parallel](https://parallel.ai/articles/crawl4ai-vs-parallel) · [Serper vs. Parallel](https://parallel.ai/articles/serper-vs-parallel) · [Brave Search API vs. Parallel](https://parallel.ai/compare/brave-vs-parallel).
+**Related reading: **[Crawl4AI vs. Parallel](https://parallel.ai/articles/crawl4ai-vs-parallel) / [Serper vs. Parallel](https://parallel.ai/articles/serper-vs-parallel) / [Brave Search API vs. Parallel](https://parallel.ai/compare/brave-vs-parallel).

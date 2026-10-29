@@ -257,7 +257,7 @@ __What each API returns: Parallel compared with SerpApi__
 | Excerpt size control                 | max\_chars\_per\_result and max\_chars\_total (Leads) | Section filters and CSS selectors on Extract                                    |
 | Research, enrichment, and monitoring | Task, FindAll, and Monitor APIs (Leads)               | Not in SerpApi’s API list                                                       |
 
-Sources: [Parallel Search docs](https://docs.parallel.ai/search/search-quickstart), [Parallel Search API reference](https://docs.parallel.ai/api-reference/search/search), [Parallel Extract docs](https://docs.parallel.ai/extract/extract-quickstart), [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart), [Parallel FindAll docs](https://docs.parallel.ai/findall-api/findall-quickstart), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart)
+Sources: [Parallel Search docs](https://docs.parallel.ai/search/search-quickstart), [Parallel Search API reference](https://docs.parallel.ai/api-reference/search/search), [Parallel Extract docs](https://docs.parallel.ai/extract/extract-quickstart), [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart), [Parallel FindAll docs](https://docs.parallel.ai/findall-api/findall-quickstart), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [SerpApi vs. Parallel: SERP JSON fidelity vs. retrieval for models](https://parallel.ai/articles/serpapi-vs-parallel)
 
 ### Performance and scale
 

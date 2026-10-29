@@ -83,4 +83,4 @@ Parallel's defaults are 600 requests per minute for Search, Extract, and Entity 
 
 Start on Turbo and compare against your current Tavily basic searches on a sample of real production queries. Both return excerpts, so the comparison is like for like. If quality drops on multi-hop questions, move those calls to Advanced, which is still at or below Tavily's advanced rate on every plan. The $5 monthly free credit covers 5,000 Turbo searches, which is usually enough to run the evaluation before you change anything.
 
-**Related reading: **[Tavily vs. Parallel](/compare/tavily-vs-parallel) · [Switching from Exa](https://parallel.ai/articles/exa-to-parallel-search-api) · [Switching from Firecrawl](https://parallel.ai/articles/firecrawl-to-parallel-search-api).
+**Related reading: **[Tavily vs. Parallel](/compare/tavily-vs-parallel) / [Switching from Exa](https://parallel.ai/articles/exa-to-parallel-search-api) / [Switching from Firecrawl](https://parallel.ai/articles/firecrawl-to-parallel-search-api).

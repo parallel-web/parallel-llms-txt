@@ -152,4 +152,4 @@ The API runs Advanced when `mode` is unset. The CLI defaults to Basic, and the d
 
 Turbo, for English or Japanese conversations, because a user is waiting on every call. Keep Fast or Advanced available for follow-ups that need multi-hop retrieval.
 
-**Related reading: **[Best fast search APIs in 2026](https://parallel.ai/articles/best-fast-search-apis) · [Introducing Turbo mode for Parallel Search](https://parallel.ai/blog/parallel-search-turbo) · [Introducing Fast mode for Parallel Search](https://parallel.ai/blog/parallel-search-fast) · [How to build an agent harness with Parallel Search](https://parallel.ai/articles/build-an-agent-harness-with-parallel-search)
+**Related reading: **[Best fast search APIs in 2026](https://parallel.ai/articles/best-fast-search-apis) / [Introducing Turbo mode for Parallel Search](https://parallel.ai/blog/parallel-search-turbo) / [Introducing Fast mode for Parallel Search](https://parallel.ai/blog/parallel-search-fast) / [How to build an agent harness with Parallel Search](https://parallel.ai/articles/build-an-agent-harness-with-parallel-search)

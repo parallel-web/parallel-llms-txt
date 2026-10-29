@@ -112,4 +112,4 @@ Per call, yes. Search is $0.00 per request and Fetch is $0.00 per URL. They do n
 
 Yes. A common architecture puts Parallel on open-web research and monitoring, and TinyFish on anything that only exists on the far side of an interaction.
 
-**Related reading: **[Apify vs. Parallel](https://parallel.ai/articles/apify-vs-parallel) · [Firecrawl vs. Parallel](https://parallel.ai/compare/firecrawl-vs-parallel) · [AI data extraction at scale](https://parallel.ai/articles/ai-data-extraction-how-to-extract-structured-data-from-websites-at-scale).
+**Related reading: **[Apify vs. Parallel](https://parallel.ai/articles/apify-vs-parallel) / [Firecrawl vs. Parallel](https://parallel.ai/compare/firecrawl-vs-parallel) / [AI data extraction at scale](https://parallel.ai/articles/ai-data-extraction-how-to-extract-structured-data-from-websites-at-scale).

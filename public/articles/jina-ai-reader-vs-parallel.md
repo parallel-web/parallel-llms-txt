@@ -94,4 +94,4 @@ Choose Parallel when the extraction sits inside a live agent loop. A 200ms searc
 
 These two overlap less than the category labels suggest. Jina is a retrieval toolkit you assemble; Parallel is a retrieval service you call. Batch ingestion pipelines tend to prefer the first, and user-facing agents the second.
 
-**Related reading: **[Firecrawl vs. Parallel](https://parallel.ai/compare/firecrawl-vs-parallel) · [Crawl4AI vs. Parallel](https://parallel.ai/articles/crawl4ai-vs-parallel) · [ScrapingBee vs. Parallel](https://parallel.ai/articles/scrapingbee-vs-parallel).
+**Related reading: **[Firecrawl vs. Parallel](https://parallel.ai/compare/firecrawl-vs-parallel) / [Crawl4AI vs. Parallel](https://parallel.ai/articles/crawl4ai-vs-parallel) / [ScrapingBee vs. Parallel](https://parallel.ai/articles/scrapingbee-vs-parallel).

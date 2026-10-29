@@ -89,4 +89,4 @@ Parallel is SOC 2 Type 2 certified and offers a Data Processing Addendum. Under 
 
 Move the search calls first and leave crawl, map, and interact where they are. That split is usually permanent. Start with any call currently using scrapeOptions, since that is where the cost difference is largest, and check whether the excerpts alone answer your queries before reaching for Extract. The $5 monthly free credit covers 5,000 Turbo searches, which is enough to compare properly against your current pipeline.
 
-**Related reading: **[Firecrawl vs. Parallel](https://parallel.ai/compare/firecrawl-vs-parallel) · [Switching from Tavily](https://parallel.ai/articles/tavily-to-parallel-search-api) · [Switching from Exa](https://parallel.ai/articles/exa-to-parallel-search-api).
+**Related reading: **[Firecrawl vs. Parallel](https://parallel.ai/compare/firecrawl-vs-parallel) / [Switching from Tavily](https://parallel.ai/articles/tavily-to-parallel-search-api) / [Switching from Exa](https://parallel.ai/articles/exa-to-parallel-search-api).

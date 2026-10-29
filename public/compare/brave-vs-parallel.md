@@ -272,7 +272,7 @@ __Core capabilities: Parallel compared with Brave__
 | Structured research output      | Task Specs with input and output schemas (Leads)      | Not documented                                                 |
 | Monitoring and entity discovery | Monitor, FindAll, and Entity Search APIs (Leads)      | No dedicated endpoints documented                              |
 
-Sources: [Parallel Search docs](https://docs.parallel.ai/search/search-quickstart), [Parallel Search settings](https://docs.parallel.ai/search/advanced-search-settings), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [Parallel FindAll docs](https://docs.parallel.ai/findall-api/findall-quickstart)
+Sources: [Parallel Search docs](https://docs.parallel.ai/search/search-quickstart), [Parallel Search settings](https://docs.parallel.ai/search/advanced-search-settings), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [Parallel FindAll docs](https://docs.parallel.ai/findall-api/findall-quickstart), [Brave Search API vs. Parallel: independent index or agent-native retrieval](https://parallel.ai/articles/brave-search-api-vs-parallel)
 
 ### Performance and scale
 

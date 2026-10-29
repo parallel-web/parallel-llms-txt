@@ -83,4 +83,4 @@ Choose Parallel when context quality and latency are the hard part. Fast returns
 
 These two are less substitutes than neighbours. Bright Data solves reach; Parallel solves relevance. Teams that need both usually run the proxy platform for the sources that resist collection and an LLM-native API for the open web an agent reads in real time.
 
-**Related reading: **[SerpApi vs. Parallel](https://parallel.ai/compare/serpapi-vs-parallel) · [Apify vs. Parallel](https://parallel.ai/articles/apify-vs-parallel) · [ScrapingBee vs. Parallel](https://parallel.ai/articles/scrapingbee-vs-parallel) · [Why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search).
+**Related reading: **[SerpApi vs. Parallel](https://parallel.ai/compare/serpapi-vs-parallel) / [Apify vs. Parallel](https://parallel.ai/articles/apify-vs-parallel) / [ScrapingBee vs. Parallel](https://parallel.ai/articles/scrapingbee-vs-parallel) / [Why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search).

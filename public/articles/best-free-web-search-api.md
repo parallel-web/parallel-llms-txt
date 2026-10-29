@@ -212,4 +212,4 @@ By list price per request, Parallel Turbo and Fast at $1 per 1,000 are the lowes
 
 Create an account, generate a key, and call the Search endpoint directly. The [quickstart](https://docs.parallel.ai/search/search-quickstart) covers it in a few minutes. You keep the same index and excerpt format, and gain mode selection, result-count control, and higher rate limits. Full rates are on the [pricing page](https://parallel.ai/pricing).
 
-**Related reading: **[The honest 2026 comparison: web search APIs for AI agents](https://parallel.ai/articles/the-honest-2026-comparison-web-search-apis-for-ai-agents) · [Tavily vs. Parallel](/compare/tavily-vs-parallel) · [Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel) · [Brave Search API vs. Parallel](https://parallel.ai/compare/brave-vs-parallel)
+**Related reading: **[The honest 2026 comparison: web search APIs for AI agents](https://parallel.ai/articles/the-honest-2026-comparison-web-search-apis-for-ai-agents) / [Tavily vs. Parallel](/compare/tavily-vs-parallel) / [Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel) / [Brave Search API vs. Parallel](https://parallel.ai/compare/brave-vs-parallel)

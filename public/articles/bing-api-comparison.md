@@ -97,4 +97,4 @@ Rate limits vary by provider and pricing tier. Some offer tiered plans with prog
 
 Several alternatives offer free tiers with limited monthly query limits. Pick based on your expected volume and whether you need basic search results or capabilities like dense excerpts and freshness guarantees.
 
-**Deeper comparisons: **[Brave Search API vs. Parallel](https://parallel.ai/compare/brave-vs-parallel) · [SerpApi vs. Parallel](https://parallel.ai/compare/serpapi-vs-parallel) · [Serper vs. Parallel](https://parallel.ai/articles/serper-vs-parallel) · [Why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search).
+**Deeper comparisons: **[Brave Search API vs. Parallel](https://parallel.ai/compare/brave-vs-parallel) / [SerpApi vs. Parallel](https://parallel.ai/compare/serpapi-vs-parallel) / [Serper vs. Parallel](https://parallel.ai/articles/serper-vs-parallel) / [Why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search).

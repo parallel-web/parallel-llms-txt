@@ -201,4 +201,4 @@ With Parallel grounding, yes; Parallel's terms allow storing, caching, and modif
 
 Use grounding when you want Gemini to decide when to search and return citation metadata with no tool loop to manage. Use a search tool through ADK or function calling when the agent also calls other tools, needs to control each query, or runs on more than one model. For a deeper side-by-side, see [Gemini Google Search grounding vs. Parallel](https://parallel.ai/articles/gemini-google-search-grounding-vs-parallel).
 
-**Related:** [Why AI agents can't just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) · [Best MCP servers for Gemini CLI](https://parallel.ai/articles/best-mcp-servers-for-gemini-cli) · [What is a web search API?](https://parallel.ai/articles/what-is-a-web-search-api)
+**Related:** [Why AI agents can't just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) / [Best MCP servers for Gemini CLI](https://parallel.ai/articles/best-mcp-servers-for-gemini-cli) / [What is a web search API?](https://parallel.ai/articles/what-is-a-web-search-api)

@@ -144,4 +144,4 @@ It depends on the test. The Artificial Analysis Search Index ties Brave LLM Cont
 
 SerpApi is operating, and Google’s DMCA case against it is still open: the court dismissed the original claims in July 2026, Google amended in August, and a hearing is set for October 13, 2026. SerpApi offers a U.S. Legal Shield of up to $2 million on Production plans and above.
 
-**Related reading: **[SerpApi vs. Parallel](https://parallel.ai/compare/serpapi-vs-parallel) · [Brave Search API vs. Parallel](https://parallel.ai/compare/brave-vs-parallel) · [Bing API alternatives](https://parallel.ai/articles/bing-api-comparison) · [Best fast search APIs](https://parallel.ai/articles/best-fast-search-apis)
+**Related reading: **[SerpApi vs. Parallel](https://parallel.ai/compare/serpapi-vs-parallel) / [Brave Search API vs. Parallel](https://parallel.ai/compare/brave-vs-parallel) / [Bing API alternatives](https://parallel.ai/articles/bing-api-comparison) / [Best fast search APIs](https://parallel.ai/articles/best-fast-search-apis)

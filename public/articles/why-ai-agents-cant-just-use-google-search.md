@@ -131,4 +131,4 @@ Each page costs a model call carrying thousands to hundreds of thousands of toke
 
 Google stops serving it to existing customers. For searches across 50 or fewer domains, Google recommends Vertex AI Search. For full-web search, Google asks developers to fill out an interest form.
 
-**Related reading: **[The best Google Custom Search API alternative for AI agents](https://parallel.ai/articles/the-best-google-custom-search-api-alternative-for-ai-agents) · [SerpApi vs. Parallel](https://parallel.ai/compare/serpapi-vs-parallel) · [Web crawling vs. web scraping](https://parallel.ai/articles/web-crawling-vs-web-scraping) · [What is web scraping?](https://parallel.ai/articles/what-is-web-scraping)
+**Related reading: **[The best Google Custom Search API alternative for AI agents](https://parallel.ai/articles/the-best-google-custom-search-api-alternative-for-ai-agents) / [SerpApi vs. Parallel](https://parallel.ai/compare/serpapi-vs-parallel) / [Web crawling vs. web scraping](https://parallel.ai/articles/web-crawling-vs-web-scraping) / [What is web scraping?](https://parallel.ai/articles/what-is-web-scraping)

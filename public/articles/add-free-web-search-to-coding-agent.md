@@ -184,4 +184,4 @@ Use the MCP for the fastest setup and interactive sessions. Use the CLI with ski
 
 Yes. The CLI needs either `parallel-cli login` or a `PARALLEL_API_KEY`. Only the hosted Search MCP works without one.
 
-**Related reading: **[Best free web search MCP servers](https://parallel.ai/articles/best-free-web-search-mcp) · [Fast vs. Turbo: choosing a Parallel Search mode](https://parallel.ai/articles/parallel-search-fast-vs-turbo) · [What is a CLI, and why do AI agents like using them?](https://parallel.ai/articles/what-is-a-cli) · [MCP servers vs. agent skills vs. CLIs](https://parallel.ai/articles/mcp-vs-skills-vs-clis)
+**Related reading: **[Best free web search MCP servers](https://parallel.ai/articles/best-free-web-search-mcp) / [Fast vs. Turbo: choosing a Parallel Search mode](https://parallel.ai/articles/parallel-search-fast-vs-turbo) / [What is a CLI, and why do AI agents like using them?](https://parallel.ai/articles/what-is-a-cli) / [MCP servers vs. agent skills vs. CLIs](https://parallel.ai/articles/mcp-vs-skills-vs-clis)

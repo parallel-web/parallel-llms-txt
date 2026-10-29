@@ -295,4 +295,4 @@ Wikipedia works for background reading. [Harvard’s guidance on Wikipedia](http
 
 You can [check your domain on Index](https://index.parallel.ai/) to see which queries your content answers, how often agents reference it, and how unique its contribution is. We calculate compensation from each source’s estimated Shapley value, so content that’s unique and hard to replace earns more.
 
-By Parallel · October 12, 2026
+By Parallel / October 12, 2026

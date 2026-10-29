@@ -258,7 +258,7 @@ __Core capabilities: Parallel compared with Firecrawl__
 | Entity discovery      | Entity Search for candidates, FindAll for verified sets (Leads) | No dedicated endpoint documented                     |
 | Source controls       | Domain include and exclude, freshness date, live fetch          | Domain filters, time range, location, safe search    |
 
-Sources: [Parallel Search docs](https://docs.parallel.ai/search/search-quickstart), [Parallel Extract docs](https://docs.parallel.ai/extract/extract-quickstart), [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel FindAll docs](https://docs.parallel.ai/findall-api/findall-quickstart), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [Switching from Firecrawl to Parallel](https://parallel.ai/articles/firecrawl-to-parallel-search-api)
+Sources: [Parallel Search docs](https://docs.parallel.ai/search/search-quickstart), [Parallel Extract docs](https://docs.parallel.ai/extract/extract-quickstart), [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel FindAll docs](https://docs.parallel.ai/findall-api/findall-quickstart), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [Switching from Firecrawl to Parallel](https://parallel.ai/articles/firecrawl-to-parallel-search-api), [Firecrawl vs. Parallel: scraping platform or search platform](https://parallel.ai/articles/firecrawl-vs-parallel)
 
 ### Performance and scale
 

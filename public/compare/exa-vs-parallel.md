@@ -169,7 +169,7 @@ __Core capabilities: Parallel compared with Exa__
 | Content type filters          | Entity Search API for specialized people and company search; additional types via natural language | Company, people, news, papers, financial reports at query time |
 | Site crawl and map            | Crawler is internal to the index, not an endpoint                                                  | Subpage crawling within Contents (Leads)                       |
 
-Sources: [Parallel Search docs](https://docs.parallel.ai/search/search-quickstart), [Parallel Extract docs](https://docs.parallel.ai/extract/extract-quickstart), [Parallel FindAll docs](https://docs.parallel.ai/findall-api/findall-quickstart), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart)
+Sources: [Parallel Search docs](https://docs.parallel.ai/search/search-quickstart), [Parallel Extract docs](https://docs.parallel.ai/extract/extract-quickstart), [Parallel FindAll docs](https://docs.parallel.ai/findall-api/findall-quickstart), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [Exa vs. Parallel: a platform comparison for AI developers](https://parallel.ai/articles/exa-vs-parallel)
 
 ### Performance and scale
 

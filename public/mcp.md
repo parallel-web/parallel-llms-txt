@@ -10,7 +10,7 @@ These apps can add Parallel Search from a link, with no prompt to paste. Open th
 
 * [Add to Claude](https://claude.com/marketplace/connectors/parallel-search)
 * [Add to ChatGPT](https://chatgpt.com/plugins/plugin%5Fasdk%5Fapp%5F69fb9378663481919a68e8a2109644e5)
-* [Add to Cursor](https://cursor.com/marketplace/parallel)
+* [Add to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=Parallel%20Search%20MCP&config=eyJ1cmwiOiJodHRwczovL21jcC5wYXJhbGxlbC5haS9tY3AifQ==)
 * [Add to VS Code](https://vscode.dev/redirect/mcp/install?name=Parallel%20Search%20MCP&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmcp.parallel.ai%2Fmcp%22%7D)
 
 Using a different app? Copy the setup prompt at the top of this page, or follow the [setup guide](https://docs.parallel.ai/integrations/mcp/installation).
@@ -33,15 +33,14 @@ Set up Parallel Search so that you, the agent I'm talking to right now, can use 
 
 1. Identify the app you are running in, for example ChatGPT, Claude, Claude Code, Codex, Cursor, VS Code Copilot, Gemini CLI, OpenClaw, or Hermes Agent.
 
-2. Look for Parallel's official plugin, connector, app, or extension for that app. Use your built-in web search with a query like "parallel web search <app name> plugin". In ChatGPT, for example, search "parallel web search ChatGPT plugin". Only trust results from parallel.ai, docs.parallel.ai, github.com/parallel-web, or the app's own official directory. Known ones:
+2. Unless you are in Cursor, look for Parallel's official plugin, connector, app, or extension for that app. Use your built-in web search with a query like "parallel web search <app name> plugin". In ChatGPT, for example, search "parallel web search ChatGPT plugin". Only trust results from parallel.ai, docs.parallel.ai, github.com/parallel-web, or the app's own official directory. Known ones:
 - ChatGPT: https://chatgpt.com/plugins/plugin_asdk_app_69fb9378663481919a68e8a2109644e5
 - Claude and Claude Desktop: https://claude.com/marketplace/connectors/parallel-search
-- Cursor: https://cursor.com/marketplace/parallel
 - Gemini CLI: gemini extensions install https://github.com/parallel-web/search-mcp
 - Hermes Agent: hermes plugins install parallel-search
 If you find one, follow its official install steps. If I have to click Install or approve access myself, give me the direct link and the exact steps, then wait for me.
 
-3. If your app has no official Parallel integration, add the Parallel Search MCP server to your own MCP config, not to another app's:
+3. If you are in Cursor, or your app has no official Parallel integration, add the Parallel Search MCP server to your own MCP config, not to another app's:
 - Server name: parallel
 - Server URL: https://mcp.parallel.ai/mcp
 - Transport: Streamable HTTP

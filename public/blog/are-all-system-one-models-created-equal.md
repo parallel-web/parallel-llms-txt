@@ -103,10 +103,10 @@ Decision models are improving quickly, and we expect some of these results to ch
 
 ### Serving details
 
-| Model | Checkpoint (pinned) | Inference code | Precision · GPU | Max tokens per question | Calibration |
+| Model | Checkpoint (pinned) | Inference code | Precision / GPU | Max tokens per question | Calibration |
 | --- | --- | --- | --- | --- | --- |
 | pplx-decider-v1-27b | Perplexity API | n/a (hosted) | n/a (hosted) | 8,192 | n/a |
-| Rune 26B-A4B | michaelfeil/rune-26b-a4b @ d9507c3 (Baseten's mirror of Surogate's Rune v3 @ c6b360d) | Baseten's BEI engine (TensorRT-LLM), deployed by Baseten | BF16 · 2× H100 | Not set (supports up to 262k context) | Baseten default |
-| Bespoke Nimble 9B | bespokelabs/Bespoke-Nimble-9B release v3-12026 (545864f; same weights as main @ bd792f4) | Release’s own inference.py | BF16 · 1× A10G | 8,192 | T=1 |
-| Kev-4B | Kev 1.0 (v1.0) on Qwen/Qwen3.5-4B-Base (1001bb4), kev code @ 952ce9d | Kev’s own server, which batches concurrent requests | BF16 · 1× L4 | 8,192 | Checkpoint’s temperature (2.41) |
-| GLiNER2.5-Decide | fastino/GLiNER2.5-Decide @ 5a7adf7 | gliner2 2.0.0 | FP32 · 1× A10G | 2,048 (middle of the input trimmed) | Softmax over labels, no temperature |
+| Rune 26B-A4B | michaelfeil/rune-26b-a4b @ d9507c3 (Baseten's mirror of Surogate's Rune v3 @ c6b360d) | Baseten's BEI engine (TensorRT-LLM), deployed by Baseten | BF16 / 2× H100 | Not set (supports up to 262k context) | Baseten default |
+| Bespoke Nimble 9B | bespokelabs/Bespoke-Nimble-9B release v3-12026 (545864f; same weights as main @ bd792f4) | Release’s own inference.py | BF16 / 1× A10G | 8,192 | T=1 |
+| Kev-4B | Kev 1.0 (v1.0) on Qwen/Qwen3.5-4B-Base (1001bb4), kev code @ 952ce9d | Kev’s own server, which batches concurrent requests | BF16 / 1× L4 | 8,192 | Checkpoint’s temperature (2.41) |
+| GLiNER2.5-Decide | fastino/GLiNER2.5-Decide @ 5a7adf7 | gliner2 2.0.0 | FP32 / 1× A10G | 2,048 (middle of the input trimmed) | Softmax over labels, no temperature |

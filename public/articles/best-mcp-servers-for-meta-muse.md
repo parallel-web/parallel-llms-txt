@@ -130,4 +130,4 @@ The prompt in the first section is the whole setup for the Parallel Search MCP, 
 
 _Note: Muse is new and Meta is changing it quickly. Check Meta's Help Center for the current connector list and settings._
 
-Related reading: [How to create custom integrations with Meta Muse](https://parallel.ai/articles/meta-muse-custom-integrations) · [The best web search MCP server in 2026](https://parallel.ai/articles/best-web-search-mcp) · [Remote vs. local MCP servers](https://parallel.ai/articles/remote-vs-local-mcp-servers) · [The best MCP servers for OpenClaw in 2026](https://parallel.ai/articles/best-mcp-servers-for-openclaw)
+Related reading: [How to create custom integrations with Meta Muse](https://parallel.ai/articles/meta-muse-custom-integrations) / [The best web search MCP server in 2026](https://parallel.ai/articles/best-web-search-mcp) / [Remote vs. local MCP servers](https://parallel.ai/articles/remote-vs-local-mcp-servers) / [The best MCP servers for OpenClaw in 2026](https://parallel.ai/articles/best-mcp-servers-for-openclaw)

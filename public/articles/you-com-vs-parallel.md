@@ -96,4 +96,4 @@ Choose Parallel when the calls are narrow and frequent, or when the output feeds
 
 Since the lineups mirror each other and the compliance posture is equivalent, the choice comes down to two things: your average results per search call, and whether a person or a program reads what comes back.
 
-**Related reading: **[Linkup vs. Parallel](https://parallel.ai/articles/linkup-vs-parallel) · [Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel) · [Perplexity Search API vs. Parallel Search API](https://parallel.ai/compare/perplexity-vs-parallel).
+**Related reading: **[Linkup vs. Parallel](https://parallel.ai/articles/linkup-vs-parallel) / [Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel) / [Perplexity Search API vs. Parallel Search API](https://parallel.ai/compare/perplexity-vs-parallel).

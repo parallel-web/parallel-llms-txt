@@ -66,4 +66,4 @@ Use Parallel when search is the core loop. At a million searches a month the sea
 
 Plenty of teams do both, and the migration point is usually obvious in the invoice: when the search line becomes a number someone asks about, it is time to own the retrieval layer rather than rent it from the model.
 
-**Related reading: **[Gemini's Google Search grounding vs. Parallel](https://parallel.ai/articles/gemini-google-search-grounding-vs-parallel) · [OpenAI web search vs. Parallel vs. Exa vs. Tavily](https://parallel.ai/articles/openai-web-search-vs-parallel-vs-exa-vs-tavily-how-to-choose) · [Perplexity Sonar vs. Parallel](https://parallel.ai/articles/perplexity-sonar-vs-parallel).
+**Related reading: **[Gemini's Google Search grounding vs. Parallel](https://parallel.ai/articles/gemini-google-search-grounding-vs-parallel) / [OpenAI web search vs. Parallel vs. Exa vs. Tavily](https://parallel.ai/articles/openai-web-search-vs-parallel-vs-exa-vs-tavily-how-to-choose) / [Perplexity Sonar vs. Parallel](https://parallel.ai/articles/perplexity-sonar-vs-parallel).

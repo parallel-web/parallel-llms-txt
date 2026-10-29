@@ -1,6 +1,6 @@
 # Search Capability Leaderboard
 
-Last updated Oct 23, 2026
+Last updated Oct 28, 2026
 
 What's the best model for agentic search?
 
@@ -8,7 +8,7 @@ Large language models rely on web search to find information that isn't availabl
 
 Insights
 
-* Average lift from search across all models: +34.2 points
+* Average lift from search across all models: +34.3 points
 * [Claude Opus 5.5](/leaderboard/claude-opus-5-5) (Gold, Search Intelligence): Highest Search Intelligence Score (75.4). Great for tasks that require complex reasoning and maximum accuracy.
 * [MiniMax M3.1 Flash](/leaderboard/minimax-m3-1-flash) (Gold, Search Efficiency): Most cost-efficient model ($43.8 per 1K tasks). Great for most queries, at 22× lower cost than the top model.
 * [Grok 4.7 Medium](/leaderboard/grok-4-7): Largest lift from search (+44.8). Most improved when paired with search.
@@ -27,59 +27,60 @@ Insights
 | 8    | [GPT-6 Astra](/leaderboard/gpt-6-astra)                             | Closed  | 70.8              | 43.0                 | +27.9 | $401              | 83.7s         |
 | 9    | [GPT-6.1 Sol](/leaderboard/gpt-6-1-sol)                             | Closed  | 70.4              | 39.8                 | +30.6 | $130              | 353s          |
 | 10   | [Claude Opus 5](/leaderboard/claude-opus-5)                         | Closed  | 70.0              | 37.2                 | +32.8 | $1,012            | 342s          |
-| 11   | [DeepSeek V4.1 Flash (1017)](/leaderboard/deepseek-v4-1-flash-1017) | Open    | 68.9              | 32.9                 | +36.0 | $125              | 540s          |
-| 12   | [MiniMax M3.1 Flash](/leaderboard/minimax-m3-1-flash)               | Closed  | 68.8              | 27.1                 | +41.7 | $43.8             | —             |
-| 13   | [Pareto 26.10](/leaderboard/pareto-26-10)                           | Closed  | 68.6              | 34.8                 | +33.8 | $116              | 436s          |
-| 14   | [Ember-1](/leaderboard/ember-1)                                     | Closed  | 67.9              | 29.9                 | +38.0 | $335              | 487s          |
-| 15   | [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)                             | Closed  | 67.7              | 41.4                 | +26.3 | $269              | 107s          |
-| 16   | [Muse Spark Open](/leaderboard/muse-spark-open)                     | Open    | 67.2              | 35.5                 | +31.8 | $171              | 360s          |
-| 17   | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash)                   | Closed  | 66.8              | 39.4                 | +27.4 | $130              | 229s          |
-| 18   | [GPT-6 Sol](/leaderboard/gpt-6-sol)                                 | Closed  | 66.6              | 37.9                 | +28.7 | $183              | 260s          |
-| 19   | [Claude Sonnet 5](/leaderboard/claude-sonnet-5)                     | Closed  | 66.6              | 22.8                 | +43.8 | $688              | 846s          |
-| 20   | [Muse Spark 1.3](/leaderboard/muse-spark-1-3)                       | Closed  | 66.1              | 30.3                 | +35.8 | $142              | 274s          |
-| 21   | [Qwen3.8 Max](/leaderboard/qwen3-8-max)                             | Closed  | 66.0              | 28.9                 | +37.1 | $221              | —             |
-| 22   | [Grok 4.7 Medium](/leaderboard/grok-4-7)                            | Closed  | 66.0              | 21.1                 | +44.8 | $252              | 521s          |
-| 23   | [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash)                   | Closed  | 65.1              | 39.0                 | +26.1 | $177              | 317s          |
-| 24   | [Hy4 Preview](/leaderboard/hy4-preview)                             | Open    | 64.6              | 30.6                 | +33.9 | $93.2             | 722s          |
-| 25   | [Mistral Large 4.0](/leaderboard/mistral-large-4-0)                 | Closed  | 64.4              | 21.4                 | +43.0 | $136              | —             |
-| 26   | [MiMo v2.6 Pro](/leaderboard/mimo-v2-6-pro)                         | Open    | 64.4              | 29.7                 | +34.7 | $76.5             | —             |
-| 27   | [Kimi K3](/leaderboard/kimi-k3)                                     | Open    | 64.2              | 30.6                 | +33.6 | $266              | 432s          |
-| 28   | [Mercury 3](/leaderboard/mercury-3)                                 | Closed  | 63.6              | 28.1                 | +35.5 | $43.4             | 149s          |
-| 29   | [Claude Haiku 5.5](/leaderboard/claude-haiku-5-5)                   | Closed  | 62.9              | 23.5                 | +39.4 | $24.3             | 162s          |
-| 30   | [DeepSeek V4.1 Flash](/leaderboard/deepseek-v4-1-flash)             | Open    | 62.7              | 27.0                 | +35.7 | $35.8             | 549s          |
-| 31   | [GLM 5.3](/leaderboard/glm-5-3)                                     | Open    | 62.7              | 21.9                 | +40.8 | $78.5             | 308s          |
-| 32   | [GPT-6 Luna](/leaderboard/gpt-6-luna)                               | Closed  | 61.9              | 28.0                 | +33.9 | $33.1             | 391s          |
-| 33   | [Step 5 Preview](/leaderboard/step-5-preview)                       | Open    | 61.1              | 27.8                 | +33.3 | $118              | 387s          |
-| 34   | [Ultramarine 1 Flash](/leaderboard/ultramarine-1-flash)             | Open    | 61.1              | 24.0                 | +37.1 | $87.2             | 165s          |
-| 35   | [MiMo v2.6 Flash](/leaderboard/mimo-v2-6-flash)                     | Open    | 60.9              | 22.4                 | +38.5 | $25.2             | 1323s         |
-| 36   | [GLM 5.3 Flash](/leaderboard/glm-5-3-flash)                         | Open    | 60.8              | 20.4                 | +40.4 | $16.6             | 99.1s         |
-| 37   | [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna)                           | Closed  | 60.7              | 26.9                 | +33.9 | $36.2             | 98.0s         |
-| 38   | [Nemotron 3.5 Super VL](/leaderboard/nemotron-3-5-super-vl)         | Open    | 59.1              | 17.0                 | +42.2 | $93.9             | 181s          |
-| 39   | [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview)               | Closed  | 58.6              | 34.1                 | +24.5 | $114              | 276s          |
-| 40   | [DeepSeek V4 Pro](/leaderboard/deepseek-v4-pro)                     | Open    | 58.4              | 30.5                 | +27.9 | $110              | 383s          |
-| 41   | [Hunyuan 3](/leaderboard/hy3)                                       | Open    | 58.2              | 22.6                 | +35.6 | $28.4             | 363s          |
-| 42   | [Beam](/leaderboard/beam)                                           | Open    | 56.0              | 28.8                 | +27.2 | $161              | —             |
-| 43   | [GLM-5.2](/leaderboard/glm-5-2)                                     | Open    | 54.3              | 18.4                 | +35.9 | $66.6             | 301s          |
-| 44   | [Nemotron 3 Ultra 550B](/leaderboard/nemotron-3-ultra-550b-a55b)    | Open    | 53.0              | 15.3                 | +37.7 | $113              | 328s          |
-| 45   | [MiniMax M3](/leaderboard/minimax-m3)                               | Open    | 52.6              | 23.1                 | +29.5 | $41.1             | 291s          |
-| 46   | [MiMo v2.5](/leaderboard/mimo-v2-5)                                 | Open    | 49.5              | 13.4                 | +36.1 | $23.5             | 894s          |
-| 47   | [Laguna S 2.1](/leaderboard/laguna-s-2-1)                           | Open    | 39.5              | 12.3                 | +27.2 | $21.4             | 459s          |
-| 48   | [Nemotron 3.5 Lightning](/leaderboard/nemotron-3-5-lightning)       | Open    | 37.9              | 9.8                  | +28.0 | $12.1             | 176s          |
-| 49   | [Command A Plus](/leaderboard/command-a-plus)                       | Open    | 34.8              | 5.0                  | +29.8 | $40.1             | 149s          |
+| 11   | [Particle-1](/leaderboard/particle-1)                               | Closed  | 69.2              | 31.4                 | +37.8 | $48.4             | 82.5s         |
+| 12   | [DeepSeek V4.1 Flash (1017)](/leaderboard/deepseek-v4-1-flash-1017) | Open    | 68.9              | 32.9                 | +36.0 | $125              | 540s          |
+| 13   | [MiniMax M3.1 Flash](/leaderboard/minimax-m3-1-flash)               | Closed  | 68.8              | 27.1                 | +41.7 | $43.8             | —             |
+| 14   | [Pareto 26.10](/leaderboard/pareto-26-10)                           | Closed  | 68.6              | 34.8                 | +33.8 | $116              | 436s          |
+| 15   | [Ember-1](/leaderboard/ember-1)                                     | Closed  | 67.9              | 29.9                 | +38.0 | $335              | 487s          |
+| 16   | [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)                             | Closed  | 67.7              | 41.4                 | +26.3 | $269              | 107s          |
+| 17   | [Muse Spark Open](/leaderboard/muse-spark-open)                     | Open    | 67.2              | 35.5                 | +31.8 | $171              | 360s          |
+| 18   | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash)                   | Closed  | 66.8              | 39.4                 | +27.4 | $130              | 229s          |
+| 19   | [GPT-6 Sol](/leaderboard/gpt-6-sol)                                 | Closed  | 66.6              | 37.9                 | +28.7 | $183              | 260s          |
+| 20   | [Claude Sonnet 5](/leaderboard/claude-sonnet-5)                     | Closed  | 66.6              | 22.8                 | +43.8 | $688              | 846s          |
+| 21   | [Muse Spark 1.3](/leaderboard/muse-spark-1-3)                       | Closed  | 66.1              | 30.3                 | +35.8 | $142              | 274s          |
+| 22   | [Qwen3.8 Max](/leaderboard/qwen3-8-max)                             | Closed  | 66.0              | 28.9                 | +37.1 | $221              | —             |
+| 23   | [Grok 4.7 Medium](/leaderboard/grok-4-7)                            | Closed  | 66.0              | 21.1                 | +44.8 | $252              | 521s          |
+| 24   | [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash)                   | Closed  | 65.1              | 39.0                 | +26.1 | $177              | 317s          |
+| 25   | [Hy4 Preview](/leaderboard/hy4-preview)                             | Open    | 64.6              | 30.6                 | +33.9 | $93.2             | 722s          |
+| 26   | [Mistral Large 4.0](/leaderboard/mistral-large-4-0)                 | Closed  | 64.4              | 21.4                 | +43.0 | $136              | —             |
+| 27   | [MiMo v2.6 Pro](/leaderboard/mimo-v2-6-pro)                         | Open    | 64.4              | 29.7                 | +34.7 | $76.5             | —             |
+| 28   | [Kimi K3](/leaderboard/kimi-k3)                                     | Open    | 64.2              | 30.6                 | +33.6 | $266              | 432s          |
+| 29   | [Mercury 3](/leaderboard/mercury-3)                                 | Closed  | 63.6              | 28.1                 | +35.5 | $43.4             | 149s          |
+| 30   | [Claude Haiku 5.5](/leaderboard/claude-haiku-5-5)                   | Closed  | 62.9              | 23.5                 | +39.4 | $24.3             | 162s          |
+| 31   | [DeepSeek V4.1 Flash](/leaderboard/deepseek-v4-1-flash)             | Open    | 62.7              | 27.0                 | +35.7 | $35.8             | 549s          |
+| 32   | [GLM 5.3](/leaderboard/glm-5-3)                                     | Open    | 62.7              | 21.9                 | +40.8 | $78.5             | 308s          |
+| 33   | [GPT-6 Luna](/leaderboard/gpt-6-luna)                               | Closed  | 61.9              | 28.0                 | +33.9 | $33.1             | 391s          |
+| 34   | [Step 5 Preview](/leaderboard/step-5-preview)                       | Open    | 61.1              | 27.8                 | +33.3 | $118              | 387s          |
+| 35   | [Ultramarine 1 Flash](/leaderboard/ultramarine-1-flash)             | Open    | 61.1              | 24.0                 | +37.1 | $87.2             | 165s          |
+| 36   | [MiMo v2.6 Flash](/leaderboard/mimo-v2-6-flash)                     | Open    | 60.9              | 22.4                 | +38.5 | $25.2             | 1323s         |
+| 37   | [GLM 5.3 Flash](/leaderboard/glm-5-3-flash)                         | Open    | 60.8              | 20.4                 | +40.4 | $16.6             | 99.1s         |
+| 38   | [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna)                           | Closed  | 60.7              | 26.9                 | +33.9 | $36.2             | 98.0s         |
+| 39   | [Nemotron 3.5 Super VL](/leaderboard/nemotron-3-5-super-vl)         | Open    | 59.1              | 17.0                 | +42.2 | $93.9             | 181s          |
+| 40   | [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview)               | Closed  | 58.6              | 34.1                 | +24.5 | $114              | 276s          |
+| 41   | [DeepSeek V4 Pro](/leaderboard/deepseek-v4-pro)                     | Open    | 58.4              | 30.5                 | +27.9 | $110              | 383s          |
+| 42   | [Hunyuan 3](/leaderboard/hy3)                                       | Open    | 58.2              | 22.6                 | +35.6 | $28.4             | 363s          |
+| 43   | [Beam](/leaderboard/beam)                                           | Open    | 56.0              | 28.8                 | +27.2 | $161              | —             |
+| 44   | [GLM-5.2](/leaderboard/glm-5-2)                                     | Open    | 54.3              | 18.4                 | +35.9 | $66.6             | 301s          |
+| 45   | [Nemotron 3 Ultra 550B](/leaderboard/nemotron-3-ultra-550b-a55b)    | Open    | 53.0              | 15.3                 | +37.7 | $113              | 328s          |
+| 46   | [MiniMax M3](/leaderboard/minimax-m3)                               | Open    | 52.6              | 23.1                 | +29.5 | $41.1             | 291s          |
+| 47   | [MiMo v2.5](/leaderboard/mimo-v2-5)                                 | Open    | 49.5              | 13.4                 | +36.1 | $23.5             | 894s          |
+| 48   | [Laguna S 2.1](/leaderboard/laguna-s-2-1)                           | Open    | 39.5              | 12.3                 | +27.2 | $21.4             | 459s          |
+| 49   | [Nemotron 3.5 Lightning](/leaderboard/nemotron-3-5-lightning)       | Open    | 37.9              | 9.8                  | +28.0 | $12.1             | 176s          |
+| 50   | [Command A Plus](/leaderboard/command-a-plus)                       | Open    | 34.8              | 5.0                  | +29.8 | $40.1             | 149s          |
 
 ## Search Efficiency Leaderboard
 
-Most cost-efficient models scoring at or above the median Search Intelligence Score (64.4), cheapest first. Costs are per 1,000 tasks.
+Most cost-efficient models scoring at or above the median Search Intelligence Score (64.5), cheapest first. Costs are per 1,000 tasks.
 
 | Rank | Model                                                               | Cost per 1K tasks | Score with Search |
 | ---- | ------------------------------------------------------------------- | ----------------- | ----------------- |
 | 1    | [MiniMax M3.1 Flash](/leaderboard/minimax-m3-1-flash)               | $43.8             | 68.8              |
-| 2    | [Hy4 Preview](/leaderboard/hy4-preview)                             | $93.2             | 64.6              |
-| 3    | [Pareto 26.10](/leaderboard/pareto-26-10)                           | $116              | 68.6              |
-| 4    | [DeepSeek V4.1 Flash (1017)](/leaderboard/deepseek-v4-1-flash-1017) | $125              | 68.9              |
-| 5    | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash)                   | $130              | 66.8              |
-| 6    | [GPT-6.1 Sol](/leaderboard/gpt-6-1-sol)                             | $130              | 70.4              |
-| 7    | [Mistral Large 4.0](/leaderboard/mistral-large-4-0)                 | $136              | 64.4              |
+| 2    | [Particle-1](/leaderboard/particle-1)                               | $48.4             | 69.2              |
+| 3    | [Hy4 Preview](/leaderboard/hy4-preview)                             | $93.2             | 64.6              |
+| 4    | [Pareto 26.10](/leaderboard/pareto-26-10)                           | $116              | 68.6              |
+| 5    | [DeepSeek V4.1 Flash (1017)](/leaderboard/deepseek-v4-1-flash-1017) | $125              | 68.9              |
+| 6    | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash)                   | $130              | 66.8              |
+| 7    | [GPT-6.1 Sol](/leaderboard/gpt-6-1-sol)                             | $130              | 70.4              |
 | 8    | [Muse Spark 1.3](/leaderboard/muse-spark-1-3)                       | $142              | 66.1              |
 | 9    | [Muse Spark Open](/leaderboard/muse-spark-open)                     | $171              | 67.2              |
 | 10   | [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash)                   | $177              | 65.1              |
@@ -127,4 +128,4 @@ Each model answers the same 100 questions per benchmark, with and without Parall
 
 DSQA answers are extracted without access to the reference answer, then graded. HLE and WISER use correct-or-incorrect grading.
 
-Search Intelligence Score: DSQA F1, HLE accuracy, and WISER accuracy, weighted equally on a 0–100 scale. F1 allows partial credit for incomplete answers and penalizes incorrect items. Scores use all 100 questions per benchmark; failed and pending tasks count as zero. Lift: the difference between a model's score with search and without. Search Efficiency Leaderboard: models at or above the median score (64.4), ranked by cost per 1,000 tasks, cheapest first. Costs include inference and estimated Search and Extract usage, excluding grading. Cost records are incomplete and may omit recovery attempts. Time per task: average seconds from question to final answer across available records, with equal weight for each benchmark. Pareto frontier: no other model is both cheaper and higher scoring. Weights: open models publish downloadable weights, under any licence; closed models are available only through an API.
+Search Intelligence Score: DSQA F1, HLE accuracy, and WISER accuracy, weighted equally on a 0–100 scale. F1 allows partial credit for incomplete answers and penalizes incorrect items. Scores use all 100 questions per benchmark; failed and pending tasks count as zero. Lift: the difference between a model's score with search and without. Search Efficiency Leaderboard: models at or above the median score (64.5), ranked by cost per 1,000 tasks, cheapest first. Costs include inference and estimated Search and Extract usage, excluding grading. Cost records are incomplete and may omit recovery attempts. Time per task: average seconds from question to final answer across available records, with equal weight for each benchmark. Pareto frontier: no other model is both cheaper and higher scoring. Weights: open models publish downloadable weights, under any licence; closed models are available only through an API.

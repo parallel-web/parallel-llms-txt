@@ -345,4 +345,4 @@ Mostly model tokens. A `fast` search costs $0.001 and an `advanced` search $0.00
 
 Yes. The Anthropic SDK’s Tool Runner loops over tools you define, the Claude Agent SDK ships a full harness, and Claude Managed Agents hosts the loop and a sandbox. Each trades away some control over budgets and context.
 
-**Related reading: **[What is an agent harness?](https://parallel.ai/articles/what-is-an-agent-harness) · [Fast vs. Turbo: choosing a Parallel Search mode](https://parallel.ai/articles/parallel-search-fast-vs-turbo) · [How we evaluate web search APIs](https://parallel.ai/articles/how-we-evaluate-web-search-apis) · [Remote vs. local MCP servers](https://parallel.ai/articles/remote-vs-local-mcp-servers)
+**Related reading: **[What is an agent harness?](https://parallel.ai/articles/what-is-an-agent-harness) / [Fast vs. Turbo: choosing a Parallel Search mode](https://parallel.ai/articles/parallel-search-fast-vs-turbo) / [How we evaluate web search APIs](https://parallel.ai/articles/how-we-evaluate-web-search-apis) / [Remote vs. local MCP servers](https://parallel.ai/articles/remote-vs-local-mcp-servers)

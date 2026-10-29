@@ -213,7 +213,7 @@ __Core capabilities: Parallel compared with Perplexity__
 | Embeddings                   | Not offered                                                     | Embeddings API from $0.004 per 1M tokens (Leads)            |
 | Code execution               | Not offered                                                     | Sandbox tool at $0.03 per session (Leads)                   |
 
-Sources: [Parallel Search docs](https://docs.parallel.ai/search/search-quickstart), [Parallel Extract docs](https://docs.parallel.ai/extract/extract-quickstart), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel Task Group docs](https://docs.parallel.ai/task-api/group-api), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [Parallel FindAll docs](https://docs.parallel.ai/findall-api/findall-quickstart), [Perplexity Sonar vs. Parallel](https://parallel.ai/articles/perplexity-sonar-vs-parallel)
+Sources: [Parallel Search docs](https://docs.parallel.ai/search/search-quickstart), [Parallel Extract docs](https://docs.parallel.ai/extract/extract-quickstart), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel Task Group docs](https://docs.parallel.ai/task-api/group-api), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [Parallel FindAll docs](https://docs.parallel.ai/findall-api/findall-quickstart), [Perplexity Sonar vs. Parallel](https://parallel.ai/articles/perplexity-sonar-vs-parallel), [Perplexity Search API vs. Parallel Search API](https://parallel.ai/articles/perplexity-search-api-vs-parallel-search-api)
 
 ### Performance and scale
 

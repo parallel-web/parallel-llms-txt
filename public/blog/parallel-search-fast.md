@@ -47,9 +47,9 @@ As the cost of intelligence decreases, teams need search that works with efficie
 
 | Mode | Features | Use it when | Typical fit |
 | --- | --- | --- | --- |
-| Turbo | ~250ms · $1 / 1,000 requests | Latency matters most | Voice/chat agents, autocomplete, simple lookups |
-| Fast | ~700ms · $1 / 1,000 requests · #3 quality (73)* | You want the best balance of speed, cost, and quality | Most agents, customer support, factual Q&A, general search |
-| Advanced | ~3s · $5 / 1,000 requests · #1 quality (75)* | Quality matters most | Background agents, investigations, code review, deep synthesis |
+| Turbo | ~250ms \| $1 / 1,000 requests | Latency matters most | Voice/chat agents, autocomplete, simple lookups |
+| Fast | ~700ms \| $1 / 1,000 requests \| #3 quality (73)* | You want the best balance of speed, cost, and quality | Most agents, customer support, factual Q&A, general search |
+| Advanced | ~3s \| $5 / 1,000 requests \| #1 quality (75)* | Quality matters most | Background agents, investigations, code review, deep synthesis |
 
 ---
 

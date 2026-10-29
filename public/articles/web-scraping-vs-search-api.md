@@ -159,4 +159,4 @@ No. Extract handles JavaScript-rendered pages and PDFs, but it doesn’t solve C
 
 Fetching is cheap either way, from about $0.13 to $16 per 1,000 pages on scraping APIs and $1 per 1,000 on our Search and Extract APIs. On a frontier model, the tokens you send usually cost more than either.
 
-**Related reading: **[Web scraper vs. web extraction](https://parallel.ai/articles/web-scraper-vs-web-extraction) · [Web unlocker vs. scraper vs. fetch](https://parallel.ai/articles/web-unlocker-vs-scraper-vs-fetch) · [Firecrawl vs. Parallel](https://parallel.ai/compare/firecrawl-vs-parallel) · [What is a web search API?](https://parallel.ai/articles/what-is-a-web-search-api)
+**Related reading: **[Web scraper vs. web extraction](https://parallel.ai/articles/web-scraper-vs-web-extraction) / [Web unlocker vs. scraper vs. fetch](https://parallel.ai/articles/web-unlocker-vs-scraper-vs-fetch) / [Firecrawl vs. Parallel](https://parallel.ai/compare/firecrawl-vs-parallel) / [What is a web search API?](https://parallel.ai/articles/what-is-a-web-search-api)

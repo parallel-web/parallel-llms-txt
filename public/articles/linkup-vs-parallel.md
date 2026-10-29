@@ -191,4 +191,4 @@ Linkup runs infrastructure in the EU and other regions. By default, queries may 
 
 Linkup documents Bring Your Own Cloud for selected high-tier deployments. Parallel’s FAQ says private-cloud and on-prem options are available for qualified enterprise customers, so ask both for specifics.
 
-**Related reading: **[Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel) · [You.com vs. Parallel](https://parallel.ai/articles/you-com-vs-parallel) · [Parallel vs. Perplexity](https://parallel.ai/compare/perplexity-vs-parallel).
+**Related reading: **[Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel) / [You.com vs. Parallel](https://parallel.ai/articles/you-com-vs-parallel) / [Parallel vs. Perplexity](https://parallel.ai/compare/perplexity-vs-parallel).

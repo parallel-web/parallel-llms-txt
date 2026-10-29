@@ -71,4 +71,4 @@ Choose Parallel when finding and compressing is the hard part. Turbo returns pag
 
 Teams that need both can use ScrapingBee for the named difficult targets and an LLM-native search API for the open web an agent reads in real time.
 
-**Related reading: **[Firecrawl vs. Parallel](https://parallel.ai/compare/firecrawl-vs-parallel) · [Bright Data SERP API vs. Parallel](https://parallel.ai/articles/bright-data-serp-api-vs-parallel) · [Apify vs. Parallel](https://parallel.ai/articles/apify-vs-parallel).
+**Related reading: **[Firecrawl vs. Parallel](https://parallel.ai/compare/firecrawl-vs-parallel) / [Bright Data SERP API vs. Parallel](https://parallel.ai/articles/bright-data-serp-api-vs-parallel) / [Apify vs. Parallel](https://parallel.ai/articles/apify-vs-parallel).
