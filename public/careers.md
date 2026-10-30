@@ -19,7 +19,6 @@ We recruit likeminded curious, optimistic, and ambitious people who see the work
 | [Early Career Research Engineer](https://jobs.ashbyhq.com/parallel/056e41f8-7d5f-41c1-99fd-bf002dc072fd)                     | Engineering          | Palo Alto                            | Full time      |
 | [Member of Technical Staff, Back-end & API](https://jobs.ashbyhq.com/parallel/144b4be3-f46e-4e3a-af46-8ec6afc3a60f)          | Engineering          | San Francisco / Palo Alto            | Full time      |
 | [Member of Technical Staff, Data Engineering](https://jobs.ashbyhq.com/parallel/23a9fd93-9c62-4793-99ca-f7b3efa11f02)        | Engineering          | San Francisco / Palo Alto            | Full time      |
-| [Member of Technical Staff, Front-end](https://jobs.ashbyhq.com/parallel/428ebd80-ad4d-41db-bfa0-82bb3284db75)               | Engineering          | San Francisco / Palo Alto            | Full time      |
 | [Member of Technical Staff, Infrastructure Security](https://jobs.ashbyhq.com/parallel/8df69e21-f99c-4867-bdc8-59605259274e) | Engineering          | San Francisco / Palo Alto            | Full time      |
 | [Member of Technical Staff, Model Training](https://jobs.ashbyhq.com/parallel/2738b2a4-978a-49cb-bd6f-68098f3794d6)          | Engineering          | San Francisco / Palo Alto            | Full time      |
 | [Member of Technical Staff, Product Security](https://jobs.ashbyhq.com/parallel/2560a1fb-7ac2-4edb-bcf6-c5a3c8780556)        | Engineering          | San Francisco / Palo Alto            | Full time      |
