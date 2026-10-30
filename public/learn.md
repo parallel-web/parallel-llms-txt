@@ -1,5 +1,7 @@
 ## Learn
 
+* [AI agents in finance: what they do and how they find facts](https://parallel.ai/learn/ai-agents-in-finance)
+* [KYB (know your business): verification steps and automation](https://parallel.ai/learn/kyb)
 * [Data residency](https://parallel.ai/learn/data-residency)
 * [Web unlocker](https://parallel.ai/learn/web-unlocker)
 * [RAG (Retrieval-Augmented Generation)](https://parallel.ai/learn/rag-retrieval-augmented-generation)

@@ -171,3 +171,112 @@ The Parallel Task API is evaluated across nine configurations, from Task Lite th
 **Benchmark dates**
 
 All testing was conducted on August 26, 2026.
+
+## Parallel for Finance
+
+### FinSearchComp T3
+
+| Series   | Model                    | Cost (CPM) | Accuracy (%) |
+| -------- | ------------------------ | ---------- | ------------ |
+| Parallel | Parallel Fast            | 15.2       | 53.7         |
+| Parallel | Parallel Advanced        | 161.1      | 57.4         |
+| Others   | Exa Auto                 | 226.2      | 51.4         |
+| Others   | OpenAI native search     | 204.3      | 48.3         |
+| Others   | Perplexity Finance + Web | 347        | 50           |
+| Others   | Tavily                   | 481.8      | 43           |
+
+CPM: USD per 1,000 questions, end to end (answer-model tokens plus search and fetch calls at list price).
+
+**Dataset**
+
+[FinSearchComp](https://arxiv.org/abs/2509.13160) has 635 questions, written by 70 financial experts, that reproduce analyst work across global and Greater China markets. T3 is the complex historical investigation tier, the hardest in the benchmark; results are reported on the 172 graded questions.
+
+**Evaluation methodology**
+
+Multi-step agentic evaluation: every search API runs in the same agent loop with the same questions and the same LLM judge, so the search layer is the only variable. The agent calls the provider's search tool plus its fetch tool where one exists. Parallel Advanced, Exa Auto, OpenAI native search, Perplexity and Tavily answer with GPT-6 Sol (reasoning: high); Parallel Fast runs as the low-latency stack with GPT-6 Luna (reasoning: high). Scores are the mean of three runs unless noted. The benchmark's answers are published online. For the other search APIs, our harness drops those copies before the model sees them. OpenAI native search answers that came from published copies count as wrong (OpenAI native search scores 64.0 before that adjustment). Tavily is a single run.
+
+Cost is end-to-end per answer at list price: the answer model's tokens plus every search and fetch the agent makes, shown per 1,000 questions.
+
+**Testing dates**
+
+Evals were run on October 22, 2026 (Tavily on October 28, 2026).
+
+### FinSearchComp T2
+
+| Series   | Model                    | Cost (CPM) | Accuracy (%) |
+| -------- | ------------------------ | ---------- | ------------ |
+| Parallel | Parallel Fast            | 3.3        | 77.5         |
+| Parallel | Parallel Advanced        | 35.1       | 79.9         |
+| Others   | Exa Auto                 | 69.9       | 77.9         |
+| Others   | OpenAI native search     | 70.2       | 77.9         |
+| Others   | Perplexity Finance + Web | 104.6      | 79.7         |
+| Others   | Tavily                   | 169        | 77.2         |
+
+CPM: USD per 1,000 questions, end to end (answer-model tokens plus search and fetch calls at list price).
+
+**Dataset**
+
+[FinSearchComp](https://arxiv.org/abs/2509.13160) has 635 questions, written by 70 financial experts, that reproduce analyst work across global and Greater China markets. T2 is the simple historical lookup tier; results are reported on the 219 graded questions.
+
+**Evaluation methodology**
+
+Multi-step agentic evaluation: every search API runs in the same agent loop with the same questions and the same LLM judge, so the search layer is the only variable. The agent calls the provider's search tool plus its fetch tool where one exists. Parallel Advanced, Exa Auto, OpenAI native search, Perplexity and Tavily answer with GPT-6 Sol (reasoning: high); Parallel Fast runs as the low-latency stack with GPT-6 Luna (reasoning: high). Scores are the mean of three runs unless noted. The benchmark's answers are published online. For the other search APIs, our harness drops those copies before the model sees them. OpenAI native search answers that came from published copies count as wrong (OpenAI native search scores 82.8 before that adjustment). Tavily is a single run.
+
+Cost is end-to-end per answer at list price: the answer model's tokens plus every search and fetch the agent makes, shown per 1,000 questions.
+
+**Testing dates**
+
+Evals were run on October 22, 2026 (Tavily on October 28, 2026).
+
+### FrontierFinance
+
+| Series   | Model                 | Cost (CPM) | Score (%) |
+| -------- | --------------------- | ---------- | --------- |
+| Parallel | Parallel Fast         | 201.5      | 46        |
+| Parallel | Parallel Advanced     | 234.2      | 46.8      |
+| Others   | Exa Auto              | 376.3      | 47.2      |
+| Others   | OpenAI native search  | 298.7      | 45        |
+| Others   | Perplexity Search API | 254.3      | 44.3      |
+| Others   | Tavily                | 470.3      | 42.1      |
+
+CPM: USD per 1,000 questions, end to end (answer-model tokens plus search and fetch calls at list price).
+
+**Dataset**
+
+Samaya's [FrontierFinance](https://arxiv.org/abs/2608.11683) has 220 expert-written research queries covering the investment workflow from screening and company research to earnings, modeling and catalyst monitoring. Answers are long-form; a panel of three judges scores each one against expert rubrics, and the score is the rubric pass rate by judge majority.
+
+**Evaluation methodology**
+
+Every search API runs in the same agent loop with the same questions and the same judges, with a budget of 20 tool calls per question. All arms, including Parallel Fast, answer with GPT-6 Sol (reasoning: high). Parallel runs through its hosted search and fetch tools; Exa, OpenAI and Tavily use search plus fetch; Perplexity is the Search API only, with no fetch tool. One run per arm.
+
+Cost is end-to-end per answer at list price: the answer model's tokens plus every search and fetch the agent makes, shown per 1,000 questions.
+
+**Testing dates**
+
+Evals were run on October 27, 2026.
+
+### PWS-Finance
+
+| Series   | Model                 | Cost (CPM) | Accuracy (%) |
+| -------- | --------------------- | ---------- | ------------ |
+| Parallel | Parallel Fast         | 110.3      | 83           |
+| Parallel | Parallel Advanced     | 125.5      | 84.3         |
+| Others   | Exa Auto              | 197.6      | 75.9         |
+| Others   | OpenAI native search  | 180.7      | 83.7         |
+| Others   | Perplexity Search API | 121.9      | 74.3         |
+
+CPM: USD per 1,000 questions, end to end (answer-model tokens plus search and fetch calls at list price).
+
+**Dataset**
+
+PWS-Finance is Parallel's private finance benchmark: 174 held-out questions across eight finance workflows (company profiles, funding, deals, ownership, public financials, regulation, markets and macro, developments), each asking for specific facts about one entity as of one date. The questions and answers are not published anywhere online.
+
+**Evaluation methodology**
+
+Every search API runs in the same agent loop with the same questions and the same LLM judge, with a budget of 20 tool calls per question. All arms, including Parallel Fast, answer with GPT-6 Sol (reasoning: high). Strict scoring: an answer is correct only if every required fact is right. Perplexity is the Search API only, not Finance + Web. Tavily is not plotted: it ran with the model's date filters on (98% of searches limited to the past year) and hit the 20-call cap on 77% of questions, so its 36.4% at $432.10 CPM is not comparable to the other arms. Scores are the mean of three runs.
+
+Cost is end-to-end per answer at list price: the answer model's tokens plus every search and fetch the agent makes, shown per 1,000 questions.
+
+**Testing dates**
+
+Evals were run on October 27, 2026.

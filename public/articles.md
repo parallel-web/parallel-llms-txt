@@ -2,6 +2,7 @@
 
 ### Comparison
 
+* [The best web search API for financial AI agents (2026 benchmarks)](https://parallel.ai/articles/best-search-api-for-financial-ai-agents)
 * [Keenable vs. Parallel: the fastest search call or the best agent result?](https://parallel.ai/articles/keenable-vs-parallel)
 * [The best DeepSeek Search API alternatives for AI agents in 2026](https://parallel.ai/articles/deepseek-search-api-alternatives)
 * [DeepSeek Search API vs. Parallel: pricing, data handling, and model lock-in](https://parallel.ai/articles/deepseek-search-api-vs-parallel)
@@ -54,6 +55,7 @@
 
 ### Guides
 
+* [AI in investment banking: what analyst agents do and what they need](https://parallel.ai/articles/ai-in-investment-banking)
 * [Best web grounding for Gemini Enterprise Agent Platform (2026)](https://parallel.ai/articles/web-grounding-gemini-enterprise-agent-platform)
 * [Best web search APIs with EU data residency (2026)](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
 * [Build an EU research agent with the Parallel Search API](https://parallel.ai/articles/build-eu-research-agent-parallel-search)
@@ -97,7 +99,7 @@
 * [Data enrichment API: how to choose, implement, and scale company intelligence](https://parallel.ai/articles/data-enrichment-api-how-to-choose-implement-and-scale-company-intelligence)
 * [Data enrichment tools are broken: here's how to build a company database that isn't](https://parallel.ai/articles/data-enrichment-tools-are-broken-heres-how-to-build-a-company-database-that-isnt)
 * [How to set up company news alerts that actually work](https://parallel.ai/articles/how-to-set-up-company-news-alerts-that-actually-work)
-* [AI sourcing: how to find acquisition targets programmatically](https://parallel.ai/articles/ai-sourcing-how-to-find-acquisition-targets-programmatically)
+* [AI in private equity: how AI deal sourcing finds acquisition targets](https://parallel.ai/articles/ai-sourcing-how-to-find-acquisition-targets-programmatically)
 * [Web monitoring software: how to set up real-time monitoring for AI agents](https://parallel.ai/articles/web-monitoring-software-how-to-set-up-real-time-monitoring-for-ai-agents)
 * [How to build an AI research agent that actually works](https://parallel.ai/articles/how-to-build-an-ai-research-agent-that-actually-works)
 * [How to build an AI agent that can research, monitor, and extract data from the web](https://parallel.ai/articles/how-to-build-an-ai-agent-that-can-research-monitor-and-extract-data-from-the-web)
@@ -105,7 +107,7 @@
 * [How to find companies that match your ideal customer profile using an API](https://parallel.ai/articles/how-to-find-companies-that-match-your-ideal-customer-profile-using-an-api)
 * [Article extraction API: a developer's guide to structured web data](https://parallel.ai/articles/article-extraction-api-a-developers-guide-to-structured-web-data)
 * [Best APIs for building an autonomous AI research agent](https://parallel.ai/articles/best-apis-for-building-an-autonomous-ai-research-agent)
-* [How to build an automated due diligence research pipeline](https://parallel.ai/articles/how-to-build-an-automated-due-diligence-research-pipeline)
+* [AI due diligence: how to build an automated research pipeline](https://parallel.ai/articles/how-to-build-an-automated-due-diligence-research-pipeline)
 * [How to find companies by tech stack (and automate the entire process)](https://parallel.ai/articles/how-to-find-companies-by-tech-stack-and-automate-the-entire-process)
 * [How to build a RAG pipeline with live web data](https://parallel.ai/articles/how-to-build-a-rag-pipeline-with-live-web-data)
 * [Web scraping API: how to choose the right tool for AI-ready data](https://parallel.ai/articles/web-scraping-api-how-to-choose-the-right-tool-for-ai-ready-data)
@@ -130,6 +132,7 @@
 
 ### Industry Terms
 
+* [FinSearchComp explained: what it measures and how search APIs compare](https://parallel.ai/articles/finsearchcomp-benchmark)
 * [What is a Decisions API? How decision models give software answers instead of text](https://parallel.ai/articles/what-is-a-decisions-api)
 * [BrowseComp explained: what it measures and how search APIs compare](https://parallel.ai/articles/browsecomp-benchmark)
 * [DeepSearchQA explained: how deep research agents are scored](https://parallel.ai/articles/deepsearchqa-benchmark)
