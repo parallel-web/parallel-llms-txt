@@ -14,7 +14,7 @@ With push-based monitoring, instead of searching when you need an answer, you de
 
 Hedge funds and asset managers have used alternative data pipelines for years. The shift now is from buying static vendor datasets to building proprietary, continuous monitoring systems. Packaged alternative data gets shared across buyers, so any edge erodes; custom monitoring lets you define queries unique to your investment thesis.
 
-Parallel built the [Monitor API](https://parallel.ai/blog/monitor-api) around this pull-to-push model. You define a natural language query describing what you want to track, set a schedule, and receive webhook notifications with structured event data. The search runs continuously. Teams running [financial research workflows](https://parallel.ai/blog/case-study-kepler) already use this approach in place of manual checks.
+Parallel built the [Monitor API](https://parallel.ai/blog/monitor-api) around this pull-to-push model. You define a natural language query describing what you want to track, set a schedule, and receive webhook notifications with structured event data. The search runs continuously. [Rogo](https://parallel.ai/blog/case-study-rogo), whose agents serve 60,000+ bankers and investors at 450+ financial institutions, runs market monitoring and investment research workflows on Parallel's Search and Extract APIs. For how monitoring fits alongside other finance agent workloads, see [AI agents in finance](/learn/ai-agents-in-finance).
 
 ## What to monitor: web sources that generate investment signals
 
@@ -106,7 +106,7 @@ The walkthrough below monitors SEC 8-K filings for portfolio companies and sends
 
 Start with one specific signal tied to your investment thesis. Track SEC 8-K filings for material events because they're time-sensitive and contain information that moves prices. Focus on executive changes, acquisitions, and material agreements.
 
-SEC 8-K filings cover a broad range of material events: changes in control, bankruptcy, delisting, executive compensation modifications, and completion of asset sales. Filing types carry different urgency: executive departures often precede strategic shifts., acquisition announcements move prices within minutes, and material agreements reveal customer concentration and supplier dependencies.
+SEC 8-K filings cover a broad range of material events: changes in control, bankruptcy, delisting, executive compensation modifications, and completion of asset sales. Filing types carry different urgency: executive departures often precede strategic shifts, acquisition announcements move prices within minutes, and material agreements reveal customer concentration and supplier dependencies.
 
 For a portfolio of 20 companies, you could create individual monitors or use a single query that covers the group. Individual monitors let you customize cadence and routing per position; a group query is less to manage but applies one setup to every holding.
 
@@ -256,6 +256,12 @@ The same event surfaces across multiple sources. An acquisition appears in SEC f
 
 "The page changed" or "New filing detected" requires additional research before you can act. Analysts who skip enrichment spend hours manually reviewing every alert. Build enrichment into your pipeline from the start by chaining Extract and Task API calls after each alert.
 
+### Skipping a test of the search layer
+
+Every alert and every enrichment rests on what the search step retrieves, so test candidate search APIs on finance questions with known answers before you scale. We make Parallel and ran these evaluations; methodology is on [/benchmarks](/benchmarks). With the agent and model held fixed, Parallel Advanced scored 57.4% on FinSearchComp T3, the hardest tier of a public expert-written finance benchmark, 6.0 points ahead of the next search API (Exa) at lower cost. On PWS-Finance, a private set of 174 questions that includes markets and macro and recent developments workflows, it posted the top score (84.3%), narrowly ahead of OpenAI's native search (83.7%).
+
+Freshness is part of that test. One PWS-Finance question asks for the Banque de France's August 2026 current account balance (a deficit of €1.5bn), a figure that changes every month. The [Parallel for Finance launch post](/blog/parallel-for-finance) has the full charts, and [the best search API for financial AI agents](/articles/best-search-api-for-financial-ai-agents) compares providers in detail.
+
 ### Compliance blind spots
 
 Investment monitoring must target only publicly available data. Avoid scraping behind paywalls or login walls. Establish a data governance framework that documents your sources and access methods. Review your monitoring queries with compliance before scaling. Parallel maintains SOC 2 Type 2 certification and offers zero data retention on Enterprise plans, which simplifies compliance documentation.
@@ -281,5 +287,9 @@ API-based monitoring costs a fraction of enterprise terminal subscriptions. Para
 ### Can I integrate web monitoring into my existing research workflow?
 
 Yes. API-first monitoring systems deliver events via webhooks, making them composable with CRMs, Slack, portfolio tools, or custom dashboards.
+
+### How accurate are AI search APIs for investment research?
+
+Accuracy varies by provider. In Parallel's tests, with every search API in the same agent loop, scores on FinSearchComp T3 ranged from 43.0% to 57.4%, with Parallel Advanced on top. Check results on your own questions before routing alerts to portfolio managers.
 
 **Ready to build your first investment monitor?** [Start Building](https://docs.parallel.ai/home) with Parallel's Monitor API. Create a free account, define your first query, and receive structured alerts within the hour.

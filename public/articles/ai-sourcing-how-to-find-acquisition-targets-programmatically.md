@@ -1,18 +1,18 @@
-# AI sourcing: how to find acquisition targets programmatically
+# AI in private equity: how AI deal sourcing finds acquisition targets
 
-AI sourcing in a deal context is a pipeline problem: define a target schema, discover candidates from the live web, enrich each one, then score and monitor. This guide covers the signals that flag acquisition-ready companies, that four-step pipeline, how live-web sourcing compares with static databases, and the mistakes that waste deal-team time.
+AI in private equity pays off first at the top of the funnel, where agents turn an investment thesis into a target list, research each company on the live web, and keep the list current. This guide covers the signals that flag acquisition-ready companies, a four-step AI deal sourcing pipeline, how accurate the search layer is on private-company facts, and the mistakes that waste deal-team time.
 
 ## Key takeaways
 
-- AI sourcing for M&A replaces static databases with live-web discovery that surfaces targets matching custom criteria in real time.
+- AI deal sourcing for private equity and M&A replaces static databases with live-web discovery that surfaces targets matching custom criteria in real time.
 - Growth signals like hiring velocity, funding rounds, and patent filings reveal acquisition-ready companies before they appear in traditional databases.
 - API-first tools let corp dev and PE teams build programmatic sourcing pipelines with custom schemas, rather than relying on pre-packaged platforms.
 - Enrichment APIs turn a longlist of names into structured profiles with financials, tech stack, leadership, and competitive positioning.
 - The strongest AI sourcing workflows separate discovery from enrichment, keeping each step composable and auditable.
 
-## What is AI sourcing in M&A?
+## What is AI sourcing in private equity and M&A?
 
-Search "ai sourcing" and you'll find page after page of recruiting content from talent acquisition teams. In M&A, the term means something different: using machine learning and web-scale data retrieval to identify, filter, and rank potential acquisition targets.
+Search "ai sourcing" and you'll find page after page of recruiting content from talent acquisition teams. In private equity and M&A, the term means something different: using machine learning and web-scale data retrieval to identify, filter, and rank potential acquisition targets. Sourcing is a natural first use of AI in private equity, because screening and first-pass research consume analyst hours before a deal team commits to anything.
 
 Traditional deal sourcing relies on banker networks, industry conferences, and static databases (the global M&A market totaled $3.2 trillion in 2023, per [Bain's Global M&A Report](https://www.bain.com/insights/topics/m-and-a-report/)). You log into your market data platform, apply filters for industry codes and revenue ranges, export a list, and start the manual research grind. You're reacting to what vendors have indexed, filtered through taxonomies they've defined, updated on schedules they control.
 
@@ -20,7 +20,7 @@ AI sourcing flips this. You define your investment thesis in natural language, a
 
 [McKinsey's M&A trends report](https://www.mckinsey.com/capabilities/m-and-a/our-insights/top-m-and-a-trends-in-2024-blueprint-for-success-in-the-next-wave-of-deals) found that programmatic acquirers delivered 2.3% excess TSR over a decade. If you source from the same databases your competitors use, you can only compete on speed of outreach and relationship quality. Sourcing from the live web with custom criteria surfaces targets others haven't seen.
 
-This article focuses on the M&A application: building programmatic pipelines that discover and enrich acquisition targets using APIs ([Deloitte's 2025 M&A Generative AI Study](https://www.deloitte.com/us/en/what-we-do/capabilities/mergers-acquisitions-restructuring/articles/m-and-a-generative-ai-study.html) reports that 86% of deal leaders have integrated generative AI into M&A workflows).
+This article focuses on the private equity and M&A application: building programmatic pipelines that discover and enrich acquisition targets using APIs ([Deloitte's 2025 M&A Generative AI Study](https://www.deloitte.com/us/en/what-we-do/capabilities/mergers-acquisitions-restructuring/articles/m-and-a-generative-ai-study.html) reports that 86% of deal leaders have integrated generative AI into M&A workflows). For how agents fit across banking, research, and compliance, see [AI agents in finance](/learn/ai-agents-in-finance).
 
 ## Why static databases fall short for deal sourcing
 
@@ -66,7 +66,7 @@ Recent funding rounds signal market validation and investor confidence. Investor
 
 **Social signals** round out the picture: executive activity, conference appearances, podcast interviews, and thought leadership publishing. These unstructured signals help you assess leadership quality and market positioning (according to [Lowenstein Sandler's 2023 Alternative Data Report](https://www.lowenstein.com/media/cbhgys4p/alternative-data-report-2023-final.pdf), 62% of investment firms now use alternative data, with private equity adoption doubling year over year).
 
-## How to build a programmatic AI sourcing pipeline
+## How to build an AI deal sourcing pipeline
 
 The workflow has four stages: define your schema, discover targets, enrich each match, and score for prioritization. Each stage is composable, so you can swap components, adjust parameters, and integrate with your existing systems.
 
@@ -84,31 +84,34 @@ For example, a healthcare technology rollup might use this schema:
 
 _"Series B SaaS companies in North America with 50 to 200 employees, $5M to $20M ARR, selling to healthcare providers, with engineering hiring growth above 20% in the last six months."_
 
-Unlike a database filter, an AI-powered API interprets this natural language criteria and searches the live web to find matches. The [Parallel FindAll API](https://parallel.ai/products/findall) accepts this kind of query:
+Unlike a database filter, an AI-powered API interprets these criteria and searches the live web to find matches. The [Parallel FindAll API](https://parallel.ai/products/findall) takes the thesis as an objective plus a list of match conditions, each checked against web evidence:
 
 ```python
 import requests
 
 response = requests.post(
-    "https://api.parallel.ai/v2/findall",
+    "https://api.parallel.ai/v1beta/findall/runs",
     headers={"x-api-key": "YOUR_API_KEY"},
     json={
-        "query": "Series B SaaS companies in North America with 50-200 employees, $5M-$20M ARR, selling to healthcare providers, with engineering hiring growth above 20% in the last 6 months",
-        "schema": {
-            "company_name": "string",
-            "website": "string",
-            "funding_stage": "string",
-            "estimated_arr": "string",
-            "employee_count": "number",
-            "target_market": "string",
-            "recent_hiring_signal": "string"
-        },
-        "generator": "pro"
+        "objective": "Series B SaaS companies in North America selling to healthcare providers",
+        "entity_type": "companies",
+        "match_conditions": [
+            {"name": "series_b_check", "description": "Company's most recent priced round is a Series B."},
+            {"name": "north_america_check", "description": "Company is headquartered in the US or Canada."},
+            {"name": "headcount_check", "description": "Company has 50 to 200 employees."},
+            {"name": "arr_check", "description": "Company has an estimated $5M to $20M in ARR."},
+            {"name": "healthcare_customers_check", "description": "Company sells SaaS to healthcare providers such as hospitals or clinics."},
+            {"name": "hiring_check", "description": "Company grew engineering hiring by more than 20% in the last six months."}
+        ],
+        "generator": "core",
+        "match_limit": 50
     }
 )
+
+findall_id = response.json()["findall_id"]
 ```
 
-The schema defines what fields you want extracted for each match. The API handles discovery, evaluation, and structuring.
+A company counts as a match only after it satisfies every condition. When the run finishes, `GET /v1beta/findall/runs/{findall_id}/result` returns the matched companies with reasoning and citations, and you can add fields such as estimated ARR, target market, and recent hiring signal through FindAll's enrich step. The [FindAll quickstart](https://docs.parallel.ai/findall-api/findall-quickstart) shows the full ingest, run, poll, and fetch flow.
 
 ### Step 2: Discover targets from the live web
 
@@ -132,24 +135,34 @@ The [Parallel Task API](https://parallel.ai/products/task) runs per-company enri
 import requests
 
 response = requests.post(
-    "https://api.parallel.ai/v2/task",
+    "https://api.parallel.ai/v1/tasks/runs",
     headers={"x-api-key": "YOUR_API_KEY"},
     json={
-        "query": "Research Acme Health Technologies for M&A due diligence",
-        "schema": {
-            "company_overview": "string",
-            "founding_year": "number",
-            "key_executives": "array",
-            "estimated_revenue": "string",
-            "key_customers": "array",
-            "technology_stack": "array",
-            "competitive_advantages": "string",
-            "recent_news": "array",
-            "regulatory_status": "string"
-        },
-        "processor": "pro"
+        "processor": "pro",
+        "input": "Research Acme Health Technologies for M&A due diligence",
+        "task_spec": {
+            "output_schema": {
+                "type": "json",
+                "json_schema": {
+                    "type": "object",
+                    "properties": {
+                        "company_overview": {"type": "string"},
+                        "founding_year": {"type": "integer"},
+                        "key_executives": {"type": "array", "items": {"type": "string"}},
+                        "estimated_revenue": {"type": "string"},
+                        "key_customers": {"type": "array", "items": {"type": "string"}},
+                        "technology_stack": {"type": "array", "items": {"type": "string"}},
+                        "competitive_advantages": {"type": "string"},
+                        "recent_news": {"type": "array", "items": {"type": "string"}},
+                        "regulatory_status": {"type": "string"}
+                    }
+                }
+            }
+        }
     }
 )
+
+run_id = response.json()["run_id"]
 ```
 
 The processor tier controls depth and latency. Use "lite" for basic metadata lookups. Use "pro" for [comprehensive research that synthesizes multiple sources](https://parallel.ai/articles/what-is-deep-research). Each field in the response includes citations linking back to source material.
@@ -166,6 +179,24 @@ Feed enriched data into your deal management system (DealCloud, Affinity, Salesf
 
 Set up recurring discovery runs to monitor for new companies that match your thesis. New startups emerge and existing companies cross funding thresholds, so a one-time list goes stale quickly. Run weekly discovery queries and pipe new matches into your tracking system. The [incremental cost is minimal](https://parallel.ai/pricing).
 
+## How accurate is AI search on private-company facts?
+
+A sourcing pipeline is only as good as the facts it pulls about private companies: who led the last round, who owns the business now, whether an acquisition closed and for how much. Those facts rarely sit in one database. They turn up in press releases, regulator registers, and local filings, and the search API either finds them or doesn't.
+
+We make Parallel and ran these evaluations; methodology is on [/benchmarks](/benchmarks). PWS-Finance is Parallel's private benchmark of 174 held-out questions across eight finance workflows, including funding and investors, deals, and ownership and leadership. Each question asks for specific facts about one entity as of one date, the answers aren't published online, and an answer counts only if every required fact is right. One example asks for Rush Enterprises' 2025 acquisitions (the answer is Leeds Transit, on June 16, 2025, for $25.6M).
+
+| Search API (same agent and model) | PWS-Finance accuracy | Cost per 1,000 questions |
+| --- | --- | --- |
+| Parallel Advanced | 84.3% | $125.50 |
+| OpenAI native search | 83.7% | $180.70 |
+| Parallel Fast | 83.0% | $110.30 |
+| Exa Auto | 75.9% | $197.60 |
+| Perplexity Search API | 74.3% | $121.90 |
+
+Parallel Advanced posted the top score, 0.6 points ahead of OpenAI's native search at 30% lower cost and 8 to 10 points ahead of Exa and Perplexity. On FinSearchComp T3, a public set of complex historical finance questions, Parallel Advanced scored 57.4% against 51.4% for the next search API (Exa), at lower cost. In both tests every provider ran in the same agent loop, so the search layer was the only variable.
+
+Even the top score leaves about one question in six wrong under strict grading, so verify ownership and deal terms against the cited sources before outreach. [FinSearchComp explained](/articles/finsearchcomp-benchmark) and [the best search API for financial AI agents](/articles/best-search-api-for-financial-ai-agents) go deeper on the numbers.
+
 ## Live-web sourcing vs. pre-packaged databases
 
 **Pre-packaged databases excel at breadth and convenience.** Millions of pre-indexed companies, standardized fields, and fast lookups ([S&P Global's 2024 M&A review](https://www.spglobal.com/market-intelligence/en/news-insights/research/global-ma-by-the-numbers-2024-in-review) reported recovery signs in H2 2024 deal volumes). You can screen large universes for basic criteria. If your thesis targets well-defined verticals with strong database coverage (enterprise software, financial services, or large healthcare), the traditional database gets you 70% of the way there.
@@ -177,6 +208,8 @@ Set up recurring discovery runs to monitor for new companies that match your the
 In practice, you pull 200 companies from your database matching broad criteria. You run a FindAll query with more specific natural language criteria and surface 50 additional targets the database missed. You enrich all 250 companies via Task API, adding real-time signals like recent hiring, press coverage, and regulatory filings.
 
 Parallel's FindAll and Task APIs serve as the live-web layer in this architecture. They're designed to sit alongside your existing data subscriptions, filling gaps and adding freshness where traditional sources fall short.
+
+Sell-side bankers run the mirror image of this workflow. [Rogo](https://parallel.ai/blog/case-study-rogo), which uses Parallel as its primary web search provider, builds buyer lists for sell-side deals, a job that once meant reviewing 50 to 100 PE firms' websites by hand. [AI in investment banking](/articles/ai-in-investment-banking) covers that side of the deal.
 
 ## Common mistakes in AI-powered deal sourcing
 
@@ -192,7 +225,7 @@ AI sourcing speeds up the process ([recent research on AI deal sourcing](https:/
 
 ## FAQs
 
-### What is AI sourcing in M&A?
+### What is AI sourcing in private equity?
 
 AI sourcing uses machine learning and web-scale data retrieval to identify companies that match specific acquisition criteria, replacing manual database searches with automated, real-time discovery.
 
@@ -208,4 +241,12 @@ Yes. API-based tools accept natural language queries with custom schemas and ret
 
 Live-web sourcing provides freshness (real-time signals), specificity (custom natural language queries), and long-tail coverage (niche markets, emerging companies). Static databases provide breadth and convenience for well-covered sectors. Combining both yields the strongest results.
 
-Ready to build a programmatic deal sourcing pipeline? Start building with Parallel's [FindAll and Task APIs](https://docs.parallel.ai/home).
+### How is AI used in private equity?
+
+The most common uses are deal sourcing, first-pass company research, due diligence, and portfolio monitoring. Agents search the live web, fill a structured profile for each company with citations, and flag changes such as new funding rounds or leadership moves, while partners keep the relationship and judgment work.
+
+### How accurate is AI deal sourcing on private companies?
+
+It depends heavily on the search layer. On PWS-Finance, Parallel's private set of 174 finance questions with strict scoring, search APIs in the same agent loop ranged from 74.3% to 84.3%, with Parallel Advanced on top. Treat any result as a cited lead to verify, not a finished fact.
+
+Ready to build a programmatic deal sourcing pipeline? Start with the [FindAll and Task API docs](https://docs.parallel.ai/home), get a key on the [Parallel platform](https://platform.parallel.ai/), or see [Parallel for Finance](/solutions/finance).

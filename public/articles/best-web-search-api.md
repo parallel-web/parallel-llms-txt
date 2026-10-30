@@ -116,6 +116,8 @@ Use the paired figures to match intent to fit. If accuracy on hard, multi-hop qu
 
 If latency is your tightest constraint, weigh the quick modes against what they return. Exa Instant averaged 398ms and Brave LLM context 601ms on Openbenchmarks' factual-lookup board, while Tavily basic took 1.88s. SerpAPI has no current figures on any of these boards. Whatever the table suggests, confirm it with the bake-off above.
 
+If your agent works in finance, check domain results too, since rankings move with the task. In the finance benchmarks we ran and published with [Parallel for Finance](/blog/parallel-for-finance) in October 2026, with every search API in the same agent loop, Parallel Advanced scored 57.4% on FinSearchComp T3, 6.0 points ahead of the next search API (Exa Auto at 51.4%) and well ahead of Tavily's 43.0%, at lower cost than either. Exa edged Advanced on FrontierFinance by 0.4 in a single run, a tie. Our guide to the [best search API for financial AI agents](/articles/best-search-api-for-financial-ai-agents) has the full tables.
+
 ## Common questions about web search APIs
 
 ### **What is a web search API?**

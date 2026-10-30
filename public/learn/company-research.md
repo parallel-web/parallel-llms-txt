@@ -40,6 +40,14 @@ Automated research changes that math. Modern tools search, read, and synthesize 
 
 _Parallel’s benchmarks page compares web search and research accuracy across providers. Source: __[Parallel benchmarks](https://parallel.ai/benchmarks)__._
 
+## Company research for finance
+
+In finance, company research has to hold up to review. A banker building a buyer list, an investor checking ownership, or a compliance team verifying a business for [KYB](/learn/kyb) needs facts that often sit outside licensed datasets, in regulator registers, local-exchange filings, and private-company announcements.
+
+We make Parallel and tested this directly; methodology is on [/benchmarks](/benchmarks). With the agent and model held fixed, Parallel Advanced scored 57.4% on FinSearchComp T3, a set of complex historical finance questions written by financial experts, ahead of every other search API tested (Exa was next at 51.4%) and at lower cost. On PWS-Finance, 174 private questions about company profiles, funding, deals, and ownership, it posted the top score at 84.3%.
+
+For more on these workflows, see [AI agents in finance](/learn/ai-agents-in-finance) and [the best search API for financial AI agents](/articles/best-search-api-for-financial-ai-agents).
+
 ## Related terms
 
 - [data enrichment](https://parallel.ai/articles/what-is-data-enrichment)

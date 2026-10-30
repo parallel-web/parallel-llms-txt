@@ -40,7 +40,7 @@ On BrowseComp on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (Septe
 
 OpenAI Web Search is built into the OpenAI API as a tool the model invokes on its own. When the model decides it needs the web, it runs a search and injects the results into its context, tightly coupled to its reasoning loop. Billing combines a per-call charge with the search-context tokens at the model's input rate, and the model can trigger several searches per request, so your effective cost varies from question to question.
 
-OpenAI Web Search isn't in our current benchmark runs, and we don't have a current, comparable accuracy figure to report for it. If you're weighing a move, our guide on [switching from OpenAI web search](https://parallel.ai/articles/openai-to-parallel-search-api) walks through the tradeoffs.
+OpenAI Web Search isn't in our September BrowseComp runs. It is in our October 2026 finance benchmarks, where OpenAI's native search ran in the same agent loop as the other search APIs. It scored 48.3% on FinSearchComp T3 at $204.30 per 1,000 questions, against 57.4% at $161.10 for Parallel Advanced, and 83.7% on PWS-Finance, 0.6 behind Advanced at higher cost. If you're weighing a move, our guide on [switching from OpenAI web search](https://parallel.ai/articles/openai-to-parallel-search-api) walks through the tradeoffs.
 
 **Best for:** teams already fully on the OpenAI stack that want search built into the model and will accept variable cost.
 
@@ -109,6 +109,10 @@ The table below pairs the current BrowseComp figures with a few qualitative colu
 | SerpAPI | Not in current runs | Not in current runs | Scraped SERPs | Search-only | SEO and SERP data |
 
 BrowseComp figures from [parallel.ai/benchmarks](https://parallel.ai/benchmarks), 50-question sample, run September 9, 2026. Frontier tier uses a GPT-5.6 Sol agent; low-cost tier uses a GPT-5.6 Luna agent.
+
+### For finance agents
+
+BrowseComp is a general browsing test. For financial research, we ran and published four finance benchmarks with [Parallel for Finance](/blog/parallel-for-finance) in October 2026, again with every search API in the same agent loop. Parallel Advanced led FinSearchComp T3, the hardest tier, at 57.4%, ahead of Exa (51.4%), Perplexity Finance + Web (50.0%), OpenAI's native search (48.3%), and Tavily (43.0%), at lower cost than each. The margins elsewhere are smaller: Exa edged Advanced on FrontierFinance by 0.4 in a single run, and Advanced led OpenAI on PWS-Finance by 0.6. The tables and methodology are in our guide to the [best search API for financial AI agents](/articles/best-search-api-for-financial-ai-agents) and the [FinSearchComp explainer](/articles/finsearchcomp-benchmark).
 
 ## Run the test on your own queries
 

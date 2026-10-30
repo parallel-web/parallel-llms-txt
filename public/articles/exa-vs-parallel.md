@@ -49,6 +49,19 @@ Artificial Analysis’s latest Search Index data is dated September 22, 2026. Pa
 
 Openbenchmarks’ independent boards split the two by task. On [multi-turn company search](https://openbenchmarks.com/multi-turn-company-search) (September 2026), Parallel Basic leads search-only at 50.2 F1 against Exa Deep’s 45.5, and Exa Deep leads once the agent can fetch pages, 49.2 against Parallel Advanced’s 43.8. On [company news lookups](https://openbenchmarks.com/company-news), Exa Fast is the most accurate API at 99.3% against Parallel Basic’s 93.3% and Fast’s 86.0%, while Parallel Fast costs $1.16 per 1,000 correct answers against about $7 for Exa’s fast modes.
 
+### Finance benchmarks
+
+We published four finance benchmarks with [Parallel for Finance](/blog/parallel-for-finance) in October 2026. Each search API runs inside the same agent loop with the same answer model and judge, so the search layer is the only variable, and cost per 1,000 questions covers the model's tokens plus every search and fetch call at list price. We make Parallel and ran these evaluations; the methodology is on [parallel.ai/benchmarks](/benchmarks).
+
+| Benchmark | Exa Auto | Parallel Advanced | Parallel Fast |
+| --- | --- | --- | --- |
+| FinSearchComp T3 (accuracy) | 51.4% at $226.20 | 57.4% at $161.10 | 53.7% at $15.20 |
+| FinSearchComp T2 (accuracy) | 77.9% at $69.90 | 79.9% at $35.10 | 77.5% at $3.30 |
+| FrontierFinance (rubric score) | 47.2 at $376.30 | 46.8 at $234.20 | 46.0 at $201.50 |
+| PWS-Finance (accuracy) | 75.9% at $197.60 | 84.3% at $125.50 | 83.0% at $110.30 |
+
+The widest gap is on FinSearchComp T3, the tier of complex historical investigations, where Advanced leads Exa by 6.0 points at 1.4x lower cost. On PWS-Finance, our private set of 174 held-out questions, Advanced leads by 8.4 points. Exa posts the top FrontierFinance score, 0.4 ahead of Advanced in a single run, which is close enough to call a tie; Advanced costs 38% less there. On T2 the two are 2 points apart, so cost decides it: $35.10 against $69.90 per 1,000 questions. Every cell uses GPT-6 Sol as the answer model except Parallel Fast on FinSearchComp, which runs with GPT-6 Luna. The [FinSearchComp explainer](/articles/finsearchcomp-benchmark) and our guide to the [best search API for financial AI agents](/articles/best-search-api-for-financial-ai-agents) cover the benchmarks in detail.
+
 ## **Content extraction**
 
 Exa's Contents API returns clean text, highlights, and LLM-generated summaries from any URL. It handles JavaScript-rendered pages, PDFs, and complex layouts. You can crawl linked subpages in a single request, control freshness with maxAgeHours, and adjust verbosity levels (compact, standard, full). Section-level filtering lets you include or exclude specific page sections like navigation, sidebars, or footers.

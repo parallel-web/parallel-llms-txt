@@ -1,9 +1,9 @@
-### \[How Bretton runs AI compliance, fraud, and risk investigations with 3x faster web research using Parallel\](https://parallel.ai/blog/case-study-bretton-ai)
+### \[Parallel: Unmatched SOTA web search for Finance AI Agents\](https://parallel.ai/blog/parallel-for-finance)
 
-Bretton grounds every AI compliance investigation in Parallel, making cases 40% faster with a cited source for every finding.
+Parallel for Finance is a universal upgrade to our index and ranking for financial agents. On FinSearchComp's hardest tier, Parallel is the most accurate search API, at up to 2x lower cost than Exa and Perplexity, and on our private finance benchmark, it matches OpenAI's native search for 30% to 40% less.
 
-Tags:[Customers](/blog?tag=customers)
+Tags:[Product](/blog?tag=product)
 
 By Parallel
 
-October 27, 2026
+October 29, 2026

@@ -77,6 +77,14 @@ The Openbenchmarks [speed board](https://openbenchmarks.com/web-search/fastest-s
 
 Put together, Parallel’s higher modes score above Linkup on both multi-step boards, and Parallel Fast scores above both Linkup depths on Artificial Analysis while trailing them on Openbenchmarks. On single company-news lookups, Linkup fast reached 96.7% accuracy at around a second and a half in a run that did not include Parallel, while on the developer board Parallel Turbo and Fast completed more tasks than Linkup fast. Run both against a sample of your own production queries to answer the question for your workload.
 
+### What about finance benchmarks?
+
+Linkup's [benchmarks page](https://www.linkup.so/benchmarks) claims Linkup Research leads both FinSearchComp tiers it ran, at 82.4% on T2 and 58.3% on T3, comparing each provider's best research or deep configuration. Its T2 list puts Parallel ultra at 73.1%, Perplexity at 72.3%, Exa research_pro at 42.0%, and Tavily research_pro at 40.3%. Those are research products, each returning a finished answer with its own model and orchestration, measured in Linkup's harness.
+
+Parallel's October 2026 finance results, published with [Parallel for Finance](/blog/parallel-for-finance), measure the search layer instead: every search API runs inside the same agent loop with the same answer model and judge. In those runs Parallel Advanced was the most accurate search API on FinSearchComp T3 at 57.4%, 6.0 points ahead of the next, at $161.10 per 1,000 questions, and scored 79.9% on T2. Linkup wasn't in those runs. We make Parallel and ran these evaluations; the methodology is on [parallel.ai/benchmarks](/benchmarks).
+
+The two kinds of number answer different questions. Linkup's tells you how its research endpoint's finished answers score, and ours tells you how much a retrieval layer helps an agent and model you control. The harnesses, question subsets, and graders differ, so they don't belong on one leaderboard. The [FinSearchComp explainer](/articles/finsearchcomp-benchmark) covers both.
+
 ## **How do Linkup Research and the Parallel Task API compare for deep research?**
 
 Linkup’s [Research endpoint](https://docs.linkup.so/pages/documentation/endpoints/research/overview) runs asynchronously and returns either a precise answer or a report with citations. Four sizes set depth and price: S at $0.25 per call (2 to 5 minutes), M at $0.50 (3 to 7 minutes), L at $1.50 (5 to 10 minutes), and XL at $2.50 (10 to 20 minutes). That’s $250 to $2,500 per 1,000. Linkup’s pricing page gives a shorter range of 1 to 10 minutes, so check the size you’d use.

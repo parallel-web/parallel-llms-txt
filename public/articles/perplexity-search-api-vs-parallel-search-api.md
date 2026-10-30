@@ -56,6 +56,19 @@ Perplexity comes out ahead on BrowseComp: it ties Advanced at 74% for about two-
 
 Openbenchmarks, which publishes its harness and raw responses, gives an outside read that splits the same way. On its [coding-agent board](https://openbenchmarks.com/web-search-for-coding-agents) (100 documentation tickets, September 2026), Perplexity at low context completed 77.3% of tickets from search alone, first of 14, against 66.7% for Parallel Fast. On [multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), Parallel Basic leads search-only at 50.2 F1 against Perplexity’s 37.8, though Perplexity at high context rises to 46.6 when the agent can fetch pages.
 
+### Finance benchmarks
+
+Our October 2026 finance runs, published with [Parallel for Finance](/blog/parallel-for-finance), use a newer agent than the table above. GPT-6 Sol answers for every arm, except Parallel Fast on FinSearchComp, which runs with GPT-6 Luna. On FinSearchComp, Perplexity's arm is Perplexity Finance + Web; on FrontierFinance and PWS-Finance it's the Search API alone, with no fetch tool. Cost is end to end per 1,000 questions, model tokens included.
+
+| Benchmark | Perplexity | Parallel Advanced | Parallel Fast |
+| --- | --- | --- | --- |
+| FinSearchComp T3 (accuracy) | 50.0% at $347.00 (Finance + Web) | 57.4% at $161.10 | 53.7% at $15.20 |
+| FinSearchComp T2 (accuracy) | 79.7% at $104.60 (Finance + Web) | 79.9% at $35.10 | 77.5% at $3.30 |
+| FrontierFinance (rubric score) | 44.3 at $254.30 (Search API) | 46.8 at $234.20 | 46.0 at $201.50 |
+| PWS-Finance (accuracy) | 74.3% at $121.90 (Search API) | 84.3% at $125.50 | 83.0% at $110.30 |
+
+T3, the hardest FinSearchComp tier, is where the search layer separates: Advanced leads Perplexity Finance + Web by 7.4 points at 2.2x lower cost. T2 is a tie on accuracy (79.9 against 79.7), with Advanced at about a third of Perplexity's cost. On PWS-Finance, Advanced leads the Search API by 10.0 points, though Perplexity is slightly cheaper per 1,000 questions there. Perplexity's FrontierFinance and PWS-Finance arms had no fetch tool while Parallel's did, so read those rows as a search-only endpoint against search plus fetch. We make Parallel and ran these evaluations; the methodology is on [parallel.ai/benchmarks](/benchmarks). The [FinSearchComp explainer](/articles/finsearchcomp-benchmark) covers the task tiers.
+
 ## **What sits around each endpoint**
 
 Few teams buy a search endpoint in isolation, so the surrounding platform usually decides it.

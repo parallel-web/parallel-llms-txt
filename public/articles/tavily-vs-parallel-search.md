@@ -96,6 +96,16 @@ Our own September 2026 runs on [parallel.ai/benchmarks](https://parallel.ai/benc
 
 Openbenchmarks, an independent hub that publishes its harness and raw vendor responses, has since run both. On its [multi-turn company search board](https://openbenchmarks.com/multi-turn-company-search) (45 multi-constraint questions, three runs each, September 2026), Parallel Basic scored 50.2 F1 from search results alone against 42.0 for Tavily Advanced and 36.5 for Tavily Basic, with Parallel Fast at 39.0. On its [company news lookup board](https://openbenchmarks.com/company-news/metric/cost-per-1k-correct) (300 questions), Tavily answered more accurately than Parallel Fast (93.0% Advanced and 87.7% Basic, against 86.0%), but Fast cost $1.16 per 1,000 correct answers against Tavily’s $9.13 and $17.20.
 
+Tavily is also in the finance benchmarks we ran and published with [Parallel for Finance](/blog/parallel-for-finance) in October 2026. Every search API sits in the same agent loop with the same answer model (GPT-6 Sol, except Parallel Fast on FinSearchComp, which uses GPT-6 Luna), and cost per 1,000 questions covers model tokens plus every search and fetch call. The methodology is on [parallel.ai/benchmarks](/benchmarks).
+
+| Benchmark | Tavily | Parallel Advanced | Parallel Fast |
+| --- | --- | --- | --- |
+| FinSearchComp T3 (accuracy) | 43.0% at $481.80 | 57.4% at $161.10 | 53.7% at $15.20 |
+| FinSearchComp T2 (accuracy) | 77.2% at $169.00 (one run) | 79.9% at $35.10 | 77.5% at $3.30 |
+| FrontierFinance (rubric score) | 42.1 at $470.30 | 46.8 at $234.20 | 46.0 at $201.50 |
+
+On FinSearchComp T3, the hardest tier, Advanced scores 14.4 points above Tavily at 3.0x lower cost, and Fast also beats it at 32x lower cost. T2 is close on accuracy, with all three within 2.7 points, and Tavily's T2 figure is a single run against a three-run mean for Parallel, so the difference there is cost: $3.30 to $35.10 per 1,000 questions for Parallel against $169.00. Tavily isn't plotted on PWS-Finance, our private finance set, because it ran with date filters on and hit the 20-call cap on 77% of questions. The [FinSearchComp explainer](/articles/finsearchcomp-benchmark) has the details.
+
 Use a verified sample of your own tasks to choose. For retrieval, hold the answer model and harness constant and compare relevant variants. For managed research, compare Parallel Task or Responses with Tavily Research. Grade answer correctness, source support, and field accuracy, then measure total cost and elapsed time, including failures and retries. [Build your evaluation](https://docs.parallel.ai/search/evaluating-search) / [Get a Parallel API key](https://platform.parallel.ai/)
 
 **Related reading: **[Switching from Tavily to Parallel](https://parallel.ai/articles/tavily-to-parallel-search-api) / [Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel) / [Linkup vs. Parallel](https://parallel.ai/articles/linkup-vs-parallel).

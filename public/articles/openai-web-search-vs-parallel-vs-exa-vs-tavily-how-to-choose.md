@@ -71,7 +71,7 @@ print(response.output_text)
 
 If you were calling OpenAI's web_search tool, drop it, because web grounding is automatic. The SDK, request format, and streaming support stay the same. See the full [migration guide](https://parallel.ai/articles/openai-to-parallel-search-api) for details. The Responses API costs a fixed $10 per 1,000 requests at low effort ($50 at medium, $250 at high for deep research), with search and synthesis included and charged only for successful responses. OpenAI's web search runs about $10 to $25 per 1,000 tool calls, plus search content tokens billed at model rates.
 
-**Benchmark performance.** Parallel publishes accuracy results on [BrowseComp](https://openai.com/index/browsecomp/), [SimpleQA](https://openai.com/index/introducing-simpleqa/) Verified, WideSearch, and DeepSearchQA on its [benchmarks page](https://parallel.ai/benchmarks). In the September 2026 Search runs, with a GPT-5.6 Sol agent at the frontier tier, Parallel Advanced scored 97% on SimpleQA Verified against 95% for Perplexity, 92% for Tavily, and 91% for Exa, and tied Perplexity on BrowseComp at 74%, though Perplexity got there for less ($275 vs. $399 per 1,000 questions). At the low-cost tier, Parallel Fast scored 94% on SimpleQA Verified at $2 per 1,000 questions, the cheapest in the run, while Perplexity edged it on BrowseComp (46% vs. 44%). OpenAI's built-in search isn't in these runs.
+**Benchmark performance.** Parallel publishes accuracy results on [BrowseComp](https://openai.com/index/browsecomp/), [SimpleQA](https://openai.com/index/introducing-simpleqa/) Verified, WideSearch, and DeepSearchQA on its [benchmarks page](https://parallel.ai/benchmarks). In the September 2026 Search runs, with a GPT-5.6 Sol agent at the frontier tier, Parallel Advanced scored 97% on SimpleQA Verified against 95% for Perplexity, 92% for Tavily, and 91% for Exa, and tied Perplexity on BrowseComp at 74%, though Perplexity got there for less ($275 vs. $399 per 1,000 questions). At the low-cost tier, Parallel Fast scored 94% on SimpleQA Verified at $2 per 1,000 questions, the cheapest in the run, while Perplexity edged it on BrowseComp (46% vs. 44%). OpenAI's built-in search isn't in these runs, but it is in our finance benchmarks, covered below the comparison table.
 
 An agent running 100,000 queries per month on Parallel's Search API costs $100 on Turbo, or $500 on Basic and Advanced. The same volume on OpenAI's built-in search costs $1,000 to $2,500 in tool-call fees alone.
 
@@ -107,6 +107,19 @@ Tavily handles basic queries and standard web content without friction. For deve
 | Freshness control | Live access (default) or cache-only; no source-age guarantee | Freshness policies, live-fetch toggle | Limited | Limited |
 | Enterprise security | OpenAI's SOC 2 | SOC 2 Type 2, zero data retention | Varies | Varies |
 | Free tier | None | $5 in credits monthly (up to 5,000 Turbo searches) | Limited | Limited |
+
+### Finance benchmarks: all four in one agent loop
+
+The finance benchmarks we published with [Parallel for Finance](/blog/parallel-for-finance) in October 2026 include all four providers. Each search tool runs inside the same agent loop with the same answer model (GPT-6 Sol) and the same judge, and cost per 1,000 questions includes model tokens plus every search and fetch call. We make Parallel and ran these evaluations; the methodology is on [parallel.ai/benchmarks](/benchmarks).
+
+| Benchmark | OpenAI native search | Parallel Advanced | Exa Auto | Tavily |
+| --- | --- | --- | --- | --- |
+| FinSearchComp T3 (accuracy) | 48.3% at $204.30 | 57.4% at $161.10 | 51.4% at $226.20 | 43.0% at $481.80 |
+| FinSearchComp T2 (accuracy) | 77.9% at $70.20 | 79.9% at $35.10 | 77.9% at $69.90 | 77.2% at $169.00 |
+| FrontierFinance (rubric score) | 45.0 at $298.70 | 46.8 at $234.20 | 47.2 at $376.30 | 42.1 at $470.30 |
+| PWS-Finance (accuracy) | 83.7% at $180.70 | 84.3% at $125.50 | 75.9% at $197.60 | Not plotted |
+
+On T3, the hardest FinSearchComp tier, Advanced leads OpenAI's native search by 9.1 points at 1.3x lower cost, and Parallel Fast (53.7% at $15.20, answering with GPT-6 Luna) beats all three competitors at 13x lower cost or more. The other margins are small. Advanced posts the top PWS-Finance score, 0.6 ahead of OpenAI at 30% lower cost; Exa edges Advanced on FrontierFinance by 0.4 in a single run, a tie, at higher cost; and every arm on T2 lands within 2.7 points. FinSearchComp's answers are published online. Our harness strips those copies for the other search APIs, but OpenAI's built-in search can't be filtered that way, so its answers that came from published copies count as wrong; before that adjustment it scored 82.8 on T2 and 64.0 on T3. Tavily isn't plotted on PWS-Finance because it ran with date filters on and hit the 20-call cap on 77% of questions. Our guide to the [best search API for financial AI agents](/articles/best-search-api-for-financial-ai-agents) has the full results.
 
 ## Choosing the right approach
 

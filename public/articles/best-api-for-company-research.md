@@ -65,6 +65,21 @@ The same hub runs two other measurements that touch company research. On the [co
 
 The three boards agree with the hub's own FAQ that no single web search API is best across tasks. Exa fast is the accuracy leader for single-fact company news. Parallel basic is the leader for multi-constraint company discovery when the agent works from search results alone.
 
+### Finance benchmarks for company facts
+
+If your company research feeds finance work such as KYB checks, deal sourcing, or investment research, the closest evidence is the set of finance benchmarks we published with [Parallel for Finance](/blog/parallel-for-finance) in October 2026. PWS-Finance is our private set of 174 held-out questions across eight workflows, including company profiles, funding and investors, ownership and leadership, and public financials. Each question asks for specific facts about one entity as of one date, and an answer counts only if every required fact is right. Every search API runs inside the same agent loop with the same answer model. We make Parallel and ran these evaluations, so weigh them as vendor numbers; the methodology is on [parallel.ai/benchmarks](/benchmarks).
+
+| Search API | PWS-Finance accuracy | PWS-Finance cost per 1,000 questions | FinSearchComp T3 accuracy | FinSearchComp T3 cost per 1,000 questions |
+| --- | --- | --- | --- | --- |
+| Parallel Advanced | 84.3% | $125.50 | 57.4% | $161.10 |
+| OpenAI native search | 83.7% | $180.70 | 48.3% | $204.30 |
+| Parallel Fast | 83.0% | $110.30 | 53.7% | $15.20 |
+| Exa Auto | 75.9% | $197.60 | 51.4% | $226.20 |
+| Perplexity | 74.3% (Search API) | $121.90 | 50.0% (Finance + Web) | $347.00 |
+| Tavily | Not plotted | Not plotted | 43.0% | $481.80 |
+
+Parallel Fast's FinSearchComp run answers with GPT-6 Luna; every other cell uses GPT-6 Sol. On FrontierFinance, 220 expert-written research queries scored against rubrics, Exa Auto scored 47.2 against Advanced's 46.8 in a single run, close enough to call a tie, with Advanced at 38% lower cost. For how agents use these lookups in business verification and investment research, see our guides to [KYB](/learn/kyb) and [AI agents in finance](/learn/ai-agents-in-finance).
+
 ## The APIs, one by one
 
 ### Parallel

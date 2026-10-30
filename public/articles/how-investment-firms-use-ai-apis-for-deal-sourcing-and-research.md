@@ -177,13 +177,21 @@ The build-versus-buy calculation favors APIs for firms with [technical resources
 
 Integration patterns vary by technical maturity. Some firms run pipelines as scheduled jobs on cloud functions. Others embed API calls in existing data platforms like Snowflake or Databricks. The most sophisticated shops build custom agent orchestration that chains discovery, [AI-powered enrichment](https://parallel.ai/articles/ai-web-enrichment-for-sales), and monitoring into autonomous workflows.
 
+## How investment firms use these APIs in production
+
+[Rogo](https://parallel.ai/blog/case-study-rogo) builds AI for financial services and uses Parallel as its primary web search provider, with the Search and Extract APIs powering its research workflows. Its agents run 200,000+ workflows a day for 60,000+ bankers and investors at 450+ financial institutions, and it's live at 7 of the top 8 investment banks. One workflow builds buyer lists for sell-side deals, a job that once meant reviewing 50 to 100 PE firms' websites by hand; others cover meeting prep, market monitoring, and investment research. [AI in investment banking](/articles/ai-in-investment-banking) covers how banks deploy agents like these.
+
+[Kepler](https://parallel.ai/blog/case-study-kepler) analyzes public companies across 950K+ SEC filings, 14K+ companies, and 27 markets. It uses Parallel Search as the discovery layer for competitive landscapes, supply-chain mapping, and comp sets. "We built Kepler to be audit-ready at every step. That standard applies to discovery too. Parallel's accuracy and coverage are what made it the only search API we trusted in that role," says Vinoo Ganesh, Kepler's CEO.
+
 ## What to look for in AI deal sourcing APIs
 
-Five criteria matter most when you evaluate APIs for investment workflows.
+Six criteria matter most when you evaluate APIs for investment workflows.
 
 **Structured output with citations.** Investment decisions require verifiable facts. APIs should return JSON with per-field source attribution rather than freeform text that mixes synthesis with speculation. Every claim about revenue, headcount, funding, or competitive positioning must trace to a specific URL. The Basis framework used by Parallel Task API provides citations, reasoning chains, and confidence levels for each atomic fact.
 
 **Live web access versus cached data.** APIs built on proprietary web indexes with continuous crawling catch emerging signals. Parallel maintains a web-scale index with billions of pages and millions added daily. Solutions that rely on third-party search providers or periodic scraping add lag, and a signal is worth less the later it arrives.
+
+**Measured accuracy on finance questions.** Ask for results on finance benchmarks where every search API runs under the same agent, then repeat the test on your own questions. We make Parallel and ran these evaluations; methodology is on [/benchmarks](/benchmarks). On FinSearchComp T3, the hardest tier of an expert-written finance benchmark, Parallel Advanced scored 57.4% against 51.4% for Exa, 50.0% for Perplexity, and 48.3% for OpenAI's native search, at 1.3x to 3x lower cost. On PWS-Finance, 174 private questions covering funding, deals, and ownership, it posted the top score (84.3%), 0.6 points ahead of OpenAI and 8 to 10 points ahead of Exa and Perplexity. [The best search API for financial AI agents](/articles/best-search-api-for-financial-ai-agents) compares the providers in detail.
 
 **Predictable pricing.** Investment pipelines scale with deal activity. Per-request pricing lets you estimate costs before deployment and scale without surprise bills. Per-token models make costs unpredictable when research complexity varies. Parallel APIs price per request or per task, regardless of how many tokens the underlying model processes.
 
@@ -208,6 +216,10 @@ AI deal sourcing APIs scan the live web, including company websites, Crunchbase,
 **Q: How much does AI deal sourcing cost?**
 
 Per-request API pricing varies by task complexity. FindAll discovery runs cost $0.25 to $10 in fixed fees plus $0.03 to $1 per match, deep research profiles cost $0.10 to $2.40 per company, and continuous monitoring costs $3 per 1,000 signal checks, making costs predictable at any pipeline volume.
+
+**Q: Which search API is most accurate for deal research?**
+
+In Parallel's finance benchmarks, where every search API ran in the same agent loop, Parallel Advanced scored 57.4% on FinSearchComp T3 (6.0 points ahead of Exa) and posted the top score on PWS-Finance (84.3%, narrowly ahead of OpenAI's native search). Parallel ran those tests and publishes the methodology on [/benchmarks](/benchmarks). For context across finance use cases, see [AI agents in finance](/learn/ai-agents-in-finance).
 
 ## Start building your deal sourcing pipeline
 

@@ -152,6 +152,8 @@ SerpAPI is the most mature SERP option here, covering Google, Bing, Yahoo, DuckD
 
 **Grounding inside one model provider.** If you're committed to OpenAI or Anthropic and don't want a separate pipeline, their native `web_search` tools are the least-effort path, at a higher effective cost.
 
+**Finance agents.** The facts finance agents need often sit in regulator registers, local-exchange filings, and private-company announcements rather than licensed datasets. In the finance benchmarks we ran and published with [Parallel for Finance](/blog/parallel-for-finance), with every search API in the same agent loop, Parallel Advanced led FinSearchComp T3 at 57.4%, 6.0 points ahead of the next search API, at 1.3x to 3x lower cost. It also posted the top score on our private PWS-Finance set at 84.3%, 0.6 ahead of OpenAI's native search. The [best search API for financial AI agents](/articles/best-search-api-for-financial-ai-agents) guide has every provider's numbers.
+
 
 
 ## FAQ
