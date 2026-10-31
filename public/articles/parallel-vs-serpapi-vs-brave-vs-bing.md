@@ -43,7 +43,7 @@ SerpApi is the right tool when the results page is the data. It returns position
 
 The same design limits it for agents. Markdown makes the snippets cheaper to read, but they’re still snippets, and page text needs a fetcher you build and run, including retries for sites that block you. Pricing is a monthly allowance ($150 for 15,000 searches, $725 for 100,000, $2,750 for 500,000), and throughput scales with the plan, from 200 searches an hour on Starter to 100,000 on Infrastructure.
 
-Google sued SerpApi in December 2025 under the DMCA, alleging it bypassed Google’s SearchGuard anti-bot system. On July 20, 2026 the court dismissed those claims, permanently for results with no copyrighted content and with leave to amend for the rest. Google filed an amended complaint on August 10, SerpApi moved to dismiss again on August 24, and the [docket](https://www.courtlistener.com/docket/72059948/google-llc-v-serpapi-llc/) sets the hearing for October 13, 2026. SerpApi’s U.S. Legal Shield offers up to $2 million in coverage on Production plans and above. Our explainers on [whether scraping Google is legal](https://parallel.ai/articles/is-scraping-google-legal) and [why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) cover the full timeline.
+Google sued SerpApi in December 2025 under the DMCA, alleging it bypassed Google’s SearchGuard anti-bot system. On July 20, 2026 the court dismissed those claims, permanently for results with no copyrighted content and with leave to amend for the rest. Google filed an amended complaint on August 10, SerpApi moved to dismiss again on August 24. The [docket](https://www.courtlistener.com/docket/72059948/google-llc-v-serpapi-llc/) shows the court vacated the October 13 hearing on October 5, so that motion is still pending. SerpApi’s U.S. Legal Shield offers up to $2 million in coverage on Production plans and above. Our explainers on [whether scraping Google is legal](https://parallel.ai/articles/is-scraping-google-legal) and [why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) cover the full timeline.
 
 ## Brave: where it wins
 
@@ -142,6 +142,6 @@ It depends on the test. The Artificial Analysis Search Index ties Brave LLM Cont
 
 ### Is SerpApi legal to use?
 
-SerpApi is operating, and Google’s DMCA case against it is still open: the court dismissed the original claims in July 2026, Google amended in August, and a hearing is set for October 13, 2026. SerpApi offers a U.S. Legal Shield of up to $2 million on Production plans and above.
+SerpApi is operating, and Google’s DMCA case against it is still open: the court dismissed the original claims in July 2026, Google amended in August, and SerpApi’s second motion to dismiss is pending after the court vacated the October 13 hearing. SerpApi offers a U.S. Legal Shield of up to $2 million on Production plans and above.
 
 **Related reading: **[SerpApi vs. Parallel](https://parallel.ai/compare/serpapi-vs-parallel) / [Brave Search API vs. Parallel](https://parallel.ai/compare/brave-vs-parallel) / [Bing API alternatives](https://parallel.ai/articles/bing-api-comparison) / [Best fast search APIs](https://parallel.ai/articles/best-fast-search-apis)

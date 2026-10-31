@@ -4,7 +4,7 @@ Is scraping Google legal? The answer depends on which law you ask about: the CFA
 
 ## Five legal theories decide the answer
 
-No single US statute says “scraping is legal” or “scraping is illegal.” Courts decide scraping cases under several different laws, and a Google search scraper can succeed under one and fail under another. These are the theories that matter as of September 2026.
+No single US statute says “scraping is legal” or “scraping is illegal.” Courts decide scraping cases under several different laws, and a Google search scraper can succeed under one and fail under another. These are the theories that matter as of October 2026.
 
 | Legal theory | What it asks | How it applies to scraping Google | Key authority |
 | --- | --- | --- | --- |
@@ -39,7 +39,7 @@ Google sued SerpApi on December 19, 2025. On July 20, 2026, Chief Judge Yvonne G
 
 The order went against SerpApi on two points. The court held that any person injured by a violation can sue, so Google has standing even though it doesn’t own most of the content. It also found that Google had adequately alleged circumvention, based on Google’s allegations about spoofed browser fingerprints, rotating IPs, and CAPTCHA solving. SerpApi disputes Google’s claims, and the court hasn’t decided whether those allegations are true.
 
-Google filed an [amended complaint](https://www.courtlistener.com/docket/72059948/google-llc-v-serpapi-llc/) on August 10, 2026. According to [Search Engine Journal](https://www.searchenginejournal.com/google-amends-serpapi-suit-with-content-licensing-terms/585505/), it describes a licensing deal that since 2017 has required Google to make commercially reasonable efforts to protect licensed content, another provider’s requirement that its material not be downloadable by third parties, and Reddit’s request for technical measures against resellers. [SerpApi moved to dismiss again](https://serpapi.com/blog/google-tried-again-were-moving-to-dismiss-their-claims-a-second-time) on August 25, arguing that Google hasn’t filed any of those agreements or quoted their terms. The court denied SerpApi’s motion to compel production of the licenses, and a hearing on the new motion to dismiss is set for October 13, 2026.
+Google filed an [amended complaint](https://www.courtlistener.com/docket/72059948/google-llc-v-serpapi-llc/) on August 10, 2026. According to [Search Engine Journal](https://www.searchenginejournal.com/google-amends-serpapi-suit-with-content-licensing-terms/585505/), it describes a licensing deal that since 2017 has required Google to make commercially reasonable efforts to protect licensed content, another provider’s requirement that its material not be downloadable by third parties, and Reddit’s request for technical measures against resellers. [SerpApi moved to dismiss again](https://serpapi.com/blog/google-tried-again-were-moving-to-dismiss-their-claims-a-second-time) on August 25, arguing that Google hasn’t filed any of those agreements or quoted their terms. The court denied SerpApi’s motion to compel production of the licenses. On October 5 it vacated the October 13 hearing on the new motion to dismiss and said it would reset the hearing or decide the motion on the papers. As of October 30, 2026, there’s no ruling.
 
 ## Reddit’s case also names a buyer of search data
 
@@ -67,7 +67,7 @@ The EU’s text and data mining exception, in Article 4 of the Digital Single Ma
 
 ## Google also enforces through technology and contracts
 
-Most scrapers run into Google’s technical barriers long before a courtroom: SearchGuard, the September 2025 removal of the num=100 parameter, and the google.com/goto redirect links Google rolled out in August 2026. Around September 13, 2026, rank-tracking vendors reported losing most of their Google data to new blocking. Our explainer on [why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) covers that timeline.
+Most scrapers run into Google’s technical barriers long before a courtroom: SearchGuard, the September 2025 removal of the num=100 parameter, and the google.com/goto redirect links Google rolled out in August 2026. Around September 13, 2026, rank-tracking vendors reported losing most of their Google data to new blocking, and several later reported poisoned results pages, with the usual sites swapped out and no error attached. Our explainer on [why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) covers that timeline, and our guide to [/goto links and SERP scraper alternatives](https://parallel.ai/articles/google-goto-links-serp-scraper-alternatives) covers what the technical changes mean in practice.
 
 Google also writes the restriction into its own contracts. The [Google Cloud Marketplace product terms](https://cloud.google.com/terms/marketplace-product-terms) require sellers of a “Web Search Product” to warrant that they don’t use automated means against Google services in violation of robots.txt, bypass technical access restrictions, or circumvent measures that control access to copyrighted content.
 
@@ -83,7 +83,7 @@ Legal exposure depends on who runs the scraper, what they bypass, and what happe
 
 We built our Search API on our own crawl and index, so agents get ranked URLs with excerpts from each page without anyone scraping a search engine. Our [SerpApi vs. Parallel comparison](https://parallel.ai/compare/serpapi-vs-parallel) covers where each approach fits, and [web unlocker vs. scraper vs. fetch](https://parallel.ai/articles/web-unlocker-vs-scraper-vs-fetch) explains the unblocking layer SERP vendors run.
 
-This article is general information about public court records and terms of service as of September 26, 2026, not legal advice. Talk to a lawyer about your own situation.
+This article is general information about public court records and terms of service as of October 30, 2026, not legal advice. Talk to a lawyer about your own situation.
 
 ## Frequently asked questions
 
@@ -101,6 +101,6 @@ Not by itself. Robots.txt is a voluntary protocol, but Google’s terms of servi
 
 ### What did the court decide in Google v. SerpApi?
 
-On July 20, 2026, the court dismissed Google’s DMCA claims. Claims about results with no copyrighted content can’t be refiled; claims about licensed content, such as Knowledge Panel images, can. The court also found that Google had standing to sue and had adequately alleged circumvention, without deciding whether those allegations are true. Google refiled on August 10, and a hearing on SerpApi’s second motion to dismiss is set for October 13, 2026.
+On July 20, 2026, the court dismissed Google’s DMCA claims. Claims about results with no copyrighted content can’t be refiled; claims about licensed content, such as Knowledge Panel images, can. The court also found that Google had standing to sue and had adequately alleged circumvention, without deciding whether those allegations are true. Google refiled on August 10, and SerpApi moved to dismiss again. The court vacated the October 13 hearing on that motion on October 5, and as of October 30, 2026, it hasn’t ruled.
 
 **Related reading: **[Why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) / [What is web scraping?](https://parallel.ai/articles/what-is-web-scraping) / [SerpApi vs. Parallel](https://parallel.ai/compare/serpapi-vs-parallel) / [Web crawling vs. web scraping](https://parallel.ai/articles/web-crawling-vs-web-scraping)

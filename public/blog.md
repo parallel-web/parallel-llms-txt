@@ -1,6 +1,6 @@
-### \[Parallel: Unmatched SOTA web search for Finance AI Agents\](https://parallel.ai/blog/parallel-for-finance)
+### \[Introducing Parallel in Slack: web intelligence where your team works\](https://parallel.ai/blog/parallel-slack-agent)
 
-Parallel for Finance is a universal upgrade to our index and ranking for financial agents. On FinSearchComp's hardest tier, Parallel is the most accurate search API, at up to 2x lower cost than Exa and Perplexity, and on our private finance benchmark, it matches OpenAI's native search for 30% to 40% less.
+The Parallel Slack agent monitors the web for the changes your team cares about, posts them in your channels with sources, and answers questions in the thread.
 
 Tags:[Product](/blog?tag=product)
 

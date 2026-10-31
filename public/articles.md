@@ -55,6 +55,7 @@
 
 ### Guides
 
+* [Google's /goto links and poisoned SERPs: the best alternatives to SERP scrapers](https://parallel.ai/articles/google-goto-links-serp-scraper-alternatives)
 * [AI in investment banking: what analyst agents do and what they need](https://parallel.ai/articles/ai-in-investment-banking)
 * [Best web grounding for Gemini Enterprise Agent Platform (2026)](https://parallel.ai/articles/web-grounding-gemini-enterprise-agent-platform)
 * [Best web search APIs with EU data residency (2026)](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)

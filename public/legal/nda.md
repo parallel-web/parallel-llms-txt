@@ -4,6 +4,8 @@ Introducing Parallel Decisions API: the first decision engine with world knowled
 
 Human Machine
 
+`/` | `CtrlK`
+
 On this page
 
 * 1\. Definition
