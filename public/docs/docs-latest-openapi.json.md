@@ -12817,7 +12817,7 @@
             },
             "type": "array",
             "title": "Excerpts",
-            "description": "Passages used to ground the decision. Empty when include_excerpts is false."
+            "description": "Passages used to ground the decision. Empty when advanced_settings.include_excerpts is false."
           }
         },
         "type": "object",
@@ -12870,11 +12870,16 @@
             },
             "minProperties": 1
           },
-          "include_excerpts": {
-            "type": "boolean",
-            "title": "Include Excerpts",
-            "description": "When false, every citation has an empty excerpts array. Use for token efficiency if LLM consuming downstream results.",
-            "default": true
+          "advanced_settings": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AdvancedDecisionSettings"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Optional advanced configuration for decision grounding. When provided, the object must include location or include_excerpts."
           }
         },
         "type": "object",
@@ -13137,7 +13142,39 @@
         ],
         "title": "Score"
       },
-      "JsonValue": {}
+      "JsonValue": {},
+      "AdvancedDecisionSettings": {
+        "properties": {
+          "location": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Location",
+            "description": "Supported ISO 3166-1 alpha-2 country code for geo-targeted search results. Case-insensitive; normalized to lowercase. Invalid or unsupported codes return a validation error.",
+            "examples": [
+              "us",
+              "gb",
+              "de",
+              "jp"
+            ]
+          },
+          "include_excerpts": {
+            "type": "boolean",
+            "title": "Include Excerpts",
+            "description": "Whether citations include the excerpts used to ground the decision. When false, every citation has an empty excerpts array.",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "AdvancedDecisionSettings",
+        "description": "Advanced configuration for decision grounding."
+      }
     },
     "securitySchemes": {
       "ApiKeyAuth": {
