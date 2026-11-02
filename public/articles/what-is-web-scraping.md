@@ -8,7 +8,7 @@ Web scraping is the automated process of extracting data from websites and conve
 
 The scraper starts by sending an **HTTP request** to a website, as your browser does when you visit a page. The server responds with **HTML, **the code that structures the webpage. The scraper then parses this HTML into a **DOM** (Document Object Model), which maps out where everything lives on the page. From there, it uses **selectors** to pinpoint specific elements, like product prices in a <span class="price"> tag or contact details in a <div class="contact-info"> block, and extracts the fields you requested.
 
-After extraction, the scraper cleans up the raw data and stores it in formats like CSV, JSON, or databases. You'll hear terms like "web harvesting" and "web data extraction" used interchangeably; they all describe the same fundamental activity of programmatically collecting data from the internet.
+After extraction, the scraper cleans up the raw data and stores it in formats like CSV, JSON, or databases. You'll hear terms like "web harvesting" and "web data extraction" used interchangeably; they all describe the same fundamental activity of programmatically collecting data from the internet. For where the terms do differ, see our comparisons of [web scrapers vs. web extraction](https://parallel.ai/articles/web-scraper-vs-web-extraction) and [web crawling vs. web scraping](https://parallel.ai/articles/web-crawling-vs-web-scraping).
 
 ## **How web scrapers work behind the scenes**
 
@@ -52,7 +52,7 @@ Tools like Selenium, Puppeteer, Playwright, and new entrants like Browserbase (a
 
 ### **AI-powered document parsers**
 
-Modern systems use machine learning to interpret page content without depending on rigid HTML patterns. They can adapt to layout changes and extract relationships from unstructured text. This approach helps on sites with inconsistent templates or tasks that require meaning rather than raw text.
+Modern systems use machine learning to interpret page content without depending on rigid HTML patterns. They can adapt to layout changes and extract relationships from unstructured text. This approach helps on sites with inconsistent templates or tasks that require meaning rather than raw text. Parallel’s Extract API is one example: you pass up to 20 URLs and an objective, and it returns the relevant excerpts or the full page as markdown, with no selectors to maintain.
 
 ## **High-value use cases for scraping the internet**
 
@@ -68,7 +68,7 @@ Organizations use scraping most often in these areas:
 
 The legality of web scraping depends on what you scrape, how you scrape it, and what you do with the data. No universal law governs web scraping, but several principles guide responsible practice. For search engines specifically, see our guide to [whether scraping Google is legal](https://parallel.ai/articles/is-scraping-google-legal).
 
-**Public data:** Scraping publicly accessible information (data anyone can view without logging in) is generally acceptable, though not without limits. Courts in various jurisdictions have upheld the right to collect public data, particularly when it's factual rather than creative content. However, "public" doesn't mean "free to use however you want." Search engines are a special case: Google sued SerpApi in December 2025 over scraping its results, and the dispute is still in court. Our explainer on [why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) covers that case.
+**Public data:** Scraping publicly accessible information (data anyone can view without logging in) is generally acceptable, though not without limits. Courts in various jurisdictions have upheld the right to collect public data, particularly when it's factual rather than creative content. However, "public" doesn't mean "free to use however you want." Search engines are a special case: Google sued SerpApi in December 2025 over scraping its results. The court dismissed Google’s first complaint in July 2026 with leave to amend, and SerpApi’s motion to dismiss the amended complaint was still undecided at the end of October 2026. Our explainer on [why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) covers that case.
 
 **Terms of service:** Website terms of service often explicitly prohibit automated data collection, and violating those terms can create legal risk even if the data itself is public. While the enforceability of ToS provisions varies, ignoring them entirely is risky. Some sites grant limited scraping permissions in their robots.txt files or API terms.
 

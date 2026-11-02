@@ -176,7 +176,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [What Is a CLI, and Why Do AI Agents Prefer Them?](https://llm.parallel.ai/articles/what-is-a-cli.md): Learn what a command-line interface is, why LLMs work better with text than GUIs, and what the CLI revival means if you are building software.
 - [What Is a Decisions API? Decision Models Explained](https://llm.parallel.ai/articles/what-is-a-decisions-api.md): Learn what a Decisions API is, how decision models return probabilities instead of text, and how OpenAI, Perplexity, Jev, and Liquid d1 compare on price.
 - [What is a web crawler? How crawling works](https://llm.parallel.ai/articles/what-is-a-web-crawler.md): A web crawler fetches pages so a search index can stay current. This guide covers how crawling works, how it differs from scraping, and how sites manage…
-- [What Is a Web Index and How Does It Work?](https://llm.parallel.ai/articles/what-is-a-web-index.md): Learn how a web index works from crawl to rank, what blocks indexing, how to get pages indexed faster, and when to build an index versus using an API.
+- [What Is a Web Index? How Website Indexing Works](https://llm.parallel.ai/articles/what-is-a-web-index.md): Learn how website indexing works from crawl to rank, what keeps pages out of the index, how to get them indexed faster, and when to build or buy an index.
 - [Web Search API: What It Is and When AI Agents Need One](https://llm.parallel.ai/articles/what-is-a-web-search-api.md): Learn what a web search API is, how SERP, AI-native, and answer APIs differ, when an AI agent needs one, and how to test one free with no API key.
 - [What Is a Web Search MCP? How It Works and How to Choose](https://llm.parallel.ai/articles/what-is-a-web-search-mcp.md): Learn what a web search MCP is, how it works, what a tool call returns, and how the Parallel, Exa, Firecrawl, Tavily, and Brave MCP servers compare.
 - [What is an AI harness? How agent harnesses work](https://llm.parallel.ai/articles/what-is-an-agent-harness.md): An AI harness is the software around a model that runs tool calls, memory, and orchestration. See how agent harnesses work, with real examples.
@@ -394,7 +394,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Sign In - Parallel](https://llm.parallel.ai/docs/index.md)
 - [parallel-web - npm](https://llm.parallel.ai/docs/package/parallel-web.md)
 - [parallel-web · PyPI](https://llm.parallel.ai/docs/project/parallel-web/index.md)
-- [OpenAPI Spec](https://llm.parallel.ai/docs/public-openapi.json.md)
+- [public-openapi](https://llm.parallel.ai/docs/public-openapi.json.md)
 
 ## SDKs
 

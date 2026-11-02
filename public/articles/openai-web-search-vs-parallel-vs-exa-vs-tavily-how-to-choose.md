@@ -7,7 +7,7 @@ Choosing between OpenAI's built-in web search and a dedicated search API decides
 - OpenAI's built-in web search costs $10 or more per 1,000 tool calls (plus search content tokens) and locks you to OpenAI models.
 - Dedicated search APIs decouple retrieval from inference, giving you model flexibility, cost control, and retrieval quality you can tune.
 - Parallel Advanced led SimpleQA Verified (97%) and tied Perplexity on BrowseComp (74%) in our September 2026 runs, with Search pricing from $1 per 1,000 requests (Turbo mode, ~200ms median latency) to $5 per 1,000 (Basic and Advanced), plus an OpenAI-compatible Responses API from $10/1,000 requests for complete, cited answers.
-- Exa excels at semantic research on stable content but drops to 24% accuracy on time-sensitive queries, and its search costs $7 per 1,000 requests, against $1 to $5 for Parallel.
+- Exa excels at semantic research on stable content but scored 24% on time-sensitive queries in a 2025 third-party test, and its search costs $4 (Lite) to $7 (Auto) per 1,000 requests, against $1 to $5 for Parallel.
 - Tavily offers fast prototyping but costs 3x more per request than Parallel and delivers less token-dense output.
 
 You can swap in a stronger model, tune your prompts, or add reasoning loops, and none of it fixes a weak search layer. Feed stale, shallow, or irrelevant context into the model's window, and the model will produce confident wrong answers.
@@ -18,7 +18,7 @@ Developers building [AI agents](https://parallel.ai/articles/what-is-an-ai-agent
 
 Both are infrastructure problems in the search layer, and model tuning won't resolve them. That makes where retrieval lives in your stack an architectural decision.
 
-OpenAI, Parallel, Exa, and Tavily each make a different architectural bet on how retrieval and inference should relate. We compare them on accuracy, cost, flexibility, and production readiness.
+OpenAI, Parallel, Exa, and Tavily each make a different architectural bet on how retrieval and inference should relate. We build Parallel, a set of web search and research APIs for AI agents, and compare all four on accuracy, cost, flexibility, and production readiness.
 
 ## OpenAI's built-in web search: architecture and trade-offs
 
@@ -48,7 +48,7 @@ We built Parallel's search infrastructure from scratch for AI agents, starting w
 
 **Search API.** You send a natural-language "objective" describing what you need, along with optional keywords. The API returns ranked URLs with token-dense compressed excerpts designed to maximize useful context per token in your model's window. You control freshness policies, live-fetch toggles, and domain-level source inclusion or exclusion. The API handles premium content extraction from PDFs, JavaScript-heavy sites, and CAPTCHA-gated pages.
 
-Four modes cover different latency budgets. Turbo returns in about 200ms at p50 and costs $1 per 1,000 requests ($0.001/request), built for real-time and high-volume workloads like voice agents and consumer chat. Fast, at the same $1 per 1,000, returns higher-quality results within a one-second budget and is the best fit for most agent workloads. Basic (~1s) returns deeper excerpts per call, and Advanced (~3s) delivers the highest-quality multi-hop retrieval; both are priced at $5 per 1,000 requests ($0.005/request) with 10 results included. On the independent Artificial Analysis Search Index (September 2026 data), Parallel Search (advanced) scores 75, level with Brave’s LLM context mode, one point ahead of Exa (auto) at 74, and behind Perplexity Search (medium) at 80 and Octen Search at 77. Tavily is not on AA's displayed leaderboard. Parallel's fast mode recorded $8.41 in search cost per 1,000 benchmark tasks in AA's September 8 data, among the lowest measured. A free tier gives you $5 in credits every month, applied automatically (up to 5,000 Turbo requests) to test and build with.
+Four modes cover different latency budgets. Turbo returns in about 200ms at p50 and costs $1 per 1,000 requests ($0.001/request), built for real-time and high-volume workloads like voice agents and consumer chat. Fast, at the same $1 per 1,000, returns higher-quality results within a one-second budget and is the best fit for most agent workloads. Basic (~1s) returns deeper excerpts per call, and Advanced (~3s) delivers the highest-quality multi-hop retrieval; both are priced at $5 per 1,000 requests ($0.005/request) with 10 results included. On the independent Artificial Analysis Search Index (October 19, 2026 data), Parallel Search (advanced) scores 75, level with Brave’s LLM context mode, one point ahead of OpenAI Web Search (medium) at 74, and behind Exa Search (auto, dynamic highlights) and Perplexity Search (medium) at 80, Exa (lite) and Perplexity (high) at 79, and Octen Search at 77. Tavily is not on AA's displayed leaderboard. A free tier gives you $5 in credits every month, applied automatically (up to 5,000 Turbo requests) to test and build with.
 
 **Responses API.** Parallel's Responses API is compatible with OpenAI's Responses format. If you use the OpenAI SDK today, you swap the base URL, your API key, and the model name, and get web-grounded answers with citations by default:
 
@@ -81,7 +81,7 @@ An agent running 100,000 queries per month on Parallel's Search API costs $100 o
 
 Exa takes a neural, embedding-based approach to web search. Instead of matching keywords, it builds a semantic index of the web, letting you query by meaning rather than exact phrasing. You describe what you're looking for in natural language, and Exa's embeddings model finds pages that match the concept. This makes Exa strong for research tasks, document discovery, and retrieval across stable content where you need conceptual matching over keyword precision.
 
-Exa scores 91% on [SimpleQA](https://openai.com/index/introducing-simpleqa/), a factual web retrieval benchmark with clear, stable correct answers. On [FreshQA](https://github.com/freshllms/freshqa), which tests time-sensitive queries requiring current information, that score drops to 24%. If your agent handles research questions about established topics, technology documentation, or academic content, Exa's semantic index delivers solid results. If it needs current pricing data, recent earnings, live regulatory updates, or government statistics, that 67-point gap becomes a hard constraint.
+In [Valyu’s October 2025 benchmark run](https://www.valyu.ai/blogs/benchmarking-search-apis-for-ai-agents), Exa scored 91% on [SimpleQA](https://openai.com/index/introducing-simpleqa/), a factual web retrieval benchmark with clear, stable correct answers. On [FreshQA](https://github.com/freshllms/freshqa), which tests time-sensitive queries requiring current information, that score dropped to 24%. If your agent handles research questions about established topics, technology documentation, or academic content, Exa's semantic index delivers solid results. If it needs current pricing data, recent earnings, live regulatory updates, or government statistics, that 67-point gap becomes a hard constraint.
 
 Exa uses usage-based pricing that scales with result count and content retrieval depth, and its API returns structured results in JSON. For teams whose primary use case is research and document discovery on stable content, Exa is a strong fit. For agents requiring current information, the 24% FreshQA score narrows its applicability.
 
@@ -97,11 +97,13 @@ Tavily handles basic queries and standard web content without friction. For deve
 
 ## Side-by-side comparison
 
+The table below reflects each provider’s pricing, latency, and features as of November 2026.
+
 | Feature | OpenAI built-in search | Parallel | Exa | Tavily |
 | --- | --- | --- | --- | --- |
 | Search index | OpenAI-managed retrieval | Proprietary (AI-optimized) | Neural/semantic index | Web search (sourcing unclear) |
 | Pricing model | Per-search surcharge + token costs (~$10-25/1K calls) | Per-request ($0.001 Turbo, $0.005 Basic/Advanced; Responses from $10/1K) | Usage-based | Per-request (~$0.016) |
-| Median latency | ~1s | ~200ms (Turbo mode) | ~335-361ms (Instant) | ~150-357ms (Ultra Fast) |
+| Median latency | ~1s | ~200ms (Turbo mode) | ~450ms (Lite) | ~150-357ms (Ultra Fast) |
 | Model lock-in | OpenAI only | Any model (OpenAI-compatible) | Any model | Any model |
 | Output format | Model response, citations, and inspectable search actions/sources | Token-dense excerpts or full markdown | Structured results | Structured JSON |
 | Freshness control | Live access (default) or cache-only; no source-age guarantee | Freshness policies, live-fetch toggle | Limited | Limited |
@@ -142,7 +144,7 @@ Yes. The Responses API offers a `web_search` tool that models can invoke during 
 Parallel's Responses API follows the OpenAI Responses format. In the OpenAI SDK, change `base_url` and your API key, set `model="parallel"`, and drop the `web_search` tool, since web grounding is automatic. No other code changes required.
 
 **Is there a most accurate AI search API?**
-Benchmark results vary by dataset. On the independent Artificial Analysis Search Index (September 2026 data), Perplexity Search (medium) leads at 80 and Octen Search follows at 77; Parallel Search (advanced) scores 75, level with Brave's LLM context mode, and ties for the top DeepSearchQA score (81). Exa (auto) scores 74, and Tavily is not on AA's displayed leaderboard. On [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026), Parallel Advanced led SimpleQA Verified (97%) and WideSearch (57.6) at the frontier tier and tied Perplexity on BrowseComp (74%); at the low-cost tier, Exa beat Parallel Fast on WideSearch (53.0 vs. 45.5). OpenAI's built-in search isn't in those runs. These benchmarks cover factual accuracy, multi-hop reasoning, and broad information gathering.
+Benchmark results vary by dataset. On the independent Artificial Analysis Search Index (October 19, 2026 data), Exa Search (auto, dynamic highlights) and Perplexity Search (medium) lead at 80, Exa (lite) and Perplexity (high) follow at 79, and Octen Search scores 77; Parallel Search (advanced) scores 75, level with Brave's LLM context mode, and OpenAI Web Search (medium) scores 74. Tavily is not on AA's displayed leaderboard. On [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026), Parallel Advanced led SimpleQA Verified (97%) and WideSearch (57.6) at the frontier tier and tied Perplexity on BrowseComp (74%); at the low-cost tier, Exa beat Parallel Fast on WideSearch (53.0 vs. 45.5). OpenAI's built-in search isn't in those runs. These benchmarks cover factual accuracy, multi-hop reasoning, and broad information gathering.
 
 **Does OpenAI web search get expensive at scale?**
 At $10 to $25 per 1,000 tool calls, costs compound. An agent running 100,000 queries per month pays $1,000 to $2,500 in search costs before search content tokens. Parallel's Search API covers the same volume for $100 with Turbo at $1 per 1,000 requests, or $500 with Basic and Advanced. If you want complete, cited answers rather than raw results, the Responses API runs a fixed $10 per 1,000 requests at low effort: $1,000 for the same volume, at the bottom of OpenAI's range with no token-based variability and charged only for successful responses.

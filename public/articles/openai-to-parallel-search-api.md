@@ -2,7 +2,7 @@
 
 Switching from OpenAI's built-in web search to Parallel's Search API cuts the per-call search fee by 50% to 96%, depending on which OpenAI search tool you use and your Parallel mode, and the migration is a client and parameter change. This guide covers what 10,000 searches actually cost on each side, including the token fees and multi-call behavior that make OpenAI's bill higher than the sticker, and the code change in Python and TypeScript.
 
-OpenAI charges **$10 per 1,000 web search calls** on its current web_search tool for every model, plus the search content tokens at the model's input rate; the legacy web_search_preview tool charges $25 per 1,000 calls on non-reasoning models like GPT-4o and GPT-4.1. Parallel's Search API costs **$5 per 1,000 requests**, with compressed excerpts included in every result, and the Turbo and Fast modes bring that down to $1 per 1,000, at ~200ms and sub-second median latency respectively. That's a 50% cut in the per-call fee against web_search and 80% against the $25 preview tier, reaching 90% and 96% with Turbo. OpenAI's built-in search isn't in our current benchmark runs, so the accuracy section below compares Parallel with Exa, Tavily, and Perplexity instead.
+OpenAI charges **$10 per 1,000 web search calls** on its current web_search tool for every model, plus the search content tokens at the model's input rate; the legacy web_search_preview tool charges $25 per 1,000 calls on non-reasoning models like GPT-4o and GPT-4.1. Parallel, which builds web search and research APIs for AI agents, charges **$5 per 1,000 requests** for its Search API, with compressed excerpts included in every result, and the Turbo and Fast modes bring that down to $1 per 1,000, at ~200ms and sub-second median latency respectively. That's a 50% cut in the per-call fee against web_search and 80% against the $25 preview tier, reaching 90% and 96% with Turbo. OpenAI’s built-in search isn’t in our September 2026 Search API runs, so the accuracy section below compares Parallel with Exa, Tavily, and Perplexity there, then adds two sources that do include OpenAI: the Artificial Analysis Search Index and our October 2026 finance benchmarks.
 
 
 **What OpenAI charges for web search**
@@ -58,7 +58,7 @@ Parallel built its Search API as standalone infrastructure. You call the endpoin
 
 **How Parallel scores on current benchmarks**
 
-OpenAI's built-in web search isn't in our current benchmark runs, so we don't have a current head-to-head against it. The closest current evidence is our September 9, 2026 Search API evaluation on [parallel.ai/benchmarks](https://parallel.ai/benchmarks), which compares Parallel with Exa, Tavily, and Perplexity. Every provider was paired with the same agent at two price tiers: a GPT-5.6 Sol agent (reasoning high) at the frontier tier and a GPT-5.6 Luna agent (reasoning low) at the low-cost tier. An LLM judge graded the answers. Cells show accuracy and total cost per 1,000 questions.
+OpenAI’s built-in web search isn’t in our September 9, 2026 Search API evaluation on [parallel.ai/benchmarks](https://parallel.ai/benchmarks), which compares Parallel with Exa, Tavily, and Perplexity. Every provider was paired with the same agent at two price tiers: a GPT-5.6 Sol agent (reasoning high) at the frontier tier and a GPT-5.6 Luna agent (reasoning low) at the low-cost tier. An LLM judge graded the answers. Cells show accuracy and total cost per 1,000 questions.
 
 | Benchmark (agent tier) | Parallel | Perplexity | Tavily | Exa (auto) |
 | --- | --- | --- | --- | --- |
@@ -69,7 +69,9 @@ OpenAI's built-in web search isn't in our current benchmark runs, so we don't ha
 
 _Note: Despite our best efforts, these figures may not always be up to date. For the latest benchmarks, visit our __[benchmarks hub](https://parallel.ai/benchmarks)__._
 
-At the frontier tier, Parallel Advanced led SimpleQA Verified at 97% and tied Perplexity on BrowseComp at 74%, though Perplexity got there for less ($275 vs. $399 per 1,000 questions). At the low-cost tier, Parallel Fast matched the top SimpleQA Verified score (94%) at $2 per 1,000 questions, the lowest cost in the run, and Perplexity edged it on BrowseComp (46% vs. 44%). The cost figures include search fees and LLM tokens. Separately, the independent Artificial Analysis Search Index (September 2026 data) scores Parallel Search (advanced) at 75, level with Brave's LLM context mode and behind Perplexity Search (medium) at 80 and Octen Search at 77; OpenAI's built-in web search is not on its displayed leaderboard.
+At the frontier tier, Parallel Advanced led SimpleQA Verified at 97% and tied Perplexity on BrowseComp at 74%, though Perplexity got there for less ($275 vs. $399 per 1,000 questions). At the low-cost tier, Parallel Fast matched the top SimpleQA Verified score (94%) at $2 per 1,000 questions, the lowest cost in the run, and Perplexity edged it on BrowseComp (46% vs. 44%). The cost figures include search fees and LLM tokens. Separately, the independent Artificial Analysis Search Index (October 19, 2026 data), which runs every provider with the same GPT-5.6 Luna agent, scores Parallel Search (advanced) at 75 and OpenAI Web Search (medium) at 74, with Exa Search (auto, dynamic highlights) and Perplexity Search (medium) leading at 80.
+
+OpenAI’s native search is in our October 2026 finance benchmarks, where Parallel Advanced and OpenAI both answer with GPT-6 Sol. On FinSearchComp T3, the hardest tier, Parallel Advanced scored 57.4% and OpenAI scored 48.3%. FinSearchComp’s answers are published online, and OpenAI’s search can’t filter out those copies, so its answers drawn from them count as wrong; before that adjustment it scored 64.0%.
 
 These benchmarks are self-reported. We've published the methodology, competitor configurations, and judge model for transparency, and we use standardized public benchmark question sets.
 
@@ -82,25 +84,17 @@ pip install parallel-web
 Get your API key at [platform.parallel.ai](https://platform.parallel.ai/). You get $5 in free credits every month, applied automatically: enough for up to 5,000 Turbo search requests monthly.
 
 ```python
-import os
-from parallel import Parallel
+from openai import OpenAI
 
-client = Parallel(api_key=os.environ["PARALLEL_API_KEY"])
+client = OpenAI()
 
-results = client.beta.search(
-    objective="Find the latest SEC rulings on digital asset custody, "
-              "including rule numbers and effective dates.",
-    search_queries=["SEC digital asset custody rules 2026"],
-    mode="basic",
-    max_results=5,
-    excerpts={"max_chars_per_result": 3000},
+response = client.responses.create(
+    model="gpt-6-sol",
+    tools=[{"type": "web_search"}],
+    input="What are the latest SEC rulings on digital asset custody?",
 )
 
-for result in results.results:
-    print(f"{result.title}")
-    print(f"{result.url}")
-    for excerpt in result.excerpts:
-        print(excerpt)
+print(response.output_text)
 ```
 
 With this approach, you don't control how many searches the model runs, what content it retrieves, or how many tokens it consumes.
@@ -111,13 +105,15 @@ from parallel import Parallel
 
 client = Parallel(api_key=os.environ["PARALLEL_API_KEY"])
 
-results = client.beta.search(
+results = client.search(
     objective="Find the latest SEC rulings on digital asset custody, "
               "including rule numbers and effective dates.",
     search_queries=["SEC digital asset custody rules 2026"],
     mode="fast",
-    max_results=5,
-    excerpts={"max_chars_per_result": 3000},
+    advanced_settings={
+        "max_results": 5,
+        "excerpt_settings": {"max_chars_per_result": 3000},
+    },
 )
 
 for result in results.results:

@@ -46,7 +46,7 @@ People use "crawling" and "scraping" interchangeably, but they describe differen
 
 **Scraping** targets specific data extraction from predetermined pages. Scrapers pull product prices from e-commerce sites or contact details from business directories.
 
-The techniques complement each other. You might crawl to discover relevant pages, then scrape those pages for structured data.
+The techniques complement each other. You might crawl to discover relevant pages, then scrape those pages for structured data. Our guide to [web crawling vs. web scraping](https://parallel.ai/articles/web-crawling-vs-web-scraping) compares the two side by side, including where robots.txt applies.
 
 ## **Core crawling policies and algorithms**
 
@@ -86,7 +86,7 @@ To crawl billions of pages efficiently, crawlers use multiple threads or distrib
 
 **Common Crawl** performs large-scale web crawls and releases datasets publicly. Researchers and developers use Common Crawl data for analysis, training AI models, and studying web evolution without running their own crawlers.
 
-**Parallel's crawler infrastructure** is built for AI agents and applications. Our crawler (ShapBot) extracts structured data with source links and provenance, and returns LLM-ready outputs through products like the [Extract API](https://docs.parallel.ai/extract/extract-quickstart). Traditional search crawlers build indexes for human browsing; ours targets what AI systems need: structured data, verifiable attribution, and machine-readable formats.
+**Parallel's crawler infrastructure** is built for AI agents and applications. Our crawler, ShapBot, collects public web content to build and maintain the index behind Parallel’s Search API, and products like the [Extract API](https://docs.parallel.ai/extract/extract-quickstart) return LLM-ready page content with source URLs. Traditional search crawlers build indexes for human browsing; ours targets what AI systems need: structured data, verifiable attribution, and machine-readable formats.
 
 **Wayback Machine bot** preserves historical snapshots of web pages for the Internet Archive. It creates a time-based archive of the web, enabling researchers to access how websites looked at specific points in the past.
 
@@ -104,7 +104,7 @@ Website owners can control how crawlers access their content, balancing discover
 
 ### **robots.txt directives**
 
-The robots.txt file lives at your domain root and tells crawlers which paths they can access. You can allow or disallow specific directories, set crawl-delay hints to limit request rates, and point crawlers to your sitemap. Different user agents can receive different rules, so you might allow Googlebot everywhere while restricting other bots to specific sections.
+The robots.txt file lives at your domain root and tells crawlers which paths they can access. You can allow or disallow specific directories, set crawl-delay hints to limit request rates (Bingbot honors them; Googlebot ignores them), and point crawlers to your sitemap. Different user agents can receive different rules, so you might allow Googlebot everywhere while restricting other bots to specific sections.
 
 ### **Meta robots and HTTP headers**
 

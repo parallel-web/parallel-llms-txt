@@ -4,7 +4,7 @@ A web search API is the piece of an AI agent’s stack that decides whether its 
 
 A web search API is an HTTP endpoint that takes a query and returns web results as structured data (URLs, titles, dates, and text) that code can read without rendering a page. AI agents call one to pull current, citable facts from the public web into a model’s context window at the moment they need them.
 
-Developers used to reach for Google or Bing for this. Microsoft [retired the Bing Search APIs on August 11, 2025](https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement) and pointed customers to Grounding with Bing Search inside Azure AI Agents. Google’s [Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) is closed to new customers, and existing customers have until January 1, 2027 to move off it. Both search giants now sell web grounding as a feature of their own agent platforms, so teams building agents on other models buy search from independent providers instead.
+Developers used to reach for Google or Bing for this. Microsoft [retired the Bing Search APIs on August 11, 2025](https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement) and pointed customers to Grounding with Bing Search inside Azure AI Agents. Google’s [Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) is closed to new customers, and existing customers have until January 1, 2027 to move off it. Both search giants now sell web grounding as a feature of their own agent platforms, so teams building agents on other models buy search from independent providers such as Parallel, Brave, Exa, and Tavily.
 
 ## How a web search API works
 
@@ -93,11 +93,13 @@ The response came back with 10 results. Here is its shape, trimmed to the one re
 }
 ```
 
-The excerpt already contains the answer, so an agent can pass `results` straight into the model’s context and cite `url`. The `usage` field reports one billable request. Omit `mode` and the API defaults to `advanced` (~3s); our [search modes docs](https://docs.parallel.ai/search/modes) recommend starting with `fast`. The same call works from the `parallel-web` Python and TypeScript SDKs.
+The excerpt already contains the answer, so an agent can pass `results` straight into the model’s context and cite `url`. The `usage` field reports one billable request. Omit `mode` and the API defaults to `advanced` (~3s); our [search modes docs](https://docs.parallel.ai/search/modes) recommend starting with `fast` (~700ms). The same call works from the `parallel-web` Python and TypeScript SDKs.
+
+To control where results come from, set `advanced_settings.source_policy`: `include_domains` limits results to listed domains, path prefixes, or extensions such as .gov, `exclude_domains` drops them, and `after_date` keeps only pages published on or after a date. For freshness, `advanced_settings.fetch_policy.max_age_seconds` triggers a live fetch for any page cached longer than that (minimum 600 seconds), at the cost of extra latency, and each result carries a `publish_date` when the page states one. These are hard filters that can drop good results, so our docs suggest putting soft preferences such as “from the last month” in the objective instead.
 
 ## How to evaluate one
 
-Test candidates on your own queries, because published leaderboards measure someone else’s workload. Build a set of 100 to 200 real queries with known answers, run each API through the same agent and model, and score whether the agent got the answer right, what the whole run cost, and how long it took at the p50 and p95. Cost per correct answer beats cost per request as a metric, since an API with better excerpts often needs fewer calls.
+Test candidates on your own queries, because published leaderboards measure someone else’s workload. Build a set of 100 to 200 real queries with known answers, run each API through the same agent and model, and score whether the agent got the answer right, what the whole run cost, and how long it took at the p50 and p95. Cost per correct answer beats cost per request as a metric, since an API with better excerpts often needs fewer calls. Check citation quality too: for a sample of answers, open each cited URL and confirm the page contains the passage and supports the claim.
 
 We describe our own process in [how we evaluate web search APIs](https://parallel.ai/articles/how-we-evaluate-web-search-apis), and our guide to [benchmarking web search APIs on your own queries](https://parallel.ai/articles/how-to-benchmark-web-search-apis) walks through the harness, the LLM judge, and the error bars. For a published baseline, the [Parallel benchmarks page](https://parallel.ai/benchmarks) lists our September 9, 2026 Search results with the agent model used for each run.
 
@@ -110,7 +112,7 @@ Providers bill per request, per plan, per credit, or per request plus tokens, so
 | Per request | A flat price per call, with a set number of results included | Parallel Search $1 per 1,000 (Turbo, Fast) or $5 per 1,000 (Basic, Advanced), 10 results included; Brave Search $5 per 1,000; Exa Search $7 per 1,000 |
 | Monthly plan | A subscription buys a search quota | SerpApi Starter $25 a month for 1,000 searches; Developer $75 for 5,000 |
 | Credits | Each call costs a variable number of credits | Tavily pay-as-you-go $0.008 per credit; a basic search costs 1 credit and an advanced search 2 |
-| Per request plus tokens | A search fee plus model token charges | Grounding with Google Search on Gemini 3 models: 5,000 free search requests a month, then $14 per 1,000; Brave Answers $4 per 1,000 plus $5 per million tokens |
+| Per request plus tokens | A search fee plus model token charges | Grounding with Google Search on Gemini 3 and newer models, including Gemini 4: 5,000 free search requests a month, then $14 per 1,000; Brave Answers $4 per 1,000 plus $5 per million tokens |
 
 Per-request pricing is the easiest to forecast. Credit and plan pricing need a conversion: Tavily’s credit price works out to $8 per 1,000 basic searches, and SerpApi’s Starter plan to $25 per 1,000. Answer APIs bundle model tokens into the bill, so their per-request figure understates the total.
 
@@ -136,7 +138,7 @@ Yes. Parallel’s Search MCP server is free to use anonymously at lower rate lim
 
 ### What replaced the Bing Search API?
 
-Microsoft retired the Bing Search APIs on August 11, 2025 and directed customers to Grounding with Bing Search, which works only inside Azure AI Agents. Teams that need raw results outside Azure moved to independent providers such as Brave, Parallel, Exa, or Tavily.
+Microsoft retired the Bing Search APIs on August 11, 2025 and directed customers to Grounding with Bing Search, which works only inside Microsoft Foundry Agent Service (formerly Azure AI Agents). Teams that need raw results outside Azure moved to independent providers such as Brave, Parallel, Exa, or Tavily.
 
 ### Is the Google Custom Search API shutting down?
 

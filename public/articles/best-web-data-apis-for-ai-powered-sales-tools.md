@@ -2,7 +2,7 @@
 
 AI sales tools are limited by the data layer beneath them, not by the CRM or sequencer on top. This guide evaluates web data APIs as sales infrastructure: which API types serve which workflows, how eight providers compare across search, extraction, and deep research, and how to wire them into an existing sales stack.
 
-Most "best AI sales tools" guides evaluate end-user platforms: which CRM has the slickest UI, which outreach tool writes the catchiest emails. They skip the layer underneath: the APIs that decide whether your agents surface current signals or regurgitate stale database records.
+Most "best AI sales tools" guides evaluate end-user platforms: which CRM has the slickest UI, which outreach tool writes the catchiest emails. They skip the layer underneath: the APIs that decide whether your agents surface current signals or regurgitate stale database records. Parallel, which publishes this guide, provides web search, extraction, and deep research APIs built for AI agents.
 
 ## Why AI sales tools need web data APIs
 
@@ -58,35 +58,53 @@ from parallel import Parallel
 client = Parallel()
 
 # Define custom enrichment schema for sales prospects
-task = client.tasks.create(
-    objective="Research this company for sales outreach",
-    schema={
-        "funding_history": "List of funding rounds with dates and amounts",
-        "tech_stack": "Key technologies and tools they use",
-        "recent_news": "Notable announcements in the last 90 days",
-        "leadership_changes": "Any C-suite or VP changes in the last year",
-        "competitor_usage": "Whether they use Salesforce, HubSpot, or Outreach"
+fields = {
+    "funding_history": "List of funding rounds with dates and amounts",
+    "tech_stack": "Key technologies and tools they use",
+    "recent_news": "Notable announcements in the last 90 days",
+    "leadership_changes": "Any C-suite or VP changes in the last year",
+    "competitor_usage": "Whether they use Salesforce, HubSpot, or Outreach"
+}
+
+task_run = client.task_run.create(
+    input={"company_name": "Acme Corp", "domain": "acme.com"},
+    task_spec={
+        "output_schema": {
+            "type": "json",
+            "json_schema": {
+                "type": "object",
+                "properties": {
+                    name: {"type": "string", "description": desc}
+                    for name, desc in fields.items()
+                },
+                "required": list(fields),
+                "additionalProperties": False
+            }
+        }
     },
-    input={"company_name": "Acme Corp", "domain": "acme.com"}
+    processor="core"
 )
+
+result = client.task_run.result(task_run.run_id, api_timeout=3600)
+print(result.output.content)
 ```
 
-This single API call orchestrates searches across multiple sources, extracts relevant information, and returns structured JSON with citations for each field.
+This Task API run orchestrates searches across multiple sources, extracts relevant information, and returns structured JSON with citations for each field.
 
 ## Best web data APIs for AI sales tools
 
-The right API depends on your workflow: some excel at high-volume search, others at deep enrichment. The table below summarizes the leading options, followed by detailed profiles.
+The right API depends on your workflow: some excel at high-volume search, others at deep enrichment. The table below summarizes the leading options as of November 2026, followed by detailed profiles.
 
 | API | Category | Sales use case | Pricing model | Key differentiator |
 | --- | --- | --- | --- | --- |
 | Parallel | Search + Extract + Deep Research | Full-stack sales intelligence | Per-request (search from $0.001, extract $0.001) | Integrated suite with objective-driven queries and per-field citations |
 | Bright Data | Extract + Proxy | High-volume scraping and data collection | Usage-based (varies by product) | Massive proxy network and pre-built datasets |
-| ScrapingBee | Extract | Single-page extraction with JS rendering | Per-request ($0.001-$0.01) | Simple API, handles CAPTCHAs and headless browsing |
-| People Data Labs | Contact/Company Data | Contact enrichment and prospecting | Per-record ($0.03-$0.10) | Large B2B contact database with API access |
+| ScrapingBee | Extract | Single-page extraction with JS rendering | Monthly credit plans (from $19/month) | Simple API, handles CAPTCHAs and headless browsing |
+| People Data Labs | Contact/Company Data | Contact enrichment and prospecting | Per-record credits (from $98/month) | Large B2B contact database with API access |
 | Crustdata | Company Intelligence | Firmographic and growth signals | Subscription + usage | Growth metrics, headcount tracking, technographics |
 | Coresignal | Company Intelligence | Employee data and company insights | Subscription + usage | Deep LinkedIn-derived company intelligence |
-| ScrapeGraphAI | Extract (AI-native) | LLM-powered web extraction | Open source / self-hosted | AI-native extraction using natural language |
-| You.com | Search | Web search with AI summarization | Per-request ($0.01-$0.05) | News API and RAG-optimized search results |
+| ScrapeGraphAI | Extract (AI-native) | LLM-powered web extraction | Open source, or managed API from $17/month | AI-native extraction using natural language |
+| You.com | Search | Web search with AI summarization | Per-request ($5 per 1,000 calls) | News API and RAG-optimized search results |
 
 ### Parallel
 
@@ -96,33 +114,43 @@ Parallel is a single API suite built for [AI agents](https://parallel.ai/article
 
 **Data sources:** Parallel's proprietary web index covers billions of pages with millions added daily. Searches surface information from Crunchbase, LinkedIn (public profiles), TechCrunch, BuiltWith technographic data, SEC EDGAR filings, company blogs, and press releases.
 
-**Pricing:** [Search API from $1 per 1,000 requests with Turbo mode](https://parallel.ai/pricing) (~200ms median latency), $5 per 1,000 for Basic and Advanced (10 results included), Extract API at $0.001 per URL, Task API priced by processor tier and complexity.
+**Pricing:** [Search API from $1 per 1,000 requests with Turbo or Fast mode](https://parallel.ai/pricing) (~200ms and ~700ms latency; Fast is the recommended default), $5 per 1,000 for Basic and Advanced (10 results included), Extract API at $0.001 per URL, Task API from $5 to $2,400 per 1,000 runs depending on processor.
 
 **Best for:** Teams building custom AI sales tools who want an integrated data layer without stitching together multiple vendors.
 
 **Example: Objective-driven prospect search**
 
 ```python
+from datetime import date, timedelta
 from parallel import Parallel
 
 client = Parallel()
 
 # Find prospects matching specific criteria
-results = client.search.create(
+results = client.search(
     objective="B2B SaaS companies that raised Series A or B funding in 2026, "
               "have between 50-200 employees, and are hiring for sales roles",
-    num_results=25,
-    freshness="past_month"
+    search_queries=[
+        "B2B SaaS Series B funding 2026",
+        "SaaS startup hiring sales team",
+        "Series A SaaS raises funding"
+    ],
+    mode="fast",
+    advanced_settings={
+        "max_results": 25,
+        "source_policy": {"after_date": (date.today() - timedelta(days=30)).isoformat()}
+    }
 )
 
 for result in results.results:
     print(f"{result.title}: {result.url}")
-    print(f"Excerpt: {result.excerpt}\n")
+    for excerpt in result.excerpts:
+        print(f"Excerpt: {excerpt[:200]}\n")
 ```
 
 ### Bright Data
 
-[Bright Data](https://brightdata.com/) operates one of the largest proxy networks globally. Their Web Scraper IDE supports custom scrapers, and their Data Collector provides pre-built datasets.
+[Bright Data](https://brightdata.com/) operates one of the largest proxy networks globally. Its Scraper Studio builds custom scrapers, and its Dataset Marketplace sells pre-built datasets.
 
 **Sales-specific strengths:** High-volume data collection at scale. Pre-built datasets for company information, job postings, and e-commerce data. Handles geo-restrictions and CAPTCHAs.
 
@@ -182,13 +210,13 @@ Coresignal provides company and employee data derived from professional network 
 
 ### ScrapeGraphAI
 
-ScrapeGraphAI is an open-source library that uses LLMs to extract structured data from web pages using natural language descriptions.
+ScrapeGraphAI is an open-source library that uses LLMs to extract structured data from web pages using natural language descriptions. The company also runs a managed API built on the library.
 
 **Sales-specific strengths:** AI-native extraction without CSS selectors or XPath. Good for prototyping.
 
 **Data sources:** Any URL you provide.
 
-**Pricing:** Open source. You pay for LLM API calls and hosting.
+**Pricing:** The open-source library is free; you pay for LLM API calls and hosting. The managed API uses monthly credit plans starting at $17/month for 10,000 credits.
 
 **Best for:** Technical teams prototyping extraction workflows who want full infrastructure control.
 
@@ -257,7 +285,11 @@ For a deeper look at how [AI web enrichment for sales](https://parallel.ai/artic
 **Example: Batch prospect enrichment**
 
 ```python
+import time
 from parallel import Parallel
+from parallel.types import TaskSpecParam, JsonSchemaParam
+from parallel.types.run_input_param import RunInputParam
+from parallel.types.task_run_event import TaskRunEvent
 
 client = Parallel()
 
@@ -277,19 +309,41 @@ enrichment_schema = {
     "key_decision_makers": "VP+ titles in sales, marketing, or operations"
 }
 
-# Create a task group for batch processing
-task_group = client.task_groups.create(
-    objective="Research this company for B2B sales outreach",
-    schema=enrichment_schema,
-    inputs=prospects,
-    processor="core"  # Balance speed and depth
+task_spec = TaskSpecParam(
+    output_schema=JsonSchemaParam(json_schema={
+        "type": "object",
+        "properties": {
+            name: {"type": "string", "description": desc}
+            for name, desc in enrichment_schema.items()
+        },
+        "required": list(enrichment_schema),
+        "additionalProperties": False
+    })
 )
 
+# Create a task group for batch processing
+task_group = client.task_group.create()
+client.task_group.add_runs(
+    task_group.task_group_id,
+    inputs=[RunInputParam(input=p, processor="core") for p in prospects],  # Balance speed and depth
+    default_task_spec=task_spec
+)
+
+# Wait for the group to finish
+while client.task_group.retrieve(task_group.task_group_id).status.is_active:
+    time.sleep(10)
+
 # Results include citations for each field
-for result in task_group.results:
-    print(f"Company: {result.input['name']}")
-    print(f"Funding: {result.output['funding_stage']} - {result.output['total_raised']}")
-    print(f"Source: {result.basis['funding_stage']['citation']}\n")
+runs = client.task_group.get_runs(
+    task_group.task_group_id, include_input=True, include_output=True
+)
+for event in runs:
+    if isinstance(event, TaskRunEvent) and event.output:
+        output = event.output.content
+        basis = {b.field: b for b in event.output.basis}
+        print(f"Company: {event.input.input['name']}")
+        print(f"Funding: {output['funding_stage']} - {output['total_raised']}")
+        print(f"Source: {basis['funding_stage'].citations[0].url}\n")
 ```
 
 This workflow enriches a batch of prospects with custom fields, returns structured JSON ready for CRM import, and provides citations so your team can verify any data point.
@@ -313,7 +367,7 @@ Search APIs find relevant pages from across the web. Extraction APIs pull struct
 
 **How much do web data APIs for sales cost?**
 
-Pricing varies: per-request ($0.001 to $0.05), per-record ($0.03 to $0.10), or subscription tiers. Most vendors offer free trials. Budget $500 to $2,000/month for production sales workflows handling thousands of queries.
+Pricing varies: per-request ($0.001 to $0.005 for search and extraction calls, more for deep research), per-record (about $0.10 to $0.28 on entry-level self-serve plans), or subscription tiers. Most vendors offer free trials. Budget $500 to $2,000/month for production sales workflows handling thousands of queries.
 
 **Can web data APIs replace Apollo or ZoomInfo?**
 

@@ -4,7 +4,7 @@ Automating market research means running the whole pipeline through APIs: collec
 
 **Key takeaways**
 
-- AI market research tools have moved beyond dashboards. You can now automate the full pipeline from data collection to structured reports using APIs.
+- AI market research tools have moved beyond dashboards. You can now automate the full pipeline from data collection to structured reports using APIs, such as Parallel's web APIs for search, extraction, deep research, entity discovery, and monitoring.
 - Deep research APIs handle multi-step analysis (competitive intel, trend tracking, market sizing) that single-query tools can't.
 - Structured output schemas let you define exactly what data you need and get it back as clean JSON, ready for downstream systems.
 - Continuous monitoring replaces one-time research snapshots with current intelligence.
@@ -20,15 +20,15 @@ Most tools sold as "AI market research" platforms don't solve this. They wrap ex
 
 "AI-assisted" tools surface information faster. "AI-automated" tools collect, structure, and deliver research without requiring a human to operate them between tasks. Most products on the market today fall into the first category. Getting to the second category means treating market research as a programmable pipeline.
 
-Reports built manually go stale within weeks. Market research is [a $96.8 billion services market by one 2026 estimate](https://www.researchandmarkets.com/report/market-research-service) (Statista's narrower count put global industry revenue at [almost $54 billion in 2023](https://www.statista.com/topics/1293/market-research/)), and much of that spend still funds manual processes. A competitor announces a funding round, pivots its pricing, or launches a new product, and your research is wrong before you've acted on it. Stale intelligence costs you in several places: product decisions miss the window, sales teams work from outdated competitive briefs, and leadership makes calls on assumptions that markets have already invalidated. Automation saves collection time and keeps the source material current.
+Reports built manually go stale within weeks. Market research is [a $96.8 billion services market by one 2026 estimate from Research and Markets](https://www.researchandmarkets.com/report/market-research-service) (Statista's narrower count put global industry revenue at [almost $54 billion in 2023](https://www.statista.com/topics/1293/market-research/)), and much of that spend still funds manual processes. A competitor announces a funding round, pivots its pricing, or launches a new product, and your research is wrong before you've acted on it. Stale intelligence costs you in several places: product decisions miss the window, sales teams work from outdated competitive briefs, and leadership makes calls on assumptions that markets have already invalidated. Automation saves collection time and keeps the source material current.
 
 ## What an automated AI market research pipeline looks like
 
-Automated market research follows four stages: search, extract, analyze, and deliver. Each stage maps to a distinct technical operation, and together they run without manual intervention. With the [AI market projected to reach $2.4 trillion by 2032](https://www.marketsandmarkets.com/Market-Reports/artificial-intelligence-market-74851580.html), the infrastructure for building these pipelines is maturing fast.
+Automated market research follows four stages: search, extract, analyze, and deliver. Each stage maps to a distinct technical operation, and together they run without manual intervention. With MarketsandMarkets projecting the [AI market to reach $3.6 trillion by 2033](https://www.marketsandmarkets.com/Market-Reports/artificial-intelligence-market-74851580.html), the infrastructure for building these pipelines is maturing fast.
 
 **Stage 1: Search.** An AI-native [web search API](https://parallel.ai/articles/what-is-a-web-search-api) finds relevant pages across the web using [semantic intent](https://parallel.ai/articles/what-is-semantic-search) rather than keyword matching. Instead of constructing Boolean queries, you express what you're looking for in plain language: "recent funding announcements from AI infrastructure companies." The search layer returns ranked URLs with compressed, relevant excerpts. Parallel's Search API maintains a proprietary index of billions of pages and returns results formatted for LLMs to consume. Results arrive with page titles, publish dates, and dense query-relevant excerpts that keep your context window efficient.
 
-**Stage 2: Extract.** Once you have relevant URLs, you need their content in a structured, readable form. Raw HTML is noisy and inconsistent. An extraction layer converts any public URL into clean markdown, handling JavaScript-rendered pages, PDFs, and CAPTCHA-protected content without manual configuration. Parallel's [Extract API](https://parallel.ai/products/extract) accepts a list of URLs and an objective, and returns focused excerpts, so you don't write custom scrapers or per-site parsing code.
+**Stage 2: Extract.** Once you have relevant URLs, you need their content in a structured, readable form. Raw HTML is noisy and inconsistent. An extraction layer converts public URLs into clean markdown, handling JavaScript-rendered pages and PDFs without manual configuration. Parallel's [Extract API](https://parallel.ai/products/extract) accepts a list of URLs and an objective, and returns focused excerpts, so you don't write custom scrapers or per-site parsing code.
 
 **Stage 3: Analyze.** The [deep research](https://parallel.ai/articles/what-is-deep-research) agents do the analysis. A single search-and-extract pass gives you raw material; the analysis layer cross-references sources, resolves conflicting data points, and synthesizes findings into structured output with citations. Parallel's Task API handles this stage: you define an objective and an output schema, and it conducts multi-step research by querying multiple sources, evaluating evidence, and returning structured JSON with rationale and confidence scores.
 
@@ -66,7 +66,15 @@ response = requests.post(
                         "product_updates": {"type": "string"},
                         "hiring_trends": {"type": "string"},
                         "market_positioning": {"type": "string"}
-                    }
+                    },
+                    "required": [
+                        "competitor_name",
+                        "recent_funding",
+                        "product_updates",
+                        "hiring_trends",
+                        "market_positioning"
+                    ],
+                    "additionalProperties": False
                 }
             }
         }
@@ -105,9 +113,9 @@ ingest = requests.post(
 # that you can review and submit to POST /v1beta/findall/runs
 ```
 
-This FindAll call discovers healthcare AI companies that recently raised Series A funding, evaluates each candidate against your match conditions, and enriches matches with funding amount, investor names, and product focus. Sources include Crunchbase, PitchBook, and live web data. Each match includes source excerpts, reasoning, and a confidence score.
+This ingest call turns the objective into a FindAll spec. Once you submit it as a run, FindAll discovers healthcare AI companies that recently raised Series A funding and evaluates each candidate against your match conditions. Optional enrichments can add funding amount, investor names, and product focus to each match. Candidates come from the live web, including public pages such as Crunchbase and PitchBook profiles. Each match includes source excerpts, reasoning, and a confidence score.
 
-A researcher building this list manually might spend two to three days searching Crunchbase, cross-referencing LinkedIn, and validating entries against news coverage. The same query via FindAll runs in minutes and returns citation-backed results with confidence scores on each match. The gap widens when you're tracking a market with dozens of entrants across multiple geographies.
+A researcher building this list manually might spend two to three days searching Crunchbase, cross-referencing LinkedIn, and validating entries against news coverage. The same query via FindAll typically finishes in 10 minutes to an hour and returns citation-backed results with confidence scores on each match. The gap widens when you're tracking a market with dozens of entrants across multiple geographies.
 
 For continuous trend tracking, set up Monitor to flag new entities or signals matching your criteria and deliver webhook notifications as they appear. Set a daily cadence on a query like "new AI infrastructure companies announcing product launches" and you get a live feed of market signals. Pair Monitor with a FindAll query to catch new entrants the moment they surface.
 

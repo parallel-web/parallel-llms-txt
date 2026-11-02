@@ -2,7 +2,7 @@
 
 A chatbot that cites its sources needs retrieval in the request path, which is a design decision at the API layer rather than a prompt you add later. This guide covers what to look for in a chatbot API with web search, how five providers compare on accuracy, latency, citations, and cost predictability, and how to ship a web-grounded chatbot in under 20 lines of Python.
 
-A chatbot API with live [web search API](https://parallel.ai/articles/what-is-a-web-search-api) capabilities retrieves current information from the open web instead of relying on frozen training data, synthesizes it into a response, and cites its sources.
+A chatbot API with live [web search API](https://parallel.ai/articles/what-is-a-web-search-api) capabilities retrieves current information from the open web instead of relying on frozen training data, synthesizes it into a response, and cites its sources. Parallel, which builds web search and research APIs for AI agents, offers one such API: the Parallel Responses API, an OpenAI-compatible endpoint that this guide’s code example uses.
 
 ## Key takeaways
 
@@ -26,7 +26,7 @@ Unlike a raw text completion API, a chatbot API is conversation-oriented. The in
 
 Large language models have a knowledge cutoff. Each model's training data stops at a fixed date, often months before the model ships. Anything that happened after the cutoff date is invisible to the model. Ask about a product launched last month, a law passed last quarter, or an API deprecated last week, and the model either refuses to answer or invents something plausible-sounding but false.
 
-Hallucination rates spike for recent events, niche topics, and precise factual claims. [Vectara's hallucination leaderboard](https://github.com/vectara/hallucination-leaderboard) measures how often models add unsupported claims when summarizing a short document they're given. As of September 2026, the best-scoring model hallucinates on 1.8% of summaries, and many widely used frontier models land between 5% and 12%. For technical documentation, pricing pages, and regulatory text, that error rate is unacceptable.
+Hallucination rates spike for recent events, niche topics, and precise factual claims. [Vectara's hallucination leaderboard](https://github.com/vectara/hallucination-leaderboard) measures how often models add unsupported claims when summarizing a short document they're given. As of its October 22, 2026 update, the best-scoring model hallucinates on 1.8% of summaries, and many widely used frontier models land between 5% and 12%. For technical documentation, pricing pages, and regulatory text, that error rate is unacceptable.
 
 Users expect current information. A developer asking about the latest version of a framework needs the current docs, a researcher tracking a breaking news story needs today's coverage, and a compliance team verifying a regulation needs the text currently in force.
 
@@ -114,7 +114,7 @@ Pricing is a fixed rate per request, starting at [$10 per 1,000 requests](https:
 
 [Dialogflow CX](https://docs.cloud.google.com/dialogflow/cx/docs) is Google's enterprise-grade conversational AI platform. It handles complex multi-turn conversations with branching flows, state management, and integrations into Google Cloud services.
 
-Web search isn't native to Dialogflow. You add it by integrating Google Custom Search through webhooks or Cloud Functions. This approach offers control but requires significant setup and maintenance.
+Web search isn't native to Dialogflow. You add it by integrating Google Custom Search through webhooks or Cloud Functions. This approach offers control but requires significant setup and maintenance. Google closed the Custom Search JSON API to new customers and will shut it down for existing customers on January 1, 2027, so a new build needs a different search backend.
 
 Pricing is complex, combining Dialogflow session fees with Custom Search API charges. Enterprise customers can negotiate custom terms. The platform suits large organizations already invested in Google Cloud.
 
@@ -126,21 +126,21 @@ Pricing is complex, combining Dialogflow session fees with Custom Search API cha
 
 Anthropic's Claude models excel at nuanced reasoning and long-context tasks. Claude supports [tool use](https://docs.anthropic.com/en/docs/build-with-claude/tool-use), letting the model call external functions including web search APIs you provide.
 
-Web search requires bringing your own search service. You define a search tool, Claude invokes it when needed, and you handle the retrieval. This flexibility lets you choose your search provider but adds integration work.
+Claude can search the web through Anthropic’s server-side web search tool, which returns results with citations. You can also bring your own search service: you define a search tool, Claude invokes it when needed, and you handle the retrieval. This flexibility lets you choose your search provider but adds integration work.
 
-Pricing is per-token for input and output. Search costs depend on whichever provider you integrate. Claude doesn't include native web search, so you're managing two vendor relationships.
+Pricing is per-token for input and output. Anthropic’s web search tool adds $10 per 1,000 searches, plus tokens for the retrieved content. With your own search tool, search costs depend on whichever provider you integrate, and you’re managing two vendor relationships.
 
 **Pros:** Strong reasoning, long context window, excellent instruction following, flexible tool use.
 
-**Cons:** No native web search; requires external search integration; two-vendor management.
+**Cons:** Built-in search adds a per-search fee on top of tokens; a custom search provider requires external integration and two-vendor management.
 
 ### Perplexity API
 
-Perplexity built its product around search-augmented generation. The [Perplexity API](https://docs.perplexity.ai) (pplx-api) provides answer-engine capabilities where every response draws from web sources.
+Perplexity built its product around search-augmented generation. The [Perplexity API](https://docs.perplexity.ai) now centers on the Agent API, which replaced Sonar Chat Completions on September 27, 2026 and returns cited answers from models by several providers through a built-in web search tool.
 
-The API is search-native, designed for answer-engine use cases rather than general chat. It excels at answering factual questions with citations but offers less flexibility for general conversation or tool use.
+The API is search-native, designed for answer-engine use cases rather than general chat. It excels at answering factual questions with citations, and the Agent API adds tools such as URL fetching, a code sandbox, and MCP servers.
 
-Pricing is per-request with different tiers based on model capability. The focus on search means you're locked into Perplexity's retrieval approach with limited customization.
+Agent API pricing is per token at each model’s rate, plus tool fees such as $2.50 per 1,000 web search calls. The focus on search means you're locked into Perplexity's retrieval approach with limited customization.
 
 **Pros:** Search-native design, strong for factual Q&A, citations included.
 
@@ -153,8 +153,8 @@ Pricing is per-request with different tiers based on model capability. The focus
 | OpenAI | Yes (tool) | Optional | Yes | Per-token + search fee | Yes |
 | Parallel | Yes (native) | Yes (structured) | Yes | From $10/1K requests | Yes |
 | Dialogflow CX | Via integration | Via integration | No | Session + search fees | Yes |
-| Claude | No (BYOS) | Via tool output | No | Per-token | Yes |
-| Perplexity | Yes (native) | Yes | Partial | Per-request | Yes |
+| Claude | Yes (tool) | Yes | No | Per-token + search fee | Yes |
+| Perplexity | Yes (native) | Yes | Partial | Per-token + tool fees | Yes |
 
 ## How to build a web search chatbot with the Parallel Responses API
 
@@ -162,7 +162,7 @@ You can build a web-grounded chatbot with citations in under 20 lines of Python.
 
 ### Prerequisites
 
-- Python 3.8 or later
+- Python 3.10 or later
 - The OpenAI Python SDK (`pip install openai`)
 - A Parallel API key (sign up at parallel.ai)
 
@@ -239,7 +239,7 @@ Prototype usage patterns differ from production patterns. A chatbot that costs p
 
 ### What is the best free chatbot API?
 
-Most providers offer free tiers with limited requests. Parallel offers $5 in free credits every month, enough for up to 5,000 Turbo searches. OpenAI provides trial credits for new accounts. Beyond free volume, compare accuracy and features on your own use case.
+Most providers offer free tiers with limited requests. Parallel offers $5 in free credits every month, enough for up to 5,000 Turbo searches. OpenAI doesn’t give new API accounts trial credits, though eligible ChatGPT Pro and Business subscribers can claim monthly API credits. Beyond free volume, compare accuracy and features on your own use case.
 
 ### Can I use the OpenAI SDK with other chatbot APIs?
 
