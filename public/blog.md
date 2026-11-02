@@ -1,9 +1,9 @@
-### \[Introducing Parallel in Slack: web intelligence where your team works\](https://parallel.ai/blog/parallel-slack-agent)
+### \[Introducing PWS-Decisions: A benchmark for web-grounded decisions\](https://parallel.ai/blog/pws-decisions-benchmark)
 
-The Parallel Slack agent monitors the web for the changes your team cares about, posts them in your channels with sources, and answers questions in the thread.
+A benchmark of 300 decision questions whose answers depend on the live web.
 
-Tags:[Product](/blog?tag=product)
+Tags:[Benchmarks](/blog?tag=benchmarks)
 
-By Parallel
+By Devin Gupta and Leela Karumbunathan
 
-October 29, 2026
+November 1, 2026

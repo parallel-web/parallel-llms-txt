@@ -278,6 +278,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Introducing Parallel in Slack](https://llm.parallel.ai/blog/parallel-slack-agent.md): The Parallel Slack agent monitors the web for your team and posts alerts with sources in your channels. Ask questions and get cited answers in the thread.
 - [Introducing the Parallel Task API: The state-of-the-art API for automated AI deep web research](https://llm.parallel.ai/blog/parallel-task-api.md): The Parallel Task API is a state-of-the-art system for automated web research that delivers the highest accuracy at every price point.
 - [Introducing the Parallel Task MCP Server to help you research better](https://llm.parallel.ai/blog/parallel-task-mcp-server.md): The Parallel Task MCP Server enables users to continue working in their MCP client while Parallel’s web search tasks run in the background.
+- [PWS-Decisions: a benchmark for web-grounded decisions](https://llm.parallel.ai/blog/pws-decisions-benchmark.md): PWS-Decisions tests decision APIs on 300 questions whose answers depend on current web facts. See how Parallel Decisions compares on accuracy, latency and cost.
 - [Introducing research models with Basis for the Parallel Chat API](https://llm.parallel.ai/blog/research-models-chat.md): Parallel Chat API now offers research models with Basis verification—citations, reasoning, and calibrated confidence scores. OpenAI-compatible.
 - [Introducing the Parallel Responses API](https://llm.parallel.ai/blog/responses-api.md): An OpenAI-compatible endpoint for agentic web research: from fact retrieval to deep research reports, grounded in the live web, with answers in seconds.
 - [Introducing the Parallel Search API](https://llm.parallel.ai/blog/search-api-alpha.md): The Parallel Search API is available in alpha, collapsing search, scrape, and re-rank pipelines into one fast call returning LLM-ready, high-density results.
@@ -394,7 +395,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Sign In - Parallel](https://llm.parallel.ai/docs/index.md)
 - [parallel-web - npm](https://llm.parallel.ai/docs/package/parallel-web.md)
 - [parallel-web · PyPI](https://llm.parallel.ai/docs/project/parallel-web/index.md)
-- [OpenAPI Spec](https://llm.parallel.ai/docs/public-openapi.json.md)
+- [public-openapi](https://llm.parallel.ai/docs/public-openapi.json.md)
 
 ## SDKs
 
