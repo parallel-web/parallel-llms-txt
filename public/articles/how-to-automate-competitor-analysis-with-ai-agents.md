@@ -2,6 +2,10 @@
 
 Automated competitor analysis pairs continuous monitoring with the step most CI tools skip: finding the competitors you don't know about yet. This guide covers what automation means here, why the work stays manual and stale, the discovery problem, how a pipeline built on search, extraction, and monitoring fits together, what to track once you have a list, and how API infrastructure compares with buying a platform.
 
+## **Quick answer**
+
+To automate competitor analysis with AI agents, chain Parallel’s APIs into one pipeline that keeps competitor data current. The FindAll API finds companies that match your market criteria and returns structured records with citations. The Extract API pulls pricing, features, and positioning from each company’s pages. The Monitor API sends changes that match your query to your webhook, so your workflow can update a CRM or post to Slack.
+
 Your team can now build [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) that search the web, extract structured data, and monitor changes continuously. Competitive intelligence updates itself rather than decaying in a shared drive.
 
 ## Key takeaways

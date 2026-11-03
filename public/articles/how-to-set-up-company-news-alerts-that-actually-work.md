@@ -2,6 +2,10 @@
 
 Company news alerts fail on filtering more often than coverage, which is why a carefully tuned Google Alert still misses the announcement that mattered. This guide covers every layer of the stack: free tools like Google Alerts and Talkwalker, RSS and page-change monitoring, dedicated news platforms, and API-based monitoring with webhooks, plus how to match an approach to your role.
 
+## **Quick answer**
+
+To get alerted when a company you track publishes news, start with Google Alerts or Talkwalker. Both are free keyword tools, but they often miss press releases and official channels. For dozens or hundreds of companies, use an API. Parallel’s Monitor API runs a natural-language query on your cadence and removes duplicates. It sends new events to your webhook, so you can route them to Slack or a CRM.
+
 ## Key takeaways
 
 - Google Alerts and Talkwalker cover basic keyword monitoring, but miss official channels, social platforms, and press releases.

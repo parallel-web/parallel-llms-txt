@@ -2,6 +2,10 @@
 
 AI data extraction lets you describe the data you want in plain English and get schema-conformant JSON back, at a cost per URL you can forecast. This guide covers how objective-driven extraction differs from traditional scraping, how to define a JSON schema that holds up, the three-API pipeline for discovery, cleaning, and structured output, what scaling to hundreds of thousands of URLs costs, and the enterprise requirements to check.
 
+## **Quick answer**
+
+To extract structured data from websites at scale, chain three Parallel APIs. The Search API finds pages from a natural-language query. The Extract API turns each URL into clean markdown scoped to your objective, without navigation or boilerplate. The Task API fills a JSON schema you define and adds per-field confidence and source citations. Extract costs $1 per 1,000 URLs, and production pipelines run requests concurrently.
+
 ## Key takeaways
 
 - **AI data extraction** replaces fragile CSS/XPath selectors with natural language objectives that survive layout changes across any site.

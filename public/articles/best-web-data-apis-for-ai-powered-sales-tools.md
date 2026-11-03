@@ -2,7 +2,7 @@
 
 AI sales tools are limited by the data layer beneath them, not by the CRM or sequencer on top. This guide evaluates web data APIs as sales infrastructure: which API types serve which workflows, how eight providers compare across search, extraction, and deep research, and how to wire them into an existing sales stack.
 
-Most "best AI sales tools" guides evaluate end-user platforms: which CRM has the slickest UI, which outreach tool writes the catchiest emails. They skip the layer underneath: the APIs that decide whether your agents surface current signals or regurgitate stale database records. Parallel, which publishes this guide, provides web search, extraction, and deep research APIs built for AI agents.
+Most "best AI sales tools" guides evaluate end-user platforms: which CRM has the slickest UI, which outreach tool writes the catchiest emails. They skip the layer underneath: the APIs that decide whether your agents surface current signals or regurgitate stale database records. Parallel, which publishes this guide, provides web search, extraction, decision, and deep research APIs built for AI agents.
 
 ## Why AI sales tools need web data APIs
 
@@ -12,11 +12,12 @@ AI sales tools need real-time signals: a prospect just announced a funding round
 
 Web data APIs close this gap by providing live, structured data from the open web. Instead of querying a static database, you query the web itself. The API crawls, indexes, extracts, and structures the results.
 
-Web data APIs for sales intelligence fall into three categories:
+Web data APIs for sales intelligence fall into four categories:
 
 - **Search APIs** help you discover relevant pages, companies, and signals across the web
 - **Extraction APIs** pull clean, structured content from specific URLs you've identified
 - **Deep research APIs** combine search, extraction, and AI reasoning to produce comprehensive profiles from multiple sources
+- **Decision APIs** answer a closed question about a company, such as yes or no, one option from a list, or a score, from current web evidence
 
 Each category serves a different stage in your sales [data enrichment](https://parallel.ai/articles/what-is-data-enrichment) pipeline.
 
@@ -97,7 +98,7 @@ The right API depends on your workflow: some excel at high-volume search, others
 
 | API | Category | Sales use case | Pricing model | Key differentiator |
 | --- | --- | --- | --- | --- |
-| Parallel | Search + Extract + Deep Research | Full-stack sales intelligence | Per-request (search from $0.001, extract $0.001) | Integrated suite with objective-driven queries and per-field citations |
+| Parallel | Search + Extract + Decisions + Deep Research | Full-stack sales intelligence, lead qualification and routing | Per-request (search from $0.001, extract $0.001, decisions $0.001) | Integrated suite with objective-driven queries and per-field citations |
 | Bright Data | Extract + Proxy | High-volume scraping and data collection | Usage-based (varies by product) | Massive proxy network and pre-built datasets |
 | ScrapingBee | Extract | Single-page extraction with JS rendering | Monthly credit plans (from $19/month) | Simple API, handles CAPTCHAs and headless browsing |
 | People Data Labs | Contact/Company Data | Contact enrichment and prospecting | Per-record credits (from $98/month) | Large B2B contact database with API access |
@@ -108,13 +109,13 @@ The right API depends on your workflow: some excel at high-volume search, others
 
 ### Parallel
 
-Parallel is a single API suite built for [AI agents](https://parallel.ai/articles/what-is-an-ai-agent). The Search API accepts natural-language objectives and returns ranked results with token-dense excerpts optimized for LLM context windows. The Extract API converts any URL to clean markdown. The Task API handles multi-step research workflows with custom schemas.
+Parallel is a single API suite built for [AI agents](https://parallel.ai/articles/what-is-an-ai-agent). The Search API accepts natural-language objectives and returns ranked results with token-dense excerpts optimized for LLM context windows. The Extract API converts any URL to clean markdown. The Decisions API answers yes-or-no, multiple-choice, and score questions about a company from live web evidence, with citations. The Task API handles multi-step research workflows with custom schemas.
 
-**Sales-specific strengths:** You can discover prospects with Search, pull detailed profiles with Extract, and run batch enrichment with Task, all through one platform. The Basis framework provides per-field citations, reasoning traces, and calibrated confidence scores, so your sales team can verify any data point before acting on it.
+**Sales-specific strengths:** You can discover prospects with Search, pull detailed profiles with Extract, qualify and route leads with Decisions, and run batch enrichment with Task, all through one platform. The Basis framework provides per-field citations, reasoning traces, and calibrated confidence scores, so your sales team can verify any data point before acting on it.
 
 **Data sources:** Parallel's proprietary web index covers billions of pages with millions added daily. Searches surface information from Crunchbase, LinkedIn (public profiles), TechCrunch, BuiltWith technographic data, SEC EDGAR filings, company blogs, and press releases.
 
-**Pricing:** [Search API from $1 per 1,000 requests with Turbo or Fast mode](https://parallel.ai/pricing) (~200ms and ~700ms latency; Fast is the recommended default), $5 per 1,000 for Basic and Advanced (10 results included), Extract API at $0.001 per URL, Task API from $5 to $2,400 per 1,000 runs depending on processor.
+[**Pricing**](https://parallel.ai/pricing)**:** Search API from $1 per 1,000 requests with Turbo or Fast mode (~200ms and ~700ms latency; Fast is the recommended default), $5 per 1,000 for Basic and Advanced (10 results included), Extract API at $0.001 per URL, Decisions API at $1 per 1,000 requests with up to 100 questions per request, Task API from $5 to $2,400 per 1,000 runs depending on processor.
 
 **Best for:** Teams building custom AI sales tools who want an integrated data layer without stitching together multiple vendors.
 
@@ -261,6 +262,7 @@ Does the vendor hold SOC 2 Type II certification? What's their approach to GDPR,
 - **Need discovery?** Prioritize search APIs with semantic query support
 - **Need extraction from known URLs?** Evaluate extraction APIs on JS rendering, output format, and rate limits
 - **Need comprehensive profiles from multiple sources?** Deep research APIs with custom schemas save integration work
+- **Need to qualify or route records?** A decision API returns a typed answer for each record from current web evidence, at a cost low enough to run on every lead
 - **Need continuous monitoring?** Look for APIs with webhook-based alerting for new results
 
 ## Connecting web data APIs to your AI sales workflow
@@ -270,9 +272,10 @@ A typical integration into your existing sales infrastructure has three layers: 
 **Practical integration pattern:**
 
 1. **Discovery:** Use a search API to find companies matching your ideal customer profile
-2. **Deep dive:** Pass promising results to an extraction API for detailed profile information
-3. **Enrichment:** Run a deep research API to build structured profiles with your custom schema
-4. **Activation:** Push enriched data to Salesforce, HubSpot, or your outreach platform via their APIs
+2. **Qualification:** Use a decision API to check fit and route each company before spending on deeper research
+3. **Deep dive:** Pass promising results to an extraction API for detailed profile information
+4. **Enrichment:** Run a deep research API to build structured profiles with your custom schema
+5. **Activation:** Push enriched data to Salesforce, HubSpot, or your outreach platform via their APIs
 
 This pattern works for both batch workflows (enrich 1,000 new sign-ups weekly) and real-time triggers (alert when a target account announces funding).
 
@@ -355,15 +358,92 @@ This workflow enriches a batch of prospects with custom fields, returns structur
 - **Handle rate limits gracefully.** Build queuing into your pipeline for batch operations
 - **Log everything.** Track which sources informed which data points for compliance and debugging
 
+## Qualify and route leads with the Decisions API
+
+Most inbound leads need a routing decision before they need a full profile: which segment, which rep, or whether to work them at all. Those decisions depend on facts that change, such as funding stage, headcount, and what the company sells, so a CRM field from last quarter can send a lead to the wrong place. A [decision API](https://parallel.ai/articles/what-is-a-decisions-api) answers closed questions like these and returns a typed answer with probabilities. Parallel’s Decisions API also retrieves current web evidence for each request and returns the sources it used.
+
+In a [launch demo](https://parallel.ai/blog/decisions-api), Parallel ran 500 inbound leads through the Decisions API in under nine seconds for about $0.50. Of the leads it routed without a person, 97% landed in the right segment. That is Parallel’s own result from one demo run, so test on a sample of your own hand-routed leads before you rely on it.
+
+Ask every question about a lead in one request. The questions share one set of retrieved evidence, so the whole batch costs one call: $1 per 1,000 requests, with up to 100 questions per request.
+
+```python
+import os
+
+import requests
+
+ROUTING_QUESTIONS = {
+    "segment": {
+        "type": "choice",
+        "instructions": "Which sales segment fits this company by employee count? "
+                        "Select unknown when evidence is insufficient.",
+        "criteria": {
+            "smb": "Fewer than 100 employees.",
+            "mid_market": "100 to 999 employees.",
+            "enterprise": "1,000 or more employees.",
+            "unknown": "The evidence does not establish the company size.",
+        },
+    },
+    "builds_ai_products": {
+        "type": "noul",
+        "instructions": "Does this company build or sell AI-powered products or agents?",
+    },
+    "funding_stage": {
+        "type": "choice",
+        "instructions": "What is the company's most recent funding stage?",
+        "criteria": {
+            "none_disclosed": "Bootstrapped, or no funding has been disclosed.",
+            "seed": "Pre-seed or seed.",
+            "series_a_b": "Series A or Series B.",
+            "growth_or_public": "Series C or later, or publicly traded.",
+        },
+    },
+}
+
+
+def route_lead(company: str, domain: str, threshold: float = 0.8) -> dict:
+    response = requests.post(
+        "https://api.parallel.ai/v1/decisions",
+        headers={"x-api-key": os.environ["PARALLEL_API_KEY"]},
+        json={
+            "state": {"company": company, "website": f"https://{domain}"},
+            "questions": ROUTING_QUESTIONS,
+        },
+        timeout=30,
+    )
+    response.raise_for_status()
+    decision = response.json()
+    segment = decision["answers"]["segment"]
+
+    # Route automatically only when the segment answer is confident
+    confident = (
+        segment["type"] == "choice"
+        and segment["choice"] != "unknown"
+        and segment["probabilities"][segment["choice"]] >= threshold
+    )
+
+    return {
+        "queue": segment["choice"] if confident else "manual_review",
+        "answers": decision["answers"],
+        "sources": [c["url"] for c in decision["citations"]],
+    }
+
+
+print(route_lead("Acme Corp", "acme.com"))
+```
+
+Write the queue, the answers, and the source URLs back to the lead record. The citations cover the whole call rather than each answer, so store them with the routing decision and a rep can check why a lead landed where it did. Set the threshold from a sample of leads your team has already routed by hand; a probability of 0.8 from one model isn’t calibrated the same way as 0.8 from another.
+
+Once a lead clears routing and needs a full profile, pass it to the Task API with an enrichment schema like the one above. The Decisions API answers closed questions; the Task API fills open fields such as recent news or key decision makers.
+
 ## FAQs
 
 **What are web data APIs and why do AI sales tools need them?**
 
 Web data APIs retrieve live, structured information from the open web. AI sales tools need them because static databases can't provide the real-time signals (funding rounds, leadership changes, competitive moves) that make prospect intelligence actionable.
 
-**What's the difference between search APIs, extraction APIs, and deep research APIs?**
+**What's the difference between search, extraction, decision, and deep research APIs?**
 
-Search APIs find relevant pages from across the web. Extraction APIs pull structured content from specific URLs you provide. Deep research APIs orchestrate multi-step research across many sources and return comprehensive profiles.
+Search APIs find relevant pages from across the web. Extraction APIs pull structured content from specific URLs you provide. Decision APIs return a typed answer to a closed question, such as whether a lead fits your ICP or which segment it belongs in. Deep research APIs orchestrate multi-step research across many sources and return comprehensive profiles.
 
 **How much do web data APIs for sales cost?**
 
@@ -379,6 +459,6 @@ Compliance depends on the provider and your use case. Scraping publicly availabl
 
 **Ready to power your AI sales stack with accurate, real-time web data?**
 
-Parallel's API suite gives you search, extraction, and deep research in one platform, built for AI agents.
+Parallel's API suite gives you search, extraction, decisions, and deep research in one platform, built for AI agents.
 
 [Start Building](https://docs.parallel.ai/home)

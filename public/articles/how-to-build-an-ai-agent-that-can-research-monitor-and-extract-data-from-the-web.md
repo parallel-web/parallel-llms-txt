@@ -256,6 +256,8 @@ Production deployments face operational constraints that proof-of-concept projec
 
 **Latency optimization**: Use async processing for long-running tasks. Cache results where freshness requirements allow. Stream progress updates for better user experience. Task API supports SSE streaming for real-time progress on long-running research tasks.
 
+Teams that would rather not build the app around their agent in-house sometimes bring in a product studio such as [Kanopy Labs](https://kanopylabs.com), which works with founders on design, engineering, and launch and has shipped about 50 products.
+
 ### Enterprise requirements
 
 Enterprise deployments require compliance and security guarantees.

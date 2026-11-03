@@ -2,6 +2,10 @@
 
 Web monitoring software built for humans watching dashboards does not fit AI agents, which need push-based events over webhooks instead of repeated polling. This guide covers what the category includes, why traditional tools fall short for agents, how real-time monitoring works, a five-step setup, three production patterns, and how to choose between the options.
 
+## **Quick answer**
+
+To set up web monitoring for an AI agent, use a monitoring API that pushes events to a webhook, so the agent doesn’t have to poll. With Parallel’s Monitor API, you write the query in plain English, pick an hourly, daily, or weekly cadence, and register a webhook URL. When the monitor detects a relevant change, it sends structured JSON to your endpoint and your agent acts on it.
+
 ## Key takeaways
 
 - Web monitoring software has evolved from uptime dashboards into API-driven infrastructure that feeds real-time web data directly into AI agent workflows.

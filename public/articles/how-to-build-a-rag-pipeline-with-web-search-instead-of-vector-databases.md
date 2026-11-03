@@ -2,6 +2,10 @@
 
 You can build a RAG pipeline without a vector database by searching the live web at query time, which removes the ingestion and maintenance burden most tutorials assume. This guide covers why vector databases are the wrong default for most pipelines, the three layers of a web RAG pipeline (search, extract, and context assembly), a full implementation, hybrid routing, and production considerations.
 
+## **Quick answer**
+
+To build a RAG pipeline with web search instead of a vector database, replace the vector lookup with a search API call at query time. Send the question as a natural-language objective, then pass the ranked excerpts and URLs to the model so it can cite them. Add the Extract API when a page needs full content. You skip ingestion and embedding. Vector search still fits private internal documents.
+
 **Key takeaways:**
 
 - Vector databases impose ingestion, maintenance, and staleness costs that most RAG pipelines don't need.

@@ -2,6 +2,10 @@
 
 The web scraping vs API choice for an LLM app comes down to whether the app already knows which page it needs, or has to find the pages that answer a question first. This guide covers what we measured on five real pages, the pipeline each approach makes you own, list-price costs including model tokens, and when scraping still beats a search API.
 
+## **Quick answer**
+
+A scraping API fetches a page you already know. A search API finds the pages that answer a question and returns ranked excerpts from them. Scrape when you have a fixed URL and need exact fields, a logged-in page, or a full-site crawl. Use a search API when the app starts from a question. Most LLM apps use both and add an extract step when the excerpts aren’t enough.
+
 Scraping answers “get me this page.” A search API answers “find me the pages that answer this.” If your app starts from a known URL and needs exact fields from it, scrape. If it starts from a question, use a search API, and add an extract step when the excerpts aren’t enough.
 
 Most LLM apps end up using both. Past that first cut, the choice turns on how many tokens, how much plumbing, and how much access risk you’re willing to own, and you can measure each of those.

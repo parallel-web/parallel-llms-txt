@@ -88,7 +88,11 @@ Coming soon
 
 [TracxnPrivate-market intelligence covering companies, sectors, funding, and emerging markets.](https://platform.parallel.ai/settings?tab=data-connections&provider=tracxn)
 
-[ZoomInfoB2B company and professional intelligence for go-to-market research and workflows.](https://platform.parallel.ai/settings?tab=data-connections&provider=zoominfo)
+### ZoomInfo
+
+B2B company and professional intelligence for go-to-market research and workflows.
+
+Coming soon
 
 ## Get in touch
 

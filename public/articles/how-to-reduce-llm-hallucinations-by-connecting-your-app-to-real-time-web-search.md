@@ -2,6 +2,10 @@
 
 Hallucination rates of 15% to 25% on factual queries are common without grounding, and scaling the model does not close that gap. This guide covers why LLMs hallucinate, how static knowledge bases differ from live web search, how search APIs ground responses, what the measured accuracy gains are, and implementation patterns for web-grounded agents.
 
+## **Quick answer**
+
+Connecting your LLM app to real-time web search reduces hallucinations because the model answers from retrieved sources it can cite instead of from memory. On OpenAI’s SimpleQA benchmark, GPT-4o answered [38%](https://arxiv.org/abs/2411.04368) of questions correctly without browsing, and GPT-4o search preview scored [90%](https://openai.com/index/new-tools-for-building-agents). Search doesn’t remove every error, so filter results by freshness and domain, and verify facts before your agent acts on them.
+
 These are LLM hallucinations: confident outputs unsupported by evidence. In production, [hallucination rates of 15-25%](https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/) on factual queries are common without grounding. For [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) that take actions based on their outputs, a single hallucinated fact can trigger real-world consequences.
 
 You can treat hallucinations as an engineering problem. The most effective fix is web grounding: connecting your LLM to real-time web search so it retrieves current facts rather than generating them from static training data.
