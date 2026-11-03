@@ -26,7 +26,6 @@
 * [Best AI search for agents: 6 web search APIs compared (2026)](https://parallel.ai/articles/best-ai-search-for-agents)
 * [Best fast search APIs in 2026: a guide to 5 AI-native search tools](https://parallel.ai/articles/best-fast-search-apis)
 * [The best free web search APIs for AI agents in 2026](https://parallel.ai/articles/best-free-web-search-api)
-* [Gemini's Google Search grounding vs. Parallel: the best index, with strings attached](https://parallel.ai/articles/gemini-google-search-grounding-vs-parallel)
 * [Claude's web search tool vs. Parallel: built-in convenience against a dedicated search API](https://parallel.ai/articles/claude-web-search-vs-parallel)
 * [SearXNG vs. Parallel: self-hosted metasearch against a hosted index](https://parallel.ai/articles/searxng-vs-parallel)
 * [DataForSEO vs. Parallel: SEO and bulk SERP data vs retrieval for models](https://parallel.ai/articles/dataforseo-vs-parallel)
@@ -57,7 +56,6 @@
 
 * [Google's /goto links and poisoned SERPs: the best alternatives to SERP scrapers](https://parallel.ai/articles/google-goto-links-serp-scraper-alternatives)
 * [AI in investment banking: what analyst agents do and what they need](https://parallel.ai/articles/ai-in-investment-banking)
-* [Best web grounding for Gemini Enterprise Agent Platform (2026)](https://parallel.ai/articles/web-grounding-gemini-enterprise-agent-platform)
 * [Best web search APIs with EU data residency (2026)](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
 * [Build an EU research agent with the Parallel Search API](https://parallel.ai/articles/build-eu-research-agent-parallel-search)
 * [GDPR and AI agents: what web search and extraction change](https://parallel.ai/articles/gdpr-ai-agents-web-search-extraction)

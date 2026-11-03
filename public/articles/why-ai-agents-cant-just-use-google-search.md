@@ -1,6 +1,6 @@
 # Why can’t AI agents just use Google Search?
 
-Why can’t AI agents just use Google Search? Google doesn’t sell its results to developers, its grounding product restricts what you can do with the output, scraping google.com is blocked and in court, and a browser agent pays for every page in tokens and time. This guide covers each constraint with dates, prices, and sources, then what agent builders use instead.
+Why can’t AI agents just use Google Search? Google’s self-serve results API is closing, its grounding product is designed for answers shown to end users, scraping google.com is blocked and in litigation, and a browser agent pays for every page in tokens and time. This guide covers each constraint with dates, prices, and sources, then what agent builders use instead.
 
 ## What changed in 2025 and 2026
 
@@ -14,7 +14,7 @@ Two years ago a developer who wanted web results for software had three mainstre
 | September 2025 | Google stops honoring the num=100 parameter | Pulling 100 results now takes 10 requests |
 | December 19, 2025 | Google sues SerpApi over scraping Search | Scraping Google becomes an active legal dispute |
 | January 20, 2026 | Google sets the end date for the Custom Search JSON API and limits new engines to 50 domains | Whole-web queries through the official API end |
-| July 20, 2026 | The court dismisses Google’s DMCA claims against SerpApi, with leave to amend | The first ruling goes against Google; the case continues |
+| July 20, 2026 | The court dismisses Google’s DMCA claims against SerpApi, with leave to amend | Google can amend its complaint; the case continues |
 | July 31, 2026 | Reddit’s DMCA claims against SerpApi and Perplexity survive dismissal | A buyer of scraped Google data is also a defendant |
 | August 2026 | Google rolls out google.com/goto passthrough links | Every result link needs an extra resolution hop |
 | September 9, 2026 | Google documents the partner-only Web Search Service API | Full-web results exist, behind a partner agreement |
@@ -29,23 +29,23 @@ Google’s documentation now says the API “is closed to new customers,” and 
 
 On September 9, 2026, Google published documentation for the [Web Search Service API](https://developers.google.com/web-search-service/overview), which does perform a full web search and returns JSON over REST or gRPC. Every request needs a client ID tied to a partner agreement, plus the end user’s IP address, and returns at most 20 results. [Search Engine Journal](https://www.searchenginejournal.com/google-documents-partner-only-api-for-full-web-search-results/589194) noted that the pages don’t explain how to become a partner, what the service costs, or what the query limits are, so an agent team has no way to sign up today. Our [Google Custom Search API alternative guide](https://parallel.ai/articles/the-best-google-custom-search-api-alternative-for-ai-agents) covers the migration options in detail.
 
-## Grounding with Google Search sells answers, with conditions attached
+## Grounding with Google Search returns answers for end users
 
-Google does sell one product openly, Grounding with Google Search: Gemini runs Google searches on your behalf and writes an answer with citations. The index behind it is the best on the market, and for a chat product built on Gemini it can be the right choice. An agent pipeline also has to live with the pricing and the terms.
+Google does sell one product openly, Grounding with Google Search: Gemini runs Google searches on your behalf and writes an answer with citations. The index behind it is the best on the market, and for a chat product built on Gemini it can be the right choice. For an agent pipeline, the pricing and terms are the parts to check.
 
 On Gemini 3 models, Google bills $14 per 1,000 search queries after 5,000 free queries a month. Gemini 2.5 billed $35 per 1,000 grounded prompts. The unit changed from prompts to queries, and the model decides how many queries a prompt triggers, so one question that fans out into four searches costs four units.
 
-The [Gemini API terms](https://ai.google.dev/gemini-api/terms) restrict what you can do with the output. You may only show grounded results in an application you own and operate, to the end user who submitted the prompt, alongside Google’s Search Suggestions displayed exactly as provided. You agree not to “cache, frame, syndicate, resell, analyze, train on, or otherwise learn from” grounded results or suggestions, and not to intersperse other content with them. Vertex AI is looser on one point: its [pricing page](https://cloud.google.com/gemini-enterprise-agent-platform/generative-ai/pricing) lets customers under 1 million grounded prompts a day skip the Search Suggestions display at standard pricing. It’s stricter on another, because the Google Search tool can’t be combined with function calling in the same request. Pages whose owners disallow Google-Extended in robots.txt are excluded from grounding entirely.
+The [Gemini API terms](https://ai.google.dev/gemini-api/terms) set out how grounded output can be used. You may only show grounded results in an application you own and operate, to the end user who submitted the prompt, alongside Google’s Search Suggestions displayed exactly as provided. You agree not to “cache, frame, syndicate, resell, analyze, train on, or otherwise learn from” grounded results or suggestions, and not to intersperse other content with them. Vertex AI differs on one point: its [pricing page](https://cloud.google.com/gemini-enterprise-agent-platform/generative-ai/pricing) lets customers under 1 million grounded prompts a day skip the Search Suggestions display at standard pricing. On another, the Google Search tool there can’t be combined with function calling in the same request. Pages whose owners disallow Google-Extended in robots.txt are excluded from grounding entirely.
 
-Agent systems tend to do exactly the things those terms rule out: they pass retrieved text to another model, log it for evaluation, cache it across users, and merge it with results from other tools. We compare the two approaches in [Gemini’s Google Search grounding vs. Parallel](https://parallel.ai/articles/gemini-google-search-grounding-vs-parallel).
+Many agent systems need to use results in ways those terms don’t cover: they pass retrieved text to another model, log it for evaluation, cache it across users, and merge it with results from other tools.
 
-Microsoft followed the same path. After the Bing Search APIs shut down, Microsoft pointed customers to Grounding with Bing Search inside Azure AI Foundry, now $14 per 1,000 transactions, and its [pricing page](https://www.microsoft.com/en-us/bing/apis/grounding-pricing) states that outputs “are not directly accessible for use in other applications or programs.” Both companies that run a full-scale web index now sell a model’s answer instead of the results. Our [Bing API alternatives comparison](https://parallel.ai/articles/bing-api-comparison) covers what replaced it.
+Microsoft followed the same path. After the Bing Search APIs shut down, Microsoft pointed customers to Grounding with Bing Search inside Azure AI Foundry, now $14 per 1,000 transactions, and its [pricing page](https://www.microsoft.com/en-us/bing/apis/grounding-pricing) states that outputs “are not directly accessible for use in other applications or programs.” Both companies that run a full-scale web index now offer grounded answers rather than raw results. Our [Bing API alternatives comparison](https://parallel.ai/articles/bing-api-comparison) covers what replaced it.
 
 ## Scraping Google is blocked, and it’s in court
 
-Without an API, the fallback is to scrape google.com, either directly or through a SERP API vendor that does it for you. Google has spent two years making that more expensive.
+Without an API, the fallback is to scrape google.com, either directly or through a SERP API vendor that does it for you. Google has added protections against automated access over the past two years, which has made that harder.
 
-**The technical blocking keeps escalating.** In January 2025 Google deployed SearchGuard, which sends a JavaScript challenge to unrecognized clients and expects the browser to send back a solve. [Search Engine Land’s teardown](https://searchengineland.com/inside-google-searchguard-467676) describes it as the system that broke nearly every SERP scraper overnight. In September 2025 Google dropped the num=100 parameter, so a scraper that used to fetch 100 results in one request now needs ten. In August 2026 Google confirmed it was routing result links through google.com/goto passthrough URLs, which adds a resolution hop for every link on the page. Around September 13, 2026, [Search Engine Roundtable reported](https://www.seroundtable.com/google-blocking-scrapers-and-tracking-tools-42118.html) that Nozzle saw about an 80% drop in the Google data it could collect, with the same pattern at DataForSEO. Since then, Nozzle, AccuRanker, Ahrefs, and Semrush have reported poisoned results pages: normal-looking SERPs with the usual sites swapped out and no error attached. Google hasn’t commented. Our guide to [Google’s /goto links and SERP scraper alternatives](https://parallel.ai/articles/google-goto-links-serp-scraper-alternatives) covers both changes.
+**Those protections have expanded.** In January 2025 Google deployed SearchGuard, which sends a JavaScript challenge to unrecognized clients and expects the browser to send back a solve. [Search Engine Land’s teardown](https://searchengineland.com/inside-google-searchguard-467676) describes it as the system that broke nearly every SERP scraper overnight. In September 2025 Google dropped the num=100 parameter, so a scraper that used to fetch 100 results in one request now needs ten. In August 2026 Google confirmed it was routing result links through google.com/goto passthrough URLs, which adds a resolution hop for every link on the page. Around September 13, 2026, [Search Engine Roundtable reported](https://www.seroundtable.com/google-blocking-scrapers-and-tracking-tools-42118.html) that Nozzle saw about an 80% drop in the Google data it could collect, with the same pattern at DataForSEO. Since then, Nozzle, AccuRanker, Ahrefs, and Semrush have reported results pages served to their scrapers that differ from what users see. Our guide to [Google’s /goto links and SERP scraper alternatives](https://parallel.ai/articles/google-goto-links-serp-scraper-alternatives) covers both changes.
 
 **The legal picture is unsettled.** Google sued SerpApi on December 19, 2025, alleging that it bypassed SearchGuard to scrape and resell search results at a scale of “hundreds of millions” of requests a day. On July 20, 2026, Chief Judge Yvonne Gonzalez Rogers dismissed the DMCA claims. The court found that Google had adequately alleged circumvention, but held that Section 1201 only protects measures guarding copyrighted works, and many search results contain none. Google refiled a narrower complaint on August 10, SerpApi moved to dismiss again. On October 5 the court vacated the October 13 hearing and said it would reset it or decide the motion on the papers.
 
@@ -67,11 +67,11 @@ A browser agent on google.com also hits every defense described above. SearchGua
 
 A [web index](https://parallel.ai/articles/what-is-a-web-index) moves the expensive work out of the request path. The crawler fetches, renders, cleans, and stores pages once, and every later query reads from that store. The cost of crawling gets spread across millions of queries instead of being paid again, by the agent, on every question.
 
-The shape of the output matters as much as the cost. A Google results page is built for a person deciding what to click: ten ranked links, a snippet of one or two lines written to earn the click, and ads. An agent can’t answer from a snippet, so a SERP-based pipeline needs a second stage that fetches each page, strips the boilerplate, and picks the passages worth sending to the model. An index built for models can do that selection up front and return the relevant passages with each URL, sized to a token budget you set.
+The shape of the output matters as much as the cost. A Google results page is built for a person deciding what to click: ten ranked links, each with a one- or two-line snippet, plus ads. An agent can’t answer from a snippet, so a SERP-based pipeline needs a second stage that fetches each page, strips the boilerplate, and picks the passages worth sending to the model. An index built for models can do that selection up front and return the relevant passages with each URL, sized to a token budget you set.
 
 Freshness is the usual objection to an index, because a stored copy can lag the live page. We handle that with a fetch policy on each request, so an agent can accept the indexed copy or ask for a live crawl when recency matters.
 
-## The antitrust ruling won’t open Google to agent builders
+## The antitrust remedies are aimed at rival search engines
 
 The remedies in U.S. v. Google do force Google to share. Judge Mehta’s September 2025 decision and the [December 5, 2025 final judgment](https://law.justia.com/cases/federal/district-courts/district-of-columbia/dcdce/1:2020cv03010/223205/1461) require Google to offer “Qualified Competitors” a five-year syndication license for ranked organic results through a real-time API, along with certain search index and user-interaction data. A technical committee, appointed in January 2026, decides who qualifies.
 
@@ -113,7 +113,7 @@ Note: For the latest pricing, always check official documentation.
 
 ### Does Google have a search API?
 
-Not one you can sign up for. The Custom Search JSON API is closed to new customers and stops working for existing ones on January 1, 2027. The Web Search Service API returns full-web results but requires a partner agreement with Google. Grounding with Google Search is open to any Gemini developer, but it returns a Gemini answer under terms that bar caching, storing, or analyzing the results.
+Not a self-serve one today. The Custom Search JSON API is closed to new customers and stops working for existing ones on January 1, 2027. The Web Search Service API returns full-web results but requires a partner agreement with Google. Grounding with Google Search is open to any Gemini developer, and it returns a Gemini answer under terms that don’t permit caching, storing, or analyzing the results.
 
 ### Is it legal to scrape Google search results?
 
@@ -121,7 +121,7 @@ It’s unsettled. In July 2026 a federal court dismissed Google’s DMCA claims 
 
 ### Can I use Gemini’s Google Search grounding in my own agent?
 
-You can if the agent runs on Gemini and shows the grounded answer to the user who asked. The Gemini Developer API also requires Google’s Search Suggestions displayed as provided, while Vertex AI waives that display under 1 million grounded prompts a day. The Gemini API terms forbid caching, analyzing, or training on grounded results, so pipelines that store results, evaluate them offline, or pass them to other models need a different source.
+You can if the agent runs on Gemini and shows the grounded answer to the user who asked. The Gemini Developer API also requires Google’s Search Suggestions displayed as provided, while Vertex AI waives that display under 1 million grounded prompts a day. The Gemini API terms forbid caching, analyzing, or training on grounded results, so pipelines that store results, evaluate them offline, or pass them to other models are better served by a results API.
 
 ### Why not let the agent browse google.com like a person?
 
