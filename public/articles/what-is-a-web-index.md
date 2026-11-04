@@ -44,7 +44,7 @@ Without indexing, the web would be unsearchable, and a page that isn't in a sear
 
 For developers building AI applications, web indexing determines what information your agents can access. Traditional search engines index content for human readers, providing title snippets and brief previews, while AI agents need dense, structured passages ready to feed directly into language models.
 
-This mismatch explains why many developers layer scraping and summarization on top of search APIs. That adds latency, raises token costs, and creates brittle failure points. An AI-native index solves this by storing content already formatted for language model consumption. Our explainer on [why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) walks through the cost of that layering, from SERP snippets to browser agents.
+This mismatch explains why many developers layer scraping and summarization on top of search APIs. That adds latency, raises token costs, and creates brittle failure points. An AI-native index solves this by storing content already formatted for language model consumption. Our explainer on [when AI agents need a web search API](https://parallel.ai/articles/what-is-a-web-search-api) covers where search APIs fit in that stack.
 
 ## **Core components of web indexing**
 

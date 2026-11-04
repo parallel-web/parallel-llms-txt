@@ -30,7 +30,7 @@ An agent needs something synchronous and sub-second, with content the model can 
 
 The $0.60 tier is genuinely excellent value for what it is built for: overnight rank tracking, bulk SERP collection, and scheduled monitoring, none of which involves an agent waiting on a user.
 
-Collection also depends on how hard Google pushes back. [Search Engine Roundtable reported](https://www.seroundtable.com/google-blocking-scrapers-and-tracking-tools-42118.html) that Google’s blocking tightened around September 13, 2026, with Nozzle losing about 80% of the Google data it collected and seeing the same drop in data from DataForSEO. Our explainer on [why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) has the full blocking timeline.
+Collection also depends on how hard Google pushes back. [Search Engine Roundtable reported](https://www.seroundtable.com/google-blocking-scrapers-and-tracking-tools-42118.html) that Google’s blocking tightened around September 13, 2026, with Nozzle losing about 80% of the Google data it collected and seeing the same drop in data from DataForSEO. Our guide to [/goto links and SERP scraper alternatives](https://parallel.ai/articles/google-goto-links-serp-scraper-alternatives) covers these changes in more detail.
 
 ## **Parallel's pricing**
 
@@ -72,4 +72,4 @@ Parallel fits when the work is synchronous and the consumer is a model. Fast ret
 
 The cheapest number on the page belongs to a queue that takes five minutes, so the choice comes down to whether anything is waiting for the answer.
 
-**Related reading: **[Serper vs. Parallel](https://parallel.ai/articles/serper-vs-parallel) / [SerpApi vs. Parallel](https://parallel.ai/compare/serpapi-vs-parallel) / [Bright Data SERP API vs. Parallel](https://parallel.ai/articles/bright-data-serp-api-vs-parallel) / [Why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search).
+**Related reading: **[Serper vs. Parallel](https://parallel.ai/articles/serper-vs-parallel) / [SerpApi vs. Parallel](https://parallel.ai/compare/serpapi-vs-parallel) / [Bright Data SERP API vs. Parallel](https://parallel.ai/articles/bright-data-serp-api-vs-parallel) / [Is scraping Google legal?](https://parallel.ai/articles/is-scraping-google-legal)

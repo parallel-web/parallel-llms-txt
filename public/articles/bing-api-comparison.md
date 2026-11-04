@@ -6,7 +6,7 @@ Microsoft retired the Bing Search API in August 2025, and the strongest replacem
 
 Microsoft deprecated the Bing Search API on August 11, 2025 and directed developers toward Azure AI Agents and enterprise products. That decision removed the low-cost, general-purpose search endpoint many applications used. Teams that relied on Bing now need a new source of independent web data.
 
-Microsoft's move toward "Grounding with Bing Search" via Azure ties developers to one ecosystem, which doesn't suit applications that need flexible, independent web data access. Grounding with Bing costs $14 per 1,000 transactions, and Microsoft’s [pricing page](https://www.microsoft.com/en-us/bing/apis/grounding-pricing) says its outputs “are not directly accessible for use in other applications or programs.” Google is winding down its own results API as well; our explainer on [why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) covers both.
+Microsoft's move toward "Grounding with Bing Search" via Azure ties developers to one ecosystem, which doesn't suit applications that need flexible, independent web data access. Grounding with Bing costs $14 per 1,000 transactions, and Microsoft’s [pricing page](https://www.microsoft.com/en-us/bing/apis/grounding-pricing) says its outputs “are not directly accessible for use in other applications or programs.” Google is winding down its own results API as well; our guide to [Google Custom Search API alternatives for AI agents](https://parallel.ai/articles/the-best-google-custom-search-api-alternative-for-ai-agents) covers the options.
 
 ## **What features to look for in search API alternatives**
 
@@ -97,4 +97,4 @@ Rate limits vary by provider and pricing tier. Some offer tiered plans with prog
 
 Several alternatives offer free tiers with limited monthly query limits. Pick based on your expected volume and whether you need basic search results or capabilities like dense excerpts and freshness guarantees.
 
-**Deeper comparisons: **[Brave Search API vs. Parallel](https://parallel.ai/compare/brave-vs-parallel) / [SerpApi vs. Parallel](https://parallel.ai/compare/serpapi-vs-parallel) / [Serper vs. Parallel](https://parallel.ai/articles/serper-vs-parallel) / [Why AI agents can’t just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search).
+**Deeper comparisons: **[Brave Search API vs. Parallel](https://parallel.ai/compare/brave-vs-parallel) / [SerpApi vs. Parallel](https://parallel.ai/compare/serpapi-vs-parallel) / [Serper vs. Parallel](https://parallel.ai/articles/serper-vs-parallel) / [Parallel Search vs. SerpApi vs. Brave vs. Bing](https://parallel.ai/articles/parallel-vs-serpapi-vs-brave-vs-bing).

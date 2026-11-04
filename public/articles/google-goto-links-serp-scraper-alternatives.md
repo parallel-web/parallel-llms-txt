@@ -43,7 +43,7 @@ For an SEO team, poisoning means a ranking drop in a report may never have happe
 
 ## How Google has restricted SERP scraping since 2025
 
-/goto links are one step in a sequence. Our explainer on [why AI agents can't just use Google Search](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search) covers the API side in more detail.
+/goto links are one step in a sequence. Our guide to [Google Custom Search API alternatives for AI agents](https://parallel.ai/articles/the-best-google-custom-search-api-alternative-for-ai-agents) covers the API side in more detail.
 
 | Date | Change | Effect on scrapers |
 | --- | --- | --- |
