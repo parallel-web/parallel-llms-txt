@@ -72,7 +72,6 @@
 * [How we evaluate web search APIs for AI agents](https://parallel.ai/articles/how-we-evaluate-web-search-apis)
 * [Fast vs. Turbo: choosing a Parallel Search mode for agent loops](https://parallel.ai/articles/parallel-search-fast-vs-turbo)
 * [Is scraping Google legal? What the 2026 court rulings say](https://parallel.ai/articles/is-scraping-google-legal)
-* [Why can’t AI agents just use Google Search?](https://parallel.ai/articles/why-ai-agents-cant-just-use-google-search)
 * [How to use Grok Bot for competitive research](https://parallel.ai/articles/grok-bot-competitive-research)
 * [The best MCP servers and connectors for Meta Muse in 2026](https://parallel.ai/articles/best-mcp-servers-for-meta-muse)
 * [How to create custom integrations with Meta Muse: connect any API or MCP server](https://parallel.ai/articles/meta-muse-custom-integrations)
