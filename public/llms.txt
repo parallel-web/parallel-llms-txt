@@ -190,7 +190,6 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [What Makes a Source Irreplaceable? How AI Agents Measure Value](https://llm.parallel.ai/articles/what-makes-a-source-irreplaceable.md): A source is irreplaceable when the answer gets worse without it. Learn the traits that make sources irreplaceable and how AI agents measure that value.
 - [Which AI Search API Has the Best Recall and Accuracy?](https://llm.parallel.ai/articles/which-ai-search-api-has-the-best-recall-and-accuracy.md): Compare Parallel, Exa, Tavily, Brave, and Perplexity on recall, accuracy, pricing, and output quality for AI agents and RAG pipelines.
 - [Who Pays for the Visibility-Value Gap on the Agentic Web?](https://llm.parallel.ai/articles/who-pays-for-the-visibility-value-gap-on-the-agentic-web.md): Learn who loses when AI overvalues visibility over contribution, and how Shapley-based compensation can close the gap on the agentic web.
-- [Why AI Agents Can’t Just Use Google Search (2026)](https://llm.parallel.ai/articles/why-ai-agents-cant-just-use-google-search.md): Learn why AI agents can’t call Google Search directly: a closing API, grounding built for end users, blocked scrapers, lawsuits, and browsing costs.
 - [WideSearch Benchmark: Tasks, Scoring, and Results](https://llm.parallel.ai/articles/widesearch-benchmark.md): Learn how the WideSearch benchmark scores agents on filling complete tables from the web, why success rates sit near 5%, and how search APIs compare on it.
 - [You.com vs Parallel: Matching Lineups, Priced Apart](https://llm.parallel.ai/articles/you-com-vs-parallel.md): Compare You.com and Parallel on search, research APIs, compliance, and the pricing crossover that decides which is cheaper for your call pattern.
 - [Web Search API Quality Benchmarks](https://llm.parallel.ai/benchmarks.md): How Parallel&#x27;s APIs perform against Exa, Tavily, Brave, OpenAI, and Claude search on accuracy benchmarks measured on consistent workloads.
@@ -394,7 +393,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Sign In - Parallel](https://llm.parallel.ai/docs/index.md)
 - [parallel-web - npm](https://llm.parallel.ai/docs/package/parallel-web.md)
 - [parallel-web · PyPI](https://llm.parallel.ai/docs/project/parallel-web/index.md)
-- [public-openapi](https://llm.parallel.ai/docs/public-openapi.json.md)
+- [OpenAPI Spec](https://llm.parallel.ai/docs/public-openapi.json.md)
 
 ## SDKs
 
