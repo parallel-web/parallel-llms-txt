@@ -16,14 +16,14 @@ We recruit likeminded curious, optimistic, and ambitious people who see the work
 | [Design Engineer](https://jobs.ashbyhq.com/parallel/18658250-041d-415d-8111-8cc5b353ee56)                                    | Design               | San Francisco / Palo Alto            | Full time      |
 | [Product Designer](https://jobs.ashbyhq.com/parallel/0231ced2-2ca8-4fb4-a105-8f81c6feab6d)                                   | Design               | San Francisco / Palo Alto            | Full time      |
 | [Deployed Engineer](https://jobs.ashbyhq.com/parallel/bb00e740-3647-4ce8-b6e7-3dcf611f66b6)                                  | Engineering          | San Francisco / Palo Alto / New York | Full time      |
-| [Early Career Research Engineer](https://jobs.ashbyhq.com/parallel/056e41f8-7d5f-41c1-99fd-bf002dc072fd)                     | Engineering          | Palo Alto                            | Full time      |
-| [Member of Technical Staff, Back-end & API](https://jobs.ashbyhq.com/parallel/144b4be3-f46e-4e3a-af46-8ec6afc3a60f)          | Engineering          | San Francisco / Palo Alto            | Full time      |
-| [Member of Technical Staff, Data Engineering](https://jobs.ashbyhq.com/parallel/23a9fd93-9c62-4793-99ca-f7b3efa11f02)        | Engineering          | San Francisco / Palo Alto            | Full time      |
+| [Early Career Research Engineer](https://jobs.ashbyhq.com/parallel/056e41f8-7d5f-41c1-99fd-bf002dc072fd)                     | Engineering          | Palo Alto / New York                 | Full time      |
+| [Member of Technical Staff, Back-end & API](https://jobs.ashbyhq.com/parallel/144b4be3-f46e-4e3a-af46-8ec6afc3a60f)          | Engineering          | San Francisco / Palo Alto / New York | Full time      |
+| [Member of Technical Staff, Data Engineering](https://jobs.ashbyhq.com/parallel/23a9fd93-9c62-4793-99ca-f7b3efa11f02)        | Engineering          | San Francisco / Palo Alto / New York | Full time      |
 | [Member of Technical Staff, Infrastructure Security](https://jobs.ashbyhq.com/parallel/8df69e21-f99c-4867-bdc8-59605259274e) | Engineering          | San Francisco / Palo Alto            | Full time      |
-| [Member of Technical Staff, Model Training](https://jobs.ashbyhq.com/parallel/2738b2a4-978a-49cb-bd6f-68098f3794d6)          | Engineering          | San Francisco / Palo Alto            | Full time      |
+| [Member of Technical Staff, Model Training](https://jobs.ashbyhq.com/parallel/2738b2a4-978a-49cb-bd6f-68098f3794d6)          | Engineering          | San Francisco / Palo Alto / New York | Full time      |
 | [Member of Technical Staff, Product Security](https://jobs.ashbyhq.com/parallel/2560a1fb-7ac2-4edb-bcf6-c5a3c8780556)        | Engineering          | San Francisco / Palo Alto            | Full time      |
-| [Member of Technical Staff, Retrieval & Indexing](https://jobs.ashbyhq.com/parallel/fc674743-e5ca-494f-a06e-92bc5977423f)    | Engineering          | San Francisco / Palo Alto            | Full time      |
-| [Member of Technical Staff, Search Ranking](https://jobs.ashbyhq.com/parallel/bc715d40-ec81-4d8d-8a5a-92db5227679c)          | Engineering          | San Francisco / Palo Alto            | Full time      |
+| [Member of Technical Staff, Retrieval & Indexing](https://jobs.ashbyhq.com/parallel/fc674743-e5ca-494f-a06e-92bc5977423f)    | Engineering          | San Francisco / Palo Alto / New York | Full time      |
+| [Member of Technical Staff, Search Ranking](https://jobs.ashbyhq.com/parallel/bc715d40-ec81-4d8d-8a5a-92db5227679c)          | Engineering          | San Francisco / Palo Alto / New York | Full time      |
 | [Research Scientist](https://jobs.ashbyhq.com/parallel/5fac39a3-a44d-470b-94ed-15b2239d410f)                                 | Engineering          | San Francisco / Palo Alto            | Full time      |
 | [Cloud Partnerships](https://jobs.ashbyhq.com/parallel/fe935559-4209-4736-baa8-6d2478d424ba)                                 | GTM                  | San Francisco / Palo Alto / New York | Full time      |
 | [GTM Enablement, Technical](https://jobs.ashbyhq.com/parallel/a550cc1c-6bec-416b-a2da-a7ef06f754bc)                          | GTM                  | Palo Alto / New York / San Francisco | Full time      |
@@ -31,12 +31,17 @@ We recruit likeminded curious, optimistic, and ambitious people who see the work
 | [GTM Leader, Enterprise](https://jobs.ashbyhq.com/parallel/4fac04bc-a15a-4b4b-9fe0-a5cbec27c687)                             | GTM                  | San Francisco / Palo Alto / New York | Full time      |
 | [GTM Recruiter](https://jobs.ashbyhq.com/parallel/8516b163-698e-4359-98a5-cc573749e13e)                                      | GTM                  | San Francisco / Palo Alto / New York | Full time      |
 | [GTM, Enterprise](https://jobs.ashbyhq.com/parallel/f3a80c31-90a1-4252-b4d3-a6274f4d205c)                                    | GTM                  | San Francisco / Palo Alto / New York | Full time      |
+| [ABM](https://jobs.ashbyhq.com/parallel/605fe877-89d6-4966-8ba2-7e2406e0e334)                                                | Marketing            | San Francisco / Palo Alto            | Full time      |
 | [Marketing Ops](https://jobs.ashbyhq.com/parallel/232f6cb3-6ba5-4bc0-85b4-c2516e83572e)                                      | Marketing            | San Francisco / Palo Alto            | Full time      |
 | [Product Marketing](https://jobs.ashbyhq.com/parallel/e4f2bdcb-5cd1-4643-8e93-3e165fba88d8)                                  | Marketing            | San Francisco / Palo Alto            | Full time      |
 | [AI Commercial Counsel, GTM](https://jobs.ashbyhq.com/parallel/485a039c-a176-4dfe-ba5f-475b63439651)                         | Operations           | San Francisco / Palo Alto            | Full time      |
 | [Controller](https://jobs.ashbyhq.com/parallel/055cd8fd-ac80-4d76-9aa4-abcfc3244c87)                                         | Operations           | San Francisco / Palo Alto            | Full time      |
+| [Deal Desk Manager](https://jobs.ashbyhq.com/parallel/173f587b-7134-444d-aff7-d4e8c6fada63)                                  | Operations           | San Francisco / Palo Alto            | Full time      |
+| [GTM Finance Lead](https://jobs.ashbyhq.com/parallel/46d8d4cf-9f64-4f02-bd10-6287769bf319)                                   | Operations           | San Francisco / Palo Alto            | Full time      |
 | [Legal Ops](https://jobs.ashbyhq.com/parallel/07e9f010-e7c8-4c01-b650-997b659c53fb)                                          | Operations           | Palo Alto                            | Full time      |
 | [Procurement Lead](https://jobs.ashbyhq.com/parallel/eba53dae-be93-44a8-a550-7dc56da4df66)                                   | Operations           | San Francisco / Palo Alto            | Full time      |
+| [R&D Finance Lead](https://jobs.ashbyhq.com/parallel/1e83c172-5c38-4102-9884-c35a4dcc3668)                                   | Operations           | San Francisco / Palo Alto            | Full time      |
+| [Strategic Finance](https://jobs.ashbyhq.com/parallel/1b5da033-32e1-45a1-95fe-c0553e22e5a6)                                  | Operations           | San Francisco / Palo Alto            | Full time      |
 
 ## Our values
 

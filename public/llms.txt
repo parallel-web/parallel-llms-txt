@@ -375,6 +375,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Search API - The Best Web Search for Your AI](https://llm.parallel.ai/products/search.md): The highest-accuracy web search API, built from the ground up for AIs. Get ranked results with token-efficient excerpts your agents can reason over directly.
 - [Search savings calculator](https://llm.parallel.ai/products/search/calculator.md): Estimate monthly and yearly search API spend from monthly volume, then compare published list prices with Parallel Search.
 - [Task API - Deep Web Research for AI Agents](https://llm.parallel.ai/products/task.md): Run deep web research with a single API call. The Task API returns structured, source-attributed results with calibrated confidences for AI agents.
+- [Parallel Slack Agent: Web Monitors and Live Updates in Slack](https://llm.parallel.ai/slack.md): Tell @parallel what to watch on the web, and it posts alerts with sources in your Slack channel. Ask it a question to get a cited answer in the thread.
 - [Web Search API for Coding Agents](https://llm.parallel.ai/solutions/code.md): Ground coding agents in live docs, changelogs, and dev forums. One API call replaces a brittle in-house web search stack for builders.
 - [Financial Research API for AI Agents](https://llm.parallel.ai/solutions/finance.md): Pull live filings, news, and market data into financial research in seconds. Every answer is cited, sourced, and audit-ready for AI agents.
 - [Claims &amp; Underwriting Research API](https://llm.parallel.ai/solutions/insurance.md): Automate claims, submission, and renewal research at volume, with confidence-scored, citation-backed results ready to route or audit.
@@ -393,7 +394,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Sign In - Parallel](https://llm.parallel.ai/docs/index.md)
 - [parallel-web - npm](https://llm.parallel.ai/docs/package/parallel-web.md)
 - [parallel-web · PyPI](https://llm.parallel.ai/docs/project/parallel-web/index.md)
-- [OpenAPI Spec](https://llm.parallel.ai/docs/public-openapi.json.md)
+- [public-openapi](https://llm.parallel.ai/docs/public-openapi.json.md)
 
 ## SDKs
 
