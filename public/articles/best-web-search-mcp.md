@@ -6,13 +6,15 @@ Web search is the first [MCP server](https://parallel.ai/articles/what-is-mcp) m
 
 Disclosure up front: we make Parallel and it's our first pick; the benchmark figures below come from Artificial Analysis, an independent evaluator, rather than our own runs. If you're calling a search API from code rather than configuring an agent, our [web search API comparison](https://parallel.ai/articles/best-web-search-api) covers that side.
 
-## 1. Parallel Search MCP
+## 1. Parallel MCP
 
-Server URL: `https://mcp.parallel.ai/mcp`. Two tools: `web_search`, which returns ranked results with excerpts dense enough that agents usually answer without a follow-up fetch, and `web_fetch`, which pulls token-efficient markdown from specific URLs including PDFs and JavaScript-heavy pages. It's [free with no API key or account](https://docs.parallel.ai/integrations/mcp/quickstart); a key raises the rate limits, and an OAuth endpoint (`/mcp?login`) exists for teams that need every request attributed to an account. It runs on our own web-scale index rather than reselling another engine's results.
+Server URL: `https://mcp.parallel.ai/mcp`. [Parallel MCP](https://parallel.ai/mcp) gives you three tools free with no API key or account: `web_search`, which returns ranked results with excerpts dense enough that agents usually answer without a follow-up fetch; `web_fetch`, which pulls token-efficient markdown from specific URLs including PDFs and JavaScript-heavy pages; and `web_decisions`, which answers typed questions such as a probability, a pick among options, or a score, with sources. Sign in at `https://mcp.parallel.ai/mcp?login` or send an API key and you also get `web_research`, which answers a single research question with citations in the same call, plus higher rate limits and every request attributed to your account. It runs on our own web-scale index rather than reselling another engine's results.
 
-On the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products across 12 providers (September 2026 data), Parallel Search (advanced) scores 75, level with Brave’s LLM context mode and behind Perplexity Search (medium) at 80 and Octen Search at 77. Parallel's fast mode recorded $8.41 in search cost per 1,000 benchmark tasks in AA's September 8 data, among the lowest measured. OpenClaw also made it the engine behind its default web search.
+It's also built to be configured. Signed-in connections can pin settings in an `x-parallel-mcp-config` header (search mode from turbo, fast, basic, or advanced, the maximum number of results, and domains to include or exclude), and `?tools=` trims the tool list. [parallel.ai/mcp](https://parallel.ai/mcp) has one-click installs for Claude, ChatGPT, Cursor, VS Code, Grok Bot, Antigravity, OpenCode, and Hermes, plus a setup prompt you can paste into any other agent; the [installation docs](https://docs.parallel.ai/integrations/mcp/installation) cover the rest. Keyless calls are free and rate limited, with nothing billed past the limit. Signed-in calls bill at Search API rates: $1 per 1,000 for fast and turbo, $5 per 1,000 for basic and advanced. The [launch post](https://parallel.ai/blog/parallel-mcp-2) covers what changed in version 2.0.
 
-**Best for:** the default choice when you want maximum benchmarked accuracy, free entry, and search plus fetching in one server.** Tradeoffs:** we're the vendor. The hosted MCP runs the low-latency fast mode with excerpts capped around 25,000 characters per call; deep research belongs on our separate Task MCP.
+On the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products across 12 providers (September 2026 data), Parallel Search (advanced) scores 75, level with Brave’s LLM context mode and behind Perplexity Search (medium) at 80 and Octen Search at 77. Parallel's fast mode recorded $8.41 in search cost per 1,000 benchmark tasks in AA's September 8 data, among the lowest measured.
+
+**Best for:** the default choice when you want strong benchmarked accuracy, free entry, and search, fetching, and research in one server. **Tradeoffs:** we're the vendor. Keyless calls run the low-latency fast mode, and switching modes, filtering domains, and `web_research` need sign-in or a key. For asynchronous deep research and list enrichment, our separate [Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp) is still the better fit.
 
 ## 2. Exa MCP
 
@@ -42,7 +44,7 @@ Brave's MCP servers wrap the Brave Search API and require a `BRAVE_API_KEY` (the
 
 | Server | Core tools | Free tier | AA Search Index (Sep 2026) |
 | --- | --- | --- | --- |
-| Parallel Search MCP | web_search, web_fetch | Free, anonymous, no key | 75 (advanced) |
+| Parallel MCP | web_search, web_fetch, web_decisions (+signed in: web_research) | Free, anonymous, no key | 75 (advanced) |
 | Exa MCP | web_search_exa, web_fetch_exa (+opt-ins) | Free plan for casual use | 74 (auto) |
 | Brave Search MCP | Web/news search | API key required (free API tier) | 75 (LLM context) |
 | Firecrawl MCP | search, scrape, parse (+keyed: crawl, map, agent) | Keyless, limits shared per IP | 73 |
@@ -64,4 +66,4 @@ Every server here installs in a minute and four of the five have some free path,
 
 ## Run the test
 
-Start with the one that costs nothing to try: [add ](https://docs.parallel.ai/integrations/mcp/quickstart)`[https://mcp.parallel.ai/mcp](https://docs.parallel.ai/integrations/mcp/quickstart)`[ to your client](https://docs.parallel.ai/integrations/mcp/quickstart), ask your agent twenty real questions, and compare against whatever it uses today. Keep the winner.
+Start with the one that costs nothing to try: install [Parallel MCP](https://parallel.ai/mcp) in one click or add `https://mcp.parallel.ai/mcp` to your client, ask your agent twenty real questions, and compare against whatever it uses today. Keep the winner.

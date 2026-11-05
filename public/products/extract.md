@@ -30,7 +30,7 @@ Priced for scale
 
 # From web page to context window with a single tool call 
 
-Directly integrate the Extract API, or use the Web\_Fetch Tool in the [Parallel Search MCP Server](https://docs.parallel.ai/integrations/mcp/search-mcp)
+Directly integrate the Extract API, or use the Web\_Fetch Tool in the [Parallel MCP](/mcp)
 
 [Try Extract](https://platform.parallel.ai/play/extract)[View docs](https://docs.parallel.ai/extract/extract-quickstart)
 

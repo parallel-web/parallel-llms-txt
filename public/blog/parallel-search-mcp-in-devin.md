@@ -1,6 +1,6 @@
 # Parallel Search MCP Server in Devin
 
-The [Parallel Search MCP Server](https://parallel.ai/blog/search-mcp-server) is now live in [Devin's MCP Marketplace](https://docs.devin.ai/work-with-devin/mcp), bringing high quality web research capabilities directly to the AI software engineer. [Devin](https://devin.ai/) can now query the web with the same infrastructure that powers our state-of-the-art [Task](https://parallel.ai/blog/parallel-task-api) and [Chat APIs](https://parallel.ai/blog/chat-api).
+The [Parallel Search MCP Server](https://parallel.ai/mcp) is now live in [Devin's MCP Marketplace](https://docs.devin.ai/work-with-devin/mcp), bringing high quality web research capabilities directly to the AI software engineer. [Devin](https://devin.ai/) can now query the web with the same infrastructure that powers our state-of-the-art [Task](https://parallel.ai/blog/parallel-task-api) and [Chat APIs](https://parallel.ai/blog/chat-api).
 
 ## **Web-Aware Development at Scale**
 

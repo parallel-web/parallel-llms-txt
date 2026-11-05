@@ -95,7 +95,7 @@ r = requests.post(
 )
 ```
 
-Parallel ships Python and TypeScript SDKs, an MCP server, a CLI, and a playground. The equivalent call adds an objective:
+Parallel ships Python and TypeScript SDKs, the [Parallel MCP](https://parallel.ai/mcp) server, a CLI, and a playground. The equivalent call adds an objective:
 
 ```python
 import os
@@ -110,7 +110,7 @@ search = client.search(
 )
 ```
 
-Both companies offer a hosted MCP server that works without an account. Keenable's is at api.keenable.ai/mcp and Parallel's at mcp.parallel.ai/mcp, which exposes `web_search` and `web_fetch` over the Search and Extract APIs with no key. Adding a Parallel API key as a Bearer token raises the limits and lets you pin a mode, location, or result count for the connection.
+Both companies offer a hosted MCP server that works without an account. Keenable's is at api.keenable.ai/mcp and Parallel's at mcp.parallel.ai/mcp, which exposes web_search, web_fetch, and web_decisions over the Search, Extract, and Decisions APIs with no key. Signing in at mcp.parallel.ai/mcp?login or adding a Parallel API key as a Bearer token raises the limits, adds web_research, and lets you pin a mode, location, or result count for the connection through the x-parallel-mcp-config header. Like Keenable, Parallel reports each authenticated call's cost in the result metadata.
 
 ## Compliance
 

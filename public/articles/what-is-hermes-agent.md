@@ -137,26 +137,26 @@ Hermes is legitimate, widely used software, but an agent with shell access and y
 
 Web search is the tool Hermes calls most for current information, and Hermes gives you 11 backends to choose from, including Firecrawl, SearXNG, Brave, DuckDuckGo, Exa, Tavily, Perplexity, and Parallel. With no credentials at all, [Hermes rotates](https://hermes-agent.nousresearch.com/docs/user-guide/features/web-search) between the free tiers of Exa, Parallel, Firecrawl, and Keenable, so results vary from call to call.
 
-We make Parallel, and our free Search MCP server is one way to pin a single provider. It needs no API key and lets the model send a natural-language objective plus several keyword queries per search. Add it to `~/.hermes/config.yaml`:
+We make Parallel, and [Parallel MCP](https://parallel.ai/mcp) is one way to pin a single provider. Its `web_search`, `web_fetch`, and `web_decisions` tools need no API key, and the model can send a natural-language objective plus several keyword queries per search. Add it to ~/.hermes/config.yaml:
 
 ```yaml
 mcp_servers:
-  parallel_search:
+  parallel:
     url: "https://mcp.parallel.ai/mcp"
     timeout: 120
 ```
 
-Then confirm Hermes can reach it. We ran this on October 10, 2026, in a scratch `HERMES_HOME`:
+Then confirm Hermes can reach it. We re-ran this on November 5, 2026, in a scratch HERMES_HOME:
 
 ```text
-Testing 'parallel_search'...
+Testing 'parallel'...
 Transport: HTTP → https://mcp.parallel.ai/mcp
 Auth: none
-✓ Connected (349ms)
-✓ Tools discovered: 2
+✓ Connected (615ms)
+✓ Tools discovered: 3
 ```
 
-Our [Hermes Agent web search guide](https://parallel.ai/articles/hermes-agent-web-search) covers the full setup, API keys for higher limits, and when to use Hermes’s built-in Parallel backend instead. For other servers worth adding, see [the best MCP servers for Hermes Agent](https://parallel.ai/articles/best-mcp-servers-for-hermes-agent).
+Our [Hermes Agent web search guide](https://parallel.ai/articles/hermes-agent-web-search) covers the full setup, API keys for `web_research` and higher limits, and when to use Hermes’s built-in Parallel backend instead. For other servers worth adding, see [the best MCP servers for Hermes Agent](https://parallel.ai/articles/best-mcp-servers-for-hermes-agent).
 
 ## Frequently asked questions
 
@@ -186,4 +186,4 @@ Yes. Hermes supports Ollama, vLLM, llama.cpp, and any OpenAI-compatible endpoint
 
 ## Get started
 
-Install Hermes with the official one-liner, run `hermes setup` to connect a model, and pair it with Telegram so you can message it from anywhere. Then add the free Parallel Search MCP following our [Hermes Agent web search guide](https://parallel.ai/articles/hermes-agent-web-search), and read [what an agent harness is](https://parallel.ai/articles/what-is-an-agent-harness) for the concepts behind tools like Hermes.
+Install Hermes with the official one-liner, run hermes setup to connect a model, and pair it with Telegram so you can message it from anywhere. Then add the free [Parallel MCP](https://parallel.ai/mcp) following our [Hermes Agent web search guide](https://parallel.ai/articles/hermes-agent-web-search), and read [what an agent harness is](https://parallel.ai/articles/what-is-an-agent-harness) for the concepts behind tools like Hermes.

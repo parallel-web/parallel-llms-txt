@@ -1,8 +1,8 @@
 # How to create custom integrations with Meta Muse: connect any API or MCP server
 
-Meta Muse ships with a fixed connector list and no way for third parties to add to it, but Muse can write and run its own integration code for any service with a public API, CLI, or MCP server. This guide covers how Muse connects to services, what happens when you hand it an MCP server URL, a copy-paste prompt that works in one message, and the security controls that apply to custom connectors.
+Meta Muse reaches outside services through built-in connectors, Custom Connectors it writes for itself, and, in Muse Code, MCP servers listed in a settings file. This guide covers how each route works, what happens when you hand Muse an MCP server URL, a copy-paste prompt that works in one message, and the security controls that apply to custom connectors.
 
-Meta launched Muse, its personal AI agent, on September 8, 2026. It runs on a dedicated cloud computer and acts inside the apps you connect to it. Its connector list is curated by Meta, and there is no developer portal where a third party can submit one. That has led to a common assumption that if a service is not in the list, Muse cannot use it. In fact, Muse can write and run its own integration code on its virtual machine, and Meta documents this as a supported feature called a Custom Connector.
+Meta launched Muse, its personal AI agent, on September 8, 2026. It runs on a dedicated cloud computer and acts inside the apps you connect to it. Its connector list is curated by Meta and has grown since launch, and developers can now submit connectors for review through the [Muse Connector Platform](https://platform.muse.ai/). The list still covers only a slice of the services people use, which has led to a common assumption that if a service is not in the list, Muse cannot use it. In fact, Muse can write and run its own integration code on its virtual machine, and Meta documents this as a supported feature called a Custom Connector.
 
 We tested this by asking Muse to connect to our own hosted MCP server. It took one message and a little under a minute, and the result was a working, reusable integration. What follows is what Muse does when you hand it an API or an MCP server, the prompt that gets the cleanest result, and what to know before you grant it credentials.
 
@@ -10,7 +10,7 @@ We tested this by asking Muse to connect to our own hosted MCP server. It took o
 
 Muse reaches outside services in three ways, and it will usually pick the right one on its own. Knowing which one it is using tells you why it asks the questions it does.
 
-**Built-in connectors.** Meta builds these with the service provider. At launch the list includes Gmail, Google Calendar and Google Workspace, Ticketmaster, OpenTable, Spotify, Apple Health, Function Health, Peloton, and Plaid, plus Facebook, Instagram, and Threads, which connect automatically through Accounts Center. You turn them on under Settings and then Connectors, or by asking Muse to "connect my Gmail." Each one comes with skills that Meta wrote and iterated on, and its code runs in a privilege-separated worker outside the agent's own runtime, so the agent never touches the OAuth token.
+**Built-in connectors.** Meta builds these with the service provider. At launch the list included Gmail, Google Calendar and Google Workspace, Ticketmaster, OpenTable, Spotify, Apple Health, Function Health, Peloton, and Plaid, plus Facebook, Instagram, and Threads, which connect automatically through Accounts Center. At Connect on September 24, Meta added work connectors for [Notion, Granola, GitHub, and Box](https://about.fb.com/news/2026/09/the-biggest-news-from-connect-2026/) alongside new shopping and travel partners, and the [Muse for Small Business launch](https://about.fb.com/news/2026/09/introducing-muse-small-business/) on September 29 added Slack, Asana, Dropbox, Canva, Figma, Stripe, and more. You turn them on under Settings and then Connectors, or by asking Muse to "connect my Gmail." Each one comes with skills that Meta wrote and iterated on, and its code runs in a privilege-separated worker outside the agent's own runtime, so the agent never touches the OAuth token.
 
 **Custom connectors.** Meta's [safety write-up](https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse) says it plainly: "Muse can also write its own custom connectors for other services you care about if they have their own APIs or CLIs." The [Meta Help Center](https://www.meta.com/help/artificial-intelligence/1687253048996149/) adds that you simply ask Muse to create a Custom Connector, that it may need to retrieve API information from the service, and that any keys go into its Secure Credentials Store. It also warns that Meta does not review custom connectors, so you are trusting the service provider directly.
 
@@ -18,7 +18,7 @@ Muse reaches outside services in three ways, and it will usually pick the right 
 
 | Path | Who writes the code | Where credentials live | Best for |
 | --- | --- | --- | --- |
-| Built-in connector | Meta, with the provider | Secure Credentials Store, outside the agent runtime | Email, calendar, and the launch partners |
+| Built-in connector | Meta, with the provider | Secure Credentials Store, outside the agent runtime | Email, calendar, work tools like Notion and GitHub, and other listed partners |
 | Custom connector | Muse, on its own VM | Secure Credentials Store, injected at the network edge | Any service with a public API, CLI, or MCP server |
 | Browser | Nobody; Muse navigates live | Filled by the credential store into the page | Sites with no API |
 
@@ -26,7 +26,7 @@ The reason custom connectors are possible at all is the machine Muse runs on. Me
 
 ## What Muse does when you give it an MCP server
 
-Muse has no "add MCP server" setting. When we asked it to connect to a [Model Context Protocol](https://parallel.ai/articles/what-is-mcp) server, it said so directly: it does not have a one-click integration the way Claude Desktop does, but it could build a small bridge on its machine that connects to the server as a client and then call the server's tools whenever needed.
+The Muse app has no "add MCP server" setting. When we asked it to connect to a [Model Context Protocol](https://parallel.ai/articles/what-is-mcp) server, it said so directly: it does not have a one-click integration the way Claude Desktop does, but it could build a small bridge on its machine that connects to the server as a client and then call the server's tools whenever needed.
 
 It then asked two questions. Is the server reachable over HTTP at a URL, or does it run over stdio as a command it would need to launch? And does it need any auth, such as an API key or a header? Those are the only two things you have to know about a server before you start.
 
@@ -35,6 +35,19 @@ Given a URL, Muse wrote a client using the official MCP SDK, connected over stre
 Where Muse runs decides which servers it can reach. Remote servers over streamable HTTP are the easy case, because a cloud VM can reach them the same way any other client does. A stdio server has to be installable on a Debian box with `npm` or `pip`, which most published servers are. A server running on your own laptop is not reachable, since the VM is in Meta's cloud and not on your network. Our guide to [remote vs. local MCP servers](https://parallel.ai/articles/remote-vs-local-mcp-servers) covers the distinction.
 
 Meta's release notes for Muse Spark 1.1 say the model "zero-shot generalizes to new native tools, MCP servers, and custom skills," and the safety post describes training on zero-shot tool calling through CLIs and skills.
+
+Muse Code, Meta's terminal coding agent, is the exception: it supports MCP servers directly. It reads them from the `mcpServers` block of `~/.config/muse/settings.json`, which must include `"schema_version": 1`, supports both stdio and streamable HTTP, and handles OAuth 2.1 sign-in with `muse mcp login <server>`. [Meta's docs](https://dev.meta.ai/docs/muse-code/extending) note that MCP tools run outside Muse Code's sandbox, so connect only servers you trust.
+
+```json
+{
+  "schema_version": 1,
+  "mcpServers": {
+    "parallel": {
+      "url": "https://mcp.parallel.ai/mcp"
+    }
+  }
+}
+```
 
 ## Step by step: connect Muse to a new service
 
@@ -53,19 +66,19 @@ Build a custom integration to [SERVICE]. Its [MCP server URL / OpenAPI document 
 
 Muse can already browse the web with its browser sub-agent, but browsing is the expensive way to answer a factual question. The browser agent loads a results page, picks a link, loads that page, reads it, and repeats, and every step is a screenshot-scale chunk of context that counts against your usage meter. A search MCP returns ranked results with excerpts in one tool call, and a fetch tool returns a page as compact markdown. Research that would take Muse a dozen browser steps takes one or two calls.
 
-We make Parallel, so our example is the [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart). It is a hosted server at `https://mcp.parallel.ai/mcp` with two tools, `web_search` and `web_fetch`, and it is free to use with no account or API key. The prompt is the one we used:
+We make Parallel, so our example is [Parallel MCP](https://parallel.ai/mcp). It is a hosted server at `https://mcp.parallel.ai/mcp`, and its `web_search`, `web_fetch`, and `web_decisions` tools are free to use with no account or API key. When we ran this test in September, the server had only `web_search` and `web_fetch`. This is the prompt we used, updated for the current tool set:
 
 ```text
-Build a custom integration to the Parallel Search MCP server at https://mcp.parallel.ai/mcp. It is a remote MCP server over streamable HTTP with two tools, web_search and web_fetch. No authentication is needed. Connect to it with the official MCP SDK, test both tools end to end, and save the integration as a reusable skill so you can use it for web research in any future conversation. If I later give you a Parallel API key, add it as an Authorization: Bearer header.
+Build a custom integration to the Parallel MCP server at https://mcp.parallel.ai/mcp. It is a remote MCP server over streamable HTTP. Without authentication it offers three tools: web_search, web_fetch, and web_decisions. Connect to it with the official MCP SDK, test web_search and web_fetch end to end, and save the integration as a reusable skill so you can use it for web research in any future conversation. If I later give you a Parallel API key, add it as an Authorization: Bearer header; that also adds a fourth tool, web_research, for cited answers to harder questions.
 ```
 
-Muse came back with both tools working and a note that it would reach for the skill automatically whenever it needed current web information. It also offered, unprompted, to wire in a Parallel API key as a bearer token if we wanted higher rate limits. The anonymous endpoint runs at lower limits, and a free account at [platform.parallel.ai](https://platform.parallel.ai) includes $5 in credits every month, applied automatically. Organizations that want every request attributed to an account can point Muse at `https://mcp.parallel.ai/mcp?login` instead, which rejects anonymous calls.
+Muse came back with both tools working and a note that it would reach for the skill automatically whenever it needed current web information. It also offered, unprompted, to wire in a Parallel API key as a bearer token if we wanted higher rate limits. The anonymous endpoint runs at lower limits, and a free account at [platform.parallel.ai](https://platform.parallel.ai) comes with up to $80 in free credits plus $5 a month with a card on file. A key also adds `web_research`. Organizations that want every request attributed to an account can point Muse at `https://mcp.parallel.ai/mcp?login` instead, which signs in with a Parallel account over OAuth and also adds `web_research`. We haven't tested that sign-in flow inside Muse.
 
-The same shape works for Parallel's [Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp) at `https://task-mcp.parallel.ai/mcp`, which runs deep research and batch enrichment as asynchronous jobs. That one requires an API key from the start. Our list of the [best MCP servers and connectors for Meta Muse](https://parallel.ai/articles/best-mcp-servers-for-meta-muse) covers what else is worth adding.
+For a single research question, the `web_research` tool on the same server covers it once you add a key. For deep research and batch enrichment that run as asynchronous jobs, the same shape works for Parallel's [Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp) at `https://task-mcp.parallel.ai/mcp`, which requires an API key from the start. Our list of the [best MCP servers and connectors for Meta Muse](https://parallel.ai/articles/best-mcp-servers-for-meta-muse) covers what else is worth adding.
 
 ## What makes a service easy for Muse to integrate
 
-If you build software and want Muse users to be able to reach it, you are in the same position as everyone else: Meta has not published a program for adding connectors, and the launch partners appear to have been arranged as partnerships. When we asked Muse how a company gets added as a connector, it told us there was no public application or developer portal it could point to, and then pointed out that connector status is not required, since it can build a custom integration to any public API.
+If you build software and want Muse users to be able to reach it, you have two routes. Meta's [Muse Connector Platform](https://platform.muse.ai/) takes submissions of API and MCP connectors, reviews them for functional, security, and legal requirements with end-to-end testing, and lists approved ones in Settings > Connectors. A listing isn't required, though: Muse can build a custom integration to any public API or hosted MCP server, so users can reach your service today.
 
 What makes that integration smooth is what makes any agent integration smooth:
 
@@ -85,15 +98,15 @@ Muse is available in the US only and to adults only at launch, on iOS, Android, 
 
 ## Frequently asked questions
 
-**Can Meta Muse use MCP servers?** Yes, though not through a settings menu. Muse builds an MCP client on its own VM using the official SDK, connects to the server over streamable HTTP, and saves the integration as a skill. Remote servers work best. A server on your own laptop is not reachable from Meta's cloud.
+**Can Meta Muse use MCP servers?** Yes. In the Muse app it's not a settings menu: Muse builds an MCP client on its own VM using the official SDK, connects to the server over streamable HTTP, and saves the integration as a skill. Remote servers work best, and a server on your own laptop is not reachable from Meta's cloud. Muse Code, Meta's coding agent, supports MCP servers directly through `~/.config/muse/settings.json`, including OAuth sign-in with `muse mcp login`.
 
 **How do I add a custom connector to Meta Muse?** Ask it. Tell Muse the service, give it the API docs or MCP URL, and say what you want to be able to do. It will build the integration, test it, and store any credentials in its Secure Credentials Store. Meta documents this in its Help Center under Custom connectors.
 
 **Does Muse see my API keys?** Meta says no. Keys entered through the credential flow are stored by a daemon outside the agent's runtime, and Sentinel swaps a surrogate token for the real one when a request leaves the VM. That protection only applies if you enter the key through the secure prompt rather than typing it into the chat.
 
-**How do I get my product listed as a Muse connector?** As of mid-September 2026, Meta has not published a submission process, and Muse itself will tell you the same. Build a good public API or a hosted MCP server, document it, and Muse users can connect to it today without waiting for a listing.
+**How do I get my product listed as a Muse connector?** Submit it through Meta's [Muse Connector Platform](https://platform.muse.ai/), which accepts API and MCP connectors, reviews each one, and lists approved connectors in Settings > Connectors. Meta publishes the [submission guidelines](https://platform.muse.ai/docs). You don't need a listing for Muse users to reach you, though: build a good public API or a hosted MCP server, document it, and users can connect to it today as a Custom Connector.
 
-**Does Meta Muse have an API?** Not for the agent itself. There is no public API for driving your Muse, adding connectors, or reading its skills from outside. What Meta does sell is the [Meta Model API](https://ai.developer.meta.com/docs/getting-started/overview), which exposes the Muse Spark models that power Muse through OpenAI- and Anthropic-compatible endpoints for developers building their own agents. Integration with the Muse consumer agent runs the other way: your service exposes an API, and Muse connects to it.
+**Does Meta Muse have an API?** Not for the agent itself. There is no public API for driving your Muse or reading its skills from outside, and connector listings go through the review process on the Muse Connector Platform rather than an API. What Meta does sell is the [Meta Model API](https://ai.developer.meta.com/docs/getting-started/overview), which exposes the Muse Spark models that power Muse through OpenAI- and Anthropic-compatible endpoints for developers building their own agents. Integration with the Muse consumer agent runs the other way: your service exposes an API, and Muse connects to it.
 
 **Is a custom connector the same as a skill?** No. A connector is the code and credentials that talk to a service. A skill is the saved instructions that tell Muse when and how to use it. When Muse finishes a custom integration it usually saves a skill so the connector is available in later conversations.
 

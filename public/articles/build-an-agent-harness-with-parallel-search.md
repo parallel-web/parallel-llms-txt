@@ -285,7 +285,7 @@ You can exercise every code path without a model key. We pointed the real Anthro
 
 ## The MCP alternative
 
-You can skip the tool code by connecting Claude to the [Parallel Search MCP server](https://docs.parallel.ai/integrations/mcp/quickstart), which exposes `web_search` and `web_fetch`. With the Anthropic MCP connector, Anthropic’s servers make the MCP calls:
+You can skip the tool code by connecting Claude to [Parallel MCP](https://parallel.ai/mcp), which exposes `web_search`, `web_fetch`, and `web_decisions` with no key, plus `web_research` when you pass an API key ([programmatic use docs](https://docs.parallel.ai/integrations/mcp/programmatic-use)). With the Anthropic MCP connector, Anthropic’s servers make the MCP calls:
 
 ```python
 response = client.beta.messages.create(
@@ -295,10 +295,10 @@ response = client.beta.messages.create(
     mcp_servers=[{
         "type": "url",
         "url": "https://mcp.parallel.ai/mcp",
-        "name": "parallel-search",
-        "authorization_token": os.environ["PARALLEL_API_KEY"],  # optional
+        "name": "parallel",
+        "authorization_token": os.environ["PARALLEL_API_KEY"],  # optional; adds web_research
     }],
-    tools=[{"type": "mcp_toolset", "mcp_server_name": "parallel-search"}],
+    tools=[{"type": "mcp_toolset", "mcp_server_name": "parallel"}],
     messages=[{"role": "user", "content": "When did Hubble launch? Cite sources."}],
 )
 ```
@@ -308,16 +308,16 @@ In the Claude Agent SDK, the server is one `mcp_servers` entry:
 ```python
 options = ClaudeAgentOptions(
     model="claude-opus-5-5",
-    mcp_servers={"parallel-search": {"type": "http", "url": "https://mcp.parallel.ai/mcp"}},
-    allowed_tools=["mcp__parallel-search__*"],
+    mcp_servers={"parallel": {"type": "http", "url": "https://mcp.parallel.ai/mcp"}},
+    allowed_tools=["mcp__parallel__*"],
 )
 ```
 
-The Search MCP is free without a key at lower rate limits; anonymous calls run in `fast` mode with excerpts capped around 25,000 characters per call. A Bearer key raises limits and lets you pin the mode. Prefer MCP for prototypes and Agent SDK agents, where the harness already exists. Prefer the direct API when you need per-call mode choice, your own excerpt caps, a ledger that sees every request, or citation IDs you control. [What is MCP?](https://parallel.ai/articles/what-is-mcp) explains the protocol, and [remote vs. local MCP servers](https://parallel.ai/articles/remote-vs-local-mcp-servers) covers deployment.
+Parallel MCP is free without a key at lower rate limits; anonymous calls run in fast mode with excerpts capped around 25,000 characters per call. A Bearer key raises limits, adds `web_research`, and lets you pin the search mode, domain filters, and result count with the `x-parallel-mcp-config` header ([override settings](https://docs.parallel.ai/integrations/mcp/quickstart#override-settings)). Prefer MCP for prototypes and Agent SDK agents, where the harness already exists. Prefer the direct API when you need per-call mode choice, your own excerpt caps, a ledger that sees every request, or citation IDs you control. [What is MCP?](https://parallel.ai/articles/what-is-mcp) explains the protocol, and [remote vs. local MCP servers](https://parallel.ai/articles/remote-vs-local-mcp-servers) covers deployment.
 
 ## Get started
 
-Create a key at [platform.parallel.ai](https://platform.parallel.ai), which includes $5 in free credits every month (up to 5,000 Turbo or Fast searches). The [Search](https://docs.parallel.ai/search/search-quickstart) and [Extract](https://docs.parallel.ai/extract/extract-quickstart) quickstarts document every parameter used here, and `https://mcp.parallel.ai/mcp` works in any MCP client with no account.
+Create a key at [platform.parallel.ai](https://platform.parallel.ai), which includes $5 in free credits every month (up to 5,000 Turbo or Fast searches). The [Search](https://docs.parallel.ai/search/search-quickstart) and [Extract](https://docs.parallel.ai/extract/extract-quickstart) quickstarts document every parameter used here, and [Parallel MCP](https://parallel.ai/mcp) at `https://mcp.parallel.ai/mcp` works in any MCP client with no account.
 
 ## Frequently asked questions
 
@@ -327,7 +327,7 @@ An agent harness is the software around a model that runs its tool loop, manages
 
 ### How do I add web search to a Claude agent?
 
-Define a `web_search` tool, call the Parallel Search API when Claude returns a matching `tool_use` block, and send the excerpts back as a `tool_result`. Or connect the Parallel Search MCP server and skip the tool code.
+Define a web_search tool, call the Parallel Search API when Claude returns a matching tool_use block, and send the excerpts back as a tool_result. Or connect Parallel MCP and skip the tool code.
 
 ### Which Parallel Search mode should an agent harness use?
 

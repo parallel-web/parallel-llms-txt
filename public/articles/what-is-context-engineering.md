@@ -85,9 +85,9 @@ The agent writes progress to a file or memory store outside the window and reads
 
 For research agents, web results are often the largest and least predictable block in the window. A raw page carries navigation, boilerplate, and paragraphs unrelated to the question. The context engineering question for search is how many tokens of evidence you get per token spent.
 
-Agent-oriented search APIs answer that by returning query-relevant excerpts instead of pages. We build one, so weigh this accordingly: Parallel’s [Search API](https://docs.parallel.ai/search/best-practices) “ranks and compresses” results against a natural-language objective and returns dense excerpts, with `max_chars_total` and `max_chars_per_result` settings to cap the size. The free [Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) caps excerpts at roughly 25,000 characters per tool call so a single search can’t flood an MCP client. Other providers make different trade-offs; our [web search API guide](https://parallel.ai/articles/best-web-search-api) compares them.
+Agent-oriented search APIs answer that by returning query-relevant excerpts instead of pages. We build one, so weigh this accordingly: Parallel’s [Search API](https://docs.parallel.ai/search/best-practices) “ranks and compresses” results against a natural-language objective and returns dense excerpts, with `max_chars_total` and `max_chars_per_result` settings to cap the size. [Parallel MCP](https://parallel.ai/mcp) exposes the same search free as `web_search`, and signed-in connections can set `max_chars_total` or a maximum result count in the `x-parallel-mcp-config` header so a single search can’t flood an MCP client. Other providers make different trade-offs; our [web search API guide](https://parallel.ai/articles/best-web-search-api) compares them.
 
-You can measure the difference yourself. This script calls the keyless Search MCP, totals the excerpt characters across ten results, then fetches the top result as full page markdown for comparison. It uses the rough rule of four characters per token.
+You can measure the difference yourself. This script calls Parallel MCP without a key, totals the excerpt characters across ten results, then fetches the top result as full page markdown for comparison. It uses the rough rule of four characters per token.
 
 ```python
 import json, requests
@@ -103,7 +103,7 @@ def rpc(method, params, session=None):
                       json={"jsonrpc": "2.0", "id": 1, "method": method, "params": params})
     r.raise_for_status()
     body = r.text
-    if "data:" in body[:20]:  # Streamable HTTP may answer as SSE
+    if r.headers.get("Content-Type", "").startswith("text/event-stream"):  # Streamable HTTP may answer as SSE
         body = [l[5:] for l in body.splitlines() if l.startswith("data:")][-1]
     return json.loads(body), r.headers.get("Mcp-Session-Id", session)
 
@@ -180,4 +180,4 @@ Search results are often the largest block in a research agent’s context. Retu
 
 ## Get started
 
-Connect the free Parallel Search MCP at `https://mcp.parallel.ai/mcp` (no API key needed) and run the script above against your own queries to see what your agent’s search results cost in tokens. For the surrounding loop, read [what an agent harness is](https://parallel.ai/articles/what-is-an-agent-harness) and our walkthrough on [building one with Parallel Search](https://parallel.ai/articles/build-an-agent-harness-with-parallel-search).
+Connect [Parallel MCP](https://parallel.ai/mcp) at `https://mcp.parallel.ai/mcp` (no API key needed) and run the script above against your own queries to see what your agent’s search results cost in tokens. For the surrounding loop, read [what an agent harness is](https://parallel.ai/articles/what-is-an-agent-harness) and our walkthrough on [building one with Parallel Search](https://parallel.ai/articles/build-an-agent-harness-with-parallel-search).

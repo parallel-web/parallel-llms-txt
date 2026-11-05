@@ -126,22 +126,19 @@ We built the [Parallel Search API](https://docs.parallel.ai/search/search-quicks
 
 Our Basis framework returns citations, reasoning, and calibrated confidence on every result, so your agent can check a claim before using it. The service is SOC 2 Type 2 certified and offers zero data retention on Enterprise plans, which excludes training. Under our standard [Customer Terms](https://parallel.ai/customer-terms), we may use inputs and outputs, not linked to any individual, to train and improve the models behind our services.
 
-You can [improve retrieval without switching agents](https://parallel.ai/articles/openclaw-best-practices-web-search) at all. Most of these tools support the [Model Context Protocol (MCP)](https://parallel.ai/articles/what-is-mcp), [an open standard for connecting agents to external tools](https://modelcontextprotocol.io/introduction). Add our [hosted MCP server](https://docs.parallel.ai/integrations/mcp/quickstart), and your existing agent gains a purpose-built `web_search` and `web_fetch` capability.
+You can [improve retrieval without switching agents](https://parallel.ai/articles/openclaw-best-practices-web-search) at all. Most of these tools support the [Model Context Protocol (MCP)](https://parallel.ai/articles/what-is-mcp), [an open standard for connecting agents to external tools](https://modelcontextprotocol.io/introduction). Add [Parallel MCP](https://parallel.ai/mcp), our hosted MCP server, and your existing agent gains purpose-built `web_search` and `web_fetch` tools, plus `web_decisions`, with no API key.
 
 ```json
 {
   "mcpServers": {
-    "parallel-search": {
-      "url": "https://mcp.parallel.ai/mcp",
-      "env": {
-        "PARALLEL_API_KEY": "your-api-key"
-      }
+    "parallel": {
+      "url": "https://mcp.parallel.ai/mcp"
     }
   }
 }
 ```
 
-This block registers Parallel's hosted MCP server with your agent, so its `web_search` and `web_fetch` calls return cited, ranked results instead of raw snippets.
+This block registers Parallel MCP with any client that uses the common `mcpServers` format, so your agent's `web_search` and `web_fetch` calls return cited, ranked results instead of raw snippets. Field names vary by client (OpenClaw, for example, keeps servers under `mcp.servers` and needs `"transport": "streamable-http"`), so check the [installation docs](https://docs.parallel.ai/integrations/mcp/installation) for yours. Signing in or adding an API key adds `web_research` and higher rate limits.
 
 Point your agent's `web_search` tool at Parallel, and a research task returns cited sources. For heavier work, the [Extract API and Task API](https://docs.parallel.ai/task-api/task-quickstart) pull full page content and run structured research with the same citations attached.
 

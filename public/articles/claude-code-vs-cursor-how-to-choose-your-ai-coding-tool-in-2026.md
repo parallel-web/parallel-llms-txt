@@ -99,20 +99,19 @@ On this layer the Cursor versus Claude Code question stops mattering: both agent
 
 Because [both tools speak MCP](https://modelcontextprotocol.io/docs/getting-started/intro), you extend either one the same way: point it at an MCP server that exposes the tools you want.
 
-We ship a [production Search MCP server](https://parallel.ai/blog/search-mcp-server) that any agent speaking MCP can call. It exposes two tools, `web_search` for finding relevant pages and `web_fetch` for pulling their content, both backed by our own web index. You add it to Claude Code or Cursor with a [short config block](https://parallel.ai/articles/openclaw-best-practices-web-search):
+We ship [Parallel MCP](https://parallel.ai/mcp), a production MCP server that any agent speaking MCP can call. With no API key it exposes `web_search` for finding relevant pages and `web_fetch` for pulling their content, both backed by our own web index, plus `web_decisions` for typed questions like a probability or a pick among options. Sign in or add a key and it adds `web_research`, which answers a single research question with citations in the same call. You add it to Cursor with a [short config block](https://parallel.ai/articles/openclaw-best-practices-web-search):
 
 ```json
 {
   "mcpServers": {
-    "parallel-search": {
-      "url": "https://mcp.parallel.ai/mcp",
-      "headers": { "x-api-key": "YOUR_PARALLEL_API_KEY" }
+    "Parallel": {
+      "url": "https://mcp.parallel.ai/mcp"
     }
   }
 }
 ```
 
-That block registers our Search MCP server so the agent can call `web_search` and `web_fetch` during a task. If you'd rather install our Agent Skills, one command adds them globally:
+That block registers Parallel MCP in Cursor's `mcp.json`. In Claude Code, run `claude mcp add --transport http parallel https://mcp.parallel.ai/mcp` instead. Either way, the agent can call `web_search` and `web_fetch` during a task without an API key. If you'd rather install our Agent Skills, one command adds them globally:
 
 ```sh
 npx skills add parallel-web/parallel-agent-skills --all --global

@@ -155,7 +155,7 @@ With innovations in retrieval, crawling, indexing, and reasoning
 
 in a single tool call 
 
-Integrated directly, or add our [MCP Server](https://docs.parallel.ai/integrations/mcp/programmatic-use) 
+Integrated directly, or add our [MCP Server](/mcp) 
 
 [Search Playground](https://platform.parallel.ai/)[Docs](https://docs.parallel.ai/search/search-quickstart)
 

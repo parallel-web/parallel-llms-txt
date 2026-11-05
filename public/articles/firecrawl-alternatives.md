@@ -17,7 +17,7 @@ It has tradeoffs too. Keyless limits are shared per IP address per day, the self
 | Alternative | Firecrawl job it replaces | List price (Oct 10, 2026) | Free allowance | Open source |
 | --- | --- | --- | --- | --- |
 | Firecrawl (reference) | All of them | Search 2 credits per 10 results, scrape 1 credit per page; Hobby $16 a month billed yearly for 5,000 credits | 1,000 credits a month, plus keyless access | Yes, AGPL-3.0 |
-| Parallel | Search and scrape for agents | Search $1 per 1,000 (Turbo, Fast) or $5 (Basic, Advanced); Extract $1 per 1,000 URLs | Up to 5,000 requests a month; keyless Search MCP | No |
+| Parallel | Search and scrape for agents | Search $1 per 1,000 (Turbo, Fast) or $5 (Basic, Advanced); Extract $1 per 1,000 URLs | Up to 5,000 requests a month; keyless Parallel MCP | No |
 | Exa | Search and page contents | Search $4 to $15 per 1,000; Contents $1 per 1,000 pages | $10 a month, plus a $10 onboarding bonus | No |
 | Tavily | Search, extract, and crawl | Basic search 1 credit; 5 extractions per credit; credits $0.005 to $0.008 | 1,000 credits a month | No |
 | Bright Data | Unblocking hard sites | $1.50 per 1,000 requests pay as you go | 5,000 requests a month | No |
@@ -35,7 +35,7 @@ If your agent calls Firecrawl’s `/search` and then scrapes the top results, yo
 
 ### Parallel
 
-Parallel Search takes a natural-language objective plus keyword queries and returns ranked URLs with excerpts already compressed for a context window, so many agents skip the separate scrape step. Turbo and Fast cost $1 per 1,000 requests with 10 results, and Basic and Advanced cost $5. When you need a full page, [Extract](https://docs.parallel.ai/extract/extract-quickstart) costs $1 per 1,000 URLs. The free [Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) at `https://mcp.parallel.ai/mcp` needs no API key and exposes `web_search` and `web_fetch`, the closest match to Firecrawl’s keyless MCP. Parallel has no crawl, map, or browser interaction endpoint, so keep a crawler if you depend on those. See [pricing](https://parallel.ai/pricing) and our [Firecrawl vs. Parallel comparison](https://parallel.ai/compare/firecrawl-vs-parallel).
+Parallel Search takes a natural-language objective plus keyword queries and returns ranked URLs with excerpts already compressed for a context window, so many agents skip the separate scrape step. Turbo and Fast cost $1 per 1,000 requests with 10 results, and Basic and Advanced cost $5. When you need a full page, [Extract](https://docs.parallel.ai/extract/extract-quickstart) costs $1 per 1,000 URLs. The free [Parallel MCP](https://parallel.ai/mcp) at https://mcp.parallel.ai/mcp needs no API key and exposes web_search, web_fetch, and web_decisions, the closest match to Firecrawl’s keyless MCP; signing in adds web_research for cited answers. Parallel has no crawl, map, or browser interaction endpoint, so keep a crawler if you depend on those. See [pricing](https://parallel.ai/pricing) and our [Firecrawl vs. Parallel comparison](https://parallel.ai/compare/firecrawl-vs-parallel).
 
 **Best for:** agents that search, read, and cite, where cost per call and context size matter.
 
@@ -160,4 +160,4 @@ No. Parallel offers Search, Extract, Task, FindAll, Monitor, and Responses APIs,
 
 ## Get started
 
-Connect the free Parallel Search MCP at `https://mcp.parallel.ai/mcp` to your agent, or get an API key on [Platform](https://platform.parallel.ai) and run the curl request above. For scraper-specific tradeoffs, read our [ScrapingBee vs. Parallel comparison](https://parallel.ai/articles/scrapingbee-vs-parallel).
+Connect the free [Parallel MCP](https://parallel.ai/mcp) at https://mcp.parallel.ai/mcp to your agent, or get an API key on [Platform](https://platform.parallel.ai) and run the curl request above. For scraper-specific tradeoffs, read our [ScrapingBee vs. Parallel comparison](https://parallel.ai/articles/scrapingbee-vs-parallel).

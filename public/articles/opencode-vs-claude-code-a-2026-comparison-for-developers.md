@@ -10,7 +10,7 @@ One factor gets far less attention: the quality of the live web data each agent 
 - Claude Code tends to run faster and simpler, and OpenCode tends to cost less and offer more flexibility.
 - Both agents run in the terminal, and both support MCP servers for extensions.
 - Neither agent ships strong web access by default, so data quality is the overlooked decision axis.
-- A web search MCP server like Parallel's works inside either agent to deliver accurate, current data.
+- A web search MCP server like [Parallel MCP](https://parallel.ai/mcp) works inside either agent to deliver accurate, current data.
 
 ## OpenCode vs Claude Code at a glance
 
@@ -100,27 +100,31 @@ This problem gets worse as libraries move faster, since a model's training data 
 
 MCP is the fix, because it's the shared extension layer both agents support. [The same web search MCP server works in Claude Code and OpenCode without changes](https://parallel.ai/articles/openclaw-best-practices-web-search).
 
-At Parallel, we build web search and research APIs for exactly this problem. [Our Search MCP server](https://docs.parallel.ai/search/search-quickstart) gives either agent accurate, current web results ranked for relevance, with dense excerpts tuned for LLM context windows.
+At Parallel, we build web search and research APIs for exactly this problem. [Parallel MCP](https://parallel.ai/mcp) gives either agent accurate, current web results ranked for relevance, with dense excerpts tuned for LLM context windows, plus page fetch and, once you sign in or add an API key, single-question research through `web_research`.
 
-[Our Extract API](https://docs.parallel.ai/extract/extract-quickstart) turns a documentation URL into clean markdown. [Our Task API](https://docs.parallel.ai/task-api/task-quickstart) runs structured deep research with citations, and [our FindAll API](https://parallel.ai/products/findall) discovers and structures entity datasets. All of these are reachable from inside the terminal through the same MCP layer.
+[Our Extract API](https://docs.parallel.ai/extract/extract-quickstart) turns a documentation URL into clean markdown, and it powers the MCP server’s `web_fetch` tool. [Our Task API](https://docs.parallel.ai/task-api/task-quickstart) runs structured deep research with citations, and [our FindAll API](https://parallel.ai/products/findall) discovers and structures entity datasets. For asynchronous deep research and list enrichment from the terminal, use the [Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp) or the Parallel CLI.
 
-To add the Parallel Search MCP server to an MCP-aware agent, drop this block into your configuration:
+To add Parallel MCP, use each agent’s own config. In Claude Code, it’s one command:
+
+```bash
+claude mcp add --transport http parallel https://mcp.parallel.ai/mcp
+```
+
+In OpenCode, add it to `opencode.json` in your project or `~/.config/opencode/opencode.json` globally:
 
 ```json
 {
-  "mcpServers": {
-    "parallel-search": {
-      "type": "http",
+  "mcp": {
+    "parallel": {
+      "type": "remote",
       "url": "https://mcp.parallel.ai/mcp",
-      "headers": {
-        "x-api-key": "YOUR_PARALLEL_API_KEY"
-      }
+      "enabled": true
     }
   }
 }
 ```
 
-Add that block to your agent's MCP configuration, supply your API key, and the agent can search the live web as a tool call.
+Both connect without an API key, so the agent can search the live web and read pages as tool calls. For `web_research` and higher rate limits, connect to `https://mcp.parallel.ai/mcp?login` to sign in, or send your API key in an `Authorization: Bearer` header. The [installation docs](https://docs.parallel.ai/integrations/mcp/installation) cover other clients.
 
 Before writing code against a library, the agent looks up the latest API from the official documentation instead of guessing at a method signature.
 
@@ -158,6 +162,6 @@ No, Claude Code runs Anthropic models only. If you need GPT or Gemini in a termi
 
 ### How do I give Claude Code or OpenCode live web access?
 
-Add a web search MCP server, since both agents support MCP. Parallel's Search MCP server gives either agent accurate, current web results, and the Extract, Task, and FindAll APIs extend that into documentation parsing and [deep research](https://parallel.ai/articles/what-is-deep-research).
+Add a web search MCP server, since both agents support MCP. Parallel MCP gives either agent accurate, current web results and page fetch with no key, and the Task and FindAll APIs extend that into [deep research](https://parallel.ai/articles/what-is-deep-research) and entity discovery.
 
 [Start Building](https://docs.parallel.ai/home) with Parallel's APIs for accurate web search and research.

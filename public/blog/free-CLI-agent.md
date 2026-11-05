@@ -11,7 +11,7 @@ Here's how it went and where the rough edges were.
 - **Agent harness:** [Pi](https://github.com/badlogic/pi-mono) (`@mariozechner/pi-coding-agent`). Billed as a _minimal terminal coding harness_ — four built-in tools (`read`, `write`, `edit`, `bash`), everything else via extensions. "Adapt pi to your workflows, not the other way around." MCP support comes from a third-party extension, `[pi-mcp-adapter](https://github.com/nicobailon/pi-mcp-adapter)`.
 - **Model runtime:** [Ollama](https://ollama.com/)
 - **Model:** `gemma4:26b` — the 26B Mixture-of-Experts variant with 4B active parameters from Google DeepMind's Gemma 4 family (Apache 2.0 license).
-- **Search:** [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) at `https://search.parallel.ai/mcp`. Two tools: `web_search` and `web_fetch`. No auth required.
+- **Search:** [Parallel Search MCP](https://parallel.ai/mcp) at `https://mcp.parallel.ai/mcp`. Two tools: `web_search` and `web_fetch`. No auth required.
 
 ## Getting it running
 
@@ -43,7 +43,7 @@ There's nothing to set up server-side — [Parallel](https://parallel.ai/) hosts
 {
   "mcpServers": {
     "parallel-search": {
-      "url": "https://search.parallel.ai/mcp",
+      "url": "https://mcp.parallel.ai/mcp",
       "directTools": ["web_search", "web_fetch"]
     }
   }
@@ -137,7 +137,7 @@ Sources
 
 Three steps, one file:
 
-1. **Search** — use `@modelcontextprotocol/sdk` with `StreamableHTTPClientTransport` to connect to `https://search.parallel.ai/mcp`, then `client.callTool({ name: "web_search", arguments: { ... } })`. Do **not** hand-roll JSON-RPC over `fetch` — the Streamable HTTP transport has an initialize handshake, session headers, and SSE framing that the SDK handles. When developing, run await client.listTools() once and log the web_search input schema before the first callTool — don't guess argument names; also log the results so you know the shape of the response. Pass `--since` in the search objective.
+1. **Search** — use `@modelcontextprotocol/sdk` with `StreamableHTTPClientTransport` to connect to `https://mcp.parallel.ai/mcp`, then `client.callTool({ name: "web_search", arguments: { ... } })`. Do **not** hand-roll JSON-RPC over `fetch` — the Streamable HTTP transport has an initialize handshake, session headers, and SSE framing that the SDK handles. When developing, run await client.listTools() once and log the web_search input schema before the first callTool — don't guess argument names; also log the results so you know the shape of the response. Pass `--since` in the search objective.
 2. **Summarize** — hand the results to an LLM with a tight prompt: "Return N bullets. One sentence each. Cite each bullet with `[n]` matching the source index. No fluff." The LLM only produces text — it does not call tools, so any Ollama chat model works regardless of its tool-calling maturity.
 3. **Print** — render bullets + a numbered source list. In `--json` mode, skip rendering and dump the structured object, e.g.:
 

@@ -64,4 +64,4 @@ For developers building production systems, the MCP can be integrated programmat
 
 
 
-To learn more, check out our [documentation](https://docs.parallel.ai/integrations/mcp/getting-started).
+To learn more, check out our [documentation](https://docs.parallel.ai/integrations/mcp/quickstart).

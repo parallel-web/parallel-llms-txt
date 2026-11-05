@@ -107,7 +107,7 @@ You can reproduce this evaluation in about a day. The steps are below, and the [
 2. Run each API side by side with default configuration. Keep the surrounding setup identical across engines, so the search API is the only variable.
 3. Judge whether the agent finished the task. Score the final answer rather than retrieval metrics alone, since the answer is what your users see.
 4. Measure latency and cost per successful task rather than per request. A call that fails twice costs you more than one accurate call.
-5. Rerun periodically. Providers ship changes constantly and any benchmark ages, so schedule a repeat. If you wire the search step through the [Parallel Search MCP Server](https://parallel.ai/blog/search-mcp-server), swapping engines to compare takes minutes.
+5. Rerun periodically. Providers ship changes constantly and any benchmark ages, so schedule a repeat. If you wire the search step through an MCP server such as [Parallel MCP](https://parallel.ai/mcp), swapping engines to compare takes minutes.
 
 ## **Common questions about search APIs for AI**
 

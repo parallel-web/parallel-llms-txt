@@ -1,6 +1,6 @@
 # How to add better web search to DeepSeek Harness: plugins and MCP setup
 
-DeepSeek Harness web search works from the first launch, but the default tool spends a full DeepSeek model call on every search and needs DeepSeek credentials. This guide covers the built-in providers, the main community search plugins, a tested setup for Parallel's free Search MCP, and how to add an API key for higher limits.
+DeepSeek Harness web search works from the first launch, but the default tool spends a full DeepSeek model call on every search and needs DeepSeek credentials. This guide covers the built-in providers, the main community search plugins, a tested setup for the free Parallel MCP, and how to add an API key for higher limits.
 
 DeepSeek open-sourced [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (`dsh`) under the MIT license on August 13, 2026. It’s an agent harness built on Cordis, where every capability, from the model route to the file tools, is a plugin you can swap. The shipped profiles give the model a `web_search` tool backed by the `@deepseek-ai/dsh-web-search-deepseek` provider. Per [that package’s README](https://github.com/deepseek-ai/deepseek-harness/blob/main/packages/web/web-search-deepseek/README.md), each search is a full auxiliary Messages call to a DeepSeek model, with up to five server-side searches per request, and it needs either a DeepSeek account sign-in or a `DEEPSEEK_API_KEY`. The companion `web_fetch` tool downloads public pages anonymously over HTTP.
 
@@ -28,26 +28,26 @@ Plugins are the right call when you want to keep the native `web_search` tool na
 
 `@deepseek-ai/dsh-mcp-client` ships with dsh and connects any MCP server over stdio or Streamable HTTP. No server is enabled by default. Each server’s tools show up as `mcp__<serverName>__<tool>`, the same naming shape Claude Code and Codex use, and the server’s own instructions join the system prompt. An MCP server needs no plugin install and runs no third-party code in the harness process, and the same server works in every other MCP client you use.
 
-|  | Built-in (DeepSeek native) | Community plugin | Parallel Search MCP |
+|  | Built-in (DeepSeek native) | Community plugin | Parallel MCP |
 | --- | --- | --- | --- |
 | What backs search | A DeepSeek model call with server-side search | Firecrawl, Bing, AnySearch, or others, per plugin | Parallel’s search index |
 | Credentials | DeepSeek account or DEEPSEEK_API_KEY | Varies; most have a keyless tier | None; optional Parallel API key |
 | Setup | Already on | dsh plugin add, then restart | One YAML row |
 | Code in the harness process | DeepSeek’s provider | Third-party plugin code | None; dsh’s own MCP client |
-| Tools the model sees | web_search, web_fetch | web_search, web_fetch, plus plugin extras | mcp__parallel__web_search, mcp__parallel__web_fetch |
+| Tools the model sees | web_search, web_fetch | web_search, web_fetch, plus plugin extras | mcp__parallel__web_search, mcp__parallel__web_fetch, mcp__parallel__web_decisions |
 | Page reading | One URL per web_fetch call | Varies by plugin | Up to 20 URLs per web_fetch call |
 | Cost per search | One model turn of tokens | Free tiers, then each vendor’s pricing | Free at anonymous rate limits; Search API rates with a key |
 
-## Add Parallel’s free Search MCP to DeepSeek Harness
+## Add the free Parallel MCP to DeepSeek Harness
 
-We make Parallel, so weigh our recommendation accordingly. The [Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) runs at `https://mcp.parallel.ai/mcp` over Streamable HTTP and needs no account or API key. It exposes two tools. `web_search` takes a natural-language `objective` plus a list of keyword `search_queries` and returns ranked URLs with excerpts. `web_fetch` takes up to 20 URLs and returns excerpts focused on an objective, or full page content when the model asks for it. Results are capped at about 25,000 characters per call.
+We make Parallel, so weigh our recommendation accordingly. [Parallel MCP](https://parallel.ai/mcp) runs at `https://mcp.parallel.ai/mcp` over Streamable HTTP and needs no account or API key. Without a key it exposes three tools. `web_search` takes a natural-language objective plus a list of keyword `search_queries` and returns ranked URLs with excerpts. `web_fetch` takes up to 20 URLs and returns excerpts focused on an objective, or full page content when the model asks for it. Results are capped at about 25,000 characters per call. `web_decisions` answers typed questions, such as a probability or a pick among options, with sources. An API key adds a fourth, `web_research`, which researches one question and returns a cited answer in the same call.
 
 ### Step 1: Write the overlay
 
 dsh composes its configuration from YAML patch layers. Save this as `parallel-search.cordis.yml`:
 
 ```yaml
-# Parallel Search MCP for DeepSeek Harness (free, no API key)
+# Parallel MCP for DeepSeek Harness (free, no API key)
 - insert:
     - id: mcp-parallel-search
       name: '@deepseek-ai/dsh-mcp-client'
@@ -57,7 +57,7 @@ dsh composes its configuration from YAML patch layers. Save this as `parallel-se
         url: https://mcp.parallel.ai/mcp
 ```
 
-The `serverName` becomes the tool prefix, so this row produces `mcp__parallel__web_search` and `mcp__parallel__web_fetch`. It must match `[A-Za-z0-9_-]{1,32}`.
+The serverName becomes the tool prefix, so this row produces `mcp__parallel__web_search`, `mcp__parallel__web_fetch`, and `mcp__parallel__web_decisions`. It must match [A-Za-z0-9_-]{1,32}.
 
 ### Step 2: Launch dsh with the overlay
 
@@ -81,7 +81,7 @@ The MCP client connects and lists tools before the first turn. You can confirm t
 npx @deepseek-ai/dsh@0.2.0-rc.2 web --patch "$PWD/parallel-search.cordis.yml" --dump-config | grep -A4 mcp-parallel-search
 ```
 
-We ran dsh 0.2.0-rc.2 in an isolated `HOME` and `DSH_HOME` on macOS with Node 22.23 and no DeepSeek key. The headless run stopped at the model call with `MISSING_CREDENTIAL`, but by then the request header in the session log already listed every tool dsh had registered:
+We ran dsh 0.2.0-rc.2 in an isolated HOME and DSH_HOME on macOS with Node 22.23 and no DeepSeek key, on October 10, 2026, before the Parallel MCP 2.0 release added `web_decisions` to the keyless tools. The headless run stopped at the model call with MISSING_CREDENTIAL, but by then the request header in the session log already listed every tool dsh had registered:
 
 ```text
 bash, edit, glob, grep, read, write, ...
@@ -108,7 +108,7 @@ An id-targeted patch replaces the whole config of that row, so restate every fie
 
 ## Add a Parallel API key for higher limits
 
-Anonymous calls run in Fast mode at shared rate limits. For steadier throughput, create a key at [platform.parallel.ai](https://platform.parallel.ai) and send it as a bearer token. dsh evaluates `!!js` expressions in config, so the key stays out of the YAML:
+Anonymous calls run in Fast mode at shared rate limits. For steadier throughput, or for `web_research`, create a key at [platform.parallel.ai](https://platform.parallel.ai) and send it as a bearer token. dsh evaluates !!js expressions in config, so the key stays out of the YAML:
 
 ```yaml
 - insert:
@@ -126,7 +126,7 @@ Anonymous calls run in Fast mode at shared rate limits. For steadier throughput,
 
 Export `PARALLEL_API_KEY` in your shell, or put `PARALLEL_API_KEY=...` in `$DSH_HOME/.env`; dsh loaded it from that file in our test. The conditional sends no header when the variable is unset, so the server falls back to anonymous access. A one-line header that interpolates the variable directly also works, but when the variable is missing it sends `Bearer undefined`, and the server rejects that.
 
-Keyed calls bill at Search API rates. Per the [Search modes docs](https://docs.parallel.ai/search/modes), Fast costs $1 per 1,000 requests and Basic and Advanced cost $5 per 1,000. With a key, you can pin the mode for every call on the connection. Add an `x-parallel-mcp-config` header next to `Authorization` with a value such as `{"web_search":{"override":{"mode":"basic"}}}`. Anonymous calls always run in Fast mode, and the server rejects the header on a connection without a key.
+Keyed calls bill at Search API rates. Per the [Search modes docs](https://docs.parallel.ai/search/modes), Fast and Turbo cost $1 per 1,000 requests and Basic and Advanced cost $5 per 1,000, and new accounts get up to $80 in free credits plus $5 a month with a card on file. With a key, you can pin the mode, domains to include or exclude, and max results for every call on the connection. Add an `x-parallel-mcp-config` header next to Authorization with a value such as `{"web_search":{"override":{"mode":"basic"}}}`; the [override settings docs](https://docs.parallel.ai/integrations/mcp/quickstart#override-settings) list every field. Anonymous calls always run in Fast mode, and the server rejects the header on a connection without a key.
 
 ## Troubleshooting
 
@@ -153,9 +153,9 @@ Yes. The bundled `@deepseek-ai/dsh-mcp-client` plugin connects MCP servers over 
 
 In YAML patch layers. Use `$DSH_HOME/profiles/<profile>/cordis.patch.yml` for one profile or `$DSH_HOME/cordis.patch.yml` for all profiles, with `DSH_HOME` defaulting to `~/.dsh`. You can also pass a one-off file with `--patch`.
 
-### Is Parallel’s Search MCP free in DeepSeek Harness?
+### Is Parallel MCP free in DeepSeek Harness?
 
-Yes. `https://mcp.parallel.ai/mcp` works with no account or API key at anonymous rate limits. Adding a Parallel API key as a bearer header raises those limits.
+Yes. `https://mcp.parallel.ai/mcp` works with no account or API key at anonymous rate limits, for `web_search`, `web_fetch`, and `web_decisions`. Adding a Parallel API key as a bearer header raises those limits and adds `web_research`.
 
 ### Should I use a search plugin or an MCP server in dsh?
 
@@ -163,4 +163,4 @@ Use a plugin if you want the native `web_search` tool name, multi-engine failove
 
 ## Get started
 
-Save the overlay above, run `npx @deepseek-ai/dsh@0.2.0-rc.2 web --patch "$PWD/parallel-search.cordis.yml"`, and ask your agent something that happened this week. For background on how MCP search servers work, read [What is a web search MCP?](https://parallel.ai/articles/what-is-a-web-search-mcp), and for other free options, see [the best free web search MCP servers](https://parallel.ai/articles/best-free-web-search-mcp).
+Save the overlay above, run npx @deepseek-ai/dsh@0.2.0-rc.2 web --patch "$PWD/parallel-search.cordis.yml", and ask your agent something that happened this week. To add the same server to your other agents, use the one-click installs and setup prompt on [parallel.ai/mcp](https://parallel.ai/mcp). For background on how MCP search servers work, read [What is a web search MCP?](https://parallel.ai/articles/what-is-a-web-search-mcp), and for other free options, see [the best free web search MCP servers](https://parallel.ai/articles/best-free-web-search-mcp).

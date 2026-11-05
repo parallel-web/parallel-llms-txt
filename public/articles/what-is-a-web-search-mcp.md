@@ -31,7 +31,7 @@ The 2026-07-28 revision, the current one, made the protocol stateless. It [remov
 
 ## What a web search tool call looks like
 
-We sent this request to Parallel’s keyless Search MCP on October 8, 2026, with no API key:
+We sent this request to [Parallel MCP](https://parallel.ai/mcp) on November 5, 2026, with no API key:
 
 ```json
 {
@@ -52,35 +52,36 @@ The server returned a text block holding JSON. Here are two of the results, with
 
 ```json
 {
-  "search_id": "search_75d42a20951211adb055b2842a020fab",
+  "search_id": "search_3e38f6db9994a51aac61883b469dd5eb",
   "results": [
     {
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-27-agents-sdk-v0.20.0-mcp-sdk-v2",
-      "title": "Agents SDK adds MCP Specification 2026-07-28 support",
-      "publish_date": null,
-      "excerpts": ["Agents SDK v0.20.0 adds client and server support for MCP 2026-07-28, including stateless Workers and compatibility with legacy MCP servers. ..."]
+      "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/docs/specification/2026-07-28/changelog.mdx",
+      "title": "modelcontextprotocol/docs/specification/2026-07-28/changelog.mdx at main",
+      "publish_date": "2026-07-28",
+      "excerpts": ["... Make MCP stateless: remove the initialize/notifications/initialized handshake. Every request now carries its protocol version and client capabilities in _meta ..."]
     },
     {
-      "url": "https://blog.modelcontextprotocol.io/posts/sdk-betas-2026-07-28",
-      "title": "Beta SDKs for the 2026-07-28 MCP Spec Release Candidate Are Here",
-      "publish_date": "2026-06-29",
-      "excerpts": ["... the new protocol revision goes stateless, removing the initialize handshake ..."]
+      "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28",
+      "title": "The 2026-07-28 Specification",
+      "publish_date": "2026-07-28",
+      "excerpts": ["The 2026-07-28 Model Context Protocol specification is out, bringing a stateless protocol core, Multi Round-Trip Requests, header-based routing, cacheable list results ..."]
     }
-  ]
+  ],
+  "session_id": "session_3e38f6db9994a51aac61883b469dd5eb"
 }
 ```
 
-The model gets multi-sentence excerpts chosen for the objective, which is often enough to answer without opening a single page. When it needs the full document, it calls the second tool, `web_fetch`, with the URL. Both tools carry MCP tool annotations: Parallel marks them `readOnlyHint: true` and `openWorldHint: true`, which tells the client that the tools read from the open web and change nothing. Clients can use those hints when they decide which calls to auto-approve.
+The model gets multi-sentence excerpts chosen for the objective, which is often enough to answer without opening a single page. When it needs the full document, it calls `web_fetch` with the URL. The `session_id` lets later calls in the same conversation be grouped together. Parallel marks its tools `readOnlyHint: true` and `openWorldHint: true`, MCP tool annotations that tell the client the tools read from the open web and change nothing. Clients can use those hints when they decide which calls to auto-approve.
 
 ## What tools a web search MCP exposes
 
 Most web search servers cover two jobs. A **search** tool takes a query and returns ranked results, and a **fetch** tool takes a URL and returns the page’s content. Some servers add crawling, browser interaction, or a research agent. Extra tools widen what the agent can do, but each schema also takes up context and gives the model one more option to choose from on every turn.
 
-Here’s how the default tool sets of five widely used servers compare, per each provider’s documentation as of October 2026:
+Here’s how the default tool sets of five widely used servers compare, per each provider’s documentation as of October 2026 (Parallel's row reflects the Parallel MCP release of November 5, 2026):
 
 | Server | How you connect | Default tools | API key |
 | --- | --- | --- | --- |
-| Parallel Search MCP | Hosted: https://mcp.parallel.ai/mcp | web_search, web_fetch | Optional; keyless use is free at lower rate limits |
+| Parallel MCP | Hosted: https://mcp.parallel.ai/mcp | web_search, web_fetch, web_decisions; web_research with sign-in or an API key | Optional; keyless use is free at lower rate limits |
 | Exa MCP | Hosted: https://mcp.exa.ai/mcp | web_search_exa, web_fetch_exa; advanced search and agent_run are opt-in | Optional for search; agent_run needs an API key or OAuth |
 | Firecrawl MCP | Hosted: https://mcp.firecrawl.dev/v2/mcp | firecrawl_search, firecrawl_scrape, firecrawl_parse on the keyless endpoint | Optional for those three; the full server adds crawl, interact, and research tools |
 | Tavily MCP | Hosted: https://mcp.tavily.com/mcp/ | tavily-search, tavily-extract | Optional; keyless use needs the X-Tavily-Access-Mode: keyless header |
@@ -98,7 +99,7 @@ You can give a model web access in three ways, and they suit different jobs:
 | Web search MCP | Any MCP client: coding agents, desktop assistants, IDEs | Any provider; switching is a URL change | Interactive agents and tools you don’t control the code of |
 | Search API called from your code | Your own application | Any provider | Production pipelines that need retries, caching, and cost control |
 
-Use a web search MCP when the agent runs inside an MCP client you didn’t build, or when you want the same search provider across several clients. Call the API directly when you own the agent loop, such as a backend service or a batch job. You can also do both against one provider: Parallel’s Search MCP runs on the same [Search API](https://parallel.ai/articles/what-is-a-web-search-api) that production code calls. [MCP servers vs. agent skills vs. CLIs](https://parallel.ai/articles/mcp-vs-skills-vs-clis) covers a fourth option, wrapping search in a command-line tool.
+Use a web search MCP when the agent runs inside an MCP client you didn’t build, or when you want the same search provider across several clients. Call the API directly when you own the agent loop, such as a backend service or a batch job. You can also do both against one provider: the `web_search` tool in Parallel MCP runs on the same [Search API](https://parallel.ai/articles/what-is-a-web-search-api) that production code calls. [MCP servers vs. agent skills vs. CLIs](https://parallel.ai/articles/mcp-vs-skills-vs-clis) covers a fourth option, wrapping search in a command-line tool.
 
 ## How to choose a web search MCP
 
@@ -106,9 +107,9 @@ Once a server is installed, these are the differences that matter:
 
 - **What comes back.** A server that returns query-relevant excerpts lets the model answer from search alone. One that returns short snippets forces a fetch per result, and each fetch costs a turn and more tokens.
 - **Accuracy inside an agent.** Vendor claims vary in method, so check independent results. The [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) runs every search API through the same agent harness and publishes accuracy, cost, and time per task.
-- **Context cost.** Every tool schema sits in the model’s context. Two focused tools cost less context than a dozen general ones.
-- **Access and limits.** Keyless access is fine for trying a server. Production use needs an API key or OAuth for higher rate limits, and organization-wide deployments may need enforced sign-in. Parallel serves OAuth on a separate endpoint, `https://mcp.parallel.ai/mcp?login`.
-- **Controls.** Check whether you can restrict sources, set freshness, or pick a speed tier. Parallel’s Search MCP accepts the Search API’s settings, including [search modes](https://docs.parallel.ai/search/modes) and source policy, as connection-level overrides.
+- Context cost. Every tool schema sits in the model’s context. Two focused tools cost less context than a dozen general ones, and some servers let you trim the list: Parallel’s takes a `?tools=` parameter, such as `https://mcp.parallel.ai/mcp?tools=web_search,web_fetch`.
+- Access and limits. Keyless access is fine for trying a server. Production use needs an API key or OAuth for higher rate limits, and organization-wide deployments may need enforced sign-in. Parallel serves OAuth sign-in at `https://mcp.parallel.ai/mcp?login`, which also adds its `web_research` tool.
+- Controls. Check whether you can restrict sources, set freshness, or pick a speed tier. Parallel MCP lets you fix the [search mode](https://docs.parallel.ai/search/modes) (turbo, fast, basic, or advanced), include or exclude domains, and cap max results for every call on a connection through [override settings](https://docs.parallel.ai/integrations/mcp/quickstart#override-settings) in the `x-parallel-mcp-config` header. Overrides need sign-in or an API key.
 
 ## Treat search results as untrusted input
 
@@ -118,16 +119,16 @@ A few habits reduce the risk. Keep search tools read-only and check their annota
 
 ## How to add a web search MCP
 
-Parallel’s Search MCP needs no account. In Claude Code, run:
+Parallel MCP needs no account. [parallel.ai/mcp](https://parallel.ai/mcp) has one-click installs for Claude, ChatGPT, Cursor, VS Code, Grok Bot, Antigravity, OpenCode, and Hermes, plus a setup prompt you can paste into any other agent. From a terminal, in Claude Code, run:
 
 ```bash
-claude mcp add --transport http parallel-search https://mcp.parallel.ai/mcp
+claude mcp add --transport http parallel https://mcp.parallel.ai/mcp
 ```
 
 In Codex CLI:
 
 ```bash
-codex mcp add parallel-search --url https://mcp.parallel.ai/mcp
+codex mcp add parallel --url https://mcp.parallel.ai/mcp
 ```
 
 In Cursor, add the server to `~/.cursor/mcp.json`:
@@ -135,14 +136,14 @@ In Cursor, add the server to `~/.cursor/mcp.json`:
 ```json
 {
   "mcpServers": {
-    "parallel-search": {
+    "Parallel": {
       "url": "https://mcp.parallel.ai/mcp"
     }
   }
 }
 ```
 
-Restart the client if it doesn’t pick up the change, then ask about something recent enough to fall after the model’s training cutoff. For higher rate limits, create a key on the [Parallel Platform](https://platform.parallel.ai) and send it as an `Authorization: Bearer` header. The [Search MCP docs](https://docs.parallel.ai/integrations/mcp/quickstart) cover VS Code, Claude Desktop, Windsurf, Gemini CLI, and stdio-only clients such as Zed, which connect through the `mcp-remote` bridge.
+Restart the client if it doesn’t pick up the change, then ask about something recent enough to fall after the model’s training cutoff. For `web_research` and higher rate limits, connect to `https://mcp.parallel.ai/mcp?login` to sign in, or create a key on the [Parallel Platform](https://platform.parallel.ai) and send it as an `Authorization: Bearer` header. Signed-in calls bill at Search API rates, $1 per 1,000 requests in the default fast mode, and new accounts get up to $80 in free credits plus $5 a month with a card on file. The [installation docs](https://docs.parallel.ai/integrations/mcp/installation) cover VS Code, Claude Desktop, Windsurf, Gemini CLI, Zed, and more than 20 other clients, including an mcp-remote bridge config for clients that only run local servers.
 
 ## Frequently asked questions
 
@@ -152,7 +153,7 @@ A web search MCP is a Model Context Protocol server that gives an AI model tools
 
 ### Is there a free web search MCP?
 
-Yes. Parallel, Exa, and Firecrawl run hosted web search MCP servers that work without an API key, at lower rate limits. Tavily’s hosted server also works keyless if the client sends the `X-Tavily-Access-Mode: keyless` header. Brave’s server requires an API key.
+Yes. Parallel, Exa, and Firecrawl run hosted web search MCP servers that work without an API key, at lower rate limits. Parallel’s keyless tools are `web_search`, `web_fetch`, and `web_decisions`, and calls past the free limit are rate limited rather than billed. Tavily’s hosted server also works keyless if the client sends the X-Tavily-Access-Mode: keyless header. Brave’s server requires an API key.
 
 ### What’s the difference between a web search MCP and a web search API?
 
@@ -168,4 +169,4 @@ Either. Hosted servers such as Parallel’s, Exa’s, and Tavily’s run remotel
 
 ## Get started
 
-Add Parallel’s Search MCP to your client with the command above and try a question your model can’t answer from memory. When you’re ready to compare providers on results and cost, [The best web search MCP server in 2026](https://parallel.ai/articles/best-web-search-mcp) puts five of them side by side.
+Add [Parallel MCP](https://parallel.ai/mcp) to your client in one click or with the command above, and try a question your model can’t answer from memory. The [launch post](https://parallel.ai/blog/parallel-mcp-2) covers what changed in the November 2026 release. When you’re ready to compare providers on results and cost, [The best web search MCP server in 2026](https://parallel.ai/articles/best-web-search-mcp) puts five of them side by side.

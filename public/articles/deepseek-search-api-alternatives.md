@@ -6,7 +6,7 @@ DeepSeek’s Search and Fetch APIs cost $0.75 per 1,000 successful requests, and
 
 Keep the DeepSeek Search API if price per call is your main constraint. At list price Parallel costs more ($1 vs $0.75 per 1,000 requests on Turbo and Fast). DeepSeek is the better pick if you run DeepSeek models, stay under 5 requests per second per endpoint, and accept DeepSeek’s data terms.
 
-Choose Parallel when you want search that works with any model, DeepSeek’s included, so you can change models without changing your search integration. Parallel Search is a REST API with SDKs and a free hosted MCP server that needs no key.
+Choose Parallel when you want search that works with any model, DeepSeek’s included, so you can change models without changing your search integration. Parallel Search is a REST API with SDKs, and [Parallel MCP](https://parallel.ai/mcp) gives any MCP client free web search and fetch with no key.
 
 Among the other alternatives, Exa fits entity and semantic search, and Brave has an independent index with Goggles. Perplexity returns raw ranked results with filters. Tavily is a framework default and bills in credits. Linkup prices per request with no credit conversion, and Firecrawl scrapes whole pages next to search.
 
@@ -54,7 +54,7 @@ Prices are list prices from each provider’s pricing page, checked October 17, 
 
 Parallel Search takes a natural language objective, with optional keyword queries, and returns ranked URLs with excerpts sized to a token budget through `max_chars_per_result` and `max_chars_total`. Turbo and Fast cost $1 per 1,000 requests and Basic and Advanced cost $5, with 10 results included. Extract costs $1 per 1,000 URLs, and the Task API runs deep research at fixed prices from $5 to $2,400 per 1,000 runs.
 
-The argument for Parallel is model independence. The same call works from any model that supports tool use, and the free [Search MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) at `https://mcp.parallel.ai/mcp` works with any MCP client without a key. In a test on October 17, 2026, DeepSeek-V4.1-Flash-1017 called Parallel Search as a function tool through OpenRouter and answered from the results. That was a single smoke test.
+The argument for Parallel is model independence. The same call works from any model that supports tool use, and [Parallel MCP](https://parallel.ai/mcp) at `https://mcp.parallel.ai/mcp` works with any MCP client without a key, with a research tool added when you sign in. In a test on October 17, 2026, DeepSeek-V4.1-Flash-1017 called Parallel Search as a function tool through OpenRouter and answered from the results. That was a single smoke test.
 
 On the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (September 2026 data), Parallel Search Advanced scores 75 and Basic scores 73 out of 100, behind Perplexity Search (medium) at 80 and Octen Search (highlights) at 77. Parallel’s [benchmarks page](https://parallel.ai/benchmarks) publishes its own results with methodology and dates.
 
@@ -143,7 +143,7 @@ On the Artificial Analysis Search Index, Perplexity Search (medium) scored highe
 
 ### Is there a free alternative to the DeepSeek Search API?
 
-Most providers include a recurring free allowance. Parallel offers up to $80 at signup plus $5 a month, Exa $10 a month, Brave $5 a month, Tavily and Firecrawl 1,000 credits a month, and Linkup 4,000 free queries. Parallel’s Search MCP server is free with no key. The guide to [free web search APIs](https://parallel.ai/articles/best-free-web-search-api) compares them.
+Most providers include a recurring free allowance. Parallel offers up to $80 at signup plus $5 a month, Exa $10 a month, Brave $5 a month, Tavily and Firecrawl 1,000 credits a month, and Linkup 4,000 free queries. Parallel MCP is free with no key for web search, fetch, and decisions. The guide to [free web search APIs](https://parallel.ai/articles/best-free-web-search-api) compares them.
 
 For EU requirements, see [web search APIs with EU data residency](https://parallel.ai/articles/best-web-search-apis-eu-data-residency). To replace a different provider, see the guides to [Tavily alternatives](https://parallel.ai/articles/tavily-alternatives), [Exa alternatives](https://parallel.ai/articles/exa-alternatives), and [Firecrawl alternatives](https://parallel.ai/articles/firecrawl-alternatives).
 

@@ -105,7 +105,7 @@ parallel-cli search "Who is the current CEO of Airbus?" --mode fast --json
 
 Use `parallel-cli` 0.9.2 or later. Version 0.8.x treats `--mode fast` as a deprecated Beta alias, prints a warning, and runs the search in Basic at $5 per 1,000 requests; 0.9.3 accepted both modes without a warning in our test.
 
-The free [Parallel MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) at `https://mcp.parallel.ai/mcp` runs anonymous calls in Fast mode. To pin Turbo, authenticate with an API key and set the mode in the `x-parallel-mcp-config` header. In Codex:
+[Parallel MCP](https://parallel.ai/mcp) at `https://mcp.parallel.ai/mcp` runs `web_search` in Fast mode by default, and keyless calls are free. Once you sign in with OAuth or an API key, the `x-parallel-mcp-config` header gives you two choices: pin one mode (`turbo`, `fast`, `basic`, or `advanced`) in an `override` block the model can't change, or list `mode` under `model_choice` so the model picks the mode on each call. To pin Turbo in Codex:
 
 ```bash
 cat >> ~/.codex/config.toml <<'EOF'
@@ -116,7 +116,7 @@ http_headers = { "x-parallel-mcp-config" = '{"web_search":{"override":{"mode":"t
 EOF
 ```
 
-The server validates the header when the client connects, and an invalid mode value returns HTTP 400. To sign in with OAuth instead of a key, connect to `https://mcp.parallel.ai/mcp?login` and send the same header.
+The server validates the header when the client connects, and an invalid mode value returns HTTP 400. To let the model choose instead, send `{"web_search":{"model_choice":["mode"]}}`; each signed-in call then bills at that mode's API rate, $1 per 1,000 for Turbo or Fast and $5 per 1,000 for Basic or Advanced. To sign in with OAuth instead of a key, connect to `https://mcp.parallel.ai/mcp?login` and send the same header. The [override settings docs](https://docs.parallel.ai/integrations/mcp/quickstart#override-settings) list the other fields you can pin or expose, such as result count and domain filters.
 
 ## Get started
 
@@ -138,7 +138,7 @@ On our September 2026 benchmarks with a GPT-5.6 Luna agent, Turbo scored 91% on 
 
 ### Which mode does the free Parallel MCP server use?
 
-Anonymous calls to `https://mcp.parallel.ai/mcp` run in Fast mode. To use Turbo, authenticate with an API key or OAuth and set `mode` to `turbo` in the `x-parallel-mcp-config` header.
+Keyless calls to `https://mcp.parallel.ai/mcp` run in Fast mode. Signed in with an API key or OAuth, you can pin `turbo` (or any other mode) with an `override` in the `x-parallel-mcp-config` header, or add `mode` to `model_choice` so the model picks the mode per call.
 
 ### Which languages does Parallel Search Turbo support?
 

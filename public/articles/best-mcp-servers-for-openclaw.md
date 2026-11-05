@@ -10,23 +10,36 @@ This guide covers how MCP support works in OpenClaw, the servers that earn a pla
 
 Before you install anything, know that OpenClaw has a [free, LLM-optimized web search provider powered by the Parallel Search API](https://parallel.ai/blog/free-web-search-openclaw). It needs no API key or paid plan, but it isn’t on by default: install the plugin with `openclaw plugins install @openclaw/parallel-plugin`, then set `tools.web.search.provider` to `parallel-free`. OpenClaw never auto-selects a key-free provider, so without that setting it falls back to the first keyed provider it finds, starting with Brave.
 
-So the direct answer to "what's the best web search MCP for OpenClaw" is that you probably have it already. Adding the Parallel Search MCP on top still makes sense in two cases: you want web page fetching exposed as an explicit tool alongside search, or you want to attach an API key for higher rate limits than the anonymous default.
+So the direct answer to "what's the best web search MCP for OpenClaw" is that the plugin covers basic search for free. Adding [Parallel MCP](https://parallel.ai/mcp) on top still makes sense when you want more than search: web_fetch for reading specific pages as an explicit tool, web_decisions for typed questions like a probability or a pick among options, or, with an API key, web_research for cited answers to harder questions and higher rate limits.
 
 ## How MCP works in OpenClaw
 
 OpenClaw stores MCP server definitions in `~/.openclaw/openclaw.json` under `mcp.servers`, and the [openclaw mcp CLI](https://docs.openclaw.ai/cli/mcp) manages them: `openclaw mcp add` builds a definition from flags, `openclaw mcp set` saves one as raw JSON, `openclaw mcp list` and `openclaw mcp show` print what’s saved, and `openclaw mcp status --verbose` reports state without starting any servers. If you prefer a browser, **Settings > MCP** in the Control UI edits the same entries.
 
-Three details trip people up. First, set `"transport": "streamable-http"` for Streamable HTTP servers, because OpenClaw defaults to SSE when it’s omitted, and some hosted servers (Zapier’s, for one) don’t accept SSE. Second, CLI changes to saved servers (`add`, `set`, `configure`, `unset`) need the local Gateway stopped, and saving proves nothing about reachability: finish with `openclaw mcp doctor <name> --probe`, which connects and lists the server’s tools. Third, OAuth-protected servers (`"auth": "oauth"`) authenticate through `openclaw mcp login`, which stores tokens in a shared SQLite store so parallel OpenClaw processes don’t fight over refresh tokens.
+Three details trip people up. First, set "transport": "streamable-http" for Streamable HTTP servers, because OpenClaw defaults to SSE when it's omitted, and some hosted servers (Zapier's, for one) don't accept SSE. Second, the CLI commands that change or connect to saved servers (add, set, configure, tools, unset, login, probe, and doctor --probe) need the local Gateway stopped; while it runs, use the Control UI for live changes. Saving proves nothing about reachability, so finish with openclaw mcp doctor <name> --probe, which connects and lists the server's tools. Third, OAuth-protected servers ("auth": "oauth") authenticate through openclaw mcp login, which stores tokens in a shared SQLite store so parallel OpenClaw processes don't fight over refresh tokens.
 
 ```bash
-openclaw mcp set parallel-search '{"url":"https://mcp.parallel.ai/mcp","transport":"streamable-http"}'
+openclaw mcp set parallel '{"url":"https://mcp.parallel.ai/mcp","transport":"streamable-http"}'
 
 # or build the same entry from flags
-openclaw mcp add parallel-search --url https://mcp.parallel.ai/mcp --transport streamable-http
+openclaw mcp add parallel --url https://mcp.parallel.ai/mcp --transport streamable-http
 
 # verify: connects and lists tools
-openclaw mcp doctor parallel-search --probe
+openclaw mcp doctor parallel --probe
 openclaw mcp status --verbose
+```
+
+```json
+{
+  "mcp": {
+    "servers": {
+      "parallel": {
+        "url": "https://mcp.parallel.ai/mcp",
+        "transport": "streamable-http"
+      }
+    }
+  }
+}
 ```
 
 > **Security note**
@@ -35,25 +48,30 @@ openclaw mcp status --verbose
 
 ## The best MCP servers for OpenClaw
 
-### 1. Parallel Search MCP
+### 1. Parallel MCP
 
-The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) is a hosted server at `https://mcp.parallel.ai/mcp` that exposes two tools: `web_search`, which returns ranked results with token-dense excerpts an agent can usually answer from directly, and `web_fetch`, which pulls token-efficient markdown from specific URLs, including PDFs and JavaScript-heavy pages. It's free to use with no API key or account, and it runs on our own web-scale index rather than reselling another engine's results.
+Parallel MCP is a hosted server at https://mcp.parallel.ai/mcp. With no account or key it exposes three tools: web_search, which returns ranked results with token-dense excerpts an agent can usually answer from directly, web_fetch, which reads up to 20 URLs per call and returns relevant excerpts or full markdown, PDFs and JavaScript-heavy pages included, and web_decisions, which answers typed questions with sources. An API key, sent as a Bearer header, adds web_research and higher rate limits. It runs on our own web-scale index rather than reselling another engine's results.
 
-Parallel Search (advanced) scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), an independent benchmark of 26 search API products across 13 providers (October 2026), behind Perplexity Search (medium) at 80 and Octen Search at 77. OpenClaw also ships Parallel as a built-in search provider (paid, or a key-free Parallel Search (Free) option you select explicitly), so installing the MCP mainly buys you explicit fetching and, with an API key from `platform.parallel.ai` passed as a Bearer header, higher rate limits. Our notes on [getting maximum search accuracy out of OpenClaw](https://parallel.ai/articles/openclaw-best-practices-web-search) cover the prompting side.
+Parallel Search (advanced) scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), an independent benchmark of 26 search API products across 13 providers (October 2026), behind Perplexity Search (medium) at 80 and Octen Search at 77. OpenClaw's Parallel plugin also provides a search provider (paid, or the key-free Parallel Search (Free) option you select explicitly), so installing the MCP mainly buys you the tools the plugin doesn't have: explicit fetching, web_decisions, and, with an API key from platform.parallel.ai, web_research. Our notes on [getting maximum search accuracy out of OpenClaw](https://parallel.ai/articles/openclaw-best-practices-web-search) cover the prompting side.
 
 **Best for:** grounding every OpenClaw answer in current web results, plus reading specific pages in depth, at zero cost.
 
-**Tradeoffs:** we make it, so we’re biased. The keyless hosted MCP runs Search in its low-latency fast mode and caps excerpts at roughly 25,000 characters per call, so hour-long research jobs belong on the Task MCP below.
+Tradeoffs: we make it, so we're biased. Keyless calls run Search in its low-latency fast mode at lower rate limits; web_research needs an API key and is billed at the underlying API rates. A key also lets you pin a search mode or include and exclude domains through an x-parallel-mcp-config header.
 
-### 2. Parallel Task MCP
+### 2. Granola MCP
 
-Search answers questions; sometimes you want OpenClaw to delegate a whole research job. The [Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp) exposes Parallel's web agents: asynchronous subagents that plan sub-queries, fan out across sources, and come back with a structured, cited result. That covers single deep-research reports and batch enrichment jobs, like researching every company on a list, without burning your main agent's context on dozens of round trips.
+If you take meetings in [Granola](https://www.granola.ai/mcp), its official MCP server lets OpenClaw search and read your meeting notes. That pairs well with an agent that lives in your messaging apps: "what did we agree with the supplier on Tuesday?" or "draft the follow-ups from this morning's call" from your phone, answered from structured notes rather than a raw transcript. The server is hosted at https://mcp.granola.ai/mcp over Streamable HTTP and signs you in with OAuth.
 
-It needs an API key, but every Parallel account gets a recurring [$5 free monthly allowance](https://parallel.ai/pricing) plus a signup credit, and pricing is per request rather than per token, so a scheduled research brief costs the same whether the answer took ten pages or a hundred.
+```bash
+openclaw mcp add granola --url https://mcp.granola.ai/mcp --transport streamable-http --auth oauth
+openclaw mcp login granola
+```
 
-**Best for:** scheduled research briefs, competitive digests, and any job where OpenClaw should hand off to a subagent and report back.
+Granola says MCP is available on every plan; the free plan covers your own notes from the last 30 days. We haven't run this login end to end in OpenClaw, so confirm it with openclaw mcp doctor granola --probe.
 
-**Tradeoffs:** results take minutes, not seconds, and past the free allowance it's a paid API.
+Best for: meeting follow-ups, decisions, and "who said what" questions from chat.
+
+Tradeoffs: it only helps if your meetings already run through Granola, and older notes need a paid plan.
 
 ### 3. GitHub MCP
 
@@ -75,7 +93,7 @@ Notion's hosted, OAuth-secured MCP server connects OpenClaw to your notes, docs,
 
 ### 6. Zapier MCP
 
-OpenClaw has no first-party Gmail or Google Calendar server worth recommending yet: Google’s own [Workspace MCP servers](https://developers.google.com/workspace/guides/configure-mcp-servers) are still in Developer Preview and need program membership plus a Google Cloud project. [Zapier MCP](https://docs.zapier.com/mcp/overview/how-connections-work) fills that gap today. It’s a hosted Streamable HTTP server at `https://mcp.zapier.com/api/v1/connect` that runs actions through the apps already connected to your Zapier account, so “draft a reply to Sam and put Friday’s dinner on my calendar” becomes two tool calls.
+Google offers official [Workspace MCP servers](https://developers.google.com/workspace/guides/configure-mcp-servers) for Gmail, Calendar, Drive, and other apps, currently in developer preview and set up through a Google Cloud project with your own OAuth client, which suits people already working in Google Cloud. For a setup that takes a couple of commands, [Zapier MCP](https://docs.zapier.com/mcp/overview/how-connections-work) is the quicker route. It's a hosted Streamable HTTP server at https://mcp.zapier.com/api/v1/connect that runs actions through the apps already connected to your Zapier account, so “draft a reply to Sam and put Friday’s dinner on my calendar” becomes two tool calls.
 
 ```bash
 openclaw mcp add zapier --url https://mcp.zapier.com/api/v1/connect --transport streamable-http --auth oauth
@@ -143,14 +161,14 @@ openclaw mcp probe context7
 
 **Best for:** coding questions from your phone, where a stale API answer from training data would send you down the wrong path.
 
-**Tradeoffs:** it covers library docs only; for anything else on the web, Parallel Search is the better tool, and the two don’t overlap much.
+Tradeoffs: it covers library docs only; for anything else on the web, Parallel MCP is the better tool, and the two don't overlap much.
 
 ## The picks side by side
 
 | Server | What it gives OpenClaw | Auth | Cost |
 | --- | --- | --- | --- |
-| Parallel Search MCP | Web search + page fetching | None required | Free; API key optional for higher limits |
-| Parallel Task MCP | Deep research subagents, batch enrichment | API key | $5/month free allowance, then per request |
+| Parallel MCP | Web search, page fetching, typed decisions; research with a key | None required | Free; API key optional for research and higher limits |
+| Granola MCP | Search and read your meeting notes | OAuth | Every Granola plan; free covers 30 days of notes |
 | GitHub MCP | Repos, issues, PRs, CI from chat | OAuth | Free |
 | Playwright MCP | Real browser automation | Local install | Free |
 | Notion MCP | Notes, docs, and databases | OAuth | Free with a Notion plan |
@@ -170,12 +188,12 @@ As a rule of thumb, hosted services with OAuth and state (GitHub, Notion) fit MC
 
 **Is MCP the best way to extend OpenClaw?** It's one of two good ways. MCP is the right fit for hosted, authenticated services; skills are the right fit for local CLI tooling. OpenClaw can also run as an MCP server itself via `openclaw mcp serve`, so other agents like Claude Code can read and send your channel conversations.
 
-**Do I need to configure web search at all?** Once. OpenClaw uses a key-free provider only when you select it, so install the Parallel plugin and set `tools.web.search.provider` to `parallel-free` for free Parallel search with no API key. Add the Search MCP or an API key when you want explicit page fetching or higher rate limits.
+Do I need to configure web search at all? Once. OpenClaw uses a key-free provider only when you select it, so install the Parallel plugin and set tools.web.search.provider to parallel-free for free Parallel search with no API key. Add Parallel MCP when you want page fetching and web_decisions as explicit tools, or an API key for web_research and higher rate limits.
 
-**Are these servers free?** Parallel Search, GitHub, Playwright, Home Assistant, and Context7 cost nothing. The Task MCP is covered by Parallel’s $5 recurring monthly free credit until you outgrow it. Notion, Todoist, and Linear work with your existing account, and each successful Zapier MCP call uses two tasks from your Zapier plan.
+Are these servers free? Parallel MCP's keyless tools, GitHub, Playwright, Home Assistant, and Context7 cost nothing. Parallel's web_research is billed per request at API rates, and a new account comes with up to $80 in free credits plus $5 a month with a card on file. Granola, Notion, Todoist, and Linear work with your existing account, and each successful Zapier MCP call uses two tasks from your Zapier plan.
 
 **Why don’t new tools show up after I save a server?** Saving only writes config. Run `openclaw mcp doctor <name> --probe` to confirm the server connects and lists its tools, then start the Gateway again (CLI edits need it stopped) and send a new message; with hot reload on, changed servers are picked up on the next turn.
 
 ## Start with search
 
-The one-line `openclaw mcp set` command above is the whole setup, and it never asks for an account, a key, or a card. If OpenClaw becomes the way you work, [create a free Parallel account](https://platform.parallel.ai/) for higher rate limits and the $5 monthly credit that covers the Task MCP's research subagents. Then test it on your own questions.
+The one-line openclaw mcp set command above is the whole setup, and it never asks for an account, a key, or a card. If OpenClaw becomes the way you work, [create a free Parallel account](https://platform.parallel.ai/) for web_research and higher rate limits. Then test it on your own questions; the [Parallel MCP page](https://parallel.ai/mcp) has setup for your other clients too.

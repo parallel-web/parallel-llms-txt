@@ -61,7 +61,7 @@ _Parallel’s benchmarks page compares agentic web research quality across provi
 ## Related terms
 
 - **[natural-language search objectives](https://docs.parallel.ai/search/search-quickstart)****:** describe intent in plain language and receive agent-ready context.
-- **[search as a tool call](https://docs.parallel.ai/integrations/mcp/quickstart)****:** let an agent invoke web search inside its own loop.
+- [search as a tool call](https://parallel.ai/mcp): let an agent invoke web search inside its own loop, for example through Parallel MCP.
 - **[Parallel developer documentation](https://docs.parallel.ai)****:** see how search, extraction, and research combine into an agentic pipeline.
 
 ## FAQ

@@ -62,13 +62,13 @@ Every model has a training cutoff. Beyond that date it knows nothing, and it wil
 
 A web search tool solves this, and MCP is how you add one. Instead of reasoning from memory, the agent queries the live web mid-task and works from verifiable sources. Say an agent is about to edit code that depends on a library: before it writes anything, it looks up the latest release notes, spots a breaking change, and adjusts, rather than guessing from stale training data.
 
-Parallel's Search API [ships as an MCP server](https://parallel.ai/blog/search-api-benchmark), hosted at [https://mcp.parallel.ai/mcp](https://mcp.parallel.ai/mcp), so it plugs into Gemini CLI and Claude Code alike. It's free to use for light exploration, with no API key required. In Claude Code, you [register it with one command](https://docs.parallel.ai/integrations/mcp/quickstart):
+Parallel's web search, fetch, and research tools ship as [Parallel MCP](https://parallel.ai/mcp), a server hosted at [https://mcp.parallel.ai/mcp](https://parallel.ai/mcp), so it plugs into Gemini CLI and Claude Code alike. Search, fetch, and decisions are free to use with no API key; signing in or adding a key adds `web_research` and higher rate limits. In Claude Code, you [register it with one command](https://docs.parallel.ai/integrations/mcp/quickstart):
 
 ```sh
-claude mcp add --transport http "Parallel-Search-MCP" https://mcp.parallel.ai/mcp
+claude mcp add --transport http parallel https://mcp.parallel.ai/mcp
 ```
 
-Gemini CLI connects to the same hosted MCP server through its own MCP configuration. Either way, this registers Parallel Search as a tool the agent can call whenever it needs current information from the web.
+Gemini CLI connects to the same hosted server through its own MCP configuration: add a `Parallel` entry under `mcpServers` in `~/.gemini/settings.json` with an `httpUrl` of `https://mcp.parallel.ai/mcp`, as the [installation docs](https://docs.parallel.ai/integrations/mcp/installation) show. Either way, the agent gets Parallel's web tools to call whenever it needs current information from the web.
 
 The excerpts are compact and ranked by how useful each one is for the model's next step, so they add signal without flooding the window. Every result also carries citations through our Basis framework, which returns sources and calibrated confidence, so the agent works from data it can verify.
 
@@ -78,7 +78,7 @@ Choose Gemini CLI when cost is the deciding factor or when you're prototyping an
 
 Many developers don't choose at all. They install both, run Gemini CLI for fast everyday work, and switch to Claude Code when a job turns intricate. Because both speak MCP, your external tools follow you across the two, so running a pair costs you little in setup.
 
-Whichever you pick, a terminal agent is only as accurate as the information it reasons from, so [give it a web search tool](https://parallel.ai/articles/what-is-a-web-search-api) for any task that depends on current data. Add Parallel's Search API through MCP, and both agents work from live, verifiable sources instead of memory.
+Whichever you pick, a terminal agent is only as accurate as the information it reasons from, so [give it a web search tool](https://parallel.ai/articles/what-is-a-web-search-api) for any task that depends on current data. Add [Parallel MCP](https://parallel.ai/mcp), and both agents work from live, verifiable sources instead of memory.
 
 [Start Building](https://docs.parallel.ai/home) with Parallel's Search API and give either CLI reliable web access.
 
@@ -102,4 +102,4 @@ Gemini CLI is generally faster and responds well on quick edits and large reads.
 
 ### How can a coding agent access live web data?
 
-Add a web search tool through MCP. Parallel's Search API runs as a hosted MCP server for Gemini CLI and Claude Code, free for light use with no API key required, and it returns compact, cited excerpts so the agent reasons from current sources instead of stale training data.
+Add a web search tool through MCP. Parallel MCP runs as a hosted server for Gemini CLI and Claude Code, with free search and fetch and no API key required, and it returns compact, cited excerpts so the agent reasons from current sources instead of stale training data.

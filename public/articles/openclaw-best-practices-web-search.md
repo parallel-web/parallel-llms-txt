@@ -45,21 +45,27 @@ When you're running OpenClaw with Anthropic's Claude as the underlying LLM, you 
 
 ## **Integrating Parallel Search API with OpenClaw**
 
-Setting up Parallel with OpenClaw takes about ten minutes. You have two integration paths: our production MCP server (recommended) or a custom skill that calls the API directly.
+Setting up Parallel with OpenClaw takes about ten minutes. You have two integration paths: our production MCP server, [Parallel MCP](https://parallel.ai/mcp) (recommended), or a custom skill that calls the API directly.
 
 ### **Option A: MCP integration (recommended)**
 
 Parallel ships a production MCP server that works with any MCP-aware client, including OpenClaw. This is the fastest path to integration.
 
-**1. Get your API key.** Head to [Platform](https://platform.parallel.ai/) and create an account. Navigate to API keys and generate a new key. Parallel holds SOC 2 Type 2 certification, so enterprise teams can typically proceed without additional security review.
+**1. Get an API key (optional).** The server works without a key for `web_search`, `web_fetch`, and `web_decisions` at lower rate limits. A key adds `web_research` and higher limits: head to [Platform](https://platform.parallel.ai/), create an account, and generate a key under API keys. Parallel holds SOC 2 Type 2 certification, so enterprise teams can typically proceed without additional security review.
 
-**2. Add the Parallel Search MCP to OpenClaw.** You can add MCP servers through OpenClaw's configuration. The Parallel Search MCP server URL is:
+**2. Add Parallel MCP to OpenClaw.** OpenClaw stores MCP servers in `~/.openclaw/openclaw.json` under `mcp.servers`, and the `openclaw mcp set` command writes the entry for you. The server URL is:
 
 **https://mcp.parallel.ai/mcp**
 
-This provides two tools to your agent: web_search for searching the web with semantic objectives, and web_fetch for extracting content from specific URLs.
+```bash
+openclaw mcp set parallel '{"url":"https://mcp.parallel.ai/mcp","transport":"streamable-http"}'
+```
 
-**3. Store your API key securely.** Add your Parallel API key to your environment or OpenClaw's config, and configure the MCP client to send it in the Authorization header as a Bearer token (Authorization: Bearer <your_api_key>). Never commit API keys to version control. For production deployments, use a secrets manager.
+Set `transport` to `streamable-http`, because OpenClaw defaults to SSE when it's omitted. The command only writes config, so start a new OpenClaw session for the tools to appear. The [installation docs](https://docs.parallel.ai/integrations/mcp/installation) cover the JSON form and optional headers.
+
+Without a key, your agent gets three tools: `web_search` for searching the web with semantic objectives, `web_fetch` for extracting content from specific URLs, and `web_decisions` for typed questions such as a probability or a pick among options. With a key or sign-in, it also gets `web_research`, which answers a single research question with citations in the same call.
+
+**3. Store your API key securely.** If you use a key, add it to your environment or OpenClaw's config, and configure the MCP client to send it in the Authorization header as a Bearer token (Authorization: Bearer <your_api_key>). Never commit API keys to version control. For production deployments, use a secrets manager.
 
 **export PARALLEL_API_KEY="your_api_key_here"**
 
@@ -89,6 +95,8 @@ For a full custom skill implementation, see the [Parallel Search API documentati
 ### **Choosing the right mode**
 
 The Search API supports four modes. Advanced, the default when no mode is set, returns the highest-quality multi-hop retrieval (~3s) at $5 per 1,000 requests. Basic (~1s, $5 per 1,000 requests, 10 results included) returns deeper context per call and works best with two or three explicit search queries. Turbo (~200ms median latency, $1 per 1,000 requests) is built for latency-sensitive, high-volume workloads like voice agents, consumer chat, and RAG pre-filtering. Fast (under a second, $1 per 1,000 requests) returns higher-quality results than Turbo on a sub-second budget and is the right choice for most agent workloads. Choose Fast for most agent search-then-reason loops, Advanced when the highest-quality answer to a complex question matters most, Turbo when latency and cost matter most, and Basic when you want deeper excerpts per call.
+
+Through Parallel MCP, `web_search` runs in Fast mode by default. With a key or sign-in, you can switch the mode and set max results or include and exclude domains in the `x-parallel-mcp-config` header. The [quickstart](https://docs.parallel.ai/integrations/mcp/quickstart) lists the override settings.
 
 ### **Structuring queries for better results**
 
@@ -148,7 +156,7 @@ We build web search and research APIs purpose-built for AI agents. Our platform 
 
 ### **Does Parallel work with OpenClaw's MCP protocol?**
 
-Yes. We ship a production [MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) at https://mcp.parallel.ai/mcp that provides web_search and web_fetch tools to any MCP-aware client, including OpenClaw. This is the recommended integration path.
+Yes. [Parallel MCP](https://parallel.ai/mcp) is a production MCP server at https://mcp.parallel.ai/mcp that gives any MCP-aware client, including OpenClaw, free `web_search`, `web_fetch`, and `web_decisions` tools, plus `web_research` when you sign in or add an API key. Setup steps are in the [quickstart](https://docs.parallel.ai/integrations/mcp/quickstart). This is the recommended integration path.
 
 ### **Does Parallel have Agent Skills available on Skills.sh?**
 

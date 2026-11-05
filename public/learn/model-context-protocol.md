@@ -22,19 +22,19 @@ For a deeper walkthrough, read the [Model Context Protocol fundamentals](https:/
 
 ## Example
 
-Suppose you build an AI agent that needs live web data. With [Parallel’s MCP integration](https://docs.parallel.ai/integrations/mcp/getting-started), you add the Parallel Search API as an MCP tool, and your agent runs web searches during a conversation.
+Suppose you build an AI agent that needs live web data. With [Parallel MCP](https://parallel.ai/mcp), you add Parallel’s web search, page fetch, and research tools to your agent through one MCP server URL, and your agent runs web searches during a conversation.
 
 [Parallel Search](https://parallel.ai/products/search) returns ranked URLs and dense excerpts built for agents. Your agent calls this tool through MCP without any custom scraping code.
 
 ![Parallel Search available to AI agents through MCP](https://cdn.sanity.io/images/5hzduz3y/production/bea68c68edf44c3047bc9e45508329968b857ac6-1920x1080.png)
 
-_Parallel Search offered to AI agents through MCP. Source: __[Parallel Search MCP](https://parallel.ai/blog/free-web-search-mcp)__._
+Parallel Search offered to AI agents through MCP. Source: [Parallel blog](https://parallel.ai/blog/free-web-search-mcp).
 
 ## Related terms
 
 - Structured deep research with the [Task API](https://parallel.ai/products/task)
 - Prebuilt agent integration with the [Task MCP server](https://parallel.ai/blog/parallel-task-mcp-server)
-- Web search as an agent tool with the [Search MCP server](https://parallel.ai/blog/search-mcp-server)
+- Web search, page fetch, and research as agent tools with [Parallel MCP](https://parallel.ai/mcp)
 
 ## FAQ
 
@@ -50,4 +50,4 @@ Yes. Per the [official MCP project](https://modelcontextprotocol.io/docs/2026-07
 
 Yes. MCP is an [open standard](https://github.com/modelcontextprotocol) with public specifications and SDKs, and anyone can build MCP clients or servers without a license fee.
 
-We build web search and research APIs for AI agents. To connect them to your agent through MCP, [Start Building](https://docs.parallel.ai/home).
+We build web search and research APIs for AI agents. To connect them to your agent through MCP, [Start Building](https://parallel.ai/mcp).

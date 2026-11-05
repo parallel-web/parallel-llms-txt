@@ -22,11 +22,11 @@ Anthropic open-sourced the [Model Context Protocol](https://parallel.ai/articles
 
 Say you ask an AI assistant to find the latest sales report and email it to your team. The assistant calls a database MCP server to pull the report, then calls an email MCP server to send it, choosing each tool on its own.
 
-You can see this pattern in production today. [Parallel's Search API](https://parallel.ai/products/search) ships as a [Search MCP server](https://parallel.ai/blog/search-mcp-server) for grounding agents in real-time data from the open web.
+You can see this pattern in production today. [Parallel MCP](https://parallel.ai/mcp) packages [Parallel's Search API](https://parallel.ai/products/search) and its fetch and research APIs as one MCP server for grounding agents in real-time data from the open web.
 
 ![Parallel's Search API product page, which is available as an MCP server for AI agents.](https://cdn.sanity.io/images/5hzduz3y/production/3c7ad24e4f405fa3ae721808476c976aa6549578-1920x1080.png)
 
-_Parallel's __[Search API](https://parallel.ai/products/search)__ is available as an MCP server, so agents can add web search through the same standard._
+Parallel's [Search API](https://parallel.ai/products/search) powers the `web_search` tool in Parallel MCP, so agents can add web search through the same standard.
 
 ## Related terms
 

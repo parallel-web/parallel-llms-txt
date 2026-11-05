@@ -75,7 +75,7 @@ curl https://api.parallel.ai/v1/search \
 - [Docs](https://docs.parallel.ai/search/modes)
 - [Playground](https://platform.parallel.ai/play/search?mode=fast)
 - [Parallel CLI](https://docs.parallel.ai/integrations/cli)
-- [Parallel MCP](https://docs.parallel.ai/integrations/mcp/quickstart)
+- [Parallel MCP](https://parallel.ai/mcp)
 
 ```
 Use curl to read parallel.ai/agents.md and perform the setup to install Parallel

@@ -21,7 +21,7 @@ For a longer walkthrough with a live tool call, a comparison of five web search 
 
 ## Example
 
-Picture a coding agent that needs current documentation for a fast-moving library. It calls the search tool on the [Parallel Search MCP](https://parallel.ai/blog/free-web-search-mcp), gets back ranked URLs and dense excerpts, then fetches the full page content for the version it needs.
+Picture a coding agent that needs current documentation for a fast-moving library. It calls the search tool on [Parallel MCP](https://parallel.ai/mcp), gets back ranked URLs and dense excerpts, then fetches the full page content for the version it needs.
 
 That flow works the same way across the wider ecosystem. As of December 2025 there were [more than 10,000 active public MCP servers](https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation), so agents can reuse one interface across many tools.
 
@@ -38,10 +38,16 @@ _Parallel's __[benchmarks](https://parallel.ai/benchmarks)__ compare web search 
 
 ## FAQ
 
-**How is a web search MCP different from a web search API?** The API is the raw service, while the MCP server wraps that access in the protocol so any MCP-compatible agent can use it without a custom integration.
+**How is a web search MCP different from a web search API?**
 
-**Do I need a web search MCP for every AI agent?** No. OpenAI's function-calling guidance suggests aiming for [fewer than 20 tools](https://developers.openai.com/api/docs/guides/function-calling) available at once, so simple workflows may not need the added tool.
+The API is the raw service, while the MCP server wraps that access in the protocol so any MCP-compatible agent can use it without a custom integration.
 
-**Are there free web search MCP servers?** Yes, several run without an API key, including the free Parallel Search MCP.
+**Do I need a web search MCP for every AI agent?**
 
-If you want a fast, accurate web search MCP for your agents, Parallel gives you production-ready search and extraction behind one standard interface. [Start Building](https://docs.parallel.ai/home).
+No. OpenAI's function-calling guidance suggests aiming for [fewer than 20 tools](https://developers.openai.com/api/docs/guides/function-calling) available at once, so simple workflows may not need the added tool.
+
+**Are there free web search MCP servers?**
+
+Yes, several run without an API key, including [Parallel MCP](https://parallel.ai/mcp), whose `web_search`, `web_fetch`, and `web_decisions` tools are free to use with no account.
+
+If you want a fast, accurate web search MCP for your agents, Parallel MCP gives you web search, page fetch, and research behind one standard interface. [Add Parallel MCP](https://parallel.ai/mcp).

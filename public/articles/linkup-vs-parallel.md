@@ -153,7 +153,7 @@ Both hold SOC 2 Type II. Linkup adds ISO 27001 and HIPAA compliance, and it runs
 
 ## **What is the developer experience like?**
 
-Linkup [publishes](https://docs.linkup.so/llms.txt) Python and TypeScript SDKs, a CLI, an OpenAI SDK integration, an MCP server, and integrations for LangChain, CrewAI, and the Vercel AI SDK. Parallel ships Python and TypeScript SDKs and an [MCP server](https://docs.parallel.ai/integrations/mcp/quickstart), and its Responses API is OpenAI-compatible, so an existing OpenAI integration usually needs only a new base URL, key, and model name.
+Linkup [publishes](https://docs.linkup.so/llms.txt) Python and TypeScript SDKs, a CLI, an OpenAI SDK integration, an MCP server, and integrations for LangChain, CrewAI, and the Vercel AI SDK. Parallel ships Python and TypeScript SDKs and [Parallel MCP](https://parallel.ai/mcp), a hosted MCP server with free web search and fetch plus decisions and research, and its Responses API is OpenAI-compatible, so an existing OpenAI integration usually needs only a new base URL, key, and model name.
 
 ```python
 import os

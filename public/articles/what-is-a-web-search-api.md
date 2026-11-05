@@ -118,13 +118,13 @@ Per-request pricing is the easiest to forecast. Credit and plan pricing need a c
 
 ## How to start free
 
-You can try live web search in an agent without an account. Our [Search MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) at `https://mcp.parallel.ai/mcp` is free to use anonymously at lower rate limits, with no signup or API key. It exposes `web_search` and `web_fetch` tools and runs in `fast` mode. Add it to Cursor with one entry in `~/.cursor/mcp.json`, or to Codex with `codex mcp add parallel-search --url https://mcp.parallel.ai/mcp`.
+You can try live web search in an agent without an account. [Parallel MCP](https://parallel.ai/mcp) at `https://mcp.parallel.ai/mcp` is free to use anonymously at lower rate limits, with no signup or API key. Its keyless tools are `web_search`, `web_fetch`, and `web_decisions`, and search runs in fast mode. Install it in one click from [parallel.ai/mcp](https://parallel.ai/mcp) in Claude, ChatGPT, Cursor, or VS Code, or add it to Codex with `codex mcp add parallel --url https://mcp.parallel.ai/mcp`.
 
-When you want the raw API, sign up at [platform.parallel.ai](https://platform.parallel.ai). Accounts get $5 in free credits every month, which covers up to 5,000 Turbo or Fast searches. Passing that key to the MCP server as a Bearer token raises its rate limits. Our roundup of [free web search MCP servers](https://parallel.ai/articles/best-free-web-search-mcp) compares the keyless options, and [adding free web search to a coding agent](https://parallel.ai/articles/add-free-web-search-to-coding-agent) walks through the setup with both the MCP server and the Parallel CLI.
+When you want the raw API, sign up at [platform.parallel.ai](https://platform.parallel.ai). Accounts get $5 in free credits every month, which covers up to 5,000 Turbo or Fast searches. Passing that key to the MCP server as a Bearer token raises its rate limits and adds the `web_research` tool. Our roundup of [free web search MCP servers](https://parallel.ai/articles/best-free-web-search-mcp) compares the keyless options, and [adding free web search to a coding agent](https://parallel.ai/articles/add-free-web-search-to-coding-agent) walks through the setup with both the MCP server and the Parallel CLI.
 
 ## Get started
 
-Point your agent at `https://mcp.parallel.ai/mcp` to test search with no key, or create a key on [platform.parallel.ai](https://platform.parallel.ai) and run the Python example above. The [Search API quickstart](https://docs.parallel.ai/search/search-quickstart) covers the SDKs, modes, and source policies.
+Add [Parallel MCP](https://parallel.ai/mcp) to your agent to test search with no key, or create a key on [platform.parallel.ai](https://platform.parallel.ai) and run the Python example above. The [Search API quickstart](https://docs.parallel.ai/search/search-quickstart) covers the SDKs, modes, and source policies.
 
 ## Frequently asked questions
 
@@ -134,7 +134,7 @@ A web search API is an endpoint that takes a query and returns web results as st
 
 ### Is there a free web search API?
 
-Yes. Parallel’s Search MCP server is free to use anonymously at lower rate limits, and a Parallel account includes $5 in free credits every month (up to 5,000 Turbo or Fast searches). Brave includes $5 in monthly credits, Tavily gives 1,000 free credits a month, and SerpApi’s free plan covers 250 searches a month.
+Yes. Parallel MCP is free to use anonymously at lower rate limits, and a Parallel account includes $5 in free credits every month (up to 5,000 Turbo or Fast searches). Brave includes $5 in monthly credits, Tavily gives 1,000 free credits a month, and SerpApi’s free plan covers 250 searches a month.
 
 ### What replaced the Bing Search API?
 

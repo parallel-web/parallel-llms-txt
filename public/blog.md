@@ -1,9 +1,7 @@
-### \[Introducing PWS-Decisions: A benchmark for web-grounded decisions\](https://parallel.ai/blog/pws-decisions-benchmark)
+### \[Introducing Parallel MCP 2.0: all-in-one web research tools for every agent\](https://parallel.ai/blog/parallel-mcp-2)
 
-A benchmark of 300 decision questions whose answers depend on the live web.
+Tags:[Product](/blog?tag=product)
 
-Tags:[Benchmarks](/blog?tag=benchmarks)
+By Parallel
 
-By Devin Gupta and Leela Karumbunathan
-
-November 1, 2026
+November 5, 2026

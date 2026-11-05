@@ -158,16 +158,16 @@ We don’t have Moonshot or OpenRouter keys for this test, so we didn’t call K
 [stub] reasoning_content echoed back: True; got 5 results; top: https://platform.kimi.ai/docs/guide/use-web-search
 ```
 
-## The zero-key path: connect the free Search MCP
+## The zero-key path: connect the free Parallel MCP
 
-If you use Kimi K3 or GLM 5.3 inside an MCP-capable client instead of your own code, skip the script. The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) at `https://mcp.parallel.ai/mcp` is free with no API key, uses Streamable HTTP, and exposes two tools: `web_search` and `web_fetch`. Anonymous calls run in `fast` mode with rate limits. Add an `Authorization: Bearer` header with your Parallel key for higher limits.
+If you use Kimi K3 or GLM 5.3 inside an MCP-capable client instead of your own code, skip the script. [Parallel MCP](https://parallel.ai/mcp) at `https://mcp.parallel.ai/mcp` is free with no API key, uses Streamable HTTP, and exposes `web_search`, `web_fetch`, and `web_decisions`. Anonymous calls run `web_search` in `fast` mode with rate limits. Add an `Authorization: Bearer` header with your Parallel key for higher limits and a fourth tool, `web_research`, which answers one question with citations in a single call.
 
 Kimi Code, Moonshot’s coding agent, reads remote servers from `~/.kimi-code/mcp.json`, and an entry with a `url` and no `transport` is treated as Streamable HTTP ([Kimi Code docs](https://www.kimi.com/code/docs/en/kimi-code-cli/customization/mcp.html)):
 
 ```json
 {
   "mcpServers": {
-    "parallel-search": {
+    "parallel": {
       "url": "https://mcp.parallel.ai/mcp"
     }
   }
@@ -177,7 +177,7 @@ Kimi Code, Moonshot’s coding agent, reads remote servers from `~/.kimi-code/mc
 OpenCode, which can drive GLM 5.3 or DeepSeek, adds the same server with one command ([OpenCode MCP docs](https://opencode.ai/v2/docs/mcp-servers)):
 
 ```bash
-opencode mcp add parallel-search --url https://mcp.parallel.ai/mcp
+opencode mcp add parallel --url https://mcp.parallel.ai/mcp
 ```
 
 We tested the endpoint directly with a JSON-RPC client and no key on October 10. `tools/list` returned `web_search` and `web_fetch`, and a `web_search` call returned about 13,000 characters of results in 0.97 seconds, with the Kimi K3 license file on Hugging Face as the top hit. The response metadata reported $0.001 for the search.

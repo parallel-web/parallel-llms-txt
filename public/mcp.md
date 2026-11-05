@@ -36,8 +36,10 @@ How to talk to me
 - Ask one question at a time, with your question UI if you have one. If I answer one of your questions with just "yes" or "ok", take the first option.
 
 Steps
-1. ChatGPT or Claude (web, desktop, or Cowork): find Parallel in your app's directory so the app shows its own install option (ChatGPT: https://chatgpt.com/plugins/plugin_asdk_app_69fb9378663481919a68e8a2109644e5, Claude: https://claude.com/marketplace/connectors/parallel-search). After I install Parallel, go to step 6.
+1. ChatGPT, or the Claude app on the web or desktop (not Claude Code or Cowork): find Parallel in your app's directory so the app shows its own install option (ChatGPT: https://chatgpt.com/plugins/plugin_asdk_app_69fb9378663481919a68e8a2109644e5, Claude: https://claude.com/marketplace/connectors/parallel-search). If "My Parallel settings" has content, first tell me "<app name> doesn't support custom settings." After I install Parallel, go to step 6, but in place of the "Now available" line and the sign-in note, tell me:
+   "Parallel for <app name> is being updated to support all Parallel MCP features. For now, you can use search and extract. New features will be added automatically over the next few days."
 2. Any other app: tell me "Setting up Parallel." Then check for Parallel servers with your app's MCP list command. Leave other servers alone, including task-mcp.parallel.ai.
+   - If "My Parallel settings" at the end of this prompt has content: don't change, replace or remove any Parallel server I already have, including the old Search MCP. My settings go on a separate server named `parallel-mcp-custom`, so I can always tell which server is customized. If `parallel-mcp-custom` already exists, ask me before replacing it. Then go to step 3 and skip the rest of this step.
    - Already on mcp.parallel.ai: go to step 6.
    - On search.parallel.ai (the old Search MCP) with custom settings (an x-parallel-search-config header or URL parameters): don't change the old server. Ask whether to install Parallel MCP as a new server next to the old server, and link the migration guide: https://docs.parallel.ai/integrations/mcp/quickstart#migration-from-the-search-mcp-and-task-mcp. If yes, continue with step 3.
    - On search.parallel.ai otherwise: ask me
@@ -63,7 +65,7 @@ Steps
 6. Run one web_search for today's top tech headline, then tell me:
    "Parallel is installed<, and you're signed in>. Test search: <one-line summary> (<source URL>)
    Now available: <search, extract and Parallel Decisions | search, extract, Parallel Decisions and research>."
-   Say "you're signed in" only if web_research is in your tool list. If I'm anonymous, add "Sign-in adds research, higher rate limits and free monthly credits. To sign in later, ask to switch Parallel to sign-in." If you replaced the old server, added a server next to the old server, or applied my settings, add one line saying so.
+   Say "you're signed in" only if web_research is in your tool list. If I'm anonymous, add "Sign-in adds research, higher rate limits and free monthly credits. To sign in later, ask to switch Parallel to sign-in." If you replaced the old server or added a server next to the old server, add one line saying so. If you applied my settings, add "Your settings are on a separate server, parallel-mcp-custom<, next to your existing Parallel server>."
 7. If something went wrong but setup worked in the end, and a Parallel feedback tool is listed, ask me "Setup is complete, but one issue came up: <one-line description>. Would you like me to send the Parallel team feedback using the Parallel MCP feedback tool?" Show me the note before sending it.
 
 My Parallel settings (optional; leave blank for the standard setup, or write them in plain English, one per line):

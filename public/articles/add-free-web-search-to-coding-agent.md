@@ -1,16 +1,16 @@
 # How to add free web search to your coding agent in 10 minutes (CLI and MCP)
 
-You can add web search to Claude Code, Cursor, Codex CLI, or OpenClaw for $0 by pointing the agent at Parallel’s keyless Search MCP, then add the Parallel CLI and Agent Skills when you want scripting and research. This guide covers the two-minute MCP setup, the eight-minute CLI setup, a test prompt, and fixes for the usual errors.
+You can add web search to Claude Code, Cursor, Codex CLI, or OpenClaw for $0 by pointing the agent at Parallel’s keyless MCP server, then add the Parallel CLI and Agent Skills when you want scripting and research. This guide covers the two-minute MCP setup, the eight-minute CLI setup, a test prompt, and fixes for the usual errors.
 
 A coding agent that can’t read the web guesses. It writes against a deprecated API, cites a flag that was renamed two releases ago, or misses the migration note that explains your build error. You can give it web search in about 10 minutes without paying anything.
 
-We tested every command below on September 28, 2026 against the live service, with Parallel CLI 0.9.3 and Claude Code 2.1.284. The first path takes about two minutes and needs no account. The second takes about eight more, uses the free monthly credits on a Parallel account, and gives the agent a command-line tool it can script.
+We tested every command below on September 28, 2026 against the live service, with Parallel CLI 0.9.3 and Claude Code 2.1.284, and updated the MCP server names and tool list on November 5, 2026, when Parallel MCP 2.0 launched. The first path takes about two minutes and needs no account. The second takes about eight more, uses the free monthly credits on a Parallel account, and gives the agent a command-line tool it can script.
 
 ## The 10-minute checklist
 
 Do Path 1 first; it works on its own. Path 2 is optional and adds capabilities rather than replacing Path 1.
 
-1. (0:00) Add the keyless Search MCP to your agent with one command or one JSON block.
+1. (0:00) Add the keyless Parallel MCP to your agent with one command or one JSON block.
 2. (1:30) Restart the session and paste the test prompt from the verify section.
 3. (2:00) Install the Parallel CLI with pipx or Homebrew.
 4. (3:30) Run `parallel-cli login` and approve the device code in your browser.
@@ -18,19 +18,19 @@ Do Path 1 first; it works on its own. Path 2 is optional and adds capabilities r
 6. (7:00) Install the Agent Skills with `parallel-cli skills install`.
 7. (9:00) Ask the agent to use the skill and confirm it runs the CLI.
 
-## Path 1: the keyless Search MCP (about 2 minutes, $0)
+## Path 1: the keyless Parallel MCP (about 2 minutes, $0)
 
-The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) is a hosted server at `https://mcp.parallel.ai/mcp`. It’s free to use anonymously at lower rate limits, with no account and no API key. It exposes two tools: `web_search`, which takes an objective plus a few keyword queries and returns ranked URLs with excerpts, and `web_fetch`, which returns markdown from up to 20 URLs. Anonymous calls run in Fast mode, and each call’s excerpts are capped at roughly 25,000 characters so they fit inside typical MCP client output limits.
+[Parallel MCP](https://parallel.ai/mcp) is a hosted server at https://mcp.parallel.ai/mcp. It’s free to use anonymously at lower rate limits, with no account and no API key. Without a key it exposes three tools: web_search, which takes an objective plus a few keyword queries and returns ranked URLs with excerpts; web_fetch, which returns markdown from up to 20 URLs; and web_decisions, which answers typed questions (a probability, a pick among options, a score) with sources. Signing in or adding an API key adds web_research, which answers a single research question with citations in the same call. Anonymous calls run in Fast mode, and each call’s excerpts are capped at roughly 25,000 characters so they fit inside typical MCP client output limits.
 
 ### Claude Code
 
 Run this in your terminal:
 
 ```bash
-claude mcp add --transport http "Parallel-Search-MCP" https://mcp.parallel.ai/mcp
+claude mcp add --transport http parallel https://mcp.parallel.ai/mcp
 ```
 
-Start a new session and run `/mcp` to confirm the server shows as connected. The `/mcp` endpoint doesn’t ask for a login. If you want the config checked into a repo so teammates get it too, add `--scope project`; Claude Code then writes a `.mcp.json` file in the project root with `"type": "http"` and the URL.
+Start a new session and run /mcp to confirm the server shows as connected. The /mcp endpoint doesn’t ask for a login. To sign in for web_research and higher limits, add 'https://mcp.parallel.ai/mcp?login' instead (quoted, since ? is special in most shells), then run /mcp, select parallel, and sign in. If you want the config checked into a repo so teammates get it too, add --scope project; Claude Code then writes a .mcp.json file in the project root with "type": "http" and the URL.
 
 ### Cursor
 
@@ -39,7 +39,7 @@ Add this to `~/.cursor/mcp.json`, or to `.cursor/mcp.json` for one project:
 ```json
 {
   "mcpServers": {
-    "Parallel Search MCP": {
+    "Parallel": {
       "url": "https://mcp.parallel.ai/mcp"
     }
   }
@@ -49,20 +49,20 @@ Add this to `~/.cursor/mcp.json`, or to `.cursor/mcp.json` for one project:
 ### Codex CLI
 
 ```bash
-codex mcp add parallel-search --url https://mcp.parallel.ai/mcp
+codex mcp add parallel --url https://mcp.parallel.ai/mcp
 ```
 
-The command writes a `[mcp_servers.parallel-search]` entry to `~/.codex/config.toml`. Restart Codex afterward.
+The command writes a [mcp_servers.parallel] entry to ~/.codex/config.toml. Restart Codex afterward.
 
 ### OpenClaw
 
 ```bash
-openclaw mcp set parallel-search '{"url":"https://mcp.parallel.ai/mcp","transport":"streamable-http"}'
+openclaw mcp set parallel '{"url":"https://mcp.parallel.ai/mcp","transport":"streamable-http"}'
 ```
 
-Keep the `transport` field. OpenClaw treats a server without it as SSE, and the Search MCP speaks Streamable HTTP, so the connection fails. `openclaw mcp set` only writes config; start a new agent session for the tools to appear. Our [OpenClaw web search best practices](https://parallel.ai/articles/openclaw-best-practices-web-search) guide covers prompting and accuracy once it’s connected.
+Keep the transport field. OpenClaw treats a server without it as SSE, and Parallel’s MCP server speaks Streamable HTTP, so the connection fails. openclaw mcp set only writes config; start a new agent session for the tools to appear. Our [OpenClaw web search best practices](https://parallel.ai/articles/openclaw-best-practices-web-search) guide covers prompting and accuracy once it’s connected.
 
-Other clients (Windsurf, Gemini CLI, VS Code, Zed, Claude Desktop) use slightly different field names; the [Search MCP docs](https://docs.parallel.ai/integrations/mcp/quickstart) list each one. For a wider look at what else is free, see our roundup of the [best free web search MCP servers](https://parallel.ai/articles/best-free-web-search-mcp).
+Other clients (Windsurf, Gemini CLI, VS Code, Zed, Claude Desktop) use slightly different field names; the [installation docs](https://docs.parallel.ai/integrations/mcp/installation) list each one, and [parallel.ai/mcp](https://parallel.ai/mcp) has one-click installs for Claude, ChatGPT, Cursor, VS Code, and others, plus a setup prompt you can paste into any agent. For a wider look at what else is free, see our roundup of the [best free web search MCP servers](https://parallel.ai/articles/best-free-web-search-mcp).
 
 ## Verify it works
 
@@ -129,28 +129,28 @@ In our test repo, `--project` installed 14 skills into `.agents/skills` and `.cl
 
 ## When to prefer the CLI over the MCP
 
-Use the MCP when you want zero setup and the agent only needs search and fetch. Move to the CLI when the agent needs to script, save results, or reach beyond search.
+Use the MCP when you want zero setup and the agent needs search, fetch, or (once you sign in) quick answers to single research questions. Move to the CLI when the agent needs to script, save results, or reach beyond search.
 
-Context cost is the argument you’ll hear first. The Search MCP’s `tools/list` response is about 13,000 characters of schema for its two tools, and in clients that load MCP schemas up front, that sits in context every turn. A skill loads only its short description until the agent invokes it; the `parallel-web-search` description is about 400 characters. The gap is smaller in Claude Code than it used to be, since Claude Code now [defers MCP tool schemas by default](https://code.claude.com/docs/en/mcp) through tool search. Our [MCP vs. skills vs. CLIs](https://parallel.ai/articles/mcp-vs-skills-vs-clis) decision framework covers where each mechanism wins, including where MCP’s typed schemas and per-tool approvals help.
+Context cost is the argument you’ll hear first. Parallel MCP’s default tools/list response is more than 20,000 characters of schema, and in clients that load MCP schemas up front, that sits in context every turn; adding ?tools=web_search,web_fetch to the URL trims it to about 14,600. A skill loads only its short description until the agent invokes it; the parallel-web-search description is about 400 characters. The gap is smaller in Claude Code than it used to be, since Claude Code now [defers MCP tool schemas by default](https://code.claude.com/docs/en/mcp) through tool search. Our [MCP vs. skills vs. CLIs](https://parallel.ai/articles/mcp-vs-skills-vs-clis) decision framework covers where each mechanism wins, including where MCP’s typed schemas and per-tool approvals help.
 
-The stronger reasons are practical. The CLI composes with pipes, `jq`, and scripts, so one bash call does what would take several MCP round trips. `--json` output and stdin input (`parallel-cli search -`) make it safe to run non-interactively in CI. You can pick any search mode, where anonymous MCP calls always run Fast. The CLI also reaches the rest of the platform: `research run` for deep research, `enrich` for adding web-sourced columns to a CSV, `findall` for building entity lists, and `monitor` for recurring checks. If you want to wrap other tools the same way, [turn any CLI into an agent skill](https://parallel.ai/articles/turn-any-cli-into-an-agent-skill) walks through the pattern.
+The stronger reasons are practical. The CLI composes with pipes, jq, and scripts, so one bash call does what would take several MCP round trips. --json output and stdin input (parallel-cli search -) make it safe to run non-interactively in CI. You can pick any search mode per command, where anonymous MCP calls always run Fast and signed-in connections set a mode through the x-parallel-mcp-config header. The CLI also reaches the rest of the platform: research run for deep research, enrich for adding web-sourced columns to a CSV, findall for building entity lists, and monitor for recurring checks. If you want to wrap other tools the same way, [turn any CLI into an agent skill](https://parallel.ai/articles/turn-any-cli-into-an-agent-skill) walks through the pattern.
 
-|  | Search MCP (keyless) | Parallel CLI + skills |
+|  | Parallel MCP (keyless) | Parallel CLI + skills |
 | --- | --- | --- |
 | Setup time | About 2 minutes | About 8 minutes |
 | Account needed | No | Yes (login or API key) |
-| Cost | $0 anonymous; paid per request with a key | $5 free credits per month, then per request |
-| Search modes | Fast only when anonymous; any mode with a key | Turbo, Fast, Basic, Advanced |
-| Other APIs | Search and fetch only | Extract, research, enrich, FindAll, Monitor |
+| Cost | $0 anonymous; paid per request with sign-in or a key | $5 free credits per month, then per request |
+| Search modes | Fast when anonymous; any mode via a config header with sign-in or a key | Turbo, Fast, Basic, Advanced |
+| Other APIs | Search, fetch, and decisions; research with sign-in or a key | Extract, research, enrich, FindAll, Monitor |
 | Best for | Interactive coding sessions, quick lookups | Scripts, CI, piping, research tasks |
 
 You can run both: keep the MCP for everyday lookups and let the agent reach for the CLI skill when it needs deep research or saved JSON.
 
 ## Troubleshooting
 
-**OpenClaw connects but no tools appear.** Check that the config includes `"transport": "streamable-http"`, since OpenClaw defaults to SSE, and start a new session. `openclaw mcp show parallel-search` prints the saved definition.
+OpenClaw connects but no tools appear. Check that the config includes "transport": "streamable-http", since OpenClaw defaults to SSE, and start a new session. openclaw mcp show parallel prints the saved definition.
 
-**Searches get rate limited.** Anonymous access runs at lower rate limits, and we don’t publish a fixed number for it. Create a key at [platform.parallel.ai](https://platform.parallel.ai) and send it as a Bearer token. In Claude Code, add `--header "Authorization: Bearer $PARALLEL_API_KEY"` to the `claude mcp add` command; in Codex, add `--bearer-token-env-var PARALLEL_API_KEY`. Authenticated calls count against your credits, and a 402 error means the balance is empty.
+Searches get rate limited. Anonymous access runs at lower rate limits, and we don’t publish a fixed number for it; calls past the limit are rate limited, not billed. Sign in through https://mcp.parallel.ai/mcp?login in clients that support MCP OAuth (Claude Code, Codex, Cursor), or create a key at [platform.parallel.ai](https://platform.parallel.ai) and send it as a Bearer token. In Claude Code, add --header "Authorization: Bearer $PARALLEL_API_KEY" to the claude mcp add command; in Codex, add --bearer-token-env-var PARALLEL_API_KEY. Authenticated calls count against your credits, and a 402 error means the balance is empty.
 
 `**parallel-cli: command not found**`**.** pipx installed it outside your PATH. Run `pipx ensurepath` and open a new terminal.
 
@@ -160,17 +160,17 @@ You can run both: keep the MCP for everyday lookups and let the agent reach for 
 
 ## Get started
 
-Add the [free Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) now; it takes one command. When you want scripting and research, create an account at [platform.parallel.ai](https://platform.parallel.ai), install the [Parallel CLI](https://parallel.ai/blog/parallel-cli), and run `parallel-cli skills install`. For picking other servers to pair with it, see the [best MCP servers for Claude Code](https://parallel.ai/articles/best-mcp-servers-for-claude-code).
+Add the [free Parallel MCP](https://parallel.ai/mcp) now; it takes one command. When you want scripting and research, create an account at [platform.parallel.ai](https://platform.parallel.ai), install the [Parallel CLI](https://parallel.ai/blog/parallel-cli), and run parallel-cli skills install. For picking other servers to pair with it, see the [best MCP servers for Claude Code](https://parallel.ai/articles/best-mcp-servers-for-claude-code).
 
 ## Frequently asked questions
 
 ### How do I add web search to Claude Code?
 
-Run `claude mcp add --transport http "Parallel-Search-MCP" https://mcp.parallel.ai/mcp`, then start a new session. The server is free and needs no API key.
+Run claude mcp add --transport http parallel https://mcp.parallel.ai/mcp, then start a new session. The server is free and needs no API key.
 
 ### Is there a free web search API for coding agents?
 
-Yes. The Parallel Search MCP is free to use anonymously at lower rate limits, and a Parallel account adds $5 in free credits every month, which covers up to 5,000 Turbo or Fast searches through the API or CLI.
+Yes. [Parallel MCP](https://parallel.ai/mcp) is free to use anonymously at lower rate limits, and a Parallel account adds $5 in free credits every month, which covers up to 5,000 Turbo or Fast searches through the API or CLI.
 
 ### Does Claude Code already have web search?
 
@@ -178,10 +178,10 @@ Yes, Claude Code has a built-in web search tool. A dedicated search server adds 
 
 ### Should I use an MCP server or a CLI for web search?
 
-Use the MCP for the fastest setup and interactive sessions. Use the CLI with skills when the agent needs to pipe results, run in CI, choose a search mode, or call research, enrichment, or FindAll.
+Use the MCP for the fastest setup and interactive sessions. Use the CLI with skills when the agent needs to pipe results, run in CI, or call deep research, enrichment, or FindAll.
 
 ### Do I need an API key for the Parallel CLI?
 
-Yes. The CLI needs either `parallel-cli login` or a `PARALLEL_API_KEY`. Only the hosted Search MCP works without one.
+Yes. The CLI needs either parallel-cli login or a PARALLEL_API_KEY. Only the hosted Parallel MCP works without one.
 
 **Related reading: **[Best free web search MCP servers](https://parallel.ai/articles/best-free-web-search-mcp) / [Fast vs. Turbo: choosing a Parallel Search mode](https://parallel.ai/articles/parallel-search-fast-vs-turbo) / [What is a CLI, and why do AI agents like using them?](https://parallel.ai/articles/what-is-a-cli) / [MCP servers vs. agent skills vs. CLIs](https://parallel.ai/articles/mcp-vs-skills-vs-clis)

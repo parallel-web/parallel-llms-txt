@@ -95,20 +95,19 @@ Web grounding deserves as much attention as model choice, because an agent that 
 
 MCP handles this for either tool. Because both OpenClaw and Claude Code speak MCP, you can point either one at a search server and give it ranked, citation-backed excerpts instead of leaving it to guess. We build web search and research APIs made for AI agents, running on our own web-scale index, and our [published search benchmarks](https://parallel.ai/blog/search-api-benchmark) show higher accuracy than native model search at lower total cost. Every result carries citations through our Basis framework, so the agent can show its sources.
 
-Our [production Search MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) plugs into either agent. Add it to your MCP configuration, and the agent gains two tools, `web_search` and `web_fetch`.
+[Parallel MCP](https://parallel.ai/mcp) plugs into either agent. Add it to your MCP configuration, and the agent gains `web_search`, `web_fetch`, and `web_decisions` with no API key, plus `web_research` when you sign in or add a key. In OpenClaw, save it with the `openclaw mcp set` CLI:
 
-```json
-{
-  "mcpServers": {
-    "parallel-search": {
-      "url": "https://mcp.parallel.ai/mcp",
-      "headers": { "x-api-key": "YOUR_PARALLEL_API_KEY" }
-    }
-  }
-}
+```bash
+openclaw mcp set parallel '{"url":"https://mcp.parallel.ai/mcp","transport":"streamable-http"}'
 ```
 
-That block registers Parallel's Search MCP server with your agent, exposing `web_search` for ranked results and `web_fetch` for full page content on demand.
+In Claude Code, it’s one command:
+
+```bash
+claude mcp add --transport http parallel https://mcp.parallel.ai/mcp
+```
+
+Both register the server over Streamable HTTP with no key: `web_search` returns ranked results with excerpts, and `web_fetch` reads full page content on demand. To add `web_research` and higher rate limits, add an `Authorization: Bearer` header with your Parallel API key, or in Claude Code connect to `https://mcp.parallel.ai/mcp?login` and sign in. The [installation docs](https://docs.parallel.ai/integrations/mcp/installation) cover other clients.
 
 ## When to use which
 
@@ -136,4 +135,4 @@ Whichever path you take, give the agent reliable, current web access through a [
 
 ## Start building
 
-Both agents get more reliable when you ground them in accurate, current web data. [Start building](https://docs.parallel.ai/home) with Parallel's Search API and MCP server.
+Both agents get more reliable when you ground them in accurate, current web data. [Start building](https://docs.parallel.ai/home) with Parallel's Search API, or add [Parallel MCP](https://parallel.ai/mcp) to either agent with no key.

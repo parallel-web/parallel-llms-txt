@@ -8,9 +8,9 @@ These are the seven servers we'd install, grouped by category. Disclosure: the f
 
 ## Keyless and hosted: paste a URL, done
 
-### 1. Parallel Search MCP (web search + fetching)
+### 1. Parallel MCP (web search, fetch, and research)
 
-`https://mcp.parallel.ai/mcp` is [free with no API key and no account](https://docs.parallel.ai/integrations/mcp/quickstart): `web_search` for ranked, LLM-dense results and `web_fetch` for clean markdown from any URL, running on Parallel's Search API, whose advanced mode scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products across 12 providers (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. Free here means anonymous rate limits suited to personal and hobbyist use; production scale needs a free account (with $5 in recurring monthly credits) and a Bearer key.
+`https://mcp.parallel.ai/mcp` is [free with no API key and no account](https://parallel.ai/mcp): `web_search` for ranked, LLM-dense results and `web_fetch` for clean markdown from any URL, running on Parallel's Search API, whose advanced mode scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products across 12 providers (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. The same server adds `web_decisions` for typed questions with no key, and `web_research`, which answers one research question with citations in the same call, once you sign in at `https://mcp.parallel.ai/mcp?login` or send an API key. Free here means anonymous rate limits suited to personal and hobbyist use, with nothing billed when you hit them. Production scale needs an account, which comes with up to $80 in free credits plus $5 a month with a card on file; signed-in calls bill at Search API rates. [Parallel MCP](https://parallel.ai/mcp) has one-click installs for Claude, ChatGPT, Cursor, VS Code, and more.
 
 ### 2. DeepWiki (open-source repo docs)
 
@@ -44,7 +44,7 @@ The official reference server for scoped file access: you pass the directories i
 
 | Server | What it does | Kind of free | Catch |
 | --- | --- | --- | --- |
-| Parallel Search MCP | Web search + page fetching | Keyless, hosted | Anonymous rate limits; key for scale |
+| Parallel MCP | Web search, page fetching, decisions, research | Keyless, hosted | Anonymous rate limits; sign-in for research and scale |
 | DeepWiki | Answers about public repos | Keyless, hosted | Public repos only |
 | GitHub MCP | Repos, PRs, Actions | Free with account (OAuth) | Heavy tool surface |
 | Context7 | Version-pinned library docs | Free tier with account | Indexed libraries only |
@@ -66,4 +66,4 @@ Firecrawl's keyless tier is real but its daily limits are shared across everyone
 
 ## Start with the keyless two
 
-Add `[https://mcp.parallel.ai/mcp](https://docs.parallel.ai/integrations/mcp/quickstart)` and DeepWiki, neither of which asks for an account, and see what your agent does with a live web and real library internals. Add the account-gated ones only when a task actually calls for them.
+Add [Parallel MCP](https://parallel.ai/mcp) (`https://mcp.parallel.ai/mcp`) and DeepWiki, neither of which asks for an account, and see what your agent does with a live web and real library internals. Add the account-gated ones only when a task actually calls for them.

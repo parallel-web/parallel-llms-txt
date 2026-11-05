@@ -467,7 +467,7 @@ Pick the mode per call. Turbo fits voice agents, realtime chat, and high-volume 
 - [Docs](https://docs.parallel.ai/search/modes)
 - [Playground](https://platform.parallel.ai/play/search?mode=turbo)
 - [Parallel CLI](https://docs.parallel.ai/integrations/cli)
-- [Parallel MCP](https://docs.parallel.ai/integrations/mcp/quickstart)
+- [Parallel MCP](https://parallel.ai/mcp)
 
 
 ```

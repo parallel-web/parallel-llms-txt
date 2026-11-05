@@ -56,7 +56,7 @@ Parallel runs its own web-scale index (billions of pages, millions added daily) 
 
 Yes. You can drop the API key and keep using the MCP server. Keep the key configured if you want higher rate limits, usage analytics on [platform.parallel.ai](https://platform.parallel.ai), or access to paid agentic endpoints like the Task API and FindAll API.
 
-Please note that you’ll need to update from the old URL ([https://search-mcp.parallel.ai/mcp](https://search-mcp.parallel.ai/mcp)) to the new one: [https://mcp.parallel.ai/mcp](https://mcp.parallel.ai/mcp)
+Please note that you’ll need to update from the old URL ([https://search-mcp.parallel.ai/mcp](https://search-mcp.parallel.ai/mcp)) to the new one: [https://mcp.parallel.ai/mcp](https://parallel.ai/mcp)
 
 **What rate limits does the Parallel MCP server have?**
 

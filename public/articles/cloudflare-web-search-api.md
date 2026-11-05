@@ -154,7 +154,7 @@ https://developers.cloudflare.com/ai-gateway/usage/web-search | Web Search · Cl
 https://imasters.com/news/cloudflare-launches-web-search-api-to-give-ai-agents-real-time-search | Cloudflare's Web Search API: search for AI agents - iMasters
 ```
 
-If your agent speaks MCP, the [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) at `https://mcp.parallel.ai/mcp` works without an API key and adds a `web_fetch` tool that reads up to 20 URLs per call, which covers the page-reading gap in Cloudflare’s API.
+If your agent speaks MCP, [Parallel MCP](https://parallel.ai/mcp) at `https://mcp.parallel.ai/mcp` works without an API key and adds a `web_fetch` tool that reads up to 20 URLs per call, which covers the page-reading gap in Cloudflare’s API.
 
 |  | Cloudflare Web Search API | Parallel Search API |
 | --- | --- | --- |
@@ -194,4 +194,4 @@ Not as one of the three Web Search API providers. You can route Parallel calls t
 
 ## Get started
 
-If you’re on Workers, try the Cloudflare Web Search API with Ceramic for keyword lookups and compare the results against Parallel on your own queries. Get a Parallel API key on [Platform](https://platform.parallel.ai), or connect the keyless Search MCP first. For more context, see our guide to [the best web search APIs](https://parallel.ai/articles/best-web-search-api) and [how we evaluate web search APIs](https://parallel.ai/articles/how-we-evaluate-web-search-apis).
+If you’re on Workers, try the Cloudflare Web Search API with Ceramic for keyword lookups and compare the results against Parallel on your own queries. Get a Parallel API key on [Platform](https://platform.parallel.ai), or connect the keyless [Parallel MCP](https://parallel.ai/mcp) first. For more context, see our guide to [the best web search APIs](https://parallel.ai/articles/best-web-search-api) and [how we evaluate web search APIs](https://parallel.ai/articles/how-we-evaluate-web-search-apis).

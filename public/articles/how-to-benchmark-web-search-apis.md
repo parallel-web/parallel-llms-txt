@@ -177,7 +177,7 @@ Then treat the harness as a product. Keep it in version control with the query s
 
 ## Scaffolding that speeds this up
 
-You don't need to build the harness from nothing. Our cookbook shows how to [build a search agent](https://parallel.ai/blog/cookbook-search-agent) end to end, and our notes on [structuring search objectives](https://parallel.ai/articles/openclaw-best-practices-web-search) help you get comparable results across tools. If you wire the search step through the [Parallel Search MCP server](https://parallel.ai/blog/search-mcp-server), swapping engines takes minutes instead of a rewrite. For deep research evaluations, [run tasks concurrently in batches](https://parallel.ai/blog/task-group-api) rather than one at a time. Our published [benchmark results](https://parallel.ai/benchmarks) document the datasets and harness we use, if you want a reference point for your own.
+You don't need to build the harness from nothing. Our cookbook shows how to [build a search agent](https://parallel.ai/blog/cookbook-search-agent) end to end, and our notes on [structuring search objectives](https://parallel.ai/articles/openclaw-best-practices-web-search) help you get comparable results across tools. If you wire the search step through [Parallel MCP](https://parallel.ai/mcp), swapping engines takes minutes instead of a rewrite. For deep research evaluations, [run tasks concurrently in batches](https://parallel.ai/blog/task-group-api) rather than one at a time. Our published [benchmark results](https://parallel.ai/benchmarks) document the datasets and harness we use, if you want a reference point for your own.
 
 ## Questions that come up
 

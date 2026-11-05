@@ -100,12 +100,12 @@ Both tools can research the web, and both are only as accurate as the data they 
 
 Both Claude Code and Cowork extend through the [Model Context Protocol](https://parallel.ai/articles/what-is-mcp), so you can add a [dedicated web research tool](https://parallel.ai/articles/what-is-a-web-search-api) to either. At Parallel, we build web search and research APIs purpose-built for AI agents. Our [Search API](https://parallel.ai/products/search) returns ranked URLs and dense, token-efficient excerpts with citations, so the agent gets more signal per token and makes fewer trips back to the web. Our Basis framework attaches citations and calibrated confidence to every result, and we’re SOC 2 Type 2 certified with zero data retention available for enterprises.
 
-We ship a production [Search MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) that exposes web_search and web_fetch tools to any MCP-aware client, including Claude Code and Cowork. Adding it takes a few lines of config:
+We ship [Parallel MCP](https://parallel.ai/mcp), a production MCP server that gives any MCP-aware client, including Claude Code and Cowork, free web_search, web_fetch, and web_decisions tools, plus web_research for cited answers to single research questions once you sign in or add an API key. Adding it takes a few lines of config:
 
 ```json
 {
   "mcpServers": {
-    "parallel-search": {
+    "parallel": {
       "url": "https://mcp.parallel.ai/mcp",
       "headers": { "x-api-key": "${PARALLEL_API_KEY}" }
     }
@@ -113,9 +113,9 @@ We ship a production [Search MCP server](https://docs.parallel.ai/integrations/m
 }
 ```
 
-This registers the Parallel Search server and passes your key from the PARALLEL_API_KEY environment variable, so the agent can call web_search and web_fetch on its own.
+This registers Parallel MCP and passes your key from the PARALLEL_API_KEY environment variable, so the agent can call all four tools on its own. Leave out the headers to use the free keyless tools. In Cowork, the one-click Claude install on [parallel.ai/mcp](https://parallel.ai/mcp) adds Parallel as a connector instead.
 
-For example, point Cowork at a folder, ask it to research your competitors and build a comparison, and route its web lookups through the Parallel Search MCP so every claim carries a source. The comparison that comes back is grounded in citations you can check.
+For example, point Cowork at a folder, ask it to research your competitors and build a comparison, and route its web lookups through Parallel MCP so every claim carries a source. The comparison that comes back is grounded in citations you can check.
 
 ## Frequently asked questions
 

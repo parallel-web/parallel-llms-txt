@@ -30,7 +30,7 @@ Only two of the four TinyFish products compete with anything Parallel sells: Tin
 | Raw browser session | $0.002 per minute | Not offered |
 | Research and enrichment | Not offered | Task $5 to $2,400 per 1,000 runs; Responses $10 to $250 per 1,000 |
 | Billing | Wallet top-up, $10 minimum | Pay as you go, per request |
-| Free entry | $8 in wallet funds at signup; account and API key required | $5 in credits every month, applied automatically; hosted Search MCP free with no account |
+| Free entry | $8 in wallet funds at signup; account and API key required | $5 in credits every month, applied automatically; Parallel MCP free with no account |
 
 The zero is real: TinyFish Search and Fetch cost nothing per call, they do not draw down the wallet, and they keep working at a zero balance. If your workload is search and page fetching and it fits inside the rate limits, nothing in the category beats that on price, Parallel's metered API included.
 
@@ -63,7 +63,7 @@ with client.agent.stream(
         print(event)
 ```
 
-Parallel ships Python and TypeScript SDKs, an MCP server, and a playground, and the Responses API is OpenAI SDK-compatible. Here the equivalent call is a search:
+Parallel ships Python and TypeScript SDKs, [Parallel MCP](https://parallel.ai/mcp), and a playground, and the Responses API is OpenAI SDK-compatible. Here the equivalent call is a search:
 
 ```python
 import os
@@ -80,9 +80,9 @@ search = client.search(
 
 TinyFish takes a goal and a page to work on, then returns a stream of what the agent did. Parallel takes an objective and a set of queries, then returns ranked URLs with compressed excerpts sized for a model's context window.
 
-The free entry points differ in shape as well as price. TinyFish's MCP server sits behind OAuth 2.1, so an account comes first even though the Search and Fetch calls themselves cost nothing. Parallel's hosted Search MCP at mcp.parallel.ai/mcp takes anonymous requests with no account and no key. Point a client at the URL and web_search and web_fetch appear, backed by the Search and Extract APIs, running Search in basic mode with excerpts capped at roughly 25,000 characters per call to fit typical MCP client limits.
+The free entry points differ in shape as well as price. TinyFish's MCP server sits behind OAuth 2.1, so an account comes first even though the Search and Fetch calls themselves cost nothing. Parallel MCP at mcp.parallel.ai/mcp takes anonymous requests with no account and no key. Point a client at the URL and web_search, web_fetch, and web_decisions appear, backed by the Search, Extract, and Decisions APIs, with Search running in fast mode by default.
 
-Anonymous traffic runs at lower rate limits. Passing an API key as a Bearer token raises them and unlocks per-connection overrides, so you can pin fast mode, a location, or a result count for every call on that connection. A second endpoint at mcp.parallel.ai/mcp?login requires authentication and returns 401 to anonymous requests; use that one when every call has to be attributed to an account, as with Zero Data Retention or an organization-wide rollout.
+Anonymous traffic runs at lower rate limits. Passing an API key as a Bearer token raises them, adds web_research for cited single-question answers, and unlocks per-connection overrides in the x-parallel-mcp-config header, so you can pin a search mode, a location, a result count, or domain filters for every call on that connection. Connecting to mcp.parallel.ai/mcp?login signs in over OAuth instead and returns 401 to anonymous requests; use that route when every call has to be attributed to an account, as with Zero Data Retention or an organization-wide rollout.
 
 ## **Compliance**
 

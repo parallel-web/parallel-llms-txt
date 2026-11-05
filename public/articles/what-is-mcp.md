@@ -142,11 +142,11 @@ Track performance and refine implementation based on real usage. Pay attention t
 
 ## **How Parallel Search complements MCP-based agents**
 
-AI agents need access to current web information to reason about the real world. Parallel's [Search](https://parallel.ai/blog/search-mcp-server) and [Task](https://parallel.ai/blog/parallel-task-mcp-server) APIs are available through MCP, so agents get web research through the same standardized protocol.
+AI agents need access to current web information to reason about the real world. [Parallel MCP](https://parallel.ai/mcp) gives agents web search, page fetch, and typed decisions free with no key, and single-question research when they sign in, all through the same standardized protocol. For asynchronous deep research and list enrichment, Parallel's [Task](https://parallel.ai/blog/parallel-task-mcp-server) API is also available through MCP.
 
-When your MCP-enabled client/agent needs to research a topic, verify a fact, or gather current information, it can call Parallel's MCP servers to conduct basic search or reasoning-enhanced search. The agent describes what it's looking for, "Find the current CTO of this company" or "Research recent funding rounds for startups in the fintech space", and Parallel returns structured, verifiable results optimized for LLMs.
+When your MCP-enabled client/agent needs to research a topic, verify a fact, or gather current information, it can call Parallel MCP's `web_search` for quick lookups or `web_research` for a cited answer to a harder question. The agent describes what it's looking for, "Find the current CTO of this company" or "Research recent funding rounds for startups in the fintech space", and Parallel returns structured, verifiable results optimized for LLMs.
 
-[Start building with Parallel's MCP integration](https://docs.parallel.ai/integrations/mcp/getting-started) to give your agents reliable access to web intelligence.
+[Set up Parallel MCP](https://parallel.ai/mcp) to give your agents reliable access to web intelligence, or follow the [quickstart](https://docs.parallel.ai/integrations/mcp/quickstart) to configure it by hand.
 
 ## **FAQs about the Model Context Protocol**
 

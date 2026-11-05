@@ -4,13 +4,13 @@ Most “best web search API” comparisons are published by vendors who rank the
 
 ## Quick answer
 
-- **Best overall for AI agents and RAG:** Parallel - proprietary web-scale index, LLM-ready excerpts in one call. Turbo ~200ms and Fast under 1s, both $1 / 1,000 requests. ([Try Search](/products/search) / [Free MCP](https://docs.parallel.ai/integrations/mcp/quickstart))
+- Best overall for AI agents and RAG: Parallel - proprietary web-scale index, LLM-ready excerpts in one call. Turbo ~200ms and Fast under 1s, both $1 / 1,000 requests. ([Try Search](/products/search) / [Free Parallel MCP](https://parallel.ai/mcp))
 - **Best multi-engine and vertical coverage:** SerpAPI, dozens of engines plus Google Scholar, Patents, and Shopping.
 - **Best native grounding inside one model:** OpenAI and Anthropic web search tools, with no separate retrieval pipeline to run.
 
 > **Try it free**
 >
-> Point any MCP client at [mcp.parallel.ai/mcp](https://mcp.parallel.ai/mcp) (no account), or start on the [Search product](/products/search) with $5/mo free credits.
+> Point any MCP client at [mcp.parallel.ai/mcp](https://parallel.ai/mcp) (no account), or start on the [Search product](/products/search) with $5/mo free credits.
 
 The web search API market shifted fast after Microsoft retired the Bing Search APIs in August 2025, and a wave of AI-native search engines moved in to fill the gap. The options now split into three categories that solve different problems, and picking the wrong category costs more than picking the wrong vendor.
 
@@ -78,13 +78,13 @@ import parallel  client = parallel.Parallel()  results = client.search.create(  
 
 **Limitation:** No Google vertical search (Scholar, Patents, Shopping). If you need SERP features or rank tracking, pair Parallel with a SERP API.
 
-**Integrations:** LangChain, MCP server, OpenAI-compatible Responses API. SOC 2 Type 2, Data Processing Addendum, and zero data retention for enterprise.
+Integrations: LangChain, the [Parallel MCP](https://parallel.ai/mcp) server (free web search and fetch, plus decisions and research), OpenAI-compatible Responses API. SOC 2 Type 2, Data Processing Addendum, and zero data retention for enterprise.
 
 **Pricing:** $1 per 1,000 requests for Turbo and Fast; $5 per 1,000 requests for Basic and Advanced (10 results with extraction included). $5 in free credits every month, applied automatically. See the [pricing page](https://docs.parallel.ai/getting-started/pricing).
 
 > **Start free**
 >
-> MCP with no signup: [mcp.parallel.ai/mcp](https://mcp.parallel.ai/mcp). Production: [platform.parallel.ai](https://platform.parallel.ai) + [Search quickstart](https://docs.parallel.ai/search/search-quickstart).
+> MCP with no signup: [mcp.parallel.ai/mcp](https://parallel.ai/mcp). Production: [platform.parallel.ai](https://platform.parallel.ai) + [Search quickstart](https://docs.parallel.ai/search/search-quickstart).
 
 ### 2. Exa
 

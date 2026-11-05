@@ -1,6 +1,6 @@
 # How to add web search to the Claude Agent SDK (Python and TypeScript)
 
-The Claude Agent SDK ships its own WebSearch tool, but you can't change the provider behind it, so your choice is whether to keep it or connect a search MCP server instead. This guide covers how the built-in tools work and what they cost, runnable Python and TypeScript examples with Parallel's free Search MCP, how to disable built-in search, and when each option fits.
+The Claude Agent SDK ships its own WebSearch tool, but you can't change the provider behind it, so your choice is whether to keep it or connect a search MCP server instead. This guide covers how the built-in tools work and what they cost, runnable Python and TypeScript examples with Parallel MCP's free search tools, how to disable built-in search, and when each option fits.
 
 The Claude Agent SDK is the library version of Claude Code: the same agent loop, built-in tools, permissions, and MCP client, driven from Python (`claude-agent-sdk`, v0.2.165 on PyPI as of October 8, 2026) or TypeScript (`@anthropic-ai/claude-agent-sdk`, v0.3.296 on npm as of October 9, 2026). It ships with two web tools, `WebSearch` and `WebFetch`, and Anthropic’s own [tools reference](https://code.claude.com/docs/en/tools-reference) says the search backend isn’t configurable: “To search with a different provider, add an MCP server that exposes a search tool.” That’s what this guide does, with working code in both languages.
 
@@ -19,20 +19,22 @@ Check these limits before you ship:
 
 ## What changes when you add a search MCP server
 
-An MCP server gives Claude its own tools, which the SDK names `mcp__<server-name>__<tool-name>`. Connect [Parallel’s Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) under the name `parallel` and the agent gets two tools:
+An MCP server gives Claude its own tools, which the SDK names `mcp__<server-name>__<tool-name>`. Connect [Parallel MCP](https://parallel.ai/mcp) under the name `parallel` and the agent gets three tools with no key, plus a fourth with one:
 
 - `mcp__parallel__web_search` takes a natural-language `objective` plus a list of short keyword `search_queries`, and returns ranked URLs with excerpts chosen for that objective, plus a publish date when we have one.
 - `mcp__parallel__web_fetch` reads up to 20 URLs per call and returns excerpts focused on an objective, or the full page as Markdown with `full_content: true`.
+- `mcp__parallel__web_decisions` answers typed questions, such as a probability, a pick among options you list, or a score, and returns sources with each answer. It’s an early release, so name it in your prompt when you want it.
+- `mcp__parallel__web_research` needs an API key. It researches one question and returns a cited answer in the same call, with `reasoning_effort` set to `low`, `medium`, `high`, or `auto`.
 
-The server is at `https://mcp.parallel.ai/mcp`, speaks Streamable HTTP, and is free with no API key in `fast` mode at anonymous rate limits. Add an `Authorization: Bearer` header with a [Parallel API key](https://platform.parallel.ai) for higher limits. We make Parallel, so weigh our description accordingly, and test both paths on your own prompts.
+The server is at `https://mcp.parallel.ai/mcp` and speaks Streamable HTTP. Its search, fetch, and decisions tools are free with no API key at anonymous rate limits, and `web_search` runs in `fast` mode by default. Add an `Authorization: Bearer` header with a [Parallel API key](https://platform.parallel.ai) for higher limits and `web_research`. We make Parallel, so weigh our description accordingly, and test both paths on your own prompts.
 
-|  | Built-in WebSearch + WebFetch | Parallel Search MCP |
+|  | Built-in WebSearch + WebFetch | Parallel MCP |
 | --- | --- | --- |
 | What a search returns | Titles and URLs, plus a model-written summary | URLs, titles, publish dates, and query-focused excerpts |
 | Reading pages | WebFetch, one URL, filtered through a prompt | web_fetch, up to 20 URLs, excerpts or full Markdown |
 | Search price | $10 per 1,000 searches, up to 8 per call | Free without a key; Search API rates ($1 to $5 per 1,000) with a key |
 | Works on Bedrock | No | Yes, any provider the SDK supports |
-| Backend configurable | No | Mode, location, and other Search API settings with a key |
+| Backend configurable | No | Search mode, max results, and domain filters with a key |
 | Setup | None | One mcp_servers entry |
 
 ## Install the SDK
@@ -56,7 +58,7 @@ Set `ANTHROPIC_API_KEY` from the [Claude Console](https://platform.claude.com/),
 
 ## Python example: Claude Agent SDK with Parallel web search
 
-This is the script we ran. It connects the Search MCP over HTTP, sends a Bearer key only if one is set, pre-approves both Parallel tools, and removes the built-in web tools so every search goes through Parallel.
+This is the script we ran. It connects Parallel MCP over HTTP, sends a Bearer key only if one is set, pre-approves the search and fetch tools, and removes the built-in web tools so every search goes through Parallel.
 
 ```python
 import asyncio
@@ -171,22 +173,22 @@ In that run, Claude first tried `Bash`, to run `npm view`. The SDK’s default t
 You have three options, depending on what else the agent needs:
 
 - **Keep other built-in tools, drop web search:** `disallowed_tools=["WebSearch", "WebFetch"]` (`disallowedTools` in TypeScript) removes both from the model’s context. Use this for coding agents that still need `Read`, `Edit`, or `Bash`.
-- **Research-only agent:** `tools=[]` (`tools: []`) disables every built-in tool, so Parallel’s two tools are all Claude has. This also skips the tool search step, because `ToolSearch` is a built-in tool.
+- **Research-only agent:** `tools=[]` (`tools: []`) disables every built-in tool, so Parallel’s tools are all Claude has. This also skips the tool search step, because `ToolSearch` is a built-in tool.
 - **Narrow pre-approval:** list exact tool names in `allowed_tools`, or use `"mcp__parallel__*"` to approve every tool on the server. Anthropic recommends this over `bypassPermissions`, which approves far more than MCP tools.
 
 Also check the `system` init message for the server’s `status`. If it reads `failed` or `needs-auth`, the [MCP guide](https://code.claude.com/docs/en/agent-sdk/mcp#error-handling) warns that Claude can fall back to built-in tools, which is one more reason to disallow them when you want only Parallel.
 
 ## Cost in practice
 
-Search fees are straightforward to compare. At two searches per task, 1,000 tasks cost $20 in Anthropic search fees, or more when one `WebSearch` call fans out into several backend searches. The same 1,000 tasks cost nothing on the keyless Search MCP; with an API key, calls bill at [Search API rates](https://docs.parallel.ai/search/modes), which run $1 to $5 per 1,000 requests depending on mode.
+Search fees are straightforward to compare. At two searches per task, 1,000 tasks cost $20 in Anthropic search fees, or more when one `WebSearch` call fans out into several backend searches. The same 1,000 tasks cost nothing on keyless Parallel MCP; with an API key, calls bill at [Search API rates](https://docs.parallel.ai/search/modes), which run $1 to $5 per 1,000 requests depending on mode.
 
-Token costs usually dominate, though, and they depend on how many turns the agent takes. In our test runs, the built-in path usually needed a `WebFetch` call after `WebSearch` before Claude could answer, which adds a turn. With the Search MCP, Claude often answered from the `web_search` excerpts alone. Measure turns and total cost on your own workload before you decide.
+Token costs usually dominate, though, and they depend on how many turns the agent takes. In our test runs, the built-in path usually needed a `WebFetch` call after `WebSearch` before Claude could answer, which adds a turn. With Parallel MCP, Claude often answered from the `web_search` excerpts alone. Measure turns and total cost on your own workload before you decide.
 
 ## When to use which
 
 Use the built-in tools when you want zero setup, you’re on the Claude API, and a few cents per search doesn’t matter at your volume. Claude can scope searches with domain filters, and there’s no extra server to monitor.
 
-Add the Parallel Search MCP when you’re on Bedrock, which has no server-side search; when you want excerpts the agent can answer from without an extra fetch turn; when you need to read many URLs in one call; or when search volume makes $10 per 1,000 add up. Our [Claude web search vs. Parallel](https://parallel.ai/articles/claude-web-search-vs-parallel) comparison covers quality and pricing in more depth, and [best web search MCP](https://parallel.ai/articles/best-web-search-mcp) compares other servers you could plug into the same `mcp_servers` slot.
+Add Parallel MCP when you’re on Bedrock, which has no server-side search; when you want excerpts the agent can answer from without an extra fetch turn; when you need to read many URLs in one call; or when search volume makes $10 per 1,000 add up. Our [Claude web search vs. Parallel](https://parallel.ai/articles/claude-web-search-vs-parallel) comparison covers quality and pricing in more depth, and [best web search MCP](https://parallel.ai/articles/best-web-search-mcp) compares other servers you could plug into the same `mcp_servers` slot.
 
 ## Frequently asked questions
 
@@ -196,7 +198,7 @@ Yes. Pass `{"type": "http", "url": ..., "headers": {...}}` in `mcp_servers` (Pyt
 
 ### What are MCP tool names in the Claude Agent SDK?
 
-MCP tools are named `mcp__<server-name>__<tool-name>`. A server you register as `parallel` exposes `mcp__parallel__web_search` and `mcp__parallel__web_fetch`, and those names are what you put in `allowed_tools` or `disallowed_tools`.
+MCP tools are named `mcp__<server-name>__<tool-name>`. A server you register as `parallel` exposes `mcp__parallel__web_search`, `mcp__parallel__web_fetch`, and `mcp__parallel__web_decisions` (plus `mcp__parallel__web_research` with a key), and those names are what you put in `allowed_tools` or `disallowed_tools`.
 
 ### Can I change the search provider behind the built-in WebSearch tool?
 
@@ -204,16 +206,16 @@ No. Anthropic’s tools reference says the WebSearch backend isn’t configurabl
 
 ### How much does web search cost in the Claude Agent SDK?
 
-The built-in tool uses Anthropic’s web search, which costs $10 per 1,000 searches plus token costs, and one WebSearch call can run up to eight searches. Parallel’s Search MCP is free without a key and $1 per 1,000 searches in fast mode with one.
+The built-in tool uses Anthropic’s web search, which costs $10 per 1,000 searches plus token costs, and one WebSearch call can run up to eight searches. Parallel MCP’s web search is free without a key and $1 per 1,000 searches in fast mode with one.
 
 ### Does WebSearch work with Claude on Amazon Bedrock?
 
 No. Anthropic’s docs say Amazon Bedrock doesn’t expose the server-side web search tool. An MCP search server such as Parallel’s works with any model provider the SDK supports, because the SDK calls it directly.
 
-### Do I need an API key for Parallel’s Search MCP?
+### Do I need an API key for Parallel MCP?
 
-No. `https://mcp.parallel.ai/mcp` works anonymously in fast mode at anonymous rate limits. Add `Authorization: Bearer <PARALLEL_API_KEY>` to the server’s headers for higher limits and to pin settings such as the search mode.
+No. `https://mcp.parallel.ai/mcp` works anonymously in fast mode at anonymous rate limits. Add `Authorization: Bearer <PARALLEL_API_KEY>` to the server’s headers for higher limits and the `web_research` tool. With a key you can also pin settings such as the search mode, max results, or excluded domains in an `x-parallel-mcp-config` header; the [quickstart](https://docs.parallel.ai/integrations/mcp/quickstart) lists the override settings.
 
 ## Get started
 
-Copy the Python or TypeScript example above, run it without a key, and check that the first tool call is `mcp__parallel__web_search`. When you need higher limits, create a key on the [Parallel Platform](https://platform.parallel.ai) and set `PARALLEL_API_KEY`. For the full tool reference and configuration options, see the [Search MCP docs](https://docs.parallel.ai/integrations/mcp/quickstart), and for the bigger picture of how agents and tools fit together, read [what is an agent harness](https://parallel.ai/articles/what-is-an-agent-harness).
+Copy the Python or TypeScript example above, run it without a key, and check that the first tool call is `mcp__parallel__web_search`. When you need higher limits, create a key on the [Parallel Platform](https://platform.parallel.ai) and set `PARALLEL_API_KEY`. For the full tool reference and configuration options, see the [Parallel MCP quickstart](https://docs.parallel.ai/integrations/mcp/quickstart), and to add the same server to Claude, Cursor, or another client, use the one-click installs on the [Parallel MCP page](https://parallel.ai/mcp). For the bigger picture of how agents and tools fit together, read [what is an agent harness](https://parallel.ai/articles/what-is-an-agent-harness).

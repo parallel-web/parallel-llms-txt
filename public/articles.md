@@ -80,7 +80,7 @@
 * [How to add web search to a local AI agent (Ollama, LM Studio, Pi, and Goose)](https://parallel.ai/articles/web-search-for-local-ai-agents)
 * [The best Cursor MCP servers in 2026, with mcp.json config](https://parallel.ai/articles/best-mcp-servers-for-cursor)
 * [The best MCP servers for Gemini CLI in 2026](https://parallel.ai/articles/best-mcp-servers-for-gemini-cli)
-* [The best MCP servers for Windsurf in 2026](https://parallel.ai/articles/best-mcp-servers-for-windsurf)
+* [The best MCP servers for Windsurf (Devin Desktop) in 2026](https://parallel.ai/articles/best-mcp-servers-for-windsurf)
 * [The best free MCP servers in 2026 (and what free actually means)](https://parallel.ai/articles/best-free-mcp-servers)
 * [MCP servers vs. agent skills vs. CLIs: how to give your AI agent tools](https://parallel.ai/articles/mcp-vs-skills-vs-clis)
 * [Remote vs. local MCP servers: which should your agent use?](https://parallel.ai/articles/remote-vs-local-mcp-servers)

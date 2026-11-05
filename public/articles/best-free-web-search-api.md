@@ -4,7 +4,7 @@ Free tiers for web search APIs don’t line up. Some are one-time credit grants,
 
 ## **Which free web search API should you use?**
 
-For an AI agent, start with one of these five. Parallel’s hosted MCP server gives any MCP client web search and page fetch with no account, key, or card, and a Parallel API account with a card on file adds $5 in credits each month, enough for up to 5,000 Turbo or Fast searches. Tavily (1,000 credits a month), Exa ($10 a month plus a $10 signup bonus), and Linkup (topped back up to $20 a month) need no card at all. TinyFish makes search free up to its rate limits. Google’s free Custom Search JSON API is closed to new customers, and Microsoft retired the Bing Search APIs in August 2025.
+For an AI agent, start with one of these five. [Parallel MCP](https://parallel.ai/mcp) gives any MCP client web search and page fetch with no account, key, or card, and a Parallel API account with a card on file adds $5 in credits each month, enough for up to 5,000 Turbo or Fast searches. Tavily (1,000 credits a month), Exa ($10 a month plus a $10 signup bonus), and Linkup (topped back up to $20 a month) need no card at all. TinyFish makes search free up to its rate limits. Google’s free Custom Search JSON API is closed to new customers, and Microsoft retired the Bing Search APIs in August 2025.
 
 Every free-tier figure below was checked against the vendor’s own pricing or documentation page on October 27, 2026, and each one links to its source.
 
@@ -38,7 +38,7 @@ A free tier measured in requests tells you nothing about how many requests a que
 
 The [Parallel Search API](https://parallel.ai/products/search) is built for AI agents rather than people reading a results page. It runs on Parallel’s own web index, which [holds billions of pages and adds or updates millions daily](https://parallel.ai/products/search), and returns ranked results with dense, query-relevant excerpts instead of short snippets. There are three ways to use it for free, and they stack:
 
-- **A free hosted MCP server.** Point any MCP client at [mcp.parallel.ai/mcp](https://docs.parallel.ai/integrations/mcp/quickstart) and your agent gets web search and page fetch right away. It needs no account, API key, or card, and anonymous use is free at lower rate limits.
+- **A free hosted MCP server.** Point any MCP client at `https://mcp.parallel.ai/mcp` and [Parallel MCP](https://parallel.ai/mcp) gives your agent web search, page fetch, and typed-question answers right away. It needs no account, API key, or card, and anonymous use is free at lower rate limits.
 - **A signup credit.** New accounts at [platform.parallel.ai](https://platform.parallel.ai) can [earn up to $80 in credits at signup](https://parallel.ai/pricing), which you can spend across Parallel’s APIs.
 - **$5 in free credits every month.** Eligible organizations with a card on file get [$5 in credits each month](https://parallel.ai/blog/free-tier-parallel), spent before any paid balance. [Usage past the $5 is billed to that card at standard rates](https://parallel.ai/blog/free-tier-parallel). Unused credit expires at month end, it’s one credit per organization, and marketplace and postpaid organizations aren’t eligible.
 
@@ -117,12 +117,13 @@ Check official documentation for current pricing.
 
 ## **How do you add free web search to an agent without an API key?**
 
-Two options on this list work with no account at all: Firecrawl Keyless and the [Parallel MCP server](https://docs.parallel.ai/integrations/mcp/quickstart). The Parallel server is a hosted, streamable-HTTP MCP server at https://mcp.parallel.ai/mcp. Without a key it exposes two tools, free at lower rate limits:
+Two options on this list work with no account at all: Firecrawl Keyless and [Parallel MCP](https://parallel.ai/mcp). The Parallel server is a hosted, streamable-HTTP MCP server at https://mcp.parallel.ai/mcp. Without a key it exposes three tools, free at lower rate limits:
 
 - **web_search** searches the web and returns excerpts that usually hold enough to answer the question. It runs the Search API in Fast mode by default.
 - **web_fetch** reads specific URLs and returns the relevant parts of each page, or the full page as markdown.
+- **web_decisions** answers typed questions (a probability, a pick among options, or a score) and cites its sources.
 
-A third tool, web_research, answers a single question with citations in one call. It needs you to sign in or use an API key. For Claude Code or Codex, adding the server is one command:
+A fourth tool, web_research, answers a single question with citations in one call. It needs you to sign in or use an API key. For Claude Code or Codex, adding the server is one command:
 
 ```sh
 claude mcp add --transport http parallel https://mcp.parallel.ai/mcp
@@ -145,9 +146,9 @@ For clients configured through JSON, the entry is a few lines:
 }
 ```
 
-[parallel.ai/mcp](https://parallel.ai/mcp) has one-click installs for Claude, ChatGPT, Cursor, and VS Code, and Cursor users can also add it from the [Cursor Marketplace](https://cursor.com/marketplace/parallel). The [MCP quickstart](https://docs.parallel.ai/integrations/mcp/quickstart) covers other clients, including Gemini CLI, Windsurf, and Zed.
+[parallel.ai/mcp](https://parallel.ai/mcp) has one-click installs for Claude, ChatGPT, Cursor, VS Code, Grok Bot, Antigravity, OpenCode, and Hermes, plus a setup prompt you can paste into any other agent. Cursor users can also add it from the [Cursor Marketplace](https://cursor.com/marketplace/parallel). The [installation docs](https://docs.parallel.ai/integrations/mcp/installation) cover other clients, including Gemini CLI, Windsurf, and Zed.
 
-For higher rate limits, create an account at [platform.parallel.ai](https://platform.parallel.ai) and send your API key as a Bearer token, or connect to https://mcp.parallel.ai/mcp?login to sign in over OAuth. Signed-in calls are [billed at the same rates as the underlying API](https://docs.parallel.ai/integrations/mcp/quickstart), so they draw on your signup and monthly credits. For production traffic, call the Search API directly, where you choose the mode, the result count, and the cost per request.
+For higher rate limits, create an account at [platform.parallel.ai](https://platform.parallel.ai) and send your API key as a Bearer token, or connect to https://mcp.parallel.ai/mcp?login to sign in over OAuth. Signed-in calls are [billed at the same rates as the underlying API](https://docs.parallel.ai/integrations/mcp/quickstart), so they draw on your signup and monthly credits, and they can pin a search mode, a result count, or domain filters through the x-parallel-mcp-config header. For production traffic, call the Search API directly, where you choose the mode, the result count, and the cost per request.
 
 ## **How do Parallel’s four search modes change the free-tier math?**
 
@@ -179,7 +180,7 @@ Or any mix. 5,000 searches a month is about 165 a day, enough for a personal res
 
 ## **Which free option fits your project?**
 
-- **You want web search in your coding agent in the next minute.** Parallel’s hosted MCP server, or Firecrawl Keyless. No key needed.
+- **You want web search in your coding agent in the next minute.** Parallel MCP, or Firecrawl Keyless. No key needed.
 - **You’re prototyping and want to avoid an invoice.** Tavily, Exa, or TinyFish. None of them needs a card.
 - **You need Google’s ranking.** Serper, with 2,500 free queries and $1.00 per 1,000 on its $50 pack. Accept the dependency on Google’s results knowingly.
 - **The free tier is a trial for something headed to production.** Evaluate the paid path: the mode you’ll ship, the rate limits you’ll need, and whether SOC 2 and zero data retention are included or an enterprise add-on.

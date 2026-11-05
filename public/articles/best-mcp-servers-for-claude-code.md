@@ -4,7 +4,7 @@ Claude Code MCP servers connect the agent to tools it doesn't ship with, from li
 
 Claude Code is Anthropic’s agentic coding harness, and the [Model Context Protocol (MCP)](https://parallel.ai/articles/what-is-mcp) is its extension surface: one config entry connects the agent to a documentation index, your issue tracker, a browser, or the live web. Tool search now defers most tool definitions until Claude needs them, but every server still adds tool names to each session, results to the context window, and one more option for the agent to choose from. Out of the thousands that exist, the useful question is which ones earn their place.
 
-Below are the twelve we’d consider, with the exact setup for each. Disclosure up front: we make Parallel, our search server is the first pick, and we cite the benchmark numbers so you can discount our bias.
+Below are the twelve we’d consider, with the exact setup for each. Disclosure up front: we make Parallel, Parallel MCP is the first pick, and we cite the benchmark numbers so you can discount our bias.
 
 ## How MCP works in Claude Code
 
@@ -12,51 +12,49 @@ Servers are added with the `[claude mcp add](https://code.claude.com/docs/en/mcp
 
 ## The best MCP servers for Claude Code
 
-### 1. Parallel Search MCP
+### 1. Parallel MCP
 
-The [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/quickstart) adds two tools: `web_search`, which returns ranked results with excerpts dense enough that the agent usually answers without a follow-up fetch, and `web_fetch`, which pulls token-efficient markdown from specific URLs, PDFs and JavaScript-rendered pages included. It's hosted, free, and needs no API key:
+[Parallel MCP](https://parallel.ai/mcp) is one hosted server with three tools that need no account or API key: web_search, which returns ranked results with excerpts dense enough that the agent usually answers without a follow-up fetch; web_fetch, which reads up to 20 URLs per call and returns the relevant excerpts or the full page as markdown, PDFs and JavaScript-rendered pages included; and web_decisions, which answers typed questions (a probability, a pick among options, a score) with sources. Signing in adds a fourth, web_research, which researches one question and returns a cited answer in the same call. The keyless setup is one command:
 
 ```bash
-claude mcp add --transport http "Parallel-Search-MCP" https://mcp.parallel.ai/mcp
+claude mcp add --transport http parallel https://mcp.parallel.ai/mcp
 ```
+
+To sign in with your Parallel account instead, use `'https://mcp.parallel.ai/mcp?login'` as the URL (quote it in the shell), then run /mcp in Claude Code, select the server, and finish the OAuth flow in your browser.
 
 Claude Code has a built-in web search tool, and for casual lookups it's fine; we've written a direct [comparison of Claude's built-in search against Parallel](https://parallel.ai/articles/claude-web-search-vs-parallel) if you want the details. In brief, a dedicated engine returns denser, more complete context per call, and Parallel Search (advanced) scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products across 12 providers (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. On a coding-specific test, [Openbenchmarks’ web search for coding agents board](https://openbenchmarks.com/web-search-for-coding-agents) (100 tickets where an agent patches an API client against current vendor docs, September 2026) found the API’s fast mode completed 66.7% of tickets from search results alone, third of 14 behind Perplexity (77.3%) and Firecrawl (70.3%), and turbo [searched fastest](https://openbenchmarks.com/web-search-for-coding-agents/metric/avg-search-time-search-only) at 333ms.
 
 **Best for:** researching libraries, errors, and APIs mid-task, and reading long docs pages without flooding the context window.
 
-**Tradeoffs:** we’re the vendor. Anonymous use has lower rate limits and runs the `fast` search mode; a free API key passed as a Bearer token lifts the limits and lets you pin a different mode in an `x-parallel-mcp-config` header, such as `{"web_search":{"override":{"mode":"basic"}}}`.
+Tradeoffs: we’re the vendor. Keyless use has lower rate limits and runs the fast search mode. Signing in, or passing an API key as a Bearer header, adds web_research, raises the limits, and bills calls to your Parallel account at the underlying API rates. Signed-in connections can also pin a different search mode or include and exclude domains in an x-parallel-mcp-config header, such as {"web_search":{"override":{"mode":"basic"}}}, and a ?tools= parameter on the URL limits which tools Claude Code sees.
 
-### 2. Parallel Task MCP
+Parallel also ships a [Claude Code plugin](https://docs.parallel.ai/integrations/claude-code-marketplace) that works through the parallel-cli rather than MCP, with slash commands such as /parallel:research and /parallel:enrich for long research runs and bulk enrichment. It needs the CLI installed and a Parallel login or API key.
 
-The [Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp) gives Claude Code research subagents: asynchronous web agents that take a whole objective ("compare these five auth providers on pricing, SOC 2 status, and SDK quality"), fan out across sources on Parallel's side, and return a structured, cited result while your main session keeps coding. It needs an API key, but every account includes a [recurring $5 monthly free credit](https://parallel.ai/pricing), which covers a lot of per-request-priced research.
-
-**Best for:** vendor evaluations, dependency audits, and any research too deep for a handful of search calls.** Tradeoffs:** results arrive in minutes, not seconds; use Search for quick lookups.
-
-### 3. Context7
+### 2. Context7
 
 Context7 serves version-pinned library documentation on demand, which makes it the highest-impact fix for hallucinated APIs. When the agent is about to call a method that changed two majors ago, this is the server that catches it.
 
 **Best for:** accurate, current API signatures for the exact versions in your lockfile.** Tradeoffs:** limited to libraries it indexes; pair it with web search for everything else.
 
-### 4. GitHub MCP
+### 3. GitHub MCP
 
 GitHub’s official hosted server covers issues, pull requests, code search, and Actions logs. Claude Code’s [MCP docs](https://code.claude.com/docs/en/mcp) connect it at `https://api.githubcopilot.com/mcp/` with a fine-grained personal access token passed as an `Authorization: Bearer` header. One caveat: Claude Code already drives the `gh` CLI well through bash, so if your GitHub use is light, you may not need the server at all. It’s worth the weight when you work across many repos or want CI failures surfaced as structured context rather than parsed logs.
 
 **Best for:** PR-heavy, multi-repo workflows.** Tradeoffs:** a large tool surface; limit toolsets so it doesn't crowd your context.
 
-### 5. Playwright MCP
+### 4. Playwright MCP
 
 Microsoft's Playwright server gives Claude Code a real browser to click through the app it just changed: load the page, fill the form, screenshot the result. It closes the loop between "the diff looks right" and "the feature works," and by mid-2026 it's among the most-installed servers in the community.
 
 **Best for:** verifying UI changes and reproducing frontend bugs.** Tradeoffs:** slower and heavier than API calls; for reading web pages, `web_fetch` is the cheaper tool.
 
-### 6. Sentry MCP
+### 5. Sentry MCP
 
 Sentry's hosted OAuth server puts production errors, traces, and release health in the agent's reach, so it debugs from the actual stack trace and breadcrumbs instead of a pasted screenshot.
 
 **Best for:** triaging and fixing production issues in context.** Tradeoffs:** designed for human-in-the-loop debugging rather than as a full Sentry API replacement.
 
-### 7. Linear MCP
+### 6. Linear MCP
 
 [Linear’s hosted server](https://linear.app/docs/mcp) lets Claude Code find, create, and update issues, projects, and comments, so the agent can read the ticket it’s working on and file follow-ups when it finds a second bug. It runs over Streamable HTTP with OAuth 2.1; after adding it, run `/mcp` inside a session to sign in:
 
@@ -68,7 +66,19 @@ For read-only access, point at `https://mcp.linear.app/mcp/readonly` instead, wh
 
 **Best for:** teams that plan in Linear and want the agent to work from the issue, not a paraphrase of it.
 
-**Tradeoffs:** each OAuth session is tied to one workspace, so multi-workspace users need separate auth contexts. Jira shops should look at Atlassian’s server instead.
+Tradeoffs: each OAuth session is tied to one workspace, so multi-workspace users need separate auth contexts. Jira shops want the next pick instead.
+
+### 7. Atlassian MCP
+
+[Atlassian’s remote MCP server](https://support.atlassian.com/atlassian-ai-gateway/docs/get-started-with-the-atlassian-remote-mcp-server/) is the Jira and Confluence counterpart to Linear: the agent can read the work item it’s fixing, search Confluence for the design doc behind it, and move the ticket to In Review once the PR is up. Version 2 of the server also reaches Jira Service Management, Bitbucket, Compass, and Loom, and Atlassian now recommends the /v2/mcp endpoint for new setups:
+
+```bash
+claude mcp add --transport http atlassian https://mcp.atlassian.com/v2/mcp
+```
+
+Run /mcp in a session to finish the OAuth 2.1 sign-in. Headless setups can authenticate with an API token instead, but an organization admin has to turn token auth on first.
+
+Best for: teams that track work in Jira and keep specs in Confluence. Tradeoffs: unified search and Teamwork Graph tools draw on Rovo credits, and the connection carries your full Atlassian permissions, so review writes before you approve them.
 
 ### 8. Supabase MCP
 
@@ -86,7 +96,7 @@ Add `project_ref=<id>` to pin the server to one project, or `features=database,d
 
 ### 9. Vercel MCP
 
-[Vercel MCP](https://vercel.com/docs/mcp/vercel-mcp) is Vercel’s official remote server at `https://mcp.vercel.com`, using OAuth and Streamable HTTP. Its most-used tools list and inspect deployments, read runtime logs and grouped runtime errors, and fetch protected preview URLs, which lets Claude Code check why the last deploy failed without you copying logs out of the dashboard:
+[Vercel MCP](https://vercel.com/docs/agent-resources/vercel-mcp) is Vercel’s official remote server at https://mcp.vercel.com, using OAuth and Streamable HTTP. Its most-used tools list and inspect deployments, read runtime logs and grouped runtime errors, and fetch protected preview URLs, which lets Claude Code check why the last deploy failed without you copying logs out of the dashboard:
 
 ```bash
 claude mcp add --transport http vercel https://mcp.vercel.com
@@ -94,7 +104,7 @@ claude mcp add --transport http vercel https://mcp.vercel.com
 
 **Best for:** debugging failed builds and runtime errors on projects deployed to Vercel.
 
-**Tradeoffs:** the [tools reference](https://vercel.com/docs/agent-resources/vercel-mcp/tools) lists more than 200 tools across 28 categories, including domains, billing, and firewall config, and the connection carries the same access as your Vercel account. Claude Code’s tool search keeps the definitions out of context until they’re needed, but review write actions before approving them.
+Tradeoffs: the [tools reference](https://vercel.com/docs/agent-resources/vercel-mcp/tools) spans 27 categories, from deployments and logs to domains, billing, and firewall config, and the connection carries the same access as your Vercel account. Claude Code’s tool search keeps the definitions out of context until they’re needed, but review write actions before approving them.
 
 ### 10. Chrome DevTools MCP
 
@@ -140,13 +150,13 @@ Notion also ships a [Claude Code plugin](https://github.com/makenotion/claude-co
 
 | Server | What it adds | Auth | Cost |
 | --- | --- | --- | --- |
-| Parallel Search MCP | Web search + page fetching | None required | Free; API key optional |
-| Parallel Task MCP | Deep research subagents | API key | $5/month free credit, then per request |
+| Parallel MCP | Web search, page fetch, typed decisions, research | None; sign-in or API key adds web_research | Free keyless; API rates when signed in |
 | Context7 | Version-pinned library docs | Optional key | Free tier |
 | GitHub MCP | Issues, PRs, Actions | Personal access token | Free |
 | Playwright MCP | Real browser automation | Local install | Free |
 | Sentry MCP | Production errors and traces | OAuth | Free with Sentry |
 | Linear MCP | Issues, projects, comments | OAuth or API key | No separate MCP fee |
+| Atlassian MCP | Jira, Confluence, Bitbucket | OAuth or API token | Some search tools use Rovo credits |
 | Supabase MCP | SQL, migrations, logs, advisors | OAuth or access token | No separate MCP fee |
 | Vercel MCP | Deployments, runtime logs and errors | OAuth | No separate MCP fee |
 | Chrome DevTools MCP | Performance traces, network, console | Local install | Free, open source |
@@ -163,10 +173,10 @@ Nobody needs all twelve. Pick the three to six that match your stack: tool searc
 
 **How do I share MCP servers with my team?** Add them at project scope so they land in `.mcp.json`, commit it, and every teammate's Claude Code picks them up, with a one-time approval prompt for safety.
 
-**Are these servers free?** Parallel Search, Playwright, and Chrome DevTools cost nothing. GitHub, Linear, Supabase, Vercel, and Notion work with your existing account on each service, and none lists a separate MCP fee. Context7 and Sentry have free tiers, Figma caps tool calls by plan and seat, and the Task MCP runs on Parallel’s $5 recurring monthly free credit until your usage outgrows it.
+Are these servers free? Parallel MCP’s keyless tools, Playwright, and Chrome DevTools cost nothing. GitHub, Linear, Supabase, Vercel, and Notion work with your existing account on each service, and none lists a separate MCP fee. Context7 and Sentry have free tiers, Figma caps tool calls by plan and seat, and Atlassian’s search tools draw on Rovo credits. Parallel’s web_research bills at API rates once you sign in, and a new account gets up to $80 in free credits plus $5 a month with a card on file.
 
 **MCP server or CLI tool?** If a first-class CLI exists and the agent uses it well (`gh` is the canonical example), the CLI is cheaper in context. MCP wins for hosted services with OAuth, structured schemas, or state.
 
 ## One command to test it
 
-Run the `claude mcp add` command above and ask Claude Code something that needs the current web. It asks for no key and no account, so the comparison against your existing setup is free to run. When you want higher limits or research subagents, [a free Parallel account](https://platform.parallel.ai/) includes $5 in credits every month.
+Run the claude mcp add command above and ask Claude Code something that needs the current web. It asks for no key and no account, so the comparison against your existing setup is free to run. The [Parallel MCP page](https://parallel.ai/mcp) builds the same command with the tools, search mode, and domains you pick. When you want web_research and higher limits, switch to the ?login URL; [a Parallel account](https://platform.parallel.ai/) comes with up to $80 in free credits plus $5 a month with a card on file.
