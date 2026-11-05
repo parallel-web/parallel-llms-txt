@@ -311,7 +311,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Customer Terms and Conditions](https://llm.parallel.ai/customer-terms.md): The terms and conditions between customers and Parallel Web Systems Inc. governing access to and use of Parallel&#x27;s services and APIs.
 - [Data Connectors](https://llm.parallel.ai/data-connectors.md): Explore high-quality company, financial, research, life sciences, legal, news, and web data available through Parallel.
 - [Request a Data Source](https://llm.parallel.ai/data-connectors/request.md): Request a new data source for your Parallel agents, or apply to add your data to Parallel&#x27;s data connectors.
-- [Index by Parallel · INDEX by Parallel](https://llm.parallel.ai/index.md): Index is a platform for content owners to understand how AI agents use their work and earn compensation tied to the value they contribute.
+- [Index by Parallel · INDEX by Parallel](https://llm.parallel.ai/index.md): Web infrastructure for AI to search, extract, monitor, and reason over the world&#x27;s information.
 - [Integrations](https://llm.parallel.ai/integrations.md): Use Parallel web search across your entire stack to build more powerful agents and workflows. Browse verified integrations for agent frameworks, coding agents, model platforms, data platforms, and more.
 - [Use Parallel with Anthropic](https://llm.parallel.ai/integrations/anthropic.md): Give Anthropic-powered applications live web research through tool calling, or connect Parallel to Claude Desktop over MCP.
 - [Use Parallel with AWS Marketplace](https://llm.parallel.ai/integrations/aws-marketplace.md): Procure and manage Parallel through AWS Marketplace using your existing cloud purchasing workflow.
@@ -319,6 +319,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Use Parallel with Cursor](https://llm.parallel.ai/integrations/cursor.md): Add Parallel to Cursor through the plugin marketplace, an Agent Skill, or one-click MCP setup.
 - [Use Parallel with ElevenLabs](https://llm.parallel.ai/integrations/elevenlabs.md): Give ElevenAgents live web search and research with Parallel as a custom integration.
 - [Use Parallel with Fireworks](https://llm.parallel.ai/integrations/fireworks.md): Ground Fireworks-hosted open models in live web results with Parallel Search tool calling.
+- [Use Parallel with Google Antigravity](https://llm.parallel.ai/integrations/google-antigravity.md): Search the web and read pages in Google Antigravity with the Parallel plugin or the Parallel Search MCP Store connector.
 - [Use Parallel with Google Cloud Marketplace](https://llm.parallel.ai/integrations/google-cloud-marketplace.md): Procure and manage Parallel through Google Cloud Marketplace using your existing cloud purchasing workflow.
 - [Use Parallel with Google Gemini Enterprise](https://llm.parallel.ai/integrations/google-gemini-enterprise.md): Use Parallel as a grounding provider in Gemini Enterprise for current, source-backed web information.
 - [Use Parallel with Merge AI Gateway](https://llm.parallel.ai/integrations/merge-ai-gateway.md): Route web search through Parallel from Merge AI Gateway.
@@ -357,7 +358,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [What Is a Web Search MCP? Live Web Access for AI Agents](https://llm.parallel.ai/learn/web-search-mcp.md): Learn what a web search MCP is, how it gives AI agents live web access, and why MCP standardizes search and page retrieval tools.
 - [What Is a Web Unlocker? Definition, Features, and Pricing](https://llm.parallel.ai/learn/web-unlocker.md): Learn what a web unlocker is, how it gets past anti-bot defenses with proxies, fingerprinting, and CAPTCHA solving, what it returns, and when to use one.
 - [Legal Hub](https://llm.parallel.ai/legal.md): Information related to Parallel&#x27;s agreements, policies, and compliance documentation.
-- [Data Processing Agreement (DPA)](https://llm.parallel.ai/legal/dpa.md): This Data Processing Addendum (“DPA”) supplements the Master Service Agreement (the “Agreement”) entered into by and between Customer and Parallel Web…
+- [Data Processing Agreement (DPA)](https://llm.parallel.ai/legal/dpa.md): This Data Processing Addendum (“DPA”) supplements and is incorporated into the agreement between Customer and Parallel Web Systems, Inc.
 - [Non-Disclosure Agreement (NDA)](https://llm.parallel.ai/legal/nda.md): This Nondisclosure Agreement (the “Agreement”) between Parallel Web Systems Inc., a Delaware corporation (“Company”) located at 735 Emerson Street, Palo Alto…
 - [Support Plan](https://llm.parallel.ai/legal/support-plan.md): We view our customers as strategic partners, not just accounts. Beyond the service levels and support obligations set out in this Support Plan, we hope to…
 - [Parallel Search MCP: Free Web Search MCP for AI Agents](https://llm.parallel.ai/mcp.md): Free web search MCP server for AI agents. Copy one prompt, or add Parallel Search MCP to Claude, ChatGPT, Cursor, VS Code, and 20+ more. No API key.
@@ -393,7 +394,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Sign In - Parallel](https://llm.parallel.ai/docs/index.md)
 - [parallel-web - npm](https://llm.parallel.ai/docs/package/parallel-web.md)
 - [parallel-web · PyPI](https://llm.parallel.ai/docs/project/parallel-web/index.md)
-- [OpenAPI Spec](https://llm.parallel.ai/docs/public-openapi.json.md)
+- [public-openapi](https://llm.parallel.ai/docs/public-openapi.json.md)
 
 ## SDKs
 

@@ -34,15 +34,16 @@ We recruit likeminded curious, optimistic, and ambitious people who see the work
 | [Marketing Recruiter](https://jobs.ashbyhq.com/parallel/5e584b1d-d13a-4094-a3f5-ccc0661e552a)                                | GTM                  | San Francisco / Palo Alto / New York | Full time      |
 | [ABM](https://jobs.ashbyhq.com/parallel/605fe877-89d6-4966-8ba2-7e2406e0e334)                                                | Marketing            | San Francisco / Palo Alto            | Full time      |
 | [Marketing Ops](https://jobs.ashbyhq.com/parallel/232f6cb3-6ba5-4bc0-85b4-c2516e83572e)                                      | Marketing            | San Francisco / Palo Alto            | Full time      |
-| [Product Marketing](https://jobs.ashbyhq.com/parallel/e4f2bdcb-5cd1-4643-8e93-3e165fba88d8)                                  | Marketing            | San Francisco / Palo Alto            | Full time      |
+| [Product Marketing, Ecosystem Partners](https://jobs.ashbyhq.com/parallel/e4f2bdcb-5cd1-4643-8e93-3e165fba88d8)              | Marketing            | San Francisco / Palo Alto            | Full time      |
+| [Product Marketing, Index](https://jobs.ashbyhq.com/parallel/3ad80b92-0676-4bf5-bd63-05d192e19c86)                           | Marketing            | San Francisco / Palo Alto            | Full time      |
 | [AI Commercial Counsel, GTM](https://jobs.ashbyhq.com/parallel/485a039c-a176-4dfe-ba5f-475b63439651)                         | Operations           | San Francisco / Palo Alto            | Full time      |
 | [Accounting Manager](https://jobs.ashbyhq.com/parallel/548910bb-5cc1-41ff-9a86-002b90f06595)                                 | Operations           | San Francisco / Palo Alto            | Full time      |
 | [Controller](https://jobs.ashbyhq.com/parallel/055cd8fd-ac80-4d76-9aa4-abcfc3244c87)                                         | Operations           | San Francisco / Palo Alto            | Full time      |
-| [Deal Desk Manager](https://jobs.ashbyhq.com/parallel/173f587b-7134-444d-aff7-d4e8c6fada63)                                  | Operations           | San Francisco / Palo Alto            | Full time      |
-| [GTM Finance Lead](https://jobs.ashbyhq.com/parallel/46d8d4cf-9f64-4f02-bd10-6287769bf319)                                   | Operations           | San Francisco / Palo Alto            | Full time      |
+| [Deal Desk Manager, GTM Strategic Finance](https://jobs.ashbyhq.com/parallel/173f587b-7134-444d-aff7-d4e8c6fada63)           | Operations           | San Francisco / Palo Alto            | Full time      |
+| [GTM Strategic Finance](https://jobs.ashbyhq.com/parallel/46d8d4cf-9f64-4f02-bd10-6287769bf319)                              | Operations           | San Francisco / Palo Alto            | Full time      |
 | [Legal Ops](https://jobs.ashbyhq.com/parallel/07e9f010-e7c8-4c01-b650-997b659c53fb)                                          | Operations           | Palo Alto                            | Full time      |
 | [Procurement Lead](https://jobs.ashbyhq.com/parallel/eba53dae-be93-44a8-a550-7dc56da4df66)                                   | Operations           | San Francisco / Palo Alto            | Full time      |
-| [R&D Finance Lead](https://jobs.ashbyhq.com/parallel/1e83c172-5c38-4102-9884-c35a4dcc3668)                                   | Operations           | San Francisco / Palo Alto            | Full time      |
+| [R&D Strategic Finance Lead](https://jobs.ashbyhq.com/parallel/1e83c172-5c38-4102-9884-c35a4dcc3668)                         | Operations           | San Francisco / Palo Alto            | Full time      |
 | [Strategic Finance](https://jobs.ashbyhq.com/parallel/1b5da033-32e1-45a1-95fe-c0553e22e5a6)                                  | Operations           | San Francisco / Palo Alto            | Full time      |
 
 ## Our values
