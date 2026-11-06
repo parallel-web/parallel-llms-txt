@@ -1,7 +1,9 @@
-### \[Introducing Parallel MCP 2.0: all-in-one web research tools for every agent\](https://parallel.ai/blog/parallel-mcp-2)
+### \[Parallel Decisions is now on OpenRouter\](https://parallel.ai/blog/decisions-openrouter)
+
+Give your agents answers grounded in the live web with your existing OpenRouter API key.
 
 Tags:[Product](/blog?tag=product)
 
 By Parallel
 
-November 5, 2026
+November 6, 2026

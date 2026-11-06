@@ -237,6 +237,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [How We Built Customer Watch, an Always-On Support Agent](https://llm.parallel.ai/blog/customer-watch-background-agent.md): See how Parallel built Customer Watch, an always-on agent that monitors account signals in Hex, Attio, and the web, then posts alerts to Slack.
 - [Bring trusted data into Parallel with Data Connectors](https://llm.parallel.ai/blog/data-connectors.md): Parallel is expanding how customers put trusted, specialized data to work in their agentic workflows.
 - [Parallel Decisions API: web-grounded classification](https://llm.parallel.ai/blog/decisions-api.md): A decision engine with world knowledge built in. Fast, typed answers grounded in real-time web data, with a citation behind every decision.
+- [Parallel Decisions is now on OpenRouter](https://llm.parallel.ai/blog/decisions-openrouter.md): Parallel Decisions is now on OpenRouter. Give your agents fast, cited, web-grounded answers with your existing OpenRouter API key. Try it free for 7 days.
 - [A new pareto-frontier for Deep Research price-performance](https://llm.parallel.ai/blog/deep-research-benchmarks.md): Expanded BrowseComp and DeepResearch Bench results show Parallel Deep Research delivers the highest accuracy at every price point, up to 17x cheaper.
 - [State of the Art Deep Research APIs](https://llm.parallel.ai/blog/deep-research-browsecomp.md): Parallel Task API processors achieve state-of-the-art 27% accuracy on the BrowseComp benchmark—beating every other commercial API.
 - [Parallel Deep Research Reports](https://llm.parallel.ai/blog/deep-research-reports.md): The Parallel Task API now supports comprehensive markdown Deep Research report generation with in-line citations and relevant excerpts.
@@ -317,7 +318,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Customer Terms and Conditions](https://llm.parallel.ai/customer-terms.md): The terms and conditions between customers and Parallel Web Systems Inc. governing access to and use of Parallel&#x27;s services and APIs.
 - [Data Connectors](https://llm.parallel.ai/data-connectors.md): Explore high-quality company, financial, research, life sciences, legal, news, and web data available through Parallel.
 - [Request a Data Source](https://llm.parallel.ai/data-connectors/request.md): Request a new data source for your Parallel agents, or apply to add your data to Parallel&#x27;s data connectors.
-- [Index by Parallel · INDEX by Parallel](https://llm.parallel.ai/index.md): Web infrastructure for AI to search, extract, monitor, and reason over the world&#x27;s information.
+- [Index by Parallel · INDEX by Parallel](https://llm.parallel.ai/index.md): Index is a platform for content owners to understand how AI agents use their work and earn compensation tied to the value they contribute.
 - [Integrations](https://llm.parallel.ai/integrations.md): Use Parallel web search across your entire stack to build more powerful agents and workflows. Browse verified integrations for agent frameworks, coding agents, model platforms, data platforms, and more.
 - [Use Parallel with Anthropic](https://llm.parallel.ai/integrations/anthropic.md): Give Anthropic-powered applications live web research through tool calling, or connect Parallel to Claude Desktop over MCP.
 - [Use Parallel with AWS Marketplace](https://llm.parallel.ai/integrations/aws-marketplace.md): Procure and manage Parallel through AWS Marketplace using your existing cloud purchasing workflow.
@@ -400,7 +401,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Sign In - Parallel](https://llm.parallel.ai/docs/index.md)
 - [parallel-web - npm](https://llm.parallel.ai/docs/package/parallel-web.md)
 - [parallel-web · PyPI](https://llm.parallel.ai/docs/project/parallel-web/index.md)
-- [public-openapi](https://llm.parallel.ai/docs/public-openapi.json.md)
+- [OpenAPI Spec](https://llm.parallel.ai/docs/public-openapi.json.md)
 
 ## SDKs
 
