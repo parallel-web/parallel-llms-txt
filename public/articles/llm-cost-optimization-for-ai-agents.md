@@ -25,21 +25,21 @@ Prices are from each provider’s pricing page as of October 7, 2026: [OpenAI](h
 
 ## What independent benchmarks measured per task
 
-The [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) runs the same GPT-5.6 Luna agent against each search provider and reports quality, search cost, and model cost per 1,000 tasks. It’s the only independent board we know of that puts a built-in search tool next to standalone search APIs. Selected rows from the September 28, 2026 data:
+The [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) runs the same GPT-5.6 Luna agent against each search provider and reports search cost and model cost per 1,000 tasks. It’s the only independent board we know of that puts a built-in search tool next to standalone search APIs. Selected cost rows from the September 28, 2026 data:
 
-| Configuration | Index score | Search cost per 1,000 tasks | Model cost per 1,000 tasks | Total |
-| --- | --- | --- | --- | --- |
-| Perplexity Search (medium) | 80 | $62.30 | $8.04 | $70.34 |
-| Octen Search (highlights) | 77 | $9.07 | $14.92 | $23.99 |
-| Parallel Search (advanced) | 75 | $47.93 | $11.29 | $59.22 |
-| OpenAI Web Search (medium) | 74 | $40.19 | $9.40 | $49.59 |
-| Exa Search (auto) | 74 | $65.57 | $17.73 | $83.30 |
-| Parallel Search (basic) | 73 | $45.14 | $21.65 | $66.79 |
-| Model only, no search | 33 | n/a | $2.92 | $2.92 |
+| Configuration | Search cost per 1,000 tasks | Model cost per 1,000 tasks | Total |
+| --- | --- | --- | --- |
+| Perplexity Search (medium) | $62.30 | $8.04 | $70.34 |
+| Octen Search (highlights) | $9.07 | $14.92 | $23.99 |
+| Parallel Search (advanced) | $47.93 | $11.29 | $59.22 |
+| OpenAI Web Search (medium) | $40.19 | $9.40 | $49.59 |
+| Exa Search (auto) | $65.57 | $17.73 | $83.30 |
+| Parallel Search (basic) | $45.14 | $21.65 | $66.79 |
+| Model only, no search | n/a | $2.92 | $2.92 |
 
-Search adds at least 40 points to the index for every provider here, so dropping search to save money isn’t an option for questions that need current facts. Search fees are also the larger cost line for most configurations on a cheap model. Our Advanced and Basic modes cost more per task than OpenAI’s tool on this board, so if cost is your goal, they’re the wrong modes to switch to.
+Search fees are the larger cost line for most configurations on a cheap model. Our Advanced and Basic modes cost more per task than OpenAI’s tool on this board, so if cost is your goal, they’re the wrong modes to switch to.
 
-The modes to compare are Turbo and Fast at $1 per 1,000. Fast isn’t on the current board, but in AA’s September 8 data it scored 73 with $8.41 in search cost per 1,000 tasks, about a fifth of OpenAI’s $40.19 search line in the later snapshot. We publish our own runs at the low-cost tier on [our benchmarks page](https://parallel.ai/benchmarks): with a GPT-5.6 Luna agent, Fast answered 94% of SimpleQA Verified at $2.00 per 1,000 questions, search and tokens included. Openbenchmarks measures the same trade on single-fact lookups: on its [company news board](https://openbenchmarks.com/company-news/metric/cost-per-1k-correct) (300 questions, September 2026), Fast answered 86.0% correctly and cost $1.16 per 1,000 correct answers, the cheapest paid option, against $7.05 for Exa Fast at 99.3% accuracy. A low price per call doesn’t guarantee a low price per correct answer, so check accuracy beside price.
+The modes to compare are Turbo and Fast at $1 per 1,000. Fast isn’t on the current board, but in AA’s September 8 data it recorded $8.41 in search cost per 1,000 tasks, about a fifth of OpenAI’s $40.19 search line in the later snapshot. We publish our own runs at the low-cost tier on [our benchmarks page](https://parallel.ai/benchmarks): with a GPT-5.6 Luna agent, Fast answered 94% of SimpleQA Verified at $2.00 per 1,000 questions, search and tokens included. Openbenchmarks measures the same trade on single-fact lookups: on its [company news board](https://openbenchmarks.com/company-news/metric/cost-per-1k-correct) (300 questions, September 2026), Fast answered 86.0% correctly and cost $1.16 per 1,000 correct answers, the cheapest paid option, against $7.05 for Exa Fast at 99.3% accuracy. A low price per call doesn’t guarantee a low price per correct answer, so check accuracy beside price.
 
 ## The levers, in the order to apply them
 

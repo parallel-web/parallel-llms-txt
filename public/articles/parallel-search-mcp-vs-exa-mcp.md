@@ -1,12 +1,12 @@
 # Parallel MCP vs. Exa MCP: a 2026 comparison
 
-Parallel MCP and Exa MCP are the two most popular ways to give an agent web search over MCP. This comparison covers tools, free tiers, auth, configuration, index architecture, and scores on the independent Artificial Analysis Search Index, written by Parallel with the receipts to check our bias.
+Parallel MCP and Exa MCP are the two most popular ways to give an agent web search over MCP. This comparison covers tools, free tiers, auth, configuration, index architecture, and when each is the better pick, written by Parallel with the receipts to check our bias.
 
 If you're choosing a web search MCP server in 2026, your shortlist is probably these two. Both are hosted, both pair search with page fetching, both have free entry points, and both come from companies that build their own retrieval stacks rather than reselling a search engine. We make Parallel, so this comparison comes with an obvious bias; we'll keep the claims checkable and tell you exactly where Exa is the better pick.
 
 ## The short version
 
-Parallel optimizes for answer-ready context: declarative objectives in, ranked token-dense excerpts out, with a score of 75 on the independent Artificial Analysis Search Index, one point above Exa (auto). Exa optimizes for semantic retrieval breadth: embeddings-based discovery, category and domain filters, code search, and an agent product on top. Fact-heavy agent loops favor Parallel; find-me-things-like-this discovery favors Exa.
+Parallel optimizes for answer-ready context: declarative objectives in, ranked token-dense excerpts out. Exa optimizes for semantic retrieval breadth: embeddings-based discovery, category and domain filters, code search, and an agent product on top. Fact-heavy agent loops favor Parallel; find-me-things-like-this discovery favors Exa.
 
 ## Tools and setup
 
@@ -22,13 +22,9 @@ Both are usable without paying. Parallel's default endpoint is anonymous, no key
 
 Both servers let you choose which tools a client sees with a tools URL parameter. Parallel also lets you fix settings for a whole connection: with sign-in or a key, the x-parallel-mcp-config header pins web_search's mode (turbo, fast, basic, or advanced), result count, location, and included or excluded domains, and a model_choice list decides which of those fields the model may set on its own. Enterprise admins can set tools, domains, and budgets for the whole organization, enforced on the server, and every signed-in result reports its cost in _meta. Exa puts its filters in web_search_advanced_exa, an opt-in tool where the model sets categories, domains, and date ranges per call.
 
-## Accuracy, independently benchmarked
-
-On the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (September 2026 data), the independent benchmark that runs the same GPT-5.6 Luna agent against 25 search API products and varies only the provider, Parallel Search (advanced) scores 75 and Exa (auto) 74. Neither leads: Perplexity Search (medium) is first at 80, Octen Search is at 77, and Brave's LLM context mode is level with Parallel at 75. Against Exa, Parallel led two of the three component benchmarks (DeepSearchQA F1 81 vs. 78, BrowseComp 77 vs. 74), Exa took the third (AA-Omniscience 70 vs. 67), and Parallel spent less on search ($47.93 vs. $65.57 per 1,000 benchmark tasks). Further down the table, Parallel basic scores 73 and Exa instant 68, at $45.14 and $72.23. The margin between the two is one point, so run your own test before deciding.
-
 ## Architecture, briefly
 
-Parallel runs a proprietary web-scale index built for agent consumption: ranking optimized for what helps a model's next reasoning step, and excerpt compression that trims noise from the context window, which is where the cost advantage comes from (fewer round trips, fewer tokens). Exa's retrieval is embeddings-first, which is why it does well at "find pages like this" and category-constrained discovery that keyword-style objectives express poorly.
+Parallel runs a proprietary web-scale index built for agent consumption: ranking optimized for what helps a model's next reasoning step, and excerpt compression that trims noise from the context window, which means fewer round trips and fewer tokens. Exa's retrieval is embeddings-first, which is why it does well at "find pages like this" and category-constrained discovery that keyword-style objectives express poorly.
 
 ## Side by side
 
@@ -39,7 +35,6 @@ Parallel runs a proprietary web-scale index built for agent consumption: ranking
 | Free entry | Anonymous, no account | Free plan, casual use |
 | Auth options | None / OAuth (?login) / Bearer or x-api-key header | x-api-key header / OAuth |
 | Configuration | ?tools= plus x-parallel-mcp-config header (mode, domains, result count) | ?tools= URL parameter; filters in the advanced tool |
-| AA Search Index (Sep 2026) | 75 (advanced) | 74 (auto) |
 | Retrieval style | Own index, agent-dense excerpts | Embeddings-based semantic search |
 | Notable adoption | OpenClaw's default web search | OpenCode's built-in websearch |
 

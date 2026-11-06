@@ -191,7 +191,7 @@ DeepSeek uses `Authorization: Bearer <key>` with a key from the DeepSeek platfor
 
 No. DeepSeek publishes no quality numbers for its Search API, and we found no independent benchmark of it as of October 17, 2026.
 
-On the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (data dated September 28, 2026, before DeepSeek’s launch), Parallel Search Advanced scores 75 and Basic scores 73 out of 100, behind Perplexity Search (medium) at 80 and Octen Search (highlights) at 77. The index runs the same answer model and harness for every provider and changes nothing but the search API, and its [methodology](https://artificialanalysis.ai/methodology/search-api) is public. Parallel’s [benchmarks page](https://parallel.ai/benchmarks) reports SimpleQA Verified, BrowseComp, and WideSearch results from runs on September 9, 2026 that pair a GPT-5.6 agent with each provider. DeepSeek is in neither. Until someone runs the DeepSeek Search API through the same harness, its answer quality relative to Parallel is unmeasured.
+Parallel’s [benchmarks page](https://parallel.ai/benchmarks) reports SimpleQA Verified, BrowseComp, and WideSearch results from runs on September 9, 2026 that pair a GPT-5.6 agent with each provider. DeepSeek isn’t in those runs. Until someone runs the DeepSeek Search API through the same harness as other providers, its answer quality relative to Parallel is unmeasured.
 
 ## When to pick DeepSeek
 
@@ -204,7 +204,7 @@ On the independent [Artificial Analysis Search Index](https://artificialanalysis
 ## When to pick Parallel
 
 - You want one search integration that works with any model, DeepSeek’s included, and keeps working when you change models.
-- You want published benchmark numbers with methodology, such as the Artificial Analysis index and Parallel’s own evals.
+- You want published benchmark results with methodology, which Parallel posts on its [benchmarks page](https://parallel.ai/benchmarks).
 - You need documented zero data retention, optional EU data residency for Search in Basic mode (not Extract), or US-based storage under a Data Processing Addendum.
 - You need higher default throughput (600 requests per minute), domain and path allowlists, or an ISO country code for location.
 - You want Extract, Task, Responses, Monitor, or FindAll on the same API key.
@@ -268,7 +268,7 @@ No public evidence answers that yet. No independent benchmark covers the DeepSee
 - [DeepSeek privacy policy](https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html), [Open Platform Terms of Service](https://cdn.deepseek.com/policies/en-US/deepseek-open-platform-terms-of-service.html)
 - [Parallel pricing](https://parallel.ai/pricing), [docs pricing](https://docs.parallel.ai/getting-started/pricing), [Search modes](https://docs.parallel.ai/search/modes), [rate limits](https://docs.parallel.ai/getting-started/rate-limits)
 - [Parallel FAQ](https://docs.parallel.ai/resources/faqs), [glossary](https://docs.parallel.ai/getting-started/glossary), [Customer Terms](https://parallel.ai/customer-terms), [Google Cloud Marketplace agreement](https://assets.parallel.ai/gcp/parallel_gcp_master_customer_agreement.pdf), [privacy policy](https://parallel.ai/privacy-policy), [Trust Center](https://trust.parallel.ai), [web search APIs with EU data residency](https://parallel.ai/articles/best-web-search-apis-eu-data-residency), [build an EU research agent](https://parallel.ai/articles/build-eu-research-agent-parallel-search), [data residency vs. data sovereignty](https://parallel.ai/articles/data-residency-vs-data-sovereignty), [data residency](https://parallel.ai/learn/data-residency)
-- [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), [Parallel benchmarks](https://parallel.ai/benchmarks)
+- [Parallel benchmarks](https://parallel.ai/benchmarks)
 - [Reddit: new DeepSeek Search/Fetch API vs the old search tool](https://www.reddit.com/r/DeepSeek/comments/1x8dpnu/new_deepseek_searchfetch_api_vs_the_old_search)
 
 DeepSeek facts and all prices checked October 17, 2026.

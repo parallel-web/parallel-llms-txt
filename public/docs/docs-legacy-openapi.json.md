@@ -5852,6 +5852,21 @@
             ],
             "title": "Full Content",
             "description": "Full content from the URL formatted as markdown, if requested."
+          },
+          "acquired_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Acquired At",
+            "description": "When the returned content was acquired, as an RFC 3339 timestamp truncated to the start of the UTC day. Null when unknown.",
+            "examples": [
+              "2026-10-08T00:00:00Z"
+            ]
           }
         },
         "type": "object",

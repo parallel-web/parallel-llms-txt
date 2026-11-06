@@ -26,7 +26,7 @@ That is the main case for LLM-native search over SERP scraping, and it needs sta
 
 ## **How that plays out in an agent loop**
 
-SerpApi isn't in our current benchmark runs on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026), which test Parallel against Exa, Tavily, and Perplexity, so there's no current head-to-head number to quote. The independent Artificial Analysis Search Index (September 2026 data) has scored Parallel Search (advanced) at 75, behind Perplexity Search (medium) at 80 and Octen Search at 77. SerpApi is not on its displayed leaderboard or on Openbenchmarks' latency boards.
+SerpApi isn't in our current benchmark runs on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026), which test Parallel against Exa, Tavily, and Perplexity, so there's no current head-to-head number to quote. SerpApi is also not on Openbenchmarks' latency boards.
 
 What does carry over is the shape of the loop. An agent on SerpApi gets snippets and no fetch tool, so on multi-hop questions it either stops short or you build the fetch-and-clean stage around it, which costs engineering time or tokens. Test both setups on your own questions before you pick.
 

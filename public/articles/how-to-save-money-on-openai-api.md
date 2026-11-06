@@ -52,7 +52,7 @@ Our per-call payload measurement from October 7, on the same questions, tokenize
 | Turbo, default settings | 3,929 | 0.46s |
 | Advanced, default settings | 3,555 | 3.75s |
 
-The independent data is consistent on fees but more mixed on totals. Artificial Analysis’s [Search Index](https://artificialanalysis.ai/agents/search-api) recorded $8.41 in search cost per 1,000 tasks for Parallel Fast (September 8 data, score 73) against $40.19 for OpenAI Web Search (September 28 data, score 74), both with a GPT-5.6 Luna agent. On that board, OpenAI’s tool used about 40,000 input tokens per task, fewer than any external API in AA’s harness, which passes page text through its own fetch step. Parallel Advanced costs more per task than OpenAI’s tool there ($47.93 in search fees per 1,000 tasks), so the savings come from Fast and Turbo. Use Advanced where its extra depth earns the price, such as multi-hop background research.
+The independent data is consistent on fees but more mixed on totals. Artificial Analysis’s [Search Index](https://artificialanalysis.ai/agents/search-api) recorded $8.41 in search cost per 1,000 tasks for Parallel Fast (September 8 data) against $40.19 for OpenAI Web Search (September 28 data), both with a GPT-5.6 Luna agent. On that board, OpenAI’s tool used about 40,000 input tokens per task, fewer than any external API in AA’s harness, which passes page text through its own fetch step. Parallel Advanced costs more per task than OpenAI’s tool there ($47.93 in search fees per 1,000 tasks), so the savings come from Fast and Turbo. Use Advanced where its extra depth earns the price, such as multi-hop background research.
 
 You wire Parallel in as a function tool. The model still decides when to search; your code makes the call:
 

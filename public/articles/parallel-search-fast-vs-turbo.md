@@ -33,8 +33,6 @@ Cost here covers LLM tokens plus tool calls per 1,000 questions, so it isn’t t
 
 Openbenchmarks runs an independent check with its own client and reports mean latency. On its [fastest-search-API board](https://openbenchmarks.com/web-search/fastest-search-api) (last measured September 12, 2026), Parallel Turbo had the lowest mean latency on factual lookup at 348ms (315ms median) but answered 71.3% of the 300 questions correctly from its results; Fast measured 942ms mean at 86.0%, and Exa Instant measured 398ms at 97.7%. On the board’s 100-question developer search set, Turbo averaged 333ms per search with 64.7% task completion and a 19s median task, against Fast’s 953ms, 66.7%, and 22s. On the multi-search company-discovery set, Exa Instant ranked first on time per unit of task quality, ahead of Turbo and Fast.
 
-The [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (data as of September 22, 2026) currently lists Parallel Advanced at 75 and Basic at 73, and doesn’t include Fast or Turbo, so it can’t settle this particular choice.
-
 ## The agent-loop math
 
 At documented latencies, Fast adds about 0.5s per sequential call over Turbo, and both cost $0.001 per call. The table below multiplies that out for tasks that make 1, 5, or 15 sequential searches, counting search time only.
@@ -47,7 +45,7 @@ At documented latencies, Fast adds about 0.5s per sequential call over Turbo, an
 
 At 1,000 tasks of 15 searches each, Turbo and Fast both cost $15 in search fees, and Basic and Advanced both cost $75. The 7.5s gap between Turbo and Fast at 15 calls only shows up if the calls run one after another. When your agent fires several searches in the same turn, they overlap, and the turn waits for the slowest one.
 
-Model time also hides part of the gap. A loop’s wall time is roughly N × (model time per step + search time per step), and model time is often the bigger term. Artificial Analysis shows the scale: its model-only baseline, which runs no searches at all, takes 19.8s per task, and every search provider on its current board lands between 15.1s and 60.4s per task. AA’s methodology note adds that a provider can be fast per call and still add total time if the model searches against it more often. That matches the Openbenchmarks developer set above, where Turbo’s 620ms-per-search advantage over Fast shrank to a 3s gap in median task time.
+Model time also hides part of the gap. A loop’s wall time is roughly N × (model time per step + search time per step), and model time is often the bigger term. Artificial Analysis shows the scale: its model-only baseline, which runs no searches at all, takes 19.8s per task. AA’s methodology note adds that a provider can be fast per call and still add total time if the model searches against it more often. That matches the Openbenchmarks developer set above, where Turbo’s 620ms-per-search advantage over Fast shrank to a 3s gap in median task time.
 
 Escalation changes the cost picture too. A 15-call Fast loop that retries its 3 hardest sub-questions in Advanced costs $0.030 and about 19.5s of search time, against $0.075 and 45s for running every call in Advanced.
 

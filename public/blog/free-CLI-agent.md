@@ -8,7 +8,7 @@ Here's how it went and where the rough edges were.
 
 ## The development stack
 
-- **Agent harness:** [Pi](https://github.com/badlogic/pi-mono) (`@mariozechner/pi-coding-agent`). Billed as a _minimal terminal coding harness_ — four built-in tools (`read`, `write`, `edit`, `bash`), everything else via extensions. "Adapt pi to your workflows, not the other way around." MCP support comes from a third-party extension, `[pi-mcp-adapter](https://github.com/nicobailon/pi-mcp-adapter)`.
+- **Agent harness:** [Pi](https://github.com/badlogic/pi-mono) (`@mariozechner/pi-coding-agent`). Billed as a _minimal terminal coding harness_ — four built-in tools (`read`, `write`, `edit`, `bash`), everything else via extensions. "Adapt pi to your workflows, not the other way around." MCP support comes from a third-party extension, `pi-mcp-adapter`.
 - **Model runtime:** [Ollama](https://ollama.com/)
 - **Model:** `gemma4:26b` — the 26B Mixture-of-Experts variant with 4B active parameters from Google DeepMind's Gemma 4 family (Apache 2.0 license).
 - **Search:** [Parallel Search MCP](https://parallel.ai/mcp) at `https://mcp.parallel.ai/mcp`. Two tools: `web_search` and `web_fetch`. No auth required.

@@ -28,7 +28,7 @@ The built-in `google_web_search` tool is designed for grounded answers: the Gemi
 
 Or run `gemini mcp add -s user --transport http Parallel https://mcp.parallel.ai/mcp`.
 
-The underlying API's advanced mode scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. Grounding is already part of your Gemini CLI setup and the keyless tools cost nothing, so run the same questions through both and keep whichever answers better.
+Grounding is already part of your Gemini CLI setup and the keyless tools cost nothing, so run the same questions through both and keep whichever answers better.
 
 Best for: excerpt-level web context and explicit page fetching in agent loops. Tradeoffs: we're the vendor, and keyless rate limits suit personal use. For `web_research` and higher limits, add `"headers": { "Authorization": "Bearer YOUR_PARALLEL_API_KEY" }` to the entry, or point `httpUrl` at `https://mcp.parallel.ai/mcp?login` and run `/mcp auth Parallel` to sign in through the browser. Signed-in and keyed calls are billed at the underlying API rates, and those connections can also send an x-parallel-mcp-config header to pin a search mode or include and exclude domains.
 

@@ -126,11 +126,11 @@ page_chars = len(page["results"][0]["full_content"])
 print(f"1 full page: {page_chars:,} chars (~{page_chars // 4:,} tokens)")
 ```
 
-We ran it on October 10, 2026. Your numbers will vary by query and run.
+We ran it on November 5, 2026. Your numbers will vary by query and run.
 
 ```text
-10 results, excerpts total 13,227 chars (~3,306 tokens)
-1 full page: 22,951 chars (~5,737 tokens)
+10 results, excerpts total 21,051 chars (~5,262 tokens)
+1 full page: 23,925 chars (~5,981 tokens)
 ```
 
 Excerpts from ten sources came in smaller than the single full page for the top result, which was Anthropic’s own context engineering post.
@@ -146,11 +146,11 @@ The table below is **illustrative**, not a benchmark. It sketches how a web rese
 | Memory and notes | 1,500 | NOTES.md read back at turn start |
 | Conversation history | 8,000 | Compacted summary plus the last few turns |
 | Earlier tool results | 0 | Cleared after their findings went into notes |
-| This turn’s search results | about 3,300 | Ten results as excerpts (measured above) |
+| This turn’s search results | about 5,300 | Ten results as excerpts (measured above) |
 | Reserved for reasoning and answer | 16,000 | Headroom for thinking and output |
-| Total in use | about 33,800 | Leaves room for several more search turns |
+| Total in use | about 35,800 | Leaves room for several more search turns |
 
-Swap the search row for ten full pages and it grows by an order of magnitude. If each were the size of the page we measured, that’s roughly 57,000 tokens on one turn, before the agent has read anything twice. Over a long session, uncleared tool results and an uncompacted history do the same damage more slowly.
+Swap the search row for ten full pages and it grows by an order of magnitude. If each were the size of the page we measured, that’s roughly 60,000 tokens on one turn, before the agent has read anything twice. Over a long session, uncleared tool results and an uncompacted history do the same damage more slowly.
 
 ## Frequently asked questions
 

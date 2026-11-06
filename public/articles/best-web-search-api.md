@@ -4,13 +4,13 @@ A latency figure on its own says nothing about whether the results were any good
 
 The fastest web search API is not automatically the best one for your agent. Latency alone cannot tell you whether the results are any good, and an accuracy score alone cannot tell you whether your agent will wait too long for them. A fast response that returns weak answers still fails the task.
 
-We compared five web search APIs using our own September 2026 runs plus two independent boards, and paired every latency figure with the accuracy behind it. This guide walks through the results, then shows you how to run the same test on your own traffic.
+We compared five web search APIs using our own September 2026 runs plus Openbenchmarks' independent latency boards, and paired every latency figure with the accuracy behind it. This guide walks through the results, then shows you how to run the same test on your own traffic.
 
 This guide covers the web search endpoint, the search call that returns ranked URLs and excerpts for an [AI agent](https://parallel.ai/articles/what-is-an-ai-agent). If you want the fundamentals first, see [what a web search API is](https://parallel.ai/articles/what-is-a-web-search-api).
 
 ## Where these numbers come from
 
-No single benchmark covers all five APIs, so this guide draws on three sources. Our own runs on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026) cover Parallel, Exa, and Tavily. The independent Artificial Analysis Search Index covers Parallel, Exa, and Brave. Openbenchmarks' latency boards measure Parallel, Exa, Brave, and Tavily. SerpAPI isn't in any of them, so we have no current accuracy or latency figure for it.
+No single benchmark covers all five APIs, so this guide draws on two sources. Our own runs on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026) cover Parallel, Exa, and Tavily. Openbenchmarks' latency boards measure Parallel, Exa, Brave, and Tavily. SerpAPI isn't in either, so we have no current accuracy or latency figure for it.
 
 On our benchmarks page, each API runs inside a multi-step agent at two price tiers: a GPT-5.6 Sol agent (reasoning high) at the frontier tier, where Parallel uses Basic or Advanced mode, and a GPT-5.6 Luna agent (reasoning low) at the low-cost tier, where Parallel uses Fast or Turbo. Parallel, Exa, and Tavily get search and extract tools. An LLM judge grades each answer, and cost per 1,000 questions counts LLM tokens plus tool calls. The accuracy column below is BrowseComp, OpenAI's set of hard multi-hop browsing questions, on a 50-question sample.
 
@@ -20,13 +20,13 @@ Latency comes from Openbenchmarks' [fastest-search-API boards](https://openbench
 | --- | --- | --- | --- | --- |
 | Parallel | 348 ms (Turbo), 942 ms (Fast) | 74 (Advanced) / 44 (Fast) | Own AI-native index | Highest BrowseComp accuracy of the three we ran, at the lowest cost |
 | Exa | 398 ms (Instant), 652 ms (Fast) | 70 / 36 (Auto) | Neural / embeddings | Semantic retrieval with tiers |
-| Brave Search | 601 ms (LLM context) | Not in our runs (AA Search Index: 75) | Independent crawl | Privacy-oriented independent index |
+| Brave Search | 601 ms (LLM context) | Not in our runs | Independent crawl | Privacy-oriented independent index |
 | SerpAPI | Not measured | Not in our runs | SERP-scraping layer | Familiar SERP-style output |
 | Tavily | 1.88 s (basic) | 66 / 32 | LLM/RAG search layer | Existing Tavily RAG stacks |
 
 Sources: BrowseComp accuracy from [parallel.ai/benchmarks](https://parallel.ai/benchmarks), run September 9, 2026 (frontier tier / low-cost tier). Latency is mean search time on [Openbenchmarks' factual-lookup board](https://openbenchmarks.com/web-search/fastest-search-api), September 2026.
 
-An independent check now exists: the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (September 2026 data) runs 25 search API products across 12 providers through a fixed GPT-5.6 Luna agent harness. Perplexity Search (medium) leads at 80, followed by Octen Search at 77; Parallel Search (advanced) scores 75, level with Brave's LLM context mode, with You.com (highlights) and Exa (auto) at 74. Their harness measures cost per task as well, and Parallel's fast mode recorded $8.41 in search cost per 1,000 benchmark tasks in AA's September 8 data, among the lowest measured. [Openbenchmarks' fastest-search-API boards](https://openbenchmarks.com/web-search/fastest-search-api) (September 2026) cover speed separately: Parallel turbo posted the lowest mean latency on factual lookup at 348ms across 300 questions and the lowest average search time on hard retrieval at 333ms, with Exa Instant next at 398ms and 447ms.
+On [Openbenchmarks' fastest-search-API boards](https://openbenchmarks.com/web-search/fastest-search-api) (September 2026), Parallel turbo posted the lowest mean latency on factual lookup at 348ms across 300 questions and the lowest average search time on hard retrieval at 333ms, with Exa Instant next at 398ms and 447ms.
 
 ## The five web search APIs, compared
 
@@ -60,7 +60,7 @@ In our September 2026 BrowseComp runs, Exa Auto scored 70% at the frontier tier 
 
 Brave Search serves results from its own independent crawl of the web and news, exposed as an API with a privacy focus. Because the index is independent, Brave doesn't resell results from mainstream engines the way SERP-based APIs do.
 
-Brave isn't in our current benchmark runs, so there's no BrowseComp figure for it here. On the independent Artificial Analysis Search Index (September 2026 data), Brave's LLM context mode scores 75, level with Parallel Search (advanced). On Openbenchmarks' factual-lookup board, Brave LLM context averaged 601ms and Brave web search 630ms, slower than the fastest modes from Parallel and Exa.
+Brave isn't in our current benchmark runs, so there's no BrowseComp figure for it here. On Openbenchmarks' factual-lookup board, Brave LLM context averaged 601ms and Brave web search 630ms, slower than the fastest modes from Parallel and Exa.
 
 **Best for:** teams that want an independent, privacy-oriented index for general web lookups.
 
@@ -72,7 +72,7 @@ Brave isn't in our current benchmark runs, so there's no BrowseComp figure for i
 
 SerpAPI returns structured results scraped from mainstream search engines. It is a results-scraping layer rather than an independent AI-native index, so it gives you familiar SERP-style output.
 
-SerpAPI isn't in our current benchmark runs, the Artificial Analysis Search Index, or Openbenchmarks' latency boards, so we have no current accuracy or latency figure to report. It also has no extract endpoint, so an agent needs a separate fetcher to read full pages.
+SerpAPI isn't in our current benchmark runs or Openbenchmarks' latency boards, so we have no current accuracy or latency figure to report. It also has no extract endpoint, so an agent needs a separate fetcher to read full pages.
 
 **Best for:** workflows that need familiar SERP-style data more than agent-optimized accuracy.
 
@@ -112,7 +112,7 @@ Keep the harness in version control so you can rerun it after any provider updat
 
 ## How to choose the right web search API for your agent
 
-Use the paired figures to match intent to fit. If accuracy on hard, multi-hop questions drives the decision, Parallel Advanced led the APIs here on BrowseComp at 74%, and Turbo posted the lowest mean search latency at 348ms, so you choose a mode for the constraint rather than a different vendor. If an independent, privacy-oriented index matters most, Brave scores 75 on the Artificial Analysis Search Index, level with Parallel Advanced.
+Use the paired figures to match intent to fit. If accuracy on hard, multi-hop questions drives the decision, Parallel Advanced led the APIs here on BrowseComp at 74%, and Turbo posted the lowest mean search latency at 348ms, so you choose a mode for the constraint rather than a different vendor. If an independent, privacy-oriented index matters most, Brave serves results from its own crawl, though it isn't in our accuracy runs, so test it on your own queries.
 
 If latency is your tightest constraint, weigh the quick modes against what they return. Exa Instant averaged 398ms and Brave LLM context 601ms on Openbenchmarks' factual-lookup board, while Tavily basic took 1.88s. SerpAPI has no current figures on any of these boards. Whatever the table suggests, confirm it with the bake-off above.
 

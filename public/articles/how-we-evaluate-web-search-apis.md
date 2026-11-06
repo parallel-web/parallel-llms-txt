@@ -65,7 +65,7 @@ Several harness details that would let you reproduce these numbers aren’t on p
 
 Independent referees control their own harness and don’t sell a search API, so check them before trusting ours.
 
-The [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) fixes one agent and swaps only the provider. Its [methodology page](https://artificialanalysis.ai/methodology/search-api) lists GPT-5.6 Luna (medium) as both the candidate model and the grader, a 25-turn budget with unlimited tool calls, up to 10 results per search, provider-native payloads, and contamination filtering inside the search tools. Every provider gets the same `web_fetch` tool, AA’s own text extractor, so provider extract APIs play no part. The index is the equal-weighted mean of DeepSearchQA F1 (900 tasks), BrowseComp accuracy (a hard 200-question subset), and AA-Omniscience accuracy (600 private questions). In the September 22, 2026 data, Perplexity Search (medium) leads at 80, Perplexity (high) scores 79, and Octen scores 77. Parallel Search (advanced) scores 75, tied with Brave LLM context, and Parallel basic scores 73. On AA’s BrowseComp subset, Parallel advanced scores 77 against Perplexity medium’s 87.
+The [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) fixes one agent and swaps only the provider. Its [methodology page](https://artificialanalysis.ai/methodology/search-api) lists GPT-5.6 Luna (medium) as both the candidate model and the grader, a 25-turn budget with unlimited tool calls, up to 10 results per search, provider-native payloads, and contamination filtering inside the search tools. Every provider gets the same web_fetch tool, AA’s own text extractor, so provider extract APIs play no part. The index is the equal-weighted mean of DeepSearchQA F1 (900 tasks), BrowseComp accuracy (a hard 200-question subset), and AA-Omniscience accuracy (600 private questions).
 
 [Openbenchmarks](https://openbenchmarks.com/web-search/fastest-search-api) publishes open-source code, a public dataset sample, and a held-out scoring set. Its fastest-search board, last measured September 12, 2026, sends 300 company-news questions to each API, one search per question with up to 10 results, and ranks by mean client-measured latency. Parallel turbo is fastest there at 348ms mean, with 71.3% accuracy; Exa instant measured 398ms at 97.7%, and Exa fast 652ms at 99.3%. Openbenchmarks notes that latency depends on “deployment region” among other conditions, so a vendor p50 spec and its mean aren’t the same statistic. Its [multi-turn company search board](https://openbenchmarks.com/multi-turn-company-search) (updated September 15, 2026) ranks Parallel basic first search-only at 46.5 F1 and Exa deep first with fetch at 48.2. We cover that board in [the best API for company research](https://parallel.ai/articles/best-api-for-company-research).
 
@@ -85,7 +85,7 @@ Create an API key at [platform.parallel.ai](https://platform.parallel.ai). The f
 
 ### What is the best search API for AI agents?
 
-It depends on your agent and budget. On parallel.ai/benchmarks (September 2026), Parallel Fast and Turbo are the cheapest low-cost configurations and Parallel Advanced leads or ties each frontier suite, while Perplexity and Exa beat Fast on low-cost BrowseComp and WideSearch; on the Artificial Analysis Search Index, Perplexity Search leads at 80.
+It depends on your agent and budget. On parallel.ai/benchmarks (September 2026), Parallel Fast and Turbo are the cheapest low-cost configurations and Parallel Advanced leads or ties each frontier suite, while Perplexity and Exa beat Fast on low-cost BrowseComp and WideSearch.
 
 ### How does Parallel benchmark its Search API?
 
@@ -94,9 +94,5 @@ We run SimpleQA Verified, BrowseComp, and WideSearch samples with a GPT-5.6 Sol 
 ### What is BrowseComp?
 
 BrowseComp is an OpenAI benchmark of 1,266 hard questions that require persistent multi-hop browsing. We report a 50-question sample; Artificial Analysis uses a hard 200-question subset.
-
-### Where does Parallel rank on the Artificial Analysis Search Index?
-
-In the September 22, 2026 data, Parallel Search (advanced) scores 75, tied with Brave LLM context and behind Perplexity Search (medium) at 80, Perplexity (high) at 79, and Octen at 77.
 
 **Related reading: **[How to benchmark web search APIs on your own queries](https://parallel.ai/articles/how-to-benchmark-web-search-apis) / [Perplexity Search API vs. Parallel Search API](https://parallel.ai/compare/perplexity-vs-parallel) / [Exa vs. Parallel](https://parallel.ai/articles/exa-vs-parallel) / [Fast vs. Turbo](https://parallel.ai/articles/parallel-search-fast-vs-turbo)

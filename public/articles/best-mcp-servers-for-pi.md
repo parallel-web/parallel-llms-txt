@@ -50,7 +50,7 @@ pi mcp add parallel --url https://mcp.parallel.ai/mcp --exposure direct
 
 For `web_research` and higher limits, use `https://mcp.parallel.ai/mcp?login` as the URL and run `pi mcp login parallel`, or send your API key in an `Authorization` header.
 
-The underlying Search API's advanced mode scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products (September 2026 data), behind Perplexity Search (medium) at 80 and Octen Search at 77. And it fits Pi's zero-cost ethos: we've built a [fully free CLI agent from Pi, Ollama, Gemma 4, and Parallel](https://parallel.ai/blog/free-CLI-agent), with no API bill anywhere in the stack.
+It fits Pi's zero-cost ethos: we've built a [fully free CLI agent from Pi, Ollama, Gemma 4, and Parallel](https://parallel.ai/blog/free-CLI-agent), with no API bill anywhere in the stack.
 
 **Best for:** current docs, error messages, and library research mid-session, plus reading specific pages without blowing the context window.
 

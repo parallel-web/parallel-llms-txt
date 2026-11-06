@@ -287,8 +287,8 @@ At minimum, you need search and extraction. Add deep research for synthesis task
 **What does an autonomous AI research agent cost to run?**
 Costs depend on query volume and task complexity. A basic agent running 1,000 searches (Basic or Advanced mode) and 1,000 extractions daily costs approximately $6/day with Parallel APIs, or about $2/day with Fast or Turbo search. Deep research tasks add $5-$2,400/1K depending on processor tier.
 
-**How do I evaluate search API accuracy for AI agents?**
-Start with the independent Artificial Analysis Search Index, which benchmarks 25 search API products from 12 providers on the same fixed agent harness, then compare provider performance on published benchmarks (HLE, BrowseComp, SimpleQA) at equivalent price points. Request accuracy numbers at your expected budget level, not top-tier performance.
+How do I evaluate search API accuracy for AI agents?
+Compare provider performance on published benchmarks (HLE, BrowseComp, SimpleQA) at equivalent price points. Request accuracy numbers at your expected budget level, not top-tier performance.
 
 **How do I keep my research agent's data fresh?**
 Monitor APIs track web changes and deliver webhook notifications. Set hourly, daily, or weekly cadences based on how fast your domain moves. Chain monitor events to extraction and enrichment APIs for continuous intelligence pipelines.

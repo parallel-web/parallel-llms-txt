@@ -48,7 +48,7 @@ Steps
      Switch to the new Parallel MCP? More power, more tools, and better developer controls.
      1. Switch (recommended): replace the old server.
      2. Keep both: install the new server next to the old server. You'll have two sets of search tools."
-     Switch: update the old entry, keeping its name, with your app's MCP commands (remove and add again) rather than editing files by hand. search.parallel.ai/mcp-oauth becomes mcp.parallel.ai/mcp?login, and search.parallel.ai/mcp becomes mcp.parallel.ai/mcp. Keep both: install as in step 4, with ?login if the old URL ends in /mcp-oauth. Then go to step 5.
+     Switch: update the old entry, keeping its name, with your app's MCP commands (remove and add again) rather than editing files by hand. search.parallel.ai/mcp-oauth becomes mcp.parallel.ai/mcp?login, and search.parallel.ai/mcp becomes mcp.parallel.ai/mcp. Keep both: install as in step 4, with ?login if the old URL ends in /mcp-oauth. Either way, if the old URL ends in /mcp-oauth, tell me "You were signed in to the old Parallel server, so you'll keep the signed-in features. You may be asked to re-authenticate into Parallel." Then go to step 5.
 3. New install:
    - If "My Parallel settings" at the end of this prompt has content, turn tool choices into a `tools` URL parameter (for example ?tools=web_search,web_fetch) and everything else into an x-parallel-mcp-config header, using https://docs.parallel.ai/integrations/mcp/quickstart#configuration. For example, "always use basic search" is {"web_search":{"override":{"mode":"basic"}}}. Name the server `parallel-mcp-custom`. Using header overrides requires the user to sign-in and an app that can send custom headers: if your app can do both, use the ?login OAuth flow; if not, apply only the tools list and tell me which settings couldn't be applied.
    - Otherwise, ask me
@@ -61,14 +61,12 @@ Steps
    1. Exit <app name>, then run `<resume command>` to reopen this chat
    2. <sign-in step> to sign in
    3. Type: Use Parallel MCP to search today's top tech news"
-   Drop line 2 if I'm not signing in. Claude Code: `claude --continue`; sign in with /mcp, select the server, Authenticate. Codex: sign in first with `codex mcp login <server name>`, then `codex resume --last`. Apps that load new servers without a restart (such as Cursor or VS Code): replace line 1 with how to turn the server on.
-6. Run one web_search for today's top tech headline, then tell me:
+   Drop line 2 if I'm not signing in. Claude Code: replace line 1 with "Run /reload-plugins", and replace lines 2 and 3 with "2. Type: Use Parallel MCP to search today's top tech news" and "3. Approve the Parallel login page I open in your browser" (drop line 3 if I'm not signing in). After the reload, if you have neither web_decisions nor an authenticate tool for the Parallel server, tell me to exit Claude Code and run `claude --continue`. Codex: sign in first with `codex mcp login <server name>`, then `codex resume --last`. Apps that load new servers without a restart (such as Cursor or VS Code): replace line 1 with how to turn the server on.
+6. If I'm signing in and web_research isn't listed, sign me in first: open the Parallel login page in my browser, or if you can't, tell me how to sign in with your app (Claude Code: /mcp, select the server, Authenticate). Then run one web_search for today's top tech headline and tell me:
    "Parallel is installed<, and you're signed in>. Test search: <one-line summary> (<source URL>)
    Now available: <search, extract and Parallel Decisions | search, extract, Parallel Decisions and research>."
    Say "you're signed in" only if web_research is in your tool list. If I'm anonymous, add "Sign-in adds research, higher rate limits and free monthly credits. To sign in later, ask to switch Parallel to sign-in." If you replaced the old server or added a server next to the old server, add one line saying so. If you applied my settings, add "Your settings are on a separate server, parallel-mcp-custom<, next to your existing Parallel server>."
 7. If something went wrong but setup worked in the end, and a Parallel feedback tool is listed, ask me "Setup is complete, but one issue came up: <one-line description>. Would you like me to send the Parallel team feedback using the Parallel MCP feedback tool?" Show me the note before sending it.
-
-My Parallel settings (optional; leave blank for the standard setup, or write them in plain English, one per line):
 ```
 
 ### Setup steps by client

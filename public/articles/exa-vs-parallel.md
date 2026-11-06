@@ -45,8 +45,6 @@ Parallel's Search API takes a natural-language objective as input and returns ra
 
 Both produce compressed outputs (Exa calls them highlights; Parallel calls them excerpts) that reduce what your model needs to process.
 
-Artificial Analysis’s latest Search Index data is dated September 22, 2026. Parallel Advanced scores 75 and Exa Auto 74; Parallel Basic scores 73 and Exa Instant 68. Parallel Advanced records $47.93 in search cost per 1,000 benchmark tasks versus $65.57 for Exa Auto, and Parallel Basic records $45.14 versus $72.23 for Exa Instant. These are search costs only, per 1,000 benchmark tasks, not prices per 1,000 API calls. Exa Instant completes tasks faster than Parallel Basic (18.7 versus 26.1 seconds), and Parallel Advanced takes longer than Exa Auto (41.2 versus 31.6 seconds). In AA’s September 8 data, Parallel Fast scored 73 at $8.41 and 15.8 seconds per task. Neither product leads the leaderboard: Perplexity Search (medium) is first at 80. [Artificial Analysis leaderboard](https://artificialanalysis.ai/agents/search-api)
-
 Openbenchmarks’ independent boards split the two by task. On [multi-turn company search](https://openbenchmarks.com/multi-turn-company-search) (September 2026), Parallel Basic leads search-only at 50.2 F1 against Exa Deep’s 45.5, and Exa Deep leads once the agent can fetch pages, 49.2 against Parallel Advanced’s 43.8. On [company news lookups](https://openbenchmarks.com/company-news), Exa Fast is the most accurate API at 99.3% against Parallel Basic’s 93.3% and Fast’s 86.0%, while Parallel Fast costs $1.16 per 1,000 correct answers against about $7 for Exa’s fast modes.
 
 ### Finance benchmarks
@@ -174,7 +172,7 @@ Parallel is SOC 2 Type 2 certified and offers a Data Processing Addendum. Under 
 
 ## **When to use each**
 
-Choose Exa when its retrieval options, category filters, or persistent Websets collections fit the workflow you want to build. Its search variants trade quality, cost, and latency. Evaluate the specific variant you intend to use: neither an advertised request latency nor one benchmark establishes a universal speed advantage. [Independent methodology](https://artificialanalysis.ai/methodology/search-api)
+Choose Exa when its retrieval options, category filters, or persistent Websets collections fit the workflow you want to build. Its search variants trade quality, cost, and latency. Evaluate the specific variant you intend to use: neither an advertised request latency nor one benchmark establishes a universal speed advantage.
 
 Choose Parallel when you need low-cost retrieval alongside structured research, database enrichment, entity discovery, and monitoring. Research Basis lets you inspect the supporting evidence for Task output fields. Search starts at $1 per 1,000 requests in Turbo or Fast, while Monitor costs $3 per 1,000 executions on Lite or $10 on Base. Choose the mode and processor against the accuracy and elapsed time your application requires. [Parallel pricing](https://docs.parallel.ai/getting-started/pricing)
 

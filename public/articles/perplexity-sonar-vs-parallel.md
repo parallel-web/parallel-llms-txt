@@ -45,7 +45,7 @@ We run Perplexity in two places on [parallel.ai/benchmarks](https://parallel.ai/
 | BrowseComp, Search API, frontier tier (Sep 2026) | 74% at $275 | Advanced: 74% at $399 |
 | BrowseComp, Search API, low-cost tier (Sep 2026) | 46% at $37.10 | Fast: 44% at $11.80 |
 
-The Search results split. At the frontier tier, with a GPT-5.6 Sol agent, Parallel Advanced ties Perplexity on BrowseComp at 74% but costs more, and leads on SimpleQA Verified (97% vs. 95%) and WideSearch (57.6 vs. 53.5). At the low-cost tier, with a GPT-5.6 Luna agent, Perplexity edges Parallel Fast on BrowseComp and on WideSearch (47.0 vs. 45.5), while Fast matches it on SimpleQA Verified at 94% for $2.00 per 1,000 against $5.50. Perplexity was search-only in these runs, and Parallel had search and extract. On the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (September 2026), Perplexity Search medium leads at 80, ahead of Parallel advanced at 75.
+The Search results split. At the frontier tier, with a GPT-5.6 Sol agent, Parallel Advanced ties Perplexity on BrowseComp at 74% but costs more, and leads on SimpleQA Verified (97% vs. 95%) and WideSearch (57.6 vs. 53.5). At the low-cost tier, with a GPT-5.6 Luna agent, Perplexity edges Parallel Fast on BrowseComp and on WideSearch (47.0 vs. 45.5), while Fast matches it on SimpleQA Verified at 94% for $2.00 per 1,000 against $5.50. Perplexity was search-only in these runs, and Parallel had search and extract.
 
 These are our runs on our harness. Perplexity's own [migration benchmarks](https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/benchmarks) report its `high` preset at about 86% on BrowseComp, in line with our number, but near 90% on DeepSearchQA, well above the 68% we measured. Sampling and grading differ between harnesses, so run both on your own questions before you commit.
 
@@ -63,7 +63,7 @@ _Note: For the latest pricing, always check official documentation._
 
 The Agent API is still model-shaped, which means you already know how to use it. It follows the Open Responses format, so an OpenAI SDK integration moves over with a new base URL and a switch to `responses.create`, and you get grounded answers, streaming, and citations with no schema to design and no polling loop for async results. For a chat product, that is a shorter path.
 
-Model choice is the bigger advantage. The Agent API runs OpenAI, Anthropic, Google, and xAI models at Perplexity's published per-model token rates, with search at $2.50 per 1,000 calls, so you are not betting on one vendor's model choices. Perplexity's search quality also holds up on the numbers: it leads the Artificial Analysis Search Index and matches or beats Parallel on BrowseComp in both of our Search tiers. Finance search, people search, and a sandbox sit in the same request.
+Model choice is the bigger advantage. The Agent API runs OpenAI, Anthropic, Google, and xAI models at Perplexity's published per-model token rates, with search at $2.50 per 1,000 calls, so you are not betting on one vendor's model choices. Perplexity's search quality also holds up on the numbers: it matches or beats Parallel on BrowseComp in both of our Search tiers. Finance search, people search, and a sandbox sit in the same request.
 
 If you are still on Sonar, migration is not optional: calls stop working after September 27, 2026. Perplexity says most teams finish in minutes, since each model maps to a preset, but the presets run a different underlying model, so re-check output quality and cost on your own traffic after the switch.
 
@@ -87,7 +87,7 @@ Parallel is SOC 2 Type 2 certified and offers a Data Processing Addendum, with a
 
 ## **When to use each**
 
-Choose Perplexity's Agent API when a person reads the output. Chat assistants, research copilots, and anything conversational fit the model-shaped abstraction naturally, and the integration cost is close to zero if you are already calling an LLM. It is also the right answer if you want your own choice of frontier model with search attached, and its search quality leads on the independent AA index.
+Choose Perplexity's Agent API when a person reads the output. Chat assistants, research copilots, and anything conversational fit the model-shaped abstraction naturally, and the integration cost is close to zero if you are already calling an LLM. It is also the right answer if you want your own choice of frontier model with search attached.
 
 Choose Parallel when a system consumes the output. Typed schemas mean no parsing prose to recover fields, and the per-field Basis gives you citations, reasoning, and a confidence rating you can threshold on before writing a row. Nine processor tiers at fixed CPM from $5 to $2,400 per 1,000 runs let you set depth per workload and forecast the cost exactly, and in our August 2026 Task runs even Lite at $5 per 1,000 outscored Perplexity high on BrowseComp and DeepSearchQA. The Responses API covers the synchronous, conversational case at $10 to $250 per 1,000 requests when you want that shape too.
 

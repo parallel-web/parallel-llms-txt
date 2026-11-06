@@ -81,10 +81,6 @@ We'd add two more. The full 900 prompts and answers are public on Hugging Face a
 
 ## How Parallel and other providers score on DeepSearchQA
 
-Parallel has DeepSearchQA results for two different products, the Task API and the Search API, and the two sets of numbers shouldn't be compared with each other.
-
-### Deep research agents (Task API)
-
 The [Parallel benchmarks page](https://parallel.ai/benchmarks) reports Task API results on a fixed 100-question DeepSearchQA subset, all tested August 26, 2026. The Task API is a full deep research agent, so each row is an end-to-end system. Cost is measured spend per 1,000 questions.
 
 | System (August 26, 2026, 100-question subset) | Accuracy | Cost per 1,000 queries |
@@ -102,35 +98,7 @@ The [Parallel benchmarks page](https://parallel.ai/benchmarks) reports Task API 
 
 Parallel Ultra4x has the top score, but the margin over the best frontier model is small. GPT-5.6 Sol PTC at max settings reaches 85%, the same as Ultra2x, at $1,047.8 per 1,000 against $600. Gemini 3.1 Pro (high) reaches 77%, the same as Parallel Base, at $123.9 against $10. The clearer differences are on cost at a given accuracy, and against Perplexity and Exa's agent products, which land at 68% and 65%. For a broader comparison of these products see [best deep research APIs](https://parallel.ai/articles/best-deep-research-apis).
 
-### Search APIs as a tool (Artificial Analysis)
-
-The [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) tests something else. It gives the same model, harness, and settings to every provider and swaps only the search API. DeepSearchQA is one of its three components, run on the full 900-task public set and reported as F1. The other two are BrowseComp and AA-Omniscience.
-
-| Search API (AA data, October 19, 2026) | DeepSearchQA F1 | Search Index |
-| --- | --- | --- |
-| Exa Search (auto, dynamic highlights) | 86 | 80 |
-| Exa Search (lite, dynamic highlights) | 85 | 79 |
-| Perplexity Search (medium) | 81 | 80 |
-| Perplexity Search (high) | 81 | 79 |
-| Parallel Search (advanced) | 81 | 75 |
-| Octen Search (highlights) | 80 | 77 |
-| Parallel Search (basic) | 79 | 73 |
-| Brave Search (LLM context) | 78 | 75 |
-| OpenAI Web Search (medium) | 78 | 74 |
-| You.com (highlights) | 77 | 74 |
-| Nimble (standard) | 76 | 74 |
-| Firecrawl | 74 | 73 |
-| Model only, no search | 45 | 33 |
-
-Exa leads this column, with auto mode at 86 and lite at 85. Parallel Search advanced scores 81, tied with both Perplexity modes, and basic scores 79. With no search the model scores 45, and every search API lifts it well above that, so much of DeepSearchQA depends on retrieval rather than on what the model learned in training.
-
-### Why the two tables can't be compared
-
-- **Different sets.** The Task API table uses a fixed 100-question subset; AA uses all 900 public prompts.
-- **Different metrics.** Our benchmarks page reports an accuracy percentage; AA reports mean F1, which gives partial credit on set answers.
-- **Different systems.** The Task API rows are complete research agents with their own planning and verification. The AA rows are one shared model calling different search tools, so they isolate the search layer.
-
-A Task API score of 85% and a Search API F1 of 81 don't describe the same thing, and neither implies the other.
+The [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) uses DeepSearchQA differently. It gives the same model, harness, and settings to every provider and swaps only the search API, so it isolates the search layer. DeepSearchQA is one of its three components, run on the full 900-task public set and reported as F1, alongside BrowseComp and AA-Omniscience. Those numbers don't line up with the Task API table above, which uses a 100-question subset, reports accuracy rather than F1, and scores complete research agents.
 
 ## Running DeepSearchQA yourself
 

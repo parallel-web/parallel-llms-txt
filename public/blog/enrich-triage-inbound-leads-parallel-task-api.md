@@ -29,7 +29,7 @@ We make that happen with five components, many of which may already be part of y
   - `/api/task-webhook` for the Task API callback
   - `/api/qualify` for inline classification when we want to stream progress directly to the form.
 - **The Parallel Task API** does the research and returns the structured classification.
-- [`**Attio**`](https://attio.com/) is our CRM and system of record. Every inbound request creates or updates a person and company record before the Task API call returns.
+- `**Attio**` is our CRM and system of record. Every inbound request creates or updates a person and company record before the Task API call returns.
 - **Slack** is where the inbound leads are routed, so an AE sees the enriched lead with the model’s reasoning attached.
 
 [**Resend**](https://resend.com/)** and **[**Cal.com**](https://cal.com/)[ ](https://cal.com/)handle the first-touch email, with copy varying by tier and a booking link for priority leads.

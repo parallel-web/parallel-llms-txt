@@ -1,10 +1,10 @@
-# Keenable vs. Parallel: the fastest search call or the best agent result?
+# Keenable vs. Parallel: comparing two web indexes built for AI agents
 
-Choosing between Keenable and Parallel comes down to what you measure: the speed and price of a single search call, or the accuracy and total cost of the agent task built on top of it. This comparison covers both companies, independent and vendor-run benchmarks, pricing and free tiers, fetch and structured extraction, rate limits, developer experience, and compliance.
+Choosing between Keenable and Parallel comes down to scope: a keyword search index with a large recurring free tier and point-in-time search, or objective-driven search with a research layer on top. This comparison covers both companies, Keenable's NEEDLE benchmark, pricing and free tiers, fetch and structured extraction, rate limits, developer experience, and compliance.
 
 ## Quick answer
 
-Keenable has the fastest individual search call measured by Artificial Analysis and a recurring free allowance of 100,000 requests a month. Parallel scores higher on the same independent benchmark and, in Fast mode, completes agent tasks for less money and in less time, because each call returns more of what the model needs. Pick Keenable when per-call latency, a big free tier, or on-premises deployment decides the project. Pick Parallel when answer accuracy, total cost per task, and a research layer above search decide it.
+Keenable offers a realtime search mode built for speed, a recurring free allowance of 100,000 requests a month, point-in-time search, and on-premises deployment. Parallel searches from a natural-language objective, costs less per request once you pass Keenable's free allowance, and adds a research layer above search. Pick Keenable when per-call latency, a big free tier, or on-premises deployment decides the project. Pick Parallel when objective-driven retrieval, cost at volume, and a research layer above search decide it.
 
 ## Who Keenable is
 
@@ -22,31 +22,13 @@ Parallel Search takes a natural-language objective alongside optional keyword qu
 
 Keenable's `query_time` has no Parallel equivalent. It rewinds both the corpus and the ranking to a past instant, which you need for backtesting, for building evaluation sets without answer leakage, and for training-data work. For those jobs, Keenable is the better fit.
 
-## Accuracy and cost inside an agent loop
-
-The [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) is the one independent benchmark that has tested both providers. It runs the same answer model, GPT-5.6 Luna (medium), through the same harness with only the search provider changed, and scores DeepSearchQA, BrowseComp, and AA-Omniscience. The figures below are from the leaderboard as published on October 19, 2026. Both providers' runs date from mid-August.
-
-| Configuration | Index score | Search cost per 1K tasks | Model cost per 1K tasks | Time per task | Avg time per search call |
-| --- | --- | --- | --- | --- | --- |
-| Parallel Advanced | 75 | $47.93 | $11.29 | 40.8s | 2.66s |
-| Parallel Fast | 73 | $8.41 | $18.96 | 17.9s | 0.90s |
-| Parallel Turbo | 67 | $13.64 | $12.42 | 24.6s | 0.51s |
-| Keenable pro | 67 | $23.69 | $19.05 | 28.0s | 1.11s |
-| Keenable realtime | 67 | $26.87 | $15.94 | 20.2s | 0.34s |
-
-Keenable realtime has the fastest individual search call in the comparison, at 0.34 seconds against 0.51 for Parallel Turbo and 0.90 for Parallel Fast. That gap matters for voice agents and other loops where every call sits on the critical path.
-
-Per task, the ranking flips. Parallel Fast scores six points higher than either Keenable mode, finishes tasks faster (17.9 seconds against 20.2), and costs $27.37 per 1,000 tasks in search plus model tokens against $42.81 for Keenable realtime. The model answers in fewer calls when each call returns better evidence, so a slower call can still produce a faster and cheaper task. Fast leads Keenable on each of the three component benchmarks, including BrowseComp at 71.5% against 65.5% for Keenable pro. Parallel Turbo matches Keenable's score at a lower total cost per task.
-
-AA measured both providers in mid-August, before Keenable's dynamic snippets shipped, and Keenable reports in its own harness that BrowseComp accuracy rose from 56.6% to 67.3% with the new snippets, so its score may move at the next run. Search cost is also AA's figure per 1,000 benchmark tasks at list price, not a per-request price. See the [methodology](https://artificialanalysis.ai/methodology/search-api) for the full harness settings.
-
 ## Keenable's NEEDLE benchmark
 
 Keenable publishes [NEEDLE](https://keenableai.github.io/needle/), a live benchmark that regenerates its queries every hour for news and every day for scholar, finance, legal, and rare-entity lookups. The code, prompts, judgments, and raw results are public, and every run executes in GitHub Actions. Few vendor benchmarks in this category publish that much, and you can run it yourself.
 
 On the [October 19 results](https://keenableai.github.io/needle/results/), Keenable leads overall at 74% of a pooled ceiling, ahead of Exa and Brave LLM Context at 67%. Parallel is at 61% and Parallel Turbo at 53%. Read those numbers with the protocol in mind:
 
-- NEEDLE grades the top five titles and snippets for ranking quality. It does not ask an agent to answer a question, which is what the AA Index measures.
+- NEEDLE grades the top five titles and snippets for ranking quality. It does not ask an agent to answer a question, so it measures ranking rather than end-task accuracy.
 - Parallel runs in Basic mode with the query passed as a keyword list and no objective, so the input Parallel's ranking is built around is never sent. Fast and Advanced are not tested.
 - Keenable operates the benchmark, and its own notes say the LLM judge has not yet had a human-agreement audit.
 - The results table prices Keenable at $1 per 1,000 queries and labels that the lowest self-serve price. Keenable's own pricing page lists $1 only for dedicated capacity at 100 requests per second and up; self-serve is $4.
@@ -59,7 +41,7 @@ On the [October 19 results](https://keenableai.github.io/needle/results/), Keena
 | Search, pay as you go | $4 per 1,000 requests, up to 50 results | $1 per 1,000 (Turbo, Fast); $5 per 1,000 (Basic, Advanced); 10 results included, $1 per 1,000 additional |
 | High-volume search | $1 per 1,000 at 100+ requests per second, dedicated capacity, cloud or on-premises | Custom enterprise terms |
 | Page content | 1 credit per fetch; live fetches billed as a separate SKU | Extract at $1 per 1,000 URLs |
-| No-account access | Keyless endpoints (1,000 requests an hour per IP); x402 at $0.01 per request in USDC | Free hosted Search MCP, no account or key |
+| No-account access | Keyless endpoints (1,000 requests an hour per IP); x402 at $0.01 per request in USDC | Free hosted Parallel MCP (search, fetch, decisions), no account or key |
 
 Keenable's free tier is a recurring allowance that resets every month, and it's unusually large for a metered search API. A project under 100,000 requests a month pays Keenable nothing.
 
@@ -122,7 +104,7 @@ Parallel is SOC 2 Type 2 certified and offers a Data Processing Addendum. Under 
 
 Choose Keenable when the latency of each call is the constraint, as in voice agents and tight interactive loops, when your volume fits inside 100,000 free requests a month, when you need point-in-time search, or when you need the index deployed on your own infrastructure. SELECT is also worth a look if your agents already think in SQL.
 
-Choose Parallel when the result of the agent task is what you are paying for. On the independent AA Index, Fast scores higher than Keenable at a lower total cost per task and finishes tasks sooner, and Advanced scores higher still. Above about 132,000 requests a month, Parallel is also cheaper per search at self-serve prices. Above search sits a research layer Keenable does not sell: Task for deep research and enrichment, Responses for cited answers, FindAll for list building, Entity Search for people and companies, and Monitor for tracking change. [Start building](https://platform.parallel.ai/).
+Choose Parallel when the result of the agent task is what you are paying for. Above about 132,000 requests a month, Parallel is also cheaper per search at self-serve prices. Above search sits a research layer Keenable does not sell: Task for deep research and enrichment, Responses for cited answers, FindAll for list building, Entity Search for people and companies, and Monitor for tracking change. [Start building](https://platform.parallel.ai/).
 
 To test on your own traffic, hold the model and harness fixed, run both providers' fastest and deepest modes, and count model tokens and calls per task as well as search cost. NEEDLE's open harness is a reasonable place to start, as long as you pass Parallel an objective.
 
@@ -130,11 +112,7 @@ To test on your own traffic, hold the model and harness fixed, run both provider
 
 ### Is Keenable cheaper than Parallel?
 
-Below 100,000 requests a month, yes: Keenable's free allowance covers it. Above that, Keenable's self-serve price is $4 per 1,000 against $1 per 1,000 for Parallel Fast and Turbo, and the bills cross at roughly 132,000 requests a month. Per benchmark task on the AA Index, Parallel Fast costs less in search plus model tokens than either Keenable mode.
-
-### Is Keenable faster than Parallel?
-
-Per search call, yes. Keenable realtime averaged 0.34 seconds per call on the AA Index against 0.51 for Parallel Turbo. Per task, Parallel Fast finished faster, at 17.9 seconds against 20.2, because the model needed fewer calls.
+Below 100,000 requests a month, yes: Keenable's free allowance covers it. Above that, Keenable's self-serve price is $4 per 1,000 against $1 per 1,000 for Parallel Fast and Turbo, and the bills cross at roughly 132,000 requests a month.
 
 ### Does Keenable have an equivalent to Parallel's Task or Monitor APIs?
 

@@ -25,7 +25,7 @@ BrowseComp, created by OpenAI, is a set of 1,266 questions that require persiste
 
 At the frontier tier, Parallel Advanced ties Perplexity at 74%, but Perplexity gets there for $275 per 1,000 questions against our $399. Exa (70%) and Tavily (66%) trail at more than three times Perplexity's cost. At the low-cost tier, Perplexity leads at 46% and Parallel Fast sits two points behind at 44% for about a third of the cost. Which engine wins depends on your query mix, your budget per question, and how much latency your surface can absorb.
 
-For an independent check, the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (September 2026 data) benchmarks 25 search API products across 12 providers on a fixed agent harness. Perplexity Search (medium) leads at 80, followed by Octen Search at 77; Parallel Search (advanced) scores 75, level with Brave's LLM context mode, and ties for the top DeepSearchQA score (81). Parallel's fast mode recorded $8.41 in search cost per 1,000 benchmark tasks in AA's September 8 data, among the lowest measured. On speed, [Openbenchmarks' fastest-search-API boards](https://openbenchmarks.com/web-search/fastest-search-api) (September 2026) put Parallel turbo first on factual lookup at 348ms mean latency and first on hard retrieval at 333ms, though Exa Instant, about 50ms behind on both, edges it on multi-hop search once time is divided by answer quality.
+For independent speed data, [Openbenchmarks' fastest-search-API boards](https://openbenchmarks.com/web-search/fastest-search-api) (September 2026) put Parallel turbo first on factual lookup at 348ms mean latency and first on hard retrieval at 333ms, though Exa Instant, about 50ms behind on both, edges it on multi-hop search once time is divided by answer quality.
 
 ## **The contenders**
 
@@ -75,7 +75,7 @@ On BrowseComp (September 2026), Tavily scored 66% at the frontier tier for $935 
 
 Brave serves results from its own independent crawl of the web, news, and more, with a privacy focus.
 
-Brave isn't in our current benchmark runs. On independent data, Brave's LLM context mode scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (September 2026 data), level with Parallel advanced, and [Openbenchmarks](https://openbenchmarks.com/web-search/fastest-search-api) measured Brave at 601 to 630ms mean latency on factual lookup.
+Brave isn't in our current benchmark runs. On independent data, [Openbenchmarks](https://openbenchmarks.com/web-search/fastest-search-api) measured Brave at 601 to 630ms mean latency on factual lookup.
 
 **Best for:** Privacy-minded lookups from teams that don't need the fastest response or deep multistep reasoning.
 

@@ -4,7 +4,7 @@ OpenCode configures MCP servers in opencode.json and lets you scope any server's
 
 OpenCode is the open-source, provider-agnostic coding agent that's become the default [alternative to Claude Code](https://parallel.ai/articles/opencode-vs-claude-code-a-2026-comparison-for-developers), and [MCP](https://parallel.ai/articles/what-is-mcp) is how you extend it. Its config has a feature worth knowing before you install anything: per-agent tool patterns, which let you connect a heavy server but expose its tools only to the agents that need them.
 
-This guide covers how MCP works in OpenCode, how Parallel MCP fits next to OpenCode's built-in websearch tool, and the five servers we'd actually install. Disclosure: we make Parallel, so read our first pick knowing the vendor wrote it; the benchmark numbers are there so you don't have to take our word.
+This guide covers how MCP works in OpenCode, how Parallel MCP fits next to OpenCode's built-in websearch tool, and the five servers we'd actually install. Disclosure: we make Parallel, so read our first pick knowing the vendor wrote it.
 
 ## How MCP works in OpenCode
 
@@ -29,7 +29,7 @@ Servers are declared in the [mcp block of opencode.json](https://opencode.ai/doc
 
 [Parallel MCP](https://parallel.ai/mcp) is the config above, or a one-click OpenCode install from the Parallel MCP page: a hosted server whose keyless tools are `web_search` for ranked, excerpt-dense results, `web_fetch` for token-efficient markdown from up to 20 URLs per call (PDFs and JavaScript-rendered pages included), and `web_decisions` for typed questions such as a probability or a pick among options. Point the URL at `https://mcp.parallel.ai/mcp?login` to sign in through OpenCode's OAuth flow, or send an API key header, and you also get `web_research`, which returns a cited answer to one research question in a single call.
 
-OpenCode also has a built-in websearch tool, and Parallel is now one of its backends. In v1 it runs on Exa or Parallel when you use the OpenCode provider or set `OPENCODE_ENABLE_EXA` or `OPENCODE_ENABLE_PARALLEL`; in [v2](https://opencode.ai/v2/docs/websearch) you pick from Exa, Firecrawl, Parallel, Tavily, and TinyFish and connect an account or key. On the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 25 search API products (September 2026 data), Parallel Search (advanced) scores 75, one point ahead of Exa (auto) at 74, and both trail Perplexity Search (medium) at 80. The margin is thin, so [test on your own queries](https://parallel.ai/articles/best-web-search-api). The MCP server still earns its place next to the built-in tool: it adds Parallel's `web_fetch` extraction, `web_decisions`, and, once you sign in, `web_research`.
+OpenCode also has a built-in websearch tool, and Parallel is now one of its backends. In v1 it runs on Exa or Parallel when you use the OpenCode provider or set OPENCODE_ENABLE_EXA or OPENCODE_ENABLE_PARALLEL; in [v2](https://opencode.ai/v2/docs/websearch) you pick from Exa, Firecrawl, Parallel, Tavily, and TinyFish and connect an account or key. Whichever backend you choose, [test it on your own queries](https://parallel.ai/articles/best-web-search-api). The MCP server still earns its place next to the built-in tool: it adds Parallel's web_fetch extraction, web_decisions, and, once you sign in, web_research.
 
 **Best for:** current docs, errors, and library research mid-task, plus reading specific pages without flooding context.
 

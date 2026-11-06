@@ -66,11 +66,11 @@ On a single-fact benchmark, one decent search usually finds the answer and the m
 - **Excerpt quality.** Agents read excerpts, not whole pages. Excerpts that contain the constraining detail (a birth year, an undergraduate school) let the agent confirm or discard a candidate without an extra fetch.
 - **Cost per call.** Persistence means many calls, so search price and the tokens each result adds to context both multiply.
 
-This is why BrowseComp separates search providers more than SimpleQA-style benchmarks do. In the Artificial Analysis Search Index, the same model scores 17 on BrowseComp with no search tool, and 73 to 87 with the providers listed below.
+This is why BrowseComp separates search providers more than SimpleQA-style benchmarks do.
 
 ## How search APIs compare on BrowseComp
 
-The three sets of numbers below measure different things, so don't compare across them.
+The two sets of numbers below measure different things, so don't compare across them.
 
 ### Search APIs in an agent loop (parallel.ai/benchmarks, September 9, 2026)
 
@@ -107,31 +107,9 @@ The Task API is a different product. It runs a full research agent behind one ca
 | Exa Agent Max | 78% | $1,043.5 |
 | Gemini 3.1 Pro (high) | 72% | $194.4 |
 
-### Independent: Artificial Analysis Search Index (October 19, 2026 data)
-
-[Artificial Analysis](https://artificialanalysis.ai/agents/search-api) holds the model, harness, and settings fixed and swaps only the search API. Its BrowseComp column uses a 200-question panel and feeds into a composite index alongside DeepSearchQA and AA-Omniscience.
-
-| Search API (AA setting) | BrowseComp |
-| --- | --- |
-| Perplexity Search (medium) | 87 |
-| Perplexity Search (high) | 86 |
-| Octen Search (highlights) | 86 |
-| Exa Search (auto, dynamic highlights) | 83 |
-| Exa Search (lite, dynamic highlights) | 81 |
-| Parallel Search (advanced) | 77 |
-| Brave Search (LLM context) | 77 |
-| You.com (highlights) | 77 |
-| Nimble (standard) | 75 |
-| OpenAI Web Search (medium) | 74 |
-| Firecrawl | 74 |
-| Parallel Search (basic) | 73 |
-| No search (model only) | 17 |
-
-On this board Perplexity medium leads BrowseComp at 87, ten points ahead of Parallel advanced at 77. On the overall index, Parallel Search (advanced) scores 75, level with Brave's LLM context mode and behind Exa's auto mode and Perplexity Search (medium), which lead at 80. For the full write-up of our runs, see [our BrowseComp benchmark report](https://parallel.ai/articles/most-powerful-search-api-for-ai).
-
 ### Read small samples with care
 
-None of these runs uses all 1,266 questions. For a score near 70%, the standard error of an accuracy estimate is about 6.5 points at 50 questions, 4.6 points at 100, and 3.2 points at 200. A two-point gap on a 50-question sample (46% vs 44%) is well inside the noise, while the ten-point AA gap on 200 questions is large enough to take seriously. Different samples, agents, judges, and dates also explain why the same provider can score 74 in one table and 87 in another.
+None of these runs uses all 1,266 questions. For a score near 70%, the standard error of an accuracy estimate is about 6.5 points at 50 questions, 4.6 points at 100, and 3.2 points at 200. A two-point gap on a 50-question sample (46% vs 44%) is well inside the noise. Different samples, agents, judges, and dates also explain why the same provider can score 74 in one table and 86 in another.
 
 ## Limitations, contamination, and saturation
 

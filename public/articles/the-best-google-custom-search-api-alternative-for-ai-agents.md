@@ -58,7 +58,7 @@ Vertex AI Search is Google's own recommended path for site search, covering up t
 
 ### Parallel Search API
 
-[Parallel's Search API is built from the ground up for AI agents](https://parallel.ai/blog/parallel-search-api), running on Parallel's own proprietary web index of billions of pages with millions added daily. A call returns ranked URLs plus dense, token-efficient excerpts together, which is what removes the separate scraper from the loop. Fast is the tier for putting web results into a model at $1 per 1,000 requests and ~700ms, with a score of 73 in the Artificial Analysis Search Index's September 8, 2026 data. Basic and Advanced run $5 per 1,000 with 10 results included. Parallel applies $5 in free credits every month automatically, which covers up to 5,000 Fast or Turbo searches, allows 600 requests per minute, and has no cap at 10,000 queries per day.
+[Parallel's Search API is built from the ground up for AI agents](https://parallel.ai/blog/parallel-search-api), running on Parallel's own proprietary web index of billions of pages with millions added daily. A call returns ranked URLs plus dense, token-efficient excerpts together, which is what removes the separate scraper from the loop. Fast is the tier for putting web results into a model at $1 per 1,000 requests and ~700ms. Basic and Advanced run $5 per 1,000 with 10 results included. Parallel applies $5 in free credits every month automatically, which covers up to 5,000 Fast or Turbo searches, allows 600 requests per minute, and has no cap at 10,000 queries per day.
 
 ## Why Parallel's Search API is different from Google Custom Search
 

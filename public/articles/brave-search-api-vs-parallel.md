@@ -1,6 +1,6 @@
 # Brave Search API vs. Parallel: independent index or agent-native retrieval?
 
-Brave and Parallel both crawl and rank the web themselves, so this is a comparison between two real indexes rather than two wrappers around Google. What separates them is who each index was built for. This comparison covers search behavior, generated answers, accuracy and cost inside an agent loop, pricing, throughput, Brave's storage rights clause, and compliance.
+Brave and Parallel both crawl and rank the web themselves, so this is a comparison between two real indexes rather than two wrappers around Google. What separates them is who each index was built for. This comparison covers search behavior, generated answers, pricing, throughput, Brave's storage rights clause, and compliance.
 
 ## **Two independent indexes, built for different readers**
 
@@ -27,12 +27,6 @@ Brave's Answers plan is a separate product on a separate meter. It exposes an Op
 Parallel covers the same ground with the Responses API: OpenAI-compatible agentic research that returns a synthesized, cited answer, priced by reasoning effort at $10 per 1,000 requests for low, $50 for medium, and $250 for high, with latencies of roughly 5 to 10 seconds, 15 to 20 seconds, and 30 to 60 seconds respectively.
 
 Both providers offer OpenAI-compatible interfaces, but Brave’s cited answer endpoint uses Chat Completions while Parallel’s cited research endpoint uses Responses. Validate request parameters, streaming events, and citation handling when integrating. Brave’s token-based billing and Parallel’s fixed effort-tier pricing produce different economics depending on answer length and research depth.
-
-## **Accuracy and cost inside an agent loop**
-
-Artificial Analysis’s Search Index data dated September 22, 2026 shows Parallel Advanced and Brave LLM Context tied at 75, both behind Perplexity Search (medium) at 80 and Octen Search at 77. Parallel Advanced’s search cost is $47.93 per 1,000 benchmark tasks; Brave LLM Context’s is $61.96. Brave completes tasks faster, at 21.8 seconds versus 40.5 for Parallel Advanced. In AA’s September 8 data, Parallel Fast scored 73 at $8.41 in search cost and about 16 seconds per task. Search costs exclude model costs and are not per-call prices. [Artificial Analysis leaderboard](https://artificialanalysis.ai/agents/search-api)
-
-This is an independent Artificial Analysis evaluation, not a Parallel-run benchmark. It uses the same answer model and agent harness across providers, with a shared text-only web_fetch tool. Reported task time combines measured search time and derived model time; it is not latency for one API request. Evaluate Brave LLM Context when you need model grounding, rather than substituting its separate Web Search endpoint. [Benchmark methodology](https://artificialanalysis.ai/methodology/search-api)
 
 ## **Pricing**
 
@@ -92,7 +86,7 @@ Parallel is SOC 2 Type 2 certified and offers a Data Processing Addendum, with a
 
 Choose Brave when its independent index, specialized search endpoints, Goggles rules, or standard Search throughput fits your application. Its LLM Context endpoint provides extracted passages for your own model, and Answers supports cited multi-search research. If you already own the surrounding orchestration, these capabilities may cover what you need.
 
-Choose Parallel when you need low-cost retrieval alongside managed research and monitoring. Turbo and Fast start at $1 per 1,000 requests, including 10 results. Task, Responses, FindAll, Entity Search, and Monitor support research, list building, and change tracking. The current independent benchmark gives Parallel Advanced lower combined task cost than Brave LLM Context at the same displayed overall score, while Brave is faster in that pairing. Choose a configuration against your own quality and latency requirements. [Parallel pricing](https://docs.parallel.ai/getting-started/pricing)
+Choose Parallel when you need low-cost retrieval alongside managed research and monitoring. Turbo and Fast start at $1 per 1,000 requests, including 10 results. Task, Responses, FindAll, Entity Search, and Monitor support research, list building, and change tracking. Choose a configuration against your own quality and latency requirements. [Parallel pricing](https://docs.parallel.ai/getting-started/pricing)
 
 Evaluate the endpoints you plan to ship: Brave LLM Context against Parallel Search for retrieval, and Brave Answers against Parallel Responses or Task for managed research. Keep the model and harness fixed where possible, check citation support, and include retries, failed requests, and model tokens in the results. [Evaluation guide](https://docs.parallel.ai/search/evaluating-search) / [Start building](https://platform.parallel.ai/)
 

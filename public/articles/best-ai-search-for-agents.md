@@ -1,6 +1,6 @@
 # Best AI search for agents: 6 web search APIs compared (2026)
 
-On BrowseComp, agents scored from 32% to 74% depending on the search API and price tier in our September 2026 runs of Parallel, Perplexity, Exa, and Tavily. This report compares six web search APIs as agent tools, adds independent Artificial Analysis and Openbenchmarks data where our runs don't cover a provider, and walks through how to rerun the evaluation on your own traffic.
+On BrowseComp, agents scored from 32% to 74% depending on the search API and price tier in our September 2026 runs of Parallel, Perplexity, Exa, and Tavily. This report compares six web search APIs as agent tools, adds independent Openbenchmarks data where our runs don't cover a provider, and walks through how to rerun the evaluation on your own traffic.
 
 On [BrowseComp](https://openai.com/index/browsecomp/), agentic-search accuracy in our current runs on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026) ranged from 32% to 74%, depending on the search API and the agent paired with it. That spread often decides whether an agent finishes its task or stalls halfway through. BrowseComp is a benchmark of 1,266 questions that require persistent, multi-step browsing to locate hard-to-find, entangled information on the web, so it maps closely to how autonomous agents behave.
 
@@ -19,8 +19,6 @@ We are Parallel, we build one of the six APIs below, and we are biased toward it
 ## **The six web search APIs, compared**
 
 Our current Search API evals on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) ran on September 9, 2026, at two price tiers. The frontier tier pairs a GPT-5.6 Sol agent (reasoning high) with Parallel Basic or Advanced, and the low-cost tier pairs a GPT-5.6 Luna agent (reasoning low) with Parallel Fast or Turbo. Exa, Tavily, and Perplexity run at both tiers with the same agents, and an LLM judge grades a 50-question BrowseComp sample. OpenAI Web Search, Brave, and SerpAPI aren't in those runs, so for them we point to independent data where it exists. The sections below aren't a ranking.
-
-Since we ran those numbers, an independent version of this comparison has appeared: the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (September 2026 data) benchmarks 25 search API products across 12 providers on a fixed GPT-5.6 Luna agent harness, varying only the search provider. Perplexity Search (medium) leads at 80, followed by Octen Search at 77; Parallel Search (advanced) scores 75, level with Brave's LLM context mode, and ties for the top DeepSearchQA score (81). Parallel's fast mode recorded $8.41 in search cost per 1,000 benchmark tasks in AA's September 8 data, among the lowest measured. Where our figures below and theirs overlap, prefer theirs; they have no stake in the outcome.
 
 ### Parallel Search API
 
@@ -52,7 +50,7 @@ OpenAI Web Search isn't in our September BrowseComp runs. It is in our October 2
 
 Brave Search offers a developer API over its own independent web index, reported at more than 30 billion pages, served without routing your queries through Google or Bing. It holds a SOC 2 Type II attestation with a zero-data-retention option.
 
-Brave isn't in our current benchmark runs. On the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (September 2026 data), Brave's LLM context mode scores 75, level with Parallel Search (advanced). On [Openbenchmarks](https://openbenchmarks.com/web-search/fastest-search-api)'s factual-lookup latency board it measured 601 to 630ms mean.
+Brave isn't in our current benchmark runs. On [Openbenchmarks](https://openbenchmarks.com/web-search/fastest-search-api)'s factual-lookup latency board it measured 601 to 630ms mean.
 
 **Best for:** privacy-sensitive apps and cost-conscious teams that want an independent index and will handle extraction themselves.
 

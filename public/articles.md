@@ -3,7 +3,7 @@
 ### Comparison
 
 * [The best web search API for financial AI agents (2026 benchmarks)](https://parallel.ai/articles/best-search-api-for-financial-ai-agents)
-* [Keenable vs. Parallel: the fastest search call or the best agent result?](https://parallel.ai/articles/keenable-vs-parallel)
+* [Keenable vs. Parallel: comparing two web indexes built for AI agents](https://parallel.ai/articles/keenable-vs-parallel)
 * [The best DeepSeek Search API alternatives for AI agents in 2026](https://parallel.ai/articles/deepseek-search-api-alternatives)
 * [DeepSeek Search API vs. Parallel: pricing, data handling, and model lock-in](https://parallel.ai/articles/deepseek-search-api-vs-parallel)
 * [The best Firecrawl alternatives in 2026](https://parallel.ai/articles/firecrawl-alternatives)
@@ -18,7 +18,7 @@
 * [The best API for company research in 2026: what an independent benchmark found](https://parallel.ai/articles/best-api-for-company-research)
 * [TinyFish vs Parallel: operating websites or retrieving the web](https://parallel.ai/articles/tinyfish-vs-parallel)
 * [The best web search MCP server in 2026: 5 options compared](https://parallel.ai/articles/best-web-search-mcp)
-* [Parallel Search MCP vs. Exa MCP: a 2026 comparison](https://parallel.ai/articles/parallel-search-mcp-vs-exa-mcp)
+* [Parallel MCP vs. Exa MCP: a 2026 comparison](https://parallel.ai/articles/parallel-search-mcp-vs-exa-mcp)
 * [What's the most powerful search API for AI in 2026? A BrowseComp benchmark report](https://parallel.ai/articles/most-powerful-search-api-for-ai)
 * [The best web search API for AI applications: a 2026 benchmark report on 5 engines](https://parallel.ai/articles/best-web-search-api-for-ai-applications)
 * [The best web search API in 2026: 5 tools compared on accuracy and speed](https://parallel.ai/articles/best-web-search-api)
@@ -54,13 +54,18 @@
 
 ### Guides
 
+* [The best MCP servers for Google Antigravity in 2026](https://parallel.ai/articles/best-mcp-servers-for-antigravity)
+* [The best MCP servers for ChatGPT in 2026: plugins and custom connections](https://parallel.ai/articles/best-mcp-servers-for-chatgpt)
+* [The best Claude MCP servers in 2026: connectors for claude.ai, Desktop, and mobile](https://parallel.ai/articles/best-mcp-servers-for-claude)
+* [The best MCP servers (extensions) for Goose in 2026](https://parallel.ai/articles/best-mcp-servers-for-goose)
+* [The best MCP servers for VS Code and GitHub Copilot in 2026](https://parallel.ai/articles/best-mcp-servers-for-vs-code)
 * [Google's /goto links and poisoned SERPs: the best alternatives to SERP scrapers](https://parallel.ai/articles/google-goto-links-serp-scraper-alternatives)
 * [AI in investment banking: what analyst agents do and what they need](https://parallel.ai/articles/ai-in-investment-banking)
 * [Best web search APIs with EU data residency (2026)](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
 * [Build an EU research agent with the Parallel Search API](https://parallel.ai/articles/build-eu-research-agent-parallel-search)
 * [GDPR and AI agents: what web search and extraction change](https://parallel.ai/articles/gdpr-ai-agents-web-search-extraction)
 * [How to add web search to Kimi K3 and other open-weight models](https://parallel.ai/articles/kimi-k3-web-search)
-* [How to get better web search in Hermes Agent with Parallel’s free Search MCP](https://parallel.ai/articles/hermes-agent-web-search)
+* [How to get better web search in Hermes Agent with the free Parallel MCP](https://parallel.ai/articles/hermes-agent-web-search)
 * [How to add better web search to DeepSeek Harness: plugins and MCP setup](https://parallel.ai/articles/deepseek-harness-web-search)
 * [How to add web search to the Claude Agent SDK (Python and TypeScript)](https://parallel.ai/articles/claude-agent-sdk-web-search)
 * [How to save money on the Claude API in 2026](https://parallel.ai/articles/how-to-save-money-on-claude-api)

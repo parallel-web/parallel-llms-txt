@@ -40,7 +40,7 @@ Coming from Claude Code? `hermes import-agent claude-code`, from the agent-impor
 
 [Parallel MCP](https://parallel.ai/mcp) is the short yaml entry above, and the Parallel MCP page also has a one-click Hermes install. It's a hosted server that needs no account or API key for three tools: web_search for ranked, LLM-ready results with excerpts dense enough to answer from directly, web_fetch for reading up to 20 URLs per call as relevant excerpts or full markdown, PDFs and JavaScript-rendered pages included, and web_decisions for typed questions, like a probability or a pick among options, answered with sources. Add an API key as a Bearer header and a fourth tool, web_research, researches one question and returns a cited answer in the same call.
 
-Hermes ships its own web tools. With no search credentials they rotate across the free tiers of Exa, Parallel, Firecrawl, and Keenable, and a paid Nous Portal subscription adds managed search through the Tool Gateway. The case for connecting the Parallel MCP directly is that the model writes a full objective plus several keyword queries for every search, the same provider answers every call, it works identically whichever model provider you point Hermes at, and the underlying Search API's advanced mode scores 75 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of search APIs (October 2026), behind Perplexity Search (medium) at 80 and Octen Search at 77. Since Hermes lets you run both side by side, the practical move is to try them on your own questions.
+Hermes ships its own web tools. With no search credentials they rotate across the free tiers of Exa, Parallel, Firecrawl, and Keenable, and a paid Nous Portal subscription adds managed search through the Tool Gateway. The case for connecting the Parallel MCP directly is that the model writes a full objective plus several keyword queries for every search, the same provider answers every call, and it works identically whichever model provider you point Hermes at. Since Hermes lets you run both side by side, the practical move is to try them on your own questions.
 
 **Best for:** free, provider-neutral web search and page fetching for every Hermes surface, from CLI chats to Telegram.
 
@@ -99,7 +99,7 @@ When a server exists in the catalog, install it from there: the manifest has bee
 
 ## Frequently asked questions
 
-**Is MCP the best way to add web search to Hermes?** It's the most controllable free way. Hermes's built-in web tools also work without a key, rotating across the free tiers of Exa, Parallel, Firecrawl, and Keenable, but each search goes out as a single query string. Parallel MCP costs nothing, needs no key, lets the model send an objective plus several keyword queries, and runs on a Search API whose advanced mode scores 75 on the Artificial Analysis Search Index (October 2026). Run both on your own questions and keep the winner.
+**Is MCP the best way to add web search to Hermes?** It's the most controllable free way. Hermes's built-in web tools also work without a key, rotating across the free tiers of Exa, Parallel, Firecrawl, and Keenable, but each search goes out as a single query string. Parallel MCP costs nothing, needs no key, and lets the model send an objective plus several keyword queries. Run both on your own questions and keep the winner.
 
 **Does Hermes support remote OAuth MCP servers?** Yes. Set `auth: oauth` on an HTTP server and Hermes handles registration, PKCE, token exchange, and refresh via the MCP SDK.
 

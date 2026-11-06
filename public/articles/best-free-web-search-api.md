@@ -56,11 +56,11 @@ Exa gives new accounts a [$10 onboarding bonus plus $10 in credits every month, 
 
 ### **4. TinyFish**
 
-TinyFish makes its [Search and Fetch APIs free](https://www.tinyfish.ai/pricing), with no card required. Search is limited to 30 requests a minute and 500 an hour, and Fetch to 150 URLs a minute and 1,000 a day. Requests need an [API key](https://docs.tinyfish.ai/search-api), so you do sign up. On the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), TinyFish Search scores 71 at a measured search cost of $0. The rate limits are the catch for anything with fan-out.
+TinyFish makes its [Search and Fetch APIs free](https://www.tinyfish.ai/pricing), with no card required. Search is limited to 30 requests a minute and 500 an hour, and Fetch to 150 URLs a minute and 1,000 a day. Requests need an [API key](https://docs.tinyfish.ai/search-api), so you do sign up. The rate limits are the main constraint for anything with fan-out.
 
 ### **5. Firecrawl**
 
-Firecrawl’s [free plan](https://www.firecrawl.dev/pricing) gives 1,000 credits a month with no card and 2 concurrent requests. Search costs 2 credits per 10 results, so the plan covers about 500 searches, or 1,000 scraped pages. On the free plan, [/search is limited to 10 requests a minute](https://docs.firecrawl.dev/rate-limits). Since June 2026 Firecrawl also offers [Keyless](https://www.firecrawl.dev/blog/firecrawl-keyless-launch): search and scrape with no account or key, capped per IP address per day. Firecrawl Search scores 73 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api).
+Firecrawl’s [free plan](https://www.firecrawl.dev/pricing) gives 1,000 credits a month with no card and 2 concurrent requests. Search costs 2 credits per 10 results, so the plan covers about 500 searches, or 1,000 scraped pages. On the free plan, [/search is limited to 10 requests a minute](https://docs.firecrawl.dev/rate-limits). Since June 2026 Firecrawl also offers [Keyless](https://www.firecrawl.dev/blog/firecrawl-keyless-launch): search and scrape with no account or key, capped per IP address per day.
 
 ### **6. Serper**
 
@@ -161,11 +161,7 @@ Parallel sells four search modes at two prices, so spend can match what a query 
 | Basic | ~1s | $5 / 1,000 requests | Quick retrieval with longer excerpts per result |
 | Advanced | ~3s | $5 / 1,000 requests | Highest-quality, multi-hop results (the default) |
 
-If price brought you here, look at Turbo and Fast. On [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (evals run September 9, 2026), with a GPT-5.6 Luna agent at the low-cost tier, Fast scored 94% on a 100-question sample of SimpleQA Verified and Turbo 91%, both at a total cost of $2 per 1,000 questions, including model tokens and tool calls, against 94% at $5.50 for Perplexity and 94% at $17.40 for Tavily. Those are Parallel’s own runs.
-
-The independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (latest data October 19, 2026) runs the same GPT-5.6 Luna answer model against every provider and changes only the search API. Parallel Search (advanced) scores 75, level with Brave (LLM context) and behind Exa (auto, dynamic highlights) and Perplexity Search (medium) at 80, Exa (lite) and Perplexity (high) at 79, and Octen and Perplexity (low) at 77. Fast scores 73 at $8.41 of search cost per 1,000 benchmark tasks, the lowest search cost of any paid provider measured, and Turbo scores 67 at $13.64. TinyFish, which is free, measures $0. Counting the answer model’s tokens as well, Fast comes to about $27.37 per 1,000 tasks, and Octen, which scores 77, costs less at about $23.99. Firecrawl Search also scores 73.
-
-Each provider’s row on that index carries its own measurement date, and Parallel’s rows were measured in August 2026. Run your own evaluation on your own queries before you commit.
+If price brought you here, look at Turbo and Fast. On [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (evals run September 9, 2026), with a GPT-5.6 Luna agent at the low-cost tier, Fast scored 94% on a 100-question sample of SimpleQA Verified and Turbo 91%, both at a total cost of $2 per 1,000 questions, including model tokens and tool calls, against 94% at $5.50 for Perplexity and 94% at $17.40 for Tavily. Those are Parallel’s own runs, so run your own evaluation on your own queries before you commit.
 
 ## **How far does $5 a month go on Parallel?**
 
@@ -207,7 +203,7 @@ Mostly not. Parallel’s $5 monthly credit expires at month end, and Tavily’s 
 
 ### **What’s the cheapest paid web search API once the free tier runs out?**
 
-By list price per request, Parallel Turbo and Fast at $1 per 1,000 are the lowest paid rate in this guide among APIs that run their own index. Serper starts at $1.00 per 1,000 and reaches $0.30 only on its $3,750 pack. Cost per task is the better measure. The [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (latest data October 19, 2026) counts search cost plus the answer model’s tokens. On that basis TinyFish’s free tier costs about $9.30 per 1,000 tasks, Octen about $23.99, Parallel Turbo about $26.06, and Parallel Fast about $27.37. Serper isn’t on that index.
+By list price per request, Parallel Turbo and Fast at $1 per 1,000 are the lowest paid rate in this guide among APIs that run their own index. Serper starts at $1.00 per 1,000 and reaches $0.30 only on its $3,750 pack. Cost per task is the better measure, because it also counts the model tokens each search adds, so compare providers on a sample of your own workload.
 
 ### **How do I move from the free MCP server to the API?**
 

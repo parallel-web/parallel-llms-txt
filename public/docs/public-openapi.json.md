@@ -151,6 +151,55 @@
         }
       }
     },
+    "/v1/places/search": {
+      "post": {
+        "tags": [
+          "Place Search"
+        ],
+        "summary": "Place search",
+        "description": "Searches for places such as restaurants, shops and attractions.",
+        "operationId": "place_search_v1_places_search_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlaceSearchRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlaceSearchResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Request validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "type": "error",
+                  "error": {
+                    "ref_id": "search_fcb2b4f3c75e418687bccaa1a8381331",
+                    "message": "Request validation error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/extract": {
       "post": {
         "tags": [
@@ -186,7 +235,11 @@
                       "excerpts": [
                         "Excerpted text ..."
                       ],
-                      "full_content": "Full content ..."
+                      "full_content": "Full content ...",
+                      "links": [
+                        "https://www.example.com/about",
+                        "https://www.iana.org/domains/example"
+                      ]
                     }
                   ],
                   "errors": [
@@ -276,7 +329,7 @@
                 },
                 "examples": {
                   "live": {
-                    "summary": "Captured response from a live request.",
+                    "summary": "Response from a live request, with citations shortened.",
                     "value": {
                       "mode": "fast",
                       "answers": {
@@ -294,70 +347,14 @@
                           "url": "https://developers.clay.com/concepts/cli-basics",
                           "title": "CLI basics",
                           "excerpts": [
-                            "Understand the Clay CLI output contract, exit codes, environment variables, and authentication.\nThe Clay CLI (clay) is JSON-first: every command writes machine-readable JSON to stdout on success and a structured error envelope to stderr on failure.\nThere are no spinners, colors, or progress bars, so agents and scripts can branch on the output and exit code directly.\nclay login opens a browser to authorize the CLI with OAuth \u2014 this works from a human terminal or an agent's shell tool. Use clay whoami as the canonical check that authentication is working, and clay logout to clear a stored credential.\nEach sign-in covers one workspace \u2014 the one you pick on the consent screen.\nTo work across several, run clay login once per workspace: signing into a second keeps the first. clay workspaces list shows what you are signed into, clay workspaces current shows which one commands run against, and clay workspaces switch <id> switches."
+                            "The Clay CLI (clay) is JSON-first: every command writes machine-readable JSON to stdout on success and a structured error envelope to stderr on failure."
                           ]
                         },
                         {
                           "url": "https://university.clay.com/docs/cli-security-privacy",
                           "title": "CLI security & privacy - Clay Docs",
                           "excerpts": [
-                            "Understand CLI authentication, role requirements, and how Clay handles data sent from your terminal.\nOverview\nClay's CLI lets your team drive a Clay workspace from a terminal or coding agent instead of the UI.\nBecause that means credentials live on a local machine and commands run outside the app, admins need to know who can sign in and what those sessions can reach.\n\u200d\nNote: The CLI is part of Clay's Agent Plugin, which is in open beta and currently supported on Mac and Linux. Windows is not supported during the beta.\n\u200d\nHow CLI sessions are authenticated\nThe recommended path is browser-based OAuth:\nTreat that file like any other credential on disk \u2014 it is not stored in your operating system's keychain.\n* Running clay logout clears the stored credentials for that machine.\nAPI keys are for calling the Clay public API directly \u2014 they don't sign in to the CLI.\nThe supporting documentation \u2014 the SOC 2 Type II report, the current AI subprocessor list, and security questionnaire responses \u2014 is available through the Clay Trust Center , or by contacting security@clay.com .\nYour responsibilities:\n* Decide who gets CLI access \u2014 CLI access implies edit rights on the workspace. Grant Editor deliberately.\nHow Clay handles data sent through the CLI\nWhen your team runs a CLI command:\nFAQs\nIf we drive the CLI from a coding agent, what does that agent's provider see?\nThe CLI itself communicates only with Clay. But when you run it through a coding agent, whatever you type into that agent \u2014 and whatever command output it reads back \u2014 is processed by that agent's provider under your agreement with them, not Clay's.\n* Do not sell my data\n\u00a9 Clay 2025 \u2013 Born in Brooklyn. Claymation illustrations by the wonderful Hudson Christie ."
-                          ]
-                        },
-                        {
-                          "url": "https://docs.clayplatform.io/claycli/docs/cli.html",
-                          "title": "Claycli \u00b7 Clay CLI",
-                          "excerpts": [
-                            "Clay CLI ### 3.9.1\n* GitHub\nClaycli\nThis is the Clay command line utility. Here we will provide you with documentation and examples that will help you to run all the functionalities that you need. ##  Installation To install claycli you just need to type the following command: ``` $ npm install -g claycli\nClay CLI ### 3.9.1\n> [](#usage) Usage If installed globally, call `clay` from the command line with the [command](#commands) and `options` that you need. ```\nClay CLI ### 3.9.1\n$ clay < command > [options]\n`Much like `git` ; `claycli` is configured using a [dotfile](https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789) ( `.clayconfig` ) in your home folder. In it, you may specify references to api keys and `urls / site prefixes` that you use frequently.\nClay CLI ### 3.9.1\nFor `urls` and `site prefixes` , it will assume `http://` and port `80` unless you specify otherwise. Note that a `_site prefix_` is everything before the api route, e.g. `http://domain.com/site1` in `http://domain.com/site1/_components/article` .`\n[keys]\nlocal  = ha8yds9a8shdf98asdf\nqa  =  8 quwqwer09ewr0w9uer\nClay CLI ### 3.9.1\nprod  = bj34b6345k634jnk63n4\n[urls]\nlocal-site1  = https://localhost.site1.com: 3001 local-site2  = site2.com/site- 2 # http and port 80\nClay CLI ### 3.9.1\n``` For smaller `Clay` installations (or, ironically, for very large teams where devs spend most of their time on individual sites), you may specify a default api key and `url / site prefix` by using the `CLAYCLI_DEFAULT_KEY` and `CLAYCLI_DEFAULT_URL` environment variables. ## [](#commands) Commands * [`config`](#config)\nClay CLI ### 3.9.1\n* [`lint`](#lint)\n* [`import`](#import)\n* [`export`](#export)\n* [`compile`](#compile)"
-                          ]
-                        },
-                        {
-                          "url": "https://university.clay.com/fr/docs/audiences-for-agents",
-                          "title": "Audiences for agents and the CLI - Clay Docs",
-                          "excerpts": [
-                            "Audiences for agents and the CLI\nRead, segment, and manage your workspace's people, companies, and deals from the Clay CLI \u2014 and from the Clay agents that run it for you.\nOverview\nAudiences is the home for your workspace's own people, companies, and deals.\nThe clay audiences command group brings those records to your terminal: you can create and edit segments, manage field definitions, count or read records, and read the activities and signal events attached to them \u2014 all without opening the Clay app.\n\u200d\nNote: These commands need Audiences enabled for your workspace, plus the Clay Agent Plugin installed and signed in. Install and sign-in steps live in the plugin doc, linked below.\n\u200d\n* The Clay CLI \u2014 you or your coding agent run clay audiences commands directly in a terminal.\n* Sculptor \u2014 Clay's in-app go-to-market co-pilot runs the same commands for you when you ask it about your records.\n* The Agent surface in Clay \u2014 runs the same commands while it reasons through a play and builds the workflow.\nFAQs\nDoes reading Audiences from the CLI cost credits?\nNot today \u2014 Audiences is CLI-only, and no MCP tool serves it. Reps who connect a chat app to Clay over MCP get people and company search plus any Functions your team has enabled, and admins can additionally let them query owned accounts and opportunity data from the CRM. See MCP in Clay for how that access is configured.\nDo Clay's in-app agents really run the same commands?\nYes. All three surfaces load the same Audiences instructions from the Clay Agent Plugin, so a capability that lands in the CLI reaches Sculptor and the Agent surface with it. That's also why the limitations above apply everywhere rather than to the terminal alone.\nHow do I copy a segment?"
-                          ]
-                        },
-                        {
-                          "url": "https://developers.clay.com/quickstart",
-                          "title": "Quickstart - Clay docs",
-                          "excerpts": [
-                            "Build with Clay from your coding agent, or call the Clay API from your own applications.\nThere are two ways to use Clay as a developer: install the agent plugin to build with Clay inside your coding agent, or call the Public API directly from your own applications and services.\nAgent plugin\nThe agent plugin gives your coding agent Clay's skills and the clay CLI \u2014 the fastest way to build with Clay from a coding agent.\nIt requires a coding-agent host with a shell \u2014 Claude Code, Codex, or Cursor \u2014 and doesn't work in general-purpose chat apps like Claude Desktop, claude.ai, or ChatGPT that can't run the CLI.\nCopy this into your agent of choice and let it install and set up the plugin for you:\nSet up the Clay plugin by following the steps in\nhttps://github.com/clay-run/agent-plugins\nThis runs the plugin's setup skill, which puts clay on your PATH, signs you in, and verifies the CLI. Sign-in opens a browser to authorize the CLI.\nAgent plugin repository\nAPI\nUse the Public API to call Clay from your own applications and services \u2014 backend jobs, internal tools, queues, and product features. Requests authenticate with a Clay API key in the clay-api-key header.\nAPI reference\nEndpoint paths, request bodies, response schemas, and an interactive try-it console.\nGet an API key\n* Ask your agent to generate one for you after installing the agent plugin.\n* Run clay api-keys create --name \"<key name>\" with the clay CLI. The key is returned once, in the apiKey field.\n* Create one yourself in Clay under API and CLI \u2192 API keys.\nKeep keys server-side."
-                          ]
-                        },
-                        {
-                          "url": "https://www.clay.com/agent-plugin",
-                          "title": "Clay CLI: Build on Clay with any coding agent | clay.com",
-                          "excerpts": [
-                            "description: Use Clay's CLI to build workflows and governance directly into your GTM system. Build in Clay directly via a coding agent with CLI. title: \"Clay CLI: Build on Clay with any coding agent | clay.com\" image: https://cdn.prod.website-files.com/61477f2c24a826836f969afe/6a4fbb2bf6b13e7ff04d15c7_open%20graph%20cli%20api.jpg\nAgent plugin\nBuild on Clay with any coding agent\nUse Clay's API to build Clay data, workflows, and governance directly into your GTM system. Build in Clay directly via a coding agent with CLI.\nInstall the Clay Plugin to start building\nCopy and paste into your agent of choice\nSet up the Clay plugin by following the steps in https://github.com/clay-run/agent-plugins\nCopied\nCall any functions, workflows, and Claygents from Clay's API so your coding agent references centrally governed GTM logic \u2014 including lead scoring and outbound copy \u2014 instead of rebuilding one-offs.\nGet started\nUse Case 03 \u2014 WORKFLOW AUTOMATION\nVibecode GTM workflows\nBuild workflows in natural language via Clay CLI, then manage observability in-product, using Clay Workflows.\nGet started\nBuild on Clay with any coding agent\nInstall the Clay Plugin and start building data, workflows, and governance into your GTM system.\nInstall the Clay Plugin to start building\nCopy and paste into your agent of choice\nSet up the Clay plugin by following the steps in https://github.com/clay-run/agent-plugins\nCopied\nDeveloper docs\npress Enter to run \u2014 press R to reset\n{\n\"@context\" : \"https://schema.org\",\n\"@type\" : \"WebSite\",\n\"name\" : \"Clay\",\n\"alternateName\" : \"Clay\",\n\"url\" : \"https://clay.com/\"\n}"
-                          ]
-                        },
-                        {
-                          "url": "https://university.clay.com/docs/clay-api-cli?dub_id=DHFbP3TR3TaCG4pm",
-                          "title": "Installing Clay Plugin (API & CLI) - Clay Docs",
-                          "excerpts": [
-                            "Head to Guide: Using Clay Plugin for go-to-market plays you can run once the Plugin is connected \u2014 source your market, score it for fit, and route who gets worked first.\n\u200d\nNote: The Plugin installs Clay\u2019s skills and the Clay CLI into your coding agent.\nFor the full CLI quickstart, Public API setup, code examples, and guides for Searches, Routines, and Workflows, see developers.clay.com .\nThey're separate surfaces, not two halves of one product. The Plugin installs Clay's skills and the Clay CLI into your coding agent, and the CLI is what you or your agent run in a shell for one-off runs, scripting, and inspecting data. It authenticates with the session created by clay login , so there's no separate key to configure.\nCan I build or write to Clay tables via CLI or API?\nThere are no current plans to support table building from the API or CLI.\nCan I build Workflows with the API or CLI?\nYes, Workflows are available from the CLI and Plugin in Beta . For production use, Clay-managed functions and custom functions are the more stable option.\nAre credit budgets available via the developer platform?\nUse Company URL Finder in Clay to turn a company name into that company's website domain.\nView article\nView article View article\nSettings & admin\nIP access restrictions\nRead, segment, and manage your workspace's people, companies, and deals from the Clay CLI \u2014 and from the Clay agents that run it for you.\nView article\nView article View article\nOther popular resources\nExperts\nFind a Clay Expert\nExplore our network of Clay experts and agencies.\nView experts\nView experts View experts\nCommunity\n* Do not sell my data\n\u00a9 Clay 2025 \u2013 Born in Brooklyn. Claymation illustrations by the wonderful Hudson Christie ."
-                          ]
-                        },
-                        {
-                          "url": "https://developers.clay.com/",
-                          "title": "Overview - Clay docs",
-                          "excerpts": [
-                            "Use Clay from agents, terminals, backend services, internal tools, and custom apps.\nClay used to live primarily in the Clay UI. Now Clay also works where your agents, developers, and business systems already are.\nUse the developer platform to search Clay's GTM data, run reusable Clay logic, read table data, and work with Audiences programmatically.\nStart here\nInstall the Clay plugin\nBest for Claude Code, Codex, Cursor, and agent-first work. The plugin ships skills and the Clay CLI.\nCall the API directly\nBest for backend jobs, internal tools, custom apps, queues, and product workflows.\nCore primitives\n* Primitive | Use it for\n* Searches | Find companies and people using Clay's GTM database\n* Routines | Run Clay-managed functions, custom functions, and Workflows\n* Tables (Enterprise) | Query existing Clay table data from known tables\n* Audiences | Work with records, saved segments, activities, and signal events\nRun a search, then enrich with a function\nPull a target list from Clay data, then run Clay-managed functions on the results.\nGive an agent access to a Clay function\nLet an agent call Clay logic as part of its normal work.\nBuild a Workflow (Alpha)\nCreate, edit, validate, run, and inspect a Workflow from the plugin or CLI."
-                          ]
-                        },
-                        {
-                          "url": "https://university.clay.com/fr/docs/clay-api-cli",
-                          "title": "Installing Clay Plugin (API & CLI) - Clay Docs",
-                          "excerpts": [
-                            "Installing Clay Plugin (API & CLI)\nHead to Guide: Using Clay Plugin for go-to-market plays you can run once the Plugin is connected \u2014 source your market, score it for fit, and route who gets worked first.\n\u200d\nNote: The Plugin installs Clay\u2019s skills and the Clay CLI into your coding agent.\n* A paid coding agent plan: Claude (Pro, Max, Team, or Enterprise) for Claude Code, or ChatGPT (Plus, Pro, Business, Edu, or Enterprise) for Codex. If your company manages Claude, check that Claude Code is enabled for you.\n* Editor or Admin access in the Clay workspace you'll connect.\n* On Windows, admin rights (or help from IT) for one step.\n\u200d\n* Plan | Search results per request | Total search results\n* Free | 50 | 100/mo\n* Trial | 50 | 10k per 14 days\n* Paid self-serve plans | 500 | 1M/yr\n* Enterprise | 500 | 10M/yr\nFAQs\nDoes using the API or CLI cost extra credits?\nThe Plugin gives agent environments (Claude Code, Codex, Cursor) Clay's skills and the Clay CLI \u2014 the fastest path for agent-first and interactive coding workflows. The Public API is better suited for background jobs and your own apps, where you want to call Clay directly instead of installing anything.\nThe Public API uses its own key rather than your CLI sign-in. Create one with the clay api-keys create command \u2014 the key is shown only once, so store it somewhere safe.\nThey're separate surfaces, not two halves of one product. The Plugin installs Clay's skills and the Clay CLI into your coding agent, and the CLI is what you or your agent run in a shell for one-off runs, scripting, and inspecting data. It authenticates with the session created by clay login , so there's no separate key to configure.\nCan I build or write to Clay tables via CLI or API?\nThere are no current plans to support table building from the API or CLI."
-                          ]
-                        },
-                        {
-                          "url": "https://university.clay.com/docs/clay-api-cli",
-                          "title": "Installing Clay Plugin (API & CLI) - Clay Docs",
-                          "excerpts": [
-                            "Head to Guide: Using Clay Plugin for go-to-market plays you can run once the Plugin is connected \u2014 source your market, score it for fit, and route who gets worked first.\n\u200d\nNote: The Plugin installs Clay\u2019s skills and the Clay CLI into your coding agent.\n* A paid coding agent plan: Claude (Pro, Max, Team, or Enterprise) for Claude Code, or ChatGPT (Plus, Pro, Business, Edu, or Enterprise) for Codex. If your company manages Claude, check that Claude Code is enabled for you.\n* Editor or Admin access in the Clay workspace you'll connect.\n* On Windows, admin rights (or help from IT) for one step.\n\u200d\nThere is no additional cost to use the Plugin.\nThe Plugin also gives you access to:\n* Audiences \u2014 Read and segment the workspace's own people, companies, and deals. See Audiences for agents and the CLI .\n* Searches \u2014 Find companies and people using structured filters over Clay's GTM dataset. Learn more about Searches in this video walkthrough .\nFAQs\nDoes using the API or CLI cost extra credits?\nNo. API and CLI calls consume the same credits and actions as the equivalent work done in-product. There is no additional cost because work is triggered via the developer platform instead of the UI.\nWhat's the difference between the Plugin and the Public API?\nThe Plugin gives agent environments (Claude Code, Codex, Cursor) Clay's skills and the Clay CLI \u2014 the fastest path for agent-first and interactive coding workflows. The Public API is better suited for background jobs and your own apps, where you want to call Clay directly instead of installing anything.\nThe Public API uses its own key rather than your CLI sign-in. Create one with the clay api-keys create command \u2014 the key is shown only once, so store it somewhere safe.\nCan I build or write to Clay tables via CLI or API?"
+                            "Clay's CLI lets your team drive a Clay workspace from a terminal or coding agent instead of the UI."
                           ]
                         }
                       ],
@@ -379,18 +376,11 @@
                   "type": "error",
                   "error": {
                     "ref_id": "<reference-id>",
-                    "message": "Request validation error."
+                    "message": "Request validation error"
                   }
                 }
               }
             }
-          }
-        },
-        "x-mint": {
-          "href": "/api-reference/decisions/make-web-grounded-typed-decisions",
-          "metadata": {
-            "title": "Decisions",
-            "sidebarTitle": "Decisions"
           }
         },
         "x-code-samples": [
@@ -405,12 +395,11 @@
           {
             "lang": "cURL",
             "source": "curl https://api.parallel.ai/v1/decisions \\\n  -H \"Content-Type: application/json\" \\\n  -H \"x-api-key: $PARALLEL_API_KEY\" \\\n  -d '{\n    \"state\": {\n      \"company\": \"Clay\",\n      \"website\": \"https://www.clay.com\"\n    },\n    \"questions\": {\n      \"has_cli\": {\n        \"type\": \"noul\",\n        \"instructions\": \"Does Clay offer an official command-line interface (CLI)?\"\n      }\n    }\n  }'"
-          },
-          {
-            "lang": "Java",
-            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.time.Duration;\n\npublic class DecisionsExample {\n    public static void main(String[] args) throws Exception {\n        String body = \"{\"\n            + \"\\\"state\\\":{\\\"company\\\":\\\"Clay\\\",\"\n            + \"\\\"website\\\":\\\"https://www.clay.com\\\"},\"\n            + \"\\\"questions\\\":{\\\"has_cli\\\":{\\\"type\\\":\\\"noul\\\",\"\n            + \"\\\"instructions\\\":\\\"Does Clay offer an official command-line interface (CLI)?\\\"}}}\";\n\n        HttpRequest request = HttpRequest.newBuilder()\n            .uri(URI.create(\"https://api.parallel.ai/v1/decisions\"))\n            .timeout(Duration.ofSeconds(30))\n            .header(\"Content-Type\", \"application/json\")\n            .header(\"x-api-key\", System.getenv(\"PARALLEL_API_KEY\"))\n            .POST(HttpRequest.BodyPublishers.ofString(body))\n            .build();\n        HttpResponse<String> response = HttpClient.newHttpClient()\n            .send(request, HttpResponse.BodyHandlers.ofString());\n        if (response.statusCode() >= 400) {\n            throw new RuntimeException(\"Decision failed: \" + response.statusCode()\n                + \" \" + response.body());\n        }\n        System.out.println(response.body());\n    }\n}"
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/api-reference/decisions/make-web-grounded-typed-decisions"
+        }
       }
     },
     "/v1/tasks/groups": {
@@ -4029,6 +4018,38 @@
         "title": "ActionSearchSource",
         "type": "object"
       },
+      "AdvancedDecisionSettings": {
+        "properties": {
+          "location": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Location",
+            "description": "Supported ISO 3166-1 alpha-2 country code for geo-targeted search results. Case-insensitive; normalized to lowercase. Invalid or unsupported codes return a validation error.",
+            "examples": [
+              "us",
+              "gb",
+              "de",
+              "jp"
+            ]
+          },
+          "include_excerpts": {
+            "type": "boolean",
+            "title": "Include Excerpts",
+            "description": "Whether citations include the excerpts used to ground the decision. When false, every citation has an empty excerpts array.",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "AdvancedDecisionSettings",
+        "description": "Advanced configuration for decision grounding."
+      },
       "AdvancedExtractSettings": {
         "properties": {
           "fetch_policy": {
@@ -4065,6 +4086,18 @@
             "title": "Full Content",
             "description": "Controls full content extraction. Set to true to enable with defaults, false to disable, or provide FullContentSettings for fine-grained control.",
             "default": false
+          },
+          "links": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Links",
+            "description": "Include each page's links: absolute URLs from the same rendered content as the other outputs, deduplicated in document order, at most 512 per page. Does not change caching or fetching."
           }
         },
         "additionalProperties": false,
@@ -5951,6 +5984,428 @@
         "title": "FullContentSettings",
         "description": "Optional settings for returning full content."
       },
+      "GroundedChoiceAnswer": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "choice",
+            "title": "Type",
+            "default": "choice"
+          },
+          "choice": {
+            "type": "string",
+            "title": "Choice",
+            "description": "Selected option name from the question criteria."
+          },
+          "probabilities": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Probabilities",
+            "description": "Estimated probability for each option, keyed by option name."
+          },
+          "confidence": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence",
+            "description": "Model-reported confidence, when available. This is distinct from the probability assigned to the selected option."
+          }
+        },
+        "type": "object",
+        "required": [
+          "choice",
+          "probabilities"
+        ],
+        "title": "Choice"
+      },
+      "GroundedChoiceQuestion": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "choice",
+            "title": "Type"
+          },
+          "instructions": {
+            "type": "string",
+            "title": "Instructions",
+            "description": "Question to answer by selecting one of the named options."
+          },
+          "criteria": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "maxProperties": 255,
+            "minProperties": 2,
+            "title": "Criteria",
+            "description": "2 to 255 options, mapping each option name to its description."
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "instructions",
+          "criteria"
+        ],
+        "title": "Choice"
+      },
+      "GroundedDecisionCitation": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Url",
+            "description": "Source page URL."
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title",
+            "description": "Page title. Omitted when unavailable."
+          },
+          "excerpts": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Excerpts",
+            "description": "Passages used to ground the decision. Empty when advanced_settings.include_excerpts is false."
+          }
+        },
+        "type": "object",
+        "required": [
+          "url",
+          "excerpts"
+        ],
+        "title": "Citation"
+      },
+      "GroundedDecisionRequest": {
+        "properties": {
+          "advanced_settings": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AdvancedDecisionSettings"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Optional advanced configuration for decision grounding. When provided, the object must include location or include_excerpts."
+          },
+          "mode": {
+            "type": "string",
+            "const": "fast",
+            "title": "Mode",
+            "description": "Decision execution mode.",
+            "default": "fast"
+          },
+          "state": {
+            "$ref": "#/components/schemas/JsonValue",
+            "description": "Context shared by all questions. Accepts any JSON value. Together with the largest question, this may use at most 32,000 estimated input tokens."
+          },
+          "questions": {
+            "patternProperties": {
+              "^[A-Za-z0-9_-]+$": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/GroundedChoiceQuestion"
+                  },
+                  {
+                    "$ref": "#/components/schemas/GroundedScoreQuestion"
+                  },
+                  {
+                    "$ref": "#/components/schemas/GroundedNoulQuestion"
+                  }
+                ],
+                "discriminator": {
+                  "propertyName": "type",
+                  "mapping": {
+                    "choice": "#/components/schemas/GroundedChoiceQuestion",
+                    "noul": "#/components/schemas/GroundedNoulQuestion",
+                    "score": "#/components/schemas/GroundedScoreQuestion"
+                  }
+                }
+              }
+            },
+            "type": "object",
+            "maxProperties": 100,
+            "minProperties": 1,
+            "title": "Questions",
+            "description": "1 to 100 questions keyed by names containing only ASCII letters, numbers, underscores, and hyphens. State plus the largest question may use at most 32,000 estimated input tokens. Each value is a predicate (`noul`), choice, or score question."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "state",
+          "questions"
+        ],
+        "title": "Decision request"
+      },
+      "GroundedDecisionResponse": {
+        "properties": {
+          "mode": {
+            "type": "string",
+            "const": "fast",
+            "title": "Mode"
+          },
+          "answers": {
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/GroundedChoiceAnswer"
+                },
+                {
+                  "$ref": "#/components/schemas/GroundedScoreAnswer"
+                },
+                {
+                  "$ref": "#/components/schemas/GroundedNoulAnswer"
+                },
+                {
+                  "$ref": "#/components/schemas/GroundedRefusalAnswer"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "type",
+                "mapping": {
+                  "choice": "#/components/schemas/GroundedChoiceAnswer",
+                  "noul": "#/components/schemas/GroundedNoulAnswer",
+                  "refusal": "#/components/schemas/GroundedRefusalAnswer",
+                  "score": "#/components/schemas/GroundedScoreAnswer"
+                }
+              }
+            },
+            "type": "object",
+            "title": "Answers",
+            "description": "Answers keyed by the question names from the request. Any question can return a refusal."
+          },
+          "usage": {
+            "$ref": "#/components/schemas/GroundedDecisionUsage"
+          },
+          "citations": {
+            "items": {
+              "$ref": "#/components/schemas/GroundedDecisionCitation"
+            },
+            "type": "array",
+            "title": "Citations",
+            "description": "Web sources included in the shared decision context. Applies to the whole request, without a per-answer source mapping. Can be empty."
+          },
+          "decision_id": {
+            "type": "string",
+            "title": "Decision Id",
+            "description": "Decision ID: `decisions_` followed by a UUID without hyphens. Include this ID when reporting an issue or giving feedback so we can find the request's logs and trace.",
+            "examples": [
+              "decisions_cad0a6d2dec046bd95ae900527d880e7"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "mode",
+          "answers",
+          "usage",
+          "citations",
+          "decision_id"
+        ],
+        "title": "Decision response"
+      },
+      "GroundedDecisionUsage": {
+        "properties": {
+          "input_tokens": {
+            "type": "integer",
+            "title": "Input Tokens"
+          },
+          "output_tokens": {
+            "type": "integer",
+            "const": 0,
+            "title": "Output Tokens",
+            "description": "Always 0 for compatibility with the upstream contract."
+          }
+        },
+        "type": "object",
+        "required": [
+          "input_tokens",
+          "output_tokens"
+        ],
+        "title": "Usage"
+      },
+      "GroundedNoulAnswer": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "noul",
+            "title": "Type",
+            "default": "noul"
+          },
+          "noul": {
+            "type": "number",
+            "title": "Noul",
+            "description": "Estimated probability that the condition is true, from 0 to 1."
+          }
+        },
+        "type": "object",
+        "required": [
+          "noul"
+        ],
+        "title": "Predicate"
+      },
+      "GroundedNoulCriteria": {
+        "properties": {
+          "true": {
+            "type": "string",
+            "title": "True",
+            "description": "Meaning of a true outcome."
+          },
+          "false": {
+            "type": "string",
+            "title": "False",
+            "description": "Meaning of a false outcome."
+          }
+        },
+        "type": "object",
+        "required": [
+          "true",
+          "false"
+        ],
+        "title": "Criteria"
+      },
+      "GroundedNoulQuestion": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "noul",
+            "title": "Type"
+          },
+          "instructions": {
+            "type": "string",
+            "title": "Instructions",
+            "description": "Condition whose probability of being true should be estimated."
+          },
+          "criteria": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GroundedNoulCriteria"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Optional descriptions of what true and false mean for this question."
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "instructions"
+        ],
+        "title": "Predicate"
+      },
+      "GroundedRefusalAnswer": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "refusal",
+            "title": "Type",
+            "description": "The downstream decision provider refused this question; no value or probabilities are returned.",
+            "default": "refusal"
+          }
+        },
+        "type": "object",
+        "title": "Refusal"
+      },
+      "GroundedScoreAnswer": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "score",
+            "title": "Type",
+            "default": "score"
+          },
+          "score": {
+            "type": "number",
+            "title": "Score",
+            "description": "Probability-weighted mean of the zero-based level indices. Can be fractional."
+          },
+          "legend": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Legend",
+            "description": "Maps string indices to the level descriptions from the question criteria."
+          },
+          "probabilities": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Probabilities",
+            "description": "Estimated probability for each level, keyed by its string index."
+          },
+          "confidence": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence",
+            "description": "Model-reported confidence, when available. This is distinct from any one level's probability."
+          }
+        },
+        "type": "object",
+        "required": [
+          "score",
+          "legend",
+          "probabilities"
+        ],
+        "title": "Score"
+      },
+      "GroundedScoreQuestion": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "score",
+            "title": "Type"
+          },
+          "instructions": {
+            "type": "string",
+            "title": "Instructions",
+            "description": "Question to evaluate against the ordered criteria."
+          },
+          "criteria": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 10,
+            "minItems": 2,
+            "title": "Criteria",
+            "description": "2 to 10 level descriptions in order, indexed from zero."
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "instructions",
+          "criteria"
+        ],
+        "title": "Score"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -5963,6 +6418,28 @@
         },
         "type": "object",
         "title": "HTTPValidationError"
+      },
+      "HourInterval": {
+        "properties": {
+          "opens": {
+            "type": "string",
+            "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+            "title": "Opens"
+          },
+          "closes": {
+            "type": "string",
+            "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+            "title": "Closes"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "opens",
+          "closes"
+        ],
+        "title": "HourInterval",
+        "description": "Open from `opens` to `closes`, local time. A `closes` at or before\n`opens` runs past midnight; 00:00-00:00 is open all day."
       },
       "ImageSearchRequest": {
         "properties": {
@@ -6297,6 +6774,7 @@
         "title": "JsonSchema",
         "description": "JSON schema for a task input or output."
       },
+      "JsonValue": {},
       "MatchCondition": {
         "properties": {
           "name": {
@@ -7784,6 +8262,365 @@
         "title": "PaginatedMonitorResponse",
         "description": "Paginated list of monitors."
       },
+      "PlaceSearchRequest": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Query",
+            "description": "What to find, e.g. `ramen`, `24 hour pharmacy` or a place's name."
+          },
+          "location": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 2
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Location",
+            "description": "Where to search: a city, neighborhood, address or postal code. Set this, `latitude` and `longitude`, or both; a request with neither is rejected.",
+            "examples": [
+              "Shibuya, Tokyo",
+              "94110",
+              "Times Square, New York"
+            ]
+          },
+          "latitude": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 90.0,
+                "minimum": -90.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latitude",
+            "description": "Search center latitude; set with `longitude`."
+          },
+          "longitude": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 180.0,
+                "minimum": -180.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Longitude",
+            "description": "Search center longitude; set with `latitude`."
+          },
+          "max_distance_km": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 200.0,
+                "exclusiveMinimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Distance Km",
+            "description": "Only places within this many km of the search center. Defaults to the size of `location` when it is a city or postal code, else 25."
+          },
+          "open_now": {
+            "type": "boolean",
+            "title": "Open Now",
+            "description": "Only places open at request time, in each place's own time zone. Places whose open state is unknown are left out.",
+            "default": false
+          },
+          "max_results": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Results",
+            "description": "Upper bound on results. Defaults to 10; values above the mode's maximum are reduced to it, with a warning."
+          },
+          "mode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "fast",
+                  "advanced"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mode",
+            "description": "`fast`: lowest latency, with fewer results. `advanced` (default): slower, with more complete results."
+          },
+          "session_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 1000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Session Id",
+            "description": "Session identifier that groups related calls made as part of a larger task. Echoed back in the response when nonempty; generated by the server if omitted, null, or empty."
+          },
+          "client_model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Model",
+            "description": "The model generating this request and consuming the results.",
+            "examples": [
+              "claude-opus-4-7",
+              "gpt-5.4",
+              "gemini-3.1-pro"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "query"
+        ],
+        "title": "PlaceSearchRequest",
+        "description": "Place search request: places matching `query` in or near a location."
+      },
+      "PlaceSearchResponse": {
+        "properties": {
+          "search_id": {
+            "type": "string",
+            "title": "Search Id",
+            "description": "Search ID. Example: `search_cad0a6d2dec046bd95ae900527d880e7`"
+          },
+          "session_id": {
+            "type": "string",
+            "title": "Session Id",
+            "description": "Session identifier, echoed back from the request when nonempty; otherwise generated by the server. Pass it to later calls made as part of the same task.",
+            "examples": [
+              "session_8a911eb27c7a4afaa20d0d9dc98d07c0"
+            ]
+          },
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/PlaceSearchResult"
+            },
+            "type": "array",
+            "title": "Results",
+            "description": "A list of places, ordered by decreasing relevance."
+          },
+          "warnings": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Warning"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Warnings",
+            "description": "Warnings for the search request, if any."
+          },
+          "usage": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/UsageItem"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Usage",
+            "description": "Usage metrics for the search request."
+          }
+        },
+        "type": "object",
+        "required": [
+          "search_id",
+          "session_id",
+          "results"
+        ],
+        "title": "PlaceSearchResponse",
+        "description": "Place search response."
+      },
+      "PlaceSearchResult": {
+        "properties": {
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url",
+            "description": "The place's own website (its store page for a chain), else its own social media profile, else a public page about the place, such as a directory or guide page. Omitted when the place has none of these."
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "Place name."
+          },
+          "address": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Address",
+            "description": "Street address."
+          },
+          "phone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone",
+            "description": "Phone number."
+          },
+          "latitude": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latitude",
+            "description": "Place latitude."
+          },
+          "longitude": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Longitude",
+            "description": "Place longitude."
+          },
+          "distance_km": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Distance Km",
+            "description": "Distance from the search center."
+          },
+          "rating": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "fair",
+                  "good",
+                  "great",
+                  "excellent"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rating",
+            "description": "Rating tier. Possible values are fair, good, great, excellent."
+          },
+          "price_level": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Level",
+            "description": "1 (`$`) to 4 (`$$$$`)."
+          },
+          "opening_hours": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/WeeklyHours"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Opening hours per weekday, in local time."
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timezone",
+            "description": "IANA time zone of `opening_hours`, e.g. `Asia/Tokyo`."
+          },
+          "open_now": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Open Now",
+            "description": "Open at request time, when known."
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "PlaceSearchResult",
+        "description": "A single place search result."
+      },
       "PromptTokensDetails": {
         "additionalProperties": true,
         "description": "Breakdown of tokens used in the prompt.",
@@ -9049,7 +9886,7 @@
               }
             ],
             "default": null,
-            "description": "Controls how much research is performed, trading response time for answer quality. Defaults to `medium` when omitted. `auto` uses the right effort for each query.",
+            "description": "Controls how much research is performed, trading response time for answer quality. Defaults to `medium` when omitted. `auto` picks the right effort for each query.",
             "examples": [
               "high"
             ],
@@ -10771,7 +11608,7 @@
                 "type": "null"
               }
             ],
-            "description": "Advanced configuration for fetch policy, excerpt settings, and full content settings. May impact result quality and latency unless used carefully. When omitted, excerpts are enabled and full content is disabled by default."
+            "description": "Advanced configuration for fetch policy, excerpt settings, full content, and links. May impact result quality and latency unless used carefully. When omitted, excerpts are enabled and full content and links are disabled by default."
           }
         },
         "additionalProperties": false,
@@ -10904,6 +11741,36 @@
             ],
             "title": "Full Content",
             "description": "Full content from the URL formatted as markdown, if requested."
+          },
+          "acquired_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Acquired At",
+            "description": "When the returned content was acquired, as an RFC 3339 timestamp truncated to the start of the UTC day. Null when unknown.",
+            "examples": [
+              "2026-10-08T00:00:00Z"
+            ]
+          },
+          "links": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Links",
+            "description": "Links from the page's rendered content, if requested: up to 512 unique absolute URLs in document order. Empty for pages with no links, including PDFs. Present only when advanced_settings.links was requested."
           }
         },
         "type": "object",
@@ -11229,6 +12096,112 @@
         ],
         "title": "Webhook",
         "description": "Webhooks for Task Runs."
+      },
+      "WeeklyHours": {
+        "properties": {
+          "monday": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/HourInterval"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Monday"
+          },
+          "tuesday": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/HourInterval"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tuesday"
+          },
+          "wednesday": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/HourInterval"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Wednesday"
+          },
+          "thursday": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/HourInterval"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Thursday"
+          },
+          "friday": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/HourInterval"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Friday"
+          },
+          "saturday": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/HourInterval"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Saturday"
+          },
+          "sunday": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/HourInterval"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sunday"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "WeeklyHours",
+        "description": "Opening hours per weekday. An empty list means closed that day; a\nmissing day means unknown."
       },
       "openai__types__chat__chat_completion__Moderation": {
         "properties": {
@@ -12719,461 +13692,6 @@
         ],
         "description": "An event in the Responses API SSE stream; `type` identifies the event.",
         "title": "ResponseStreamEvent"
-      },
-      "GroundedChoiceAnswer": {
-        "properties": {
-          "type": {
-            "type": "string",
-            "const": "choice",
-            "title": "Type",
-            "default": "choice"
-          },
-          "choice": {
-            "type": "string",
-            "title": "Choice",
-            "description": "Selected option name from the question criteria."
-          },
-          "probabilities": {
-            "additionalProperties": {
-              "type": "number"
-            },
-            "type": "object",
-            "title": "Probabilities",
-            "description": "Estimated probability for each option, keyed by option name."
-          },
-          "confidence": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Confidence",
-            "description": "Model-reported confidence, when available."
-          }
-        },
-        "type": "object",
-        "required": [
-          "choice",
-          "probabilities"
-        ],
-        "title": "Choice"
-      },
-      "GroundedChoiceQuestion": {
-        "properties": {
-          "type": {
-            "type": "string",
-            "const": "choice",
-            "title": "Type"
-          },
-          "instructions": {
-            "type": "string",
-            "title": "Instructions",
-            "description": "Question to answer by selecting one of the named options."
-          },
-          "criteria": {
-            "additionalProperties": {
-              "type": "string"
-            },
-            "type": "object",
-            "title": "Criteria",
-            "description": "2\u2013255 options, mapping each option name to its description.",
-            "minProperties": 2,
-            "maxProperties": 255
-          }
-        },
-        "type": "object",
-        "required": [
-          "type",
-          "instructions",
-          "criteria"
-        ],
-        "title": "Choice"
-      },
-      "GroundedDecisionCitation": {
-        "properties": {
-          "url": {
-            "type": "string",
-            "title": "Url",
-            "description": "Source page URL."
-          },
-          "title": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Title",
-            "description": "Page title. Omitted when unavailable."
-          },
-          "excerpts": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Excerpts",
-            "description": "Passages used to ground the decision. Empty when advanced_settings.include_excerpts is false."
-          }
-        },
-        "type": "object",
-        "required": [
-          "url",
-          "excerpts"
-        ],
-        "title": "Citation"
-      },
-      "GroundedDecisionRequest": {
-        "properties": {
-          "mode": {
-            "type": "string",
-            "const": "fast",
-            "title": "Mode",
-            "default": "fast",
-            "description": "Decision execution mode."
-          },
-          "state": {
-            "$ref": "#/components/schemas/JsonValue",
-            "description": "Context shared by all questions. Accepts any JSON value. Together with the largest question, this may use at most 32,000 estimated input tokens."
-          },
-          "questions": {
-            "type": "object",
-            "maxProperties": 100,
-            "title": "Questions",
-            "description": "1\u2013100 questions keyed by names containing only ASCII letters, numbers, underscores, and hyphens. State plus the largest question may use at most 32,000 estimated input tokens. Each value is a predicate (`noul`), choice, or score question.",
-            "patternProperties": {
-              "^[A-Za-z0-9_-]+$": {
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/GroundedChoiceQuestion"
-                  },
-                  {
-                    "$ref": "#/components/schemas/GroundedScoreQuestion"
-                  },
-                  {
-                    "$ref": "#/components/schemas/GroundedNoulQuestion"
-                  }
-                ],
-                "discriminator": {
-                  "propertyName": "type",
-                  "mapping": {
-                    "choice": "#/components/schemas/GroundedChoiceQuestion",
-                    "noul": "#/components/schemas/GroundedNoulQuestion",
-                    "score": "#/components/schemas/GroundedScoreQuestion"
-                  }
-                }
-              }
-            },
-            "minProperties": 1
-          },
-          "advanced_settings": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/AdvancedDecisionSettings"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Optional advanced configuration for decision grounding. When provided, the object must include location or include_excerpts."
-          }
-        },
-        "type": "object",
-        "required": [
-          "state",
-          "questions"
-        ],
-        "title": "Decision request",
-        "additionalProperties": false
-      },
-      "GroundedDecisionResponse": {
-        "properties": {
-          "mode": {
-            "type": "string",
-            "const": "fast",
-            "title": "Mode"
-          },
-          "answers": {
-            "additionalProperties": {
-              "oneOf": [
-                {
-                  "$ref": "#/components/schemas/GroundedChoiceAnswer"
-                },
-                {
-                  "$ref": "#/components/schemas/GroundedScoreAnswer"
-                },
-                {
-                  "$ref": "#/components/schemas/GroundedNoulAnswer"
-                },
-                {
-                  "$ref": "#/components/schemas/GroundedRefusalAnswer"
-                }
-              ],
-              "discriminator": {
-                "propertyName": "type",
-                "mapping": {
-                  "choice": "#/components/schemas/GroundedChoiceAnswer",
-                  "noul": "#/components/schemas/GroundedNoulAnswer",
-                  "refusal": "#/components/schemas/GroundedRefusalAnswer",
-                  "score": "#/components/schemas/GroundedScoreAnswer"
-                }
-              }
-            },
-            "type": "object",
-            "title": "Answers",
-            "description": "Answers keyed by the question names from the request. Any question can return a refusal."
-          },
-          "usage": {
-            "$ref": "#/components/schemas/GroundedDecisionUsage"
-          },
-          "citations": {
-            "items": {
-              "$ref": "#/components/schemas/GroundedDecisionCitation"
-            },
-            "type": "array",
-            "title": "Citations",
-            "description": "Web sources included in the shared decision context. Applies to the whole request, without a per-answer source mapping. Can be empty."
-          },
-          "decision_id": {
-            "description": "Decision identifier: `decisions_` followed by a UUID without hyphens.",
-            "examples": [
-              "decisions_cad0a6d2dec046bd95ae900527d880e7"
-            ],
-            "title": "Decision Id",
-            "type": "string"
-          }
-        },
-        "type": "object",
-        "required": [
-          "mode",
-          "answers",
-          "usage",
-          "citations",
-          "decision_id"
-        ],
-        "title": "Decision response"
-      },
-      "GroundedDecisionUsage": {
-        "properties": {
-          "input_tokens": {
-            "type": "integer",
-            "title": "Input Tokens"
-          },
-          "output_tokens": {
-            "type": "integer",
-            "title": "Output Tokens",
-            "description": "Always 0 for compatibility with the upstream contract.",
-            "const": 0
-          }
-        },
-        "type": "object",
-        "required": [
-          "input_tokens",
-          "output_tokens"
-        ],
-        "title": "Usage"
-      },
-      "GroundedNoulAnswer": {
-        "properties": {
-          "type": {
-            "type": "string",
-            "const": "noul",
-            "title": "Type",
-            "default": "noul"
-          },
-          "noul": {
-            "type": "number",
-            "title": "Noul",
-            "description": "Estimated probability that the condition is true, from 0 to 1."
-          }
-        },
-        "type": "object",
-        "required": [
-          "noul"
-        ],
-        "title": "Predicate"
-      },
-      "GroundedNoulCriteria": {
-        "properties": {
-          "true": {
-            "type": "string",
-            "title": "True",
-            "description": "Meaning of a true outcome."
-          },
-          "false": {
-            "type": "string",
-            "title": "False",
-            "description": "Meaning of a false outcome."
-          }
-        },
-        "type": "object",
-        "required": [
-          "true",
-          "false"
-        ],
-        "title": "Criteria"
-      },
-      "GroundedNoulQuestion": {
-        "properties": {
-          "type": {
-            "type": "string",
-            "const": "noul",
-            "title": "Type"
-          },
-          "instructions": {
-            "type": "string",
-            "title": "Instructions",
-            "description": "Condition whose probability of being true should be estimated."
-          },
-          "criteria": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/GroundedNoulCriteria"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Optional descriptions of what true and false mean for this question."
-          }
-        },
-        "type": "object",
-        "required": [
-          "type",
-          "instructions"
-        ],
-        "title": "Predicate"
-      },
-      "GroundedRefusalAnswer": {
-        "properties": {
-          "type": {
-            "type": "string",
-            "const": "refusal",
-            "title": "Type",
-            "default": "refusal",
-            "description": "The downstream decision provider refused this question; no value or probabilities are returned."
-          }
-        },
-        "type": "object",
-        "title": "Refusal"
-      },
-      "GroundedScoreAnswer": {
-        "properties": {
-          "type": {
-            "type": "string",
-            "const": "score",
-            "title": "Type",
-            "default": "score"
-          },
-          "score": {
-            "type": "number",
-            "title": "Score",
-            "description": "Probability-weighted mean of the zero-based level indices. Can be fractional."
-          },
-          "legend": {
-            "additionalProperties": {
-              "type": "string"
-            },
-            "type": "object",
-            "title": "Legend",
-            "description": "Maps string indices to the level descriptions from the question criteria."
-          },
-          "probabilities": {
-            "additionalProperties": {
-              "type": "number"
-            },
-            "type": "object",
-            "title": "Probabilities",
-            "description": "Estimated probability for each level, keyed by its string index."
-          },
-          "confidence": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Confidence",
-            "description": "Model-reported confidence, when available."
-          }
-        },
-        "type": "object",
-        "required": [
-          "score",
-          "legend",
-          "probabilities"
-        ],
-        "title": "Score"
-      },
-      "GroundedScoreQuestion": {
-        "properties": {
-          "type": {
-            "type": "string",
-            "const": "score",
-            "title": "Type"
-          },
-          "instructions": {
-            "type": "string",
-            "title": "Instructions",
-            "description": "Question to evaluate against the ordered criteria."
-          },
-          "criteria": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Criteria",
-            "description": "2\u201310 level descriptions in order, indexed from zero.",
-            "minItems": 2,
-            "maxItems": 10
-          }
-        },
-        "type": "object",
-        "required": [
-          "type",
-          "instructions",
-          "criteria"
-        ],
-        "title": "Score"
-      },
-      "JsonValue": {},
-      "AdvancedDecisionSettings": {
-        "properties": {
-          "location": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Location",
-            "description": "Supported ISO 3166-1 alpha-2 country code for geo-targeted search results. Case-insensitive; normalized to lowercase. Invalid or unsupported codes return a validation error.",
-            "examples": [
-              "us",
-              "gb",
-              "de",
-              "jp"
-            ]
-          },
-          "include_excerpts": {
-            "type": "boolean",
-            "title": "Include Excerpts",
-            "description": "Whether citations include the excerpts used to ground the decision. When false, every citation has an empty excerpts array.",
-            "default": true
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "title": "AdvancedDecisionSettings",
-        "description": "Advanced configuration for decision grounding."
       }
     },
     "securitySchemes": {
@@ -13192,6 +13710,10 @@
     {
       "name": "Image Search",
       "description": "Image Search returns ranked images from the web. Inputs are keyword queries and an optional natural-language objective. `fast`: lowest latency and cost. `advanced` (default): slower, with higher-quality results.\n- Result: title, direct image URL, source page URL, and dimensions"
+    },
+    {
+      "name": "Place Search",
+      "description": "Place Search finds places such as restaurants, shops and attractions near a location. Inputs are a query, and a location name or coordinates. `fast`: lowest latency, with fewer results. `advanced` (default): slower, with more complete results.\n- Result: name, website, address, phone, coordinates, rating tier, price level, and opening hours"
     },
     {
       "name": "Extract",

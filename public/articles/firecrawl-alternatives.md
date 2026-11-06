@@ -8,7 +8,7 @@ We make Parallel, which appears on this list, and we’ve tried to keep the comp
 
 ## What Firecrawl does well
 
-Firecrawl’s [GitHub repository](https://github.com/firecrawl/firecrawl) has more than 180,000 stars, and you can [self-host it](https://docs.firecrawl.dev/contributing/self-host) with Docker Compose. Its [keyless MCP server](https://docs.firecrawl.dev/mcp-server/keyless-api-key) at `https://mcp.firecrawl.dev/v2/mcp` exposes search, scrape, and parse with no credential, and we confirmed that its REST search endpoint also answers without a key. On search quality, Firecrawl scored 73 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (October 2026), close to Exa auto at 74 and Parallel advanced at 75.
+Firecrawl’s [GitHub repository](https://github.com/firecrawl/firecrawl) has more than 180,000 stars, and you can [self-host it](https://docs.firecrawl.dev/contributing/self-host) with Docker Compose. Its [keyless MCP server](https://docs.firecrawl.dev/mcp-server/keyless-api-key) at https://mcp.firecrawl.dev/v2/mcp exposes search, scrape, and parse with no credential, and we confirmed that its REST search endpoint also answers without a key.
 
 It has tradeoffs too. Keyless limits are shared per IP address per day, the self-hosted build leaves out Fire-engine anti-bot handling, screenshots, and the Agent and Browser features, and the AGPL license matters if you modify and serve the code. Credits don’t roll over on Hobby, Standard, or Growth plans.
 
