@@ -1,112 +1,225 @@
-Pricing
+[Skip to pricing](#plans)
 
-# Pay as you go
+# Pricing
 
-Run up to 5,000 requests per month for free
+From one agent to millions of requests, on the same API
 
-|                   | Task API                                                  | Search API                          | Extract API                             | Decisions API                                            | Responses API                                                 | Monitor API                                 | Find All API                                    |
-| ----------------- | --------------------------------------------------------- | ----------------------------------- | --------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------- | ----------------------------------------------- |
-| Inputs            | Existing structured data, Question                        | Search objective, Keywords          | URL, Extract objective                  | Context, Questions                                       | Question                                                      | Query, Frequency                            | Query                                           |
-| Outputs           | Deep research, Structured enrichments                     | Ranked URLs, Compressed excerpts    | Full page contents, Compressed excerpts | Typed answers, Citations                                 | Free text, Structured JSON                                    | New events                                  | Matches                                         |
-| Best for          | Deep research, database enrichment,or workflow automation | Web search tool calls for AI agents | URL content extraction                  | Data enrichment, lead qualification, or agent guardrails | Latency-sensitive research in products and research subagents | Continuous monitoring of changes on the web | Finding all entities matching specific criteria |
-| Latency           | 5s - 30min, asynchronous                                  | 200ms - 3s, synchronous             | < 3s, synchronous                       | 200ms - 1s, synchronous                                  | 5s - 60s, synchronous                                         | Asynchronous                                | 10min - 1hr, asynchronous                       |
-| Basis             | Citations, reasoning, confidence, excerpts                | —                                   | —                                       | Citations                                                | Citations                                                     | Citations                                   | Citations, reasoning, confidence, excerpts      |
-| Rate limits       | 2,000 requests / min                                      | 600 requests / min                  | 600 requests / min                      | 600 requests / min                                       | 300 requests / min                                            | 300 requests / min                          | 25 / hr                                         |
-| Security          | SOC2                                                      | SOC2                                | SOC2                                    | SOC2                                                     | SOC2                                                          | SOC2                                        | SOC2                                            |
-| Price per request | $0.005 - $2.4                                             | $0.001 - $0.005 for 10 results      | $0.001                                  | $0.001 for up to 100 questions                           | $0.01 - $0.25                                                 | $0.003 - $0.01                              | $0.03 - $1 per match                            |
+## Personal
 
-Earn up to $80 at signup + $5 in free credits per month
+Free
+
+Free web search in your own AI tools powered by [Parallel MCP](/mcp). No account needed.
+
+Hermes Agent, OpenClaw, Claude, ChatGPT and Codex, Grok Bot, Cline
+
+[Start for free](https://platform.parallel.ai/)
+
+Includes
+
+* Web search
+* Web page fetch
+* Grounded decisions
+* Works in Cursor, Claude, and more
+* Variable limits, enough for personal use
+
+## Developer
+
+Pay-as-you-go
+
+$5 free monthly with a card on file, plus up to $80 at signup.
+
+[Start building](https://platform.parallel.ai/)
+
+Includes
+
+* Up to 5,000 free requests per month
+* All APIs
+* 100+ integrations
+* Search and Extract: 600/min
+* Auto-reload and spend limits
+* Up to $250 in startup credits
+* SOC 2 Type II
+* [Discord support](https://discord.gg/TGKzuAjm56)
+* [Specialized Data Connectors](/data-connectors)
+
+[See API pricing](https://docs.parallel.ai/getting-started/pricing)
+
+Once credits run out, you pay published API rates for what you use.
+
+## Business
+
+$1,000/mo
+
+$1,000 in credits each month at standard API rates. Cancel anytime.
+
+[Upgrade](https://platform.parallel.ai/settings?tab=billing)
+
+Everything in Developer, plus
+
+* Search and Extract: 1,500/min
+* Zero data retention
+* Pay monthly or annually
+* Credits used at standard API rates
+* Email support
 
 ## Enterprise
 
-Built for scalable, reliable, enterprise workloads
+Custom
 
-[Get a demo](https://contact.parallel.ai/)
+Custom pricing, rate limits, and contract terms.
 
-* Zero Data Retention (ZDR)
-* Data Protection Agreements
-* Single Sign-On
+[Contact sales](https://contact.parallel.ai/)
 
-* Zero Data Retention (ZDR)
-* Data Protection Agreements
-* Single Sign-On
+Everything in Business, plus
+
+* SSO (SAML)
 * Custom rate limits
+* Custom data retention
+* Custom MSA and DPA
+* HIPAA BAA
+* Invoicing and marketplace billing
+* Uptime SLA
+* Forward-deployed engineer
+* Dedicated Slack Channel
 * Early access to new products
-* Dedicated onboarding and technical support
 
-* Custom rate limits
-* Early access to new products
-* Dedicated onboarding and technical support
+Trusted by
 
-## Allocate compute based on task complexity
+* Harvey
+* Rogo
+* Gumloop
+* Replit
+* Pfizer
+* Hex
+* Starbridge
+* Serval
+* Poke
 
-Parallel lets you easily flex compute based on the complexity of your task
+## Compare plans
 
-## Pricing breakdown
+__Features included with each Parallel plan__
+| Feature                 | Personal[Start for free](https://platform.parallel.ai/) | Developer[Start building](https://platform.parallel.ai/) | Business[Upgrade](https://platform.parallel.ai/settings?tab=billing) | Enterprise[Contact sales](https://contact.parallel.ai/) |
+| ----------------------- | ------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------- |
+| Rate limits             |                                                         |                                                          |                                                                      |                                                         |
+| Search API              | Variable limits, enough for personal use                | 600/min                                                  | 1,500/min (Excluding Turbo)                                          | Custom                                                  |
+| Extract API             | Variable limits, enough for personal use                | 600/min                                                  | 1,500/min                                                            | Custom                                                  |
+| Decisions API           | \-                                                      | 600/min                                                  | 600/min                                                              | Custom                                                  |
+| Task API                | \-                                                      | 2,000/min                                                | 2,000/min                                                            | Custom                                                  |
+| Pricing                 |                                                         |                                                          |                                                                      |                                                         |
+| Access                  | Search MCP                                              | All APIs                                                 | All APIs                                                             | All APIs                                                |
+| Billing                 | None                                                    | Card                                                     | Card, monthly or annual upfront                                      | Invoice or marketplace                                  |
+| Included usage          | \-                                                      | Up to $80 at signup, $5 per month                        | $1,000 per month, no rollover, or $10,000 per year over 12 months    | Per contract                                            |
+| Security and compliance |                                                         |                                                          |                                                                      |                                                         |
+| SOC 2 Type II           | \-                                                      | Included                                                 | Included                                                             | Included                                                |
+| Zero data retention     | \-                                                      | \-                                                       | Included, Hybrid by signed agreement                                 | Custom                                                  |
+| SSO (SAML)              | \-                                                      | \-                                                       | \-                                                                   | Included                                                |
+| DPA                     | \-                                                      | \-                                                       | \-                                                                   | Custom                                                  |
+| MSA                     | \-                                                      | \-                                                       | \-                                                                   | Custom                                                  |
+| HIPAA BAA               | \-                                                      | \-                                                       | \-                                                                   | Included                                                |
+| Uptime SLA              | \-                                                      | \-                                                       | \-                                                                   | Included                                                |
+| Support                 |                                                         |                                                          |                                                                      |                                                         |
+| Support                 | Docs                                                    | Docs                                                     | Email                                                                | Forward-deployed engineer, Dedicated Slack Channel      |
+| Early access            | \-                                                      | \-                                                       | \-                                                                   | Included                                                |
 
-### \### Task API
+Business monthly credits expire at the end of each paid month. Annual credits are drawn down over 12 months. Enterprise items are set per contract.
 
-| Processor | Cost (per 1K requests) | Best for                               | Latency    | Max Fields | Basis                                      |
-| --------- | ---------------------- | -------------------------------------- | ---------- | ---------- | ------------------------------------------ |
-| Lite      | $5                     | Basic information retrieval            | 5s-60s     | ~2         | Citations, Reasoning                       |
-| Base      | $10                    | Simple web research                    | 15s-100s   | ~5         | Citations, Reasoning                       |
-| Core      | $25                    | Complex web research                   | 1min-5min  | ~10        | Citations, Reasoning, Excerpts, Confidence |
-| Core2x    | $50                    | Very complex web research              | 2min-5min  | ~10        | Citations, Reasoning, Excerpts, Confidence |
-| Pro       | $100                   | Exploratory web research               | 3min-9min  | ~20        | Citations, Reasoning, Excerpts, Confidence |
-| Ultra     | $300                   | Extensive deep research                | 5min-25min | ~20        | Citations, Reasoning, Excerpts, Confidence |
-| Ultra2x   | $600                   | Advanced deep research with 2x compute | 5min-25min | ~25        | Citations, Reasoning, Excerpts, Confidence |
-| Ultra4x   | $1,200                 | Advanced deep research with 4x compute | 8min-30min | ~25        | Citations, Reasoning, Excerpts, Confidence |
-| Ultra8x   | $2,400                 | Advanced deep research with 8x compute | 8min-30min | ~25        | Citations, Reasoning, Excerpts, Confidence |
+Zero data retention is included on Business as Hybrid ZDR. It turns on once a signed agreement is in place. Once active, synchronous APIs retain no content and asynchronous APIs retain it for up to 8 days.
 
-### \### Search API
+## API pricing
 
-| Processor | Cost (per 1K requests with 10 results) | Cost (per 1K additional results) | Best for                                  | Latency |
-| --------- | -------------------------------------- | -------------------------------- | ----------------------------------------- | ------- |
-| Turbo     | $1                                     | $1                               | Latency-sensitive, high-volume lookups    | ~200ms  |
-| Fast      | $1                                     | $1                               | Interactive agents on a sub-second budget | ~700ms  |
-| Basic     | $5                                     | $1                               | Longer excerpts per source in one call    | ~1s     |
-| Advanced  | $5                                     | $1                               | Multi-hop background research agents      | ~3s     |
+__Starting prices for each Parallel API__
+| Price              | Search API              | Images API                   | Extract API    | Decisions API                   | Task API                       | Responses API                       | Monitor API           |
+| ------------------ | ----------------------- | ---------------------------- | -------------- | ------------------------------- | ------------------------------ | ----------------------------------- | --------------------- |
+| Starting price     | From $1 per 1k requests | From $1 per 1k requests      | $1 per 1k URLs | $1 per 1k requests              | From $5 per 1k successful runs | From $10 per 1k successful requests | From $3 per 1k checks |
+| Results included   | 10 results per request  | Up to 20 results per request | \-             | Up to 100 questions per request | \-                             | \-                                  | \-                    |
+| Additional results | $1 per 1k results       | \-                           | \-             | \-                              | \-                             | \-                                  | \-                    |
 
-### \### Extract API
+Prices in USD. Starting prices are each API’s lowest published tier.
 
-| Processor | Cost (per 1K results) | Best for                          | Latency                        |
-| --------- | --------------------- | --------------------------------- | ------------------------------ |
-| Extract   | $1                    | Direct webpage content extraction | 1s-3s (cached), 60s-90s (live) |
+[See full pricing ↗](https://docs.parallel.ai/getting-started/pricing)
 
-### \### Responses API
+## Flexible pricing for any task
 
-| Processor | Cost (per 1K requests) | Best for                                               | Latency | Basis     |
-| --------- | ---------------------- | ------------------------------------------------------ | ------- | --------- |
-| Low       | $10                    | Simple fact-retrieval questions                        | ~5–10s  | Citations |
-| Medium    | $50                    | Complex, multi-hop fact-retrieval                      | ~15–20s | Citations |
-| High      | $250                   | Deep research requiring extensive search and synthesis | ~30–60s | Citations |
+[See full pricing ↗](https://docs.parallel.ai/getting-started/pricing)
 
-### \### Monitor API
+Monitor eventsBuild chatbotsEnrich databasesPower voice agentsDiscover prospectsAnalyze reportsFind companies
 
-| Processor | Cost (per 1K requests) | Best for                                                 | Frequency               | Basis     |
-| --------- | ---------------------- | -------------------------------------------------------- | ----------------------- | --------- |
-| Lite      | $3                     | Narrow queries — a single entity, domain, or signal type | Hourly / Daily / Weekly | Citations |
-| Base      | $10                    | Wide queries — entity classes, topic areas, regions      | Hourly / Daily / Weekly | Citations |
+Watch companies, people, and pages, and get an alert when something changes.
 
-### \### Find All API
+* 01Track target accounts
+* 02Get context on a change
+* 03Brief the account owner
 
-| Processor | Fixed Cost | Cost Per Match | Best for                                                  |
-| --------- | ---------- | -------------- | --------------------------------------------------------- |
-| Base      | $0.25      | $0.03          | Broad, common queries where you expect many matches       |
-| Core      | $2.00      | $0.15          | Specific queries with moderate expected matches           |
-| Pro       | $10.00     | $1.00          | Highly specific queries with rare or hard-to-find matches |
-| Preview   | $0.10      | $0.00          | Testing queries (~10 candidates)                          |
+[Open Monitor playground ↗](https://platform.parallel.ai/play/monitor)
 
-Start building
+* Authoritative legal data across dozens of countries lives on sites no search engine has ever indexed. Parallel solves that at a scale we couldn't build ourselves. (Gabe Pereyra, President & Co-Founder, Harvey)
+* The best agentic search isn't just the fastest or the cheapest. It's net new information that language models don't already know. Parallel delivers that. (Sarah Sachs, AI Lead, Notion)
+* Parallel provided us with a big upgrade in speed and index coverage. Combined with a 5x improvement in cost efficiency, it was an easy decision to build our agents with them. (Vikas Velagapudi, Founder, Convoke)
+* You cannot make mistakes in financial services. With Parallel, our banking customers run agents that complete complex KYB checks in minutes, not hours. (Maik Taro Wehmeyer, Co-Founder & CEO, Taktile)
+* In our internal evaluations we found Parallel to be the fastest and most accurate web search tool we tested. That speed together with its fine-grained control over web search means our agents can iteratively search, view results and refine search terms to get the answers users need. (James Clough, Head of AI, ModelML)
+* We benchmarked providers on web research across entity types (companies, people, vessels), geographies, and data richness. Parallel topped every dimension on both breadth of findings and accuracy. (James Rogers, Product Manager, Bretton AI)
+* Parallel is core infrastructure for our agents. It outperformed every alternative on quality and cost, pulling from the whole web instead of prepackaged datasets. (Mihir Garimella, CEO, Actively)
+* Parallel is the highest accuracy API on the market. It handled the edge cases other providers simply couldn't: obscure companies, ambiguous names, conflicting sources. (Max Brodeur-Urbas, CEO, Gumloop)
+* Parallel's Monitor API lets Poke track anything our users care about: their team, their neighborhood, the news that matters to them. It helps make Poke more proactive in their daily lives, which ultimately makes for a better companion. (Marvin Von Hagen, CEO, Interaction)
+* Parallel consistently delivered the highest quality results at the best price, and handled the complex government websites every other provider struggled with. (Sweyn Venderbush, CEO, Starbridge)
+* Parallel's team was incredibly helpful as we designed how Amp would use their APIs: tool names, params, UI, and other thoughtful guidance. They get it, and they care. (Quinn Slack, CEO, Amp)
+* We chose Parallel as our preferred search API because of the comprehension and accuracy of their outputs: structured, well-sourced, and ready to feed straight into our content generation agents. (Dylan Babbs, Co-founder, Profound)
+* Our partnership with Parallel replaces repetitive human effort with continuous agentic research that integrates seamlessly into enhanced decision-making systems. (Sanjeev Vohra, CTIO, Genpact)
+* We tested every major web search provider. Parallel's outputs came back structured, well-cited, and dense with the right information. (Amr Shafik, VP Product, Airops)
 
-## Scale with predictable cost
+## Built for enterprise, secure by design
 
-Parallel APIs are priced per request, not per token. You always know the exact cost of a query before you run it.
+[Parallel Trust Center ↗](https://trust.parallel.ai)
 
-[Developer platform](https://platform.parallel.ai)[Get a demo](https://contact.parallel.ai/)
+* SOC 2 Type 2
+* Zero data retention available
+* HIPAA-ready offering
+* GDPR Compliance
+* Single sign-on (SSO/SAML)
 
-### \[Get up to $250 in free credits\]
+## FAQs
+
+* **How much does Parallel cost? Is there a free plan?**  
+Parallel is pay-as-you-go. You pay for units of work rather than tokens, and web search starts as low as $1 per 1,000 requests.  
+New accounts get a signup credit, and every account gets a recurring free monthly allowance of $5\. Free credit is always spent before any paid balance, so you only pay once you’ve used it up. Parallel Search is also available via a free hosted MCP server, which is suitable for personal/hobbyist use.
+* **How is usage priced?**  
+Each API is priced by its own unit of work:
+
+  * Search API, Task API, Responses API, and Monitor API: per 1,000 requests.
+  * Extract API: per 1,000 results.
+  * Decisions API: per 1,000 requests, with up to 100 questions per request.
+  * FindAll API: a fixed fee plus a charge per match.  
+Per-API and per-processor rates are in the [pricing docs](https://docs.parallel.ai/getting-started/pricing). Prices are before credits and tax.
+* **What is the difference between Developer and Business?**  
+Developer has no subscription fee: you pay published API rates for what you use, billed to a card.  
+Business is a credit plan. Monthly is $1,000 per month before tax for $1,000 in credits, drawn down over the month. Annual is $10,000 per year, charged upfront, for $10,000 in credits drawn down over 12 months. Credits are spent at standard API rates, so the plan price is not a fee on top of usage. Usage beyond your credits draws on your prepaid funds.  
+Business also raises Search and Extract limits to 1,500 requests per minute, excluding Turbo, adds email support, and includes zero data retention as Hybrid ZDR.  
+You can cancel monthly Business anytime. The paid month stays covered, and there are no prorated refunds.
+* **Do Business credits roll over?**  
+Monthly credits don’t roll over. Unused monthly credits expire at the end of each paid month. Annual credits are drawn down over the 12-month term. Enterprise terms are set per contract.
+* **What is Hybrid ZDR?**  
+Hybrid zero data retention is included in the Business plan. It turns on once you sign an agreement and Parallel enables it on your account. Enterprise retention terms are set per contract.
+* **What are the rate limits?**
+
+  * Search API and Extract API: 600 requests per minute on Developer, 1,500 per minute on Business. The Business limit excludes Turbo mode Search requests.
+  * Decisions API: 600 requests per minute on Developer and Business.
+  * Task API: 2,000 requests per minute on Developer and Business.
+  * Enterprise: custom limits.
+  * Personal: variable limits, enough for personal use.
+* **What does Enterprise include?**  
+Everything in Business, plus SSO (SAML), custom rate limits and data retention, a custom MSA and DPA, a HIPAA BAA, invoicing and marketplace billing, an uptime SLA, and early access to new products. Support includes a dedicated forward-deployed engineer and a Dedicated Slack Channel.  
+[Contact sales](https://contact.parallel.ai/) to set up an agreement.
+* **Do startups get free credits?**  
+Qualified startups can receive up to $250 in free credits from Parallel.
+* **Is Parallel secure and compliant?**  
+Developer, Business, and Enterprise plans are covered by Parallel’s SOC 2 Type II certification. Personal isn’t an account plan and isn’t covered. Zero data retention isn’t on by default: Business includes it as Hybrid ZDR by signed agreement, and Enterprise adds custom retention terms, SSO, and a HIPAA BAA. See our [terms of service](/customer-terms) for more information.
+
+## Startup Grants
 
 Qualified startups can receive up to $250 in free credits from Parallel
 
 [Apply now](https://form.fillout.com/t/cNxJPKmh7eus)
+
+## Where agents find answers
+
+[Start building for free](https://platform.parallel.ai/) [Contact us](https://contact.parallel.ai/)
