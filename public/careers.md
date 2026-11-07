@@ -44,6 +44,7 @@ We recruit likeminded curious, optimistic, and ambitious people who see the work
 | [Procurement Lead](https://jobs.ashbyhq.com/parallel/eba53dae-be93-44a8-a550-7dc56da4df66)                                   | Operations           | San Francisco / Palo Alto            | Full time      |
 | [R&D Strategic Finance Lead](https://jobs.ashbyhq.com/parallel/1e83c172-5c38-4102-9884-c35a4dcc3668)                         | Operations           | San Francisco / Palo Alto            | Full time      |
 | [Strategic Finance](https://jobs.ashbyhq.com/parallel/1b5da033-32e1-45a1-95fe-c0553e22e5a6)                                  | Operations           | San Francisco / Palo Alto            | Full time      |
+| [Workplace Manager - NYC](https://jobs.ashbyhq.com/parallel/95b7ee04-39ca-491a-868e-29cce3cc2580)                            | Operations           | New York                             | Full time      |
 
 ## Our values
 
