@@ -6,7 +6,7 @@ Starting today, Parallel Decisions API is available on OpenRouter, bringing fast
 
 Does this vendor support SAML SSO? Does this API still support the feature your agent needs? [Parallel Decisions API](https://parallel.ai/blog/decisions-api) checks the live web and returns structured answers with probabilities and citations in under a second. It combines the speed of system-one models like Jev with real-time web data, so your agents can make decisions beyond what’s in their context. Ask up to 100 related questions in a single request, all sharing one search call.
 
-**Try Parallel Decisions free for 7 days on ****[OpenRouter](https://openrouter.ai/parallel/decisions-fast)****. Bring your existing API key and your next idea, and start building with ****`parallel/decisions-fast`****.**
+**Try Parallel Decisions free for 7 days on ****[OpenRouter](https://openrouter.ai/parallel/decisions-fast)****. Bring your existing API key and your next idea, and start building with ****`parallel/decisions-fast:free`****.**
 
 ## The best decisions solution for web-grounded data
 
@@ -39,7 +39,7 @@ Not sure where the Decisions API fits for your team? [Try this demo](https://web
 
 Bring your OpenRouter API key and see what you can build. Try Parallel Decisions free for 7 days, with no separate account required.
 
-Select [**Parallel: Decisions Fast**](https://openrouter.ai/parallel/decisions-fast) in the model list, or set your model ID to `parallel/decisions-fast`.
+Select [**Parallel: Decisions Fast**](https://openrouter.ai/parallel/decisions-fast) in the model list, or set your model ID to `parallel/decisions-fast:free`.
 
 For more on the Decisions API, explore the [Quickstart](https://docs.parallel.ai/decisions/decisions-quickstart) and [API reference](https://docs.parallel.ai/api-reference/decisions/make-web-grounded-typed-decisions).
 

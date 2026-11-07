@@ -2,6 +2,12 @@
 
 ### Comparison
 
+* [Cloudflare Clef vs. Parallel Decisions: edge decisions or web-grounded answers](https://parallel.ai/articles/cloudflare-clef-vs-parallel)
+* [Jev alternatives: 8 decision models and APIs compared](https://parallel.ai/articles/jev-alternatives)
+* [Laya vs. Jev vs. Parallel Decisions: open weights, hosted, or web-grounded](https://parallel.ai/articles/laya-vs-jev-vs-parallel)
+* [OpenAI Decisions API alternatives: 7 options compared](https://parallel.ai/articles/openai-decisions-api-alternatives)
+* [OpenAI Decisions API vs Jev vs Parallel: a head-to-head comparison](https://parallel.ai/articles/openai-decisions-api-vs-jev-vs-parallel)
+* [Perplexity Decisions API vs. Parallel Decisions API: two ways to ground a decision in the web](https://parallel.ai/articles/perplexity-decisions-api-vs-parallel)
 * [The best web search API for financial AI agents (2026 benchmarks)](https://parallel.ai/articles/best-search-api-for-financial-ai-agents)
 * [Keenable vs. Parallel: comparing two web indexes built for AI agents](https://parallel.ai/articles/keenable-vs-parallel)
 * [The best DeepSeek Search API alternatives for AI agents in 2026](https://parallel.ai/articles/deepseek-search-api-alternatives)
@@ -54,6 +60,14 @@
 
 ### Guides
 
+* [AI lead routing: fill the fields your lead routing software routes on](https://parallel.ai/articles/ai-lead-routing)
+* [AI lead scoring: how it works, the tools, and how to build a fit score on live web data](https://parallel.ai/articles/ai-lead-scoring)
+* [AI fact-checking API: check claims against the live web with typed, cited answers](https://parallel.ai/articles/ai-fact-checking-api)
+* [AI lead qualification with live web data: score and route every inbound lead](https://parallel.ai/articles/ai-lead-qualification)
+* [Content moderation API options in 2026, and when moderation needs the live web](https://parallel.ai/articles/content-moderation-api)
+* [Entity matching: how to tell if two company records are the same, a subsidiary, or unrelated](https://parallel.ai/articles/entity-matching)
+* [How to use Parallel Decisions on OpenRouter (parallel/decisions-fast)](https://parallel.ai/articles/parallel-decisions-openrouter)
+* [AI vendor validation: check security and compliance claims against the live web](https://parallel.ai/articles/vendor-validation-ai)
 * [The best MCP servers for Google Antigravity in 2026](https://parallel.ai/articles/best-mcp-servers-for-antigravity)
 * [The best MCP servers for ChatGPT in 2026: plugins and custom connections](https://parallel.ai/articles/best-mcp-servers-for-chatgpt)
 * [The best Claude MCP servers in 2026: connectors for claude.ai, Desktop, and mobile](https://parallel.ai/articles/best-mcp-servers-for-claude)
@@ -135,6 +149,9 @@
 
 ### Industry Terms
 
+* [Decision model pricing compared: per token vs. per request (Jev, OpenAI, Perplexity, Parallel and more)](https://parallel.ai/articles/decision-model-pricing)
+* [JevBench explained: how decision models are benchmarked, and what it can't measure](https://parallel.ai/articles/jevbench-benchmark)
+* [Zero-shot classification in 2026: from NLI models to decision models](https://parallel.ai/articles/zero-shot-classification)
 * [FinSearchComp explained: what it measures and how search APIs compare](https://parallel.ai/articles/finsearchcomp-benchmark)
 * [What is a Decisions API? How decision models give software answers instead of text](https://parallel.ai/articles/what-is-a-decisions-api)
 * [BrowseComp explained: what it measures and how search APIs compare](https://parallel.ai/articles/browsecomp-benchmark)

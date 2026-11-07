@@ -1,12 +1,12 @@
 # Parallel vs. Exa
 
-Parallel is faster, more affordable, and more accurate than Exa on everything from quick lookups and grounding to deep, cited web research.
+Parallel Search starts at $1 per 1,000 requests against $4 on Exa Lite, and every Task result carries per-field citations and confidence.
 
 [Start building for free](https://platform.parallel.ai/) 
 
-[Search, per 1,000 requests: $1 vs. $7](#cost) [Artificial Analysis Search Index, August 2026: 75 vs. 74](#accuracy) [Search latency, BrowseComp p50: 216ms vs. 361ms](#performance)
+[Search, per 1,000 requests: $1 vs. $4](#cost) [BrowseComp, July 2026: 51% vs. 33.7%](#accuracy) [Search latency, BrowseComp p50, July 2026: 216ms vs. 361ms](#performance)
 
-Last updated October 16, 2026
+Last updated November 6, 2026
 
 ## What does Parallel do?
 
@@ -21,37 +21,32 @@ Parallel is one developer platform covering search, extraction, research, entity
 
 ## Parallel vs. Exa at a glance
 
-Published list prices and documented capabilities as of August 2026.
+Published list prices and documented capabilities as of November 2026.
 
 __Parallel and Exa compared at a glance__
-| Dimension                                                   | Parallel                                                                                  | Exa                                                 |
-| ----------------------------------------------------------- | ----------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| Search list price, per 1,000 requests                       | $1 (Turbo or Fast) (Leads)                                                                | $7, raised from $5 in March 2026                    |
-| Agentic multi-hop retrieval (BrowseComp)                    | 51% (Turbo); 58% at the deepest Task tier (Leads)                                         | 33.7% (Instant)                                     |
-| Artificial Analysis Search Index (independent, August 2026) | 75 (advanced) (Leads)                                                                     | 74 (auto)                                           |
-| Field-level citations on agentic runs                       | Research Basis on Task, FindAll, and Monitor: URL, excerpt, reasoning, confidence (Leads) | Grounding when a run emits it                       |
-| Batch research orchestration                                | Task Groups over reusable Task Specs (Leads)                                              | No documented equivalent                            |
-| Change monitoring, per 1,000 executions                     | $3–$10, event stream plus snapshot value diffs (Leads)                                    | $15, recurring deduplicated search                  |
-| People and company search                                   | Responses and Task APIs                                                                   | Dedicated people and company indexes                |
-| Framework ecosystem                                         | Vercel AI SDK, n8n, LangChain, LlamaIndex, and more                                       | LangChain, LlamaIndex, CrewAI, and 25+ more (Leads) |
+| Dimension                                | Parallel                                                                                  | Exa                                                 |
+| ---------------------------------------- | ----------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| Search list price, per 1,000 requests    | $1 (Turbo or Fast) (Leads)                                                                | $4 on Lite, $7 on Auto                              |
+| Agentic multi-hop retrieval (BrowseComp) | 51% (Turbo); 58% at the deepest Task tier (Leads)                                         | 33.7% (Instant)                                     |
+| Field-level citations on agentic runs    | Research Basis on Task, FindAll, and Monitor: URL, excerpt, reasoning, confidence (Leads) | Grounding when a run emits it                       |
+| Batch research orchestration             | Task Groups over reusable Task Specs (Leads)                                              | No documented equivalent                            |
+| Change monitoring, per 1,000 executions  | $3 to $10, event stream plus snapshot value diffs                                         | $2, recurring deduplicated search (Leads)           |
+| People and company search                | Responses and Task APIs                                                                   | Dedicated people and company indexes                |
+| Framework ecosystem                      | Vercel AI SDK, n8n, LangChain, LlamaIndex, and more                                       | LangChain, LlamaIndex, CrewAI, and 25+ more (Leads) |
 
-Sources: [Parallel pricing](https://parallel.ai/pricing), [Parallel Search Turbo benchmark run](https://parallel.ai/blog/parallel-search-turbo), [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel Responses docs](https://docs.parallel.ai/responses-api/responses-quickstart), [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart)
+Sources: [Parallel pricing](https://parallel.ai/pricing), [Parallel Search Turbo benchmark run](https://parallel.ai/blog/parallel-search-turbo), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel Responses docs](https://docs.parallel.ai/responses-api/responses-quickstart), [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart)
 
-## Better at finding critical information
+## Higher BrowseComp score in Parallel’s July 2026 run
 
 Simple lookups are already answered from a model’s weights. The queries that reach a search API are the ones that need a chain of pages followed: find the announcement, open the filing, pull the figure. BrowseComp measures exactly that, and Parallel Turbo scores 51% where Exa Instant scores 33.7%.
 
 The gap holds when you spend more compute. Parallel’s deepest Task tier reaches 58%, above the 57.7% that OpenAI Web Search scored in the same run. On single-hop SimpleQA the two platforms sit close together, which is the point: the harder the query, the wider the margin.
 
-Since we published that run, an independent check has arrived. Artificial Analysis benchmarks search API products with a fixed GPT-5.6 Luna agent, varying only the search provider. In its August 2026 Search Index, Parallel Search (advanced) scores 75 and Exa (auto) 74\. On the three components Parallel scores DeepSearchQA F1 81 against 78 and BrowseComp 77 against 74, and Exa scores AA-Omniscience 70 against 67\. Their harness and ours differ on the size of the gap.
-
-Artificial Analysis's August 19 data added Parallel's fast mode: a Search Index score of 73, $8.41 in search cost per 1,000 benchmark tasks, and 15.7 seconds per task, against a 15.9-second model-only baseline. Exa's fast variant scores 68, at $78.11 and 22.6 seconds.
-
-Openbenchmarks, an independent hub that publishes its harness and every raw vendor response, splits the two by task on its September 2026 boards. On multi-turn company search, Parallel Basic leads search-only at 50.2 F1 against Exa deep’s 45.5, and Exa deep leads once the agent can fetch pages, 49.2 against Parallel advanced’s 43.8\. On single-fact company news, Exa fast is the most accurate API on the board at 99.3%, against 93.3% for Parallel Basic and 86.0% for Parallel Fast.
+Openbenchmarks, an independent hub that publishes its harness and every raw vendor response, splits the two by task. On its multi-turn company search board, last run October 2, 2026, Parallel Basic leads search-only at 46.5 F1 against 45.4 for Exa deep. Exa deep leads once the agent can fetch pages, 48.2 against 42.3 for Parallel Basic. Openbenchmarks has flagged a timing bias on its company news board and is re-running every vendor, so this page leaves those results out until the re-run is published.
 
 That margin is why [Harvey](/ai/blog/case-study-harvey) runs its international legal research on Parallel, and why [Kepler](/ai/blog/case-study-kepler) built its finance research on it: work that professionals have to be able to trust.
 
-Sources: [Parallel Search Turbo benchmark run](https://parallel.ai/blog/parallel-search-turbo), [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart), [Harvey case study](https://parallel.ai/blog/case-study-harvey), [Kepler case study](https://parallel.ai/blog/case-study-kepler)
+Sources: [Parallel Search Turbo benchmark run](https://parallel.ai/blog/parallel-search-turbo), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart), [Harvey case study](https://parallel.ai/blog/case-study-harvey), [Kepler case study](https://parallel.ai/blog/case-study-kepler)
 
 +17.3 points on BrowseComp, Turbo against Instant
 
@@ -71,27 +66,19 @@ Parallel: 91%
 
 Exa: 89.3%
 
-Artificial Analysis Search Index (independent)
+BrowseComp and SimpleQA rows: Parallel-run evaluation, July 2026, all 1,266 BrowseComp questions, a GPT-5.4 agent and grader, and up to 20 search and fetch calls per question, Parallel Turbo against Exa Instant in the same harness. Exa publishes its own runs with different configurations and results.
 
-Higher is better
+## Turbo and Fast search at a quarter of the Exa Lite price
 
-Parallel: 75 (advanced)
-
-Exa: 74 (auto)
-
-BrowseComp and SimpleQA rows: Parallel-run evaluation, July 2026, all 1,266 BrowseComp questions, a GPT-5.4 agent and grader, and up to 20 search and fetch calls per question, Parallel Turbo against Exa Instant in the same harness; Exa publishes its own runs with different configurations and results. Artificial Analysis row: that firm's own August 2026 Search Index (data dated August 19), a GPT-5.6 Luna agent over DeepSearchQA, a hard 200-question BrowseComp subset, and AA-Omniscience, with provider-native payloads and the search provider as the only variable.
-
-## A seventh of the price on search, and it compounds
-
-Parallel Turbo lists at $1 per 1,000 requests against Exa’s $7\. The spread widens on the endpoints that run continuously: monitoring costs $3 to $10 per 1,000 executions against $15, and a 100-result entity query costs $5 per 1,000 against roughly $97 once Exa’s per-extra-result charge is applied.
+Parallel Turbo lists at $1 per 1,000 requests, against $4 for Exa Lite and $7 for Exa Auto. Monitoring is cheaper on Exa, at $2 per 1,000 requests against $3 to $10 per 1,000 executions on Parallel.
 
 Agents amplify that difference, because a single user request fans out into dozens of retrieval calls. Parallel prices each tier separately, so you can pin cheap retrieval to the broad sweep and reserve deep tiers for the queries that need them. [Nooks](/ai/blog/case-study-nooks) cut its web search costs 70.5% by switching.
 
-Artificial Analysis's August 2026 data measures the same effect independently. Search spend per 1,000 benchmark tasks was $8.41 for Parallel's fast mode (listed at the same $1 per 1,000 as turbo) and $13.64 for Parallel turbo, against $65.57 for Exa auto and $78.11 for Exa fast. Openbenchmarks’ company news board divides list price by accuracy: Parallel Fast cost $1.16 per 1,000 correct answers against $7.05 for Exa fast, despite answering fewer questions correctly.
+Artificial Analysis measured search spend per 1,000 benchmark tasks. It was $8.41 for Parallel fast and $13.64 for Parallel turbo in August 2026 runs, against $31.20 for Exa lite and $53.17 for Exa auto in runs from October 19.
 
-Sources: [Parallel pricing](https://parallel.ai/pricing), [Parallel Entity Search docs](https://docs.parallel.ai/findall-api/entity-search), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [Nooks case study](https://parallel.ai/blog/case-study-nooks)
+Sources: [Parallel pricing](https://parallel.ai/pricing), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [Artificial Analysis search API benchmark](https://artificialanalysis.ai/agents/search-api), [Nooks case study](https://parallel.ai/blog/case-study-nooks)
 
-7× lower list price per 1,000 searches
+4× lower list price per 1,000 searches than Exa Lite
 
 Search, per 1,000 requests
 
@@ -99,25 +86,25 @@ Lower is better
 
 Parallel: $1
 
-Exa: $7
+Exa: $4 (Lite)
 
 Monitoring, per 1,000 executions
 
 Lower is better
 
-Parallel: $3–$10
+Parallel: $3 to $10
 
-Exa: $15
+Exa: $2
 
-100 entity results, per 1,000 requests
+Artificial Analysis search spend per 1,000 tasks
 
 Lower is better
 
-Parallel: $5
+Parallel: $8.41 (fast)
 
-Exa: \~$97
+Exa: $31.20 (lite)
 
-Published list prices, July 2026\. Exa charges $7 per 1,000 requests for the first 10 results and $1 per additional result, so 100 results reach about $97\. Enterprise pricing differs on both platforms.
+Published list prices, November 3, 2026\. Exa Lite charges $4 per 1,000 requests with up to 10 results and $1 per 1,000 for each extra result. Artificial Analysis row: search spend only, Parallel fast measured August 19, 2026, against Exa lite measured October 19, 2026\. Enterprise pricing differs on both platforms.
 
 ## EU data residency for search, which Exa doesn’t document
 
@@ -138,17 +125,17 @@ Pricing, capabilities, performance, integrations, and enterprise readiness, side
 Parallel bills per request at the tier you pick. Exa mixes pay-as-you-go rates with Websets subscriptions, and charges per content type on extraction.
 
 __Pricing and total cost: Parallel compared with Exa__
-| Feature                          | Parallel                                           | Exa                                                              |
-| -------------------------------- | -------------------------------------------------- | ---------------------------------------------------------------- |
-| Cheapest search, per 1,000       | $1 Turbo or Fast; $5 Basic or Advanced (Leads)     | $7; Deep $12; Deep-Reasoning $15                                 |
-| Results included                 | 10, then $1 per 1,000 per extra 10 results (Leads) | 10, then $1 per extra result                                     |
-| Extraction, per 1,000            | $1 per URL, excerpts and full markdown included    | $1 per page, per content type                                    |
-| Deep research, per 1,000 runs    | $5–$2,400 across 8 fixed-price tiers               | $12–$1,000, plus search tool calls and enrichment                |
-| Monitoring, per 1,000 executions | $3–$10 (Leads)                                     | $15, up to 10 results                                            |
-| Pricing model                    | Pay per request per 1,000                          | Pay-as-you-go per 1,000 plus Websets plans at $49–$449 per month |
-| Free tier                        | Up to $80 at signup, plus $5 every month (Leads)   | $20 on signup plus $10 every month                               |
+| Feature                          | Parallel                                        | Exa                                                              |
+| -------------------------------- | ----------------------------------------------- | ---------------------------------------------------------------- |
+| Cheapest search, per 1,000       | $1 Turbo or Fast, $5 Basic or Advanced (Leads)  | $4 Lite, $7 Auto, $12 Deep                                       |
+| Results included                 | 10, then $1 per 1,000 per extra result          | 10, then $1 per 1,000 per extra result                           |
+| Extraction, per 1,000            | $1 per URL, excerpts and full markdown included | $1 per page, per content type                                    |
+| Deep research, per 1,000 runs    | $5 to $2,400 across 9 fixed-price processors    | $12–$1,000, plus search tool calls and enrichment                |
+| Monitoring, per 1,000 executions | $3 to $10                                       | $2, plus $1 per 1,000 results above 10 (Leads)                   |
+| Pricing model                    | Pay per request per 1,000                       | Pay-as-you-go per 1,000 plus Websets plans at $49–$449 per month |
+| Free tier                        | Up to $80 at signup, plus $5 every month        | $10 every month, plus a one-time $10 onboarding bonus            |
 
-Sources: [Parallel pricing](https://parallel.ai/pricing)
+Sources: [Parallel pricing](https://parallel.ai/pricing), [Parallel pricing docs](https://docs.parallel.ai/getting-started/pricing)
 
 ### Core capabilities
 
@@ -161,7 +148,7 @@ __Core capabilities: Parallel compared with Exa__
 | Citations on agentic runs     | Research Basis per field on Task, FindAll, and Monitor, with calibrated confidence (Leads)         | Grounding on text or fields when a run emits it                |
 | Sources on search and extract | Ranked pages and excerpts with source URLs, no Basis                                               | Results and contents with source URLs and highlights           |
 | AI summaries in search        | Not offered; Search returns ranked excerpts                                                        | LLM summaries available at extra cost (Leads)                  |
-| Research tiers                | 8 fixed-price Task processors, lite through ultra8x                                                | 5 effort levels plus auto                                      |
+| Research tiers                | 9 fixed-price Task processors, Lite through Ultra8x                                                | 5 fixed effort levels, plus metered auto and ultra modes       |
 | Batch orchestration           | Task Groups with group status and bulk retrieval (Leads)                                           | Not documented                                                 |
 | Monitoring model              | Event stream, plus snapshot diffs on structured values                                             | Recurring search, deduplicated, delivered by webhook           |
 | Entity discovery              | Entity Search for candidates; FindAll for verified sets                                            | Company and People Search; Websets workspace                   |
@@ -173,22 +160,21 @@ Sources: [Parallel Search docs](https://docs.parallel.ai/search/search-quickstar
 
 ### Performance and scale
 
-Exa advertises sub-200ms on Instant, but across the five suites in Parallel’s July 2026 run it measured 335–361ms p50 against Turbo’s 216–240ms. Both figures are client-side p50, best across runs, measured from us-central. Parallel also allows far more concurrent task throughput.
+Exa now lists search latency of 450ms to 1s, depending on settings. In Parallel’s July 2026 run, Exa Instant, now a legacy search type, measured 335 to 361ms p50 across five suites against 216 to 240ms for Turbo. Both figures are client-side p50, best across runs, measured from us-central. Parallel also allows far more concurrent task throughput.
 
 __Performance and scale: Parallel compared with Exa__
-| Feature                                       | Parallel                                         | Exa                                             |
-| --------------------------------------------- | ------------------------------------------------ | ----------------------------------------------- |
-| Search latency, advertised                    | 200ms p50 (Turbo)                                | Sub-200ms (Instant); Deep-Reasoning 12–50s      |
-| Search latency, measured p50                  | 216–240ms (Turbo) across five suites (Leads)     | 335–361ms (Instant) across the same five suites |
-| BrowseComp, Parallel’s July 2026 run          | 51% Turbo; 58% Task Ultra8x (Leads)              | 33.7% Instant                                   |
-| SimpleQA, Parallel’s July 2026 run            | 91% Turbo                                        | 89.3%                                           |
-| Artificial Analysis Search Index, August 2026 | 75 advanced; 73 basic; 73 fast; 67 turbo (Leads) | 74 auto; 68 fast                                |
-| Artificial Analysis time per task, fast modes | 15.7s (Leads)                                    | 22.6s                                           |
-| Own web index                                 | Yes                                              | Yes                                             |
-| Search rate limit                             | 600 RPM                                          | 600 RPM                                         |
-| Research rate limit                           | 2,000 RPM                                        | Not documented for Agent                        |
+| Feature                                       | Parallel                                     | Exa                                                        |
+| --------------------------------------------- | -------------------------------------------- | ---------------------------------------------------------- |
+| Search latency, advertised                    | 200ms p50 (Turbo)                            | 450ms to 1s on Search, 4 to 15s on Deep                    |
+| Search latency, measured p50                  | 216–240ms (Turbo) across five suites (Leads) | 335–361ms (Instant) across the same five suites            |
+| BrowseComp, Parallel’s July 2026 run          | 51% Turbo; 58% Task Ultra8x (Leads)          | 33.7% Instant                                              |
+| SimpleQA, Parallel’s July 2026 run            | 91% Turbo                                    | 89.3%                                                      |
+| Artificial Analysis time per task, fast modes | 17.3s (fast)                                 | 16.5s (lite) (Leads)                                       |
+| Own web index                                 | Yes                                          | Yes                                                        |
+| Search rate limit                             | 600 RPM                                      | 600 RPM                                                    |
+| Research rate limit                           | 2,000 RPM (Leads)                            | 5 new Agent runs a second at the default 10 QPS, 50 active |
 
-Sources: [Parallel Search Turbo benchmark run](https://parallel.ai/blog/parallel-search-turbo), [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), [Parallel rate limits](https://docs.parallel.ai/getting-started/rate-limits)
+Sources: [Parallel Search Turbo benchmark run](https://parallel.ai/blog/parallel-search-turbo), [Artificial Analysis search API benchmark](https://artificialanalysis.ai/agents/search-api), [Parallel rate limits](https://docs.parallel.ai/getting-started/rate-limits)
 
 ### Integrations and ecosystem
 
@@ -229,7 +215,7 @@ Both platforms are credible. Parallel is built for production agent workloads wh
 
 ### Pick Parallel when
 
-* You want maximum accuracy at every price and latency tier.
+* You want the lower search price, with Turbo and Fast at $1 per 1,000 requests.
 * You want a single provider that covers basic web grounding, batch deep research, and web monitoring.
 * You want the most intuitive experience for developers and engineers.
 * You need verifiable source attribution on agentic outputs.
@@ -261,21 +247,21 @@ New accounts earn up to $80 at signup plus $5 in credits every month, which cove
 ## FAQ
 
 * **Is Parallel better than Exa?**  
-For scaled, enterprise-grade products that depend on web search and deep research, yes: Parallel is more accurate, faster, more cost-effective, and more intuitive to build with. Exa remains a solid pick for independent apps and side projects.
+For research pipelines where cost per search and evidence per field decide, yes. Parallel Search starts at $1 per 1,000 requests against $4 on Exa Lite, and every Task field returns its source, reasoning, and confidence. Run both on your own queries before you switch.
 * **Parallel vs. Exa: which is cheaper?**  
-Parallel, at published list prices. Search is $1 per 1,000 requests against Exa’s $7, monitoring is $3–$10 against $15, and a 100-result entity query is $5 against roughly $97\. Deep research tiers overlap, so price the specific tier your workload needs.
+Parallel on search, at published list prices. Search starts at $1 per 1,000 requests against $4 on Exa Lite and $7 on Exa Auto. Monitoring is cheaper on Exa, at $2 per 1,000 requests against $3 to $10\. Deep research tiers overlap, so price the specific tier your workload needs.
 * **Can I migrate from Exa to Parallel?**  
 Yes. Search maps to Search, Contents to Extract, Agent to Task, and Monitors to Monitor, with Python and TypeScript SDKs and an OpenAI Responses-compatible endpoint on the Parallel side. Answer and Websets map approximately, to Responses and FindAll, so budget validation time there.
 * **Does Parallel have citations that Exa lacks?**  
 On agentic runs, yes. Task, FindAll, and Monitor return a Research Basis per field: source URL, excerpt, reasoning, and calibrated confidence. Search and Extract return source URLs without Basis. Exa Agent emits grounding when a run produces it, covering the answer rather than guaranteeing provenance per value.
 * **Is Parallel a good Exa alternative for agentic research?**  
-Yes. Task Specs fix the input and output contract, Task Groups fan thousands of runs out across a dataset, and eight fixed-price processors let you match compute to query difficulty. Parallel accepts 2,000 task requests per minute by default.
+Yes. Task Specs fix the input and output contract, Task Groups fan thousands of runs out across a dataset, and nine fixed-price processors let you match compute to query difficulty. Parallel accepts 2,000 task requests per minute by default.
 * **Where does Exa still win?**  
-Exa suits independent apps and side projects: its framework ecosystem spans LangChain, LlamaIndex, CrewAI, and 25+ others, search can add per-result AI summaries at extra cost, and subpage crawling is documented. Not latency, and not the index: Exa advertises sub-200ms but measured 335–361ms in our run. On single-fact accuracy, though, Exa fast topped Openbenchmarks’ company news board at 99.3%.
+Exa Monitors cost $2 per 1,000 requests against Parallel’s $3 to $10\. Exa adds paid per-result AI summaries, subpage crawling, and LangChain, LlamaIndex, CrewAI, and 25+ other integrations. On Openbenchmarks’ company search with page fetching, Exa deep scored 48.2 F1 to Parallel Basic’s 42.3.
 * **Does Exa offer EU data residency?**  
 Not as of October 16, 2026\. Exa’s documentation describes no EU processing option, though it offers zero data retention on Enterprise plans. Parallel’s EU endpoint serves Search (basic mode) and Extract (cache-only). Other APIs aren’t served there. Billing, metrics, and edge logs (no content) go to the US, and Extract sends only URLs to its page cache outside the EU.
 * **How current is this comparison?**  
-Parallel reviewed both providers’ documentation and price lists on July 27, 2026, and last updated this page on October 16\. BrowseComp, SimpleQA, and latency figures come from Parallel’s July 2026 evaluation, Search Index scores from Artificial Analysis’s August benchmark, and company search and news figures from Openbenchmarks’ September boards. Both platforms ship often, so check the linked sources before you buy.
+Parallel reviewed both providers’ docs and price lists on November 3, 2026\. BrowseComp, SimpleQA, and latency come from Parallel’s July 2026 run, and company search from Openbenchmarks’ October 2 board. Company news results are left out while that board is re-run. Artificial Analysis spend and time come from August 2026 runs for Parallel and October 19 runs for Exa. Check the linked sources.
 
 Trusted by
 

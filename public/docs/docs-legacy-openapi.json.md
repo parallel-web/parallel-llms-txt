@@ -6817,21 +6817,6 @@
         "title": "IngestInput",
         "description": "Input model for FindAll ingest."
       },
-      "InputTokensDetails": {
-        "additionalProperties": true,
-        "description": "A detailed breakdown of the input tokens.",
-        "properties": {
-          "cached_tokens": {
-            "title": "Cached Tokens",
-            "type": "integer"
-          }
-        },
-        "required": [
-          "cached_tokens"
-        ],
-        "title": "InputTokensDetails",
-        "type": "object"
-      },
       "JSONSchema": {
         "properties": {
           "name": {
@@ -7894,21 +7879,6 @@
         "title": "MonitorWebhook",
         "description": "Webhook configuration for a monitor."
       },
-      "OutputTokensDetails": {
-        "additionalProperties": true,
-        "description": "A detailed breakdown of the output tokens.",
-        "properties": {
-          "reasoning_tokens": {
-            "title": "Reasoning Tokens",
-            "type": "integer"
-          }
-        },
-        "required": [
-          "reasoning_tokens"
-        ],
-        "title": "OutputTokensDetails",
-        "type": "object"
-      },
       "PromptTokensDetails": {
         "additionalProperties": true,
         "description": "Breakdown of tokens used in the prompt.",
@@ -8301,15 +8271,10 @@
             "title": "Truncation"
           },
           "usage": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/ResponseUsage"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null
+            "default": null,
+            "description": "Always null: Parallel bills per request, not per token.",
+            "title": "Usage",
+            "type": "null"
           },
           "user": {
             "anyOf": [
@@ -8937,8 +8902,8 @@
         "type": "object"
       },
       "ResponseMcpTool": {
-        "additionalProperties": true,
-        "description": "The OpenAI `mcp` tool: a remote MCP server the `parallel` model may call\nwhile researching, alongside web search. Each call is reported as an\n`mcp_call` output item. `headers` and `authorization` are sent to the\nserver and never echoed back. Parallel runs tool calls without an approval\nround trip, so `require_approval` must be set to `never` explicitly.\n`connector_id` and `tunnel_id` are not supported.",
+        "additionalProperties": false,
+        "description": "The OpenAI `mcp` tool: a remote MCP server the `parallel` model may call\nwhile researching, alongside web search. Each call is reported as an\n`mcp_call` output item. `headers` and `authorization` are sent to the\nserver and never echoed back. Parallel runs tool calls without an approval\nround trip, so `require_approval` must be set to `never` explicitly.\n`connector_id` and `tunnel_id` are not supported. Any other key is rejected.",
         "properties": {
           "server_label": {
             "description": "Name for this server. Appears as `server_label` on its `mcp_call` items and must not collide with a `data_sources` partner name.",
@@ -9227,42 +9192,9 @@
         "title": "ResponseTextConfig",
         "type": "object"
       },
-      "ResponseUsage": {
-        "additionalProperties": true,
-        "description": "Estimated token usage, populated for OpenAI SDK compatibility. Counts\nare approximate; Parallel bills per request, not per token.",
-        "properties": {
-          "input_tokens": {
-            "title": "Input Tokens",
-            "type": "integer"
-          },
-          "input_tokens_details": {
-            "$ref": "#/components/schemas/InputTokensDetails"
-          },
-          "output_tokens": {
-            "title": "Output Tokens",
-            "type": "integer"
-          },
-          "output_tokens_details": {
-            "$ref": "#/components/schemas/OutputTokensDetails"
-          },
-          "total_tokens": {
-            "title": "Total Tokens",
-            "type": "integer"
-          }
-        },
-        "required": [
-          "input_tokens",
-          "input_tokens_details",
-          "output_tokens",
-          "output_tokens_details",
-          "total_tokens"
-        ],
-        "title": "ResponseUsage",
-        "type": "object"
-      },
       "ResponseWebSearchTool": {
-        "additionalProperties": true,
-        "description": "The OpenAI `web_search` tool. Web grounding is always on, so the tool\nitself changes nothing; its `filters` restrict which domains are searched.\n`search_context_size` and `user_location` are accepted and ignored.",
+        "additionalProperties": false,
+        "description": "The OpenAI `web_search` tool. Web grounding is always on, so the tool\nitself changes nothing; its `filters` restrict which domains are searched.\n`search_context_size` and `user_location` are accepted and ignored. Any\nother key is rejected.",
         "properties": {
           "type": {
             "enum": [
@@ -9688,6 +9620,14 @@
             "type": "array",
             "title": "Free",
             "description": "Free data partners to enable for this task, in addition to sources included with the processor. Never billed. See the Data Sources documentation for the available names."
+          },
+          "excluded": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Excluded",
+            "description": "Data partners included with the processor to keep out of this task. Excluding a partner also blocks its own domains. See the Data Sources documentation for the available names."
           }
         },
         "additionalProperties": false,

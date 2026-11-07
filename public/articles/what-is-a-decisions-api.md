@@ -1,6 +1,6 @@
 # What is a Decisions API? How decision models give software answers instead of text
 
-A Decisions API puts a model inside application logic. You define a bounded question, and the model returns a probability your code can branch on, with no text to parse. More than 15 vendors offer one, from OpenAI and TypeSafe AI to Cloudflare and Upstage. Each judges only the input you send, so most workflows retrieve web data first.
+A Decisions API puts a model inside application logic. You define a bounded question, and the model returns a probability your code can branch on, with no text to parse. More than 15 vendors offer one, from OpenAI and TypeSafe AI to Cloudflare and Upstage. Most judge only the input you send; Parallel’s and Perplexity’s can also pull evidence from the live web.
 
 **Quick answer.** A Decisions API is an endpoint that takes your input and a set of questions with fixed answer options, then returns a probability for each option. The input can be a support ticket, a product photo, a JSON record, or a web page. Most decision models answer only from the input you send; a few, including Parallel’s, retrieve web evidence first and cite it. Because the result is always one of the options you listed, your code can compare it with a threshold and act on it without parsing text.
 
@@ -57,7 +57,7 @@ In OpenAI’s routing example, the `input` field holds the evidence, and each qu
 }
 ```
 
-One request can carry many independent questions about the same input: up to 400 on OpenAI and up to 128 on Perplexity. You can check a product photo for damage and classify its category in one call. Questions that depend on an earlier answer need a second request.
+One request can carry many independent questions about the same input: up to 400 on OpenAI and up to 100 on Parallel. You can check a product photo for damage and classify its category in one call. Questions that depend on an earlier answer need a second request.
 
 ## Why decision APIs appeared in 2026
 
@@ -99,21 +99,23 @@ As of November 2, 2026, more than 15 first-party vendors offer a hosted decision
 | Provider | Endpoint | Models | Input price per 1M tokens | Notes |
 | --- | --- | --- | --- | --- |
 | OpenAI | POST /v1/decisions | gpt-6-luna | $0.10 uncached, $0.01 cached | Up to 400 questions per request. Text, image, and JSON input |
-| Perplexity | POST /v1/decisions | pplx-decider-v1.2 (27B), pplx-decider-flash-v1.2 (4B) | $0.02 and $0.01 | Up to 128 questions, 256K-token context, and 10 requests per second by default |
+| Perplexity | POST /v1/decisions | pplx-decider-v1.2 (27B), pplx-decider-flash-v1.2 (4B) | $0.02 and $0.01 | 256K-token context and 10 requests per second by default. Optional web_grounding mode adds one search per question at $1 per 1,000 searches |
 | TypeSafe AI | POST /v1/systemone | Jev 1.14 (latest), Jev 1.13 | $0.042 | 64K-token request context and up to 255 options per choice |
 | Liquid AI | POST /decisions/v1/systemone | d1.1, d1-ultra | $0.02 and $0.042 | Text and image input. d1 and d1-ultra are also on OpenRouter and Vercel AI Gateway |
-| Microsoft | POST /providers/microsoft/v1/systemone on your Foundry resource | Microsoft-Decision-1 | Not stated by Microsoft | Text and JSON input. You deploy the model to your own Foundry resource first |
+| Microsoft | POST /providers/microsoft/v1/systemone on your Foundry resource | Microsoft-Decision-1 | $0.042 in US and EU Data Zones | Text and JSON input. You deploy the model to your own Foundry resource first |
 | Baseten | POST /v1/systemone | elephant-1, mammoth-1 | Not stated by Baseten | 16,384-token context. Text, structured data, and image input |
 | Cloudflare | Workers AI model @cf/cloudflare/clef | Clef, Clef-flash, Clef-omni | $0.24, $0.038, and $0.15 | Runs on Workers AI. Prices are from Cloudflare’s own pricing page |
 | Upstage | POST /v1/systemone | Solar Decide (beta), Solar Decide Flash | $0.10 | Solar Decide is in beta |
 | Inception | POST /v1/decisions | Mercury Decide | $0.02 promotional, normally $0.04 | Not stated |
-| Parallel | POST /v1/decisions | Not named | Not priced per token: $1 per 1,000 requests, including web retrieval | Retrieves live web evidence and returns citations. Up to 100 questions per request over one shared evidence set |
+| Parallel | POST /v1/decisions | fast mode (parallel/decisions-fast on OpenRouter) | Not priced per token: $1 per 1,000 requests, including web retrieval | Retrieves live web evidence and returns citations. Up to 100 questions per request over one shared evidence set. Free web_decisions tool in Parallel MCP |
 
 Perplexity lists its prices in [its Decisions API docs](https://docs.perplexity.ai/docs/decisions/quickstart) and notes a billing detail there. The Flash model answers each question separately and bills the input again for every question. Once you ask three or more questions about the same input, the 27B model is usually cheaper. Perplexity cut its price once, from $0.04 at launch, so check current rates before you budget.
 
 Other first-party vendors include Nace.AI, Fastino, Mouse, Respan, ScaleDown, and Bevel, which runs inference in Germany. vLLM Semantic Router and Scira offer free decision models, and Kev-4B and Convai Innovations’ Laya ship as open weights. OpenRouter serves about 30 decision models, and Vercel AI Gateway, DeepInfra, Fireworks, and SiliconFlow host models from other vendors. You can also self-host a `/v1/systemone` endpoint with vLLM or SGLang. Hugging Face lists more than 200 open-weight decision models.
 
 There are two main request shapes. OpenAI’s API takes input and a questions array and calls its yes-or-no type predicate. Jev’s System One API takes state and a map of named questions and calls the same type noul. Perplexity and Parallel use Jev’s naming at their own /v1/decisions paths. Liquid AI, Microsoft, Baseten, and Upstage use Jev’s request schema at paths ending in /v1/systemone, and OpenRouter serves Jev and d1 with the same schema. Switching vendors means rewriting the request mapping and rechecking your thresholds, because a probability of 0.7 from one model doesn’t mean the same thing as 0.7 from another. Perplexity tells you in its docs to revalidate thresholds whenever its own model version changes.
+
+For side-by-side comparisons, see [Jev alternatives](https://parallel.ai/articles/jev-alternatives), [OpenAI Decisions API alternatives](https://parallel.ai/articles/openai-decisions-api-alternatives), [OpenAI vs. Jev vs. Parallel](https://parallel.ai/articles/openai-decisions-api-vs-jev-vs-parallel), [Perplexity vs. Parallel](https://parallel.ai/articles/perplexity-decisions-api-vs-parallel), [Cloudflare Clef vs. Parallel](https://parallel.ai/articles/cloudflare-clef-vs-parallel), and [Laya vs. Jev vs. Parallel](https://parallel.ai/articles/laya-vs-jev-vs-parallel). [Decision model pricing](https://parallel.ai/articles/decision-model-pricing) works through what each costs at volume, and [What is a System One model?](https://parallel.ai/learn/system-one-model) explains where the term comes from.
 
 ## What Parallel found when it tested decision models
 
@@ -128,7 +130,7 @@ These runs used pplx-decider-v1 and OpenAI’s Decisions API during its public b
 
 ## Most decision models judge evidence but don’t fetch it
 
-A decision model answers from the input you send. Perplexity’s API never fetches a URL, and apart from Parallel’s, none of the APIs in the table above ground answers in live web data or return citations. Ask whether a company has raised a Series B, and the model can weigh only the text in front of it. If the funding announcement isn’t in the input, the probability reflects a guess. In most real workflows, retrieval comes before the decision. Every task in Parallel’s evaluation was a decision about web content: which result is relevant, whether a page changed, and whether a page is worth keeping.
+Most decision models answer only from the input you send. Ask whether a company has raised a Series B, and the model can weigh only the text in front of it. If the funding announcement isn’t in the input, the probability reflects a guess. Two APIs in the table above can look things up. Perplexity’s Decisions API has an optional `web_grounding` mode that runs one search per question, adds the top results to the input, and returns them as `search_results`, at $1 per 1,000 searches on top of token pricing. Parallel’s Decisions API always retrieves web evidence and returns citations. In most real workflows, retrieval comes before the decision. Every task in Parallel’s evaluation was a decision about web content: which result is relevant, whether a page changed, and whether a page is worth keeping.
 
 There are two ways to get that evidence in front of the model. You can retrieve it yourself and pass it in, or you can use a Decisions API that retrieves it for you.
 
@@ -180,7 +182,7 @@ for i, r in enumerate(results):
 
 Swap the predicate for a relevance check, a freshness check, or a choice question that routes each page to a different extraction path, and the rest of the code stays the same. Search costs $1 per 1,000 requests in Fast mode. New accounts get up to $80 in free credits, plus $5 a month with a card on file.
 
-The second way is a web-grounded Decisions API. [Parallel’s Decisions API](https://docs.parallel.ai/decisions/decisions-quickstart) takes the entity in state, searches the live web, and answers every question against one shared set of evidence. It returns the same noul, choice, and score answer types, plus a citations array with the URLs and excerpts it used. A request can carry up to 100 questions and costs $1 per 1,000 requests.
+The second way is a web-grounded Decisions API. [Parallel’s Decisions API](https://docs.parallel.ai/decisions/decisions-quickstart) takes the entity in state, searches the live web, and answers every question against one shared set of evidence. It returns the same noul, choice, and score answer types, plus a citations array with the URLs and excerpts it used. A request can carry up to 100 questions and costs $1 per 1,000 requests. It’s also on [OpenRouter](https://parallel.ai/blog/decisions-openrouter) as `parallel/decisions-fast`, and it’s free to try from an agent as the `web_decisions` tool in [Parallel MCP](https://parallel.ai/mcp), with no account or key.
 
 ```bash
 curl https://api.parallel.ai/v1/decisions \
@@ -209,7 +211,9 @@ curl https://api.parallel.ai/v1/decisions \
 
 The trade-off is control. With your own retrieval, you choose the sources and can reuse the evidence in later steps. A grounded API replaces that pipeline with one call, but its citations cover the whole call rather than each answer.
 
-Grounding matters most when the answer isn’t in the input. On [PWS-Decisions](https://parallel.ai/blog/pws-decisions-benchmark), a 300-question benchmark whose answers depend on current web facts, Parallel’s Decisions API scored 76.2%, against 41.7% for OpenAI’s Decisions API and 33.4% for Jev. On JevBench, where the answer is in the input, the three scored within two points of each other: 89.6%, 90.0%, and 88.3%. Parallel built the benchmark and published these results, and the code and dataset are public, so you can run it on any model.
+Grounding matters most when the answer isn’t in the input. On [PWS-Decisions](https://parallel.ai/blog/pws-decisions-benchmark), a 300-question benchmark whose answers depend on current web facts, Parallel’s Decisions API scored 76.2%. Perplexity’s Decisions API scored 50.9%, OpenAI’s 41.7%, and Jev 33.4%, all run without web context, which means Perplexity ran without its grounding mode. The set was curated to be hard, and random guessing scores 42.4%. On a 231-question JevBench set, where the answer is in the input, Parallel, OpenAI, and Jev scored within two points of each other: 89.6%, 90.0%, and 88.3%. Parallel built the benchmark and published these results, and the [code](https://github.com/parallel-web/pws-decisions-benchmark) and dataset are public, so you can run it on any model.
+
+The [JevBench explainer](https://parallel.ai/articles/jevbench-benchmark) covers the different boards that share that name.
 
 ## What teams build with web-grounded decisions
 
@@ -220,6 +224,8 @@ Parallel built three workflows on its Decisions API before launch. The figures b
 - **CRM field refresh.** Columns such as employee band, whether a company has a public API, or whether it sells an enterprise plan go stale between enrichment runs. In one demo request, Parallel asked four questions about Vercel and got all four answers from one retrieval of 10 sources in 681 ms, for $0.001. The employee-band answer came back at 0.55 confidence, so the workflow sent it to review instead of writing it to the CRM.
 
 All three follow the same pattern: ask closed questions about each record, act on the confident answers, and send the rest to a person. When a field needs an open answer, such as a new CEO’s name or a summary of recent news, use an enrichment or research API instead.
+
+Step-by-step guides cover [AI lead qualification](https://parallel.ai/articles/ai-lead-qualification), [AI lead scoring](https://parallel.ai/articles/ai-lead-scoring), [AI lead routing](https://parallel.ai/articles/ai-lead-routing), [entity matching](https://parallel.ai/articles/entity-matching), [fact-checking](https://parallel.ai/articles/ai-fact-checking-api), [vendor validation](https://parallel.ai/articles/vendor-validation-ai), [content moderation](https://parallel.ai/articles/content-moderation-api), and [zero-shot classification](https://parallel.ai/articles/zero-shot-classification). To call Parallel through OpenRouter, see [Parallel Decisions on OpenRouter](https://parallel.ai/articles/parallel-decisions-openrouter).
 
 ## When to use a Decisions API
 

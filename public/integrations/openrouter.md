@@ -6,7 +6,15 @@ Select Parallel as the web search engine behind OpenRouter requests.
 
 [Configure OpenRouter](https://docs.parallel.ai/integrations/openrouter)[Get an API key](https://platform.parallel.ai/)
 
-## What you can do
+## What you can do with Parallel Decisions API
+
+Parallel Decisions is now on OpenRouter. [Learn More](https://parallel.ai/blog/decisions-openrouter)
+
+### Use Parallel Decisions API on OpenRouter
+
+Select [Parallel: Decisions Fast](https://openrouter.ai/parallel/decisions-fast) in the model list, or set your model ID to `` `parallel/decisions-fast` ``.
+
+## What you can do with Parallel Search
 
 * Add Parallel web search to model requests routed through OpenRouter.
 * Keep model routing and web-search configuration in one request path.

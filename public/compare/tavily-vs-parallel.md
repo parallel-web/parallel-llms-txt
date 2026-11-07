@@ -4,9 +4,9 @@ Parallel scores higher than Tavily on hard, multi-hop research at a fifth to an 
 
 [Start building for free](https://platform.parallel.ai/) 
 
-[Fast-tier search, per 1,000 requests: $1 vs. $5–$8](#cost) [Artificial Analysis Search Index, basic modes: 73 vs. 66](#accuracy) [BrowseComp, same frontier agent: 74% vs. 66%](#accuracy)
+[Fast-tier search, per 1,000 requests: $1 vs. $5–$8](#cost) [BrowseComp, same frontier agent: 74% vs. 66%](#accuracy) [SimpleQA Verified at equal 94% accuracy, per 1,000: $2 vs. $17.40](#cost)
 
-Last updated October 16, 2026
+Last updated November 6, 2026
 
 ## What does Parallel do?
 
@@ -23,21 +23,20 @@ Parallel is one developer platform covering search, extraction, research, entity
 
 ## Parallel vs. Tavily at a glance
 
-Published list prices and documented capabilities as of October 2026.
+Published list prices and documented capabilities as of November 2026.
 
 __Parallel and Tavily compared at a glance__
-| Dimension                                                   | Parallel                                                              | Tavily                                                      |
-| ----------------------------------------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------- |
-| Search list price, per 1,000 requests                       | $1 (Turbo or Fast); $5 (Basic or Advanced) (Leads)                    | $5–$8 basic, fast, or ultra-fast; $10–$16 advanced, by plan |
-| Artificial Analysis Search Index (independent, August 2026) | 73 basic; 75 advanced (Leads)                                         | 66 basic, the only Tavily mode tested                       |
-| BrowseComp, Parallel’s September 2026 run                   | 74% (Advanced); 44% (Fast) (Leads)                                    | 66% frontier tier; 32% low-cost tier                        |
-| Citations on research output                                | Research Basis per field: URL, excerpt, reasoning, confidence (Leads) | Report-level citations in four styles                       |
-| Deep research throughput                                    | 2,000 Task runs per minute (Leads)                                    | 20 research tasks per minute                                |
-| Monitoring and entity discovery                             | Monitor, FindAll, and Entity Search APIs (Leads)                      | No dedicated endpoints documented                           |
-| Site map and crawl                                          | No crawl endpoint                                                     | Map and Crawl endpoints (Leads)                             |
-| Framework ecosystem                                         | Vercel AI SDK, n8n, LangChain, LlamaIndex, and more                   | LangChain, LlamaIndex, CrewAI, and 20+ more (Leads)         |
+| Dimension                                 | Parallel                                                              | Tavily                                                      |
+| ----------------------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------- |
+| Search list price, per 1,000 requests     | $1 (Turbo or Fast); $5 (Basic or Advanced) (Leads)                    | $5–$8 basic, fast, or ultra-fast; $10–$16 advanced, by plan |
+| BrowseComp, Parallel’s September 2026 run | 74% (Advanced); 44% (Fast) (Leads)                                    | 66% frontier tier; 32% low-cost tier                        |
+| Citations on research output              | Research Basis per field: URL, excerpt, reasoning, confidence (Leads) | Report-level citations in four styles                       |
+| Deep research throughput                  | 2,000 Task runs per minute (Leads)                                    | 20 research tasks per minute                                |
+| Monitoring and entity discovery           | Monitor, FindAll, and Entity Search APIs (Leads)                      | No dedicated endpoints documented                           |
+| Site map and crawl                        | No crawl endpoint                                                     | Map and Crawl endpoints (Leads)                             |
+| Framework ecosystem                       | Vercel AI SDK, n8n, LangChain, LlamaIndex, and more                   | LangChain, LlamaIndex, CrewAI, and 20+ more (Leads)         |
 
-Sources: [Parallel pricing](https://parallel.ai/pricing), [Artificial Analysis Search Index launch results](https://artificialanalysis.ai/articles/search-api), [Parallel benchmarks, September 2026](https://parallel.ai/benchmarks), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel rate limits](https://docs.parallel.ai/getting-started/rate-limits), [Switching from Tavily to Parallel](https://parallel.ai/articles/tavily-to-parallel-search-api)
+Sources: [Parallel pricing](https://parallel.ai/pricing), [Parallel benchmarks, September 2026](https://parallel.ai/benchmarks), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel rate limits](https://docs.parallel.ai/getting-started/rate-limits), [Switching from Tavily to Parallel](https://parallel.ai/articles/tavily-to-parallel-search-api)
 
 ## Higher scores on hard, multi-hop queries
 
@@ -45,13 +44,13 @@ Parallel’s September 2026 runs gave every provider the same agent and the same
 
 With the cheaper GPT-5.6 Luna agent the results are closer. Parallel Fast led BrowseComp 44% to 32%, tied Tavily at 94% on SimpleQA Verified, and trailed on WideSearch, 45.5 to 47.9\. It did all three at an eighth of Tavily’s cost or less.
 
-The independent Artificial Analysis Search Index tested Tavily in its basic mode. In its August 2026 launch table Tavily basic scored 66, against 73 for Parallel basic and 75 for Parallel advanced. On the three components Parallel basic scored DeepSearchQA F1 79 against 74, BrowseComp 73 against 59, and AA-Omniscience 68 against 64\. It took 20.4 seconds per task against 36.3.
+Artificial Analysis also ran both in basic mode for its August 2026 launch table. Parallel basic took 20.4 seconds per task against 36.3 for Tavily basic.
 
-Openbenchmarks, an independent hub that publishes its harness and every raw vendor response, has since run both on two September 2026 boards. On multi-turn company search, where a fixed agent hunts for every company matching three or four constraints, Parallel Basic scored 50.2 F1 from search results alone against 42.0 for Tavily advanced and 36.5 for Tavily basic. On single-fact company news lookups, Tavily answered more accurately than Parallel Fast, 93.0% on advanced and 87.7% on basic against 86.0%, with Parallel Basic at 93.3%.
+Openbenchmarks, an independent hub that publishes its harness and every raw vendor response, has since run both on its October 2026 multi-turn company search board. On that board a fixed agent hunts for every company matching three or four constraints, and Parallel Basic scored 46.5 F1 from search results alone, against 41.1 for Tavily advanced and 36.5 for Tavily basic. Openbenchmarks has flagged a timing bias on its company news board and is re-running every vendor, so this page leaves those results out until the re-run is published.
 
 Tavily publishes its own runs, most recently on SealQA and SimpleQA Verified, scored with a single-pass reader model rather than an agent. Different harnesses rank providers differently. [Harvey](/ai/blog/case-study-harvey) and [Kepler](/ai/blog/case-study-kepler) both evaluated on their own professional research before building on Parallel.
 
-Sources: [Parallel benchmarks, September 2026](https://parallel.ai/benchmarks), [Artificial Analysis Search Index launch results](https://artificialanalysis.ai/articles/search-api), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [Harvey case study](https://parallel.ai/blog/case-study-harvey), [Kepler case study](https://parallel.ai/blog/case-study-kepler)
+Sources: [Parallel benchmarks, September 2026](https://parallel.ai/benchmarks), [Artificial Analysis search API launch results](https://artificialanalysis.ai/articles/search-api), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [Harvey case study](https://parallel.ai/blog/case-study-harvey), [Kepler case study](https://parallel.ai/blog/case-study-kepler)
 
 +8 points on BrowseComp, same frontier agent
 
@@ -71,15 +70,7 @@ Parallel: 97%
 
 Tavily: 92%
 
-Artificial Analysis Search Index (independent)
-
-Higher is better
-
-Parallel: 73 (basic)
-
-Tavily: 66 (basic)
-
-BrowseComp and SimpleQA Verified rows: Parallel-run evaluation, September 9, 2026, a GPT-5.6 Sol agent (reasoning: high) calling each provider’s search and extract tools, graded by an LLM judge, on samples of 50 BrowseComp and 100 SimpleQA Verified questions, Parallel Advanced against Tavily in the same harness. Artificial Analysis row: that firm’s launch table (August 18, 2026), a GPT-5.6 Luna agent over DeepSearchQA, a 200-question BrowseComp subset, and AA-Omniscience, with the search provider as the only variable. Basic mode is the only Tavily configuration it tested.
+BrowseComp and SimpleQA Verified rows: Parallel-run evaluation, September 9, 2026, a GPT-5.6 Sol agent (reasoning: high) calling each provider’s search and extract tools, graded by an LLM judge, on samples of 50 BrowseComp and 100 SimpleQA Verified questions, Parallel Advanced against Tavily in the same harness. Artificial Analysis time per task: that firm’s launch table (August 18, 2026), a GPT-5.6 Luna agent with the search provider as the only variable. Basic mode is the only Tavily configuration it tested.
 
 ## A fifth to an eighth of the price on the fast tiers
 
@@ -87,9 +78,9 @@ Tavily sells credits. A basic, fast, or ultra-fast search costs 1 credit and an 
 
 Credits also make the bill harder to predict. Tavily’s auto\_parameters setting can promote a request to advanced depth, which doubles its cost. Tavily Research is priced dynamically at 4 to 250 credits per request. Every Parallel processor has a fixed price, so the cost of a run is known before it starts.
 
-Measured spend shows the same gap. In Artificial Analysis’s launch table, search spend per 1,000 benchmark tasks was $126 for Tavily basic against $45.14 for Parallel basic and $13.64 for Parallel turbo. In Parallel’s September run, Parallel Fast matched Tavily’s 94% on SimpleQA Verified for $2 per 1,000 questions against $17.40\. On Openbenchmarks’ company news board, which divides list price by accuracy, Parallel Fast cost $1.16 per 1,000 correct answers against $9.13 for Tavily basic and $17.20 for Tavily advanced.
+Measured spend shows the same gap. In Artificial Analysis’s launch table, search spend per 1,000 benchmark tasks was $126 for Tavily basic against $45.14 for Parallel basic and $13.64 for Parallel turbo. In Parallel’s September run, Parallel Fast matched Tavily’s 94% on SimpleQA Verified for $2 per 1,000 questions against $17.40.
 
-Sources: [Parallel pricing](https://parallel.ai/pricing), [Switching from Tavily to Parallel](https://parallel.ai/articles/tavily-to-parallel-search-api), [Parallel benchmarks, September 2026](https://parallel.ai/benchmarks), [Artificial Analysis Search Index launch results](https://artificialanalysis.ai/articles/search-api), [Openbenchmarks company news search](https://openbenchmarks.com/company-news)
+Sources: [Parallel pricing](https://parallel.ai/pricing), [Switching from Tavily to Parallel](https://parallel.ai/articles/tavily-to-parallel-search-api), [Parallel benchmarks, September 2026](https://parallel.ai/benchmarks), [Artificial Analysis search API launch results](https://artificialanalysis.ai/articles/search-api)
 
 5–8× lower list price per 1,000 fast-tier searches
 
@@ -150,7 +141,7 @@ Parallel charges per request, with no plans or credits. Search costs $1 per 1,00
 
 Weighing more providers than these two? Read [Tavily alternatives](/ai/articles/tavily-alternatives) for a wider comparison.
 
-Sources: [tavily.com/pricing](https://www.tavily.com/pricing), [docs.tavily.com/documentation/api-credits](https://docs.tavily.com/documentation/api-credits), [parallel.ai/pricing](https://parallel.ai/pricing), [docs.parallel.ai/getting-started/pricing](https://docs.parallel.ai/getting-started/pricing), checked October 10, 2026.
+Sources: [tavily.com/pricing](https://www.tavily.com/pricing), [docs.tavily.com/documentation/api-credits](https://docs.tavily.com/documentation/api-credits), [parallel.ai/pricing](https://parallel.ai/pricing), [docs.parallel.ai/getting-started/pricing](https://docs.parallel.ai/getting-started/pricing), checked November 3, 2026.
 
 ## Deep research at batch scale
 
@@ -174,13 +165,13 @@ Tavily: 20
 
 Default limits from each provider’s documentation, October 2026\. Parallel counts Task Runs created per minute, and GET polling does not count. Tavily counts research tasks created per minute, on development and production keys alike. Both offer custom limits on enterprise plans.
 
-## EU data residency for search, which Tavily doesn’t document
+## EU data residency for search, which Tavily offers only in evaluation
 
 Parallel serves its Search and Extract APIs from the EU at eu.parallel.ai, under an enterprise agreement. The API, SDKs, and keys are the same as api.parallel.ai, and only the base URL changes. Search runs in basic mode only, with up to 20 results per request, answered from the EU index with no live fetching. Extract takes up to 20 URLs per request. Queries, objectives, results, excerpts, and model inference stay in the EU, and request and response content is not retained.
 
 The EU endpoint has limits. Billing, metrics, and edge logs, which contain no content, go to the US. Extract looks up each URL in Parallel’s cache of public web pages, which is hosted outside the EU. Only the URL is sent, and under zero data retention it isn’t saved. Extract is cache-only when advanced\_settings.fetch\_policy.timeout\_seconds is 0, and uncached URLs then return an error. Other Search modes, Task, FindAll, Monitor, Chat, Responses, and MCP aren’t served in the EU. They return an error and are never forwarded to the US. Our [guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency) compares every vendor’s documented option.
 
-Tavily doesn’t document an EU processing option. Its privacy policy names a US company, AlphaAI Technologies Inc., and says transfers to US service providers rely on Standard Contractual Clauses. A transfer mechanism makes sending data to the US lawful. It doesn’t keep data in the EU. Tavily’s position was read from its own documentation on October 16, 2026.
+Tavily offers an EU endpoint, but only for selected customer evaluations. It isn’t generally available, and Tavily hasn’t shared a launch date. Tavily says queries sent to that endpoint are processed in the EU, on API infrastructure in Germany and its own index in France. Account, support, usage, and billing data stay in shared US systems. Search, Extract, Crawl, Map, and Remote MCP are supported for enabled customers, but Research isn’t. Access is enabled per API key, with separate EU hosts for the API and Remote MCP, and zero query retention is available as an account setting. Tavily’s position was read from its own documentation on November 6, 2026.
 
 Sources: [Parallel privacy policy](https://parallel.ai/privacy-policy), [Parallel guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
 
@@ -209,19 +200,19 @@ Sources: [Parallel pricing](https://parallel.ai/pricing), [Switching from Tavily
 Both platforms cover search, extraction, and research. Tavily adds site mapping and crawling. Parallel adds per-field evidence, batch orchestration, entity discovery, and monitoring.
 
 __Core capabilities: Parallel compared with Tavily__
-| Feature                    | Parallel                                                        | Tavily                                                      |
-| -------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------- |
-| Search input               | An objective plus up to five keyword queries (Leads)            | One query string                                            |
-| Search depths              | Turbo, Fast, Basic, Advanced                                    | Ultra-fast, fast, basic, advanced                           |
-| Answers in search          | Not in Search; the Responses API returns cited answers          | Optional LLM answer on any search (Leads)                   |
-| Images in search           | Not offered                                                     | Optional image results (Leads)                              |
-| Citations on research      | Research Basis per field, with calibrated confidence (Leads)    | Report-level citations in four styles                       |
-| Structured research output | Task Specs with input and output schemas                        | JSON Schema output on Research                              |
-| Batch orchestration        | Task Groups with group status and bulk retrieval (Leads)        | Not documented                                              |
-| Monitoring                 | Monitor API: event stream plus snapshot diffs (Leads)           | No dedicated endpoint documented                            |
-| Entity discovery           | Entity Search for candidates; FindAll for verified sets (Leads) | No dedicated endpoint documented                            |
-| Site map and crawl         | Crawler is internal to the index, not an endpoint               | Map and Crawl with depth, breadth, and path filters (Leads) |
-| Source controls            | Domain include and exclude, freshness date, live fetch          | Domain filters, topic, date range, country, language        |
+| Feature                    | Parallel                                                        | Tavily                                                                     |
+| -------------------------- | --------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Search input               | An objective plus up to five keyword queries (Leads)            | One query string                                                           |
+| Search depths              | Turbo, Fast, Basic, Advanced                                    | Ultra-fast, fast, basic, advanced                                          |
+| Answers in search          | Not in Search; the Responses API returns cited answers          | Optional LLM answer on any search (Leads)                                  |
+| Images in search           | Separate Image Search API, $1 to $5 per 1,000 requests          | Optional image results inline with search                                  |
+| Citations on research      | Research Basis per field, with calibrated confidence (Leads)    | Report-level citations in four styles                                      |
+| Structured research output | Task Specs with input and output schemas                        | JSON Schema output on Research                                             |
+| Batch orchestration        | Task Groups with group status and bulk retrieval (Leads)        | Not documented                                                             |
+| Monitoring                 | Monitor API: event stream plus snapshot diffs (Leads)           | No dedicated endpoint documented                                           |
+| Entity discovery           | Entity Search for candidates; FindAll for verified sets (Leads) | No dedicated endpoint documented                                           |
+| Site map and crawl         | Crawler is internal to the index, not an endpoint               | Map and Crawl with depth, breadth, and path filters (Leads)                |
+| Source controls            | Domain include and exclude, freshness date, live fetch          | Domain filters and boosts, topic, date range, country, language, cache age |
 
 Sources: [Parallel Search docs](https://docs.parallel.ai/search/search-quickstart), [Parallel Extract docs](https://docs.parallel.ai/extract/extract-quickstart), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel FindAll docs](https://docs.parallel.ai/findall-api/findall-quickstart), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [Switching from Tavily to Parallel](https://parallel.ai/articles/tavily-to-parallel-search-api), [Tavily vs. Parallel: choosing a search API](https://parallel.ai/articles/tavily-vs-parallel-search)
 
@@ -230,17 +221,16 @@ Sources: [Parallel Search docs](https://docs.parallel.ai/search/search-quickstar
 Per call, the fastest tiers are close. In Parallel’s July 2026 run Tavily Ultra Fast measured 150 to 357ms p50 against Turbo’s 216 to 240ms, quicker on two of five suites. Turbo was more accurate on all five. Tavily allows more search requests per minute by default. Parallel allows far more research runs.
 
 __Performance and scale: Parallel compared with Tavily__
-| Feature                                        | Parallel                                | Tavily                                      |
-| ---------------------------------------------- | --------------------------------------- | ------------------------------------------- |
-| Search latency, advertised                     | \~200ms (Turbo); \~700ms (Fast)         | 180ms p50                                   |
-| Search latency, measured p50                   | 216–240ms (Turbo) across five suites    | 150–357ms (Ultra Fast) across the same five |
-| BrowseComp at the fastest tier, July 2026 run  | 51% Turbo (Leads)                       | 19.3% Ultra Fast                            |
-| Artificial Analysis Search Index, August 2026  | 75 advanced; 73 basic; 67 turbo (Leads) | 66 basic                                    |
-| Artificial Analysis time per task, basic modes | 20.4s (Leads)                           | 36.3s                                       |
-| Search rate limit                              | 600 RPM                                 | 1,000 RPM on production keys (Leads)        |
-| Research rate limit                            | 2,000 RPM (Leads)                       | 20 RPM                                      |
+| Feature                                        | Parallel                             | Tavily                                      |
+| ---------------------------------------------- | ------------------------------------ | ------------------------------------------- |
+| Search latency, advertised                     | \~200ms (Turbo); \~700ms (Fast)      | 180ms p50                                   |
+| Search latency, measured p50                   | 216–240ms (Turbo) across five suites | 150–357ms (Ultra Fast) across the same five |
+| BrowseComp at the fastest tier, July 2026 run  | 51% Turbo (Leads)                    | 19.3% Ultra Fast                            |
+| Artificial Analysis time per task, basic modes | 20.4s (Leads)                        | 36.3s                                       |
+| Search rate limit                              | 600 RPM                              | 1,000 RPM on production keys (Leads)        |
+| Research rate limit                            | 2,000 RPM (Leads)                    | 20 RPM                                      |
 
-Sources: [Parallel Search Turbo benchmark run](https://parallel.ai/blog/parallel-search-turbo), [Artificial Analysis Search Index launch results](https://artificialanalysis.ai/articles/search-api), [Parallel rate limits](https://docs.parallel.ai/getting-started/rate-limits), [Parallel pricing](https://parallel.ai/pricing)
+Sources: [Parallel Search Turbo benchmark run](https://parallel.ai/blog/parallel-search-turbo), [Artificial Analysis search API launch results](https://artificialanalysis.ai/articles/search-api), [Parallel rate limits](https://docs.parallel.ai/getting-started/rate-limits), [Parallel pricing](https://parallel.ai/pricing)
 
 ### Integrations and ecosystem
 
@@ -266,10 +256,10 @@ __Security, compliance, and support: Parallel compared with Tavily__
 | ------------------------ | ---------------------------------------------------- | -------------------------------------------------- |
 | SOC 2 Type II            | Yes                                                  | Yes                                                |
 | HIPAA compliance         | Yes (Leads)                                          | Terms bar protected health information in requests |
-| Zero data retention      | Enterprise                                           | Stated as the default (Leads)                      |
+| Zero data retention      | Enterprise                                           | On request                                         |
 | Data Processing Addendum | Yes                                                  | On request                                         |
 | Published SLA numbers    | Enterprise contract only                             | 99.99% uptime advertised; terms on request         |
-| EU data residency        | Search (basic mode) and Extract (cache-only) (Leads) | Not documented                                     |
+| EU data residency        | Search (basic mode) and Extract (cache-only) (Leads) | Evaluation only, selected customers                |
 
 Sources: [Parallel pricing](https://parallel.ai/pricing), [Parallel Trust Center](https://trust.parallel.ai), [Switching from Tavily to Parallel](https://parallel.ai/articles/tavily-to-parallel-search-api), [Parallel privacy policy](https://parallel.ai/privacy-policy), [Parallel guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
 
@@ -291,7 +281,6 @@ Parallel suits production agents where accuracy on hard queries, evidence, and u
 * You need to map or crawl a site’s pages through the API rather than query an index.
 * You want an LLM-generated answer or image results returned inline with each search.
 * You need more than 600 search requests per minute on a default production key.
-* You want zero data retention without negotiating an enterprise agreement.
 
 ## Switching from Tavily
 
@@ -304,7 +293,7 @@ Tavily’s Search, Extract, and Research endpoints have direct Parallel counterp
 Tavily Search becomes Parallel Search, Extract becomes Extract, and Research becomes Task or Responses. Turn the query string into an objective, and pass your tuned keywords alongside it as search queries.
 2. 02  
 ### Translate the parameters  
-Basic depth maps to Turbo or Basic and advanced to Advanced. Domain filters move into the source policy, and chunks per source becomes an excerpt character budget. Topic, answers, and images have no direct parameter.
+Basic depth maps to Turbo or Basic and advanced to Advanced. Domain filters move into the source policy, and chunks per source becomes an excerpt character budget. Topic and answers have no direct parameter, and images move to the Image Search API.
 3. 03  
 ### Validate before you commit  
 New accounts earn up to $80 at signup plus $5 in credits every month, which covers a real evaluation on your own query mix before anything moves to production.
@@ -312,21 +301,21 @@ New accounts earn up to $80 at signup plus $5 in credits every month, which cove
 ## FAQ
 
 * **Is Parallel better than Tavily?**  
-For accuracy on hard queries and for cost, yes. In the same harness Parallel scored higher on BrowseComp at both agent tiers, and the independent Artificial Analysis Search Index rates Parallel basic 73 against Tavily basic 66\. Parallel’s fast tiers list at a fifth to an eighth of Tavily’s. Tavily has the edge on framework integrations, site crawling, and default search rate limits.
+For accuracy on hard queries and for cost, yes. In the same harness Parallel scored higher on BrowseComp at both agent tiers, and it scored higher on SimpleQA Verified with the frontier agent. Parallel’s fast tiers list at a fifth to an eighth of Tavily’s. Tavily has the edge on framework integrations, site crawling, and default search rate limits.
 * **Parallel vs. Tavily: which is cheaper?**  
 Parallel, at published list prices. Tier for tier, search is $1 per 1,000 requests on Parallel Turbo or Fast against $5 to $8 for Tavily fast or ultra-fast, $5 against $5 to $8 on basic, and $5 against $10 to $16 on advanced. Tavily Research is priced dynamically per request, while Parallel’s Task processors have fixed prices from $5 to $2,400 per 1,000.
 * **How much does Tavily cost?**  
 Tavily includes 1,000 free credits a month. Beyond that, credits cost $0.008 each on pay-as-you-go, or $0.005 to $0.0075 on monthly plans from $30 for 4,000 credits to $500 for 100,000\. A basic search uses 1 credit and an advanced search 2, so 1,000 searches cost $5 to $8 at basic depth and $10 to $16 at advanced. Parallel Search costs $1 per 1,000 requests on Turbo or Fast and $5 on Basic or Advanced.
 * **Can I migrate from Tavily to Parallel?**  
-Yes. Search maps to Search, Extract to Extract, and Research to Task or Responses, with Python and TypeScript SDKs on both sides. Map and Crawl have no Parallel equivalent, and Tavily’s topic, answer, and image options have no direct parameter, so plan for those.
+Yes. Search maps to Search, Extract to Extract, and Research to Task or Responses, with Python and TypeScript SDKs on both sides. Map and Crawl have no Parallel equivalent, Tavily’s topic and answer options have no direct parameter, and image results move to the separate Image Search API, so plan for those.
 * **Is Tavily faster than Parallel?**  
 Per call, it depends on the query. In Parallel’s July 2026 run Tavily Ultra Fast measured 150 to 357ms p50 across five suites against 216 to 240ms for Parallel Turbo, faster on two and slower on three. Turbo was more accurate on all five. Per benchmark task, Artificial Analysis measured 20.4 seconds for Parallel basic against 36.3 for Tavily basic.
 * **Where does Tavily still win?**  
-Tavily has the broader framework ecosystem, led by LangChain, and ships Map and Crawl endpoints for whole-site extraction. It can return an LLM answer and images inline with search, allows 1,000 search requests per minute on production keys against Parallel’s 600, and states zero data retention by default. On Openbenchmarks’ company news board, Tavily was also more accurate than Parallel Fast on single-fact lookups.
+Tavily has the broader framework ecosystem, led by LangChain, and ships Map and Crawl endpoints for whole-site extraction. It can return an LLM answer and images inline with search, allows 1,000 search requests per minute on production keys against Parallel’s 600, and offers zero data retention on request.
 * **Does Tavily offer EU data residency?**  
-Not as of October 16, 2026\. Tavily’s privacy policy describes transfers to US service providers under Standard Contractual Clauses, and no EU processing option. Parallel’s EU endpoint serves Search (basic mode) and Extract (cache-only). Other APIs aren’t served there. Billing, metrics, and edge logs (no content) go to the US, and Extract sends only URLs to its page cache outside the EU.
+Not generally. As of November 6, 2026, Tavily’s EU endpoint is open only to selected customers for evaluation, and Research isn’t supported on it. Parallel’s EU endpoint serves Search (basic mode) and Extract (cache-only). Other APIs aren’t served there. Billing, metrics, and edge logs (no content) go to the US, and Extract sends only URLs to its page cache outside the EU.
 * **How current is this comparison?**  
-Parallel reviewed both providers’ documentation on October 1, 2026, and price lists on October 10\. BrowseComp, SimpleQA Verified, and WideSearch figures come from Parallel’s September 9 runs, latency from its July run, Search Index scores from Artificial Analysis’s August launch table, and company search and news figures from Openbenchmarks’ September boards. Both platforms ship often, so check the linked sources.
+Parallel reviewed both providers’ documentation and price lists on November 3, 2026\. BrowseComp, SimpleQA Verified, and WideSearch figures come from Parallel’s September 9 runs, latency from its July run, task time and search spend from Artificial Analysis’s August launch table, and company search figures from Openbenchmarks’ October 2 board. Both platforms ship often, so check the linked sources.
 
 Trusted by
 

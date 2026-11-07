@@ -6,7 +6,7 @@ SerpApi returns a parsed copy of a search results page. Parallel returns ranked 
 
 [Search price per 1,000, self-serve plans: $1 vs. $1.96 to $25](#cost) [BrowseComp, same GPT-5.4 agent: 51% vs. 23.3%](#accuracy) [Search latency p50, BrowseComp run: 216ms vs. 999ms](#speed)
 
-Last updated October 16, 2026
+Last updated November 6, 2026
 
 ## What does Parallel do?
 
@@ -24,7 +24,7 @@ Parallel is one developer platform covering search, extraction, research, entity
 
 ## Parallel vs. SerpApi at a glance
 
-Published list prices and documented capabilities as of October 14, 2026, plus Parallel’s July 2026 benchmark run.
+Published list prices and documented capabilities as of November 3, 2026, plus Parallel’s July 2026 benchmark run.
 
 __Parallel and SerpApi compared at a glance__
 | Dimension                             | Parallel                                                     | SerpApi                                                             |
@@ -177,13 +177,13 @@ Parallel charges per request, with no plans or credits. Search costs $1 per 1,00
 
 For a wider comparison that adds Brave and Bing, read [Parallel vs. SerpApi vs. Brave vs. Bing](/ai/articles/parallel-vs-serpapi-vs-brave-vs-bing).
 
-Sources: [serpapi.com/pricing](https://serpapi.com/pricing), [serpapi.com/extract-api](https://serpapi.com/extract-api), [serpapi.com/markdown-output](https://serpapi.com/markdown-output), [serpapi.com/search-api](https://serpapi.com/search-api), [serpapi.com/search-api/api-metrics](https://serpapi.com/search-api/api-metrics), [serpapi.com/ludicrous-speed](https://serpapi.com/ludicrous-speed), [parallel.ai/pricing](https://parallel.ai/pricing), [docs.parallel.ai/getting-started/pricing](https://docs.parallel.ai/getting-started/pricing), checked October 14, 2026.
+Sources: [serpapi.com/pricing](https://serpapi.com/pricing), [serpapi.com/extract-api](https://serpapi.com/extract-api), [serpapi.com/markdown-output](https://serpapi.com/markdown-output), [serpapi.com/search-api](https://serpapi.com/search-api), [serpapi.com/search-api/api-metrics](https://serpapi.com/search-api/api-metrics), [serpapi.com/ludicrous-speed](https://serpapi.com/ludicrous-speed), [parallel.ai/pricing](https://parallel.ai/pricing), [docs.parallel.ai/getting-started/pricing](https://docs.parallel.ai/getting-started/pricing), checked November 3, 2026.
 
 ## Sub-second search calls without paying for a faster tier
 
 In Parallel’s July 2026 run, measured from a client in us-central, Parallel Turbo’s median search call took 216 to 240ms across the five suites. SerpApi’s took 652 to 999ms. Parallel documents Turbo at about 200ms and Fast at about 700ms, both at $1 per 1,000.
 
-SerpApi publishes rolling metrics for each API. On October 14, 2026, its Google Search API page showed a 30-day average response time of 8.49 seconds and a 93.9% success rate. Its all-engine average was 1.39 seconds. Averages include slow outliers that a median hides, so these figures and the July medians measure different things. SerpApi sells Ludicrous Speed at twice the plan price, which it says is 2.2 times faster on average.
+SerpApi publishes rolling metrics for each API. On November 3, 2026, its Google Search API page showed a 30-day average response time of 7.80 seconds and a 93.3% success rate. Its 30-day average across all engines was 1.92 seconds. Averages include slow outliers that a median hides, so these figures and the July medians measure different things. SerpApi sells Ludicrous Speed at twice the plan price, which it says is 2.2 times faster on average.
 
 Throughput works differently too. SerpApi sets an hourly cap by plan, from 200 searches an hour on Starter and 3,000 on Production to 640,000 on Cloud 54M, and recommends spreading searches evenly across the hour. Parallel allows 600 searches per minute, or 36,000 an hour, on every account, with custom limits on enterprise plans. From the $1,475 Volume plan up, SerpApi’s hourly cap is higher.
 
@@ -207,7 +207,7 @@ Parallel: 240ms
 
 SerpApi: 652ms
 
-Parallel-run evaluation, July 10 to 12, 2026\. Latency is the client-side wall clock around a single search API request from us-central, p50 across all questions, best across runs. SerpApi’s 30-day averages are from its own API metrics pages, read October 14, 2026.
+Parallel-run evaluation, July 10 to 12, 2026\. Latency is the client-side wall clock around a single search API request from us-central, p50 across all questions, best across runs. SerpApi’s 30-day averages are from its own API metrics pages, read November 3, 2026.
 
 ## EU data residency for search, which SerpApi doesn’t document
 
@@ -297,15 +297,15 @@ Sources: [Parallel MCP docs](https://docs.parallel.ai/integrations/mcp/quickstar
 Both hold SOC 2 Type II. SerpApi lists more ISO certifications and offers legal indemnity for scraping. Parallel offers a HIPAA-ready option.
 
 __Security, compliance, and legal: Parallel compared with SerpApi__
-| Feature                      | Parallel                                             | SerpApi                                                        |
-| ---------------------------- | ---------------------------------------------------- | -------------------------------------------------------------- |
-| SOC 2 Type II                | Yes                                                  | Yes                                                            |
-| Other certifications         | Not listed in these sources                          | SOC 3, ISO 27001, ISO 42001 (Leads)                            |
-| HIPAA                        | HIPAA-ready offering (Leads)                         | Not listed on its security page                                |
-| Zero data retention          | Enterprise                                           | ZeroTrace Mode on Cloud plans and Enterprise                   |
-| Legal indemnity for scraping | Not offered                                          | U.S. Legal Shield, up to $2 million, Production and up (Leads) |
-| Published SLA                | Enterprise contract only                             | Up to 99.97% advertised                                        |
-| EU data residency            | Search (basic mode) and Extract (cache-only) (Leads) | Not documented                                                 |
+| Feature                      | Parallel                                             | SerpApi                                                             |
+| ---------------------------- | ---------------------------------------------------- | ------------------------------------------------------------------- |
+| SOC 2 Type II                | Yes                                                  | Yes                                                                 |
+| Other certifications         | Not listed in these sources                          | SOC 3, ISO 27001, and ISO 27701, with ISO 42001 in progress (Leads) |
+| HIPAA                        | HIPAA-ready offering (Leads)                         | Not listed on its security page                                     |
+| Zero data retention          | Enterprise                                           | ZeroTrace Mode on Cloud plans and Enterprise                        |
+| Legal indemnity for scraping | Not offered                                          | U.S. Legal Shield, up to $2 million, Production and up (Leads)      |
+| Published SLA                | Enterprise contract only                             | Up to 99.97% advertised                                             |
+| EU data residency            | Search (basic mode) and Extract (cache-only) (Leads) | Not documented                                                      |
 
 Sources: [Parallel Trust Center](https://trust.parallel.ai), [Parallel pricing](https://parallel.ai/pricing), [Parallel privacy policy](https://parallel.ai/privacy-policy), [Parallel guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
 
@@ -359,7 +359,7 @@ SerpApi has a free plan with 250 searches a month. Paid plans start at $25 for 1
 * **Can SerpApi return page content now?**  
 Yes. SerpApi launched an Extract API on October 13, 2026\. It fetches a public page and returns JSON or markdown at one search credit per page, and can map or crawl a site. It does not run JavaScript. Parallel Search returns excerpts from each page in the search response, and Parallel Extract returns full pages at $1 per 1,000 URLs.
 * **Is SerpApi faster than Parallel?**  
-Not in Parallel’s July 2026 run. Turbo’s median search call took 216 to 240ms across five suites against 652 to 999ms for SerpApi. SerpApi’s own metrics page showed a 30-day average of 8.49 seconds for its Google Search API on October 14, 2026\. Its Ludicrous Speed option, at twice the price, is 2.2 times faster on average, per SerpApi.
+Not in Parallel’s July 2026 run. Turbo’s median search call took 216 to 240ms across five suites against 652 to 999ms for SerpApi. SerpApi’s own metrics page showed a 30-day average of 7.80 seconds for its Google Search API on November 3, 2026\. Its Ludicrous Speed option, at twice the price, is 2.2 times faster on average, per SerpApi.
 * **Where does SerpApi still win?**  
 Engine and vertical coverage, exact Google results pages with positions and SERP features, and city-level geo targeting. It also offers U.S. Legal Shield indemnity, free cached repeats, more client libraries, ISO 27001, and higher hourly caps on its largest plans. Its search-only agent cost less than Turbo on three of five suites in Parallel’s July run.
 * **Has an independent evaluator compared them?**  
@@ -367,7 +367,7 @@ Not that this review found. Artificial Analysis and Openbenchmarks do not test S
 * **Does SerpApi offer EU data residency?**  
 Not as of October 16, 2026\. SerpApi is a Texas company that covers international transfers with Standard Contractual Clauses. ZeroTrace mode stores no search data. Parallel’s EU endpoint serves Search (basic mode) and Extract (cache-only). Other APIs aren’t served there. Billing, metrics, and edge logs (no content) go to the US, and Extract sends only URLs to its page cache outside the EU.
 * **How current is this comparison?**  
-Parallel read SerpApi’s pricing page, API docs, and metrics pages on October 14, 2026, the day after SerpApi launched its Extract API. Benchmark figures come from Parallel’s July 10 to 12, 2026 run, before that launch. Both products ship often, so check the linked sources.
+Parallel read SerpApi’s pricing page, API docs, security page, and metrics pages on November 3, 2026\. Benchmark figures come from Parallel’s July 10 to 12, 2026 run, before SerpApi launched its Extract API on October 13\. Both products ship often, so check the linked sources.
 
 Trusted by
 

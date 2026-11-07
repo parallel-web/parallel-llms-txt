@@ -4,9 +4,9 @@ In independent tests, Parallel scored higher than Firecrawl on multi-step resear
 
 [Start building for free](https://platform.parallel.ai/) 
 
-[Multi-turn company search F1, search only: 46.5 vs. 30.4](#accuracy) [Artificial Analysis Search Index, Parallel advanced: 75 vs. 73](#accuracy) [Artificial Analysis time per task, Parallel basic: 25.6s vs. 60.7s](#accuracy)
+[Multi-turn company search F1, search only: 46.5 vs. 30.4](#accuracy) [Multi-turn company search F1, with page fetching: 42.3 vs. 33.2](#accuracy) [Artificial Analysis time per task, Parallel basic: 19.7s vs. 57.5s](#accuracy)
 
-Last updated October 16, 2026
+Last updated November 6, 2026
 
 ## What does Parallel do?
 
@@ -23,33 +23,30 @@ Parallel is one developer platform covering search, extraction, research, entity
 
 ## Parallel vs. Firecrawl at a glance
 
-Published list prices, documented capabilities, and independent benchmark scores as of October 14, 2026.
+Published list prices, documented capabilities, and independent benchmark scores as of November 3, 2026.
 
 __Parallel and Firecrawl compared at a glance__
-| Dimension                                                      | Parallel                                              | Firecrawl                                   |
-| -------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------- |
-| Multi-turn company search F1 (Openbenchmarks, October 2026)    | 46.5 Basic, 44.2 Advanced (Leads)                     | 30.4                                        |
-| Artificial Analysis Search Index (independent, September 2026) | 75 advanced, 73 basic                                 | 73                                          |
-| Company news accuracy (Openbenchmarks, October 2026)           | 93.3% Basic, 86.0% Fast                               | 95.3% (Leads)                               |
-| Search list price, per 1,000 requests                          | $1 Turbo or Fast, $5 Basic or Advanced                | $1.50 to $7.60 by plan, billed monthly      |
-| Fetch known URLs                                               | Extract: up to 20 URLs per call, $1 per 1,000 (Leads) | Scrape: one URL per call, or an async batch |
-| Citations on research output                                   | Per field: source, reasoning, confidence (Leads)      | Run trace and page snapshots                |
-| Crawl, map, and browser actions                                | No crawl, map, or browser endpoints                   | Crawl, Map, and Interact endpoints (Leads)  |
-| Self-hosting                                                   | Hosted only                                           | Open-source core (AGPL-3.0) (Leads)         |
+| Dimension                                                   | Parallel                                              | Firecrawl                                                     |
+| ----------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------- |
+| Multi-turn company search F1 (Openbenchmarks, October 2026) | 46.5 Basic, 44.2 Advanced (Leads)                     | 30.4                                                          |
+| Search list price, per 1,000 requests                       | $1 Turbo or Fast, $5 Basic or Advanced                | $1.50 to $7.60 by plan, billed monthly                        |
+| Fetch known URLs                                            | Extract: up to 20 URLs per call, $1 per 1,000 (Leads) | Scrape: one URL per call, or an async batch                   |
+| Citations on research output                                | Per field: source, reasoning, confidence (Leads)      | Run trace and page snapshots                                  |
+| Crawl, map, and browser actions                             | No crawl, map, or browser endpoints                   | Crawl, Map, and Interact endpoints (Leads)                    |
+| Self-hosting                                                | Hosted only                                           | Open-source core (AGPL-3.0) (Leads)                           |
+| Official SDKs                                               | Python and TypeScript                                 | Python, Node, Go, Java, Ruby, Rust, .NET, PHP, Elixir (Leads) |
 
-Sources: [Openbenchmarks Firecrawl vs. Parallel](https://openbenchmarks.com/web-search/firecrawl-vs-parallel), [Artificial Analysis Search API leaderboard](https://artificialanalysis.ai/agents/search-api), [Parallel pricing](https://parallel.ai/pricing), [Parallel Extract docs](https://docs.parallel.ai/extract/extract-quickstart), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Switching from Firecrawl to Parallel](https://parallel.ai/articles/firecrawl-to-parallel-search-api)
+Sources: [Openbenchmarks Firecrawl vs. Parallel](https://openbenchmarks.com/web-search/firecrawl-vs-parallel), [Parallel pricing](https://parallel.ai/pricing), [Parallel Extract docs](https://docs.parallel.ai/extract/extract-quickstart), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Switching from Firecrawl to Parallel](https://parallel.ai/articles/firecrawl-to-parallel-search-api)
 
 ## Higher scores on multi-step research, in less time per task
 
 Openbenchmarks, an independent hub that publishes its harness and every raw vendor response, holds one research agent fixed and swaps only the search API. On its multi-turn company search board, where the agent has to find every company matching three or four constraints, Parallel Basic scored 46.5 F1 from search results alone and Parallel Advanced 44.2, against 30.4 for Firecrawl. With page fetching allowed, Parallel Basic scored 42.3 against 33.2.
 
-The independent Artificial Analysis Search Index scores the two closer. In its September 28, 2026 data, Parallel advanced scored 75, Parallel basic 73, and Firecrawl 73\. On DeepSearchQA F1, Parallel scored 81 on advanced and 79 on basic against 74\. On BrowseComp it scored 77 and 73 against 74\. Firecrawl scored 73 on AA-Omniscience against 67 and 68.
+Parallel also took less time per task. In its runs of August 17, 2026, Artificial Analysis measured 19.7 seconds for Parallel basic and 36.6 for advanced, against 57.5 for Firecrawl. On Openbenchmarks’ company search a median task took 67.6 seconds with Parallel Basic against 75.0 with Firecrawl, though Parallel Advanced took 83.4.
 
-Parallel also took less time per task. Artificial Analysis measured 25.6 seconds for Parallel basic and 40.7 for advanced, against 60.7 for Firecrawl. On Openbenchmarks’ company search a median task took 67.6 seconds with Parallel Basic against 75.0 with Firecrawl, though Parallel Advanced took 83.4.
+Openbenchmarks has flagged a timing bias on its company news board and is re-running every vendor, so this page leaves those results out until the re-run is published.
 
-Firecrawl scores higher on single-fact lookups. On Openbenchmarks’ company news board, 300 questions on recent company events, Firecrawl answered 95.3% correctly against 93.3% for Parallel Basic and 86.0% for Parallel Fast. It also returned each call in 510ms against 1.68s for Parallel Basic. Parallel Turbo took 348ms but answered 71.3% correctly.
-
-On Openbenchmarks’ coding-agent board, 100 tickets against enterprise SaaS docs, the two tied at 76.0% with search and fetch, and Parallel Advanced scored 77.0%. With search alone, Firecrawl completed 70.3% against 66.7% for Parallel Fast. Parallel’s own September 2026 benchmark runs did not include Firecrawl, so every score on this page comes from these two independent evaluators.
+On Openbenchmarks’ coding-agent board, 100 tickets against enterprise SaaS docs, the two tied at 76.0% with search and fetch, and Parallel Advanced scored 77.0%. With search alone, Firecrawl completed 70.3% against 66.7% for Parallel Fast. Parallel’s own September 2026 benchmark runs did not include Firecrawl, so every accuracy score on this page comes from Openbenchmarks.
 
 Sources: [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Artificial Analysis Search API leaderboard](https://artificialanalysis.ai/agents/search-api), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [Openbenchmarks web search for coding agents](https://openbenchmarks.com/web-search-for-coding-agents), [Openbenchmarks Firecrawl vs. Parallel](https://openbenchmarks.com/web-search/firecrawl-vs-parallel)
 
@@ -63,39 +60,15 @@ Parallel: 46.5
 
 Firecrawl: 30.4
 
-Artificial Analysis Search Index (independent)
-
-Higher is better
-
-Parallel: 75 (advanced)
-
-Firecrawl: 73
-
 Time per task, Artificial Analysis
 
 Lower is better
 
-Parallel: 25.6s (basic)
+Parallel: 19.7s (basic)
 
-Firecrawl: 60.7s
+Firecrawl: 57.5s
 
-Company news accuracy
-
-Higher is better
-
-Parallel: 93.3% (Basic)
-
-Firecrawl: 95.3%
-
-Latency per search call, company news
-
-Lower is better
-
-Parallel: 1.68s (Basic)
-
-Firecrawl: 510ms
-
-Company search row: Openbenchmarks board last updated October 2, 2026, a fixed GPT-5.6 Sol agent (medium reasoning) calling each search API, 45 locked questions, mean of 3 trials, search results only. Artificial Analysis rows: September 28, 2026 data, a GPT-5.6 Luna (medium) agent with web search and fetch tools over DeepSearchQA, a 200-question BrowseComp subset, and AA-Omniscience, with the search provider as the only variable. Time per task is derived model time plus measured search time. Company news rows: Openbenchmarks, measured October 2, 2026, 300 questions, up to 10 results per query, latency as mean wall time of the search request.
+Company search row: Openbenchmarks board last updated October 2, 2026, a fixed GPT-5.6 Sol agent (medium reasoning) calling each search API, 45 locked questions, mean of 3 trials, search results only. Time per task row: Artificial Analysis runs of August 17, 2026, a GPT-5.6 Luna (medium) agent with web search and fetch tools, with the search provider as the only variable. Time per task is derived model time plus measured search time.
 
 ## Lower list price on fast searches, mixed cost per task
 
@@ -103,11 +76,11 @@ Firecrawl sells monthly credit plans. A search uses 2 credits per 10 results and
 
 Tier for tier, Parallel Turbo and Fast cost less than any Firecrawl plan rate. Parallel Basic and Advanced cost more than Firecrawl from the $99 Standard plan up, where 1,000 searches run $1.98 or less. Plain extraction is close. Parallel Extract is $1 per 1,000 URLs, and a Firecrawl scrape is $0.75 to $3.80 per 1,000 pages by plan.
 
-Measured spend favors Firecrawl on several tasks. Artificial Analysis put total cost per 1,000 tasks, search plus model tokens, at $42.57 for Firecrawl against $59.22 for Parallel advanced and $66.79 for Parallel basic. On Openbenchmarks’ multi-turn board a median task cost $0.282 with Firecrawl against $1.120 with Parallel Basic, at a lower F1\. On its company news board Parallel Fast cost $1.16 per 1,000 correct answers against $5.24.
+Measured spend favors Firecrawl on several tasks. Artificial Analysis put total cost per 1,000 tasks, search plus model tokens, at $42.06 for Firecrawl against $58.60 for Parallel advanced and $65.91 for Parallel basic. On Openbenchmarks’ multi-turn board a median task cost $0.282 with Firecrawl against $1.120 with Parallel Basic, at a lower F1.
 
 Credits also shape the bill. Unused plan credits expire monthly except on annual Scale and Enterprise plans, and top-ups cost $2 to $10 per 1,000 searches depending on plan. Every Parallel processor has a fixed price, so the cost of a run is known before it starts.
 
-Sources: [Parallel pricing](https://parallel.ai/pricing), [Switching from Firecrawl to Parallel](https://parallel.ai/articles/firecrawl-to-parallel-search-api), [Artificial Analysis Search API leaderboard](https://artificialanalysis.ai/agents/search-api), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Openbenchmarks company news search](https://openbenchmarks.com/company-news)
+Sources: [Parallel pricing](https://parallel.ai/pricing), [Switching from Firecrawl to Parallel](https://parallel.ai/articles/firecrawl-to-parallel-search-api), [Artificial Analysis Search API leaderboard](https://artificialanalysis.ai/agents/search-api), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search)
 
 $1 per 1,000 Turbo or Fast searches, with no plan to buy
 
@@ -139,19 +112,11 @@ Total cost per 1,000 Artificial Analysis tasks
 
 Lower is better
 
-Parallel: $59.22 (advanced)
+Parallel: $58.60 (advanced)
 
-Firecrawl: $42.57
+Firecrawl: $42.06
 
-Company news, per 1,000 correct answers
-
-Lower is better
-
-Parallel: $1.16 (Fast)
-
-Firecrawl: $5.24
-
-Firecrawl rows use its Standard plan, $99 a month for 100,000 credits on monthly billing, from the pricing effective September 4, 2026 and checked October 14, 2026\. A search is 2 credits per 10 results and a basic scrape 1 credit per page. Artificial Analysis row: September 28, 2026 data, search list price plus candidate model tokens. Company news row: Openbenchmarks, measured October 2, 2026, list price divided by accuracy. Enterprise pricing differs on both platforms.
+Firecrawl rows use its Standard plan, $99 a month for 100,000 credits on monthly billing, from the pricing effective September 4, 2026 and checked November 3, 2026\. A search is 2 credits per 10 results and a basic scrape 1 credit per page. Artificial Analysis row: runs of August 17, 2026, search list price plus candidate model tokens. Enterprise pricing differs on both platforms.
 
 ## How much does Firecrawl cost?
 
@@ -177,7 +142,7 @@ Parallel charges per request, with no plans or credits. Search costs $1 per 1,00
 
 For a wider field than these two, read [Firecrawl alternatives](/ai/articles/firecrawl-alternatives).
 
-Sources: [firecrawl.dev/pricing](https://www.firecrawl.dev/pricing), [docs.firecrawl.dev/billing](https://docs.firecrawl.dev/billing), [docs.firecrawl.dev/rate-limits](https://docs.firecrawl.dev/rate-limits), [parallel.ai/pricing](https://parallel.ai/pricing), [docs.parallel.ai/getting-started/pricing](https://docs.parallel.ai/getting-started/pricing), checked October 14, 2026.
+Sources: [firecrawl.dev/pricing](https://www.firecrawl.dev/pricing), [docs.firecrawl.dev/billing](https://docs.firecrawl.dev/billing), [docs.firecrawl.dev/rate-limits](https://docs.firecrawl.dev/rate-limits), [parallel.ai/pricing](https://parallel.ai/pricing), [docs.parallel.ai/getting-started/pricing](https://docs.parallel.ai/getting-started/pricing), checked November 3, 2026.
 
 ## Deep research with evidence on every field
 
@@ -244,39 +209,36 @@ Sources: [Parallel pricing](https://parallel.ai/pricing), [Switching from Firecr
 Beyond search and extraction, Firecrawl adds site crawling, browser actions, and specialist indexes. Parallel adds per-field evidence, fixed-price deep research, and entity discovery.
 
 __Core capabilities: Parallel compared with Firecrawl__
-| Feature               | Parallel                                                        | Firecrawl                                            |
-| --------------------- | --------------------------------------------------------------- | ---------------------------------------------------- |
-| Search input          | An objective plus up to five keyword queries (Leads)            | One query string                                     |
-| Search modes          | Turbo, Fast, Basic, Advanced                                    | One mode, with optional page scraping                |
-| Search sources        | Web, with images from a separate Image Search API               | Web, news, and images in one call (Leads)            |
-| Specialist indexes    | Not offered                                                     | Research, developer, and government indexes (Leads)  |
-| Site crawl and map    | No crawl or map endpoint                                        | Crawl and Map endpoints (Leads)                      |
-| Browser actions       | Not offered                                                     | Interact: click, fill forms, run code (Leads)        |
-| Deep research         | Task API with input and output schemas (Leads)                  | Agent in preview, optional JSON Schema               |
-| Citations on research | Research Basis per field, with calibrated confidence (Leads)    | Run trace and page snapshots                         |
-| Monitoring            | Monitor API with event stream and snapshot diffs                | Page, site, or web search monitors with goal judging |
-| Entity discovery      | Entity Search for candidates, FindAll for verified sets (Leads) | No dedicated endpoint documented                     |
-| Source controls       | Domain include and exclude, freshness date, live fetch          | Domain filters, time range, location, safe search    |
+| Feature               | Parallel                                                        | Firecrawl                                                                                        |
+| --------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Search input          | An objective plus up to five keyword queries (Leads)            | One query string                                                                                 |
+| Search modes          | Turbo, Fast, Basic, Advanced                                    | One mode, with optional page scraping                                                            |
+| Search sources        | Web, with images from a separate Image Search API               | Web, news, and images in one call (Leads)                                                        |
+| Specialist indexes    | Not offered                                                     | Research, Developer, and Government & Legal indexes, plus 100+ Alexandria data providers (Leads) |
+| Site crawl and map    | No crawl or map endpoint                                        | Crawl and Map endpoints (Leads)                                                                  |
+| Browser actions       | Not offered                                                     | Interact: click, fill forms, run code (Leads)                                                    |
+| Deep research         | Task API with input and output schemas (Leads)                  | Agent in preview, optional JSON Schema                                                           |
+| Citations on research | Research Basis per field, with calibrated confidence (Leads)    | Run trace and page snapshots                                                                     |
+| Monitoring            | Monitor API with event stream and snapshot diffs                | Page, site, or web search monitors with goal judging                                             |
+| Entity discovery      | Entity Search for candidates, FindAll for verified sets (Leads) | No dedicated endpoint documented                                                                 |
+| Source controls       | Domain include and exclude, freshness date, live fetch          | Domain filters, time range, location, safe search                                                |
 
 Sources: [Parallel Search docs](https://docs.parallel.ai/search/search-quickstart), [Parallel Extract docs](https://docs.parallel.ai/extract/extract-quickstart), [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel FindAll docs](https://docs.parallel.ai/findall-api/findall-quickstart), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [Switching from Firecrawl to Parallel](https://parallel.ai/articles/firecrawl-to-parallel-search-api), [Firecrawl vs. Parallel: scraping platform or search platform](https://parallel.ai/articles/firecrawl-vs-parallel)
 
 ### Performance and scale
 
-Independent boards split by task. Parallel scores higher on multi-step research and takes less time per agent task. Firecrawl answers single-fact lookups more accurately, returns a single call sooner than Parallel Basic, and allows more search requests per minute on its larger plans.
+Independent boards split by task. Parallel scores higher on multi-step research and takes less time per agent task. Firecrawl allows more search requests per minute on its larger plans.
 
 __Performance and scale: Parallel compared with Firecrawl__
-| Feature                                          | Parallel                             | Firecrawl                               |
-| ------------------------------------------------ | ------------------------------------ | --------------------------------------- |
-| Artificial Analysis Search Index, September 2026 | 75 advanced, 73 basic                | 73                                      |
-| Artificial Analysis time per task                | 25.6s basic, 40.7s advanced (Leads)  | 60.7s                                   |
-| Multi-turn company search F1, search only        | 46.5 Basic, 44.2 Advanced (Leads)    | 30.4                                    |
-| Company news accuracy                            | 93.3% Basic, 86.0% Fast              | 95.3% (Leads)                           |
-| Coding-agent tickets, search and fetch           | 77.0% Advanced, 76.0% Basic          | 76.0%                                   |
-| Search latency, measured per call                | 348ms Turbo, 942ms Fast, 1.68s Basic | 510ms                                   |
-| Search rate limit                                | 600 per minute                       | 10 to 10,000 per minute by plan (Leads) |
-| Research rate limit                              | 2,000 Task runs per minute (Leads)   | Agent: 2 to 2,000 per minute by plan    |
+| Feature                                   | Parallel                            | Firecrawl                               |
+| ----------------------------------------- | ----------------------------------- | --------------------------------------- |
+| Artificial Analysis time per task         | 19.7s basic, 36.6s advanced (Leads) | 57.5s                                   |
+| Multi-turn company search F1, search only | 46.5 Basic, 44.2 Advanced (Leads)   | 30.4                                    |
+| Coding-agent tickets, search and fetch    | 77.0% Advanced, 76.0% Basic         | 76.0%                                   |
+| Search rate limit                         | 600 per minute                      | 10 to 10,000 per minute by plan (Leads) |
+| Research rate limit                       | 2,000 Task runs per minute (Leads)  | Agent: 2 to 2,000 per minute by plan    |
 
-Sources: [Artificial Analysis Search API leaderboard](https://artificialanalysis.ai/agents/search-api), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [Openbenchmarks web search for coding agents](https://openbenchmarks.com/web-search-for-coding-agents), [Parallel rate limits](https://docs.parallel.ai/getting-started/rate-limits)
+Sources: [Artificial Analysis Search API leaderboard](https://artificialanalysis.ai/agents/search-api), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Openbenchmarks web search for coding agents](https://openbenchmarks.com/web-search-for-coding-agents), [Parallel rate limits](https://docs.parallel.ai/getting-started/rate-limits)
 
 ### Integrations and ecosystem
 
@@ -327,7 +289,6 @@ Parallel suits agents that answer questions, where multi-step accuracy, evidence
 
 * You need to crawl or map whole sites, or drive a browser through clicks and forms.
 * You want to self-host an open-source core, or need an SDK beyond Python and TypeScript.
-* Your agent mostly runs single-fact lookups, where Firecrawl scored higher on Openbenchmarks’ news board.
 * You need more than 600 search requests per minute and run on a Growth or Scale plan.
 * You want schema-shaped JSON from a page in the same call that scrapes it.
 * You want news, image, research, or government results straight from the search call.
@@ -351,21 +312,21 @@ New accounts earn up to $80 at signup plus $5 in credits every month, which cove
 ## FAQ
 
 * **Is Parallel better than Firecrawl?**  
-For multi-step research, yes. On Openbenchmarks’ multi-turn company search, Parallel Basic scored 46.5 F1 against 30.4, and Artificial Analysis rates Parallel advanced 75 against Firecrawl’s 73\. Firecrawl answered single-fact news lookups more accurately, and it is the stronger tool for crawling sites, browser automation, and self-hosting.
+For multi-step research, yes. On Openbenchmarks’ multi-turn company search, Parallel Basic scored 46.5 F1 against 30.4, and with page fetching 42.3 against 33.2\. Firecrawl is the stronger tool for crawling sites, browser automation, and self-hosting.
 * **Parallel vs. Firecrawl: which is cheaper?**  
-It depends on the tier and the task. Parallel Turbo and Fast cost $1 per 1,000 searches, below every Firecrawl plan rate of $1.50 to $7.60\. Parallel Basic and Advanced cost $5, above Firecrawl from the $99 Standard plan up. Measured per task, Firecrawl often spent less, including $42.57 against $59.22 per 1,000 Artificial Analysis tasks.
+It depends on the tier and the task. Parallel Turbo and Fast cost $1 per 1,000 searches, below every Firecrawl plan rate of $1.50 to $7.60\. Parallel Basic and Advanced cost $5, above Firecrawl from the $99 Standard plan up. Measured per task, Firecrawl often spent less, including $42.06 against $58.60 per 1,000 Artificial Analysis tasks.
 * **How much does Firecrawl cost?**  
 Firecrawl includes 1,000 free credits a month. Paid plans cost $19 a month for 5,000 credits, $99 for 100,000, $399 for 500,000, and $749 for 1,000,000, or 16.7% less billed yearly (20% on Scale). A search uses 2 credits per 10 results and a scraped page 1 credit, so 1,000 searches cost $1.50 to $7.60\. Parallel Search costs $1 per 1,000 on Turbo or Fast and $5 on Basic or Advanced.
 * **Can I migrate from Firecrawl to Parallel?**  
 Yes, for search and extraction. Search maps to Search, Scrape to Extract, and schema-based Extract or Agent jobs to the Task API, with Python and TypeScript SDKs on both sides. Crawl, Map, and Interact have no Parallel equivalent, so keep Firecrawl for site ingestion and browser work and move the search path.
 * **Is Firecrawl faster than Parallel?**  
-Per call, sometimes. On Openbenchmarks’ company news board Firecrawl returned results in 510ms against 1.68s for Parallel Basic, while Parallel Turbo took 348ms. Per task, Parallel took less time: 25.6 seconds for Parallel basic against 60.7 for Firecrawl in Artificial Analysis’s September 2026 data, and 67.6 against 75.0 seconds on Openbenchmarks’ company search.
+Not per task. In Artificial Analysis’s August 2026 runs, Parallel basic took 19.7 seconds per task against 57.5 for Firecrawl. On Openbenchmarks’ company search a median task took 67.6 seconds with Parallel Basic against 75.0 with Firecrawl, and 83.4 with Parallel Advanced.
 * **Where does Firecrawl still win?**  
-Firecrawl crawls and maps whole sites, drives a browser through Interact, and has an open-source core you can self-host. It ships SDKs in nine languages, wide framework coverage, and up to 10,000 search requests a minute on Scale. It answered single-fact news lookups more accurately on Openbenchmarks, and its measured cost per task was lower on several boards.
+Firecrawl crawls and maps whole sites, drives a browser through Interact, and has an open-source core you can self-host. It ships SDKs in nine languages, wide framework coverage, and up to 10,000 search requests a minute on Scale. Its measured cost per task was lower on Artificial Analysis and on Openbenchmarks’ company search.
 * **Does Firecrawl offer EU data residency?**  
 Only by self-hosting the open-source version, as of October 16, 2026\. Its privacy policy says the cloud service sends European users’ data to the US. Parallel’s EU endpoint serves Search (basic mode) and Extract (cache-only). Other APIs aren’t served there. Billing, metrics, and edge logs (no content) go to the US, and Extract sends only URLs to its page cache outside the EU.
 * **How current is this comparison?**  
-Parallel reviewed Firecrawl’s docs and pricing on October 14, 2026\. Artificial Analysis figures come from its September 28 data, and Openbenchmarks figures from its company search and news boards of October 2 and its coding-agent board of September 26\. Parallel’s own benchmark runs do not include Firecrawl. Both platforms ship often, so check the linked sources.
+Parallel reviewed Firecrawl’s docs and pricing on November 3, 2026\. Artificial Analysis cost and time figures come from its August 17 runs, and Openbenchmarks figures from its company search board of October 2 and its coding-agent board of September 26\. Parallel’s own benchmark runs do not include Firecrawl. Both platforms ship often, so check the linked sources.
 
 Trusted by
 

@@ -22,7 +22,6 @@ We recruit likeminded curious, optimistic, and ambitious people who see the work
 | [Member of Technical Staff, Infrastructure Security](https://jobs.ashbyhq.com/parallel/8df69e21-f99c-4867-bdc8-59605259274e) | Engineering          | San Francisco / Palo Alto            | Full time      |
 | [Member of Technical Staff, Model Training](https://jobs.ashbyhq.com/parallel/2738b2a4-978a-49cb-bd6f-68098f3794d6)          | Engineering          | San Francisco / Palo Alto / New York | Full time      |
 | [Member of Technical Staff, Product Security](https://jobs.ashbyhq.com/parallel/2560a1fb-7ac2-4edb-bcf6-c5a3c8780556)        | Engineering          | San Francisco / Palo Alto            | Full time      |
-| [Member of Technical Staff, Retrieval & Indexing](https://jobs.ashbyhq.com/parallel/fc674743-e5ca-494f-a06e-92bc5977423f)    | Engineering          | San Francisco / Palo Alto / New York | Full time      |
 | [Member of Technical Staff, Search Ranking](https://jobs.ashbyhq.com/parallel/bc715d40-ec81-4d8d-8a5a-92db5227679c)          | Engineering          | San Francisco / Palo Alto / New York | Full time      |
 | [Research Scientist](https://jobs.ashbyhq.com/parallel/5fac39a3-a44d-470b-94ed-15b2239d410f)                                 | Engineering          | San Francisco / Palo Alto            | Full time      |
 | [Cloud Partnerships](https://jobs.ashbyhq.com/parallel/fe935559-4209-4736-baa8-6d2478d424ba)                                 | GTM                  | San Francisco / Palo Alto / New York | Full time      |
