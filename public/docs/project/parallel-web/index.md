@@ -4,13 +4,13 @@ Skip to main content Switch to mobile version
 
 Search PyPI Search
 
-* [Docs](https://docs.pypi.org/)
 * [Blog](https://blog.pypi.org/)
+* [Docs](https://docs.pypi.org/)
 * 
 * 
 
-* [Docs](https://docs.pypi.org/)
 * [Blog](https://blog.pypi.org/)
+* [Docs](https://docs.pypi.org/)
 * 
 * 
 
@@ -588,17 +588,17 @@ For a detailed explanation of source distributions (sdists) and built distributi
 
 ### Source distribution (sdist)
 
-|File |Size |Uploaded |Provenance | |
+|File |Size |Uploaded |Provenance |Actions |
 | --- | --- | --- | --- | --- |
-|[parallel\_web-1.3.7.tar.gz](https://files.pythonhosted.org/packages/a6/0d/bce4ca73561d8a676801c5ebbeb36ab4d0f2f93eb78b1fc6f4ab4c08ba52/parallel_web-1.3.7.tar.gz) |163\.7 kB |Oct 23, 2026 |Without provenance |Details |
+|[parallel\_web-1.3.7.tar.gz](https://files.pythonhosted.org/packages/a6/0d/bce4ca73561d8a676801c5ebbeb36ab4d0f2f93eb78b1fc6f4ab4c08ba52/parallel_web-1.3.7.tar.gz) |163\.7 kB |Oct 23, 2026 |Without provenance |Details for parallel\_web-1.3.7.tar.gz |
 
 * * *
 
 ### Built distribution (wheel)
 
-|File |Interpreter |ABI |Platform |[Reset](https://pypi.org/project/parallel-web/) |
+|File |Interpreter |ABI |Platform |Actions [Reset](https://pypi.org/project/parallel-web/) |
 | --- | --- | --- | --- | --- |
-|[parallel\_web-1.3.7-py3-none-any.whl](https://files.pythonhosted.org/packages/43/d5/adbd4732dd3204ed6dcc32241e8da302b45f9824a04b109cab2c9c9ab86f/parallel_web-1.3.7-py3-none-any.whl) 178\.3 kB Oct 23, 2026 Without provenance |Python 3 |none |any |Details |
+|[parallel\_web-1.3.7-py3-none-any.whl](https://files.pythonhosted.org/packages/43/d5/adbd4732dd3204ed6dcc32241e8da302b45f9824a04b109cab2c9c9ab86f/parallel_web-1.3.7-py3-none-any.whl) 178\.3 kB Oct 23, 2026 Without provenance |Python 3 |none |any |Details for parallel\_web-1.3.7-py3-none-any.whl |
 
 * * *
 
@@ -610,13 +610,10 @@ For a detailed explanation of source distributions (sdists) and built distributi
 | --- | --- |
 |Size |163\.7 kB |
 |Tags |Source |
-|SHA-256 checksum  
-[How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`b45076f4552f1aa8c60f7270df2a0b7f3f5f6b4bb2709d6eddeb49fe25d43405` |
-|BLAKE2b-256 checksum  
-[How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`a60dbce4ca73561d8a676801c5ebbeb36ab4d0f2f93eb78b1fc6f4ab4c08ba52` |
+|SHA-256 checksum [How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`b45076f4552f1aa8c60f7270df2a0b7f3f5f6b4bb2709d6eddeb49fe25d43405 Copy SHA-256 checksum` |
+|BLAKE2b-256 checksum [How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`a60dbce4ca73561d8a676801c5ebbeb36ab4d0f2f93eb78b1fc6f4ab4c08ba52 Copy BLAKE2b-256 checksum` |
 |Upload date |Oct 23, 2026 |
-|Uploaded using Trusted Publishing?  
-[What is trusted publishing?](https://docs.pypi.org/trusted-publishers/) |No |
+|Uploaded using Trusted Publishing? [What is trusted publishing?](https://docs.pypi.org/trusted-publishers/) |No |
 |Uploaded via |`twine/5.1.1 CPython/3.12.9` |
 
 ## Release files / parallel\_web-1.3.7-py3-none-any.whl
@@ -625,13 +622,10 @@ For a detailed explanation of source distributions (sdists) and built distributi
 | --- | --- |
 |Size |178\.3 kB |
 |Tags |Python 3 |
-|SHA-256 checksum  
-[How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`a276c149d69673cb5ce101f025f74e088308053fb20e7ee9dcd35d5fb3441d35` |
-|BLAKE2b-256 checksum  
-[How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`43d5adbd4732dd3204ed6dcc32241e8da302b45f9824a04b109cab2c9c9ab86f` |
+|SHA-256 checksum [How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`a276c149d69673cb5ce101f025f74e088308053fb20e7ee9dcd35d5fb3441d35 Copy SHA-256 checksum` |
+|BLAKE2b-256 checksum [How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`43d5adbd4732dd3204ed6dcc32241e8da302b45f9824a04b109cab2c9c9ab86f Copy BLAKE2b-256 checksum` |
 |Upload date |Oct 23, 2026 |
-|Uploaded using Trusted Publishing?  
-[What is trusted publishing?](https://docs.pypi.org/trusted-publishers/) |No |
+|Uploaded using Trusted Publishing? [What is trusted publishing?](https://docs.pypi.org/trusted-publishers/) |No |
 |Uploaded via |`twine/5.1.1 CPython/3.12.9` |
 
 ## Security for parallel-web 1.3.7
@@ -642,7 +636,7 @@ For a detailed explanation of source distributions (sdists) and built distributi
 
 **Provenance** describes where a file came from. On PyPI, provenance is shared via **attestations** , which provide a verifiable record of the build or publishing details. [View details, limitations and caveats.](https://docs.pypi.org/using-pypi/package-security/provenance/)
 
-### No provenance found
+#### No provenance found
 
 None of the files in this release were uploaded with provenance metadata.
 
@@ -656,123 +650,123 @@ To learn more about protecting yourself from malicious actors, visit our [packag
 
 This release
 
-[1\.3.7](https://pypi.org/project/parallel-web/1.3.7/) This release
+### [1\.3.7](https://pypi.org/project/parallel-web/1.3.7/) This release
 
 Oct 23, 2026 [2 release files](https://pypi.org/project/parallel-web/1.3.7/) [No provenance](https://pypi.org/project/parallel-web/1.3.7/)
 
-[1\.3.6](https://pypi.org/project/parallel-web/1.3.6/)
+### [1\.3.6](https://pypi.org/project/parallel-web/1.3.6/)
 
 Oct 21, 2026 [2 release files](https://pypi.org/project/parallel-web/1.3.6/) [No provenance](https://pypi.org/project/parallel-web/1.3.6/)
 
-[1\.3.5](https://pypi.org/project/parallel-web/1.3.5/)
+### [1\.3.5](https://pypi.org/project/parallel-web/1.3.5/)
 
 Sep 29, 2026 [2 release files](https://pypi.org/project/parallel-web/1.3.5/) [No provenance](https://pypi.org/project/parallel-web/1.3.5/)
 
-[1\.3.4](https://pypi.org/project/parallel-web/1.3.4/)
+### [1\.3.4](https://pypi.org/project/parallel-web/1.3.4/)
 
 Sep 25, 2026 [2 release files](https://pypi.org/project/parallel-web/1.3.4/) [No provenance](https://pypi.org/project/parallel-web/1.3.4/)
 
-[1\.3.3](https://pypi.org/project/parallel-web/1.3.3/)
+### [1\.3.3](https://pypi.org/project/parallel-web/1.3.3/)
 
 Sep 1, 2026 [2 release files](https://pypi.org/project/parallel-web/1.3.3/) [No provenance](https://pypi.org/project/parallel-web/1.3.3/)
 
-[1\.3.2](https://pypi.org/project/parallel-web/1.3.2/)
+### [1\.3.2](https://pypi.org/project/parallel-web/1.3.2/)
 
 Aug 27, 2026 [2 release files](https://pypi.org/project/parallel-web/1.3.2/) [No provenance](https://pypi.org/project/parallel-web/1.3.2/)
 
-[1\.3.1](https://pypi.org/project/parallel-web/1.3.1/)
+### [1\.3.1](https://pypi.org/project/parallel-web/1.3.1/)
 
 Aug 27, 2026 [2 release files](https://pypi.org/project/parallel-web/1.3.1/) [No provenance](https://pypi.org/project/parallel-web/1.3.1/)
 
-[1\.3.0](https://pypi.org/project/parallel-web/1.3.0/)
+### [1\.3.0](https://pypi.org/project/parallel-web/1.3.0/)
 
 Aug 12, 2026 [2 release files](https://pypi.org/project/parallel-web/1.3.0/) [No provenance](https://pypi.org/project/parallel-web/1.3.0/)
 
-[1\.2.0](https://pypi.org/project/parallel-web/1.2.0/)
+### [1\.2.0](https://pypi.org/project/parallel-web/1.2.0/)
 
 Aug 10, 2026 [2 release files](https://pypi.org/project/parallel-web/1.2.0/) [No provenance](https://pypi.org/project/parallel-web/1.2.0/)
 
-[1\.1.0](https://pypi.org/project/parallel-web/1.1.0/)
+### [1\.1.0](https://pypi.org/project/parallel-web/1.1.0/)
 
 Jun 8, 2026 [2 release files](https://pypi.org/project/parallel-web/1.1.0/) [No provenance](https://pypi.org/project/parallel-web/1.1.0/)
 
-[1\.0.1](https://pypi.org/project/parallel-web/1.0.1/)
+### [1\.0.1](https://pypi.org/project/parallel-web/1.0.1/)
 
 Jun 3, 2026 [2 release files](https://pypi.org/project/parallel-web/1.0.1/) [No provenance](https://pypi.org/project/parallel-web/1.0.1/)
 
-[1\.0.0](https://pypi.org/project/parallel-web/1.0.0/)
+### [1\.0.0](https://pypi.org/project/parallel-web/1.0.0/)
 
 Jun 2, 2026 [2 release files](https://pypi.org/project/parallel-web/1.0.0/) [No provenance](https://pypi.org/project/parallel-web/1.0.0/)
 
-[0\.6.0](https://pypi.org/project/parallel-web/0.6.0/)
+### [0\.6.0](https://pypi.org/project/parallel-web/0.6.0/)
 
 May 6, 2026 [2 release files](https://pypi.org/project/parallel-web/0.6.0/) [No provenance](https://pypi.org/project/parallel-web/0.6.0/)
 
-[0\.5.1](https://pypi.org/project/parallel-web/0.5.1/)
+### [0\.5.1](https://pypi.org/project/parallel-web/0.5.1/)
 
 Apr 22, 2026 [2 release files](https://pypi.org/project/parallel-web/0.5.1/) [No provenance](https://pypi.org/project/parallel-web/0.5.1/)
 
-[0\.5.0](https://pypi.org/project/parallel-web/0.5.0/)
+### [0\.5.0](https://pypi.org/project/parallel-web/0.5.0/)
 
 Apr 21, 2026 [2 release files](https://pypi.org/project/parallel-web/0.5.0/) [No provenance](https://pypi.org/project/parallel-web/0.5.0/)
 
-[0\.4.2](https://pypi.org/project/parallel-web/0.4.2/)
+### [0\.4.2](https://pypi.org/project/parallel-web/0.4.2/)
 
 Mar 9, 2026 [2 release files](https://pypi.org/project/parallel-web/0.4.2/) [No provenance](https://pypi.org/project/parallel-web/0.4.2/)
 
-[0\.4.1](https://pypi.org/project/parallel-web/0.4.1/)
+### [0\.4.1](https://pypi.org/project/parallel-web/0.4.1/)
 
 Jan 29, 2026 [2 release files](https://pypi.org/project/parallel-web/0.4.1/) [No provenance](https://pypi.org/project/parallel-web/0.4.1/)
 
-[0\.4.0](https://pypi.org/project/parallel-web/0.4.0/)
+### [0\.4.0](https://pypi.org/project/parallel-web/0.4.0/)
 
 Jan 13, 2026 [2 release files](https://pypi.org/project/parallel-web/0.4.0/) [No provenance](https://pypi.org/project/parallel-web/0.4.0/)
 
-[0\.3.4](https://pypi.org/project/parallel-web/0.3.4/)
+### [0\.3.4](https://pypi.org/project/parallel-web/0.3.4/)
 
 Nov 13, 2025 [2 release files](https://pypi.org/project/parallel-web/0.3.4/) [No provenance](https://pypi.org/project/parallel-web/0.3.4/)
 
-[0\.3.3](https://pypi.org/project/parallel-web/0.3.3/)
+### [0\.3.3](https://pypi.org/project/parallel-web/0.3.3/)
 
 Nov 6, 2025 [2 release files](https://pypi.org/project/parallel-web/0.3.3/) [No provenance](https://pypi.org/project/parallel-web/0.3.3/)
 
-[0\.3.2](https://pypi.org/project/parallel-web/0.3.2/)
+### [0\.3.2](https://pypi.org/project/parallel-web/0.3.2/)
 
 Oct 22, 2025 [2 release files](https://pypi.org/project/parallel-web/0.3.2/) [No provenance](https://pypi.org/project/parallel-web/0.3.2/)
 
-[0\.3.1](https://pypi.org/project/parallel-web/0.3.1/)
+### [0\.3.1](https://pypi.org/project/parallel-web/0.3.1/)
 
 Oct 21, 2025 [2 release files](https://pypi.org/project/parallel-web/0.3.1/) [No provenance](https://pypi.org/project/parallel-web/0.3.1/)
 
-[0\.3.0](https://pypi.org/project/parallel-web/0.3.0/)
+### [0\.3.0](https://pypi.org/project/parallel-web/0.3.0/)
 
 Oct 21, 2025 [2 release files](https://pypi.org/project/parallel-web/0.3.0/) [No provenance](https://pypi.org/project/parallel-web/0.3.0/)
 
-[0\.2.2](https://pypi.org/project/parallel-web/0.2.2/)
+### [0\.2.2](https://pypi.org/project/parallel-web/0.2.2/)
 
 Oct 16, 2025 [2 release files](https://pypi.org/project/parallel-web/0.2.2/) [No provenance](https://pypi.org/project/parallel-web/0.2.2/)
 
-[0\.2.1](https://pypi.org/project/parallel-web/0.2.1/)
+### [0\.2.1](https://pypi.org/project/parallel-web/0.2.1/)
 
 Sep 15, 2025 [2 release files](https://pypi.org/project/parallel-web/0.2.1/) [No provenance](https://pypi.org/project/parallel-web/0.2.1/)
 
-[0\.2.0](https://pypi.org/project/parallel-web/0.2.0/)
+### [0\.2.0](https://pypi.org/project/parallel-web/0.2.0/)
 
 Sep 1, 2025 [2 release files](https://pypi.org/project/parallel-web/0.2.0/) [No provenance](https://pypi.org/project/parallel-web/0.2.0/)
 
-[0\.1.3](https://pypi.org/project/parallel-web/0.1.3/)
+### [0\.1.3](https://pypi.org/project/parallel-web/0.1.3/)
 
 Aug 9, 2025 [2 release files](https://pypi.org/project/parallel-web/0.1.3/) [No provenance](https://pypi.org/project/parallel-web/0.1.3/)
 
-[0\.1.2](https://pypi.org/project/parallel-web/0.1.2/)
+### [0\.1.2](https://pypi.org/project/parallel-web/0.1.2/)
 
 Jun 26, 2025 [2 release files](https://pypi.org/project/parallel-web/0.1.2/) [No provenance](https://pypi.org/project/parallel-web/0.1.2/)
 
-[0\.1.1](https://pypi.org/project/parallel-web/0.1.1/)
+### [0\.1.1](https://pypi.org/project/parallel-web/0.1.1/)
 
 Apr 25, 2025 [2 release files](https://pypi.org/project/parallel-web/0.1.1/) [No provenance](https://pypi.org/project/parallel-web/0.1.1/)
 
-[0\.1.0](https://pypi.org/project/parallel-web/0.1.0/)
+### [0\.1.0](https://pypi.org/project/parallel-web/0.1.0/)
 
 Apr 24, 2025 [2 release files](https://pypi.org/project/parallel-web/0.1.0/) [No provenance](https://pypi.org/project/parallel-web/0.1.0/)
 
@@ -789,4 +783,4 @@ Switch to desktop version
 * "PyPI", "Python Package Index", and the blocks logos are registered [trademarks](https://pypi.org/trademarks/) of the [Python Software Foundation](https://www.python.org/psf-landing) .
 
 * [Site map](https://pypi.org/sitemap/)
-* Deployed from [`68dc61b`](https://github.com/pypi/warehouse/commit/68dc61bfbf31633506f3f03c3a93b34220857cfc "External link")
+* Deployed from [`c0b5873`](https://github.com/pypi/warehouse/commit/c0b58730cbd4a6907ce1c9c6a6af369a9986b8fd "External link")
