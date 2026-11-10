@@ -39,7 +39,7 @@ Includes
 * Auto-reload and spend limits
 * Up to $250 in startup credits
 * SOC 2 Type II
-* [Discord support](https://discord.gg/TGKzuAjm56)
+* [Discord support](https://discord.gg/parallelwebsystems)
 * [Specialized Data Connectors](/data-connectors)
 
 [See API pricing](https://docs.parallel.ai/getting-started/pricing)

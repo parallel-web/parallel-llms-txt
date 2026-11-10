@@ -139,17 +139,17 @@ Agents built on Parallel already research case law across jurisdictions, answer 
 >
 > [Read the Harvey case study](https://parallel.ai/blog/case-study-harvey)
 
-### Finch
+### Eve
 
-![How Finch is scaling plaintiff law with AI agents that research like associates](https://cdn.sanity.io/images/5hzduz3y/production/fab7555a64dd1351fb12e59dc03ab659936a1726-3600x2025.jpg)
+![How Eve brings trusted research directly into plaintiff casework, powered by Parallel](https://cdn.sanity.io/images/5hzduz3y/production/d264e665f6766eb58ac10ccd3e2ca369b8908b80-2048x1152.png)
 
-> **90% lower cost per task**
+> **Research for 1,200+ law firms every month**
 >
-> Finch replaced a three-step search, extract and validate pipeline with a single Task API call, with zero 5xx errors or timeouts across three-plus months in production.
+> Parallel's Search and Extract APIs power every web search in Eve Research, pulling cited, current information from firm-approved legal, medical, regulatory, and benefits sources directly into plaintiff casework.
 >
-> “The Task API gives us structured outputs with citations in a single call, which is exactly what production legal AI needs.” Ben Weems, CTO, Finch
+> “Accuracy is paramount. The stakes are high when someone with serious medical issues and medical debt needs help. Whether it’s medical research or guidelines from the VA or the Social Security Administration, attorneys need accurate information from sources they trust, with citations as proof.” Mauricio Wulfovich, Staff Machine Learning Engineer, Eve
 >
-> [Read the Finch case study](https://parallel.ai/blog/case-study-finch)
+> [Read the Eve case study](https://parallel.ai/blog/case-study-eve)
 
 ### GC AI
 
@@ -162,6 +162,18 @@ Agents built on Parallel already research case law across jurisdictions, answer 
 > “Research has always taken a lot of time. Traditional legal research tools can be thorough, but you can’t give them a goal and have them come back with an answer. GC AI applies a lawyer’s research methodology, with Parallel’s Search API finding the sources, so you can get to an answer and advise the business.” Christine Yan, R&D Attorney, GC AI
 >
 > [Read the GC AI case study](https://parallel.ai/blog/case-study-gc-ai)
+
+### Finch
+
+![How Finch is scaling plaintiff law with AI agents that research like associates](https://cdn.sanity.io/images/5hzduz3y/production/fab7555a64dd1351fb12e59dc03ab659936a1726-3600x2025.jpg)
+
+> **90% lower cost per task**
+>
+> Finch replaced a three-step search, extract and validate pipeline with a single Task API call, with zero 5xx errors or timeouts across three-plus months in production.
+>
+> “The Task API gives us structured outputs with citations in a single call, which is exactly what production legal AI needs.” Ben Weems, CTO, Finch
+>
+> [Read the Finch case study](https://parallel.ai/blog/case-study-finch)
 
 ## Build your first jurisdiction survey
 
