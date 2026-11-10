@@ -1,6 +1,4 @@
-### \[Parallel Decisions is now on OpenRouter\](https://parallel.ai/blog/decisions-openrouter)
-
-Give your agents answers grounded in the live web with your existing OpenRouter API key.
+### \[Parallel for Legal: Setting the new standard for Legal AI Search\](https://parallel.ai/blog/parallel-for-legal)
 
 Tags:[Product](/blog?tag=product)
 

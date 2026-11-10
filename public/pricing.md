@@ -4,7 +4,7 @@
 
 From one agent to millions of requests, on the same API
 
-## Personal
+## Launch
 
 Free
 
@@ -22,7 +22,7 @@ Includes
 * Works in Cursor, Claude, and more
 * Variable limits, enough for personal use
 
-## Developer
+## Build
 
 Pay-as-you-go
 
@@ -46,15 +46,17 @@ Includes
 
 Once credits run out, you pay published API rates for what you use.
 
-## Business
+## Scale
 
 $1,000/mo
+
+Or $10,000 / year charged upfront, for $12,000 in credits over 12 months
 
 $1,000 in credits each month at standard API rates. Cancel anytime.
 
 [Upgrade](https://platform.parallel.ai/settings?tab=billing&change%5Fplan=1)
 
-Everything in Developer, plus
+Everything in Build, plus
 
 * Search and Extract: 1,500/min
 * Zero data retention
@@ -70,7 +72,7 @@ Custom pricing, rate limits, and contract terms.
 
 [Contact sales](https://contact.parallel.ai/)
 
-Everything in Business, plus
+Everything in Scale, plus
 
 * SSO (SAML)
 * Custom rate limits
@@ -98,32 +100,34 @@ Trusted by
 ## Compare plans
 
 __Features included with each Parallel plan__
-| Feature                 | Personal[Start for free](https://platform.parallel.ai/) | Developer[Start building](https://platform.parallel.ai/) | Business[Upgrade](https://platform.parallel.ai/settings?tab=billing&change%5Fplan=1) | Enterprise[Contact sales](https://contact.parallel.ai/) |
-| ----------------------- | ------------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------- |
-| Rate limits             |                                                         |                                                          |                                                                                      |                                                         |
-| Search API              | Variable limits, enough for personal use                | 600/min                                                  | 1,500/min (Excluding Turbo)                                                          | Custom                                                  |
-| Extract API             | Variable limits, enough for personal use                | 600/min                                                  | 1,500/min                                                                            | Custom                                                  |
-| Decisions API           | \-                                                      | 600/min                                                  | 600/min                                                                              | Custom                                                  |
-| Task API                | \-                                                      | 2,000/min                                                | 2,000/min                                                                            | Custom                                                  |
-| Pricing                 |                                                         |                                                          |                                                                                      |                                                         |
-| Access                  | Search MCP                                              | All APIs                                                 | All APIs                                                                             | All APIs                                                |
-| Billing                 | None                                                    | Card                                                     | Card, monthly or annual upfront                                                      | Invoice or marketplace                                  |
-| Included usage          | \-                                                      | Up to $80 at signup, $5 per month                        | $1,000 per month, no rollover, or $10,000 per year over 12 months                    | Per contract                                            |
-| Security and compliance |                                                         |                                                          |                                                                                      |                                                         |
-| SOC 2 Type II           | Included                                                | Included                                                 | Included                                                                             | Included                                                |
-| Zero data retention     | \-                                                      | \-                                                       | Included, Hybrid by signed agreement                                                 | Custom                                                  |
-| SSO (SAML)              | \-                                                      | \-                                                       | \-                                                                                   | Included                                                |
-| DPA                     | \-                                                      | \-                                                       | \-                                                                                   | Custom                                                  |
-| MSA                     | \-                                                      | \-                                                       | \-                                                                                   | Custom                                                  |
-| HIPAA BAA               | \-                                                      | \-                                                       | \-                                                                                   | Included                                                |
-| Uptime SLA              | \-                                                      | \-                                                       | \-                                                                                   | Included                                                |
-| Support                 |                                                         |                                                          |                                                                                      |                                                         |
-| Support                 | Docs                                                    | Docs                                                     | Email                                                                                | Forward-deployed engineer, Dedicated Slack Channel      |
-| Early access            | \-                                                      | \-                                                       | \-                                                                                   | Included                                                |
+| Feature                 | Launch[Start for free](https://platform.parallel.ai/) | Build[Start building](https://platform.parallel.ai/) | Scale[Upgrade](https://platform.parallel.ai/settings?tab=billing&change%5Fplan=1) | Enterprise[Contact sales](https://contact.parallel.ai/) |
+| ----------------------- | ----------------------------------------------------- | ---------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Rate limits             |                                                       |                                                      |                                                                                   |                                                         |
+| Search API              | Variable limits, enough for personal use              | 600/min                                              | 1,500/min (Excluding Turbo)                                                       | Custom                                                  |
+| Extract API             | Variable limits, enough for personal use              | 600/min                                              | 1,500/min                                                                         | Custom                                                  |
+| Decisions API           | \-                                                    | 600/min                                              | 600/min                                                                           | Custom                                                  |
+| Task API                | \-                                                    | 2,000/min                                            | 2,000/min                                                                         | Custom                                                  |
+| Pricing                 |                                                       |                                                      |                                                                                   |                                                         |
+| Access                  | Search MCP                                            | All APIs                                             | All APIs                                                                          | All APIs                                                |
+| Billing                 | None                                                  | Card                                                 | Card, monthly or annual upfront                                                   | Invoice or marketplace                                  |
+| Included usage          | \-                                                    | Up to $80 at signup, $5 per month                    | $1,000 per month, no rollover, or $12,000 per year over 12 months                 | Per contract                                            |
+| Security and compliance |                                                       |                                                      |                                                                                   |                                                         |
+| SOC 2 Type II           | Included                                              | Included                                             | Included                                                                          | Included                                                |
+| Zero data retention     | \-                                                    | \-                                                   | Included, Hybrid by signed agreement                                              | Custom                                                  |
+| SSO (SAML)              | \-                                                    | \-                                                   | \-                                                                                | Included                                                |
+| DPA                     | \-                                                    | \-                                                   | \-                                                                                | Custom                                                  |
+| MSA                     | \-                                                    | \-                                                   | \-                                                                                | Custom                                                  |
+| HIPAA BAA               | \-                                                    | \-                                                   | \-                                                                                | Included                                                |
+| Uptime SLA              | \-                                                    | \-                                                   | \-                                                                                | Included                                                |
+| Support                 |                                                       |                                                      |                                                                                   |                                                         |
+| Support                 | Docs                                                  | Docs                                                 | Email                                                                             | Forward-deployed engineer, Dedicated Slack Channel      |
+| Early access            | \-                                                    | \-                                                   | \-                                                                                | Included                                                |
 
-Business monthly credits expire at the end of each paid month. Annual credits are drawn down over 12 months. Enterprise items are set per contract.
+Scale monthly credits expire at the end of each paid month. Annual credits are drawn down over 12 months. Enterprise items are set per contract.
 
-Zero data retention is included on Business as Hybrid ZDR. It turns on once a signed agreement is in place. Once active, synchronous APIs retain no content and asynchronous APIs retain it for up to 8 days.
+Zero data retention is included on Scale as Hybrid ZDR. It turns on once a signed agreement is in place. Once active, synchronous APIs retain no content and asynchronous APIs retain it for up to 8 days.
+
+All self-serve plans are governed by our standard [Customer Terms & Conditions](/customer-terms).
 
 ## API pricing
 
@@ -190,29 +194,29 @@ Each API is priced by its own unit of work:
   * Decisions API: per 1,000 requests, with up to 100 questions per request.
   * FindAll API: a fixed fee plus a charge per match.  
 Per-API and per-processor rates are in the [pricing docs](https://docs.parallel.ai/getting-started/pricing). Prices are before credits and tax.
-* **What is the difference between Developer and Business?**  
-Developer has no subscription fee: you pay published API rates for what you use, billed to a card.  
-Business is a credit plan. Monthly is $1,000 per month before tax for $1,000 in credits, drawn down over the month. Annual is $10,000 per year, charged upfront, for $10,000 in credits drawn down over 12 months. Credits are spent at standard API rates, so the plan price is not a fee on top of usage. Usage beyond your credits draws on your prepaid funds.  
-Business also raises Search and Extract limits to 1,500 requests per minute, excluding Turbo, adds email support, and includes zero data retention as Hybrid ZDR.  
-You can cancel monthly Business anytime. The paid month stays covered, and there are no prorated refunds.
-* **Do Business credits roll over?**  
+* **What is the difference between Build and Scale?**  
+Build has no subscription fee: you pay published API rates for what you use, billed to a card.  
+Scale is a credit plan. Monthly is $1,000 per month before tax for $1,000 in credits, drawn down over the month. Annual is $10,000 per year, charged upfront, for $12,000 in credits drawn down over 12 months. Credits are spent at standard API rates, so the plan price is not a fee on top of usage. Usage beyond your credits draws on your prepaid funds.  
+Scale also raises Search and Extract limits to 1,500 requests per minute, excluding Turbo, adds email support, and includes zero data retention as Hybrid ZDR.  
+You can cancel monthly Scale anytime. The paid month stays covered, and there are no prorated refunds.
+* **Do Scale credits roll over?**  
 Monthly credits don’t roll over. Unused monthly credits expire at the end of each paid month. Annual credits are drawn down over the 12-month term. Enterprise terms are set per contract.
 * **What is Hybrid ZDR?**  
-Hybrid zero data retention is included in the Business plan. It turns on once you sign an agreement and Parallel enables it on your account. Enterprise retention terms are set per contract.
+Hybrid zero data retention is included in the Scale plan. It turns on once you sign an agreement and Parallel enables it on your account. Enterprise retention terms are set per contract.
 * **What are the rate limits?**
 
-  * Search API and Extract API: 600 requests per minute on Developer, 1,500 per minute on Business. The Business limit excludes Turbo mode Search requests.
-  * Decisions API: 600 requests per minute on Developer and Business.
-  * Task API: 2,000 requests per minute on Developer and Business.
+  * Search API and Extract API: 600 requests per minute on Build, 1,500 per minute on Scale. The Scale limit excludes Turbo mode Search requests.
+  * Decisions API: 600 requests per minute on Build and Scale.
+  * Task API: 2,000 requests per minute on Build and Scale.
   * Enterprise: custom limits.
-  * Personal: variable limits, enough for personal use.
+  * Launch: variable limits, enough for personal use.
 * **What does Enterprise include?**  
-Everything in Business, plus SSO (SAML), custom rate limits and data retention, a custom MSA and DPA, a HIPAA BAA, invoicing and marketplace billing, an uptime SLA, and early access to new products. Support includes a dedicated forward-deployed engineer and a Dedicated Slack Channel.  
+Everything in Scale, plus SSO (SAML), custom rate limits and data retention, a custom MSA and DPA, a HIPAA BAA, invoicing and marketplace billing, an uptime SLA, and early access to new products. Support includes a dedicated forward-deployed engineer and a Dedicated Slack Channel.  
 [Contact sales](https://contact.parallel.ai/) to set up an agreement.
 * **Do startups get free credits?**  
 Qualified startups can receive up to $250 in free credits from Parallel.
 * **Is Parallel secure and compliant?**  
-Developer, Business, and Enterprise plans are covered by Parallel’s SOC 2 Type II certification. Personal isn’t an account plan and isn’t covered. Zero data retention isn’t on by default: Business includes it as Hybrid ZDR by signed agreement, and Enterprise adds custom retention terms, SSO, and a HIPAA BAA. See our [terms of service](/customer-terms) for more information.
+Build, Scale, and Enterprise plans are covered by Parallel’s SOC 2 Type II certification. Launch isn’t an account plan and isn’t covered. Zero data retention isn’t on by default: Scale includes it as Hybrid ZDR by signed agreement, and Enterprise adds custom retention terms, SSO, and a HIPAA BAA. See our [terms of service](/customer-terms) for more information.
 
 ## Startup Grants
 
