@@ -1,5 +1,7 @@
 ## All Articles
 
+Guides, comparisons, and definitions for developers building AI agents that use the web. These articles explain how web search, extraction, and research APIs work, what they cost, and how the options compare.
+
 ### Comparison
 
 * [Cloudflare Clef vs. Parallel Decisions: edge decisions or web-grounded answers](https://parallel.ai/articles/cloudflare-clef-vs-parallel)

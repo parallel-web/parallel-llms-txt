@@ -8,7 +8,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 
 - [Parallel](https://llm.parallel.ai/about.md): Parallel is building the open web for AI. Declarative infrastructure, transparent attribution, and open markets engineered for the web&#x27;s next billion users.
 - [Acceptable Use Policy for Parallel Services](https://llm.parallel.ai/acceptable-use-policy.md): The acceptable use policy for Parallel Web Systems&#x27; products and APIs: what uses are permitted and prohibited when accessing our services.
-- [Articles - Enterprise Deep Research API Insights](https://llm.parallel.ai/articles.md): Learn about enterprise deep research APIs, structured data extraction, and AI agent integration. Technical insights on building state-of-the-art web search for ChatGPT and Claude.
+- [Web Search API Articles: Guides and Comparisons](https://llm.parallel.ai/articles.md): Guides, comparisons, and definitions for developers building AI agents that use the web. Learn how search, extraction, and research APIs work and compare.
 - [AI Agent Ideas: 13 Builds Sorted by Capability Tier](https://llm.parallel.ai/articles/13-ai-agent-ideas-organized-by-what-they-actually-need-to-work.md): Explore 13 AI agent ideas sorted by what they need to work: real-time search, deep research, continuous monitoring, or structured data extraction.
 - [Add Free Web Search to Your Coding Agent (CLI and MCP)](https://llm.parallel.ai/articles/add-free-web-search-to-coding-agent.md): Add free web search to Claude Code, Cursor, Codex, or OpenClaw in 10 minutes: a keyless MCP in two, then the Parallel CLI and skills, every command tested.
 - [AI Agent Architecture for Web Access: Patterns, Components &amp; Build Guide](https://llm.parallel.ai/articles/ai-agent-architecture-patterns-components-and-how-to-build-for-web-access.md): Learn AI agent architecture patterns, core components, and how to build production-ready agents with web access, retrieval, memory, tools, and guardrails.
@@ -305,6 +305,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [PWS-Decisions: a benchmark for web-grounded decisions](https://llm.parallel.ai/blog/pws-decisions-benchmark.md): PWS-Decisions tests decision APIs on 300 questions whose answers depend on current web facts. See how Parallel Decisions compares on accuracy, latency and cost.
 - [Introducing research models with Basis for the Parallel Chat API](https://llm.parallel.ai/blog/research-models-chat.md): Parallel Chat API now offers research models with Basis verification—citations, reasoning, and calibrated confidence scores. OpenAI-compatible.
 - [Introducing the Parallel Responses API](https://llm.parallel.ai/blog/responses-api.md): An OpenAI-compatible endpoint for agentic web research: from fact retrieval to deep research reports, grounded in the live web, with answers in seconds.
+- [Introducing the Scale plan](https://llm.parallel.ai/blog/scale-plan.md): Scale gives teams 1,500 requests/min on Search and Extract and ZDR for $1,000 a month, all of it spent as API credits.
 - [Introducing the Parallel Search API](https://llm.parallel.ai/blog/search-api-alpha.md): The Parallel Search API is available in alpha, collapsing search, scrape, and re-rank pipelines into one fast call returning LLM-ready, high-density results.
 - [A state-of-the-art search API purpose-built for agents](https://llm.parallel.ai/blog/search-api-benchmark.md): The Parallel Search MCP Server delivers state-of-the-art web search for AI agents, up to 50% cheaper than LLM-native search: a new price-performance frontier.
 - [Search Capability Leaderboard: 24 models ranked on web search](https://llm.parallel.ai/blog/search-leaderboard.md): Parallel&#x27;s Search Capability Leaderboard compares 24 open and closed models on answer accuracy and cost when using web search to help you pick a model.
@@ -422,7 +423,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Sign In - Parallel](https://llm.parallel.ai/docs/index.md)
 - [parallel-web - npm](https://llm.parallel.ai/docs/package/parallel-web.md)
 - [parallel-web · PyPI](https://llm.parallel.ai/docs/project/parallel-web/index.md)
-- [public-openapi](https://llm.parallel.ai/docs/public-openapi.json.md)
+- [OpenAPI Spec](https://llm.parallel.ai/docs/public-openapi.json.md)
 
 ## SDKs
 

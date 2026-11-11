@@ -16,7 +16,7 @@ We recruit likeminded curious, optimistic, and ambitious people who see the work
 | [Design Engineer](https://jobs.ashbyhq.com/parallel/18658250-041d-415d-8111-8cc5b353ee56)                                    | Design               | San Francisco / Palo Alto            | Full time      |
 | [Product Designer](https://jobs.ashbyhq.com/parallel/0231ced2-2ca8-4fb4-a105-8f81c6feab6d)                                   | Design               | San Francisco / Palo Alto            | Full time      |
 | [Deployed Engineer](https://jobs.ashbyhq.com/parallel/bb00e740-3647-4ce8-b6e7-3dcf611f66b6)                                  | Engineering          | San Francisco / Palo Alto / New York | Full time      |
-| [Early Career Research Engineer](https://jobs.ashbyhq.com/parallel/056e41f8-7d5f-41c1-99fd-bf002dc072fd)                     | Engineering          | Palo Alto / New York                 | Full time      |
+| [Early Career Research Engineer](https://jobs.ashbyhq.com/parallel/056e41f8-7d5f-41c1-99fd-bf002dc072fd)                     | Engineering          | San Francisco / New York / Palo Alto | Full time      |
 | [Member of Technical Staff, Back-end & API](https://jobs.ashbyhq.com/parallel/144b4be3-f46e-4e3a-af46-8ec6afc3a60f)          | Engineering          | San Francisco / Palo Alto / New York | Full time      |
 | [Member of Technical Staff, Data Engineering](https://jobs.ashbyhq.com/parallel/23a9fd93-9c62-4793-99ca-f7b3efa11f02)        | Engineering          | San Francisco / Palo Alto / New York | Full time      |
 | [Member of Technical Staff, Infrastructure Security](https://jobs.ashbyhq.com/parallel/8df69e21-f99c-4867-bdc8-59605259274e) | Engineering          | San Francisco / Palo Alto            | Full time      |
@@ -45,7 +45,6 @@ We recruit likeminded curious, optimistic, and ambitious people who see the work
 | [Procurement Lead](https://jobs.ashbyhq.com/parallel/eba53dae-be93-44a8-a550-7dc56da4df66)                                   | Operations           | San Francisco / Palo Alto            | Full time      |
 | [R&D Strategic Finance Lead](https://jobs.ashbyhq.com/parallel/1e83c172-5c38-4102-9884-c35a4dcc3668)                         | Operations           | San Francisco / Palo Alto            | Full time      |
 | [Strategic Finance](https://jobs.ashbyhq.com/parallel/1b5da033-32e1-45a1-95fe-c0553e22e5a6)                                  | Operations           | San Francisco / Palo Alto            | Full time      |
-| [Workplace Manager - NYC](https://jobs.ashbyhq.com/parallel/95b7ee04-39ca-491a-868e-29cce3cc2580)                            | Operations           | New York                             | Full time      |
 
 ## Our values
 
