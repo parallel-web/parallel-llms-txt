@@ -260,6 +260,8 @@ The same event surfaces across multiple sources. An acquisition appears in SEC f
 
 Every alert and every enrichment rests on what the search step retrieves, so test candidate search APIs on finance questions with known answers before you scale. We make Parallel and ran these evaluations; methodology is on [/benchmarks](/benchmarks). With the agent and model held fixed, Parallel Advanced scored 57.4% on FinSearchComp T3, the hardest tier of a public expert-written finance benchmark, 6.0 points ahead of the next search API (Exa) at lower cost. On PWS-Finance, a private set of 174 questions that includes markets and macro and recent developments workflows, it posted the top score (84.3%), narrowly ahead of OpenAI's native search (83.7%).
 
+The independent [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) (updated November 4, 2026) runs the same kind of test on 450 equity-research questions, covering earnings, disclosure, and market analysis, with SEC EDGAR removed so the agent has to find filings on the open web. Claude Opus 5.5 with Parallel Search in Fast mode scored 60.7% at $1.28 per task, the top finance result, and ranked first overall out of 12 model and search-tool combinations.
+
 Freshness is part of that test. One PWS-Finance question asks for the Banque de France's August 2026 current account balance (a deficit of €1.5bn), a figure that changes every month. The [Parallel for Finance launch post](/blog/parallel-for-finance) has the full charts, and [the best search API for financial AI agents](/articles/best-search-api-for-financial-ai-agents) compares providers in detail.
 
 ### Compliance blind spots
@@ -290,6 +292,6 @@ Yes. API-first monitoring systems deliver events via webhooks, making them compo
 
 ### How accurate are AI search APIs for investment research?
 
-Accuracy varies by provider. In Parallel's tests, with every search API in the same agent loop, scores on FinSearchComp T3 ranged from 43.0% to 57.4%, with Parallel Advanced on top. Check results on your own questions before routing alerts to portfolio managers.
+Accuracy varies by provider. In Parallel's tests, with every search API in the same agent loop, scores on FinSearchComp T3 ranged from 43.0% to 57.4%, with Parallel Advanced on top. Check results on your own questions before routing alerts to portfolio managers. On the independent [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) (November 2026), Parallel Fast with Claude Opus 5.5 posted the top finance score, 60.7%.
 
 **Ready to build your first investment monitor?** [Start Building](https://docs.parallel.ai/home) with Parallel's Monitor API. Create a free account, define your first query, and receive structured alerts within the hour.

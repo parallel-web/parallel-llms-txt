@@ -28,6 +28,8 @@ Sources: BrowseComp accuracy from [parallel.ai/benchmarks](https://parallel.ai/b
 
 On [Openbenchmarks' fastest-search-API boards](https://openbenchmarks.com/web-search/fastest-search-api) (September 2026), Parallel turbo posted the lowest mean latency on factual lookup at 348ms across 300 questions and the lowest average search time on hard retrieval at 333ms, with Exa Instant next at 398ms and 447ms.
 
+One more independent result is worth knowing. The [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) (updated November 4, 2026) grades agents on expert-written finance and legal research tasks, with only the search tool changing. Claude Opus 5.5 with Parallel Search in Fast mode ranked first of 12 model and search-tool combinations at 57.5%, at $2.27 per task. Exa's best result, with Claude Fable 5, was 48.5%. Vals ran the two providers with different models, so that gap mixes model and search tool; with the same model, Parallel Fast beat Anthropic's native search (53.7%, $3.48 per task).
+
 ## The five web search APIs, compared
 
 ### 1. Parallel

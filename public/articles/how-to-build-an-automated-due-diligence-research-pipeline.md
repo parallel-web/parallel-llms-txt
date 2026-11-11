@@ -295,6 +295,8 @@ On T3, Parallel Advanced was the most accurate search API, 6.0 points ahead of E
 
 These numbers compare search APIs inside one fixed agent. End-to-end research products publish their own FinSearchComp scores in their own harnesses, which answers a different question. For your own test, pull 30 to 50 questions from past deals whose answers you already know (a target's subsidiaries, a past acquisition price, a lapsed license) and score each provider on them. [How to benchmark web search APIs](/articles/how-to-benchmark-web-search-apis) covers the setup, and [the best search API for financial AI agents](/articles/best-search-api-for-financial-ai-agents) compares the providers in more detail. For where diligence fits among other finance agent workloads, see [AI agents in finance](/learn/ai-agents-in-finance).
 
+Diligence covers legal exposure as well as financials, and one independent benchmark scores both. The [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) (updated November 4, 2026) runs a fixed agent on 450 finance-analyst questions and 208 expert-written legal research tasks, with SEC EDGAR and CourtListener removed so web search is the only source. Claude Opus 5.5 with Parallel Search in Fast mode led both splits, at 60.7% in finance and 54.3% in legal, and ranked first overall out of 12 model and search-tool combinations at $2.27 per task.
+
 ## Frequently asked questions
 
 **What is AI due diligence?**
@@ -319,7 +321,7 @@ Automated DD cuts the research hours each deal needs. The larger gain is realloc
 
 **Which search API is most accurate for due diligence research?**
 
-In Parallel's tests, where every search API ran in the same agent loop, Parallel Advanced scored 57.4% on FinSearchComp T3, 6.0 points ahead of the next search API (Exa), and posted the top score on PWS-Finance at 84.3%. We ran those evaluations; the [methodology](/benchmarks) is public. Run the same comparison on questions from your own past deals before you commit.
+In Parallel's tests, where every search API ran in the same agent loop, Parallel Advanced scored 57.4% on FinSearchComp T3, 6.0 points ahead of the next search API (Exa), and posted the top score on PWS-Finance at 84.3%. We ran those evaluations; the [methodology](/benchmarks) is public. Run the same comparison on questions from your own past deals before you commit. The independent [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) (November 2026) ranks Parallel Fast with Claude Opus 5.5 first on both its finance and legal research splits.
 
 **Can AI due diligence handle enhanced due diligence in banking?**
 

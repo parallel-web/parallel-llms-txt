@@ -16,6 +16,12 @@ Trusted by
 * Kepler
 * Hebbia
 
+Scored onVals AI
+
+Parallel ranks #1 on Vals Web Search Index for Finance
+
+[See the report](https://www.vals.ai/benchmarks/web%5Fsearch)
+
 Use Cases
 
 ## Research that moves markets

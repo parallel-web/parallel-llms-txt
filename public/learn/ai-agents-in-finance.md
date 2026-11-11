@@ -226,6 +226,8 @@ The other three margins are small: call them a top score or a tie, with the diff
 
 Research products publish higher end-to-end numbers on FinSearchComp. You.com [reports](https://you.com/resources/introducing-the-finance-research-api-agentic-research-no-infra-required) 87.29% on T2 for its Finance Research API, and [Linkup reports](https://www.linkup.so/benchmarks) 82.4% on T2 and 58.3% on T3 for its research mode. Those figures measure complete research systems in each vendor's own harness; ours measure the search layer under one fixed agent. Both are legitimate answers to different questions. For a buyer's view, see [the best search API for financial AI agents](/articles/best-search-api-for-financial-ai-agents). To run your own test, see [how to benchmark web search APIs](/articles/how-to-benchmark-web-search-apis), and borrow the PWS rules: explicit as-of dates, questions kept off the public web, strict scoring, and full cost per answer.
 
+The [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) is an independent test built the same way: one fixed agent and harness, with only the search tool swapped. Its finance split has 450 analyst questions from Vals's Finance Agent Benchmark v2, with SEC EDGAR removed so filings have to be found on the open web. In the November 4, 2026 update, Claude Opus 5.5 with Parallel Search in Fast mode scored 60.7% at $1.28 per task, the top finance result, and ranked first overall out of 12 model and search-tool combinations.
+
 ## How to build an AI agent for finance
 
 A finance agent is a model plus a small set of tools, each matched to one job, so cost stays predictable and each fact traces to the call that produced it.
@@ -266,7 +268,7 @@ Internal data and licensed feeds, plus web sources such as company sites, filing
 
 **Which search API is best for financial AI agents?**
 
-In our tests with the same agent and model, Parallel Advanced was the most accurate search API on FinSearchComp T3 (57.4%) at lower cost than every alternative, and posted the top score or a tie on T2, FrontierFinance, and PWS-Finance. The [full comparison](/articles/best-search-api-for-financial-ai-agents) covers trade-offs by use case.
+In our tests with the same agent and model, Parallel Advanced was the most accurate search API on FinSearchComp T3 (57.4%) at lower cost than every alternative, and posted the top score or a tie on T2, FrontierFinance, and PWS-Finance. The [full comparison](/articles/best-search-api-for-financial-ai-agents) covers trade-offs by use case. The independent [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) (November 2026) also ranks Parallel Fast with Claude Opus 5.5 first overall and first on finance.
 
 ## Start building
 

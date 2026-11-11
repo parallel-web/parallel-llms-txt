@@ -33,6 +33,12 @@ On the [October 19 results](https://keenableai.github.io/needle/results/), Keena
 - Keenable operates the benchmark, and its own notes say the LLM judge has not yet had a human-agreement audit.
 - The results table prices Keenable at $1 per 1,000 queries and labels that the lowest self-serve price. Keenable's own pricing page lists $1 only for dedicated capacity at 100 requests per second and up; self-serve is $4.
 
+## The Vals AI Web Search Index
+
+Vals AI runs an independent [Web Search Index](https://www.vals.ai/benchmarks/web_search) that measures end-task accuracy: an agent answers expert-written finance and legal research tasks with one search tool as its only source, and Vals changes only the tool. Keenable Pro, run with GPT-5.6 Sol, took first place on October 21, 2026 at 49.1% and $8.84 per task. In the November 4 update, Claude Opus 5.5 with Parallel Search in Fast mode ranked first at 57.5% ($2.27 per task), with Parallel Advanced second at 54.1%; Keenable is now fourth.
+
+Vals has not run the two providers with the same model, so the gap between them mixes model and search tool. Two results hold within a single model: Keenable lifted GPT-5.6 Sol 5.5 points above OpenAI's native search, and Parallel Fast lifted Claude Opus 5.5 3.8 points above Anthropic's native search at lower cost per task. Keenable returned results faster per call, with a median of 0.27 seconds in finance against 1.13 seconds for Parallel Fast.
+
 ## Pricing and free tiers
 
 |  | Keenable | Parallel |

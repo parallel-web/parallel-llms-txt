@@ -138,6 +138,8 @@ When an agent gets a deal page wrong, the cause is usually the search layer: it 
 ]
 ```
 
+Vals AI tested the search layer independently. Its [Web Search Index](https://www.vals.ai/benchmarks/web_search) (updated November 4, 2026) gives an agent 450 equity-research questions from Vals's Finance Agent Benchmark v2, covering comps, precedents, and earnings and disclosure analysis, and removes SEC EDGAR so every filing has to be found through web search. Claude Opus 5.5 with Parallel Search in Fast mode led the finance split at 60.7% for $1.28 per task, with its best category scores on earnings analysis (81.2%), disclosure analysis (73.9%), and market analysis (73.0%). The same model with Anthropic's native search scored 57.5% at $2.96. Parallel Fast also ranked first on the index overall, out of 12 model and search-tool combinations.
+
 For a side-by-side of providers on these and other finance tests, see [the best search API for financial AI agents](/articles/best-search-api-for-financial-ai-agents).
 
 ## A hands-on starting point: the tear-sheet cookbook

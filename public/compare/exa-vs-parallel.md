@@ -6,7 +6,7 @@ Parallel Search starts at $1 per 1,000 requests against $4 on Exa Lite, and ever
 
 [Search, per 1,000 requests: $1 vs. $4](#cost) [BrowseComp, July 2026: 51% vs. 33.7%](#accuracy) [Search latency, BrowseComp p50, July 2026: 216ms vs. 361ms](#performance)
 
-Last updated November 6, 2026
+Last updated November 10, 2026
 
 ## What does Parallel do?
 
@@ -44,9 +44,11 @@ The gap holds when you spend more compute. Parallel’s deepest Task tier reache
 
 Openbenchmarks, an independent hub that publishes its harness and every raw vendor response, splits the two by task. On its multi-turn company search board, last run October 2, 2026, Parallel Basic leads search-only at 46.5 F1 against 45.4 for Exa deep. Exa deep leads once the agent can fetch pages, 48.2 against 42.3 for Parallel Basic. Openbenchmarks has flagged a timing bias on its company news board and is re-running every vendor, so this page leaves those results out until the re-run is published.
 
+Vals AI, an independent evaluator that grades agents on expert-written finance and legal research tasks, holds the model and harness fixed and swaps only the search tool. On its web search leaderboard, updated November 4, 2026, Claude Opus 5.5 with Parallel Search (fast) scored 57.5% at $2.27 per task, and Claude Fable 5 with Exa, the strongest Exa configuration Vals ran, scored 48.5% at $3.48\. Vals ran the two with different models, so that gap mixes model and search tool.
+
 That margin is why [Harvey](/ai/blog/case-study-harvey) runs its international legal research on Parallel, and why [Kepler](/ai/blog/case-study-kepler) built its finance research on it: work that professionals have to be able to trust.
 
-Sources: [Parallel Search Turbo benchmark run](https://parallel.ai/blog/parallel-search-turbo), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart), [Harvey case study](https://parallel.ai/blog/case-study-harvey), [Kepler case study](https://parallel.ai/blog/case-study-kepler)
+Sources: [Parallel Search Turbo benchmark run](https://parallel.ai/blog/parallel-search-turbo), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [Vals AI web search leaderboard](https://www.vals.ai/benchmarks/web%5Fsearch), [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart), [Harvey case study](https://parallel.ai/blog/case-study-harvey), [Kepler case study](https://parallel.ai/blog/case-study-kepler)
 
 +17.3 points on BrowseComp, Turbo against Instant
 

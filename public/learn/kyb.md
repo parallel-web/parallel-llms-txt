@@ -127,6 +127,8 @@ PWS-Finance, Parallel's private benchmark, has 174 held-out questions across eig
 ]
 ```
 
+For an outside check, the [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) (updated November 4, 2026) runs agents on expert-written finance and legal tasks with domain databases such as SEC EDGAR and CourtListener removed, so web search is the agent's only source. Claude Opus 5.5 with Parallel Search in Fast mode ranked first overall at 57.5% and led both the finance split (60.7%) and the legal split (54.3%), including 58.5% on questions that ask the agent to interpret a regulatory framework.
+
 Here is a register check with the Search API, limited to the FCA register and Companies House through a source policy:
 
 ```python

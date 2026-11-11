@@ -58,6 +58,8 @@ Four factors decide whether an API works in your pipeline or becomes the bottlen
 
 Benchmark trust. Vendors design benchmarks to make themselves look good. We do it too, so read ours with that in mind. On [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026), Parallel Advanced tied Perplexity on BrowseComp at 74% with a frontier agent, at higher cost, and at the low-cost tier Perplexity edged Parallel Fast on BrowseComp while Exa beat it on WideSearch. Those results reflect our search quality combined with our ranking and extraction pipeline, measured on benchmarks and a harness we chose. Your production queries will differ, your latency budget will differ, and your reasoning chain will amplify or mask retrieval gaps in ways any fixed test can't predict. The Princeton [AI Agents That Matter](https://agents.cs.princeton.edu/) work showed that cost-controlled evaluation is the only reliable approach. So run your own: pick 50 to 100 queries from your real distribution, run them against two or three APIs, and compare quality, latency, and cost at your concurrency.
 
+Third-party boards are the better check. On the [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) (updated November 4, 2026), which grades agents on expert-written finance and legal research tasks and changes only the search tool, Claude Opus 5.5 with Parallel Search in Fast mode ranked first of 12 combinations at 57.5% ($2.27 per task), ahead of the same model with Anthropic's native search (53.7%, $3.48). Vals has run Exa and Keenable with other models, so compare those rows with that in mind.
+
 
 
 

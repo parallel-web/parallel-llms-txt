@@ -58,6 +58,12 @@ search = client.search(
 
 Parallel also ships an MCP server, so you can hand its tools to a Claude-based agent without writing the plumbing yourself.
 
+## Accuracy on an independent benchmark
+
+The [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) is the cleanest head-to-head available, because Vals ran Claude Opus 5.5 in the same harness with each search tool. On expert-written finance and legal research tasks (November 4, 2026 update), Opus 5.5 with Parallel Search in Fast mode scored 57.5% at $2.27 per task, and with Claude's native web search 53.7% at $3.48. Parallel Fast led both splits: 60.7% against 57.5% in finance, and 54.3% against 50.0% in legal.
+
+Both lines of the bill were lower with Parallel. Vals reports a search fee of $0.02 per task with Parallel Fast against $0.63 with native search, and model cost was lower too ($2.25 against $2.84).
+
 ## **When to use each**
 
 Use Claude's built-in web search when you are building on Claude, volume is moderate, and integration time matters more than unit cost. Citations, domain controls, and dynamic filtering come free of engineering effort, and at a few thousand searches a month the difference between $10 and $1 per 1,000 is not worth a second vendor. It is the right default for prototypes and for products where search is an occasional feature rather than the core loop.

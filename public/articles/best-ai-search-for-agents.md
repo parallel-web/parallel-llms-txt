@@ -16,6 +16,8 @@ The only test that settles the question is running your real production queries 
 
 We are Parallel, we build one of the six APIs below, and we are biased toward it, so read our figures with that in mind and check them against your own. Teams move to Parallel by running this test themselves, structuring their search objectives, and watching the numbers on their own queries. Our benchmark figures are sourced and dated, but they are still ours, and your own run should outweigh them.
 
+Independent boards are a useful check on vendor numbers, ours included. The [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search), which Vals runs itself on expert-written finance and legal research tasks, ranked Claude Opus 5.5 with Parallel Search in Fast mode first of 12 model and search-tool combinations in its November 4, 2026 update, at 57.5% and $2.27 per task. With the same model, Anthropic's native search scored 53.7% at $3.48.
+
 ## **The six web search APIs, compared**
 
 Our current Search API evals on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) ran on September 9, 2026, at two price tiers. The frontier tier pairs a GPT-5.6 Sol agent (reasoning high) with Parallel Basic or Advanced, and the low-cost tier pairs a GPT-5.6 Luna agent (reasoning low) with Parallel Fast or Turbo. Exa, Tavily, and Perplexity run at both tiers with the same agents, and an LLM judge grades a 50-question BrowseComp sample. OpenAI Web Search, Brave, and SerpAPI aren't in those runs, so for them we point to independent data where it exists. The sections below aren't a ranking.

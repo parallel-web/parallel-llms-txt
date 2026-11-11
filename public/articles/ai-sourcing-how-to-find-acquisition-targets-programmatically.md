@@ -197,6 +197,8 @@ Parallel Advanced posted the top score, 0.6 points ahead of OpenAI's native sear
 
 Even the top score leaves about one question in six wrong under strict grading, so verify ownership and deal terms against the cited sources before outreach. [FinSearchComp explained](/articles/finsearchcomp-benchmark) and [the best search API for financial AI agents](/articles/best-search-api-for-financial-ai-agents) go deeper on the numbers.
 
+The [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) (updated November 4, 2026) adds an outside view. With only the search tool swapped under a fixed agent, Claude Opus 5.5 with Parallel Search in Fast mode led its 450-question finance split at 60.7%, which includes comparables and precedent-transaction questions, and ranked first overall out of 12 model and search-tool combinations.
+
 ## Live-web sourcing vs. pre-packaged databases
 
 **Pre-packaged databases excel at breadth and convenience.** Millions of pre-indexed companies, standardized fields, and fast lookups ([S&P Global's 2024 M&A review](https://www.spglobal.com/market-intelligence/en/news-insights/research/global-ma-by-the-numbers-2024-in-review) reported recovery signs in H2 2024 deal volumes). You can screen large universes for basic criteria. If your thesis targets well-defined verticals with strong database coverage (enterprise software, financial services, or large healthcare), the traditional database gets you 70% of the way there.

@@ -15,6 +15,12 @@ Trusted by
 * &AI
 * PatentWatch
 
+Scored onVals AI
+
+Parallel ranks #1 on Vals Web Search Index for Legal
+
+[See the report](https://www.vals.ai/benchmarks/web%5Fsearch)
+
 Use Cases
 
 ## Legal research AI can trust

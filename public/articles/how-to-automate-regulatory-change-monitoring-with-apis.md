@@ -171,7 +171,7 @@ You can extend this pipeline with [deep research](https://parallel.ai/articles/w
 
 ## What to look for in a regulatory monitoring API
 
-If you're evaluating API-first monitoring tools, check these seven criteria.
+If you're evaluating API-first monitoring tools, check these eight criteria.
 
 **Natural language input.** Can you describe monitoring needs in plain English? Systems requiring structured query syntax or filter configuration add engineering overhead. You should be able to write "SEC enforcement actions against broker-dealers for best execution violations" and have the system understand your intent.
 
@@ -184,6 +184,8 @@ If you're evaluating API-first monitoring tools, check these seven criteria.
 **Structured output.** Events should arrive as JSON with consistent fields: summary, source URL, timestamp, and event identifiers. Unstructured text alerts require parsing before you can route them programmatically.
 
 **Composability.** Monitoring is one step in a pipeline, so look for APIs that chain detection with extraction and analysis. Parallel's [Monitor API](https://parallel.ai/products/monitor) feeds into the Extract API for content retrieval and the Task API for structured analysis.
+
+Search accuracy on legal questions. Detection catches a change, and the research step that follows has to find the statute, regulation, and guidance around it. The independent [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) (updated November 4, 2026) tests this on 208 expert-written legal research tasks with court databases removed. Claude Opus 5.5 with Parallel Search in Fast mode led the legal split at 54.3%, ahead of the same model with Anthropic's native search (50.0%), and scored 58.5% on regulatory framework interpretation and 54.0% on statutory interpretation.
 
 **Transparent pricing.** Usage-based pricing with published rates lets you forecast costs. Hidden pricing behind sales calls often indicates enterprise contracts with minimum commitments. The Monitor API runs $3 per 1,000 executions, so you can calculate your monthly cost before signing anything.
 

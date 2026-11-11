@@ -1,5 +1,7 @@
 # Customer Terms 
 
+Your use is governed by the version of these Customer Terms and Conditions in effect at the time you became a customer.
+
 ### PARALLEL WEB SYSTEMS INC.
 Customer Terms and Conditions
 
@@ -99,7 +101,7 @@ WARRANTY SET FORTH IN SECTION 8(b), PARALLEL MAKES NO REPRESENTATION OR WARRANTY
 
 (c) Exclusions. THE FOREGOING LIMITATIONS IN THIS SECTION 9 SHALL NOT APPLY TO DAMAGES ARISING OUT OF ANY BREACH OF CONFIDENTIALITY OBLIGATIONS SET FORTH IN SECTION 7.
 
-10. Term and Termination.
+## 10. Term and Termination.
 
 (a) Term.The term of this Agreement will commence upon the earlier of the effective date set forth on the Customer’s first Online Order, or the date Customer first uses the Services, or Customer’s online acceptance of this Agreement, subject to early termination as provided herein (the “Term”). This Agreement will continue to govern any Online Order for the duration of the applicable Services Period. If there is no outstanding Online Order, this Agreement will expire twenty-four months after the ending date of the last Online Order.
 
@@ -131,6 +133,6 @@ WARRANTY SET FORTH IN SECTION 8(b), PARALLEL MAKES NO REPRESENTATION OR WARRANTY
 
 (j) Equitable Relief. Each Party acknowledges and agrees that a breach or threatened breach by such Party of any of its obligations under Section 7 or, in the case of Customer, Section 2(c), would cause the other Party irreparable harm for which monetary damages would not be an adequate remedy and agrees that, in the event of such breach or threatened breach, the other Party will be entitled to equitable relief, including a restraining order, an injunction, specific performance and any other relief that may be available from any court, without any requirement to post a bond or other security, or to prove actual damages or that monetary damages are not an adequate remedy. Such remedies are not exclusive and are in addition to all other remedies that may be available at law, in equity or otherwise.
 
-(k) Publicity. Parallel is permitted to disclose that Customer is one of its customers to any third-party at its sole discretion. Customer agrees that Parallel may use Customer’s name and logo to refer to Customer as a customer of Parallel on its website and in marketing materials. Subject to Customer’s prior approval, Customer will participate in press announcements, case studies, trade shows, or other marketing activities at-will when reasonably requested by Parallel.
+(k) Publicity. Unless the Customer provides prior written consent (e-mail to suffice), Parallel will not (i) make any public statement about its relationship with the Customer or (ii) use the Customer’s name or logo on the Parallel website or marketing materials.
 
 (l) Amendments. Parallel may amend the terms and conditions of Agreement from time to time, in which case the new Agreement will supersede prior versions. Parallel will use commercially reasonable efforts to provide advance notice to Customer of any material amendment. If Customer does not agree to any amendment, Customer may opt out of the automatic renewal prior to the expiration of the then-current subscription term under Orders Forms entered into prior to such amendment, which will continue to be subject to the prior version of this Agreement (without such amendment). Customer’s continued use of the Services following the effective date of any such amendment constitute Customer’s agreement to any such amendment. Any Online Order(s) executed after the effective date of an amendment shall constitute Customer’s agreement to any such amendment. Parallel’s acceptance of any document submitted by Customer to Parallel shall not be construed as an acceptance of provisions which are in any way in conflict or inconsistent with, or in addition to, this Agreement, unless such terms are separately and specifically accepted in writing by an authorized representative of Parallel.

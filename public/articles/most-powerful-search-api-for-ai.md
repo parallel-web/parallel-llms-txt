@@ -27,6 +27,8 @@ At the frontier tier, Parallel Advanced ties Perplexity at 74%, but Perplexity g
 
 For independent speed data, [Openbenchmarks' fastest-search-API boards](https://openbenchmarks.com/web-search/fastest-search-api) (September 2026) put Parallel turbo first on factual lookup at 348ms mean latency and first on hard retrieval at 333ms, though Exa Instant, about 50ms behind on both, edges it on multi-hop search once time is divided by answer quality.
 
+For independent accuracy data, the [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) (updated November 4, 2026) grades agents on expert-written finance and legal research tasks with only the search tool swapped. Claude Opus 5.5 with Parallel Search in Fast mode ranked first of 12 model and search-tool combinations at 57.5% and $2.27 per task, with Parallel Advanced second at 54.1%.
+
 ## **The contenders**
 
 ### **Parallel (Search API)**
