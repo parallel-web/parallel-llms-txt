@@ -2,7 +2,7 @@
 
 Today we’re launching Parallel for Startups. If you’re building an AI product on live web data, you can claim Parallel credits through your accelerator or apply directly.
 
-Founders in Y Combinator, a16z speedrun, Neo, Entrepreneurs First, Founders Inc, and Null Fellows already have an offer waiting in their program. Everyone else can apply at [parallel.ai/startups](https://parallel.ai/startups), and we’ll reply within 24 hours.
+Founders in [Y Combinator](https://deals.ycombinator.com/deals/7177), [a16z speedrun](https://speedrun.a16z.com/capital), [Neo](https://neo.com/accelerator), [Entrepreneurs First](https://www.joinef.com/), [Founders Inc](https://f.inc/), and [Null Fellows](https://www.nullfellows.com/) already have an offer waiting in their program. Everyone else can apply at [parallel.ai/startups](https://parallel.ai/startups), and we’ll reply within 24 hours.
 
 ## Startups program overview
 

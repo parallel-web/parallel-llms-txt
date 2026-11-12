@@ -1,9 +1,7 @@
-### \[Parallel Search is now available in AWS Marketplace\](https://parallel.ai/blog/aws-marketplace-parallel-search)
-
-Enterprise organizations building on AWS can now add Parallel Search to their agents through Amazon Bedrock AgentCore and draw down their AWS spend commitment for the first time.
+### \[Announcing Parallel for Startups\](https://parallel.ai/blog/parallel-for-startups)
 
 Tags:[Product](/blog?tag=product)
 
 By Parallel
 
-November 11, 2026
+November 12, 2026
