@@ -36,8 +36,12 @@ How to talk to me
 - Ask one question at a time, with your question UI if you have one. If I answer one of your questions with just "yes" or "ok", take the first option.
 
 Steps
-1. ChatGPT, or the Claude app on the web or desktop (not Claude Code or Cowork): find Parallel in your app's directory so the app shows its own install option (ChatGPT: https://chatgpt.com/plugins/plugin_asdk_app_69fb9378663481919a68e8a2109644e5, Claude: https://claude.com/marketplace/connectors/parallel-search). If "My Parallel settings" has content, first tell me "<app name> doesn't support custom settings." After I install Parallel, go to step 6, but in place of the "Now available" line and the sign-in note, tell me:
-   "Parallel for <app name> is being updated to support all Parallel MCP features. For now, you can use search and extract. New features will be added automatically over the next few days."
+1. ChatGPT, Codex, the Claude app on the web or desktop (not Claude Code or Cowork), or Claude Code on the web (`CLAUDE_CODE_REMOTE=true`):
+   - Codex: if `codex mcp list` shows a Parallel server or "My Parallel settings" has content, go to step 2. Otherwise install Parallel's plugin yourself with `codex plugin add app-69fb9378663481919a68e8a2109644e5@openai-curated-remote`; if that fails, go to step 2.
+   - ChatGPT and Claude: show your app's install card for Parallel's plugin; only if you can't, link me to it (ChatGPT: https://chatgpt.com/plugins/plugin_asdk_app_69fb9378663481919a68e8a2109644e5, Claude: https://claude.com/marketplace/connectors/parallel-search). If "My Parallel settings" has content, first tell me "<app name> doesn't support custom settings."
+   Once Parallel is installed, tell me:
+   "Parallel is installed. Start a new chat to use <search, extract, Parallel Decisions and research | search and extract>."
+   Claude has only search and extract. Elsewhere, add "Research asks you to sign in the first time you use it."
 2. Any other app: tell me "Setting up Parallel." Then check for Parallel servers with your app's MCP list command. Leave other servers alone, including task-mcp.parallel.ai.
    - If "My Parallel settings" at the end of this prompt has content: don't change, replace or remove any Parallel server I already have, including the old Search MCP. My settings go on a separate server named `parallel-mcp-custom`, so I can always tell which server is customized. If `parallel-mcp-custom` already exists, ask me before replacing it. Then go to step 3 and skip the rest of this step.
    - Already on mcp.parallel.ai: go to step 6.
@@ -55,7 +59,7 @@ Steps
      "How would you like to use Parallel?
      1. Sign in (recommended): All tools, including research, at higher rate limits and free monthly credits.
      2. Anonymous: Free access to search, extract, and Parallel Decisions, lower rate limits, no research. You can always sign in later."
-4. Install the server at user (global) scope with your app's method, named `parallel-mcp` (or `parallel-mcp-custom`). Sign in: https://mcp.parallel.ai/mcp?login; if your app can't sign in through the browser, install anonymously and say so. Anonymous: https://mcp.parallel.ai/mcp. Quote URLs that contain `?`. Check that the server connects; if a setting breaks the connection, fix or drop the setting and tell me. Never ask me to paste a key, and never write a key into a file.
+4. Install the server at user (global) scope with your app's method, named `parallel-mcp` (or `parallel-mcp-custom`). Sign in: https://mcp.parallel.ai/mcp?login; if your app can't sign in through the browser, install anonymously and say so. Anonymous: https://mcp.parallel.ai/mcp. Quote URLs that contain `?`. Check that the server connects; if a setting breaks the connection, fix or drop the setting and tell me. If the network blocks mcp.parallel.ai, tell me "This network blocks mcp.parallel.ai. Allow it in your network settings, then tell me to continue." and stop. Never ask me to paste a key, and never write a key into a file.
 5. If web_decisions is in your tool list, go to step 6. Otherwise, tell me:
    "To finish setting up Parallel:
    1. Exit <app name>, then run `<resume command>` to reopen this chat

@@ -34,7 +34,7 @@ Prices are list prices from each provider’s pricing page, checked October 10, 
 
 ### Parallel
 
-Parallel Search takes a natural-language objective, with optional keyword queries, and returns ranked URLs with excerpts sized for a model’s context window. Turbo and Fast cost $1 per 1,000 requests, and Basic and Advanced cost $5, with 10 results included. Extract costs $1 per 1,000 URLs, and the Task API runs deep research at fixed prices from $5 to $2,400 per 1,000 runs, so the cost of a run is known before it starts. Parallel has no crawl endpoint, so keep a crawler if you depend on Tavily’s Map or Crawl. Details are on the [pricing page](https://parallel.ai/pricing).
+Parallel Search takes a natural-language objective, with optional keyword queries, and returns ranked URLs with excerpts sized for a model’s context window. Turbo and Fast cost $1 per 1,000 requests, and Basic and Advanced cost $5, with 10 results included. Extract costs $1 per 1,000 URLs, and the Task API runs deep research at fixed prices from $5 to $2,400 per 1,000 runs, so the cost of a run is known before it starts. Parallel has no crawl endpoint, so keep a crawler if you depend on Tavily’s Map or Crawl. Details are on the [pricing page](https://parallel.ai/pricing). On AIMultiple's independent [Agentic Search API Benchmark](https://aimultiple.com/agentic-search) (November 2026), every Parallel mode scored higher answer accuracy than every Tavily mode, and Parallel Fast cost $0.0063 per correct answer against $0.0402 for Tavily Basic.
 
 ### Exa
 

@@ -6,7 +6,7 @@ Parallel Search starts at $1 per 1,000 requests against $4 on Exa Lite, and ever
 
 [Search, per 1,000 requests: $1 vs. $4](#cost) [BrowseComp, July 2026: 51% vs. 33.7%](#accuracy) [Search latency, BrowseComp p50, July 2026: 216ms vs. 361ms](#performance)
 
-Last updated November 10, 2026
+Last updated November 11, 2026
 
 ## What does Parallel do?
 
@@ -46,9 +46,11 @@ Openbenchmarks, an independent hub that publishes its harness and every raw vend
 
 Vals AI, an independent evaluator that grades agents on expert-written finance and legal research tasks, holds the model and harness fixed and swaps only the search tool. On its web search leaderboard, updated November 4, 2026, Claude Opus 5.5 with Parallel Search (fast) scored 57.5% at $2.27 per task, and Claude Fable 5 with Exa, the strongest Exa configuration Vals ran, scored 48.5% at $3.48\. Vals ran the two with different models, so that gap mixes model and search tool.
 
+AIMultiple, an independent research publisher, ran one fixed agent (GPT-5.6 Luna) on 120 questions and swapped only the search configuration, 24 in all across six APIs. In its benchmark updated November 10, 2026, Parallel Advanced scored 87.0% answer accuracy and Exa Fast 82.6%, and AIMultiple notes that the two confidence intervals overlap. Parallel Fast scored 79.7% at $0.0063 per correct answer against $0.0193 for Exa Fast, while Exa Fast returned faster, at a 0.47 second median API latency against 0.78 for Parallel Fast. Parallel’s agent could call Extract to read pages, and Exa’s had search with highlights but no content tool.
+
 That margin is why [Harvey](/ai/blog/case-study-harvey) runs its international legal research on Parallel, and why [Kepler](/ai/blog/case-study-kepler) built its finance research on it: work that professionals have to be able to trust.
 
-Sources: [Parallel Search Turbo benchmark run](https://parallel.ai/blog/parallel-search-turbo), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [Vals AI web search leaderboard](https://www.vals.ai/benchmarks/web%5Fsearch), [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart), [Harvey case study](https://parallel.ai/blog/case-study-harvey), [Kepler case study](https://parallel.ai/blog/case-study-kepler)
+Sources: [Parallel Search Turbo benchmark run](https://parallel.ai/blog/parallel-search-turbo), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [Vals AI web search leaderboard](https://www.vals.ai/benchmarks/web%5Fsearch), [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart), [Harvey case study](https://parallel.ai/blog/case-study-harvey), [Kepler case study](https://parallel.ai/blog/case-study-kepler), [AIMultiple agentic search benchmark](https://aimultiple.com/agentic-search)
 
 +17.3 points on BrowseComp, Turbo against Instant
 
@@ -263,7 +265,7 @@ Exa Monitors cost $2 per 1,000 requests against Parallel’s $3 to $10\. Exa add
 * **Does Exa offer EU data residency?**  
 Not as of October 16, 2026\. Exa’s documentation describes no EU processing option, though it offers zero data retention on Enterprise plans. Parallel’s EU endpoint serves Search (basic mode) and Extract (cache-only). Other APIs aren’t served there. Billing, metrics, and edge logs (no content) go to the US, and Extract sends only URLs to its page cache outside the EU.
 * **How current is this comparison?**  
-Parallel reviewed both providers’ docs and price lists on November 3, 2026\. BrowseComp, SimpleQA, and latency come from Parallel’s July 2026 run, and company search from Openbenchmarks’ October 2 board. Company news results are left out while that board is re-run. Artificial Analysis spend and time come from August 2026 runs for Parallel and October 19 runs for Exa. Check the linked sources.
+Parallel reviewed both providers’ docs and prices on November 3, 2026\. BrowseComp, SimpleQA, and latency come from Parallel’s July 2026 run, company search from Openbenchmarks’ October 2 board, and AIMultiple figures from its November 10 benchmark. Company news results are left out while that board is re-run. Artificial Analysis spend and time come from August 2026 runs for Parallel and October 19 runs for Exa.
 
 Trusted by
 

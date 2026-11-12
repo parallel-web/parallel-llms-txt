@@ -413,6 +413,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Life Sciences Research API for AI Agents](https://llm.parallel.ai/solutions/life-sciences.md): Track every drug, trial, regulation, and competitor automatically, with structured, cited intelligence pulled from registries and filings in real time.
 - [Web Research API for AI Assistants &amp; Apps](https://llm.parallel.ai/solutions/productivity.md): Add cited answers, entity background, and live research to your product with one API, fast enough to feel native and accurate enough to trust.
 - [AI Web Research API for Sales &amp; GTM Teams](https://llm.parallel.ai/solutions/sales.md): Enrich accounts, build target lists, and monitor buying signals automatically. Parallel&#x27;s API gives sales and GTM teams cited, real-time research at scale.
+- [Parallel for Startups](https://llm.parallel.ai/startups.md): Credits for Parallel&#x27;s web search and research APIs through YC, a16z speedrun, Neo, Entrepreneurs First, Founders Inc and more. Find your program&#x27;s offer or apply directly.
 - [Terms of Service for Parallel Websites](https://llm.parallel.ai/terms-of-service.md): The rules and restrictions that govern your use of Parallel&#x27;s websites. Questions about these terms? Contact the team at support@parallel.ai.
 - [The Web as Ground Truth](https://llm.parallel.ai/the-web-as-ground-truth.md): Retrieval matters as much as the model. The companies that build a real context layer will win the next decade of enterprise AI.
 

@@ -6,7 +6,7 @@ Parallel scores higher than Tavily on hard, multi-hop research at a fifth to an 
 
 [Fast-tier search, per 1,000 requests: $1 vs. $5–$8](#cost) [BrowseComp, same frontier agent: 74% vs. 66%](#accuracy) [SimpleQA Verified at equal 94% accuracy, per 1,000: $2 vs. $17.40](#cost)
 
-Last updated November 6, 2026
+Last updated November 11, 2026
 
 ## What does Parallel do?
 
@@ -48,9 +48,11 @@ Artificial Analysis also ran both in basic mode for its August 2026 launch table
 
 Openbenchmarks, an independent hub that publishes its harness and every raw vendor response, has since run both on its October 2026 multi-turn company search board. On that board a fixed agent hunts for every company matching three or four constraints, and Parallel Basic scored 46.5 F1 from search results alone, against 41.1 for Tavily advanced and 36.5 for Tavily basic. Openbenchmarks has flagged a timing bias on its company news board and is re-running every vendor, so this page leaves those results out until the re-run is published.
 
+AIMultiple, an independent research publisher, ran one fixed agent (GPT-5.6 Luna) on 120 questions and swapped only the search configuration. In its benchmark updated November 10, 2026, Parallel Advanced scored 87.0% answer accuracy and Parallel Fast 79.7%, against 70.6% for Tavily advanced and 69.6% for Tavily basic. Counting search, page reads, and agent tokens, Parallel Fast cost $0.0063 per correct answer against $0.0402 for Tavily basic and $0.0604 for Tavily advanced.
+
 Tavily publishes its own runs, most recently on SealQA and SimpleQA Verified, scored with a single-pass reader model rather than an agent. Different harnesses rank providers differently. [Harvey](/ai/blog/case-study-harvey) and [Kepler](/ai/blog/case-study-kepler) both evaluated on their own professional research before building on Parallel.
 
-Sources: [Parallel benchmarks, September 2026](https://parallel.ai/benchmarks), [Artificial Analysis search API launch results](https://artificialanalysis.ai/articles/search-api), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [Harvey case study](https://parallel.ai/blog/case-study-harvey), [Kepler case study](https://parallel.ai/blog/case-study-kepler)
+Sources: [Parallel benchmarks, September 2026](https://parallel.ai/benchmarks), [Artificial Analysis search API launch results](https://artificialanalysis.ai/articles/search-api), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [Harvey case study](https://parallel.ai/blog/case-study-harvey), [Kepler case study](https://parallel.ai/blog/case-study-kepler), [AIMultiple agentic search benchmark](https://aimultiple.com/agentic-search)
 
 +8 points on BrowseComp, same frontier agent
 
@@ -315,7 +317,7 @@ Tavily has the broader framework ecosystem, led by LangChain, and ships Map and 
 * **Does Tavily offer EU data residency?**  
 Not generally. As of November 6, 2026, Tavily’s EU endpoint is open only to selected customers for evaluation, and Research isn’t supported on it. Parallel’s EU endpoint serves Search (basic mode) and Extract (cache-only). Other APIs aren’t served there. Billing, metrics, and edge logs (no content) go to the US, and Extract sends only URLs to its page cache outside the EU.
 * **How current is this comparison?**  
-Parallel reviewed both providers’ documentation and price lists on November 3, 2026\. BrowseComp, SimpleQA Verified, and WideSearch figures come from Parallel’s September 9 runs, latency from its July run, task time and search spend from Artificial Analysis’s August launch table, and company search figures from Openbenchmarks’ October 2 board. Both platforms ship often, so check the linked sources.
+Parallel reviewed both providers’ documentation and price lists on November 3, 2026\. BrowseComp, SimpleQA Verified, and WideSearch figures come from Parallel’s September 9 runs, latency from its July run, task time and search spend from Artificial Analysis’s August launch table, company search figures from Openbenchmarks’ October 2 board, and AIMultiple figures from its November 10 benchmark. Both platforms ship often, so check the linked sources.
 
 Trusted by
 

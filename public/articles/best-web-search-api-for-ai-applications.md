@@ -22,6 +22,8 @@ Our [September 2026 runs](https://parallel.ai/benchmarks) (evals run September 9
 
 Before the per-engine detail, one independent data point on speed: [Openbenchmarks' fastest-search-API boards](https://openbenchmarks.com/web-search/fastest-search-api) (September 2026) measure latency from a single client. Parallel turbo had the lowest mean latency of the 20 configurations tested on factual lookup at 348ms, with Exa Instant at 398ms, Brave at 601 to 630ms, and Tavily Basic at 1.88s. Our September runs report accuracy and cost but not latency, so the latency figures in this report are those Openbenchmarks means, measured from its own client.
 
+AIMultiple's independent [Agentic Search API Benchmark](https://aimultiple.com/agentic-search) (updated November 10, 2026) measures accuracy, cost, and latency together, with one fixed agent, GPT-5.6 Luna, answering 120 questions across 24 configurations of these five providers plus Firecrawl. Parallel Advanced had the highest answer accuracy at 87.0%, with Exa Fast at 82.6% and Parallel Fast at 79.7%. Perplexity Fast had the lowest median API latency (0.18 seconds) and the lowest cost per correct answer ($0.0058), just ahead of Parallel Fast ($0.0063).
+
 ### Parallel
 
 ![](https://cdn.sanity.io/images/5hzduz3y/production/a4ba72cdbd32509be5745e8c8ac9b26c485cced0-3586x1814.png)
@@ -50,7 +52,7 @@ Perplexity was the strongest competitor in our runs. At the frontier tier it tie
 
 Brave Search serves results from its own independent crawl, with no dependence on Google and a privacy posture that avoids query tracking during API use. It returns SERP-style JSON.
 
-Brave isn't in our current benchmark runs, so this section relies on third-party data. On Openbenchmarks' factual-lookup board, Brave measured 601 to 630ms mean latency, behind Parallel Turbo (348ms) and Exa Instant (398ms), and 523ms on the hard-retrieval search-only board.
+Brave isn't in our current benchmark runs, so this section relies on third-party data. On Openbenchmarks' factual-lookup board, Brave measured 601 to 630ms mean latency, behind Parallel Turbo (348ms) and Exa Instant (398ms), and 523ms on the hard-retrieval search-only board. On AIMultiple's independent [Agentic Search API Benchmark](https://aimultiple.com/agentic-search) (November 2026), Brave's LLM Context endpoint at its default 8,192-token budget scored 77.9% answer accuracy with a 0.95-second median API latency, and had the highest share of source-supported excerpts of any configuration (96.8%).
 
 **Best for:** privacy-sensitive applications that want an independent index and can handle their own content extraction.
 

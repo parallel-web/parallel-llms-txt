@@ -20,6 +20,8 @@ Parallel's Search API takes an objective plus optional explicit queries and retu
 
 Brave has no content extraction endpoint. If your agent needs full page text, that is a second vendor or your own fetcher.
 
+For an independent comparison, AIMultiple's [Agentic Search API Benchmark](https://aimultiple.com/agentic-search) (updated November 10, 2026) runs one fixed agent, GPT-5.6 Luna, on 120 questions through Brave's LLM Context endpoint at three context budgets and through Parallel's four modes. Parallel Advanced had the highest answer accuracy of the 24 configurations tested, at 87.0%, and Parallel Fast scored 79.7% at $0.0063 per correct answer. Brave's best result came from its default 8,192-token budget, at 77.9% and $0.0178, and its larger budgets scored lower. Brave led on one measure: 96.8% of its returned excerpts were supported by their source pages, against 93.5% for Parallel Advanced, the next highest.
+
 ## **Generated answers**
 
 Brave's Answers plan is a separate product on a separate meter. It exposes an OpenAI-compatible chat completions endpoint that grounds a generated answer on one search or several, returns citations, and supports streaming. Pricing is $4 per 1,000 queries plus $5 per million input tokens and $5 per million output tokens. Note that Summarizer Search, which older tutorials still point at, is deprecated in favour of Answers and remains available only to customers on the discontinued Pro AI plan.

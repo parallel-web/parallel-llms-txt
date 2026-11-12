@@ -49,6 +49,8 @@ The Search results split. At the frontier tier, with a GPT-5.6 Sol agent, Parall
 
 These are our runs on our harness. Perplexity's own [migration benchmarks](https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/benchmarks) report its `high` preset at about 86% on BrowseComp, in line with our number, but near 90% on DeepSearchQA, well above the 68% we measured. Sampling and grading differ between harnesses, so run both on your own questions before you commit.
 
+An independent benchmark adds a third view. On AIMultiple's [Agentic Search API Benchmark](https://aimultiple.com/agentic-search) (updated November 10, 2026), one fixed agent, GPT-5.6 Luna, answered 120 questions with each of 24 search configurations. Parallel Advanced scored 87.0% answer accuracy against 76.5% for Perplexity's best configuration, Fast with high context. Perplexity led on speed and price: its Fast mode had the lowest median API latency in the test at 0.18 seconds, and with low context the lowest cost per correct answer at $0.0058, just under Parallel Fast's $0.0063 at 79.7% accuracy.
+
 ## **Cost predictability**
 
 An Agent API request bills model tokens plus every tool call the agent decides to make, and the preset sets how many steps it may take: one on `fast`, five on `low`, 15 on `medium` and `high`, and 100 on `xhigh`. You can cap steps and token budgets, and each response reports its cost, but the price per request still moves with how hard the agent works. Presets called by name also change as Perplexity retunes them, so to hold cost and behavior steady you copy a preset's current values into a frozen configuration.

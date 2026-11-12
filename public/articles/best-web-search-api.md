@@ -30,6 +30,8 @@ On [Openbenchmarks' fastest-search-API boards](https://openbenchmarks.com/web-se
 
 One more independent result is worth knowing. The [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) (updated November 4, 2026) grades agents on expert-written finance and legal research tasks, with only the search tool changing. Claude Opus 5.5 with Parallel Search in Fast mode ranked first of 12 model and search-tool combinations at 57.5%, at $2.27 per task. Exa's best result, with Claude Fable 5, was 48.5%. Vals ran the two providers with different models, so that gap mixes model and search tool; with the same model, Parallel Fast beat Anthropic's native search (53.7%, $3.48 per task).
 
+AIMultiple's [Agentic Search API Benchmark](https://aimultiple.com/agentic-search) (updated November 10, 2026) is the broadest independent test of the APIs in this guide. It runs one fixed agent, GPT-5.6 Luna, on 120 questions across 24 configurations of Brave, Exa, Firecrawl, Parallel, Perplexity, and Tavily. Parallel Advanced had the highest answer accuracy at 87.0%, followed by Exa Fast at 82.6% and Parallel Fast at 79.7%, and AIMultiple notes that the top two confidence intervals overlap. On speed, Perplexity Fast had the lowest median API latency at 0.18 seconds, followed by Parallel Turbo at 0.38 seconds and Exa Fast at 0.47.
+
 ## The five web search APIs, compared
 
 ### 1. Parallel
@@ -62,7 +64,7 @@ In our September 2026 BrowseComp runs, Exa Auto scored 70% at the frontier tier 
 
 Brave Search serves results from its own independent crawl of the web and news, exposed as an API with a privacy focus. Because the index is independent, Brave doesn't resell results from mainstream engines the way SERP-based APIs do.
 
-Brave isn't in our current benchmark runs, so there's no BrowseComp figure for it here. On Openbenchmarks' factual-lookup board, Brave LLM context averaged 601ms and Brave web search 630ms, slower than the fastest modes from Parallel and Exa.
+Brave isn't in our current benchmark runs, so there's no BrowseComp figure for it here. On Openbenchmarks' factual-lookup board, Brave LLM context averaged 601ms and Brave web search 630ms, slower than the fastest modes from Parallel and Exa. AIMultiple's [Agentic Search API Benchmark](https://aimultiple.com/agentic-search) (November 2026) did test Brave's LLM Context endpoint: at its default 8,192-token budget it scored 77.9% answer accuracy at a 0.95-second median API latency, and 96.8% of its returned excerpts were supported by their sources, the highest of any configuration.
 
 **Best for:** teams that want an independent, privacy-oriented index for general web lookups.
 

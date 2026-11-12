@@ -33,6 +33,8 @@ Cost here covers LLM tokens plus tool calls per 1,000 questions, so it isn’t t
 
 Openbenchmarks runs an independent check with its own client and reports mean latency. On its [fastest-search-API board](https://openbenchmarks.com/web-search/fastest-search-api) (last measured September 12, 2026), Parallel Turbo had the lowest mean latency on factual lookup at 348ms (315ms median) but answered 71.3% of the 300 questions correctly from its results; Fast measured 942ms mean at 86.0%, and Exa Instant measured 398ms at 97.7%. On the board’s 100-question developer search set, Turbo averaged 333ms per search with 64.7% task completion and a 19s median task, against Fast’s 953ms, 66.7%, and 22s. On the multi-search company-discovery set, Exa Instant ranked first on time per unit of task quality, ahead of Turbo and Fast.
 
+AIMultiple's [Agentic Search API Benchmark](https://aimultiple.com/agentic-search) (updated November 10, 2026) tested both modes with a fixed GPT-5.6 Luna agent on 120 questions. Fast scored 79.7% answer accuracy and Turbo 76.5%, close enough that their confidence intervals overlap, at nearly the same cost per correct answer ($0.0063 and $0.0064). Turbo's median API latency was 0.38 seconds against Fast's 0.78.
+
 ## The agent-loop math
 
 At documented latencies, Fast adds about 0.5s per sequential call over Turbo, and both cost $0.001 per call. The table below multiplies that out for tasks that make 1, 5, or 15 sequential searches, counting search time only.

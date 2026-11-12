@@ -41,6 +41,8 @@ Firecrawl reported 94.7% on SimpleQA in July 2026 for a GPT-5.4 agent running up
 
 Those numbers still aren't comparable: the agents, harnesses, and question sets differ, and both are vendor-run. Openbenchmarks’ independent boards (September 2026) split the two by task. Firecrawl search completed 70.3% of the [coding-agent board’s](https://openbenchmarks.com/web-search-for-coding-agents) 100 documentation tickets from search alone, ahead of Parallel Fast at 66.7%. On [multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), Parallel Basic scored 50.2 F1 against Firecrawl’s 30.8. If accuracy is the deciding factor for you, run both against your own queries.
 
+AIMultiple's [Agentic Search API Benchmark](https://aimultiple.com/agentic-search) (updated November 10, 2026) is a third-party run on one shared harness: a fixed GPT-5.6 Luna agent, 120 questions, and each provider's search plus its page-reading tool (Scrape for Firecrawl, Extract for Parallel). Firecrawl scored 73.5% answer accuracy at $0.0164 per correct answer. Parallel Advanced scored 87.0%, and Parallel Fast 79.7% at $0.0063. Parallel Advanced also ranked sources better (0.689 nDCG@10 against 0.453) and had more of its returned excerpts supported by the source page (93.5% against 64.0%).
+
 ## **Crawling and browser control, where Firecrawl is clearly ahead**
 
 Firecrawl will take a domain and return every page on it. Map enumerates a site's URLs so you can pick targets before spending credits. Batch Scrape pushes thousands of URLs through asynchronously. Interact drives a real browser, so you can click through pagination, fill a form, or get past an interstitial. There are proxy modes for stubborn sites and screenshots when you need pixels.

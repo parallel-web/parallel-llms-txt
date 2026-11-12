@@ -18,6 +18,8 @@ We are Parallel, we build one of the six APIs below, and we are biased toward it
 
 Independent boards are a useful check on vendor numbers, ours included. The [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search), which Vals runs itself on expert-written finance and legal research tasks, ranked Claude Opus 5.5 with Parallel Search in Fast mode first of 12 model and search-tool combinations in its November 4, 2026 update, at 57.5% and $2.27 per task. With the same model, Anthropic's native search scored 53.7% at $3.48.
 
+AIMultiple's [Agentic Search API Benchmark](https://aimultiple.com/agentic-search) (updated November 10, 2026) covers more providers. It holds one agent fixed, GPT-5.6 Luna, and runs 120 questions through 24 configurations of Brave, Exa, Firecrawl, Parallel, Perplexity, and Tavily. Parallel Advanced had the highest answer accuracy at 87.0%, ahead of Exa Fast at 82.6%, with overlapping confidence intervals. Other providers led other measures: Perplexity Fast was the fastest and the cheapest per correct answer, and Brave had the highest share of excerpts supported by their sources.
+
 ## **The six web search APIs, compared**
 
 Our current Search API evals on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) ran on September 9, 2026, at two price tiers. The frontier tier pairs a GPT-5.6 Sol agent (reasoning high) with Parallel Basic or Advanced, and the low-cost tier pairs a GPT-5.6 Luna agent (reasoning low) with Parallel Fast or Turbo. Exa, Tavily, and Perplexity run at both tiers with the same agents, and an LLM judge grades a 50-question BrowseComp sample. OpenAI Web Search, Brave, and SerpAPI aren't in those runs, so for them we point to independent data where it exists. The sections below aren't a ranking.
@@ -52,7 +54,7 @@ OpenAI Web Search isn't in our September BrowseComp runs. It is in our October 2
 
 Brave Search offers a developer API over its own independent web index, reported at more than 30 billion pages, served without routing your queries through Google or Bing. It holds a SOC 2 Type II attestation with a zero-data-retention option.
 
-Brave isn't in our current benchmark runs. On [Openbenchmarks](https://openbenchmarks.com/web-search/fastest-search-api)'s factual-lookup latency board it measured 601 to 630ms mean.
+Brave isn't in our current benchmark runs. On [Openbenchmarks](https://openbenchmarks.com/web-search/fastest-search-api)'s factual-lookup latency board it measured 601 to 630ms mean. On AIMultiple's independent [Agentic Search API Benchmark](https://aimultiple.com/agentic-search) (November 2026), Brave's LLM Context endpoint at its default budget scored 77.9% answer accuracy and had the most source-supported excerpts of any configuration (96.8%).
 
 **Best for:** privacy-sensitive apps and cost-conscious teams that want an independent index and will handle extraction themselves.
 

@@ -60,6 +60,8 @@ Benchmark trust. Vendors design benchmarks to make themselves look good. We do i
 
 Third-party boards are the better check. On the [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) (updated November 4, 2026), which grades agents on expert-written finance and legal research tasks and changes only the search tool, Claude Opus 5.5 with Parallel Search in Fast mode ranked first of 12 combinations at 57.5% ($2.27 per task), ahead of the same model with Anthropic's native search (53.7%, $3.48). Vals has run Exa and Keenable with other models, so compare those rows with that in mind.
 
+AIMultiple's [Agentic Search API Benchmark](https://aimultiple.com/agentic-search) (updated November 10, 2026) covers more of the field: one fixed agent, GPT-5.6 Luna, 120 questions, and 24 configurations of Brave, Exa, Firecrawl, Parallel, Perplexity, and Tavily. Parallel Advanced had the highest answer accuracy at 87.0%, ahead of Exa Fast at 82.6%, though AIMultiple notes their confidence intervals overlap. Other providers led other measures: Perplexity Fast was the fastest and cheapest per correct answer, and Brave had the highest share of source-supported excerpts.
+
 
 
 

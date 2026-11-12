@@ -6,7 +6,7 @@ In independent tests, Parallel scored higher than Firecrawl on multi-step resear
 
 [Multi-turn company search F1, search only: 46.5 vs. 30.4](#accuracy) [Multi-turn company search F1, with page fetching: 42.3 vs. 33.2](#accuracy) [Artificial Analysis time per task, Parallel basic: 19.7s vs. 57.5s](#accuracy)
 
-Last updated November 6, 2026
+Last updated November 11, 2026
 
 ## What does Parallel do?
 
@@ -46,9 +46,11 @@ Parallel also took less time per task. In its runs of August 17, 2026, Artificia
 
 Openbenchmarks has flagged a timing bias on its company news board and is re-running every vendor, so this page leaves those results out until the re-run is published.
 
-On Openbenchmarks’ coding-agent board, 100 tickets against enterprise SaaS docs, the two tied at 76.0% with search and fetch, and Parallel Advanced scored 77.0%. With search alone, Firecrawl completed 70.3% against 66.7% for Parallel Fast. Parallel’s own September 2026 benchmark runs did not include Firecrawl, so every accuracy score on this page comes from Openbenchmarks.
+On Openbenchmarks’ coding-agent board, 100 tickets against enterprise SaaS docs, the two tied at 76.0% with search and fetch, and Parallel Advanced scored 77.0%. With search alone, Firecrawl completed 70.3% against 66.7% for Parallel Fast. Parallel’s own September 2026 benchmark runs did not include Firecrawl, so the accuracy scores on this page come from Openbenchmarks and AIMultiple.
 
-Sources: [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Artificial Analysis Search API leaderboard](https://artificialanalysis.ai/agents/search-api), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [Openbenchmarks web search for coding agents](https://openbenchmarks.com/web-search-for-coding-agents), [Openbenchmarks Firecrawl vs. Parallel](https://openbenchmarks.com/web-search/firecrawl-vs-parallel)
+AIMultiple, an independent research publisher, ran one fixed agent (GPT-5.6 Luna) on 120 questions with each provider’s search plus its page reading tool, Scrape for Firecrawl and Extract for Parallel. In its benchmark updated November 10, 2026, Firecrawl scored 73.5% answer accuracy at $0.0164 per correct answer. Parallel Advanced scored 87.0%, and Parallel Fast 79.7% at $0.0063\. Of Parallel Advanced’s returned excerpts, 93.5% were supported by their source pages, against 64.0% for Firecrawl.
+
+Sources: [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Artificial Analysis Search API leaderboard](https://artificialanalysis.ai/agents/search-api), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [Openbenchmarks web search for coding agents](https://openbenchmarks.com/web-search-for-coding-agents), [Openbenchmarks Firecrawl vs. Parallel](https://openbenchmarks.com/web-search/firecrawl-vs-parallel), [AIMultiple agentic search benchmark](https://aimultiple.com/agentic-search)
 
 +16.1 F1 points on multi-turn company search, search only
 
@@ -326,7 +328,7 @@ Firecrawl crawls and maps whole sites, drives a browser through Interact, and ha
 * **Does Firecrawl offer EU data residency?**  
 Only by self-hosting the open-source version, as of October 16, 2026\. Its privacy policy says the cloud service sends European users’ data to the US. Parallel’s EU endpoint serves Search (basic mode) and Extract (cache-only). Other APIs aren’t served there. Billing, metrics, and edge logs (no content) go to the US, and Extract sends only URLs to its page cache outside the EU.
 * **How current is this comparison?**  
-Parallel reviewed Firecrawl’s docs and pricing on November 3, 2026\. Artificial Analysis cost and time figures come from its August 17 runs, and Openbenchmarks figures from its company search board of October 2 and its coding-agent board of September 26\. Parallel’s own benchmark runs do not include Firecrawl. Both platforms ship often, so check the linked sources.
+Parallel reviewed Firecrawl’s docs and pricing on November 3, 2026\. Artificial Analysis cost and time figures come from its August 17 runs, and Openbenchmarks figures from its company search board of October 2 and its coding-agent board of September 26\. AIMultiple figures come from its November 10 benchmark. Parallel’s own benchmark runs do not include Firecrawl. Both platforms ship often, so check the linked sources.
 
 Trusted by
 
