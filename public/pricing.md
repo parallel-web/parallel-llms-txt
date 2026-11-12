@@ -221,7 +221,7 @@ Build, Scale, and Enterprise plans are covered by Parallel’s SOC 2 Type II cer
 
 Qualified startups can receive up to $250 in free credits from Parallel
 
-[Apply now](https://form.fillout.com/t/cNxJPKmh7eus)
+[Apply now](https://parallel.ai/startups)
 
 ## Where agents find answers
 

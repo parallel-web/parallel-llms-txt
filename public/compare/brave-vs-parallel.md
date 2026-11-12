@@ -6,7 +6,7 @@ On Openbenchmarks, Parallel Fast completed 66.7% of coding-agent retrieval tasks
 
 [Coding-agent retrieval, search only: 66.7% vs. 38.0%](#accuracy) [Multi-hop company search F1, search only: 46.5 vs. 28.0](#accuracy) [Lowest search list price, per 1,000 requests: $1 vs. $5](#cost)
 
-Last updated November 6, 2026
+Last updated November 11, 2026
 
 ## What does Parallel do?
 
@@ -46,9 +46,11 @@ On multi-turn company search, a fixed agent hunts for every company that matches
 
 Openbenchmarks has flagged a timing bias on its company news board and is re-running every vendor, so this page leaves those results out until the re-run is published.
 
+AIMultiple, an independent research publisher, ran one fixed agent (GPT-5.6 Luna) on 120 questions through Brave LLM Context at three context budgets and through Parallel’s four modes. In its benchmark updated November 10, 2026, Parallel Advanced scored 87.0% answer accuracy and Parallel Fast 79.7% at $0.0063 per correct answer. Brave LLM Context at its default 8,192 token budget scored 77.9% at $0.0178, and its larger budgets scored lower. Brave did better on source support: 96.8% of its returned excerpts were supported by their source pages, against 93.5% for Parallel Advanced.
+
 Parallel’s own published runs and OpenRouter’s search boards do not include Brave, so this page reports neither.
 
-Sources: [Openbenchmarks Brave Search vs. Parallel](https://openbenchmarks.com/web-search/brave-vs-parallel), [Openbenchmarks web search for coding agents](https://openbenchmarks.com/web-search-for-coding-agents), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Openbenchmarks company news search](https://openbenchmarks.com/company-news)
+Sources: [Openbenchmarks Brave Search vs. Parallel](https://openbenchmarks.com/web-search/brave-vs-parallel), [Openbenchmarks web search for coding agents](https://openbenchmarks.com/web-search-for-coding-agents), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [AIMultiple agentic search benchmark](https://aimultiple.com/agentic-search)
 
 +28.7 points of coding-agent task completion, search only
 
@@ -343,7 +345,7 @@ Brave publishes its index size and serves news, video, image, and place search. 
 * **Does Brave offer EU data residency?**  
 Not as of October 16, 2026\. Brave’s API privacy notice names Brave Software Inc. in the US as the provider. Enterprise customers get zero data retention. Parallel’s EU endpoint serves Search (basic mode) and Extract (cache-only). Other APIs aren’t served there. Billing, metrics, and edge logs (no content) go to the US, and Extract sends only URLs to its page cache outside the EU.
 * **How current is this comparison?**  
-Parallel reviewed Brave’s docs, prices, terms, and privacy notice on November 3, 2026\. Artificial Analysis cost and time figures come from runs it measured in August 2026\. Openbenchmarks figures come from its coding-agent board of September 26 and company search board of October 2\. Parallel’s own runs and OpenRouter’s boards do not include Brave.
+Parallel reviewed Brave’s docs, prices, terms, and privacy notice on November 3, 2026\. Artificial Analysis cost and time figures come from runs it measured in August 2026\. Openbenchmarks figures come from its coding-agent board of September 26 and company search board of October 2\. AIMultiple figures come from its November 10 benchmark. Parallel’s own runs and OpenRouter’s boards do not include Brave.
 
 Trusted by
 
