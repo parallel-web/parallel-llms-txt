@@ -423,10 +423,10 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [openapi](https://llm.parallel.ai/docs/account/service/openapi.json.md)
 - [docs-latest-openapi](https://llm.parallel.ai/docs/docs-latest-openapi.json.md)
 - [docs-legacy-openapi](https://llm.parallel.ai/docs/docs-legacy-openapi.json.md)
-- [Sign In - Parallel](https://llm.parallel.ai/docs/index.md)
+- [Get started - Parallel](https://llm.parallel.ai/docs/index.md)
 - [parallel-web - npm](https://llm.parallel.ai/docs/package/parallel-web.md)
 - [parallel-web · PyPI](https://llm.parallel.ai/docs/project/parallel-web/index.md)
-- [public-openapi](https://llm.parallel.ai/docs/public-openapi.json.md)
+- [OpenAPI Spec](https://llm.parallel.ai/docs/public-openapi.json.md)
 
 ## SDKs
 

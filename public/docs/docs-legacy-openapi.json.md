@@ -4759,7 +4759,8 @@
                   "default",
                   "flex",
                   "scale",
-                  "priority"
+                  "priority",
+                  "fast"
                 ]
               },
               {
@@ -5047,6 +5048,10 @@
           "delta": {
             "$ref": "#/components/schemas/ChoiceDelta"
           },
+          "index": {
+            "title": "Index",
+            "type": "integer"
+          },
           "finish_reason": {
             "anyOf": [
               {
@@ -5065,10 +5070,6 @@
             ],
             "default": null,
             "title": "Finish Reason"
-          },
-          "index": {
-            "title": "Index",
-            "type": "integer"
           },
           "logprobs": {
             "anyOf": [
@@ -5222,6 +5223,18 @@
             ],
             "default": null,
             "title": "Rejected Prediction Tokens"
+          },
+          "text_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Text Tokens"
           }
         },
         "title": "CompletionTokensDetails",
@@ -6762,6 +6775,31 @@
         "title": "FullContentSettings",
         "description": "Optional settings for returning full content."
       },
+      "HTTPError": {
+        "additionalProperties": true,
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "integer"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "const": "http_error",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "type"
+        ],
+        "title": "HTTPError",
+        "type": "object"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -6784,7 +6822,9 @@
               {
                 "enum": [
                   "max_output_tokens",
-                  "content_filter"
+                  "max_messages",
+                  "content_filter",
+                  "steered"
                 ],
                 "type": "string"
               },
@@ -6954,6 +6994,31 @@
         "title": "McpListToolsTool",
         "type": "object"
       },
+      "McpProtocolError": {
+        "additionalProperties": true,
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "integer"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "const": "mcp_protocol_error",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "type"
+        ],
+        "title": "McpProtocolError",
+        "type": "object"
+      },
       "McpServer": {
         "properties": {
           "type": {
@@ -7070,6 +7135,25 @@
         ],
         "title": "McpToolCall",
         "description": "Result of an MCP tool call."
+      },
+      "McpToolExecutionError": {
+        "additionalProperties": true,
+        "properties": {
+          "content": {
+            "title": "Content"
+          },
+          "type": {
+            "const": "mcp_tool_execution_error",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "content",
+          "type"
+        ],
+        "title": "McpToolExecutionError",
+        "type": "object"
       },
       "MemoryClearRequest": {
         "properties": {
@@ -7895,6 +7979,18 @@
             "default": null,
             "title": "Audio Tokens"
           },
+          "cache_write_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Cache Write Tokens"
+          },
           "cached_tokens": {
             "anyOf": [
               {
@@ -7906,6 +8002,30 @@
             ],
             "default": null,
             "title": "Cached Tokens"
+          },
+          "image_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Image Tokens"
+          },
+          "text_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Text Tokens"
           }
         },
         "title": "PromptTokensDetails",
@@ -8200,7 +8320,9 @@
                   "default",
                   "flex",
                   "scale",
-                  "priority"
+                  "priority",
+                  "fast",
+                  "ultrafast"
                 ],
                 "type": "string"
               },
@@ -8466,7 +8588,7 @@
                 "type": "null"
               }
             ],
-            "description": "Data partners to enable for this request, in addition to web search: `pay_per_use` partners are billed per call, `free` partners are not. Same names and shape as the Task API's `advanced_settings.data_sources`; see the Data Sources documentation. Supported when `reasoning.effort` is `medium` (the default) or `high`. A partner name must not collide with an `mcp` tool's `server_label`."
+            "description": "Data partners to enable for this request, in addition to web search: `pay_per_use` partners are billed per call, `free` partners are not. Same names and shape as the Task API's `advanced_settings.data_sources`; see the Data Sources documentation. Supported at every `reasoning.effort`. Lower efforts make fewer partner calls per answer, and `auto` can stop at `low`. For a partner whose lookups take several steps, such as a search and then a detail fetch, use `medium` (the default) or `high`. A partner name must not collide with an `mcp` tool's `server_label`."
           }
         },
         "type": "object",
@@ -8532,7 +8654,7 @@
           "type"
         ],
         "title": "ResponseFormatJSONSchema",
-        "description": "JSON Schema response format.\n\nUsed to generate structured JSON responses.\nLearn more about [Structured Outputs](https://platform.openai.com/docs/guides/structured-outputs)."
+        "description": "JSON Schema response format.\n\nUsed to generate structured JSON responses.\nLearn more about [Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs)."
       },
       "ResponseFormatText": {
         "additionalProperties": true,
@@ -8632,7 +8754,8 @@
               "in_progress",
               "searching",
               "completed",
-              "failed"
+              "failed",
+              "incomplete"
             ],
             "title": "Status",
             "type": "string"
@@ -8750,21 +8873,21 @@
               {
                 "discriminator": {
                   "mapping": {
-                    "http_error": "#/components/schemas/ResponseMcpHttpError",
-                    "mcp_protocol_error": "#/components/schemas/ResponseMcpProtocolError",
-                    "mcp_tool_execution_error": "#/components/schemas/ResponseMcpToolExecutionError"
+                    "http_error": "#/components/schemas/HTTPError",
+                    "mcp_protocol_error": "#/components/schemas/McpProtocolError",
+                    "mcp_tool_execution_error": "#/components/schemas/McpToolExecutionError"
                   },
                   "propertyName": "type"
                 },
                 "oneOf": [
                   {
-                    "$ref": "#/components/schemas/ResponseMcpToolExecutionError"
+                    "$ref": "#/components/schemas/McpProtocolError"
                   },
                   {
-                    "$ref": "#/components/schemas/ResponseMcpProtocolError"
+                    "$ref": "#/components/schemas/McpToolExecutionError"
                   },
                   {
-                    "$ref": "#/components/schemas/ResponseMcpHttpError"
+                    "$ref": "#/components/schemas/HTTPError"
                   }
                 ]
               },
@@ -8805,30 +8928,6 @@
           "status"
         ],
         "title": "ResponseMcpCall",
-        "type": "object"
-      },
-      "ResponseMcpHttpError": {
-        "properties": {
-          "type": {
-            "const": "http_error",
-            "default": "http_error",
-            "title": "Type",
-            "type": "string"
-          },
-          "code": {
-            "title": "Code",
-            "type": "integer"
-          },
-          "message": {
-            "title": "Message",
-            "type": "string"
-          }
-        },
-        "required": [
-          "code",
-          "message"
-        ],
-        "title": "ResponseMcpHttpError",
         "type": "object"
       },
       "ResponseMcpListTools": {
@@ -8877,33 +8976,9 @@
         "title": "ResponseMcpListTools",
         "type": "object"
       },
-      "ResponseMcpProtocolError": {
-        "properties": {
-          "type": {
-            "const": "mcp_protocol_error",
-            "default": "mcp_protocol_error",
-            "title": "Type",
-            "type": "string"
-          },
-          "code": {
-            "title": "Code",
-            "type": "integer"
-          },
-          "message": {
-            "title": "Message",
-            "type": "string"
-          }
-        },
-        "required": [
-          "code",
-          "message"
-        ],
-        "title": "ResponseMcpProtocolError",
-        "type": "object"
-      },
       "ResponseMcpTool": {
         "additionalProperties": false,
-        "description": "The OpenAI `mcp` tool: a remote MCP server the `parallel` model may call\nwhile researching, alongside web search. Each call is reported as an\n`mcp_call` output item. `headers` and `authorization` are sent to the\nserver and never echoed back. Parallel runs tool calls without an approval\nround trip, so `require_approval` must be set to `never` explicitly.\n`connector_id` and `tunnel_id` are not supported. Any other key is rejected.",
+        "description": "The OpenAI `mcp` tool: a remote MCP server the `parallel` model may call\nwhile researching, alongside web search. Each call is reported as an\n`mcp_call` output item. `headers` and `authorization` are sent to the\nserver and never echoed back. Parallel runs tool calls without an approval\nround trip, so `require_approval` must be set to `never` explicitly.\nThe model calls tools directly, so `allowed_callers`, when set, must\ninclude `direct`. `connector_id` and `tunnel_id` are not supported. Any\nother key is rejected.",
         "properties": {
           "server_label": {
             "description": "Name for this server. Appears as `server_label` on its `mcp_call` items and must not collide with a `data_sources` partner name.",
@@ -8995,24 +9070,6 @@
           "server_url"
         ],
         "title": "ResponseMcpTool",
-        "type": "object"
-      },
-      "ResponseMcpToolExecutionError": {
-        "properties": {
-          "type": {
-            "const": "mcp_tool_execution_error",
-            "default": "mcp_tool_execution_error",
-            "title": "Type",
-            "type": "string"
-          },
-          "content": {
-            "title": "Content"
-          }
-        },
-        "required": [
-          "content"
-        ],
-        "title": "ResponseMcpToolExecutionError",
         "type": "object"
       },
       "ResponseOutputMessage": {
@@ -9151,7 +9208,7 @@
       },
       "ResponseTextConfig": {
         "additionalProperties": true,
-        "description": "Text output configuration. By default the response is plain text; for\nstructured output set `format` to\n`{\"type\": \"json_schema\", \"name\": ..., \"schema\": {...}}`. The `json_object`\nformat is accepted for compatibility but produces plain text.",
+        "description": "Text output configuration. By default the response is plain text; for\nstructured output set `format` to\n`{\"type\": \"json_schema\", \"name\": ..., \"schema\": {...}}`. On `/v1/responses`\nthe `json_object` format is accepted for compatibility but produces plain\ntext.",
         "properties": {
           "format": {
             "anyOf": [
@@ -9194,7 +9251,7 @@
       },
       "ResponseWebSearchTool": {
         "additionalProperties": false,
-        "description": "The OpenAI `web_search` tool. Web grounding is always on, so the tool\nitself changes nothing; its `filters` restrict which domains are searched.\n`search_context_size` and `user_location` are accepted and ignored. Any\nother key is rejected.",
+        "description": "The OpenAI `web_search` tool. Web grounding is always on, so the tool\nitself changes nothing; its `filters` restrict which domains are searched.\n`search_context_size` and `user_location` are accepted and ignored.\nSearches always fetch live content, so `external_web_access: false` is\nrejected. Any other key is rejected.",
         "properties": {
           "type": {
             "enum": [
@@ -9235,7 +9292,7 @@
           "user_location": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/UserLocation"
+                "$ref": "#/components/schemas/ResponseWebSearchToolUserLocation"
               },
               {
                 "type": "null"
@@ -9288,6 +9345,75 @@
           }
         },
         "title": "ResponseWebSearchToolFilters",
+        "type": "object"
+      },
+      "ResponseWebSearchToolUserLocation": {
+        "additionalProperties": false,
+        "description": "The approximate location of the user.",
+        "properties": {
+          "city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "City"
+          },
+          "country": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Country"
+          },
+          "region": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Region"
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Timezone"
+          },
+          "type": {
+            "anyOf": [
+              {
+                "const": "approximate",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Type"
+          }
+        },
+        "title": "ResponseWebSearchToolUserLocation",
         "type": "object"
       },
       "SearchRequest": {
@@ -9597,6 +9723,17 @@
               }
             ],
             "description": "Optional partner data sources to enable for this task run. Supported on standard processors only; a selected partner name must not collide with an `mcp_servers` entry."
+          },
+          "fetch_policy": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FetchPolicy"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Optional fetch policy for every page the task run extracts. Pages cached longer than max_age_seconds are fetched live. Values below 600 seconds are raised to 600. Search results are not affected."
           }
         },
         "type": "object",
@@ -10740,75 +10877,6 @@
         "title": "UsageItem",
         "description": "Usage item for a single operation."
       },
-      "UserLocation": {
-        "additionalProperties": true,
-        "description": "The approximate location of the user.",
-        "properties": {
-          "city": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "City"
-          },
-          "country": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Country"
-          },
-          "region": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Region"
-          },
-          "timezone": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Timezone"
-          },
-          "type": {
-            "anyOf": [
-              {
-                "const": "approximate",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Type"
-          }
-        },
-        "title": "UserLocation",
-        "type": "object"
-      },
       "V0CreateMonitorRequest": {
         "properties": {
           "query": {
@@ -11546,8 +11614,19 @@
       },
       "ChoiceDelta": {
         "additionalProperties": true,
-        "description": "A chat completion delta generated by streamed model responses.",
+        "description": "A chat completion delta generated by streamed model responses.\nStreamed audio can arrive in partial updates with an ID, base64 data, or\ntranscript text. The final audio update contains only its expiry timestamp.",
         "properties": {
+          "audio": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ChoiceDeltaAudio"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
           "content": {
             "anyOf": [
               {
@@ -11619,6 +11698,62 @@
           }
         },
         "title": "ChoiceDelta",
+        "type": "object"
+      },
+      "ChoiceDeltaAudio": {
+        "additionalProperties": true,
+        "description": "A partial audio response.\n\nAudio chunks may carry an ID, base64 data, or\ntranscript text; the final audio update contains only its expiry timestamp.",
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Id"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Data"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Expires At"
+          },
+          "transcript": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Transcript"
+          }
+        },
+        "title": "ChoiceDeltaAudio",
         "type": "object"
       },
       "ChoiceDeltaFunctionCall": {
@@ -11868,7 +12003,8 @@
                   "default",
                   "flex",
                   "scale",
-                  "priority"
+                  "priority",
+                  "fast"
                 ],
                 "type": "string"
               },

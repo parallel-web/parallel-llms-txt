@@ -1,15 +1,63 @@
-[](https://platform.parallel.ai/)
+[](https://platform.parallel.ai/home)
 
-By signing in and using this service, you agree to Parallel's [Terms of Service](https://parallel.ai/terms-of-service) , [Customer Terms](https://parallel.ai/customer-terms) and [Privacy Policy](https://www.parallel.ai/privacy-policy) .
+* [Home](https://parallel.ai/)
+* [MCP](https://parallel.ai/mcp)
+* [Docs](https://docs.parallel.ai/home)
+* [Blog](https://parallel.ai/blog)
+* [Pricing](https://parallel.ai/pricing)
 
-# Check your inbox
+# Get started with Parallel
 
-A sign in link was sent to
+By continuing, you agree to the [Terms](https://parallel.ai/terms-of-service) , [Customer Terms](https://parallel.ai/customer-terms) and [Privacy Policy](https://www.parallel.ai/privacy-policy) .
 
-Resend email Go back
+Need help with your account? [Get in touch](mailto:support@parallel.ai) .
 
-Enter your email to receive a sign in link
+Trusted by
 
-Get login link Back to sign-in options
+* Granola
+* Lovable
+* Harvey
+* Notion
+* Pfizer
 
-Continue Back to sign-in options
+* 
+* 
+* 
+* 
+* 
+
+* 
+* 
+* 
+* 
+* 
+
+* 
+* 
+* 
+* 
+*
+
+* LangChain
+* Modal
+* Replit
+* Profound
+* Rogo
+
+* 
+* 
+* 
+* 
+* 
+
+* 
+* 
+* 
+* 
+* 
+
+* 
+* 
+* 
+* 
+*
