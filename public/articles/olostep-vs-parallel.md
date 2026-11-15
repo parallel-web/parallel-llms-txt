@@ -20,7 +20,7 @@ An Olostep scrape costs 1 credit, prebuilt parsers usually 1 to 5, and LLM extra
 
 Parallel's [Extract API](https://parallel.ai/products/extract) takes up to 20 URLs in one synchronous request. Add an objective and keyword queries, and it returns ranked excerpts from each page aligned to that goal, the full page as markdown, or both, for $1 per 1,000 URLs. It handles JavaScript-heavy pages and PDFs, and a fetch policy chooses between Parallel's cached index and a live fetch. It doesn't return HTML, screenshots, or schema-shaped JSON, and it has no proxy or unblocking layer.
 
-A common read is that Parallel can't return schema-shaped data or process URL lists in bulk. That's accurate for Extract, which returns markdown and reads 20 URLs per call. The [Task API](https://docs.parallel.ai/task/task-quickstart) does return output to your JSON schema, with per-field citations, from $5 per 1,000 runs, and Task Groups submit thousands of runs at once.
+A common read is that Parallel can't return schema-shaped data or process URL lists in bulk. That's accurate for Extract, which returns markdown and reads 20 URLs per call. The [Task API](https://docs.parallel.ai/task-api/task-quickstart) does return output to your JSON schema, with per-field citations, from $5 per 1,000 runs, and Task Groups submit thousands of runs at once.
 
 For templated pages at volume, Olostep's parsers and batches are the cheaper, more direct tool. For an agent that needs the passages answering its question from a few URLs, Parallel's excerpts send fewer tokens to the model.
 
@@ -30,7 +30,7 @@ Olostep's [Search API](https://docs.olostep.com/features/search) takes a natural
 
 [Parallel Search](https://parallel.ai/products/search) runs on Parallel's own web index. It takes an objective plus keyword queries and returns ranked results with excerpts pulled from each page body, in four modes: Turbo (about 200ms, $1 per 1,000 requests), Fast (about 700ms, $1 per 1,000), Basic (about 1s, $5 per 1,000), and Advanced (about 3s, $5 per 1,000, the default). Ten results are included, and extra results cost $1 per 1,000.
 
-For research, the [Task API](https://docs.parallel.ai/task/task-quickstart) runs asynchronously across nine processors, from $5 to $2,400 per 1,000 runs, and returns output to your JSON schema with a citation, reasoning, and calibrated confidence for every field. Task Groups submit thousands of runs at once. The OpenAI-compatible Responses API returns cited answers synchronously for $10 to $250 per 1,000, and FindAll and Monitor cover entity lists and change tracking.
+For research, the [Task API](https://docs.parallel.ai/task-api/task-quickstart) runs asynchronously across nine processors, from $5 to $2,400 per 1,000 runs, and returns output to your JSON schema with a citation, reasoning, and calibrated confidence for every field. Task Groups submit thousands of runs at once. The OpenAI-compatible Responses API returns cited answers synchronously for $10 to $250 per 1,000, and FindAll and Monitor cover entity lists and change tracking.
 
 ## Pricing
 

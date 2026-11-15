@@ -1,6 +1,6 @@
 # What is semantic search and how does it work?
 
-Semantic search is the retrieval approach behind most modern AI search products, and understanding it explains why two systems return different results for the same query. This guide covers how it works, how it compares with keyword search, the core components of a semantic retrieval engine (vector embeddings, knowledge graph augmentation, transformer rerankers, and feedback loops), why it matters for AI systems, examples across industries, and a five-step workflow for building one.
+Semantic search is a retrieval method that matches the meaning and intent of a query rather than its exact words. It turns queries and documents into vector embeddings, finds the closest matches, and often reranks them with a language model. This guide covers how it works, how it compares with keyword and hybrid search, the components of a semantic retrieval engine, why it matters for AI agents, examples across industries, and a five-step workflow for building one.
 
 ## **What is semantic search?**
 
@@ -46,6 +46,10 @@ The table below shows how keyword and semantic search differ in practice:
 
 Keyword search excels when you know exactly what you're looking for: a specific product code, a person's name, or an exact phrase. Semantic search works better when you're exploring a topic, asking questions, or don't know the precise terminology.
 
+## Semantic search vs hybrid search
+
+Most production systems don't pick one approach. Hybrid search runs a keyword method such as BM25 and a vector search side by side, merges the two ranked lists (often with reciprocal rank fusion), and then lets a reranker order the final results. The keyword side catches exact terms like product codes and names, and the vector side catches paraphrases. For a new system, hybrid is usually the safer default.
+
 ## **Core components of semantic retrieval engines**
 
 ### **Vector embeddings**
@@ -83,6 +87,8 @@ When an AI agent uses traditional search, it has to scrape full web pages, parse
 For complex reasoning tasks, semantic search enables AI agents to synthesize information across different domains and time periods. An agent researching competitive intelligence can search for "enterprise AI adoption trends," "competitor pricing changes," and "recent funding announcements", conceptually related queries that would require completely different keyword formulations in traditional search.
 
 Semantic search can also reduce hallucination. When it returns verifiable information with transparent attribution to source documents, AI agents can ground their outputs in evidence rather than generating plausible-sounding fabrications.
+
+For the retrieval layer behind this, see [what a web search API is](/articles/what-is-a-web-search-api) and [how a web index works](/articles/what-is-a-web-index). To put live search results into a retrieval pipeline, see [how to build a RAG pipeline with live web data](/articles/how-to-build-a-rag-pipeline-with-live-web-data).
 
 ## **Semantic search examples across industries**
 
@@ -133,6 +139,10 @@ Multilingual embedding models like mBERT or XLM-RoBERTa show strong performance 
 ### **How large does my vector index need to be?**
 
 Index size depends on your use case scope. A customer support system might index thousands of help articles, while a research tool could index millions of papers. Smaller focused indexes often outperform massive general ones because they contain less noise.
+
+### Is semantic search the same as vector search?
+
+Not quite. Vector search is the mechanism: finding the stored embeddings nearest to a query embedding. Semantic search is the broader goal of matching meaning, and it usually combines vector search with reranking, metadata filters and often keyword matching.
 
 ## Semantic search built for AI agents
 

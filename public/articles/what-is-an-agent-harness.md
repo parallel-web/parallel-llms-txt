@@ -33,6 +33,8 @@ An agent harness typically works by intercepting and augmenting the communicatio
 
 Through all these stages, the harness remains **invisible to the end-user** but shapes much of the agent’s performance. A harness does **not** alter the LLM’s internal weights or training; it’s part of the _software architecture_ around the model. That means a harness can take a pre-trained model and [boost its problem-solving ability](https://ar5iv.labs.arxiv.org/html/2507.11633v1#:~:text=In%20our%20empirical%20findings%2C%20across,test%2C) by giving it tools, memory, and checks.
 
+For how the harness fits into the wider system, see our guide to [AI agent architecture](/articles/ai-agent-architecture-patterns-components-and-how-to-build-for-web-access).
+
 ## Key components and features of agent harnesses
 
 While implementations vary, most AI harnesses include a common set of components or features:

@@ -26,6 +26,28 @@ To set up web monitoring for an AI agent, use a monitoring API that pushes event
 
 Traditional tools notify humans; programmatic APIs notify machines. When the primary consumer shifts from a person checking email to an [AI agent](https://parallel.ai/articles/what-is-an-ai-agent) processing JSON, dashboards stop mattering and structured payloads become a requirement. This article focuses on the third category.
 
+## Types of web monitoring tools
+
+### Uptime and availability monitoring
+
+Uptime monitoring checks whether a URL returns a valid HTTP response. These tools ping endpoints on a schedule, measure response times, and alert you to downtime. StatusCake, Pingdom, and UptimeRobot serve this category. DevOps teams use them to track infrastructure health. They don't cover business intelligence or competitive monitoring.
+
+### Visual and content change detection
+
+Visual monitoring captures screenshots and compares them over time. Content monitoring tracks HTML changes and highlights additions or deletions. These tools produce human-readable output: diff reports, annotated screenshots, and email summaries.
+
+At scale, visual diffs generate noise from irrelevant layout shifts, ad rotations, and timestamp changes. HTML monitoring lacks semantic filtering, so you receive alerts for trivial changes alongside meaningful ones. Neither approach produces programmatic output suitable for downstream automation.
+
+### Performance monitoring
+
+Performance monitoring tracks [Core Web Vitals](https://web.dev/articles/vitals), load times, and rendering metrics. SEO teams use these tools to monitor site speed. Engineering teams use them to catch regressions. It's outside this article's focus on business intelligence.
+
+### Business intelligence and data monitoring
+
+Business intelligence monitoring tracks the changes that matter to your operations: competitor pricing, regulatory filings, job postings, news mentions, and product launches. This category requires semantic filtering: the ability to tell a price increase from a timestamp update.
+
+You need structured, actionable data that downstream systems can process. Natural language query definition lets you describe what you want to detect ("Has the Enterprise plan price changed?") rather than specifying XPath selectors and regex patterns. [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) depend on this category. They need event-driven triggers with machine-readable payloads rather than email digests designed for human review, which makes the monitoring tool part of the data pipeline.
+
 ## Why traditional web monitoring falls short for AI agents
 
 Visualping, Distill.io, and UptimeRobot dominate web monitoring, and they've built useful products for human operators. Their architecture is a poor fit for AI agent workflows.
@@ -294,6 +316,22 @@ Choose **API-based services** when an AI agent will consume the events, when you
 Choose **DIY** when your extraction requirements are specialized, when you already have mature scraping infrastructure, or when the data you need isn't accessible to general-purpose monitoring services.
 
 For most AI agent use cases, API-based services offer the best tradeoff between capability and engineering overhead.
+
+## GUI-based vs. API-first monitoring: a comparison
+
+| Feature | GUI-based tools | API-first tools |
+| --- | --- | --- |
+| Primary output | Email alerts, dashboard | Webhook payload, API response |
+| Query definition | URL + CSS/XPath rules | Natural language or structured query |
+| Deduplication | Manual or none | Built-in |
+| AI agent integration | Not supported | Native (event-driven) |
+| Scheduling | Fixed intervals | Hourly, daily, weekly (configurable) |
+| Pricing model | Per seat / subscription | Per execution |
+| Best for | Human review workflows | Automated pipelines, AI workflows |
+
+GUI-based tools work well when humans consume the output directly. API-first tools fit when downstream systems, automation pipelines, or AI agents need to process events programmatically.
+
+Monitoring guides by use case: [company news alerts](/articles/how-to-set-up-company-news-alerts-that-actually-work), [Google Alerts alternatives](/articles/the-best-google-alerts-alternatives-in-2026-including-one-built-for-developers), [regulatory change monitoring](/articles/how-to-automate-regulatory-change-monitoring-with-apis), [investment research monitoring](/articles/how-to-set-up-continuous-web-monitoring-for-investment-research), [competitor feature alerts](/articles/how-to-set-up-competitor-feature-alerts-that-tell-you-what-shipped) and [sales trigger events](/articles/how-to-monitor-sales-trigger-events-that-actually-convert).
 
 ## Frequently asked questions
 

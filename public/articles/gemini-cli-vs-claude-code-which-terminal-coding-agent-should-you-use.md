@@ -64,7 +64,7 @@ A web search tool solves this, and MCP is how you add one. Instead of reasoning 
 
 Parallel's web search, fetch, and research tools ship as [Parallel MCP](https://parallel.ai/mcp), a server hosted at [https://mcp.parallel.ai/mcp](https://parallel.ai/mcp), so it plugs into Gemini CLI and Claude Code alike. Search, fetch, and decisions are free to use with no API key; signing in or adding a key adds `web_research` and higher rate limits. In Claude Code, you [register it with one command](https://docs.parallel.ai/integrations/mcp/quickstart):
 
-```sh
+```shell
 claude mcp add --transport http parallel https://mcp.parallel.ai/mcp
 ```
 

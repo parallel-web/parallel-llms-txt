@@ -1,6 +1,6 @@
 # What is data enrichment?
 
-Enrichment is what turns a sparse record into a profile complete enough to act on, whether the next action is a sales call or an AI system's reasoning step. This guide covers how data enrichment works, how it differs from data enhancement, why it matters for AI systems, the six-step process, examples across customer, marketing, and product data, the ROI, the privacy and provenance challenges, and where the field is heading.
+Data enrichment is the process of adding information from external sources to the records you already have, so a sparse row (a name, a domain, an email) becomes a profile complete enough to act on. This guide covers how data enrichment works, how it differs from data enhancement, why it matters for AI systems, the six-step process, examples across customer, marketing, and product data, the ROI, the privacy and provenance challenges, and where the field is heading.
 
 ## **Data enrichment definition and meaning**
 
@@ -149,6 +149,8 @@ Every piece of information our platform returns traces back to verifiable source
 Our [Task APIs ](https://docs.parallel.ai/task-api/task-quickstart)handle enrichment workflows that would otherwise require orchestrating multiple tools. You specify what information you're looking for, and Parallel works out how to gather, verify, and structure the results.
 
 [Start building](https://platform.parallel.ai/home) with Parallel's APIs to give your AI systems accurate, verifiable data.
+
+If you're choosing a tool, our [data enrichment API guide](/articles/data-enrichment-api-how-to-choose-implement-and-scale-company-intelligence) compares lookup APIs with AI-native enrichment and lists what to evaluate before you buy.
 
 ## **Frequently asked questions about data enrichment**
 

@@ -6,7 +6,7 @@ Guides, comparisons, and definitions for developers building AI agents that use 
 
 * [Olostep vs. Parallel: bulk scraping or retrieval for agents?](https://parallel.ai/articles/olostep-vs-parallel)
 * [Context.dev vs. Parallel: a full scraping stack or focused retrieval?](https://parallel.ai/articles/context-dev-vs-parallel)
-* [The best web extraction APIs for LLMs in 2026](https://parallel.ai/articles/best-web-extraction-apis)
+* [The best AI web scrapers and extraction APIs for LLMs in 2026](https://parallel.ai/articles/best-web-extraction-apis)
 * [Cloudflare Clef vs. Parallel Decisions: edge decisions or web-grounded answers](https://parallel.ai/articles/cloudflare-clef-vs-parallel)
 * [Jev alternatives: 8 decision models and APIs compared](https://parallel.ai/articles/jev-alternatives)
 * [Laya vs. Jev vs. Parallel Decisions: open weights, hosted, or web-grounded](https://parallel.ai/articles/laya-vs-jev-vs-parallel)
@@ -36,6 +36,7 @@ Guides, comparisons, and definitions for developers building AI agents that use 
 * [Best deep research APIs in 2026: a benchmark report](https://parallel.ai/articles/best-deep-research-apis)
 * [Best AI search for agents: 6 web search APIs compared (2026)](https://parallel.ai/articles/best-ai-search-for-agents)
 * [Best fast search APIs in 2026: a guide to 5 AI-native search tools](https://parallel.ai/articles/best-fast-search-apis)
+* [Google Custom Search API alternatives for AI agents](https://parallel.ai/articles/the-best-google-custom-search-api-alternative-for-ai-agents)
 * [The best free web search APIs for AI agents in 2026](https://parallel.ai/articles/best-free-web-search-api)
 * [Claude's web search tool vs. Parallel: built-in convenience against a dedicated search API](https://parallel.ai/articles/claude-web-search-vs-parallel)
 * [SearXNG vs. Parallel: self-hosted metasearch against a hosted index](https://parallel.ai/articles/searxng-vs-parallel)
@@ -116,10 +117,7 @@ Guides, comparisons, and definitions for developers building AI agents that use 
 * [OpenClaw MCP: how to add MCP servers, and the 10 best to install in 2026](https://parallel.ai/articles/best-mcp-servers-for-openclaw)
 * [How to benchmark web search APIs on your own queries](https://parallel.ai/articles/how-to-benchmark-web-search-apis)
 * [Should you build a web research agent or use a deep research API?](https://parallel.ai/articles/should-you-build-a-web-research-agent-or-use-a-deep-research-api)
-* [How investment firms use AI APIs for deal sourcing and research](https://parallel.ai/articles/how-investment-firms-use-ai-apis-for-deal-sourcing-and-research)
-* [How to track industry news automatically using AI](https://parallel.ai/articles/how-to-track-industry-news-automatically-using-ai)
 * [Data enrichment API: how to choose, implement, and scale company intelligence](https://parallel.ai/articles/data-enrichment-api-how-to-choose-implement-and-scale-company-intelligence)
-* [Data enrichment tools are broken: here's how to build a company database that isn't](https://parallel.ai/articles/data-enrichment-tools-are-broken-heres-how-to-build-a-company-database-that-isnt)
 * [How to set up company news alerts that actually work](https://parallel.ai/articles/how-to-set-up-company-news-alerts-that-actually-work)
 * [AI in private equity: how AI deal sourcing finds acquisition targets](https://parallel.ai/articles/ai-sourcing-how-to-find-acquisition-targets-programmatically)
 * [Web monitoring software: how to set up real-time monitoring for AI agents](https://parallel.ai/articles/web-monitoring-software-how-to-set-up-real-time-monitoring-for-ai-agents)
@@ -134,10 +132,8 @@ Guides, comparisons, and definitions for developers building AI agents that use 
 * [How to build a RAG pipeline with live web data](https://parallel.ai/articles/how-to-build-a-rag-pipeline-with-live-web-data)
 * [Web scraping API: how to choose the right tool for AI-ready data](https://parallel.ai/articles/web-scraping-api-how-to-choose-the-right-tool-for-ai-ready-data)
 * [How to automate competitive intelligence with APIs and AI agents](https://parallel.ai/articles/how-to-automate-competitive-intelligence-with-apis-and-ai-agents)
-* [How to find and enrich potential customers from the web](https://parallel.ai/articles/how-to-find-and-enrich-potential-customers-from-the-web)
 * [The essential APIs every AI agent needs in 2026](https://parallel.ai/articles/the-essential-apis-every-ai-agent-needs-in-2026)
 * [Best web data APIs for AI-powered sales tools](https://parallel.ai/articles/best-web-data-apis-for-ai-powered-sales-tools)
-* [AI chatbot API guide: how to build chatbots that answer from the live web](https://parallel.ai/articles/ai-chatbot-api-guide-how-to-build-chatbots-that-answer-from-the-live-web)
 * [How to build a conversational AI assistant with real-time web access](https://parallel.ai/articles/how-to-build-a-conversational-ai-assistant-with-real-time-web-access)
 * [How to build an AI-powered competitive intelligence platform with APIs](https://parallel.ai/articles/how-to-build-an-ai-powered-competitive-intelligence-platform-with-apis)
 * [How to automate market mapping with AI: a developer's guide to competitive landscape analysis](https://parallel.ai/articles/how-to-automate-market-mapping-with-ai-a-developers-guide-to-competitive-landscape-analysis)
@@ -147,9 +143,8 @@ Guides, comparisons, and definitions for developers building AI agents that use 
 * [How to automate competitor analysis with AI agents](https://parallel.ai/articles/how-to-automate-competitor-analysis-with-ai-agents)
 * [The best Google Alerts alternatives in 2026 (including one built for developers)](https://parallel.ai/articles/the-best-google-alerts-alternatives-in-2026-including-one-built-for-developers)
 * [How to automate market research reports using AI](https://parallel.ai/articles/how-to-automate-market-research-reports-using-ai)
-* [Web monitoring tools: a guide to tracking changes that matter for your business](https://parallel.ai/articles/web-monitoring-tools-a-guide-to-tracking-changes-that-matter-for-your-business)
 * [How to build AI-powered market intelligence tools with APIs](https://parallel.ai/articles/how-to-build-ai-powered-market-intelligence-tools-with-apis)
-* [How to build an AI lead generation pipeline using live web data](https://parallel.ai/articles/how-to-build-an-ai-lead-generation-pipeline)
+* [AI lead generation: how to build a pipeline with live web data](https://parallel.ai/articles/how-to-build-an-ai-lead-generation-pipeline)
 * [OpenClaw web search best practices: getting maximum accuracy from Parallel](https://parallel.ai/articles/openclaw-best-practices-web-search)
 
 ### Industry Terms
@@ -187,7 +182,6 @@ Guides, comparisons, and definitions for developers building AI agents that use 
 * [What is a web index?](https://parallel.ai/articles/what-is-a-web-index)
 * [What is a web crawler?](https://parallel.ai/articles/what-is-a-web-crawler)
 * [What is a web search API, and when do AI agents need one?](https://parallel.ai/articles/what-is-a-web-search-api)
-* [Web enrichment for sales: how AI-powered sales tools transform CRM data](https://parallel.ai/articles/ai-web-enrichment-for-sales)
 
 ### Other
 
@@ -198,7 +192,6 @@ Guides, comparisons, and definitions for developers building AI agents that use 
 * [The visibility value gap: why the most visible sites aren’t the most valuable to AI agents](https://parallel.ai/articles/the-visibility-value-gap-why-the-most-visible-sites-arent-the-most-valuable-to-ai-agents)
 * [What makes a source irreplaceable?](https://parallel.ai/articles/what-makes-a-source-irreplaceable)
 * [OpenClaw vs Claude Code: which AI agent should you actually use?](https://parallel.ai/articles/openclaw-vs-claude-code-which-ai-agent-should-you-actually-use)
-* [The best Google Custom Search API alternative for AI agents](https://parallel.ai/articles/the-best-google-custom-search-api-alternative-for-ai-agents)
 * [Gemini CLI vs Claude Code: which terminal coding agent should you use?](https://parallel.ai/articles/gemini-cli-vs-claude-code-which-terminal-coding-agent-should-you-use)
 * [OpenCode vs Claude Code: a 2026 comparison for developers](https://parallel.ai/articles/opencode-vs-claude-code-a-2026-comparison-for-developers)
 * [The best OpenClaw alternatives in 2026 (and how to make any of them reliable)](https://parallel.ai/articles/the-best-openclaw-alternatives-in-2026-and-how-to-make-any-of-them-reliable)
@@ -219,5 +212,4 @@ Guides, comparisons, and definitions for developers building AI agents that use 
 * [How to get real-time data into your AI chatbot](https://parallel.ai/articles/how-to-get-real-time-data-into-your-ai-chatbot)
 * [How to automate regulatory change monitoring with APIs](https://parallel.ai/articles/how-to-automate-regulatory-change-monitoring-with-apis)
 * [The AI APIs you need to build a research and monitoring stack](https://parallel.ai/articles/the-ai-apis-you-need-to-build-a-research-and-monitoring-stack)
-* [How to automate prospecting with AI search and research APIs](https://parallel.ai/articles/how-to-automate-prospecting-with-ai-search-and-research-apis)
 * [How to switch from OpenAI web search to Parallel Search API](https://parallel.ai/articles/openai-to-parallel-search-api)

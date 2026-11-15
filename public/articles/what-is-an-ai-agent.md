@@ -50,6 +50,8 @@ The agent checks whether each action achieved the intended outcome, notes what w
 
 ## **Core components of AI agent architecture**
 
+This section covers the basics. Our guide to [AI agent architecture](/articles/ai-agent-architecture-patterns-components-and-how-to-build-for-web-access) goes deeper on the four main patterns and on designing the retrieval layer.
+
 Most agents are built from five components.
 
 ### **Foundation model**

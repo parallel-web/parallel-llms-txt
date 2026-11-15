@@ -1,8 +1,8 @@
-# The best web extraction APIs for LLMs in 2026
+# The best AI web scrapers and extraction APIs for LLMs in 2026
 
-A web extraction API takes a URL and returns the page as clean markdown, text, or JSON that a model can read. This guide compares seven of them on price per 1,000 pages, free tiers, focused excerpts, structured JSON, and crawling, with every figure checked against the vendor's own pages on November 11, 2026.
+An AI web scraper, or web extraction API, takes a URL and returns the page as clean markdown, text, or JSON that a model can read. This guide compares seven options for LLM web scraping on price per 1,000 pages, free tiers, focused excerpts, structured JSON, and crawling, with every figure checked against the vendor's own pages on November 11, 2026.
 
-## Which web extraction API should you use?
+## Which AI web scraper should you use?
 
 Pick by the job. If your agent already has the URLs and needs the parts of each page that answer a question, [Parallel Extract](https://parallel.ai/products/extract) returns ranked excerpts or full markdown for $1 per 1,000 URLs, up to 20 URLs per request. If you need to crawl whole sites, click through pages, or get schema-shaped JSON in one call, Firecrawl and Context.dev are the stronger picks. Jina Reader works with no API key at all, and Crawl4AI is the open-source option you run yourself.
 

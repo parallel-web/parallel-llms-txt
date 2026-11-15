@@ -36,6 +36,28 @@ Retrieval-augmented generation (RAG) over a static corpus helps for internal doc
 
 A chatbot that returns a wrong API endpoint breaks a developer's integration. One that quotes an old price point erodes customer trust, and one that misrepresents a regulation exposes the business to compliance risk.
 
+## Two approaches to web-grounded chatbot APIs
+
+You have two architectural options, and the one you pick sets your cost structure, response latency, citation quality, and scaling economics.
+
+### Approach 1: LLM + web search tool call
+
+Major LLM providers now offer web search as a tool the model can invoke during generation. OpenAI's `web_search` tool, Google's Grounding with Google Search, and Anthropic's web search feature follow this pattern.
+
+The model receives a user query and decides whether to search the web. If it searches, the API fetches results from a [search engine](https://parallel.ai/articles/bing-api-comparison), injects them into the context, and generates a response. You pay token costs plus a per-search fee.
+
+Because the LLM controls when to search, costs are unpredictable. A query that seems simple might trigger multiple searches. Complex queries might trigger none. You can't guarantee citations in every response.
+
+OpenAI and Anthropic each charge $10 per 1,000 web searches on top of token costs, so 100K monthly searches cost about $1,000 in search fees before tokens.
+
+### Approach 2: Natively web-grounded APIs
+
+Natively grounded APIs build web retrieval into every response. You send a query and get a cited answer, with no separate tool call and no decision about whether to search. Every response includes source URLs by default.
+
+Parallel's Responses API takes this approach and owns its retrieval infrastructure, a proprietary web-scale index with billions of pages. Perplexity's Agent API sits close to it: its presets pair Perplexity's own search stack with a system prompt that requires citations, though the model still runs an agent loop and billing follows the tool calls it makes.
+
+Tool-call approaches also add latency (the model must decide to search, then wait for results) and make billing unpredictable. Native approaches bundle web access into every response, which keeps latency and cost consistent for real-time chat applications serving thousands of users.
+
 ## What to look for in a chatbot API with web search
 
 Evaluate chatbot APIs on accuracy, latency, citations, pricing, and compatibility.
@@ -63,6 +85,14 @@ Citations let users verify claims. A chatbot that says "the API costs $5 per 1,0
 Structured citation metadata beats inline URLs. A response with a separate citations array (URL, title, snippet, position in response) is easier to render in a UI than a response with raw links scattered through prose. Structured metadata also makes programmatic verification possible.
 
 Compliance-heavy industries (finance, healthcare, legal) require citations, because auditors and regulators want to trace every claim back to its source.
+
+APIs provide three tiers of citation granularity:
+
+1. **Character-level mapping**: Google Grounding links specific response phrases to specific source passages. Highest precision, most complex to render.
+2. **Response-level URLs**: Parallel and Perplexity include source URLs with each response. Clean UX, sufficient for most applications.
+3. **Optional citations**: OpenAI web_search provides sources, but the model decides how to reference them. Citation presence isn't guaranteed.
+
+For applications requiring audit trails or regulatory compliance, character-level citations provide the strongest provenance. For consumer chat products, response-level URLs balance accuracy with UX simplicity.
 
 ### Pricing and cost predictability
 
@@ -106,21 +136,33 @@ The API is OpenAI-compatible, following the OpenAI Responses format. You use the
 
 Pricing is a fixed rate per request, starting at [$10 per 1,000 requests](https://parallel.ai/pricing) at low reasoning effort ($50 per 1,000 at medium, $250 per 1,000 at high), charged only for successful responses. There are no per-token charges or separate search fees, so each request costs the same regardless of conversation length or how many sources the model retrieves.
 
+Three reasoning-effort tiers serve different latency and depth requirements:
+
+| Effort | Use case | Latency | Price/1K |
+| --- | --- | --- | --- |
+| low | Simple fact retrieval | ~5–10s | $10 |
+| medium (default) | Multi-hop questions | ~15–20s | $50 |
+| high | Deep research | ~30–60s | $250 |
+
 **Pros:** Built-in web search, structured citations by default, OpenAI-compatible, predictable pricing, proprietary web index.
 
 **Cons:** Smaller ecosystem than OpenAI; fewer model variants.
 
-### Google Dialogflow CX with Custom Search
+### Google Gemini API with Grounding with Google Search
 
-[Dialogflow CX](https://docs.cloud.google.com/dialogflow/cx/docs) is Google's enterprise-grade conversational AI platform. It handles complex multi-turn conversations with branching flows, state management, and integrations into Google Cloud services.
+Google offers web grounding through the Gemini API, available via Firebase AI Logic and Vertex AI. The integration provides access to Google's search index with detailed grounding metadata.
 
-Web search isn't native to Dialogflow. You add it by integrating Google Custom Search through webhooks or Cloud Functions. This approach offers control but requires significant setup and maintenance. Google closed the Custom Search JSON API to new customers and will shut it down for existing customers on January 1, 2027, so a new build needs a different search backend.
+Responses include `searchEntryPoint` (the search query used), `groundingChunks` (source URLs and titles), and `groundingSupports` (character-level citation mapping that links specific response segments to specific sources).
 
-Pricing is complex, combining Dialogflow session fees with Custom Search API charges. Enterprise customers can negotiate custom terms. The platform suits large organizations already invested in Google Cloud.
+Google requires you to display a Google Search suggestions widget when using [Grounding with Google Search](https://firebase.google.com/docs/ai-logic/grounding-google-search), which affects UI design and may not fit every product.
 
-**Pros:** Enterprise features, Google Cloud integration, mature state management, compliance certifications.
+Google's older route, a Dialogflow CX agent calling the Custom Search JSON API, no longer works for new builds: Google closed that API to new customers and shuts it down for existing ones on January 1, 2027.
 
-**Cons:** Complex setup for web search; high configuration overhead; pricing complexity.
+Pricing combines model tokens with a fee for grounded prompts, and the rate depends on the model and tier, so check Google's Gemini API pricing before you model costs.
+
+Pros: Google's search index, character-level citation mapping, deep Google Cloud integration.
+
+Cons: Google-specific SDKs, a required Search suggestions widget, pricing that varies by model and tier.
 
 ### Anthropic Claude with tool use
 
@@ -152,7 +194,7 @@ Agent API pricing is per token at each model’s rate, plus tool fees such as $2
 | --- | --- | --- | --- | --- | --- |
 | OpenAI | Yes (tool) | Optional | Yes | Per-token + search fee | Yes |
 | Parallel | Yes (native) | Yes (structured) | Yes | From $10/1K requests | Yes |
-| Dialogflow CX | Via integration | Via integration | No | Session + search fees | Yes |
+| Google Gemini (Grounding) | Yes (tool) | Yes (character-level) | Partial | Per-token + grounding fee | Yes |
 | Claude | Yes (tool) | Yes | No | Per-token + search fee | Yes |
 | Perplexity | Yes (native) | Yes | Partial | Per-token + tool fees | Yes |
 
@@ -252,6 +294,10 @@ Approaches vary. Some return structured citation arrays with URL, title, and sni
 ### What is the difference between a chatbot API and a web search API?
 
 A chatbot API generates conversational responses from prompts. A web search API returns ranked URLs and snippets matching a query. A web-grounded chatbot API combines both: it searches the web, retrieves sources, and generates a response that cites them.
+
+### How much does it cost to add web search to a chatbot?
+
+Parallel's Responses API charges a fixed $10 per 1,000 requests at low effort, with no token or search fees. OpenAI and Anthropic charge $10 per 1,000 web searches on top of token costs, and Perplexity's Agent API bills tokens plus $2.50 per 1,000 web searches, which makes total spend harder to predict.
 
 ## Start building
 

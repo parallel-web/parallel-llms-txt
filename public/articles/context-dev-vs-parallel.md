@@ -22,7 +22,7 @@ A Context.dev Scrape request returns the formats you ask for from one URL for a 
 
 Parallel's [Extract API](https://parallel.ai/products/extract) takes up to 20 URLs in one synchronous request. Add an objective and keyword queries, and it returns ranked excerpts from each page aligned to that goal, the full page as markdown, or both, for $1 per 1,000 URLs. It handles JavaScript-heavy pages and PDFs, and a fetch policy chooses between Parallel's cached index and a live fetch. It doesn't return HTML, screenshots, or schema-shaped JSON, and it has no proxy or unblocking layer.
 
-If you're indexing sites for RAG or pulling product fields from a known template, Context.dev's formats, crawl, and JSON extraction fit better. If an agent needs the few paragraphs that answer its question from a handful of URLs, Parallel's objective-focused excerpts send fewer tokens to the model, and the [Task API](https://docs.parallel.ai/task/task-quickstart) handles typed fields when you need them.
+If you're indexing sites for RAG or pulling product fields from a known template, Context.dev's formats, crawl, and JSON extraction fit better. If an agent needs the few paragraphs that answer its question from a handful of URLs, Parallel's objective-focused excerpts send fewer tokens to the model, and the [Task API](https://docs.parallel.ai/task-api/task-quickstart) handles typed fields when you need them.
 
 ## Search and research
 
@@ -30,7 +30,7 @@ Context.dev's [Search API](https://www.context.dev/search-api) returns 10 to 100
 
 [Parallel Search](https://parallel.ai/products/search) runs on Parallel's own web index. It takes an objective plus keyword queries and returns ranked results with excerpts pulled from each page body, in four modes: Turbo (about 200ms, $1 per 1,000 requests), Fast (about 700ms, $1 per 1,000), Basic (about 1s, $5 per 1,000), and Advanced (about 3s, $5 per 1,000, the default). Ten results are included, and extra results cost $1 per 1,000.
 
-For research, the [Task API](https://docs.parallel.ai/task/task-quickstart) runs asynchronously across nine processors, from $5 to $2,400 per 1,000 runs, and returns output to your JSON schema with a citation, reasoning, and calibrated confidence for every field. Task Groups submit thousands of runs at once. The OpenAI-compatible Responses API returns cited answers synchronously for $10 to $250 per 1,000, and FindAll and Monitor cover entity lists and change tracking.
+For research, the [Task API](https://docs.parallel.ai/task-api/task-quickstart) runs asynchronously across nine processors, from $5 to $2,400 per 1,000 runs, and returns output to your JSON schema with a citation, reasoning, and calibrated confidence for every field. Task Groups submit thousands of runs at once. The OpenAI-compatible Responses API returns cited answers synchronously for $10 to $250 per 1,000, and FindAll and Monitor cover entity lists and change tracking.
 
 For a quick structured lookup in one call, Context.dev Answers is simpler. For research that needs minutes rather than seconds, or evidence you can audit field by field, Parallel goes further.
 

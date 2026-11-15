@@ -1,6 +1,6 @@
 # AI agent architecture: patterns, components, and how to build for web access
 
-AI agent architecture is where most production failures start, and the retrieval layer turns out to matter as much as the model you pick. This guide covers an agent's core components, the four patterns that dominate production systems (reactive, deliberative, hybrid, and multi-agent), how to design a retrieval layer for live web access, the role of the agent harness, and what to change before you ship.
+AI agent architecture is the design of how an autonomous system perceives its environment, reasons over what it finds, and acts through tools, and the retrieval layer matters as much as the model you pick. This guide covers an agent's core components, the four patterns that dominate production systems (reactive, deliberative, hybrid, and multi-agent), how to design a retrieval layer for live web access, the role of the agent harness, and what to change before you ship.
 
 ## Key takeaways
 
@@ -39,6 +39,13 @@ Every AI agent has five core components, and how you implement each one sets wha
 Most tutorials treat retrieval as an afterthought. In production it matters as much as model selection, because your agent's accuracy is capped by the quality of the information it can access.
 
 ## Architecture patterns for AI agents
+
+| Pattern | How it decides | Best for | Watch out for |
+| --- | --- | --- | --- |
+| Reactive | Maps each input straight to an action, with no planning step | Simple, fast tasks with clear rules | Breaks down on multi-step goals |
+| Deliberative | Plans the steps before acting | Multi-step research and analysis | Slower and costlier per task |
+| Hybrid | Reacts fast and plans when a task needs it | Most production agents | More moving parts to test |
+| Multi-agent | Splits work across specialized agents | Large tasks that parallelize | Coordination overhead and harder debugging |
 
 Production agent systems mostly use one of four patterns, each suited to a different complexity level. Matching your use case to the right pattern prevents overengineering simple tasks and underengineering complex ones.
 

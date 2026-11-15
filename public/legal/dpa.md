@@ -4,8 +4,6 @@ Introducing Parallel Decisions API: the first decision engine with world knowled
 
 Human Machine
 
-`/` | `CtrlK`
-
 On this page
 
 * 1\. Definitions
@@ -54,7 +52,7 @@ On this page
 * Exhibit C
 * Exhibit D
 
-This Data Processing Addendum (“ **DPA** ”) supplements the Master Service Agreement (the “ **Agreement** ”) entered into by and between Customer and Parallel Web Systems, Inc. (“ **Company** ”) (and together, the “ **Parties** ”). This DPA incorporates the terms of the Agreement, and any capitalized terms that are used but not defined in this DPA shall have the meanings set forth in the Agreement.
+This Data Processing Addendum (“ **DPA** ”) supplements and is incorporated into the agreement between Customer and Parallel Web Systems, Inc. (“ **Company** ”) (each a “ **Party** ” and together, the “ **Parties** ”) governing Customer’s use of the Services (the “ **Agreement** ”). Any capitalized terms that are used but not defined in this DPA shall have the meanings set forth in the Agreement.
 
 ## \## 1\. Definitions
 

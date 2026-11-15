@@ -1,10 +1,10 @@
 # AI data extraction: how to extract structured data from websites at scale
 
-AI data extraction lets you describe the data you want in plain English and get schema-conformant JSON back, at a cost per URL you can forecast. This guide covers how objective-driven extraction differs from traditional scraping, how to define a JSON schema that holds up, the three-API pipeline for discovery, cleaning, and structured output, what scaling to hundreds of thousands of URLs costs, and the enterprise requirements to check.
+AI data extraction, often called AI web scraping, lets you describe the data you want in plain English and get clean markdown or schema-conformant JSON back, without site-specific selectors. This guide covers how it differs from traditional scraping, how seven AI web scraping and extraction APIs compare, how to define a JSON schema that holds up, the Search, Extract, and Task pipeline, and what extraction costs at scale.
 
 ## **Quick answer**
 
-To extract structured data from websites at scale, chain three Parallel APIs. The Search API finds pages from a natural-language query. The Extract API turns each URL into clean markdown scoped to your objective, without navigation or boilerplate. The Task API fills a JSON schema you define and adds per-field confidence and source citations. Extract costs $1 per 1,000 URLs, and production pipelines run requests concurrently.
+AI data extraction, often called AI web scraping, uses a model to read a page and return what you asked for: clean markdown, excerpts aligned to a question, or JSON in your schema, with no selectors to maintain. With Parallel, the Extract API reads up to 20 URLs per request for $1 per 1,000 URLs and returns objective-focused excerpts or full markdown, and the Task API fills a JSON schema with a source and confidence for every field, from $5 per 1,000 runs. Firecrawl and Context.dev are stronger when you need whole-site crawls or schema JSON in one scrape call. The comparison below covers seven options.
 
 ## Key takeaways
 
@@ -12,7 +12,7 @@ To extract structured data from websites at scale, chain three Parallel APIs. Th
 - Defining a **JSON schema** before you call the API is the single biggest factor in output consistency and downstream usability.
 - A three-API pipeline, Search, Extract, and Task, covers URL discovery, content cleaning, and structured output at production scale.
 - Cost per URL is predictable: $1 per 1,000 URLs for clean markdown extraction, with Task API pricing scaling by research depth from $5 per 1,000 runs.
-- **SOC 2 Type 2** certification and zero data retention on Enterprise plans make this pipeline viable for enterprise and regulated-industry use cases.
+- **Parallel is SOC 2 Type II certified, and its Scale plan includes hybrid zero data retention, so the pipeline fits enterprise and regulated-industry use cases.** certification and zero data retention on Enterprise plans make this pipeline viable for enterprise and regulated-industry use cases.
 
 ## What AI data extraction is (and how it differs from traditional scraping)
 
@@ -35,6 +35,35 @@ The choice between traditional scraping and AI extraction depends on your use ca
 | Time to production | Hours to days per site | Minutes for any site |
 
 Traditional scraping still works well for high-volume pipelines on stable, well-documented sites with consistent markup. **AI data extraction tools** built on API-first infrastructure win for heterogeneous sources, novel layouts, and any pipeline where an agent needs to reason about the output.
+
+## AI web scraping and extraction APIs compared
+
+Checked against each vendor's pricing and documentation pages between November 11 and 14, 2026. Price per 1,000 pages is the plain markdown rate, before extras such as JSON extraction.
+
+| API | Price per 1,000 pages | Free tier | Focused excerpts | Structured JSON | Crawl |
+| --- | --- | --- | --- | --- | --- |
+| Parallel Extract | $1, pay as you go | Up to $80 at signup, $5 a month with a card; free web_fetch in Parallel MCP | Yes, objective and keyword queries | Through the Task API | No |
+| Firecrawl | $0.99 (Standard) to $3.80 (Hobby) | 1,000 credits a month, no card | Highlights and question formats (+4 credits) | Yes, +4 credits a page | Yes |
+| Context.dev | $0.50 (Scale) to $2 (Developer) | 1,000 credits a month, no card | Highlights (+1 credit) | Yes, 5 credits a page | Yes, up to 500 pages a call |
+| Jina Reader | Billed by output tokens | No key at 20 a minute; 10M tokens per new key | Not documented | Not covered here | No |
+| Tavily Extract | $1.00 (Growth) to $1.60 (pay as you go), basic | 1,000 credits a month, no card | Yes, query and chunks_per_source | No | Yes |
+| Exa Contents | $1 per content type | $10 a month plus $10 at signup, no card | Highlights | AI summaries | Subpages |
+| Crawl4AI | Free to self-host; cloud from $10 a month | Open source; cloud 1,000 credits a month | BM25 query filter | CSS, XPath, or LLM | Yes |
+
+Check official documentation for current pricing. [The best web extraction APIs for LLMs](https://parallel.ai/articles/best-web-extraction-apis) reviews each one, and [Parallel vs. Firecrawl](https://parallel.ai/compare/firecrawl-vs-parallel) and [Context.dev vs. Parallel](https://parallel.ai/articles/context-dev-vs-parallel) go deeper on the two closest alternatives.
+
+The quickest way to try Parallel's [Extract API](https://parallel.ai/products/extract) is one request that returns both the passages that answer your question and the full page as markdown:
+
+```sh
+curl https://api.parallel.ai/v1/extract \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: $PARALLEL_API_KEY" \
+  -d '{
+    "urls": ["https://www.un.org/en/about-us/history-of-the-un"],
+    "objective": "When was the United Nations established?",
+    "advanced_settings": {"full_content": true}
+  }'
+```
 
 ## How objective-driven extraction works
 
@@ -252,7 +281,7 @@ Citations give agents a grounding mechanism: every claim in the structured outpu
 
 Check each AI extraction vendor's compliance documentation before procurement. Parallel holds **SOC 2 Type 2** certification, meaning an independent auditor has reviewed and validated its security controls. For procurement teams in finance, healthcare, and enterprise SaaS, SOC 2 Type 2 is the baseline requirement for any external API handling potentially sensitive data. Full compliance documentation is available at the [Trust Center](https://trust.parallel.ai/).
 
-On Enterprise plans, Parallel doesn't store request payloads or response data after serving the response. **Zero data retention** means the URLs you send and the data you extract don't persist on Parallel's infrastructure. For GDPR compliance and data-sensitive use cases, this settles most retention questions.
+Parallel's Scale plan ($1,000 a month) includes hybrid zero data retention, and Enterprise adds SSO, a custom MSA and DPA, a HIPAA BAA, and an uptime SLA. For GDPR and other data-sensitive use cases, confirm which retention terms apply to your plan before you send production traffic.**Zero data retention** means the URLs you send and the data you extract don't persist on Parallel's infrastructure. For GDPR compliance and data-sensitive use cases, this settles most retention questions.
 
 **Data provenance** comes built into the Task API. Every response includes citations linking extracted claims to source URLs. Compliance teams that need to trace AI-generated data back to its origin get that chain from the API response itself, without building a separate audit layer.
 
@@ -262,6 +291,10 @@ One point to address with your legal team before you scale: if your extraction p
 
 ## Frequently asked questions about AI data extraction
 
+### What is AI web scraping?
+
+AI web scraping is web scraping where a model, rather than hand-written CSS or XPath selectors, decides what on the page matters. A scraping or extraction API renders the page if it needs JavaScript, strips navigation and boilerplate, and returns the content as clean markdown, focused excerpts, or structured JSON that a model or database can use. Because it reads content rather than markup, it keeps working when a site changes its layout.
+
 ### What is AI data extraction?
 
 AI data extraction uses large language models to identify and pull structured information from web pages based on a natural language objective, without site-specific selectors. The API returns data as structured JSON, clean markdown, or both, depending on your configuration.
@@ -270,9 +303,9 @@ AI data extraction uses large language models to identify and pull structured in
 
 Web scraping parses a page's DOM using CSS selectors or XPath and breaks when layouts change. AI extraction reads page content as text and applies model reasoning, so it works across layout variations without code changes.
 
-### What are the best AI data extraction tools for developers?
+### What is the best AI web scraping API?
 
-The best tools expose a REST API, accept natural language objectives, return structured JSON with a defined schema, and publish per-URL pricing. Parallel's Extract API and Task API meet all four criteria.
+It depends on the job. For agents that need the relevant parts of URLs they already have, Parallel Extract returns objective-focused excerpts for $1 per 1,000 URLs, and the Task API adds schema-shaped JSON with a source for every field. For whole-site crawls and schema JSON in one scrape call, Firecrawl and Context.dev are stronger. Jina Reader works with no key, and Crawl4AI is open source. [The best web extraction APIs for LLMs](https://parallel.ai/articles/best-web-extraction-apis) compares them.
 
 ### How do I extract structured data from a website using an API?
 
@@ -287,3 +320,5 @@ Parallel's Extract API costs $1 per 1,000 URLs. A pipeline processing 100,000 UR
 Yes. Parallel's Extract API handles JavaScript-rendered pages. You pass the URL and objective, and the API returns clean content regardless of whether the page requires JavaScript execution. You don't manage a headless browser.
 
 The pattern is to discover URLs with Search, extract clean content with Extract, and structure your output with Task. The full API reference walks you through every parameter. [Start Building](https://docs.parallel.ai/home)
+
+**Related reading: **[The best web extraction APIs for LLMs](https://parallel.ai/articles/best-web-extraction-apis) / [Web scraper vs. web extraction](https://parallel.ai/articles/web-scraper-vs-web-extraction) / [The best Firecrawl alternatives](https://parallel.ai/articles/firecrawl-alternatives) / [Context.dev vs. Parallel](https://parallel.ai/articles/context-dev-vs-parallel).

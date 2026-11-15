@@ -213,6 +213,24 @@ Parallel's FindAll and Task APIs serve as the live-web layer in this architectur
 
 Sell-side bankers run the mirror image of this workflow. [Rogo](https://parallel.ai/blog/case-study-rogo), which uses Parallel as its primary web search provider, builds buyer lists for sell-side deals, a job that once meant reviewing 50 to 100 PE firms' websites by hand. [AI in investment banking](/articles/ai-in-investment-banking) covers that side of the deal.
 
+## What to look for in AI deal sourcing APIs
+
+Six criteria matter most when you evaluate APIs for investment workflows.
+
+**Structured output with citations.** Investment decisions require verifiable facts. APIs should return JSON with per-field source attribution rather than freeform text that mixes synthesis with speculation. Every claim about revenue, headcount, funding, or competitive positioning must trace to a specific URL. The Basis framework used by Parallel Task API provides citations, reasoning chains, and confidence levels for each atomic fact.
+
+**Live web access versus cached data.** APIs built on proprietary web indexes with continuous crawling catch emerging signals. Parallel maintains a web-scale index with billions of pages and millions added daily. Solutions that rely on third-party search providers or periodic scraping add lag, and a signal is worth less the later it arrives.
+
+**Measured accuracy on finance questions.** Ask for results on finance benchmarks where every search API runs under the same agent, then repeat the test on your own questions. The accuracy section above shows how the main search APIs compare on private-company facts.
+
+**Predictable pricing.** Investment pipelines scale with deal activity. Per-request pricing lets you estimate costs before deployment and scale without surprise bills. Per-token models make costs unpredictable when research complexity varies. Parallel APIs price per request or per task, regardless of how many tokens the underlying model processes.
+
+**Security and compliance.** Investment data flows through these pipelines, including proprietary thesis criteria and target lists. SOC 2 Type 2 certification demonstrates operational security controls. Zero data retention policies ensure your queries and results don't persist on vendor systems. Parallel holds SOC 2 Type 2 certification and offers zero data retention on Enterprise plans.
+
+**Composability.** Discovery feeds enrichment feeds monitoring, so the APIs should chain together without custom glue code. Parallel's suite shares authentication, output formats, and webhook patterns: a company discovered by FindAll API flows to Task API for enrichment and Monitor API for tracking.
+
+Once targets are on the list, the next steps are [AI due diligence](/articles/how-to-build-an-automated-due-diligence-research-pipeline) and [funding round and M&A tracking](/articles/how-to-automate-funding-round-and-ma-tracking-with-apis). For the sell-side view, see [AI in investment banking](/articles/ai-in-investment-banking).
+
 ## Common mistakes in AI-powered deal sourcing
 
 AI sourcing speeds up the process ([recent research on AI deal sourcing](https://www.researchgate.net/publication/396776254_Leveraging_Artificial_Intelligence_for_Advanced_Deal_Sourcing_in_US_Mergers_and_Acquisitions_to_Improve_Financial_Efficiency) found that AI-driven screening reduced deal identification time from six weeks to eight days and achieved 78% accuracy in predicting successful deal completion), but it also introduces new failure modes.

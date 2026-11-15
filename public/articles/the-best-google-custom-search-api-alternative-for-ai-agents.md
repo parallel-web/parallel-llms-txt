@@ -1,8 +1,8 @@
-# The best Google Custom Search API alternative for AI agents
+# Google Custom Search API alternatives for AI agents
 
 Google's Custom Search JSON API is closed to new customers and retires on January 1, 2027. It was built for a search box on a website, so it returns titles and snippets rather than the page content an agent needs to reason over. This guide walks through what the API does and where it falls short, what to look for in a replacement, four categories of alternative, and how to migrate before the deadline.
 
-Even at its best it returns metadata: titles, snippets, and URLs from a domain-restricted Programmable Search Engine, capped at 10,000 queries per day. Agents need the content behind those URLs, packaged as dense context that fits in a model's context window.
+The short answer: Google's Custom Search JSON API is closed to new customers, and existing customers have until January 1, 2027 to move (Google's API overview, checked November 14, 2026). Pick the replacement by job. SERP scrapers such as SerpApi fit SEO rank tracking, Vertex AI Search fits site search across up to 50 domains, and an AI-native search API such as Parallel fits grounding agents with page content instead of titles and snippets.
 
 ## Key takeaways
 
@@ -43,6 +43,14 @@ Any replacement has to clear a different bar than a website search box, so start
 ## Google Custom Search API alternatives compared
 
 No single tool covers every job here. Which one fits depends on the workload you run most, so read the options below against what your application does today.
+
+| Option | What it returns | Scope | Best for |
+| --- | --- | --- | --- |
+| Google Custom Search JSON API | Titles, snippets and URLs | Domains you configure (new engines capped at 50) | Existing site search until January 1, 2027 |
+| SerpApi and SERP scrapers | The structured Google results page | The open web, as Google shows it | SEO rank tracking |
+| Google Vertex AI Search | Site search results | Up to 50 domains | Search across properties you control |
+| Firecrawl and scrape-first APIs | Search results plus page content | The open web | Extraction from sites you already know |
+| Parallel Search API | Ranked URLs plus dense excerpts | The open web, from Parallel's own index | Grounding AI agents |
 
 ### SerpApi and SERP scrapers
 

@@ -1,6 +1,8 @@
-# How to build an AI lead generation pipeline using live web data
+# AI lead generation: how to build a pipeline with live web data
 
-Most tools sold as AI lead generation are a thin model wrapper over the same contact databases that powered outbound a decade ago. This guide covers what the term should mean, how to discover leads with natural language queries, how to enrich them from real-time web sources, how to trigger workflows off live web events, and how to decide between APIs and SaaS lead gen tools.
+AI lead generation uses AI agents and web APIs to find companies that fit your buyer profile, enrich them with current data, and flag the moment they're ready to talk, instead of pulling contacts from a static database. This guide covers what the term should mean, how to discover leads with natural language queries, how to enrich them from real-time web sources, how to trigger workflows off live web events, where automation should stop and reps take over, and how to decide between APIs and SaaS lead gen tools.
+
+AI lead generation is the use of AI agents and web data APIs to find companies that match your ideal customer profile, enrich each one with current information, and trigger outreach when a buying signal appears. Done well, it replaces a purchased list with research that reflects what's on the web today.
 
 The bottleneck is the data. Apollo, Clearbit, and similar vendors refresh their records on quarterly cycles, so job changes, funding rounds, and leadership hires can take weeks to appear. By the time your "AI-powered" tool surfaces a lead, three competitors have already reached out.
 
@@ -139,7 +141,7 @@ response = requests.post(
 
 You define the schema and the API returns structured JSON, so there's no parsing code to maintain and no site-specific selectors to update when layouts change.
 
-That gets you fields traditional enrichment databases don't carry: open headcount by department, pricing tier structure, exact product description, recent funding language from press sections, and technology partnerships mentioned on integration pages. For more on web enrichment in sales workflows, see how [AI-powered sales tools transform CRM data intelligence](https://parallel.ai/articles/ai-web-enrichment-for-sales).
+That gets you fields traditional enrichment databases don't carry: open headcount by department, pricing tier structure, exact product description, recent funding language from press sections, and technology partnerships mentioned on integration pages. For more on web enrichment in sales workflows, see how [AI-powered sales tools transform CRM data intelligence](/articles/data-enrichment-api-how-to-choose-implement-and-scale-company-intelligence).
 
 ### Building custom enrichment schemas with AI agents
 
@@ -299,6 +301,20 @@ Won accounts → Feed back into discovery
 
 Optional orchestration tools like Clay or n8n can coordinate these steps, but the core capability lives in the APIs themselves.
 
+## Where automation ends and reps take over
+
+Automated prospecting changes what reps spend their time on.
+
+**Automate**: Company discovery, data gathering, web extraction, signal enrichment, initial research synthesis, lead scoring, CRM population.
+
+**Keep human**: Relationship building, complex needs assessment, objection handling, negotiation, strategic account planning.
+
+The goal is a handoff point where reps receive a pre-researched, qualified prospect file rather than a name and email address. The briefing includes what the company does, recent developments, technology environment, potential pain points, and suggested talking points.
+
+AI-generated research requires verification for high-stakes outreach. The citation trails make this fast: a rep can click through to source URLs and confirm key facts before referencing them in a call.
+
+The best automated prospecting systems create tiered handoffs. High-priority prospects get human review before outreach. Standard prospects go into automated sequences with personalization variables populated by the research pipeline. Low-priority prospects stay in nurture tracks until signals indicate timing improvement.
+
 ## Build vs. buy: when to use APIs vs. SaaS lead gen tools
 
 SaaS tools and API infrastructure serve different needs, and picking the wrong one wastes either money or engineering time. With [over 300,000 companies worldwide specializing in lead generation](https://martal.ca/lead-generation-statistics-lb/), the market is crowded, and the right choice depends on your ICP, your volume, and your engineering capacity.
@@ -354,6 +370,8 @@ The highest-converting signals are: new funding announcements, leadership hires 
 **Is it better to build an AI lead gen pipeline or use a SaaS tool?**
 
 SaaS tools work well for standard ICPs and moderate volume. API-based infrastructure is better when you need custom enrichment schemas, real-time data, niche ICP targeting, or a pipeline that runs autonomously at scale. Many teams use both: SaaS for broad outreach and APIs for continuous monitoring and deep enrichment.
+
+Related reading: [AI lead scoring](/articles/ai-lead-scoring), [AI lead qualification](/articles/ai-lead-qualification), [AI lead routing](/articles/ai-lead-routing), [sales trigger events](/articles/how-to-monitor-sales-trigger-events-that-actually-convert) and [choosing a data enrichment API](/articles/data-enrichment-api-how-to-choose-implement-and-scale-company-intelligence).
 
 ## Start building your AI lead generation pipeline
 

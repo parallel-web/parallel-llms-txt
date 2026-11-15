@@ -14,6 +14,8 @@ A data enrichment API adds firmographic, technographic, and contact fields to sp
 
 Say your CRM holds 10,000 company records. Half of them have a name and domain, maybe a third include an industry field, and the rest of the fields sit empty: employee count, revenue range, tech stack, funding history, headquarters location. Enrichment fills those gaps.
 
+New to the concept? Start with [what data enrichment is and how the process works](/articles/what-is-data-enrichment).
+
 A _data enrichment API_ is a programmatic interface that takes sparse input (typically a company name or domain) and returns structured fields as JSON, with no browser tabs, copy-paste, or waiting on a vendor to refresh a quarterly CSV.
 
 Before enrichment APIs existed, sales and RevOps teams relied on three workflows. Manual research meant opening Crunchbase and press releases for each account, and a single record could take 15 to 30 minutes to research thoroughly. Bulk data brokers delivered static CSVs with licensing restrictions and questionable provenance, often already stale on import. Vendors locked teams into refresh cycles with periodic data dumps, so you waited months between updates.
@@ -66,6 +68,10 @@ The _Basis framework_ underlying Task API provides verifiability at the field le
 - You need sub-second latency for lead routing or form capture
 - You're enriching at massive scale (millions of records per day) with tight cost constraints
 - You only need standard firmographic fields that static databases cover well
+
+A hybrid approach works for many teams. Use a traditional enrichment tool to populate baseline contact data and standard firmographic fields. Layer API-based enrichment on top for custom fields, live signals, and provenance-tracked values.
+
+If the vendor schema matches yours, buy the subscription. If it doesn't, build the pipeline.
 
 A complete Task API enrichment example in Python. Install with python -m pip install "parallel-web==1.3.5" and set PARALLEL_API_KEY in your environment. Both examples were checked on October 4, 2026 against this SDK using mocked HTTP responses; no live API integration test or paid run was performed. Running either example with your key starts billable work.
 
@@ -306,6 +312,20 @@ The result endpoint returns a snapshot with run metadata and candidates, not a m
 
 Inspect each candidate’s basis for source URLs, available excerpts, reasoning, and confidence. Null or absent output, unsupported conditions, missing evidence, or non-high confidence are flagged in the example’s application-level review_fields. A completed run can legitimately return no matches. Failed, cancelled, or action-required runs raise an error instead of being mistaken for success; a local polling timeout preserves the run ID without cancelling or resubmitting the remote job. Add durable state, SDK error handling, and your own review policy before production use.
 
+## Which enrichment fields help sales teams
+
+Not every field earns its place. Enrich for data that changes what a rep says or who they call, and skip the rest, or you will pay to maintain columns nobody reads.
+
+The fields worth collecting:
+
+- **Firmographics**: Size, revenue, industry, locations, org structure, and recent headcount or office changes.
+- **Technographics**: Current stack, recent implementations, integration problems, and the gaps your product fills.
+- **Contacts and people**: Decision makers, reporting lines, recent moves, professional backgrounds, and mutual connections.
+- **Financials and funding**: Revenue, funding rounds, investors, financial health, and any signal about available budget.
+- **News and events**: Press releases, coverage, awards, conference talks, and partnerships that show current priorities.
+- **Digital footprint**: Website changes, content focus, SEO and advertising activity, and other signals of buying intent.
+- **Competitive position**: Main rivals, recent wins and losses, and how the company differentiates itself.
+
 ## What to evaluate before choosing a data enrichment API
 
 Evaluate these six criteria before committing to a vendor.
@@ -354,6 +374,9 @@ Traditional APIs charge per record or per credit, with prices that vary by field
 
 **What is waterfall enrichment?**
 Waterfall enrichment chains multiple providers in sequence to maximize match rates. When Provider A returns no match, the system queries Provider B, then C, until it finds data or exhausts sources.
+
+**How often should enriched data be refreshed?**
+Dynamic fields (news, hiring signals) benefit from weekly refreshes. Semi-stable fields (headcount, funding) work on monthly cycles. Static fields (founding year, HQ location) need quarterly checks at most.
 
 **Can I build a company list from scratch using an API?**
 Yes. Entity discovery APIs like Parallel's FindAll API accept natural language queries ("Find all B2B SaaS companies in Germany with SOC 2 certification") and return structured lists of matching companies sourced from the live web.
