@@ -4,6 +4,9 @@ Guides, comparisons, and definitions for developers building AI agents that use 
 
 ### Comparison
 
+* [Olostep vs. Parallel: bulk scraping or retrieval for agents?](https://parallel.ai/articles/olostep-vs-parallel)
+* [Context.dev vs. Parallel: a full scraping stack or focused retrieval?](https://parallel.ai/articles/context-dev-vs-parallel)
+* [The best web extraction APIs for LLMs in 2026](https://parallel.ai/articles/best-web-extraction-apis)
 * [Cloudflare Clef vs. Parallel Decisions: edge decisions or web-grounded answers](https://parallel.ai/articles/cloudflare-clef-vs-parallel)
 * [Jev alternatives: 8 decision models and APIs compared](https://parallel.ai/articles/jev-alternatives)
 * [Laya vs. Jev vs. Parallel Decisions: open weights, hosted, or web-grounded](https://parallel.ai/articles/laya-vs-jev-vs-parallel)

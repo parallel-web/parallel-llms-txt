@@ -1,6 +1,6 @@
 # Search Capability Leaderboard
 
-Last updated Nov 10, 2026
+Last updated Nov 12, 2026
 
 What's the best model for agentic search?
 
@@ -8,10 +8,10 @@ Large language models rely on web search to find information that isn't availabl
 
 Insights
 
-* Average lift from search across all models: +34.5 points
+* Average lift from search across all models: +34.4 points
 * [Claude Fable 5.2](/leaderboard/claude-fable-5-2) (Gold, Search Intelligence): Highest Search Intelligence Score (80.1). Great for tasks that require complex reasoning and maximum accuracy.
 * [MiniMax M3.1 Flash](/leaderboard/minimax-m3-1-flash) (Gold, Search Efficiency): Most cost-efficient model ($43.8 per 1K tasks). Great for most queries, at 55× lower cost than the top model.
-* [Hy4](/leaderboard/hy4) (Bronze, Search Intelligence): Largest lift from search (+45.3). Most improved when paired with search.
+* [Hy4](/leaderboard/hy4) (Bronze, Search Intelligence) (Bronze, Search Efficiency): Largest lift from search (+45.3). Most improved when paired with search.
 
 ## Search Intelligence Leaderboard
 
@@ -32,12 +32,12 @@ Insights
 | 13   | [GPT-6.1 Sol](/leaderboard/gpt-6-1-sol)                             | Closed  | 70.4              | 39.8                 | +30.6 | $130              | 353s          |
 | 14   | [Claude Opus 5](/leaderboard/claude-opus-5)                         | Closed  | 70.0              | 37.2                 | +32.8 | $1,012            | 342s          |
 | 15   | [GPT-6.1 Terra](/leaderboard/gpt-6-1-terra)                         | Closed  | 69.7              | 28.6                 | +41.2 | —                 | 42.3s         |
-| 16   | [OpenRouter Auto (max)](/leaderboard/openrouter-auto)               | Closed  | 69.2              | —                    | —     | $88.4             | 97.5s         |
-| 17   | [Particle-1](/leaderboard/particle-1)                               | Closed  | 69.2              | 31.4                 | +37.8 | $48.4             | 82.5s         |
-| 18   | [DeepSeek V4.1 Flash (1017)](/leaderboard/deepseek-v4-1-flash-1017) | Open    | 68.9              | 32.9                 | +36.0 | $125              | 540s          |
-| 19   | [MiniMax M3.1 Flash](/leaderboard/minimax-m3-1-flash)               | Closed  | 68.8              | 27.1                 | +41.7 | $43.8             | —             |
-| 20   | [Pareto 26.10](/leaderboard/pareto-26-10)                           | Closed  | 68.6              | 34.8                 | +33.8 | $116              | 436s          |
-| 21   | [Ember-1](/leaderboard/ember-1)                                     | Closed  | 67.9              | 29.9                 | +38.0 | $335              | 487s          |
+| 16   | [Particle-1](/leaderboard/particle-1)                               | Closed  | 69.2              | 31.4                 | +37.8 | $48.4             | 82.5s         |
+| 17   | [DeepSeek V4.1 Flash (1017)](/leaderboard/deepseek-v4-1-flash-1017) | Open    | 68.9              | 32.9                 | +36.0 | $125              | 540s          |
+| 18   | [MiniMax M3.1 Flash](/leaderboard/minimax-m3-1-flash)               | Closed  | 68.8              | 27.1                 | +41.7 | $43.8             | —             |
+| 19   | [Pareto 26.10](/leaderboard/pareto-26-10)                           | Closed  | 68.6              | 34.8                 | +33.8 | $116              | 436s          |
+| 20   | [Ember-1](/leaderboard/ember-1)                                     | Closed  | 67.9              | 29.9                 | +38.0 | $335              | 487s          |
+| 21   | [OpenRouter Auto (max)](/leaderboard/openrouter-auto)               | Closed  | 67.7              | 37.7                 | +30.0 | $116              | 104s          |
 | 22   | [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)                             | Closed  | 67.7              | 41.4                 | +26.3 | $269              | 107s          |
 | 23   | [Muse Spark Open](/leaderboard/muse-spark-open)                     | Open    | 67.2              | 35.5                 | +31.8 | $171              | 360s          |
 | 24   | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash)                   | Closed  | 66.8              | 39.4                 | +27.4 | $130              | 229s          |
@@ -82,9 +82,9 @@ Most cost-efficient models scoring at or above the median Search Intelligence Sc
 | ---- | ------------------------------------------------------------------- | ----------------- | ----------------- |
 | 1    | [MiniMax M3.1 Flash](/leaderboard/minimax-m3-1-flash)               | $43.8             | 68.8              |
 | 2    | [Particle-1](/leaderboard/particle-1)                               | $48.4             | 69.2              |
-| 3    | [OpenRouter Auto (max)](/leaderboard/openrouter-auto)               | $88.4             | 69.2              |
-| 4    | [Hy4](/leaderboard/hy4)                                             | $94.4             | 75.4              |
-| 5    | [Pareto 26.10](/leaderboard/pareto-26-10)                           | $116              | 68.6              |
+| 3    | [Hy4](/leaderboard/hy4)                                             | $94.4             | 75.4              |
+| 4    | [Pareto 26.10](/leaderboard/pareto-26-10)                           | $116              | 68.6              |
+| 5    | [OpenRouter Auto (max)](/leaderboard/openrouter-auto)               | $116              | 67.7              |
 | 6    | [DeepSeek V4.1 Flash (1017)](/leaderboard/deepseek-v4-1-flash-1017) | $125              | 68.9              |
 | 7    | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash)                   | $130              | 66.8              |
 | 8    | [GPT-6.1 Sol](/leaderboard/gpt-6-1-sol)                             | $130              | 70.4              |

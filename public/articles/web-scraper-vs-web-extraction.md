@@ -106,7 +106,7 @@ A crawler discovers pages by following links. A scraper collects content from pa
 
 ### Do I need a scraper if I use an LLM for extraction?
 
-You still need to fetch the page, so something has to do the scraper's retrieval job. Managed APIs such as Parallel Extract take on the fetching and return markdown a model can read, which removes the need to run your own scraping infrastructure.
+You still need to fetch the page, so something has to do the scraper's retrieval job. Managed APIs such as Parallel Extract take on the fetching and return markdown a model can read, which removes the need to run your own scraping infrastructure. For a side-by-side of eight options, see [the best web extraction APIs for LLMs](https://parallel.ai/articles/best-web-extraction-apis).
 
 ### Which is more expensive, scraping or extraction?
 

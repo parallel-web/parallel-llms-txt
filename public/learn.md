@@ -1,5 +1,6 @@
 ## Learn
 
+* [Point-in-time search](https://parallel.ai/learn/point-in-time-search)
 * [System One model](https://parallel.ai/learn/system-one-model)
 * [AI agents in finance: what they do and how they find facts](https://parallel.ai/learn/ai-agents-in-finance)
 * [KYB (know your business): verification steps and automation](https://parallel.ai/learn/kyb)
