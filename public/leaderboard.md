@@ -1,6 +1,6 @@
 # Search Capability Leaderboard
 
-Last updated Nov 12, 2026
+Last updated Nov 14, 2026
 
 What's the best model for agentic search?
 
@@ -10,8 +10,8 @@ Insights
 
 * Average lift from search across all models: +34.4 points
 * [Claude Fable 5.2](/leaderboard/claude-fable-5-2) (Gold, Search Intelligence): Highest Search Intelligence Score (80.1). Great for tasks that require complex reasoning and maximum accuracy.
-* [MiniMax M3.1 Flash](/leaderboard/minimax-m3-1-flash) (Gold, Search Efficiency): Most cost-efficient model ($43.8 per 1K tasks). Great for most queries, at 55× lower cost than the top model.
-* [Hy4](/leaderboard/hy4) (Bronze, Search Intelligence) (Bronze, Search Efficiency): Largest lift from search (+45.3). Most improved when paired with search.
+* [GPT-6.1 Terra](/leaderboard/gpt-6-1-terra) (Gold, Search Efficiency): Most cost-efficient model ($43.7 per 1K tasks). Great for most queries, at 56× lower cost than the top model.
+* [Hy4](/leaderboard/hy4) (Bronze, Search Intelligence): Largest lift from search (+45.3). Most improved when paired with search.
 
 ## Search Intelligence Leaderboard
 
@@ -31,7 +31,7 @@ Insights
 | 12   | [GPT-6 Astra](/leaderboard/gpt-6-astra)                             | Closed  | 70.8              | 43.0                 | +27.9 | $401              | 83.7s         |
 | 13   | [GPT-6.1 Sol](/leaderboard/gpt-6-1-sol)                             | Closed  | 70.4              | 39.8                 | +30.6 | $130              | 353s          |
 | 14   | [Claude Opus 5](/leaderboard/claude-opus-5)                         | Closed  | 70.0              | 37.2                 | +32.8 | $1,012            | 342s          |
-| 15   | [GPT-6.1 Terra](/leaderboard/gpt-6-1-terra)                         | Closed  | 69.7              | 28.6                 | +41.2 | —                 | 42.3s         |
+| 15   | [GPT-6.1 Terra](/leaderboard/gpt-6-1-terra)                         | Closed  | 69.2              | 30.2                 | +39.0 | $43.7             | 38.9s         |
 | 16   | [Particle-1](/leaderboard/particle-1)                               | Closed  | 69.2              | 31.4                 | +37.8 | $48.4             | 82.5s         |
 | 17   | [DeepSeek V4.1 Flash (1017)](/leaderboard/deepseek-v4-1-flash-1017) | Open    | 68.9              | 32.9                 | +36.0 | $125              | 540s          |
 | 18   | [MiniMax M3.1 Flash](/leaderboard/minimax-m3-1-flash)               | Closed  | 68.8              | 27.1                 | +41.7 | $43.8             | —             |
@@ -51,28 +51,27 @@ Insights
 | 32   | [Mistral Large 4.0](/leaderboard/mistral-large-4-0)                 | Closed  | 64.4              | 21.4                 | +43.0 | $136              | —             |
 | 33   | [MiMo v2.6 Pro](/leaderboard/mimo-v2-6-pro)                         | Open    | 64.4              | 29.7                 | +34.7 | $76.5             | —             |
 | 34   | [Kimi K3](/leaderboard/kimi-k3)                                     | Open    | 64.2              | 30.6                 | +33.6 | $266              | 432s          |
-| 35   | [Mercury 3](/leaderboard/mercury-3)                                 | Closed  | 63.6              | 28.1                 | +35.5 | $43.4             | 149s          |
-| 36   | [Claude Haiku 5.5](/leaderboard/claude-haiku-5-5)                   | Closed  | 62.9              | 23.5                 | +39.4 | $24.3             | 162s          |
-| 37   | [DeepSeek V4.1 Flash](/leaderboard/deepseek-v4-1-flash)             | Open    | 62.7              | 27.0                 | +35.7 | $35.8             | 549s          |
-| 38   | [GLM 5.3](/leaderboard/glm-5-3)                                     | Open    | 62.7              | 21.9                 | +40.8 | $78.5             | 308s          |
-| 39   | [GPT-6 Luna](/leaderboard/gpt-6-luna)                               | Closed  | 61.9              | 28.0                 | +33.9 | $33.1             | 391s          |
-| 40   | [Step 5 Preview](/leaderboard/step-5-preview)                       | Open    | 61.1              | 27.8                 | +33.3 | $118              | 387s          |
-| 41   | [Ultramarine 1 Flash](/leaderboard/ultramarine-1-flash)             | Open    | 61.1              | 24.0                 | +37.1 | $87.2             | 165s          |
-| 42   | [MiMo v2.6 Flash](/leaderboard/mimo-v2-6-flash)                     | Open    | 60.9              | 22.4                 | +38.5 | $25.2             | 1323s         |
-| 43   | [GLM 5.3 Flash](/leaderboard/glm-5-3-flash)                         | Open    | 60.8              | 20.4                 | +40.4 | $16.6             | 99.1s         |
-| 44   | [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna)                           | Closed  | 60.7              | 26.9                 | +33.9 | $36.2             | 98.0s         |
-| 45   | [Nemotron 3.5 Super VL](/leaderboard/nemotron-3-5-super-vl)         | Open    | 59.1              | 17.0                 | +42.2 | $93.9             | 181s          |
-| 46   | [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview)               | Closed  | 58.6              | 34.1                 | +24.5 | $114              | 276s          |
-| 47   | [DeepSeek V4 Pro](/leaderboard/deepseek-v4-pro)                     | Open    | 58.4              | 30.5                 | +27.9 | $110              | 383s          |
-| 48   | [Hunyuan 3](/leaderboard/hy3)                                       | Open    | 58.2              | 22.6                 | +35.6 | $28.4             | 363s          |
-| 49   | [Beam](/leaderboard/beam)                                           | Open    | 56.0              | 28.8                 | +27.2 | $161              | —             |
-| 50   | [GLM-5.2](/leaderboard/glm-5-2)                                     | Open    | 54.3              | 18.4                 | +35.9 | $66.6             | 301s          |
-| 51   | [Nemotron 3 Ultra 550B](/leaderboard/nemotron-3-ultra-550b-a55b)    | Open    | 53.0              | 15.3                 | +37.7 | $113              | 328s          |
-| 52   | [MiniMax M3](/leaderboard/minimax-m3)                               | Open    | 52.6              | 23.1                 | +29.5 | $41.1             | 291s          |
-| 53   | [MiMo v2.5](/leaderboard/mimo-v2-5)                                 | Open    | 49.5              | 13.4                 | +36.1 | $23.5             | 894s          |
-| 54   | [Laguna S 2.1](/leaderboard/laguna-s-2-1)                           | Open    | 39.5              | 12.3                 | +27.2 | $21.4             | 459s          |
-| 55   | [Nemotron 3.5 Lightning](/leaderboard/nemotron-3-5-lightning)       | Open    | 37.9              | 9.8                  | +28.0 | $12.1             | 176s          |
-| 56   | [Command A Plus](/leaderboard/command-a-plus)                       | Open    | 34.8              | 5.0                  | +29.8 | $40.1             | 149s          |
+| 35   | [Claude Haiku 5.5](/leaderboard/claude-haiku-5-5)                   | Closed  | 62.9              | 23.5                 | +39.4 | $24.3             | 162s          |
+| 36   | [DeepSeek V4.1 Flash](/leaderboard/deepseek-v4-1-flash)             | Open    | 62.7              | 27.0                 | +35.7 | $35.8             | 549s          |
+| 37   | [GLM 5.3](/leaderboard/glm-5-3)                                     | Open    | 62.7              | 21.9                 | +40.8 | $78.5             | 308s          |
+| 38   | [GPT-6 Luna](/leaderboard/gpt-6-luna)                               | Closed  | 61.9              | 28.0                 | +33.9 | $33.1             | 391s          |
+| 39   | [Step 5 Preview](/leaderboard/step-5-preview)                       | Open    | 61.1              | 27.8                 | +33.3 | $118              | 387s          |
+| 40   | [Ultramarine 1 Flash](/leaderboard/ultramarine-1-flash)             | Open    | 61.1              | 24.0                 | +37.1 | $87.2             | 165s          |
+| 41   | [MiMo v2.6 Flash](/leaderboard/mimo-v2-6-flash)                     | Open    | 60.9              | 22.4                 | +38.5 | $25.2             | 1323s         |
+| 42   | [GLM 5.3 Flash](/leaderboard/glm-5-3-flash)                         | Open    | 60.8              | 20.4                 | +40.4 | $16.6             | 99.1s         |
+| 43   | [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna)                           | Closed  | 60.7              | 26.9                 | +33.9 | $36.2             | 98.0s         |
+| 44   | [Nemotron 3.5 Super VL](/leaderboard/nemotron-3-5-super-vl)         | Open    | 59.1              | 17.0                 | +42.2 | $93.9             | 181s          |
+| 45   | [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview)               | Closed  | 58.6              | 34.1                 | +24.5 | $114              | 276s          |
+| 46   | [DeepSeek V4 Pro](/leaderboard/deepseek-v4-pro)                     | Open    | 58.4              | 30.5                 | +27.9 | $110              | 383s          |
+| 47   | [Hunyuan 3](/leaderboard/hy3)                                       | Open    | 58.2              | 22.6                 | +35.6 | $28.4             | 363s          |
+| 48   | [Beam](/leaderboard/beam)                                           | Open    | 56.0              | 28.8                 | +27.2 | $161              | —             |
+| 49   | [GLM-5.2](/leaderboard/glm-5-2)                                     | Open    | 54.3              | 18.4                 | +35.9 | $66.6             | 301s          |
+| 50   | [Nemotron 3 Ultra 550B](/leaderboard/nemotron-3-ultra-550b-a55b)    | Open    | 53.0              | 15.3                 | +37.7 | $113              | 328s          |
+| 51   | [MiniMax M3](/leaderboard/minimax-m3)                               | Open    | 52.6              | 23.1                 | +29.5 | $41.1             | 291s          |
+| 52   | [MiMo v2.5](/leaderboard/mimo-v2-5)                                 | Open    | 49.5              | 13.4                 | +36.1 | $23.5             | 894s          |
+| 53   | [Laguna S 2.1](/leaderboard/laguna-s-2-1)                           | Open    | 39.5              | 12.3                 | +27.2 | $21.4             | 459s          |
+| 54   | [Nemotron 3.5 Lightning](/leaderboard/nemotron-3-5-lightning)       | Open    | 37.9              | 9.8                  | +28.0 | $12.1             | 176s          |
+| 55   | [Command A Plus](/leaderboard/command-a-plus)                       | Open    | 34.8              | 5.0                  | +29.8 | $40.1             | 149s          |
 
 ## Search Efficiency Leaderboard
 
@@ -80,33 +79,94 @@ Most cost-efficient models scoring at or above the median Search Intelligence Sc
 
 | Rank | Model                                                               | Cost per 1K tasks | Score with Search |
 | ---- | ------------------------------------------------------------------- | ----------------- | ----------------- |
-| 1    | [MiniMax M3.1 Flash](/leaderboard/minimax-m3-1-flash)               | $43.8             | 68.8              |
-| 2    | [Particle-1](/leaderboard/particle-1)                               | $48.4             | 69.2              |
-| 3    | [Hy4](/leaderboard/hy4)                                             | $94.4             | 75.4              |
-| 4    | [Pareto 26.10](/leaderboard/pareto-26-10)                           | $116              | 68.6              |
-| 5    | [OpenRouter Auto (max)](/leaderboard/openrouter-auto)               | $116              | 67.7              |
-| 6    | [DeepSeek V4.1 Flash (1017)](/leaderboard/deepseek-v4-1-flash-1017) | $125              | 68.9              |
-| 7    | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash)                   | $130              | 66.8              |
-| 8    | [GPT-6.1 Sol](/leaderboard/gpt-6-1-sol)                             | $130              | 70.4              |
-| 9    | [Muse Spark 1.3](/leaderboard/muse-spark-1-3)                       | $142              | 66.1              |
-| 10   | [Muse Spark Open](/leaderboard/muse-spark-open)                     | $171              | 67.2              |
-| 11   | [Gemini 4 Hydrogen](/leaderboard/gemini-hydrogen)                   | $175              | 72.7              |
-| 12   | [GPT-6 Sol](/leaderboard/gpt-6-sol)                                 | $183              | 66.6              |
-| 13   | [Pareto 26.9](/leaderboard/pareto-26-9)                             | $184              | 72.5              |
-| 14   | [Qwen3.8 Max](/leaderboard/qwen3-8-max)                             | $221              | 66.0              |
-| 15   | [Kimi K3.1 Pro](/leaderboard/kimi-k3-1-pro)                         | $268              | 74.2              |
-| 16   | [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)                             | $269              | 67.7              |
-| 17   | [Gemini 4 Argon](/leaderboard/gemini-4-argon)                       | $270              | 72.2              |
-| 18   | [Ember-1](/leaderboard/ember-1)                                     | $335              | 67.9              |
-| 19   | [GPT-6 Astra](/leaderboard/gpt-6-astra)                             | $401              | 70.8              |
-| 20   | [Gemini 4 Carbon](/leaderboard/gemini-carbon)                       | $472              | 74.2              |
-| 21   | [Claude Sonnet 5](/leaderboard/claude-sonnet-5)                     | $688              | 66.6              |
-| 22   | [Muse Wonder 1.0](/leaderboard/muse-wonder-1-0)                     | $709              | 71.3              |
-| 23   | [Claude Sonnet 5.5](/leaderboard/claude-sonnet-5-5)                 | $796              | 74.1              |
-| 24   | [Claude Opus 5.5](/leaderboard/claude-opus-5-5)                     | $896              | 76.1              |
-| 25   | [Claude Opus 5](/leaderboard/claude-opus-5)                         | $1,012            | 70.0              |
-| 26   | [Claude Fable 5.1](/leaderboard/claude-fable-5-1)                   | $1,762            | 73.4              |
-| 27   | [Claude Fable 5.2](/leaderboard/claude-fable-5-2)                   | $2,426            | 80.1              |
+| 1    | [GPT-6.1 Terra](/leaderboard/gpt-6-1-terra)                         | $43.7             | 69.2              |
+| 2    | [MiniMax M3.1 Flash](/leaderboard/minimax-m3-1-flash)               | $43.8             | 68.8              |
+| 3    | [Particle-1](/leaderboard/particle-1)                               | $48.4             | 69.2              |
+| 4    | [Hy4](/leaderboard/hy4)                                             | $94.4             | 75.4              |
+| 5    | [Pareto 26.10](/leaderboard/pareto-26-10)                           | $116              | 68.6              |
+| 6    | [OpenRouter Auto (max)](/leaderboard/openrouter-auto)               | $116              | 67.7              |
+| 7    | [DeepSeek V4.1 Flash (1017)](/leaderboard/deepseek-v4-1-flash-1017) | $125              | 68.9              |
+| 8    | [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash)                   | $130              | 66.8              |
+| 9    | [GPT-6.1 Sol](/leaderboard/gpt-6-1-sol)                             | $130              | 70.4              |
+| 10   | [Muse Spark 1.3](/leaderboard/muse-spark-1-3)                       | $142              | 66.1              |
+| 11   | [Muse Spark Open](/leaderboard/muse-spark-open)                     | $171              | 67.2              |
+| 12   | [Gemini 4 Hydrogen](/leaderboard/gemini-hydrogen)                   | $175              | 72.7              |
+| 13   | [GPT-6 Sol](/leaderboard/gpt-6-sol)                                 | $183              | 66.6              |
+| 14   | [Pareto 26.9](/leaderboard/pareto-26-9)                             | $184              | 72.5              |
+| 15   | [Qwen3.8 Max](/leaderboard/qwen3-8-max)                             | $221              | 66.0              |
+| 16   | [Kimi K3.1 Pro](/leaderboard/kimi-k3-1-pro)                         | $268              | 74.2              |
+| 17   | [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)                             | $269              | 67.7              |
+| 18   | [Gemini 4 Argon](/leaderboard/gemini-4-argon)                       | $270              | 72.2              |
+| 19   | [Ember-1](/leaderboard/ember-1)                                     | $335              | 67.9              |
+| 20   | [GPT-6 Astra](/leaderboard/gpt-6-astra)                             | $401              | 70.8              |
+| 21   | [Gemini 4 Carbon](/leaderboard/gemini-carbon)                       | $472              | 74.2              |
+| 22   | [Claude Sonnet 5](/leaderboard/claude-sonnet-5)                     | $688              | 66.6              |
+| 23   | [Muse Wonder 1.0](/leaderboard/muse-wonder-1-0)                     | $709              | 71.3              |
+| 24   | [Claude Sonnet 5.5](/leaderboard/claude-sonnet-5-5)                 | $796              | 74.1              |
+| 25   | [Claude Opus 5.5](/leaderboard/claude-opus-5-5)                     | $896              | 76.1              |
+| 26   | [Claude Opus 5](/leaderboard/claude-opus-5)                         | $1,012            | 70.0              |
+| 27   | [Claude Fable 5.1](/leaderboard/claude-fable-5-1)                   | $1,762            | 73.4              |
+| 28   | [Claude Fable 5.2](/leaderboard/claude-fable-5-2)                   | $2,426            | 80.1              |
+
+## Release Date and Cost per Correct Answer
+
+| Model                                                               | Released     | Cost per 1K correct answers | Score with Search |
+| ------------------------------------------------------------------- | ------------ | --------------------------- | ----------------- |
+| [Claude Fable 5.2](/leaderboard/claude-fable-5-2)                   | Nov 9, 2026  | $3,029                      | 80.1              |
+| [Claude Opus 5.5](/leaderboard/claude-opus-5-5)                     | Sep 22, 2026 | $1,177                      | 76.1              |
+| [Hy4](/leaderboard/hy4)                                             | Nov 4, 2026  | $125                        | 75.4              |
+| [Gemini 4 Carbon](/leaderboard/gemini-carbon)                       | Nov 10, 2026 | $636                        | 74.2              |
+| [Kimi K3.1 Pro](/leaderboard/kimi-k3-1-pro)                         | Oct 23, 2026 | $361                        | 74.2              |
+| [Claude Sonnet 5.5](/leaderboard/claude-sonnet-5-5)                 | Sep 28, 2026 | $1,074                      | 74.1              |
+| [Claude Fable 5.1](/leaderboard/claude-fable-5-1)                   | Sep 1, 2026  | $2,402                      | 73.4              |
+| [Gemini 4 Hydrogen](/leaderboard/gemini-hydrogen)                   | Nov 12, 2026 | $241                        | 72.7              |
+| [Pareto 26.9](/leaderboard/pareto-26-9)                             | Sep 17, 2026 | $253                        | 72.5              |
+| [Gemini 4 Argon](/leaderboard/gemini-4-argon)                       | Oct 13, 2026 | $375                        | 72.2              |
+| [Muse Wonder 1.0](/leaderboard/muse-wonder-1-0)                     | Oct 12, 2026 | $995                        | 71.3              |
+| [GPT-6 Astra](/leaderboard/gpt-6-astra)                             | Sep 3, 2026  | $566                        | 70.8              |
+| [GPT-6.1 Sol](/leaderboard/gpt-6-1-sol)                             | Sep 29, 2026 | $185                        | 70.4              |
+| [Claude Opus 5](/leaderboard/claude-opus-5)                         | Jul 24, 2026 | $1,446                      | 70.0              |
+| [GPT-6.1 Terra](/leaderboard/gpt-6-1-terra)                         | Oct 26, 2026 | $63.1                       | 69.2              |
+| [Particle-1](/leaderboard/particle-1)                               | Oct 28, 2026 | $70.0                       | 69.2              |
+| [DeepSeek V4.1 Flash (1017)](/leaderboard/deepseek-v4-1-flash-1017) | Oct 17, 2026 | $182                        | 68.9              |
+| [MiniMax M3.1 Flash](/leaderboard/minimax-m3-1-flash)               | Oct 19, 2026 | $63.6                       | 68.8              |
+| [Pareto 26.10](/leaderboard/pareto-26-10)                           | Oct 1, 2026  | $169                        | 68.6              |
+| [Ember-1](/leaderboard/ember-1)                                     | Sep 23, 2026 | $494                        | 67.9              |
+| [OpenRouter Auto (max)](/leaderboard/openrouter-auto)               | —            | $172                        | 67.7              |
+| [GPT-5.6 Sol](/leaderboard/gpt-5-6-sol)                             | Jul 9, 2026  | $397                        | 67.7              |
+| [Muse Spark Open](/leaderboard/muse-spark-open)                     | Oct 15, 2026 | $255                        | 67.2              |
+| [Gemini 3.7 Flash](/leaderboard/gemini-3-7-flash)                   | Aug 13, 2026 | $194                        | 66.8              |
+| [GPT-6 Sol](/leaderboard/gpt-6-sol)                                 | Sep 22, 2026 | $274                        | 66.6              |
+| [Claude Sonnet 5](/leaderboard/claude-sonnet-5)                     | Jun 30, 2026 | $1,033                      | 66.6              |
+| [Muse Spark 1.3](/leaderboard/muse-spark-1-3)                       | Sep 2, 2026  | $215                        | 66.1              |
+| [Qwen3.8 Max](/leaderboard/qwen3-8-max)                             | Aug 3, 2026  | $334                        | 66.0              |
+| [Grok 4.7 Medium](/leaderboard/grok-4-7)                            | Sep 21, 2026 | $381                        | 66.0              |
+| [Gemini 3.8 Flash](/leaderboard/gemini-3-8-flash)                   | Sep 2, 2026  | $272                        | 65.1              |
+| [Hy4 Preview](/leaderboard/hy4-preview)                             | Aug 28, 2026 | $144                        | 64.6              |
+| [Mistral Large 4.0](/leaderboard/mistral-large-4-0)                 | Oct 6, 2026  | $212                        | 64.4              |
+| [MiMo v2.6 Pro](/leaderboard/mimo-v2-6-pro)                         | Sep 22, 2026 | $119                        | 64.4              |
+| [Kimi K3](/leaderboard/kimi-k3)                                     | Jul 16, 2026 | $414                        | 64.2              |
+| [Claude Haiku 5.5](/leaderboard/claude-haiku-5-5)                   | Oct 7, 2026  | $38.7                       | 62.9              |
+| [DeepSeek V4.1 Flash](/leaderboard/deepseek-v4-1-flash)             | Sep 10, 2026 | $57.1                       | 62.7              |
+| [GLM 5.3](/leaderboard/glm-5-3)                                     | Aug 14, 2026 | $125                        | 62.7              |
+| [GPT-6 Luna](/leaderboard/gpt-6-luna)                               | Sep 22, 2026 | $53.5                       | 61.9              |
+| [Step 5 Preview](/leaderboard/step-5-preview)                       | Sep 20, 2026 | $193                        | 61.1              |
+| [Ultramarine 1 Flash](/leaderboard/ultramarine-1-flash)             | Oct 14, 2026 | $143                        | 61.1              |
+| [MiMo v2.6 Flash](/leaderboard/mimo-v2-6-flash)                     | Sep 22, 2026 | $41.3                       | 60.9              |
+| [GLM 5.3 Flash](/leaderboard/glm-5-3-flash)                         | Aug 26, 2026 | $27.2                       | 60.8              |
+| [GPT-5.6 Luna](/leaderboard/gpt-5-6-luna)                           | Jul 9, 2026  | $59.7                       | 60.7              |
+| [Nemotron 3.5 Super VL](/leaderboard/nemotron-3-5-super-vl)         | Oct 15, 2026 | $159                        | 59.1              |
+| [Gemini 3 Flash](/leaderboard/gemini-3-flash-preview)               | Dec 17, 2025 | $194                        | 58.6              |
+| [DeepSeek V4 Pro](/leaderboard/deepseek-v4-pro)                     | Aug 13, 2026 | $189                        | 58.4              |
+| [Hunyuan 3](/leaderboard/hy3)                                       | Jul 6, 2026  | $48.8                       | 58.2              |
+| [Beam](/leaderboard/beam)                                           | Oct 16, 2026 | $288                        | 56.0              |
+| [GLM-5.2](/leaderboard/glm-5-2)                                     | Jun 16, 2026 | $123                        | 54.3              |
+| [Nemotron 3 Ultra 550B](/leaderboard/nemotron-3-ultra-550b-a55b)    | Jun 4, 2026  | $213                        | 53.0              |
+| [MiniMax M3](/leaderboard/minimax-m3)                               | Jun 1, 2026  | $78.1                       | 52.6              |
+| [MiMo v2.5](/leaderboard/mimo-v2-5)                                 | Apr 22, 2026 | $47.6                       | 49.5              |
+| [Laguna S 2.1](/leaderboard/laguna-s-2-1)                           | Jul 21, 2026 | $54.1                       | 39.5              |
+| [Nemotron 3.5 Lightning](/leaderboard/nemotron-3-5-lightning)       | Aug 11, 2026 | $32.0                       | 37.9              |
+| [Command A Plus](/leaderboard/command-a-plus)                       | May 20, 2026 | $115                        | 34.8              |
 
 ## Methodology
 
@@ -134,4 +194,4 @@ Identify the reporting segment, calculate its revenue share, and compare it with
 
 Each model answers the same 100 questions per benchmark, with and without Parallel Search Fast mode and Extract. Tool budgets are fixed; code execution is disabled. Once the tool budget is exhausted, we request a final answer with tools disabled. Reasoning settings and token limits may vary by model to reflect provider recommendations, when provided.
 
-Search Intelligence Score: DSQA F1, HLE accuracy, and WISER accuracy, weighted equally on a 0–100 scale. F1 allows partial credit for incomplete answers and penalizes incorrect items. Scores use all 100 questions per benchmark; failed and pending tasks count as zero. Lift: the difference between a model's score with search and without. Search Efficiency Leaderboard: models at or above the median score (66.0), ranked by cost per 1,000 tasks, cheapest first. Costs include inference and estimated Search and Extract usage, excluding grading. Cost records are incomplete and may omit recovery attempts. Time per task: average seconds from question to final answer across available records, with equal weight for each benchmark. Pareto frontier: no other model is both cheaper and higher scoring. Weights: open models publish downloadable weights, under any licence; closed models are available only through an API.
+Search Intelligence Score: DSQA F1, HLE accuracy, and WISER accuracy, weighted equally on a 0–100 scale. F1 allows partial credit for incomplete answers and penalizes incorrect items. Scores use all 100 questions per benchmark; failed and pending tasks count as zero. Lift: the difference between a model's score with search and without. Search Efficiency Leaderboard: models at or above the median score (66.0), ranked by cost per 1,000 tasks, cheapest first. Costs include inference and estimated Search and Extract usage, excluding grading. Cost records are incomplete and may omit recovery attempts. Time per task: average seconds from question to final answer across available records, with equal weight for each benchmark. Pareto frontier: no other model is both cheaper and higher scoring. Weights: open models publish downloadable weights, under any licence; closed models are available only through an API. Cost per correct answer: cost per task divided by the share of answers a model gets right (Search Intelligence Score ÷ 100), shown per 1,000 correct answers, with the same cost caveats. Release date: when the model's lab first made it publicly available, from the lab's own announcement, not our test date.
