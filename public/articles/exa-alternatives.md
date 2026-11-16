@@ -2,76 +2,116 @@
 
 Exa alternatives are worth a look if you want a cheaper price per search, a different index, raw Google results, or search bundled with extraction and research. This guide covers what Exa still does best, a side-by-side table of nine alternatives with verified October 2026 pricing and free MCP options, a script to test two keyless servers yourself, and who should switch to what.
 
-Exa lists search at $4 per 1,000 requests for Instant and $7 for Fast or Auto, with up to 10 results and page text included, and it runs its own embeddings-based index rather than reselling Google or Bing. Exa is a strong default, so a switch usually comes down to price, latency, a specific index, or the rest of the stack around search. We make Parallel, so read our ranking of ourselves with that in mind; every competitor figure below comes from the vendor’s own pricing page or docs, checked October 10, 2026.
+## The short answer
+
+Parallel is the best Exa alternative for most AI agents. It had the highest answer accuracy on AIMultiple's agentic search benchmark (87.0%, against 82.6% for Exa Fast), its Fast and Turbo modes cost $1 per 1,000 requests against $4 for Exa Lite and $7 for Auto, and the same key covers extraction, deep research, and monitoring. The others on this list fit narrower needs: Keenable for a large free tier, Brave for an independent index with zero data retention, TinyFish for low-volume prototypes, and Perplexity for raw ranked results.
+
+Parallel makes one of the APIs on this list. Every price below comes from the vendor's own pricing page or docs, read on November 14 and 15, 2026, and each section links to its source.
+
+## What Exa costs today
+
+Per [Exa's pricing page](https://exa.ai/pricing), search costs $4 per 1,000 requests on Lite, $7 on Auto, and $12 on Deep, each with up to 10 results and $1 per 1,000 for each extra result. Contents costs $1 per 1,000 pages per content type, Answer $5 per 1,000, Monitors $2 per 1,000, and the asynchronous Agent $0.012 to $1.00 per run. The free plan gives $10 of credits a month plus a $10 onboarding bonus with no payment method. Zero data retention needs an Enterprise plan with a $12,000 annual commitment.
+
+In October 2026 Exa made lite, auto, and deep its recommended search types, per [its changelog](https://exa.ai/docs/changelog). The instant, fast, and deep-reasoning types still work at their old prices but are now legacy, and lite serves page content only from Exa's cache. Exa also retired the /research endpoint in April 2026. If you built on any of these, you're changing your integration anyway, which makes it a good moment to compare.
 
 ## Exa alternatives at a glance
 
-| Provider | Search price per 1,000 requests | Latency tier | Content returned | MCP server | Free tier |
-| --- | --- | --- | --- | --- | --- |
-| Exa (for reference) | $4 Instant, $7 Fast or Auto, $12 to $15 Deep | 180ms to 1s; Deep about 10s | Page text and highlights | Hosted, keyless with rate limits | $10 a month plus $10 at signup |
-| Parallel Search | $1 Turbo or Fast, $5 Basic or Advanced | About 200ms to 3s by mode | Ranked URLs with excerpts sized for LLMs | Hosted, keyless with rate limits | $5 in credits a month |
-| Tavily | $5 to $8 basic, $10 to $16 advanced | Not published | Snippets, optional raw content | Hosted, key, OAuth, or keyless | 1,000 credits a month |
-| Perplexity Search API | $5, or $1 with Fast Search | Fast Search is the low-latency option | Ranked results with snippets | Hosted, OAuth or key | None listed |
-| Brave Search API | $5, LLM Context included | Not published | Full results plus LLM Context up to 32,768 tokens | Open-source local server, key | $5 in credits a month, card required |
-| Linkup | $5 to $6 | 1 to 3s | Sourced snippets | Hosted, key | 4,000 queries |
-| You.com Web Search | $5 | p50 about 0.4s | Web and news results | Hosted, keyless 100 queries a day | Keyless MCP tier |
-| Firecrawl Search | 2 credits per 10 results (about $1.66 to $6.40 per 1,000 on paid plans) | Not published | Results, optional scraped markdown | Hosted, keyless with daily limits | 1,000 credits a month |
-| Ceramic.ai | $0.25 | Claims as fast as 50ms | Page descriptions up to 8,000 characters | Yes, key | 1,000 queries |
-| Serper / SerpApi | $0.30 to $1 / $7.25 to $25 | 1 to 2s (Serper’s claim) | Raw Google SERP JSON | No official server verified | 2,500 queries / 250 a month |
+Checked against each provider's pricing page on November 14 and 15, 2026.
 
-Prices are list rates per 1,000 requests from each provider’s pricing page on October 10, 2026. Result counts differ: Exa, Parallel, Ceramic.ai, and Firecrawl prices cover 10 results per request. Firecrawl’s range is derived from its Hobby and Standard annual plans; SerpApi’s range runs from its $25 Starter plan to its $725 Searcher plan.
+| Provider | Search, per 1,000 requests | Page content | Free allowance | Best for |
+| --- | --- | --- | --- | --- |
+| Exa (reference) | $4 Lite, $7 Auto, $12 Deep, 10 results | Text and highlights; Contents $1 per 1,000 pages per type | $10 a month plus $10 at signup | Semantic, people, and company search |
+| Parallel | $1 Turbo or Fast, $5 Basic or Advanced, 10 results | Excerpts in every result; Extract $1 per 1,000 URLs | Up to $80 at signup, $5 a month with a card; free keyless MCP | Most AI agents: search, extraction, and research on one key |
+| Keenable | $4 pay as you go; $1 at 100+ requests per second | Snippets up to 10,000 characters; Fetch 1 credit | 100,000 requests a month, no card | A large free tier and low latency |
+| Brave Search API | $5 | LLM context included | $5 in credits a month, card required | Independent index with zero data retention |
+| TinyFish Search | $0, up to 30 a minute and 500 an hour | Snippets; Fetch free up to 1,000 URLs a day | Free within limits | Low-volume agents that also operate websites |
+| Perplexity Search API | $5, or $1 with Fast Search | Page text in each result | None listed | Raw ranked results with filters |
+| Tavily | $5 to $8 basic; $10 to $16 advanced | Optional raw content; Extract 1 credit per 5 URLs | 1,000 credits a month | Framework defaults, map and crawl |
+| Linkup | $5 to $6 | Fetch $1 to $6 per 1,000 | 4,000 queries | Simple per-request pricing |
+| You.com | $5 | Contents $1 per 1,000 pages | 100 a day over MCP, no key; $10 credit | Low-latency web and news results |
+| Firecrawl | About $1.98 on Standard, 10 results | Optional scraped markdown, extra credits | 1,000 credits a month | Search that turns into crawling |
+| Ceramic.ai | $0.25, or $0.20 on Pro | Result descriptions | 1,000 queries | Lowest metered price per query |
+| Serper / SerpApi | $0.30 to $1 / $7.25 to $25 | None; raw Google results | 2,500 queries / 250 a month | Google's exact results page |
 
-## What Exa does well
+Result counts differ. Exa, Parallel, and Firecrawl prices cover 10 results per request, while Keenable bills one request for up to 50. Check official documentation for current pricing.
 
-Exa’s index combines keyword and embeddings-based retrieval, which works well when a query describes a kind of page (“seed-stage startups building voice agents for dentists”) rather than naming it. It also runs dedicated indexes for people (1B+ profiles, per its changelog), companies, and 350 million scholarly publications, which few rivals match.
+## The best Exa alternatives in 2026
 
-Search has five main types, from `instant` (sub-150ms, per Exa’s changelog) to `deep-reasoning`, and every search returns page text or highlights at the base price. [Exa’s pricing page](https://exa.ai/pricing) also lists Contents at $1 per 1,000 pages, Monitors at $15 per 1,000 runs, Answer at $5 per 1,000, and an asynchronous Agent API at $0.012 to $1.00 per run. Websets, Exa’s list-building product, is billed in its own credits. The hosted MCP server at `https://mcp.exa.ai/mcp` works with no API key, so trying it in Claude Code or Cursor takes one line of config.
+### 1. Parallel
 
-Exa retired the `/research` endpoint in April 2026 in favor of `/search` with `type: "deep-reasoning"`, and its OpenAPI spec now marks `/findSimilar` as deprecated, telling developers to describe the source page in a `/search` query instead. If you built on either, you’re migrating anyway.
+[Parallel Search](https://parallel.ai/products/search) takes a natural-language objective plus optional keyword queries and returns ranked URLs with excerpts compressed for a model's context window. Four modes trade latency for depth: Turbo (about 200ms, English and Japanese only) and Fast (about 700ms) cost $1 per 1,000 requests, and Basic (about 1s) and Advanced (about 3s) cost $5, with 10 results included ([modes docs](https://docs.parallel.ai/search/modes)). The same key covers the [Extract API](https://parallel.ai/products/extract) at $1 per 1,000 URLs, the [Task API](https://docs.parallel.ai/task-api/task-quickstart) for deep research and enrichment at $5 to $2,400 per 1,000 runs, FindAll for entity discovery, and Monitor.
 
-## The best Exa alternatives
+On [AIMultiple's agentic search benchmark](https://aimultiple.com/agentic-search), which tested 24 configurations from six search APIs, Parallel Advanced had the highest answer accuracy at 87.0%, ahead of every Exa configuration, including Exa Fast at 82.6% and Exa Deep at 76.5%. Parallel Fast cost $0.0063 per correct answer, about a third of Exa Fast's $0.0193, and Parallel Advanced scored 78.9% on questions that needed current facts. [Parallel MCP](https://parallel.ai/mcp) works with no key, so you can try it in Claude, Cursor, or any MCP client in a minute.
 
-### Parallel Search API
+**Best for: **most AI agents, especially those that search and read many pages, where accuracy and cost per call both matter.
 
-Parallel Search takes a natural-language objective plus optional keyword queries and returns ranked URLs with excerpts compressed for a model’s context window. It has four modes: Turbo (about 200ms, English and Japanese only) and Fast (about 700ms) at $1 per 1,000 requests, and Basic (about 1s) and Advanced (about 3s) at $5, with 10 results included ([modes docs](https://docs.parallel.ai/search/modes)). Fast at $1 undercuts Exa Instant at $4. The same key covers Extract at $1 per 1,000 URLs, the Task API for deep research and enrichment at $5 to $2,400 per 1,000 runs, FindAll for entity discovery, and Monitor. [Parallel MCP](https://parallel.ai/mcp) at https://mcp.parallel.ai/mcp is free with no key, like Exa’s, and adds page fetch and research tools alongside search. We don’t have dedicated people or scholarly indexes, and Turbo doesn’t cover every language. On AIMultiple's independent [Agentic Search API Benchmark](https://aimultiple.com/agentic-search) (November 2026), Parallel Advanced had the highest answer accuracy of 24 search configurations at 87.0%, with Exa Fast second at 82.6%, though their confidence intervals overlap.
+### 2. Keenable
 
-### Tavily
+Keenable runs its own crawler and index and has raised a $26 million seed round. Per [Keenable's pricing page](https://keenable.ai/pricing), every organization gets 100,000 free requests a month with no card, then pay as you go costs $4 per 1,000 requests, four times Parallel's Fast and Turbo price. Dedicated capacity costs $1 per 1,000 at 100 or more requests per second, in the cloud or on-premises, with zero data retention available. One request returns up to 50 results, and Keenable says its p95 latency is under 250ms in US East. Without a key, search and fetch run free on a shared pool of 1,000 requests an hour per IP address.
 
-Tavily is the default search tool in many agent frameworks, and it adds Extract, Map, Crawl, and Research endpoints. It bills in credits: a basic search uses 1 credit and an advanced search 2, at $0.008 a credit on pay-as-you-go and $0.005 to $0.0075 on monthly plans, so 1,000 basic searches cost $5 to $8 ([credits docs](https://docs.tavily.com/documentation/api-credits)). The free plan has 1,000 credits a month. Nebius acquired Tavily in 2026; our [Tavily alternatives guide](https://parallel.ai/articles/tavily-alternatives) covers what that means.
+Keenable sells search and fetch, plus SELECT, an SQL interface to the web. It has no research, answer, or monitoring API, which Parallel covers on the same key. [Keenable vs. Parallel](https://parallel.ai/articles/keenable-vs-parallel) compares the two in detail.
 
-### Perplexity Search API
+**Best for: **projects that fit inside 100,000 searches a month, or that need search deployed on their own infrastructure.
 
-Perplexity’s Search API returns raw ranked results with domain, date, and language filters at $5 per 1,000 requests, or $1 with Fast Search (search_type: "fast"). It bills per successful request, and a request can carry up to five queries ([pricing](https://docs.perplexity.ai/getting-started/pricing)). Its hosted MCP server at https://api.perplexity.ai/mcp needs OAuth or an API key, and the pricing page lists no free tier.
+### 3. Brave Search API
 
-### Brave Search API
+[Brave's Search API](https://brave.com/search/api/) serves results from Brave's own independent index at $5 per 1,000 requests, with LLM-ready context included. Each plan includes $5 in free credits a month, and Brave asks for a card to prevent abuse. Brave says it's SOC 2 Type II attested and keeps zero data retention by design. Its Answers endpoint costs $4 per 1,000 requests plus $5 per million tokens, and its [MCP server](https://github.com/brave/brave-search-mcp-server) is open source and runs locally with your key. At $5 per 1,000 requests, Brave costs five times Parallel's Fast and Turbo price per search. [Brave Search API vs. Parallel](https://parallel.ai/articles/brave-search-api-vs-parallel) goes deeper.
 
-Brave serves results from its own independent index, the one behind Brave Search. The Search plan costs $5 per 1,000 requests and includes the LLM Context endpoint, which returns pre-extracted page content with a configurable budget of 1,024 to 32,768 tokens ([LLM Context docs](https://api-dashboard.search.brave.com/documentation/services/llm-context)). Every account gets $5 in monthly credits, and Brave asks for a card to verify free accounts. Its [MCP server](https://github.com/brave/brave-search-mcp-server) is open source and runs locally with your key.
+**Best for: **teams that need an index independent of Google and Bing, with strict data handling.
 
-### Linkup
+### 4. TinyFish Search
 
-Linkup charges per request with no credit conversion: $0.005 to $0.006 per search depending on depth, $0.001 to $0.006 per fetch, and $0.25 to $2.50 per asynchronous research run ([pricing](https://www.linkup.so/pricing)). New accounts get 4,000 free queries, and SOC 2 Type II is on every plan. Its hosted MCP server needs a key.
+TinyFish is a web agent company, and its Search and Fetch APIs are free per call. Per [TinyFish's pricing page](https://www.tinyfish.ai/pricing), Search allows 30 requests a minute and 500 an hour and returns ranked URLs with snippets. Fetch allows 150 URLs a minute and 1,000 a day and returns markdown, HTML, or JSON. Neither draws on the prepaid wallet that pays for TinyAgent ($0.016 per step) and TinyBrowser ($0.002 per minute), and higher limits need an enterprise contract.
 
-### You.com
+The limits are the catch. One agent doing multi-hop research can use 30 searches in under a minute, against a default of 600 a minute on Parallel's pay-as-you-go plan. [TinyFish vs. Parallel](https://parallel.ai/articles/tinyfish-vs-parallel) covers where the two fit together.
 
-You.com’s Web Search API costs $5 per 1,000 calls with a published p50 of about 0.4 seconds, and it now returns live data like stock prices and weather at the same rate ([pricing](https://you.com/pricing)). Its MCP server has a keyless profile at `https://api.you.com/mcp?profile=free`, limited to search and 100 queries a day.
+**Best for: **prototypes and low-volume agents, and teams that also need agents that operate websites.
 
-### Firecrawl Search
+### 5. Perplexity Search API
 
-Firecrawl started as a scraper and crawler, and its search endpoint can return scraped page markdown alongside results. A search of 10 results costs 2 credits, and credits are shared with scrape and crawl, so 1,000 searches cost about $6.40 on the Hobby plan ($16 a month billed yearly for 5,000 credits) and about $1.66 on Standard ($83 a month for 100,000 credits) ([pricing](https://www.firecrawl.dev/pricing)). Its MCP server has a keyless tier with daily limits. Pick it if you also crawl whole sites.
+Perplexity's [Search API](https://docs.perplexity.ai/docs/getting-started/pricing) returns ranked results as JSON, with page text extracted into each result, for $5 per 1,000 successful requests, or $1 with Fast Search. One request can carry up to five queries and still bills once, and the pricing page lists no free allowance. There's no generated answer and no token billing. See [Perplexity Search API vs. Parallel](https://parallel.ai/articles/perplexity-search-api-vs-parallel-search-api).
 
-### Ceramic.ai
+**Best for: **cheap raw results that your own model will rank and read.
 
-Ceramic.ai is the newest name here and the cheapest: $0.25 per 1,000 queries on pay-as-you-go, with 1,000 free queries and 20 QPS ([pricing](https://www.ceramic.ai/pricing)). It runs its own index of more than 40 billion pages. On October 2, 2026, Cloudflare launched a Web Search API inside AI Gateway and made Ceramic.ai the default provider, ahead of Exa ($7 per 1,000, no zero data retention) and Linkup ([Cloudflare docs](https://developers.cloudflare.com/web-search/providers/)). Ceramic’s own FAQ calls it a lexical, not semantic, engine and recommends query rewriting, and its docs say it supports English pages only for now.
+### 6. Tavily
 
-### Serper and SerpApi for raw Google results
+Tavily is the default search tool in many agent frameworks, and it adds Extract, Map, Crawl, and Research endpoints. Per [Tavily's credits page](https://docs.tavily.com/documentation/api-credits), a basic search uses 1 credit and an advanced search 2, at $0.008 a credit pay as you go and $0.005 to $0.0075 on monthly plans, so 1,000 basic searches cost $5 to $8. The free plan has 1,000 credits a month. Nebius acquired Tavily in 2026, and [our Tavily alternatives guide](https://parallel.ai/articles/tavily-alternatives) covers what changed.
 
-If you need what Google shows, scrape-based SERP APIs return that page as JSON. [Serper](https://serper.dev/) sells prepaid credits from $1 per 1,000 queries ($50 for 50,000) down to $0.30 at 12.5 million, with 2,500 free queries. [SerpApi](https://serpapi.com/pricing) uses monthly plans from $25 for 1,000 searches to $725 for 100,000, with 250 free searches a month and a legal shield on Production plans and up. Neither returns page content, so you’ll need a fetch step, and both depend on scraping a search engine they don’t own, which carries legal and availability risk you should weigh.
+**Best for: **teams on a framework that defaults to Tavily, or that use its map and crawl.
 
-Jina AI, now part of Elastic, also offers search at `s.jina.ai` with an MCP server at `mcp.jina.ai`. It bills from a shared token balance, each search costs at least 10,000 tokens, and every new key comes with 10 million free tokens. We couldn’t confirm the current dollar rate on Jina’s own pages, so it isn’t in the table.
+### 7. Linkup
+
+[Linkup](https://www.linkup.so/pricing) charges per request with no credit conversion: $0.005 to $0.006 per search depending on depth, $0.001 to $0.006 per fetch, and $0.25 to $2.50 per asynchronous research run. New accounts get 4,000 free queries, and Linkup lists SOC 2 Type II on every plan.
+
+**Best for: **predictable per-call pricing for search, fetch, and research.
+
+### 8. You.com
+
+[You.com's Web Search API](https://you.com/pricing) costs $5 per 1,000 calls with a published median latency of about 0.4 seconds, and returns web and news results with highlights and domain filters. Its Contents API costs $1 per 1,000 pages. The MCP server answers up to 100 searches a day with no key or account, and new API accounts get $10 of credit, about 2,000 searches.
+
+**Best for: **low-latency web and news results, with a keyless way to try them.
+
+### 9. Firecrawl
+
+Firecrawl started as a scraper, and its search endpoint can return scraped markdown with each result. A search of 10 results costs 2 credits from the same balance as scrape and crawl, which works out to about $1.98 per 1,000 searches on the $99 Standard plan (100,000 credits, per [Firecrawl's pricing page](https://www.firecrawl.dev/pricing)). The free plan gives 1,000 credits a month. [The best Firecrawl alternatives](https://parallel.ai/articles/firecrawl-alternatives) covers its tradeoffs.
+
+**Best for: **searches that turn into scraping or crawling whole sites.
+
+### 10. Ceramic.ai
+
+Ceramic.ai is the cheapest metered search API here. Per [Ceramic's pricing page](https://www.ceramic.ai/pricing), pay as you go costs $0.25 per 1,000 queries, with 1,000 free queries and 20 queries per second, and the $99-a-month Pro plan drops that to $0.20 per 1,000 with 495,000 queries included. It's a younger product than most on this list, so test quality and language coverage on your own queries before you commit.
+
+**Best for: **very high volume, where price per query decides.
+
+### 11. Serper and SerpApi
+
+If you need what Google shows, these return Google's results page as JSON. [Serper](https://serper.dev/) sells prepaid credits from $1 per 1,000 queries ($50 for 50,000) down to $0.30 per 1,000 at 12.5 million, with 2,500 free queries. [SerpApi](https://serpapi.com/pricing) uses monthly plans from $25 for 1,000 searches to $725 for 100,000, with 250 free searches a month and a legal shield on Production plans and up. Neither returns page content, so you'll need a fetch step, and both depend on scraping a search engine they don't own, which carries legal and availability risk.
+
+**Best for: **SEO tools and apps that need Google's exact results page.
 
 ## Compare two keyless MCP servers yourself
 
-Exa and Parallel both run hosted MCP servers that answer without a key, so you can compare them on your own queries in a minute. This script performs the MCP handshake over Streamable HTTP and calls each server’s search tool once. It uses only the Python standard library.
+Exa and Parallel both run hosted MCP servers that answer search and fetch calls without a key, so you can compare them on your own queries in a minute. This script performs the MCP handshake over Streamable HTTP and calls each server's search tool once. It uses only the Python standard library.
 
 ```python
 import json, time, urllib.request
@@ -121,43 +161,42 @@ parallel: 0.7s, 15,014 chars
 { "search_id": "search_521dad38...", "results": [ { "url": "https://www.exa.ai/pricing", ...
 ```
 
-One run on one query tells you little about quality, so swap in 20 to 50 queries from your own logs before you decide. Our [evaluation guide](https://parallel.ai/articles/how-we-evaluate-web-search-apis) explains how we score them, and the [Parallel MCP vs. Exa MCP comparison](https://parallel.ai/articles/parallel-search-mcp-vs-exa-mcp) goes deeper on the two servers.
+One run on one query tells you little about quality, so swap in 20 to 50 queries from your own logs before you decide. [Our evaluation guide](https://parallel.ai/articles/how-we-evaluate-web-search-apis) explains how we score them, and [Parallel MCP vs. Exa MCP](https://parallel.ai/articles/parallel-search-mcp-vs-exa-mcp) goes deeper on the two servers.
 
-## Who should switch, and to what
+## How to choose
 
-- Stay on Exa if you depend on its people, company, or scholarly indexes, or on Websets for list building.
-- Switch to Parallel if you want a lower price per search ($1 Fast vs. $4 Instant), plus extraction, research, and entity discovery on one key. Our [Exa to Parallel migration guide](https://parallel.ai/articles/exa-to-parallel-search-api) maps the parameters, and [Exa Websets vs. Parallel FindAll](https://parallel.ai/articles/exa-vs-parallel-findall) covers list building.
-- Try Perplexity if you want raw ranked results with domain, date, and language filters, or Fast Search at $1 per 1,000.
-- Use Brave if you want an independent index and pre-extracted context in one call.
-- Pick Ceramic.ai or Serper if raw cost per query is the constraint and you can live with keyword-style queries or a separate fetch step.
-- Add Firecrawl if your agent crawls whole sites.
+- **You want the most accurate search for the price.** Use Parallel. It led AIMultiple's accuracy benchmark and costs $1 per 1,000 requests in Fast mode, a quarter of Exa Lite.
+- **Cost per search decides.** Parallel Fast and Turbo cost $1 per 1,000 with excerpts included, a quarter of Exa Lite's price.
+- **You want free volume.** Keenable gives 100,000 requests a month, and TinyFish Search is free within 30 requests a minute.
+- **You need an independent index or zero data retention.** Start with Brave.
+- **You want search, extraction, and research on one key.** Use Parallel. [Our Exa to Parallel migration guide](https://parallel.ai/articles/exa-to-parallel-search-api) maps the parameters, and [Exa Websets vs. Parallel FindAll](https://parallel.ai/articles/exa-vs-parallel-findall) covers list building.
+- **You need Google's exact results.** Use Serper or SerpApi.
+- **Your searches turn into crawls.** Add Firecrawl.
 
 ## Frequently asked questions
 
 ### What is the best Exa alternative?
 
-For most agent workloads, Parallel Search is the closest match: it returns LLM-ready excerpts and costs $1 per 1,000 requests in Fast mode against Exa’s $4 to $7. We make Parallel, so test it against your own queries.
+Parallel Search. It had the highest answer accuracy of 24 configurations on AIMultiple's agentic search benchmark, at 87.0% against 82.6% for Exa Fast. It returns excerpts sized for a model, costs $1 per 1,000 requests in Fast mode against $4 to $7 for Exa Lite and Auto, and adds extraction, deep research, and monitoring on the same key.
 
 ### What is the cheapest Exa alternative?
 
-At list price, Ceramic.ai is cheapest at $0.25 per 1,000 queries, followed by Serper at $0.30 to $1 for raw Google results. Parallel Turbo and Fast and Perplexity Fast Search cost $1 per 1,000.
+Parallel Turbo and Fast cost $1 per 1,000 requests with page excerpts included, a quarter of Exa Lite's price. TinyFish and Keenable are free within their limits (30 searches a minute, or 100,000 a month), and Ceramic.ai and Serper charge less per query, but they come with tight rate limits, no research layer, or raw results that still need a fetch step.
 
 ### Does Exa have a free tier?
 
-Yes. Exa gives $10 in credits a month plus a $10 onboarding bonus with no payment method, and its hosted MCP server at mcp.exa.ai works without an API key under rate limits.
+Yes. Exa gives $10 in credits a month plus a $10 onboarding bonus with no payment method, and its hosted MCP server at mcp.exa.ai runs search and fetch without an API key at a free rate limit.
 
-### Is Exa’s findSimilar endpoint still supported?
+### What happened to Exa's fast and instant search types?
 
-Exa’s OpenAPI spec marks `/findSimilar` as deprecated and recommends `/search` with a query that describes the source page. Exa also retired the `/research` endpoint in April 2026 in favor of the `deep-reasoning` search type.
+In October 2026 Exa made lite, auto, and deep its recommended search types. Instant and fast are now legacy and point to lite, and deep-reasoning points to deep or Exa Agent. The legacy types still work at their current prices.
 
-### What does Cloudflare Web Search use?
+### Which Exa alternatives have a free MCP server with no API key?
 
-Cloudflare’s Web Search API, launched October 2, 2026 in AI Gateway, defaults to Ceramic.ai and also supports Exa and Linkup through a `provider` parameter. Cloudflare bills each provider at its list price with no markup.
-
-### Which Exa alternatives offer a free MCP server with no API key?
-
-Parallel, Exa, Firecrawl, Tavily, and You.com all run hosted MCP servers with a keyless tier. Perplexity and Linkup need a key or sign-in, and Brave’s server runs locally with your key.
+Parallel, Keenable, and You.com all run hosted MCP servers that answer without a key, as Exa does. Brave's MCP server is open source and runs locally with your key.
 
 ## Get started
 
-Add [Parallel MCP](https://parallel.ai/mcp) to your MCP client with no key, or get an API key on [Parallel’s platform](https://platform.parallel.ai) and run the script above against your own queries. For the full head-to-head, read [Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel), and for the wider field, see [the best web search APIs](https://parallel.ai/articles/best-web-search-api).
+Add [Parallel MCP](https://parallel.ai/mcp) to your MCP client with no key, or [get an API key](https://platform.parallel.ai) and run the script above against your own queries. [Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel) has the full head-to-head.
+
+**Related reading: **[Keenable vs. Parallel](https://parallel.ai/articles/keenable-vs-parallel) / [TinyFish vs. Parallel](https://parallel.ai/articles/tinyfish-vs-parallel) / [Brave Search API vs. Parallel](https://parallel.ai/articles/brave-search-api-vs-parallel) / [The best Tavily alternatives](https://parallel.ai/articles/tavily-alternatives) / [The honest 2026 comparison of web search APIs](https://parallel.ai/articles/the-honest-2026-comparison-web-search-apis-for-ai-agents).

@@ -81,7 +81,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Best DeepSeek Search API Alternatives (2026)](https://llm.parallel.ai/articles/deepseek-search-api-alternatives.md): Compare seven DeepSeek Search API alternatives on price per 1,000 requests, data handling, and model independence, including Parallel, Exa, and Brave.
 - [DeepSeek Search API vs Parallel: Pricing and Limits (2026)](https://llm.parallel.ai/articles/deepseek-search-api-vs-parallel.md): DeepSeek Search API vs Parallel on price per 1,000 requests, data handling, model lock-in, rate limits, and controls, checked against DeepSeek’s docs.
 - [Entity Matching: Same Company, Subsidiary, or Unrelated?](https://llm.parallel.ai/articles/entity-matching.md): Learn how entity matching works (blocking, similarity, Splink, dedupe) and how to settle renames, subsidiaries, and acquisitions with web evidence.
-- [Exa Alternatives: 9 AI Search APIs Compared (2026)](https://llm.parallel.ai/articles/exa-alternatives.md): Compare nine Exa alternatives for AI search on price per 1,000 requests, latency, content returned, and keyless MCP, from $0.25 Ceramic to $1 Parallel Fast.
+- [Exa Alternatives: 11 AI Search APIs Compared (2026)](https://llm.parallel.ai/articles/exa-alternatives.md): Compare 11 Exa alternatives on accuracy, price and free tiers. Parallel led an independent accuracy benchmark and costs $1 per 1,000 searches. Checked Nov 2026.
 - [How to Switch From Exa to Parallel Search API](https://llm.parallel.ai/articles/exa-to-parallel-search-api.md): Migrate from Exa to Parallel Search API with a side-by-side cost comparison, full parameter mapping, rate limits, and the code change you need.
 - [Exa Websets vs Parallel FindAll API: Entity Discovery](https://llm.parallel.ai/articles/exa-vs-parallel-findall.md): Compare Exa Websets and Parallel FindAll on architecture, features, recall, accuracy, and developer experience for entity discovery and enrichment.
 - [Exa vs Parallel: Search Platform Comparison for AI Devs](https://llm.parallel.ai/articles/exa-vs-parallel.md): Compare Exa and Parallel across search, extraction, deep research, monitoring, entity discovery, pricing, and enterprise compliance for AI agents.
@@ -422,7 +422,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Get started - Parallel](https://llm.parallel.ai/docs/index.md)
 - [parallel-web - npm](https://llm.parallel.ai/docs/package/parallel-web.md)
 - [parallel-web · PyPI](https://llm.parallel.ai/docs/project/parallel-web/index.md)
-- [OpenAPI Spec](https://llm.parallel.ai/docs/public-openapi.json.md)
+- [public-openapi](https://llm.parallel.ai/docs/public-openapi.json.md)
 
 ## SDKs
 

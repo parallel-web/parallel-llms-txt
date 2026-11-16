@@ -8577,7 +8577,7 @@
               }
             ],
             "title": "Tools",
-            "description": "OpenAI tools. Web grounding is always on, so no tool is needed to search; a `web_search` tool's `filters` restrict the domains searched and cited (`allowed_domains` maps to Parallel's `source_policy.include_domains`, `blocked_domains` to `exclude_domains`; set one, not both). An `mcp` tool gives the model a remote MCP server to call; at most 10 per request. Every other tool is accepted and ignored."
+            "description": "OpenAI tools. Web grounding is always on, so no tool is needed to search; a `web_search` tool's `filters` restrict the domains searched and cited (`allowed_domains` maps to Parallel's `source_policy.include_domains`, `blocked_domains` to `exclude_domains`). An `mcp` tool gives the model a remote MCP server to call; at most 10 per request. Every other tool is accepted and ignored."
           },
           "data_sources": {
             "anyOf": [
@@ -9309,7 +9309,7 @@
       },
       "ResponseWebSearchToolFilters": {
         "additionalProperties": false,
-        "description": "Domain filters on the OpenAI `web_search` tool, mapped onto Parallel's\nsource policy: `allowed_domains` -> `include_domains`, `blocked_domains` ->\n`exclude_domains`. Entries follow the Source Policy rules (plain domains\nmatch their subdomains; no schemes, ports, query strings or fragments; at\nmost 200 entries in total). Setting both lists is accepted, but only the\nallow list applies today.",
+        "description": "Domain filters on the OpenAI `web_search` tool, mapped onto Parallel's\nsource policy: `allowed_domains` -> `include_domains`, `blocked_domains` ->\n`exclude_domains`. Entries follow the Source Policy rules (plain domains\nmatch their subdomains; no schemes, ports, query strings or fragments; at\nmost 200 entries in total). With both lists, a source must be on an allowed\ndomain and not on a blocked one.",
         "properties": {
           "allowed_domains": {
             "anyOf": [
@@ -9340,7 +9340,7 @@
               }
             ],
             "default": null,
-            "description": "Sources on these domains (and their subdomains) are excluded. Maps to `source_policy.exclude_domains`. When `allowed_domains` is also set, the allow list is what applies.",
+            "description": "Sources on these domains (and their subdomains) are excluded, also inside `allowed_domains`. Maps to `source_policy.exclude_domains`.",
             "title": "Blocked Domains"
           }
         },
@@ -9648,7 +9648,7 @@
             },
             "type": "array",
             "title": "Include Domains",
-            "description": "List of domains or domain/path prefixes to restrict results to. If specified, only matching sources will be included and exclude_domains will be ignored. Accepts plain domains (e.g., wikipedia.org), domain/path prefixes (e.g., docs.python.org/3), or bare domain extensions (e.g., .gov, .edu, .co.uk). The combined number of entries in include_domains and exclude_domains cannot exceed 200.",
+            "description": "List of domains or domain/path prefixes to restrict results to. If specified, only matching sources will be included. Accepts plain domains (e.g., wikipedia.org), domain/path prefixes (e.g., docs.python.org/3), or bare domain extensions (e.g., .gov, .edu, .co.uk). The combined number of entries in include_domains and exclude_domains cannot exceed 200.",
             "examples": [
               [
                 "wikipedia.org",
@@ -9663,7 +9663,7 @@
             },
             "type": "array",
             "title": "Exclude Domains",
-            "description": "List of domains or domain/path prefixes to exclude from results. Applied only when include_domains is empty. If specified, matching sources will be excluded. Accepts plain domains (e.g., reddit.com), domain/path prefixes (e.g., youtube.com/shorts), or bare domain extensions (e.g., .gov, .edu, .co.uk). The combined number of entries in include_domains and exclude_domains cannot exceed 200.",
+            "description": "List of domains or domain/path prefixes to exclude from results. If specified, matching sources will be excluded, also inside include_domains. Accepts plain domains (e.g., reddit.com), domain/path prefixes (e.g., youtube.com/shorts), or bare domain extensions (e.g., .gov, .edu, .co.uk). The combined number of entries in include_domains and exclude_domains cannot exceed 200.",
             "examples": [
               [
                 "reddit.com",
@@ -9691,7 +9691,7 @@
         },
         "type": "object",
         "title": "SourcePolicy",
-        "description": "Source policy for web search results.\n\nPlain domains match that domain and its subdomains. Domain/path entries use\ncase-sensitive path matching at segment boundaries; trailing slashes are ignored,\ndot segments are normalized, and other percent-encoded path spelling is preserved.\nEntries omit schemes, ports, query strings, and fragments. When include_domains is\nnon-empty, it defines the complete allowlist and exclude_domains is ignored."
+        "description": "Source policy for web search results.\n\nPlain domains match that domain and its subdomains. Domain/path entries use\ncase-sensitive path matching at segment boundaries; trailing slashes are ignored,\ndot segments are normalized, and other percent-encoded path spelling is preserved.\nEntries omit schemes, ports, query strings, and fragments. A source must match\ninclude_domains, when set, and must not match exclude_domains. Use exclude_domains\nto block a subdomain or path of an allowed domain. Only the same entry in both\nlists fails validation, compared after lowercasing the domain and dropping a\nleading www. and a trailing slash."
       },
       "TaskAdvancedSettings": {
         "properties": {
