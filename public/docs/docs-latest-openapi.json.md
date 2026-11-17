@@ -11760,7 +11760,7 @@
               }
             ],
             "title": "Publish Date",
-            "description": "Publish date of the webpage in YYYY-MM-DD format, if available."
+            "description": "Estimated publish date of the webpage in YYYY-MM-DD format, if available."
           },
           "excerpts": {
             "items": {
@@ -12015,7 +12015,7 @@
               }
             ],
             "title": "Publish Date",
-            "description": "Publish date of the webpage in YYYY-MM-DD format, if available."
+            "description": "Estimated publish date of the webpage in YYYY-MM-DD format, if available."
           },
           "excerpts": {
             "items": {

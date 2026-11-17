@@ -1,7 +1,7 @@
-### \[Announcing Parallel for Startups\](https://parallel.ai/blog/parallel-for-startups)
+### \[Introducing Parallel Image Search\](https://parallel.ai/blog/parallel-images-api)
 
 Tags:[Product](/blog?tag=product)
 
-By Parallel
+By Parallel Web Systems
 
-November 12, 2026
+November 14, 2026
