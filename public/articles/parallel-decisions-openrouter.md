@@ -2,7 +2,7 @@
 
 Parallel Decisions on OpenRouter gives agents that already run through OpenRouter a way to ask typed questions about the live web with the API key they use for every other model. This guide covers the endpoint and free trial, working cURL, TypeScript, and Python calls, refusals and citations, guardrail thresholds, swapping decision models, and when calling Parallel directly is the better fit.
 
-To use Parallel Decisions on OpenRouter, send `POST https://openrouter.ai/api/alpha/decisions` with your OpenRouter key and `"model": "parallel/decisions-fast"`. The model searches the live web, answers up to 100 typed questions about one shared `state` from a single retrieval, and returns probabilities plus sources for the whole request. OpenRouter lists its p50 latency at 0.60 seconds, and Parallel offers it free on OpenRouter for 7 days with no separate Parallel account.
+To use [Parallel Decisions](https://parallel.ai/products/decisions) on OpenRouter, send `POST https://openrouter.ai/api/alpha/decisions` with your OpenRouter key and `"model": "parallel/decisions-fast"`. The model searches the live web, answers up to 100 typed questions about one shared `state` from a single retrieval, and returns probabilities plus sources for the whole request. OpenRouter lists its p50 latency at 0.60 seconds, and Parallel offers it free on OpenRouter for 7 days with no separate Parallel account.
 
 We build Parallel's Decisions API, so weigh that. Everything below was checked against OpenRouter's model page, its API reference, and Parallel's docs on Nov 6, 2026, the day the model launched on OpenRouter.
 

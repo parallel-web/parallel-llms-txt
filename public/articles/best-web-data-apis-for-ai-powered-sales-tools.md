@@ -360,7 +360,7 @@ This workflow enriches a batch of prospects with custom fields, returns structur
 
 ## Qualify and route leads with the Decisions API
 
-Most inbound leads need a routing decision before they need a full profile: which segment, which rep, or whether to work them at all. Those decisions depend on facts that change, such as funding stage, headcount, and what the company sells, so a CRM field from last quarter can send a lead to the wrong place. A [decision API](https://parallel.ai/articles/what-is-a-decisions-api) answers closed questions like these and returns a typed answer with probabilities. Parallel’s Decisions API also retrieves current web evidence for each request and returns the sources it used.
+Most inbound leads need a routing decision before they need a full profile: which segment, which rep, or whether to work them at all. Those decisions depend on facts that change, such as funding stage, headcount, and what the company sells, so a CRM field from last quarter can send a lead to the wrong place. A [decision API](https://parallel.ai/articles/what-is-a-decisions-api) answers closed questions like these and returns a typed answer with probabilities. [Parallel’s Decisions API](https://parallel.ai/products/decisions) also retrieves current web evidence for each request and returns the sources it used.
 
 In a [launch demo](https://parallel.ai/blog/decisions-api), Parallel ran 500 inbound leads through the Decisions API in under nine seconds for about $0.50. Of the leads it routed without a person, 97% landed in the right segment. That is Parallel’s own result from one demo run, so test on a sample of your own hand-routed leads before you rely on it.
 

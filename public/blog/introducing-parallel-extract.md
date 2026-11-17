@@ -36,7 +36,7 @@ This workflow is especially effective through our MCP server integration, as age
 
 ![](https://cdn.sanity.io/images/5hzduz3y/production/3c5fed4bab0a2cfea3491346f7c8b17fba10cdb4-2914x1912.png)
 
-- One-click install in [Cursor](https://cursor.com/en/install-mcp?name=Parallel%20Search%20MCP&config=eyJ1cmwiOiJodHRwczovL3NlYXJjaC1tY3AucGFyYWxsZWwuYWkvbWNwIn0=)
+- One-click install in [Cursor](https://cursor.com/en/install-mcp?name=Parallel%20Search%20MCP&config=eyJ1cmwiOiJodHRwczovL21jcC5wYXJhbGxlbC5haS9tY3AifQ==)
 - One-click install in [VSCode](https://insiders.vscode.dev/redirect/mcp/install?name=Parallel&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmcp.parallel.ai%2Fmcp%22%7D)
 - [Instructions](https://docs.parallel.ai/integrations/mcp/installation) for Claude Desktop, Claude Code, Gemini CLI, Windsurf, Cline, ChatGPT, etc.
 

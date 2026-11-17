@@ -2,7 +2,7 @@
 
 Looking for an OpenAI Decisions API alternative usually means one of five things: a lower token price, answers grounded in the live web, a choice of model, open weights, or a specific hosting region. This guide explains what OpenAI's endpoint does well, compares seven alternatives with their prices and limits, maps the request fields, and shows a migration you can run.
 
-The OpenAI Decisions API (GA October 22, 2026) is a fast, inexpensive way to get typed answers from gpt-6-luna about input you already have, at $0.10 per million input tokens with up to 400 questions per request. The main alternatives are TypeSafe Jev, Perplexity Decisions, Liquid d1-ultra, Cloudflare Clef-flash, Microsoft-Decision-1, Laya, and Parallel's Decisions API. Pick a token-priced model when the evidence is already in your request; pick Parallel, which searches the live web and cites sources for $1 per 1,000 requests, when the evidence isn't.
+The OpenAI Decisions API (GA October 22, 2026) is a fast, inexpensive way to get typed answers from gpt-6-luna about input you already have, at $0.10 per million input tokens with up to 400 questions per request. The main alternatives are TypeSafe Jev, Perplexity Decisions, Liquid d1-ultra, Cloudflare Clef-flash, Microsoft-Decision-1, Laya, and [Parallel's Decisions API](https://parallel.ai/products/decisions). Pick a token-priced model when the evidence is already in your request; pick Parallel, which searches the live web and cites sources for $1 per 1,000 requests, when the evidence isn't.
 
 We build Parallel's Decisions API, so weigh that. Every competitor fact below comes from the vendor's own documentation or announcement, checked on November 6, 2026.
 

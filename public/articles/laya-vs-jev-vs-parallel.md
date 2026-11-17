@@ -2,7 +2,7 @@
 
 Laya vs. Jev is a choice between an open-weight decision model you run yourself and a hosted one you call, and Parallel's Decisions API adds a third option for questions whose answer lives on the web. This comparison covers what each one is, how the published accuracy and speed numbers line up, and how to combine them in one pipeline.
 
-Laya is an open-weight encoder you self-host for millisecond decisions on text you already have, and it does best once you fine-tune it. Jev is TypeSafe's hosted decision model at $0.042 per 1M input tokens, built for zero-shot decisions on long inputs with up to 255 options per question. Parallel's Decisions API searches the live web and returns cited answers for $1 per 1,000 requests, for questions the input can't answer. Laya and Jev both read only what you send, while Parallel retrieves evidence from the web first.
+Laya is an open-weight encoder you self-host for millisecond decisions on text you already have, and it does best once you fine-tune it. Jev is TypeSafe's hosted decision model at $0.042 per 1M input tokens, built for zero-shot decisions on long inputs with up to 255 options per question. [Parallel's Decisions API](https://parallel.ai/products/decisions) searches the live web and returns cited answers for $1 per 1,000 requests, for questions the input can't answer. Laya and Jev both read only what you send, while Parallel retrieves evidence from the web first.
 
 We build Parallel's Decisions API, so weigh that. For decisions over text you already hold, Laya and Jev are faster and 10 to 100 times cheaper per question than Parallel, and nothing below argues otherwise.
 

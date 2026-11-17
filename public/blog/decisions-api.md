@@ -2,7 +2,7 @@
 
 A decision engine with world knowledge built in.
 
-Today we're launching the [Parallel Decisions API](https://platform.parallel.ai/play/decisions): a decision engine with world knowledge built in. The new API combines the speed and convenience of models like Jev with the collective knowledge of the live web. Developers can now ask questions about anything: not just what is in their context, but the web as a whole. Web grounding significantly expands the usefulness of decision models in agent workflows that need fast answers.
+Today we're launching the [Parallel Decisions API](https://parallel.ai/products/decisions): a decision engine with world knowledge built in. The new API combines the speed and convenience of models like Jev with the collective knowledge of the live web. Developers can now ask questions about anything: not just what is in their context, but the web as a whole. Web grounding significantly expands the usefulness of decision models in agent workflows that need fast answers.
 
 System One models like Jev are powerful ([we are fans](https://parallel.ai/blog/are-all-system-one-models-created-equal)), but they share a severe limitation with LLMs: they lack real-time context, and only know the data they were trained on and the input they are given. A model like Jev can't answer whether to lock your mortgage rate today, because it doesn’t know where rates closed yesterday. The Decisions API grounds every decision in real-time web context, so builders get more accurate answers fast enough for agent workflows that depend on answers in real-time.
 

@@ -25,7 +25,7 @@ TypeSafe's Jev came first. OpenAI's Decisions API (gpt-6-luna), Perplexity's Dec
 
 A procurement team checks every new vendor before signing. Instead of asking an LLM to write a paragraph about each one, it sends one request per vendor with three questions: does the vendor support SAML SSO (yes/no), can customers store data in the EU (yes/no), and what SOC 2 status does it publish (choice: Type 2, Type 1 only, none, or unknown).
 
-Code then routes each vendor: anything above 0.9 on both yes/no questions with a Type 2 report goes straight through, and anything else goes to a reviewer. When we ran these three questions about Notion through Parallel's Decisions API on Nov 6, 2026, it returned 0.997 for SAML SSO, 0.997 for EU data residency, and SOC 2 Type 2 at 0.999 confidence, citing Notion's help center and security pages, in 573 ms. An answer-from-input model would need those pages pasted into the state first.
+Code then routes each vendor: anything above 0.9 on both yes/no questions with a Type 2 report goes straight through, and anything else goes to a reviewer. When we ran these three questions about Notion through [Parallel's Decisions API](https://parallel.ai/products/decisions) on Nov 6, 2026, it returned 0.997 for SAML SSO, 0.997 for EU data residency, and SOC 2 Type 2 at 0.999 confidence, citing Notion's help center and security pages, in 573 ms. An answer-from-input model would need those pages pasted into the state first.
 
 ## System One vs. System Two models
 

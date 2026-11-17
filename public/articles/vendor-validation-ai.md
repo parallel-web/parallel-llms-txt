@@ -2,7 +2,7 @@
 
 AI vendor validation means checking what a supplier says about itself, such as SAML SSO, EU data residency, or a SOC 2 report, against current public sources before a reviewer spends time on it. This guide covers where AI fits in third-party risk management, what public evidence can and can't prove, a cited question pattern for the audit trail, and a live test on three SaaS vendors.
 
-AI vendor validation checks a vendor's public claims (SAML SSO, EU data residency, SOC 2 or ISO 27001, a published subprocessor list, breach history) against current web sources, keeps the citations for the audit trail, and routes anything uncertain to a reviewer. It can't read the SOC 2 report itself, which vendors share under NDA, so a public claim is a screening signal, not proof that controls work. In our Nov 6, 2026 test, Parallel's Decisions API answered six requirement checks per vendor in 623 to 730 ms for $0.001 a request.
+AI vendor validation checks a vendor's public claims (SAML SSO, EU data residency, SOC 2 or ISO 27001, a published subprocessor list, breach history) against current web sources, keeps the citations for the audit trail, and routes anything uncertain to a reviewer. It can't read the SOC 2 report itself, which vendors share under NDA, so a public claim is a screening signal, not proof that controls work. In our Nov 6, 2026 test, [Parallel's Decisions API](https://parallel.ai/products/decisions) answered six requirement checks per vendor in 623 to 730 ms for $0.001 a request.
 
 We build Parallel's Decisions API, so read the examples with that in mind. All outputs below are from live calls on Nov 6, 2026, including one it got wrong.
 

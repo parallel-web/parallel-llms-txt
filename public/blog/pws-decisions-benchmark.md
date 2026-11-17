@@ -8,7 +8,7 @@ Every day, businesses answer thousands of small classification questions about t
 
 Run the benchmark on your own model with the code on [GitHub](https://github.com/parallel-web/pws-decisions-benchmark) and the dataset on [Hugging Face](https://huggingface.co/datasets/parallel-web/pws-decisions-benchmark), or try the Decisions API free in the [playground](https://platform.parallel.ai/play/decisions) with 5,000 free requests.
 
-## Real Decisions need Web Grounding
+## Real decisions need web grounding
 
 In [our post a couple weeks ago](https://parallel.ai/blog/are-all-system-one-models-created-equal), we benchmarked System One models on real, human-labeled tasks from our own production pipelines instead of public leaderboards. Traditional decision benchmarks check what is already in the prompt from a system-one model, not whether an answer is grounded in live web data, so we built PWS-Decisions to test that.
 
@@ -59,7 +59,7 @@ Not sure where the Decisions API fits for your team? [Try this demo: ](https://w
 
 ### Which Parallel API should I use?
 
-The Decisions API works best when you need a quick, typed answer (yes/no, a choice, or a score) to a question that depends on what’s happening on the web right now. For everything else, another Parallel API may serve you better.
+[The Decisions API](https://parallel.ai/products/decisions) works best when you need a quick, typed answer (yes/no, a choice, or a score) to a question that depends on what’s happening on the web right now. For everything else, another Parallel API may serve you better.
 
 | Use case | Returns | When to use it over Decisions API |
 | --- | --- | --- |

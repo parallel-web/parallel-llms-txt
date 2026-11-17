@@ -4,7 +4,7 @@ Entity matching is the step in a data pipeline that decides whether two records 
 
 Entity matching, also called entity resolution or record linkage, decides whether two records refer to the same entity. A typical pipeline standardizes fields, uses blocking to limit which pairs get compared, scores each candidate pair with string similarity and a statistical or machine-learned model, and clusters the matches. That settles most pairs. The ambiguous remainder for company data (renames, parent and subsidiary, regional entities, acquisitions) needs facts that aren't in either record, and a web-grounded decision step can answer "same entity, parent or subsidiary, unrelated, or unknown" for $0.001 a pair, so 100,000 hard pairs cost about $100.
 
-We build Parallel's Decisions API, which we use for that last step below. The results are from live calls on Nov 6, 2026, reported as they came back.
+We build [Parallel's Decisions API](https://parallel.ai/products/decisions), which we use for that last step below. The results are from live calls on Nov 6, 2026, reported as they came back.
 
 ## How an entity matching pipeline works
 

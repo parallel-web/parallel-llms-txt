@@ -336,7 +336,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Customer Terms and Conditions](https://llm.parallel.ai/customer-terms.md): The terms and conditions between customers and Parallel Web Systems Inc. governing access to and use of Parallel&#x27;s services and APIs.
 - [Data Connectors](https://llm.parallel.ai/data-connectors.md): Explore high-quality company, financial, research, life sciences, legal, news, and web data available through Parallel.
 - [Request a Data Source](https://llm.parallel.ai/data-connectors/request.md): Request a new data source for your Parallel agents, or apply to add your data to Parallel&#x27;s data connectors.
-- [Index by Parallel · INDEX by Parallel](https://llm.parallel.ai/index.md): Index is a platform for content owners to understand how AI agents use their work and earn compensation tied to the value they contribute.
+- [Index by Parallel · INDEX by Parallel](https://llm.parallel.ai/index.md): Web infrastructure for AI to search, extract, monitor, and reason over the world&#x27;s information.
 - [Integrations](https://llm.parallel.ai/integrations.md): Use Parallel web search across your entire stack to build more powerful agents and workflows. Browse verified integrations for agent frameworks, coding agents, model platforms, data platforms, and more.
 - [Use Parallel with Anthropic](https://llm.parallel.ai/integrations/anthropic.md): Give Anthropic-powered applications live web research through tool calling, or connect Parallel to Claude Desktop over MCP.
 - [Use Parallel with AWS Marketplace](https://llm.parallel.ai/integrations/aws-marketplace.md): Procure and manage Parallel through AWS Marketplace using your existing cloud purchasing workflow.
@@ -395,12 +395,13 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Parallel Pricing – Pay-As-You-Go Web Search for AI Agents](https://llm.parallel.ai/pricing.md): Flexible pricing for a variety of web agent and web search tasks. Choose the tier that best fits your speed, accuracy, and pricing needs.
 - [Privacy Policy - How Parallel Handles Your Data](https://llm.parallel.ai/privacy-policy.md): How Parallel collects, uses, and protects personal data across www.parallel.ai and our services. Read how we treat your information and your rights.
 - [Chat API - Web-Grounded Chat Completions](https://llm.parallel.ai/products/chat.md): An OpenAI-compatible chat API grounded in live web search. Build assistants that answer with fresh, accurate, cited information from across the web.
+- [Decisions API - Fast Classification Grounded in Live Web Data](https://llm.parallel.ai/products/decisions.md): A decision engine with world knowledge built in. Typed answers grounded in live web data, with citations, in under a second. $1 per 1,000 requests.
 - [Extract API - Structured Data from Any Web Page](https://llm.parallel.ai/products/extract.md): Turn any URL into clean, structured, AI-ready data. The Extract API fetches and parses web pages, including JavaScript-heavy sites, for agents and pipelines.
 - [Find All - Enterprise Deep Research Examples](https://llm.parallel.ai/products/findall.md): Explore real-world examples of enterprise deep research API queries. See how AI agents use Parallel&#x27;s structured extraction for multi-hop research.
 - [Monitor API - Continuous Web Monitoring for AI](https://llm.parallel.ai/products/monitor.md): Track changes across the web with continuous monitoring built for AI agents. Get structured, verified updates when the pages and topics you care about change.
 - [Responses API - Web Research for Your Product](https://llm.parallel.ai/products/responses.md): Build fast and accurate web research experiences into your product. The Responses API delivers cited answers from the live web through a single endpoint.
 - [Search API - The Best Web Search for Your AI](https://llm.parallel.ai/products/search.md): The highest-accuracy web search API, built from the ground up for AIs. Get ranked results with token-efficient excerpts your agents can reason over directly.
-- [Search savings calculator](https://llm.parallel.ai/products/search/calculator.md): Estimate monthly and yearly search API spend from monthly volume, then compare published list prices with Parallel Search.
+- [Search API cost calculator for AI agents](https://llm.parallel.ai/products/search/calculator.md): Compare web search API costs for AI agents. See what Exa, Tavily, Brave, Perplexity, OpenAI and Claude search cost at your volume next to Parallel Search.
 - [Task API - Deep Web Research for AI Agents](https://llm.parallel.ai/products/task.md): Run deep web research with a single API call. The Task API returns structured, source-attributed results with calibrated confidences for AI agents.
 - [Parallel Slack Agent: Web Monitors and Live Updates in Slack](https://llm.parallel.ai/slack.md): Tell @parallel what to watch on the web, and it posts alerts with sources in your Slack channel. Ask it a question to get a cited answer in the thread.
 - [Web Search API for Coding Agents](https://llm.parallel.ai/solutions/code.md): Ground coding agents in live docs, changelogs, and dev forums. One API call replaces a brittle in-house web search stack for builders.
@@ -418,7 +419,6 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 
 - [openapi](https://llm.parallel.ai/docs/account/service/openapi.json.md)
 - [docs-latest-openapi](https://llm.parallel.ai/docs/docs-latest-openapi.json.md)
-- [docs-legacy-openapi](https://llm.parallel.ai/docs/docs-legacy-openapi.json.md)
 - [Get started - Parallel](https://llm.parallel.ai/docs/index.md)
 - [parallel-web - npm](https://llm.parallel.ai/docs/package/parallel-web.md)
 - [parallel-web · PyPI](https://llm.parallel.ai/docs/project/parallel-web/index.md)

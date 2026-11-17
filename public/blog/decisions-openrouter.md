@@ -2,7 +2,7 @@
 
 Give your agents answers grounded in the live web with your existing OpenRouter API key.
 
-Starting today, Parallel Decisions API is available on OpenRouter, bringing fast, web-grounded decisions directly into your existing workflows. Give your agents live web answers with the tools and API key you already use.
+Starting today, [Parallel Decisions API](https://parallel.ai/products/decisions) is available on OpenRouter, bringing fast, web-grounded decisions directly into your existing workflows. Give your agents live web answers with the tools and API key you already use.
 
 Does this vendor support SAML SSO? Does this API still support the feature your agent needs? [Parallel Decisions API](https://parallel.ai/blog/decisions-api) checks the live web and returns structured answers with probabilities and citations in under a second. It combines the speed of system-one models like Jev with real-time web data, so your agents can make decisions beyond what’s in their context. Ask up to 100 related questions in a single request, all sharing one search call.
 

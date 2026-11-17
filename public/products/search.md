@@ -36,6 +36,8 @@ Multi-hop retrieval and compression, for the highest accuracy.
 
 Latency \~3s. $5 per 1K requests. Best for background research and deep reasoning agents.
 
+[Search API cost calculator](/products/search/calculator): published list prices for common search APIs compared with Parallel Search.
+
 ## Declare semantic objectives, not just keywords
 
 AI tells Parallel Search exactly what it's looking for

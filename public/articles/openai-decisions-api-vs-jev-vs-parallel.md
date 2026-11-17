@@ -2,7 +2,7 @@
 
 OpenAI Decisions API vs Jev comes down to price, limits, and how each model was built, and Parallel adds a third option that searches the web before it decides. This comparison covers launch dates, endpoints, question types, limits, a worked cost example, benchmark results with their caveats, calibration, and a live call.
 
-OpenAI's Decisions API and TypeSafe's Jev both answer typed questions about input you supply, and both are cheap: Jev costs $0.042 per million input tokens and OpenAI $0.10, with no output charge on either. OpenAI allows up to 400 questions per request and adds prompt caching, JSON input, and GPT-Live integration; Jev offers up to 255 options per choice and a model trained specifically for calibrated decisions. Parallel's Decisions API is the one of the three that searches the live web and cites sources, at $1 per 1,000 requests with up to 100 questions each.
+OpenAI's Decisions API and TypeSafe's Jev both answer typed questions about input you supply, and both are cheap: Jev costs $0.042 per million input tokens and OpenAI $0.10, with no output charge on either. OpenAI allows up to 400 questions per request and adds prompt caching, JSON input, and GPT-Live integration; Jev offers up to 255 options per choice and a model trained specifically for calibrated decisions. [Parallel's Decisions API](https://parallel.ai/products/decisions) is the one of the three that searches the live web and cites sources, at $1 per 1,000 requests with up to 100 questions each.
 
 We build Parallel's Decisions API, so weigh that. Facts about OpenAI and TypeSafe come from their documentation and announcements, checked on November 6, 2026.
 

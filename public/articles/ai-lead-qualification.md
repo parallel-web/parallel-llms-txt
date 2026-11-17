@@ -2,7 +2,7 @@
 
 AI lead qualification decides, for every inbound lead, whether the company fits your ideal customer profile and where the lead should go next, using what is true about that company today rather than what a CRM field said last year. This guide covers the signals worth checking, a question pattern built on typed answers, review thresholds, and a live test on three real companies.
 
-To qualify inbound leads with AI, ask the same short set of typed questions about every company (segment, headcount band, hiring, recent funding, ICP fit, disqualifiers), answer them against current web evidence, auto-route the answers that clear a confidence threshold, and send the rest to a person. With Parallel's Decisions API that is one request per lead at $0.001, typically under a second. In a demo Parallel ran at launch, 500 inbound leads were routed in under 9 seconds for about $0.50, and 97% of the leads it routed on its own landed in the right segment.
+To qualify inbound leads with AI, ask the same short set of typed questions about every company (segment, headcount band, hiring, recent funding, ICP fit, disqualifiers), answer them against current web evidence, auto-route the answers that clear a confidence threshold, and send the rest to a person. With [Parallel's Decisions API](https://parallel.ai/products/decisions) that is one request per lead at $0.001, typically under a second. In a demo Parallel ran at launch, 500 inbound leads were routed in under 9 seconds for about $0.50, and 97% of the leads it routed on its own landed in the right segment.
 
 We build Parallel's Decisions API, so weigh our examples with that in mind. Everything below that shows API output comes from calls we made on Nov 6, 2026, including the answers it got wrong.
 
