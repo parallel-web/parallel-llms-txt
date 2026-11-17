@@ -6520,9 +6520,8 @@
               "maxLength": 200
             },
             "type": "array",
-            "maxItems": 5,
             "title": "Search Queries",
-            "description": "Concise keyword image search queries. At least one query is required, and at most 5, each at most 200 characters."
+            "description": "Concise keyword image search queries. At least one query is required. Only the first 3 are used, and each can be at most 200 characters."
           },
           "mode": {
             "anyOf": [
