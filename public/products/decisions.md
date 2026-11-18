@@ -201,4 +201,4 @@ Get 5,000 free requests in the Developer Platform or dive into the documentation
 
 Agent onboarding prompt:
 
-Use curl to read parallel.ai/agents.md and perform the setup to install Parallel
+Use curl or web fetch to read parallel.ai/agents.md and follow it to set up Parallel

@@ -91,7 +91,7 @@ Get started with our APIs in seconds. Run up to 5,000 requests per month for fre
 
 Agent onboarding prompt:
 
-Use curl to read parallel.ai/agents.md and perform the setup to install Parallel
+Use curl or web fetch to read parallel.ai/agents.md and follow it to set up Parallel
 
 Available everywhere you build
 
