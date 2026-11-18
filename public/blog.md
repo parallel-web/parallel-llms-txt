@@ -1,7 +1,7 @@
-### \[Introducing Parallel Image Search\](https://parallel.ai/blog/parallel-images-api)
+### \[Open-sourcing the Parallel Search Eval Harness\](https://parallel.ai/blog/parallel-search-eval-harness)
 
-Tags:[Product](/blog?tag=product)
+Tags:[Developers](/blog?tag=developers),[Benchmarks](/blog?tag=benchmarks)
 
-By Parallel Web Systems
+By James Liounis, Vlad Shulman and Lukas Levert
 
-November 14, 2026
+November 17, 2026

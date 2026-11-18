@@ -294,6 +294,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [How We Built parallelmpp.dev](https://llm.parallel.ai/blog/parallel-mpp-dev.md): The engineering story behind parallelmpp.dev: putting Parallel&#x27;s APIs behind HTTP 402 so agents can pay per request with Tempo stablecoins or x402, no API key.
 - [Introducing the Parallel Search API](https://llm.parallel.ai/blog/parallel-search-api-beta.md): The Parallel Search API is now generally available. Built on a proprietary index for AI agents, it returns token-efficient web excerpts in a single call.
 - [Upgrades to the Parallel Search &amp; Extract APIs](https://llm.parallel.ai/blog/parallel-search-api.md): Search and Extract are now generally available with major quality upgrades: industry-leading accuracy and token efficiency across diverse research use cases.
+- [Open-sourcing the Parallel Search Eval Harness](https://llm.parallel.ai/blog/parallel-search-eval-harness.md): parallel-search-evals is the open-source eval harness behind Parallel&#x27;s Search Capability Leaderboard. Reproduce our results or run it on your own questions.
 - [Introducing Parallel Search Fast](https://llm.parallel.ai/blog/parallel-search-fast.md): Fast mode is frontier-quality web search for AI at $1 per 1,000 requests — the search API built for the new economics of AI.
 - [Parallel Search MCP Server in Devin](https://llm.parallel.ai/blog/parallel-search-mcp-in-devin.md): The Parallel Search MCP Server is live in Devin&#x27;s MCP Marketplace, giving the AI software engineer ranked URLs and dense excerpts for real-time web research.
 - [Parallel Search Turbo: 200ms Search for Voice and Chat](https://llm.parallel.ai/blog/parallel-search-turbo.md): Turbo is Parallel Search’s lowest-latency mode, with a 200ms median at $1 per 1,000 requests. Use it for voice agents and realtime chat, and compare it with…
@@ -423,7 +424,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Get started - Parallel](https://llm.parallel.ai/docs/index.md)
 - [parallel-web - npm](https://llm.parallel.ai/docs/package/parallel-web.md)
 - [parallel-web · PyPI](https://llm.parallel.ai/docs/project/parallel-web/index.md)
-- [OpenAPI Spec](https://llm.parallel.ai/docs/public-openapi.json.md)
+- [public-openapi](https://llm.parallel.ai/docs/public-openapi.json.md)
 
 ## SDKs
 

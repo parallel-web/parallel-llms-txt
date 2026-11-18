@@ -92,7 +92,7 @@
     "/v1/images/search": {
       "post": {
         "tags": [
-          "Image Search"
+          "Specialized Search"
         ],
         "summary": "Image search",
         "description": "Searches the web for images.",
@@ -154,7 +154,7 @@
     "/v1/places/search": {
       "post": {
         "tags": [
-          "Place Search"
+          "Specialized Search"
         ],
         "summary": "Place search",
         "description": "Searches for places such as restaurants, shops and attractions.",
@@ -13816,12 +13816,8 @@
       "description": "Search returns ranked URLs with extended excerpts suitable for LLM consumption. Inputs are a natural-language objective and optional keyword queries. Source policies allow including or excluding specific domains and have configurable output sizes. The returned extended snippets contain dense, relevant information from relevant pages.\n- Result: ranked list with URL, title, and long text excerpts"
     },
     {
-      "name": "Image Search",
-      "description": "Image Search returns ranked images from the web. Inputs are keyword queries and an optional natural-language objective. `fast`: lowest latency and cost. `advanced` (default): slower, with higher-quality results.\n- Result: title, direct image URL, source page URL, and dimensions"
-    },
-    {
-      "name": "Place Search",
-      "description": "Place Search finds places such as restaurants, shops and attractions near a location. Inputs are a query, and a location name or coordinates. `fast`: lowest latency, with fewer results. `advanced` (default): slower, with more complete results.\n- Result: name, website, address, phone, coordinates, rating tier, price level, and opening hours"
+      "name": "Specialized Search",
+      "description": "Specialized Search endpoints return typed results for one kind of content.\n- The Images API returns ranked images from the web. Inputs are keyword queries and an optional natural-language objective. `fast`: lowest latency and cost. `advanced` (default): slower, with higher-quality results. Result: title, direct image URL, source page URL, and dimensions.\n- The Places API finds places such as restaurants, shops and attractions near a location. Inputs are a query, and a location name or coordinates. `fast`: lowest latency, with fewer results. `advanced` (default): slower, with more complete results. Result: name, website, address, phone, coordinates, rating tier, price level, and opening hours."
     },
     {
       "name": "Extract",
