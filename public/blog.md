@@ -1,7 +1,7 @@
-### \[Open-sourcing the Parallel Search Eval Harness\](https://parallel.ai/blog/parallel-search-eval-harness)
+### \[Parallel for Healthcare: Best-in-class search for healthcare and life sciences agents\](https://parallel.ai/blog/parallel-for-healthcare)
 
-Tags:[Developers](/blog?tag=developers),[Benchmarks](/blog?tag=benchmarks)
+Tags:[Product](/blog?tag=product)
 
-By James Liounis, Vlad Shulman and Lukas Levert
+By Parallel Web Systems
 
-November 17, 2026
+November 18, 2026
