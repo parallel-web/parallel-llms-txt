@@ -156,6 +156,16 @@ In five months, AcuityMD verified 574,000 records at about one-fifth the cost of
 >
 > — Greg Davis, Senior Data Program Manager, AcuityMD
 
+****
+
+### A global pharmaceutical company cut launch replanning from months to days
+
+A global pharmaceutical company is using Parallel to keep its drug launch planning in step with a fast-moving market. With years of investment riding on each launch plan, its teams need research that is current, accurate, and traceable to the original source. The company’s launch teams handle some of their research themselves and also work with specialist agencies for the rest. With Parallel’s Task API, the research they run comes back in days instead of months, with every finding linked to its primary source so a person can verify it before making a call. Parallel’s Monitor API keeps watching for changes, so teams can test scenarios as the market moves.
+
+> “Our team has always done research ourselves, and we rely on external agencies to help supplement it. Now, Parallel helps us get there faster. Research that used to take months now comes back in days, and every insight links back to the original source, so we can verify it and see the full picture before we make a call.”
+>
+> — AI product leader, a global pharmaceutical company
+
 ## How your healthcare agent can use Parallel’s APIs for drug discovery and provider research
 
 With Parallel, an agent can track how far a drug candidate has progressed, add relevant publications to a provider’s profile, or check whether a provider has run a clinical trial. Pick the workflow that matches your agent's problem, and every response will come with a cited source.
