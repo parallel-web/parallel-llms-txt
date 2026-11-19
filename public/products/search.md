@@ -38,6 +38,12 @@ Latency \~3s. $5 per 1K requests. Best for background research and deep reasonin
 
 [Search API cost calculator](/products/search/calculator): published list prices for common search APIs compared with Parallel Search.
 
+ Editorial
+
+## Search is the new bottleneck for AI agents
+
+[Learn about search at scale](https://parallel.ai/search-is-the-new-bottleneck)
+
 ## Declare semantic objectives, not just keywords
 
 AI tells Parallel Search exactly what it's looking for
