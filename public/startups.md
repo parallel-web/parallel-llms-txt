@@ -20,7 +20,7 @@ Offers through the networks where founders build
 
 ## Parallel helps startups put the web to work
 
-### API credits
+### 250,000 searches on us
 
 Redeem your credits, use them across any Parallel API, and start building today.
 

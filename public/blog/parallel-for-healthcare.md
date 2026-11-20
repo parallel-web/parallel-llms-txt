@@ -134,7 +134,7 @@ Here are five sample questions in the style of the set. They illustrate the ques
 
 Accuracy is critical in healthcare because an outdated drug label can mislead a clinician making a treatment decision. To trust a healthcare agent’s answer, clinicians and researchers need to see the specific label, guideline or trial result that supports it. Citations from a search provider give these teams a record they can use to investigate errors and verify claims during clinical and compliance reviews. Parallel ranked first for accuracy on all four healthcare search benchmarks, with its largest lead on LitQA3, where it scored 5.7 percentage points ahead of Exa.
 
-![Accuracy on four healthcare search benchmarks with Claude Opus 5.5: Parallel Fast leads on PWS-Health, MedBrowseComp, LitQA3, and TrialQA.](https://cdn.sanity.io/images/5hzduz3y/production/9525af4be05b37b2da517e266cfa0fc3bc4c4d6d-3000x1688.png)
+![Accuracy on four healthcare search benchmarks with Claude Opus 5.5: Parallel Fast leads on PWS-Health, MedBrowseComp, LitQA3, and TrialQA.](https://cdn.sanity.io/images/5hzduz3y/production/d147d81ffc6044fe9deb9c215d1959bccc147a24-4480x2520.png)
 
 Healthcare answers often sit deep in a paper, in a methods section or a safety table. They’re rarely in the abstract. To show the difference search makes, we ran questions from LitQA3 (LAB-Bench 2) through the same agent and answer model, Claude Opus 5.5. Only the search engine changed.
 
