@@ -118,23 +118,6 @@
               }
             }
           },
-          "400": {
-            "description": "Flight search is not supported for this organization.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                },
-                "example": {
-                  "type": "error",
-                  "error": {
-                    "ref_id": "search_fcb2b4f3c75e418687bccaa1a8381331",
-                    "message": "Flight search is not supported for this organization."
-                  }
-                }
-              }
-            }
-          },
           "422": {
             "description": "Request validation error",
             "content": {
@@ -180,23 +163,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HotelSearchResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The stay cannot be searched in this mode or for this organization",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                },
-                "example": {
-                  "type": "error",
-                  "error": {
-                    "ref_id": "search_fcb2b4f3c75e418687bccaa1a8381331",
-                    "message": "The stay cannot be searched in this mode or for this organization"
-                  }
                 }
               }
             }
@@ -7766,7 +7732,7 @@
               }
             ],
             "title": "Price Per Night",
-            "description": "Lowest nightly price among `offers`, in `currency`."
+            "description": "Lowest nightly price among `offers`, in `currency`. When `offers` is empty, the lowest price listed without a seller."
           },
           "total_price": {
             "anyOf": [
