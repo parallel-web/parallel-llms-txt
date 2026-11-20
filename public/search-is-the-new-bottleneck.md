@@ -52,112 +52,55 @@ The $6M in savings covers search costs alone. Every search also adds text for th
 
 Estimate your search bill
 
-At the default workload, search passes inference in month 4 and reaches 99.8% of the bill in three years.
-
 Your workload
 
 Workload type
 
-Occasional Grounded Deep research
-
-Model $3.60 / 1M blended Edit
-
-GPT-6 Astra GPT-6.1 Sol GPT-6.1 Terra GPT-6 Luna Claude Fable 5.2 Claude Opus 5.5 Claude Sonnet 5.5 Claude Haiku 5.5 Gemini 4 Argon Gemini 3.1 Pro Gemini 3.8 Flash Gemini 3.5 Flash-Lite Grok 4.7 DeepSeek V4 Pro DeepSeek V4.1 Flash Qwen3.8 Max Qwen3.6 Plus Qwen3.8 Flash Kimi K3 Kimi K3.1 Pro Kimi K2.6 GLM-5.3 GLM-5.3-Flash MiniMax M3 Custom
+Model Edit
 
 Tokens / month M
 
-Searches / 1M i Google’s Deep Research estimate: about 80 searches per 310K tokens.
+Searches / 1M i
 
 Each year, for three years
 
 Reset
 
-Token price falls Token price falls, 10× a year , edit exact value
+Token price falls Token price falls, , edit exact value
 
-Token volume grows Token volume grows, 3× a year , edit exact value
+Token volume grows Token volume grows, , edit exact value
 
-Search price changes Search price changes, \+0% , edit exact value
+Search price changes Search price changes, , edit exact value
 
 Run this comparison by provider
 
-Parallel Search Fast Parallel Search Advanced Exa (Lite) Exa (Auto) Exa (Deep) Tavily Brave Search Perplexity Search Linkup Firecrawl $ / 1K
+$ / 1K
 
 Compared with
 
-* Parallel Search Fast $1 / 1K
-* Tavily $8 / 1K ×
-* Brave Search $5 / 1K ×
-
 Add provider
 
-Claude Sonnet 5.5 · Exa (Auto) $7 / 1K Edit
-
-Your search forecast
-
-At this workload, search is 34% of the bill today, 99\.8% in three years, and passes inference in month 4 .
-
-On Parallel Search Fast, the same workload costs **$846K** less over three years.
-
-At this workload, search is 34% of the bill today, 99.8% in three years, and passes inference in month 4. On Parallel Search Fast, the same workload costs $846K less over three years.
+Edit
 
 ### Monthly spend, next 36 months
-
-Inference and search on Exa (Auto). The share of the bill that is search sits under each year.
 
 Dollars Share of bill
 
 Show as table
 
-* Search **$98K**
-* Inference **$194**
-* at year 3
-
-Both lines ride the same token growth (×3.0 a year). Inference also gets the token price drop (÷10), so it nets ×0.30 a year. Search price stays flat, so search nets ×3.0 a year.
-
 ### Search spend by provider, next 36 months
 
 Monthly search cost for the same workload. Hover or tap a month to read the saving, or a provider to single it out.
-
-4 of 10 providers shown
-
-* Tavily **$112K**
-* Exa (Auto) **$98K**
-* Brave Search **$70K**
-* Parallel Search Fast **$14K**
-* Inference **$194**
 
 ### The same workload on other models, today
 
 Search costs the same whichever model runs the agent, so a more efficient model makes search a larger share of the bill.
 
-Model Per month Search
-
-Claude Sonnet 5.5 $10.8K 34%
-
-GPT-6.1 Terra $7,240 50% ×
-
-Gemini 3.8 Flash $6,340 57% ×
-
-DeepSeek V4.1 Flash $4,600 79% ×
-
-Qwen3.8 Flash $4,068 89% ×
-
-Inference Search API
-
-Add a model to compare \+ Add a model to compare GPT-6 Astra GPT-6.1 Sol GPT-6 Luna Claude Fable 5.2 Claude Opus 5.5 Claude Haiku 5.5 Gemini 4 Argon Gemini 3.1 Pro Gemini 3.5 Flash-Lite Grok 4.7 DeepSeek V4 Pro Qwen3.8 Max Qwen3.6 Plus Kimi K3 Kimi K3.1 Pro Kimi K2.6 GLM-5.3 GLM-5.3-Flash MiniMax M3
+Add a model to compare
 
 ### The same workload on each provider, today
 
 Search cost per month at today’s volume.
-
-1. \# Provider Per month × Fast
-2. 1 Tavily $4,160 8\.0×
-3. 2 Exa (Auto) $3,640 7\.0×
-4. 3 Brave Search $2,600 5\.0×
-5. 4 Parallel Search Fast $520
-6. _Inference $7,200_
-
-Parallel Search Fast costs **$3,120** less a month than Exa (Auto) today.
 
 **Calculator:** Estimates use list prices as of 11 Nov 2026 and the assumptions shown. Change any input to see your own bill. [Model the same workload on every provider in the full Search Tax Calculator.](https://searchcost.vercel.app/)
 
@@ -222,10 +165,6 @@ The search maturity curve
 Each stage changes how many calls an agent makes per question and what a correct answer costs.
 
 Correct answers per dollar
-
-04 Qualified answers at volume
-
-Parallel Search returns cited excerpts on the first pass
 
 Developer search maturity
 
@@ -327,56 +266,6 @@ Search works the same way. A lookup inside a chat reply has to return in a few h
 Four modes, three priorities
 
 **Turbo** and **Fast** cost $1 per 1,000 requests. **Basic** and **Advanced** cost $5.
-
-All three Quality and cost Speed and cost Quality and speed
-
-Best corner
-
-Best corner
-
-Best corner
-
-Better quality
-
-Faster speed
-
-Higher cost
-
-$5
-
-$10
-
-$25
-
-200 ms
-
-1 s
-
-3 s
-
-$1
-
-Turbo
-
-~200 ms, $1 per 1K
-
-Fast
-
-~700 ms, $1 per 1K
-
-Basic
-
-~1 s, $5 per 1K
-
-Advanced
-
-~3 s, $5 per 1K
-
-Native search
-
-$10 to 25 per 1K
-
-The best mode for a call sits high on quality, far along speed and close to the low-cost wall. **Parallel** ’s four modes cluster there, and native search sits out along the cost axis.
 
 Parallel Search modes Native search
 
