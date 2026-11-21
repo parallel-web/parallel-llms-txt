@@ -16,7 +16,7 @@
         "tags": [
           "Search"
         ],
-        "summary": "Web",
+        "summary": "Search",
         "description": "Searches the web.",
         "operationId": "v1_search_v1_search_post",
         "requestBody": {
@@ -89,108 +89,10 @@
         ]
       }
     },
-    "/v1/flights/search": {
-      "post": {
-        "tags": [
-          "Search"
-        ],
-        "summary": "Flight search",
-        "description": "Searches flights and links each itinerary to where it can be booked.",
-        "operationId": "flight_search_v1_flights_search_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FlightSearchRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FlightSearchResponse"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Request validation error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                },
-                "example": {
-                  "type": "error",
-                  "error": {
-                    "ref_id": "search_fcb2b4f3c75e418687bccaa1a8381331",
-                    "message": "Request validation error"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/hotels/search": {
-      "post": {
-        "tags": [
-          "Search"
-        ],
-        "summary": "Hotel search",
-        "description": "Searches hotels and vacation rentals for a stay and links each to its\nown page.",
-        "operationId": "hotel_search_v1_hotels_search_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/HotelSearchRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HotelSearchResponse"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Request validation error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                },
-                "example": {
-                  "type": "error",
-                  "error": {
-                    "ref_id": "search_fcb2b4f3c75e418687bccaa1a8381331",
-                    "message": "Request validation error"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v1/images/search": {
       "post": {
         "tags": [
-          "Search"
+          "Image Search"
         ],
         "summary": "Image search",
         "description": "Searches the web for images.",
@@ -252,7 +154,7 @@
     "/v1/places/search": {
       "post": {
         "tags": [
-          "Search"
+          "Place Search"
         ],
         "summary": "Place search",
         "description": "Searches for places such as restaurants, shops and attractions.",
@@ -274,55 +176,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PlaceSearchResponse"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Request validation error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                },
-                "example": {
-                  "type": "error",
-                  "error": {
-                    "ref_id": "search_fcb2b4f3c75e418687bccaa1a8381331",
-                    "message": "Request validation error"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/shopping/search": {
-      "post": {
-        "tags": [
-          "Search"
-        ],
-        "summary": "Shopping search",
-        "description": "Shopping search for products to buy, each linked to a store's product page.",
-        "operationId": "product_search_v1_shopping_search_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProductSearchRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProductSearchResponse"
                 }
               }
             }
@@ -4272,42 +4125,8 @@
         "title": "AdvancedExtractSettings",
         "description": "Advanced extract configuration.\n\nThese settings may impact result quality and latency unless used carefully.\nSee https://docs.parallel.ai/search/advanced-extract-settings for more info."
       },
-      "AdvancedFlightSearchSettings": {
-        "properties": {
-          "max_results": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 1.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Max Results",
-            "description": "Upper bound on results, at most 20. Defaults to 20; larger values are reduced to 20, with a warning."
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "title": "AdvancedFlightSearchSettings",
-        "description": "Result count."
-      },
       "AdvancedImageSearchSettings": {
         "properties": {
-          "max_results": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 1.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Max Results",
-            "description": "Upper bound on results. Defaults to 10; values above the mode's maximum are reduced to it, with a warning."
-          },
           "location": {
             "anyOf": [
               {
@@ -4325,6 +4144,19 @@
               "de",
               "jp"
             ]
+          },
+          "max_results": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Results",
+            "description": "Upper bound on the number of results to return. Defaults to 10 if not provided. Values above the mode's maximum are reduced to it, with a warning."
           }
         },
         "additionalProperties": false,
@@ -4384,45 +4216,6 @@
         "title": "AdvancedMonitorSettings",
         "description": "Advanced monitor configuration."
       },
-      "AdvancedProductSearchSettings": {
-        "properties": {
-          "max_results": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 1.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Max Results",
-            "description": "Upper bound on results. Defaults to 20; values above the mode's maximum are reduced to it, with a warning."
-          },
-          "location": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Location",
-            "description": "ISO 3166-1 alpha-2 country of the shopper's market. Sets the stores searched and the currency of prices. Defaults to `us`.",
-            "examples": [
-              "us",
-              "gb",
-              "de",
-              "jp"
-            ]
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "title": "AdvancedProductSearchSettings",
-        "description": "Advanced shopping search configuration."
-      },
       "AdvancedSearchSettings": {
         "properties": {
           "source_policy": {
@@ -4456,8 +4249,7 @@
                 "type": "null"
               }
             ],
-            "description": "Ignored. Use the top-level `max_chars_total` to control excerpt length.",
-            "deprecated": true
+            "description": "Controls excerpt sizes. Provide excerpt settings for fine-grained control, or omit to use defaults."
           },
           "location": {
             "anyOf": [
@@ -4494,27 +4286,6 @@
         "type": "object",
         "title": "AdvancedSearchSettings",
         "description": "Advanced search configuration.\n\nThese settings may impact result quality and latency unless used carefully.\nSee https://docs.parallel.ai/search/advanced-search-settings for more info."
-      },
-      "AdvancedVerticalSearchSettings": {
-        "properties": {
-          "max_results": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 1.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Max Results",
-            "description": "Upper bound on results. Defaults to 20; values above the mode's maximum are reduced to it, with a warning."
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "title": "AdvancedVerticalSearchSettings",
-        "description": "Advanced vertical search configuration."
       },
       "AutoSchema": {
         "properties": {
@@ -4576,8 +4347,7 @@
                   "default",
                   "flex",
                   "scale",
-                  "priority",
-                  "fast"
+                  "priority"
                 ]
               },
               {
@@ -4865,10 +4635,6 @@
           "delta": {
             "$ref": "#/components/schemas/ChoiceDelta"
           },
-          "index": {
-            "title": "Index",
-            "type": "integer"
-          },
           "finish_reason": {
             "anyOf": [
               {
@@ -4887,6 +4653,10 @@
             ],
             "default": null,
             "title": "Finish Reason"
+          },
+          "index": {
+            "title": "Index",
+            "type": "integer"
           },
           "logprobs": {
             "anyOf": [
@@ -5040,18 +4810,6 @@
             ],
             "default": null,
             "title": "Rejected Prediction Tokens"
-          },
-          "text_tokens": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Text Tokens"
           }
         },
         "title": "CompletionTokensDetails",
@@ -6227,567 +5985,6 @@
         "title": "FindAllSchemaUpdatedEvent",
         "description": "Event containing full snapshot of FindAll run state."
       },
-      "FlightLayoverResult": {
-        "properties": {
-          "airport": {
-            "type": "string",
-            "title": "Airport"
-          },
-          "duration_minutes": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Duration Minutes"
-          },
-          "overnight": {
-            "type": "boolean",
-            "title": "Overnight",
-            "default": false
-          }
-        },
-        "type": "object",
-        "required": [
-          "airport"
-        ],
-        "title": "FlightLayoverResult",
-        "description": "Time on the ground between two segments."
-      },
-      "FlightLegResult": {
-        "properties": {
-          "departure_airport": {
-            "type": "string",
-            "title": "Departure Airport"
-          },
-          "departure_time": {
-            "type": "string",
-            "title": "Departure Time"
-          },
-          "arrival_airport": {
-            "type": "string",
-            "title": "Arrival Airport"
-          },
-          "arrival_time": {
-            "type": "string",
-            "title": "Arrival Time"
-          },
-          "duration_minutes": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Duration Minutes"
-          },
-          "stops": {
-            "type": "integer",
-            "title": "Stops"
-          },
-          "segments": {
-            "items": {
-              "$ref": "#/components/schemas/FlightSegmentResult"
-            },
-            "type": "array",
-            "title": "Segments"
-          },
-          "layovers": {
-            "items": {
-              "$ref": "#/components/schemas/FlightLayoverResult"
-            },
-            "type": "array",
-            "title": "Layovers"
-          }
-        },
-        "type": "object",
-        "required": [
-          "departure_airport",
-          "departure_time",
-          "arrival_airport",
-          "arrival_time",
-          "stops",
-          "segments"
-        ],
-        "title": "FlightLegResult",
-        "description": "One direction of the trip."
-      },
-      "FlightSearchRequest": {
-        "properties": {
-          "origins": {
-            "items": {
-              "type": "string",
-              "pattern": "^[A-Z]{3}$",
-              "description": "IATA airport or metro code, e.g. `SFO` or `NYC`."
-            },
-            "type": "array",
-            "maxItems": 7,
-            "minItems": 1,
-            "title": "Origins",
-            "description": "Departure airports; any of them may be used."
-          },
-          "destinations": {
-            "items": {
-              "type": "string",
-              "pattern": "^[A-Z]{3}$",
-              "description": "IATA airport or metro code, e.g. `SFO` or `NYC`."
-            },
-            "type": "array",
-            "maxItems": 7,
-            "minItems": 1,
-            "title": "Destinations",
-            "description": "Arrival airports; any of them may be used."
-          },
-          "departure_date": {
-            "type": "string",
-            "format": "date",
-            "title": "Departure Date",
-            "description": "Outbound date, YYYY-MM-DD."
-          },
-          "return_date": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Return Date",
-            "description": "Return date, YYYY-MM-DD. Makes the search a round trip, with both legs on one airline."
-          },
-          "adults": {
-            "type": "integer",
-            "maximum": 9.0,
-            "minimum": 1.0,
-            "title": "Adults",
-            "default": 1
-          },
-          "children": {
-            "type": "integer",
-            "maximum": 8.0,
-            "minimum": 0.0,
-            "title": "Children",
-            "default": 0
-          },
-          "infants_in_seat": {
-            "type": "integer",
-            "maximum": 8.0,
-            "minimum": 0.0,
-            "title": "Infants In Seat",
-            "default": 0
-          },
-          "infants_on_lap": {
-            "type": "integer",
-            "maximum": 8.0,
-            "minimum": 0.0,
-            "title": "Infants On Lap",
-            "default": 0
-          },
-          "cabin": {
-            "type": "string",
-            "enum": [
-              "economy",
-              "premium_economy",
-              "business",
-              "first"
-            ],
-            "title": "Cabin",
-            "default": "economy"
-          },
-          "max_stops": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "maximum": 2.0,
-                "minimum": 0.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Max Stops",
-            "description": "0 for nonstop only; at most 2."
-          },
-          "max_price": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "exclusiveMinimum": 0.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Max Price",
-            "description": "Highest total price for all travelers, in `currency`; for a round trip, the round-trip total."
-          },
-          "currency": {
-            "type": "string",
-            "pattern": "^[A-Z]{3}$",
-            "title": "Currency",
-            "description": "ISO 4217 currency of `max_price` and of result prices.",
-            "default": "USD",
-            "examples": [
-              "USD",
-              "EUR",
-              "JPY"
-            ]
-          },
-          "max_duration_minutes": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "exclusiveMinimum": 0.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Max Duration Minutes",
-            "description": "Longest total travel time per direction."
-          },
-          "include_airlines": {
-            "items": {
-              "type": "string",
-              "pattern": "^[A-Z0-9]{2}$",
-              "description": "IATA airline code, e.g. `UA`."
-            },
-            "type": "array",
-            "maxItems": 10,
-            "title": "Include Airlines",
-            "description": "Only these airlines."
-          },
-          "exclude_airlines": {
-            "items": {
-              "type": "string",
-              "pattern": "^[A-Z0-9]{2}$",
-              "description": "IATA airline code, e.g. `UA`."
-            },
-            "type": "array",
-            "maxItems": 10,
-            "title": "Exclude Airlines",
-            "description": "Never these airlines. Not combinable with include_airlines."
-          },
-          "departure_hours": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/HourWindow"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Allowed local departure hours for the outbound flight."
-          },
-          "arrival_hours": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/HourWindow"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Allowed local arrival hours for the outbound flight, on any date: an overnight flight is checked by its arrival hour."
-          },
-          "return_hours": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/HourWindow"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Allowed local departure hours for the return flight. Needs `return_date`."
-          },
-          "return_arrival_hours": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/HourWindow"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Allowed local arrival hours for the return flight, on any date. Needs `return_date`."
-          },
-          "sort": {
-            "type": "string",
-            "enum": [
-              "best",
-              "price",
-              "duration",
-              "departure_time",
-              "arrival_time"
-            ],
-            "title": "Sort",
-            "description": "`best` (default) balances price, duration and stops. For a round trip it also picks the return on the outbound's airline: `price` the cheapest, `duration` the shortest, the others the fewest stops within 10% of the cheapest. For the cheapest trip on any airlines, as separate tickets, search each direction one way.",
-            "default": "best"
-          },
-          "advanced_settings": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/AdvancedFlightSearchSettings"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Result count."
-          },
-          "mode": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "advanced"
-                ]
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Mode",
-            "description": "`advanced` (default): live fares."
-          },
-          "session_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 1000
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Session Id",
-            "description": "Session identifier that groups related calls made as part of a larger task. Echoed back in the response when nonempty; generated by the server if omitted, null, or empty."
-          },
-          "client_model": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Client Model",
-            "description": "The model generating this request and consuming the results."
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "required": [
-          "origins",
-          "destinations",
-          "departure_date"
-        ],
-        "title": "FlightSearchRequest",
-        "description": "Flight search request: a one-way or round-trip itinerary search."
-      },
-      "FlightSearchResponse": {
-        "properties": {
-          "search_id": {
-            "type": "string",
-            "title": "Search Id",
-            "description": "Search ID. Example: `search_cad0a6d2dec046bd95ae900527d880e7`"
-          },
-          "session_id": {
-            "type": "string",
-            "title": "Session Id",
-            "description": "Session identifier, echoed back from the request when nonempty; otherwise generated by the server."
-          },
-          "results": {
-            "items": {
-              "$ref": "#/components/schemas/FlightSearchResult"
-            },
-            "type": "array",
-            "title": "Results",
-            "description": "Itineraries, best first by the requested sort."
-          },
-          "warnings": {
-            "anyOf": [
-              {
-                "items": {
-                  "$ref": "#/components/schemas/Warning"
-                },
-                "type": "array"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Warnings",
-            "description": "Warnings for the search request, if any."
-          },
-          "usage": {
-            "anyOf": [
-              {
-                "items": {
-                  "$ref": "#/components/schemas/UsageItem"
-                },
-                "type": "array"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Usage",
-            "description": "Usage metrics for the search request."
-          }
-        },
-        "type": "object",
-        "required": [
-          "search_id",
-          "session_id",
-          "results"
-        ],
-        "title": "FlightSearchResponse",
-        "description": "Flight search response."
-      },
-      "FlightSearchResult": {
-        "properties": {
-          "url": {
-            "type": "string",
-            "title": "Url",
-            "description": "A page on the marketing airline's website where the itinerary can be booked: the airline's search results for this trip, or its home page when no search link is known."
-          },
-          "price": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Price",
-            "description": "Total for all travelers, in the request's `currency`: the lowest fare listed for this itinerary. For a round trip, the lowest round-trip total with this outbound flight. The airline's own fare may differ."
-          },
-          "outbound": {
-            "$ref": "#/components/schemas/FlightLegResult"
-          },
-          "inbound": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/FlightLegResult"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The return trip; set for round trips."
-          }
-        },
-        "type": "object",
-        "required": [
-          "url",
-          "outbound"
-        ],
-        "title": "FlightSearchResult",
-        "description": "One itinerary and where to book it."
-      },
-      "FlightSegmentResult": {
-        "properties": {
-          "airline": {
-            "type": "string",
-            "title": "Airline"
-          },
-          "flight_number": {
-            "type": "string",
-            "title": "Flight Number",
-            "description": "Marketing flight number, e.g. `BA 301`."
-          },
-          "departure_airport": {
-            "type": "string",
-            "title": "Departure Airport"
-          },
-          "departure_time": {
-            "type": "string",
-            "title": "Departure Time",
-            "description": "Local time, `YYYY-MM-DD HH:MM`."
-          },
-          "arrival_airport": {
-            "type": "string",
-            "title": "Arrival Airport"
-          },
-          "arrival_time": {
-            "type": "string",
-            "title": "Arrival Time",
-            "description": "Local time, `YYYY-MM-DD HH:MM`."
-          },
-          "duration_minutes": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Duration Minutes"
-          },
-          "aircraft": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Aircraft"
-          },
-          "cabin": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Cabin",
-            "description": "The cabin as listed."
-          },
-          "legroom": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Legroom"
-          },
-          "overnight": {
-            "type": "boolean",
-            "title": "Overnight",
-            "default": false
-          }
-        },
-        "type": "object",
-        "required": [
-          "airline",
-          "flight_number",
-          "departure_airport",
-          "departure_time",
-          "arrival_airport",
-          "arrival_time"
-        ],
-        "title": "FlightSegmentResult",
-        "description": "One flown segment."
-      },
       "FullContentSettings": {
         "properties": {
           "max_chars_per_result": {
@@ -7229,31 +6426,6 @@
         ],
         "title": "Score"
       },
-      "HTTPError": {
-        "additionalProperties": true,
-        "properties": {
-          "code": {
-            "title": "Code",
-            "type": "integer"
-          },
-          "message": {
-            "title": "Message",
-            "type": "string"
-          },
-          "type": {
-            "const": "http_error",
-            "title": "Type",
-            "type": "string"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "type"
-        ],
-        "title": "HTTPError",
-        "type": "object"
-      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -7266,555 +6438,6 @@
         },
         "type": "object",
         "title": "HTTPValidationError"
-      },
-      "HotelOffer": {
-        "properties": {
-          "seller": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Seller",
-            "description": "Who sells the stay at this price, e.g. the hotel or a booking site."
-          },
-          "url": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Url",
-            "description": "The seller's page for this property and these dates. Omitted when only the price is known."
-          },
-          "price_per_night": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Price Per Night",
-            "description": "Nightly price, in `currency`."
-          },
-          "total_price": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Total Price",
-            "description": "Price of the whole stay, in `currency`."
-          },
-          "currency": {
-            "type": "string",
-            "title": "Currency",
-            "description": "ISO 4217 currency."
-          },
-          "free_cancellation": {
-            "anyOf": [
-              {
-                "type": "boolean"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Free Cancellation",
-            "description": "Whether the offer states free cancellation, when known."
-          }
-        },
-        "type": "object",
-        "required": [
-          "currency"
-        ],
-        "title": "HotelOffer",
-        "description": "One seller's price for the stay."
-      },
-      "HotelSearchRequest": {
-        "properties": {
-          "location": {
-            "type": "string",
-            "maxLength": 200,
-            "minLength": 2,
-            "title": "Location",
-            "description": "Where to stay: a city, neighborhood, landmark or address.",
-            "examples": [
-              "Lisbon",
-              "Shinjuku, Tokyo",
-              "near the Eiffel Tower"
-            ]
-          },
-          "check_in_date": {
-            "type": "string",
-            "format": "date",
-            "title": "Check In Date",
-            "description": "Check-in date, `YYYY-MM-DD`. Must not have passed."
-          },
-          "check_out_date": {
-            "type": "string",
-            "format": "date",
-            "title": "Check Out Date",
-            "description": "Check-out date, `YYYY-MM-DD`. At most 30 nights after `check_in_date`."
-          },
-          "adults": {
-            "type": "integer",
-            "maximum": 16.0,
-            "minimum": 1.0,
-            "title": "Adults",
-            "description": "Adult guests.",
-            "default": 2
-          },
-          "children_ages": {
-            "items": {
-              "type": "integer",
-              "maximum": 17.0,
-              "minimum": 0.0
-            },
-            "type": "array",
-            "maxItems": 8,
-            "title": "Children Ages",
-            "description": "Age of each child guest, 0 to 17."
-          },
-          "rooms": {
-            "type": "integer",
-            "maximum": 8.0,
-            "minimum": 1.0,
-            "title": "Rooms",
-            "description": "Rooms to book. Each room needs an adult. `fast` searches one room only.",
-            "default": 1
-          },
-          "property_types": {
-            "items": {
-              "type": "string",
-              "enum": [
-                "hotel",
-                "vacation_rental"
-              ]
-            },
-            "type": "array",
-            "minItems": 1,
-            "title": "Property Types",
-            "description": "`hotel` (hotels, hostels, inns) and `vacation_rental` (homes and apartments). Defaults to both."
-          },
-          "min_price": {
-            "anyOf": [
-              {
-                "type": "number",
-                "minimum": 0.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Min Price",
-            "description": "Lowest nightly price, before taxes and fees, in `currency`."
-          },
-          "max_price": {
-            "anyOf": [
-              {
-                "type": "number",
-                "exclusiveMinimum": 0.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Max Price",
-            "description": "Highest nightly price, before taxes and fees, in `currency`."
-          },
-          "min_rating": {
-            "anyOf": [
-              {
-                "type": "number",
-                "maximum": 5.0,
-                "minimum": 1.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Min Rating",
-            "description": "Lowest guest rating, out of 5. Properties without a rating are left out."
-          },
-          "hotel_classes": {
-            "items": {
-              "type": "integer",
-              "maximum": 5.0,
-              "minimum": 1.0
-            },
-            "type": "array",
-            "maxItems": 5,
-            "title": "Hotel Classes",
-            "description": "Hotel star classes to keep, 1 to 5. Properties without a class are left out."
-          },
-          "free_cancellation": {
-            "type": "boolean",
-            "title": "Free Cancellation",
-            "description": "Only offers that state free cancellation.",
-            "default": false
-          },
-          "sort": {
-            "type": "string",
-            "enum": [
-              "relevance",
-              "price",
-              "rating"
-            ],
-            "title": "Sort",
-            "description": "`relevance` (default), `price` (lowest nightly price first) or `rating` (highest first).",
-            "default": "relevance"
-          },
-          "currency": {
-            "type": "string",
-            "pattern": "^[A-Za-z]{3}$",
-            "title": "Currency",
-            "description": "ISO 4217 currency of prices and price filters.",
-            "default": "USD",
-            "examples": [
-              "USD",
-              "EUR",
-              "JPY"
-            ]
-          },
-          "mode": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "advanced"
-                ]
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Mode",
-            "description": "`advanced` (default): many sources and offers."
-          },
-          "session_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 1000
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Session Id",
-            "description": "Session identifier that groups related calls made as part of a larger task. Echoed back in the response when nonempty; generated by the server if omitted, null, or empty."
-          },
-          "client_model": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Client Model",
-            "description": "The model generating this request and consuming the results.",
-            "examples": [
-              "claude-opus-4-7",
-              "gpt-5.4",
-              "gemini-3.1-pro"
-            ]
-          },
-          "advanced_settings": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/AdvancedVerticalSearchSettings"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Advanced configuration for result count."
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "required": [
-          "location",
-          "check_in_date",
-          "check_out_date"
-        ],
-        "title": "HotelSearchRequest",
-        "description": "Hotel search request: places to stay in a location for a date range."
-      },
-      "HotelSearchResponse": {
-        "properties": {
-          "search_id": {
-            "type": "string",
-            "title": "Search Id",
-            "description": "Search ID. Example: `search_cad0a6d2dec046bd95ae900527d880e7`"
-          },
-          "session_id": {
-            "type": "string",
-            "title": "Session Id",
-            "description": "Session identifier, echoed back from the request when nonempty; otherwise generated by the server. Pass it to later calls made as part of the same task.",
-            "examples": [
-              "session_8a911eb27c7a4afaa20d0d9dc98d07c0"
-            ]
-          },
-          "results": {
-            "items": {
-              "$ref": "#/components/schemas/HotelSearchResult"
-            },
-            "type": "array",
-            "title": "Results",
-            "description": "Places to stay, in the order `sort` asks for."
-          },
-          "warnings": {
-            "anyOf": [
-              {
-                "items": {
-                  "$ref": "#/components/schemas/Warning"
-                },
-                "type": "array"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Warnings",
-            "description": "Warnings for the search request, if any."
-          },
-          "usage": {
-            "anyOf": [
-              {
-                "items": {
-                  "$ref": "#/components/schemas/UsageItem"
-                },
-                "type": "array"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Usage",
-            "description": "Usage metrics for the search request."
-          }
-        },
-        "type": "object",
-        "required": [
-          "search_id",
-          "session_id",
-          "results"
-        ],
-        "title": "HotelSearchResponse",
-        "description": "Hotel search response."
-      },
-      "HotelSearchResult": {
-        "properties": {
-          "url": {
-            "type": "string",
-            "title": "Url",
-            "description": "The property's own website, else a booking site's page for this property and these dates. Never a search results page."
-          },
-          "url_kind": {
-            "type": "string",
-            "enum": [
-              "property_website",
-              "booking_page"
-            ],
-            "title": "Url Kind",
-            "description": "`property_website` or `booking_page`: what `url` links to."
-          },
-          "name": {
-            "type": "string",
-            "title": "Name",
-            "description": "Property name."
-          },
-          "property_type": {
-            "type": "string",
-            "enum": [
-              "hotel",
-              "vacation_rental"
-            ],
-            "title": "Property Type",
-            "description": "`hotel` or `vacation_rental`."
-          },
-          "address": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Address",
-            "description": "Street address."
-          },
-          "latitude": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Latitude",
-            "description": "Property latitude."
-          },
-          "longitude": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Longitude",
-            "description": "Property longitude."
-          },
-          "hotel_class": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Hotel Class",
-            "description": "Star class, 1 to 5."
-          },
-          "rating": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "fair",
-                  "good",
-                  "great",
-                  "excellent"
-                ]
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Rating",
-            "description": "Guest rating tier. Possible values are fair, good, great, excellent."
-          },
-          "images": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Images",
-            "description": "Photo URLs, hosted by booking sites. They can stop working; do not store them. Empty when there are none."
-          },
-          "price_per_night": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Price Per Night",
-            "description": "Lowest nightly price among `offers`, in `currency`. When `offers` is empty, the lowest price listed without a seller."
-          },
-          "total_price": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Total Price",
-            "description": "Stay total of the offer priced in `price_per_night`."
-          },
-          "currency": {
-            "type": "string",
-            "title": "Currency",
-            "description": "ISO 4217 currency of the prices."
-          },
-          "free_cancellation": {
-            "anyOf": [
-              {
-                "type": "boolean"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Free Cancellation",
-            "description": "True if any offer states free cancellation, false if every offer states none, else omitted."
-          },
-          "offers": {
-            "items": {
-              "$ref": "#/components/schemas/HotelOffer"
-            },
-            "type": "array",
-            "title": "Offers",
-            "description": "Offers that meet the request's filters, cheapest first."
-          },
-          "amenities": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Amenities",
-            "description": "Listed amenities, e.g. `Free Wi-Fi`, `Pool`."
-          },
-          "check_in_time": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Check In Time",
-            "description": "Earliest check-in time, as listed."
-          },
-          "check_out_time": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Check Out Time",
-            "description": "Latest check-out time, as listed."
-          }
-        },
-        "type": "object",
-        "required": [
-          "url",
-          "url_kind",
-          "name",
-          "property_type",
-          "currency",
-          "offers"
-        ],
-        "title": "HotelSearchResult",
-        "description": "One place to stay."
       },
       "HourInterval": {
         "properties": {
@@ -7838,32 +6461,6 @@
         "title": "HourInterval",
         "description": "Open from `opens` to `closes`, local time. A `closes` at or before\n`opens` runs past midnight; 00:00-00:00 is open all day."
       },
-      "HourWindow": {
-        "properties": {
-          "earliest": {
-            "type": "integer",
-            "maximum": 23.0,
-            "minimum": 0.0,
-            "title": "Earliest",
-            "description": "First allowed hour, 0-23."
-          },
-          "latest": {
-            "type": "integer",
-            "maximum": 23.0,
-            "minimum": 0.0,
-            "title": "Latest",
-            "description": "Last allowed hour, 0-23."
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "required": [
-          "earliest",
-          "latest"
-        ],
-        "title": "HourWindow",
-        "description": "Local hours, inclusive."
-      },
       "ImageSearchRequest": {
         "properties": {
           "objective": {
@@ -7884,8 +6481,9 @@
               "maxLength": 200
             },
             "type": "array",
+            "maxItems": 5,
             "title": "Search Queries",
-            "description": "Concise keyword image search queries. At least one query is required. Only the first 3 are used, and each can be at most 200 characters."
+            "description": "Concise keyword image search queries. At least one query is required, and at most 5, each at most 200 characters."
           },
           "mode": {
             "anyOf": [
@@ -8076,9 +6674,7 @@
               {
                 "enum": [
                   "max_output_tokens",
-                  "max_messages",
-                  "content_filter",
-                  "steered"
+                  "content_filter"
                 ],
                 "type": "string"
               },
@@ -8249,31 +6845,6 @@
         "title": "McpListToolsTool",
         "type": "object"
       },
-      "McpProtocolError": {
-        "additionalProperties": true,
-        "properties": {
-          "code": {
-            "title": "Code",
-            "type": "integer"
-          },
-          "message": {
-            "title": "Message",
-            "type": "string"
-          },
-          "type": {
-            "const": "mcp_protocol_error",
-            "title": "Type",
-            "type": "string"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "type"
-        ],
-        "title": "McpProtocolError",
-        "type": "object"
-      },
       "McpServer": {
         "properties": {
           "type": {
@@ -8390,25 +6961,6 @@
         ],
         "title": "McpToolCall",
         "description": "Result of an MCP tool call."
-      },
-      "McpToolExecutionError": {
-        "additionalProperties": true,
-        "properties": {
-          "content": {
-            "title": "Content"
-          },
-          "type": {
-            "const": "mcp_tool_execution_error",
-            "title": "Type",
-            "type": "string"
-          }
-        },
-        "required": [
-          "content",
-          "type"
-        ],
-        "title": "McpToolExecutionError",
-        "type": "object"
       },
       "MemoryClearRequest": {
         "properties": {
@@ -9776,6 +8328,19 @@
             "description": "Only places open at request time, in each place's own time zone. Places whose open state is unknown are left out.",
             "default": false
           },
+          "max_results": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Results",
+            "description": "Upper bound on results. Defaults to 10; values above the mode's maximum are reduced to it, with a warning."
+          },
           "mode": {
             "anyOf": [
               {
@@ -9821,31 +8386,6 @@
               "gpt-5.4",
               "gemini-3.1-pro"
             ]
-          },
-          "advanced_settings": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/AdvancedVerticalSearchSettings"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Advanced configuration for result count."
-          },
-          "max_results": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 1.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Max Results",
-            "description": "Deprecated: use `advanced_settings.max_results`.",
-            "deprecated": true
           }
         },
         "additionalProperties": false,
@@ -10062,18 +8602,6 @@
             ],
             "title": "Open Now",
             "description": "Open at request time, when known."
-          },
-          "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Description",
-            "description": "A short description of the place."
           }
         },
         "type": "object",
@@ -10082,429 +8610,6 @@
         ],
         "title": "PlaceSearchResult",
         "description": "A single place search result."
-      },
-      "ProductOffer": {
-        "properties": {
-          "url": {
-            "type": "string",
-            "title": "Url",
-            "description": "The store's product page."
-          },
-          "merchant": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Merchant",
-            "description": "The store's name."
-          },
-          "price": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Price"
-          },
-          "currency": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Currency",
-            "description": "ISO 4217 code."
-          }
-        },
-        "type": "object",
-        "required": [
-          "url"
-        ],
-        "title": "ProductOffer",
-        "description": "Another store's page for the same product."
-      },
-      "ProductSearchRequest": {
-        "properties": {
-          "search_queries": {
-            "items": {
-              "type": "string",
-              "maxLength": 200
-            },
-            "type": "array",
-            "maxItems": 5,
-            "title": "Search Queries",
-            "description": "Keyword product queries, such as a model name or a product type with its attributes. At least one query is required, and at most 5, each at most 200 characters.",
-            "examples": [
-              [
-                "Sony WH-1000XM5"
-              ],
-              [
-                "waterproof hiking boots women"
-              ]
-            ]
-          },
-          "objective": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Objective",
-            "description": "Natural-language description of the products wanted, used with search_queries to focus results. At most 5000 characters."
-          },
-          "min_price": {
-            "anyOf": [
-              {
-                "type": "number",
-                "minimum": 0.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Min Price",
-            "description": "Only products priced at least this, in the market's currency. Products without a known price are left out."
-          },
-          "max_price": {
-            "anyOf": [
-              {
-                "type": "number",
-                "exclusiveMinimum": 0.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Max Price",
-            "description": "Only products priced at most this, in the market's currency. Products without a known price are left out."
-          },
-          "condition": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "new",
-                  "used",
-                  "refurbished"
-                ]
-              },
-              {
-                "type": "string",
-                "const": "any"
-              }
-            ],
-            "title": "Condition",
-            "description": "`new` (default), `used`, `refurbished` or `any`. Leaves out products known to be in another condition; most stores do not state one, so for `used` or `refurbished` also say it in the queries.",
-            "default": "new"
-          },
-          "mode": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "advanced"
-                ]
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Mode",
-            "description": "`advanced` (default): live store listings from many sources."
-          },
-          "session_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 1000
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Session Id",
-            "description": "Session identifier that groups related calls made as part of a larger task. Echoed back in the response when nonempty; generated by the server if omitted, null, or empty."
-          },
-          "client_model": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Client Model",
-            "description": "The model generating this request and consuming the results.",
-            "examples": [
-              "claude-opus-4-7",
-              "gpt-5.4",
-              "gemini-3.1-pro"
-            ]
-          },
-          "advanced_settings": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/AdvancedProductSearchSettings"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Advanced configuration for market and result count."
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "required": [
-          "search_queries"
-        ],
-        "title": "ProductSearchRequest",
-        "description": "Shopping search request: products to buy, each linked to a store's page."
-      },
-      "ProductSearchResponse": {
-        "properties": {
-          "search_id": {
-            "type": "string",
-            "title": "Search Id",
-            "description": "Search ID. Example: `search_cad0a6d2dec046bd95ae900527d880e7`"
-          },
-          "session_id": {
-            "type": "string",
-            "title": "Session Id",
-            "description": "Session identifier, echoed back from the request when nonempty; otherwise generated by the server. Pass it to later calls made as part of the same task.",
-            "examples": [
-              "session_8a911eb27c7a4afaa20d0d9dc98d07c0"
-            ]
-          },
-          "results": {
-            "items": {
-              "$ref": "#/components/schemas/ProductSearchResult"
-            },
-            "type": "array",
-            "title": "Results",
-            "description": "Products by decreasing relevance, in three groups: distinct products, then one seller's other options of an earlier product, then products that are out of stock."
-          },
-          "warnings": {
-            "anyOf": [
-              {
-                "items": {
-                  "$ref": "#/components/schemas/Warning"
-                },
-                "type": "array"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Warnings",
-            "description": "Warnings for the search request, if any."
-          },
-          "usage": {
-            "anyOf": [
-              {
-                "items": {
-                  "$ref": "#/components/schemas/UsageItem"
-                },
-                "type": "array"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Usage",
-            "description": "Usage metrics for the search request."
-          }
-        },
-        "type": "object",
-        "required": [
-          "search_id",
-          "session_id",
-          "results"
-        ],
-        "title": "ProductSearchResponse",
-        "description": "Shopping search response."
-      },
-      "ProductSearchResult": {
-        "properties": {
-          "url": {
-            "type": "string",
-            "title": "Url",
-            "description": "The store's product page."
-          },
-          "title": {
-            "type": "string",
-            "title": "Title"
-          },
-          "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Description",
-            "description": "What the product is and its main specifications."
-          },
-          "merchant": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Merchant",
-            "description": "The store's name."
-          },
-          "brand": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Brand"
-          },
-          "price": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Price",
-            "description": "Price at the store when it was retrieved."
-          },
-          "currency": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Currency",
-            "description": "ISO 4217 code."
-          },
-          "original_price": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Original Price",
-            "description": "Price before a discount, when the product is on sale."
-          },
-          "rating": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Rating",
-            "description": "Average rating out of 5."
-          },
-          "review_count": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Review Count",
-            "description": "Reviews behind `rating`."
-          },
-          "image_url": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Image Url"
-          },
-          "condition": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "new",
-                  "used",
-                  "refurbished"
-                ]
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Condition",
-            "description": "`new`, `used` or `refurbished`, when known."
-          },
-          "availability": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "in_stock",
-                  "out_of_stock",
-                  "preorder"
-                ]
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Availability",
-            "description": "`in_stock`, `out_of_stock` or `preorder`, when known."
-          },
-          "offers": {
-            "items": {
-              "$ref": "#/components/schemas/ProductOffer"
-            },
-            "type": "array",
-            "title": "Offers",
-            "description": "Other stores' pages for the same product, when known."
-          }
-        },
-        "type": "object",
-        "required": [
-          "url",
-          "title"
-        ],
-        "title": "ProductSearchResult",
-        "description": "One product at one store, linked to the store's product page."
       },
       "PromptTokensDetails": {
         "additionalProperties": true,
@@ -10522,18 +8627,6 @@
             "default": null,
             "title": "Audio Tokens"
           },
-          "cache_write_tokens": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Cache Write Tokens"
-          },
           "cached_tokens": {
             "anyOf": [
               {
@@ -10545,30 +8638,6 @@
             ],
             "default": null,
             "title": "Cached Tokens"
-          },
-          "image_tokens": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Image Tokens"
-          },
-          "text_tokens": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Text Tokens"
           }
         },
         "title": "PromptTokensDetails",
@@ -10863,9 +8932,7 @@
                   "default",
                   "flex",
                   "scale",
-                  "priority",
-                  "fast",
-                  "ultrafast"
+                  "priority"
                 ],
                 "type": "string"
               },
@@ -11120,7 +9187,7 @@
               }
             ],
             "title": "Tools",
-            "description": "OpenAI tools. Web grounding is always on, so no tool is needed to search; a `web_search` tool's `filters` restrict the domains searched and cited (`allowed_domains` maps to Parallel's `source_policy.include_domains`, `blocked_domains` to `exclude_domains`). An `mcp` tool gives the model a remote MCP server to call; at most 10 per request. Every other tool is accepted and ignored."
+            "description": "OpenAI tools. Web grounding is always on, so no tool is needed to search; a `web_search` tool's `filters` restrict the domains searched and cited (`allowed_domains` maps to Parallel's `source_policy.include_domains`, `blocked_domains` to `exclude_domains`; set one, not both). An `mcp` tool gives the model a remote MCP server to call; at most 10 per request. Every other tool is accepted and ignored."
           },
           "data_sources": {
             "anyOf": [
@@ -11131,7 +9198,7 @@
                 "type": "null"
               }
             ],
-            "description": "Data partners to enable for this request, in addition to web search: `pay_per_use` partners are billed per call, `free` partners are not. Same names and shape as the Task API's `advanced_settings.data_sources`; see the Data Sources documentation. Supported at every `reasoning.effort`. Lower efforts make fewer partner calls per answer, and `auto` can stop at `low`. For a partner whose lookups take several steps, such as a search and then a detail fetch, use `medium` (the default) or `high`. A partner name must not collide with an `mcp` tool's `server_label`."
+            "description": "Data partners to enable for this request, in addition to web search: `pay_per_use` partners are billed per call, `free` partners are not. Same names and shape as the Task API's `advanced_settings.data_sources`; see the Data Sources documentation. Supported when `reasoning.effort` is `medium` (the default) or `high`. A partner name must not collide with an `mcp` tool's `server_label`."
           }
         },
         "type": "object",
@@ -11197,7 +9264,7 @@
           "type"
         ],
         "title": "ResponseFormatJSONSchema",
-        "description": "JSON Schema response format.\n\nUsed to generate structured JSON responses.\nLearn more about [Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs)."
+        "description": "JSON Schema response format.\n\nUsed to generate structured JSON responses.\nLearn more about [Structured Outputs](https://platform.openai.com/docs/guides/structured-outputs)."
       },
       "ResponseFormatText": {
         "additionalProperties": true,
@@ -11297,8 +9364,7 @@
               "in_progress",
               "searching",
               "completed",
-              "failed",
-              "incomplete"
+              "failed"
             ],
             "title": "Status",
             "type": "string"
@@ -11416,21 +9482,21 @@
               {
                 "discriminator": {
                   "mapping": {
-                    "http_error": "#/components/schemas/HTTPError",
-                    "mcp_protocol_error": "#/components/schemas/McpProtocolError",
-                    "mcp_tool_execution_error": "#/components/schemas/McpToolExecutionError"
+                    "http_error": "#/components/schemas/ResponseMcpHttpError",
+                    "mcp_protocol_error": "#/components/schemas/ResponseMcpProtocolError",
+                    "mcp_tool_execution_error": "#/components/schemas/ResponseMcpToolExecutionError"
                   },
                   "propertyName": "type"
                 },
                 "oneOf": [
                   {
-                    "$ref": "#/components/schemas/McpProtocolError"
+                    "$ref": "#/components/schemas/ResponseMcpToolExecutionError"
                   },
                   {
-                    "$ref": "#/components/schemas/McpToolExecutionError"
+                    "$ref": "#/components/schemas/ResponseMcpProtocolError"
                   },
                   {
-                    "$ref": "#/components/schemas/HTTPError"
+                    "$ref": "#/components/schemas/ResponseMcpHttpError"
                   }
                 ]
               },
@@ -11471,6 +9537,30 @@
           "status"
         ],
         "title": "ResponseMcpCall",
+        "type": "object"
+      },
+      "ResponseMcpHttpError": {
+        "properties": {
+          "type": {
+            "const": "http_error",
+            "default": "http_error",
+            "title": "Type",
+            "type": "string"
+          },
+          "code": {
+            "title": "Code",
+            "type": "integer"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "ResponseMcpHttpError",
         "type": "object"
       },
       "ResponseMcpListTools": {
@@ -11519,9 +9609,33 @@
         "title": "ResponseMcpListTools",
         "type": "object"
       },
+      "ResponseMcpProtocolError": {
+        "properties": {
+          "type": {
+            "const": "mcp_protocol_error",
+            "default": "mcp_protocol_error",
+            "title": "Type",
+            "type": "string"
+          },
+          "code": {
+            "title": "Code",
+            "type": "integer"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "ResponseMcpProtocolError",
+        "type": "object"
+      },
       "ResponseMcpTool": {
         "additionalProperties": false,
-        "description": "The OpenAI `mcp` tool: a remote MCP server the `parallel` model may call\nwhile researching, alongside web search. Each call is reported as an\n`mcp_call` output item. `headers` and `authorization` are sent to the\nserver and never echoed back. Parallel runs tool calls without an approval\nround trip, so `require_approval` must be set to `never` explicitly.\nThe model calls tools directly, so `allowed_callers`, when set, must\ninclude `direct`. `connector_id` and `tunnel_id` are not supported. Any\nother key is rejected.",
+        "description": "The OpenAI `mcp` tool: a remote MCP server the `parallel` model may call\nwhile researching, alongside web search. Each call is reported as an\n`mcp_call` output item. `headers` and `authorization` are sent to the\nserver and never echoed back. Parallel runs tool calls without an approval\nround trip, so `require_approval` must be set to `never` explicitly.\n`connector_id` and `tunnel_id` are not supported. Any other key is rejected.",
         "properties": {
           "server_label": {
             "description": "Name for this server. Appears as `server_label` on its `mcp_call` items and must not collide with a `data_sources` partner name.",
@@ -11613,6 +9727,24 @@
           "server_url"
         ],
         "title": "ResponseMcpTool",
+        "type": "object"
+      },
+      "ResponseMcpToolExecutionError": {
+        "properties": {
+          "type": {
+            "const": "mcp_tool_execution_error",
+            "default": "mcp_tool_execution_error",
+            "title": "Type",
+            "type": "string"
+          },
+          "content": {
+            "title": "Content"
+          }
+        },
+        "required": [
+          "content"
+        ],
+        "title": "ResponseMcpToolExecutionError",
         "type": "object"
       },
       "ResponseOutputMessage": {
@@ -11751,7 +9883,7 @@
       },
       "ResponseTextConfig": {
         "additionalProperties": true,
-        "description": "Text output configuration. By default the response is plain text; for\nstructured output set `format` to\n`{\"type\": \"json_schema\", \"name\": ..., \"schema\": {...}}`. On `/v1/responses`\nthe `json_object` format is accepted for compatibility but produces plain\ntext.",
+        "description": "Text output configuration. By default the response is plain text; for\nstructured output set `format` to\n`{\"type\": \"json_schema\", \"name\": ..., \"schema\": {...}}`. The `json_object`\nformat is accepted for compatibility but produces plain text.",
         "properties": {
           "format": {
             "anyOf": [
@@ -11794,7 +9926,7 @@
       },
       "ResponseWebSearchTool": {
         "additionalProperties": false,
-        "description": "The OpenAI `web_search` tool. Web grounding is always on, so the tool\nitself changes nothing; its `filters` restrict which domains are searched.\n`search_context_size` and `user_location` are accepted and ignored.\nSearches always fetch live content, so `external_web_access: false` is\nrejected. Any other key is rejected.",
+        "description": "The OpenAI `web_search` tool. Web grounding is always on, so the tool\nitself changes nothing; its `filters` restrict which domains are searched.\n`search_context_size` and `user_location` are accepted and ignored. Any\nother key is rejected.",
         "properties": {
           "type": {
             "enum": [
@@ -11835,7 +9967,7 @@
           "user_location": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/ResponseWebSearchToolUserLocation"
+                "$ref": "#/components/schemas/UserLocation"
               },
               {
                 "type": "null"
@@ -11852,7 +9984,7 @@
       },
       "ResponseWebSearchToolFilters": {
         "additionalProperties": false,
-        "description": "Domain filters on the OpenAI `web_search` tool, mapped onto Parallel's\nsource policy: `allowed_domains` -> `include_domains`, `blocked_domains` ->\n`exclude_domains`. Entries follow the Source Policy rules (plain domains\nmatch their subdomains; no schemes, ports, query strings or fragments; at\nmost 200 entries in total). With both lists, a source must be on an allowed\ndomain and not on a blocked one.",
+        "description": "Domain filters on the OpenAI `web_search` tool, mapped onto Parallel's\nsource policy: `allowed_domains` -> `include_domains`, `blocked_domains` ->\n`exclude_domains`. Entries follow the Source Policy rules (plain domains\nmatch their subdomains; no schemes, ports, query strings or fragments; at\nmost 200 entries in total). Setting both lists is accepted, but only the\nallow list applies today.",
         "properties": {
           "allowed_domains": {
             "anyOf": [
@@ -11883,80 +10015,11 @@
               }
             ],
             "default": null,
-            "description": "Sources on these domains (and their subdomains) are excluded, also inside `allowed_domains`. Maps to `source_policy.exclude_domains`.",
+            "description": "Sources on these domains (and their subdomains) are excluded. Maps to `source_policy.exclude_domains`. When `allowed_domains` is also set, the allow list is what applies.",
             "title": "Blocked Domains"
           }
         },
         "title": "ResponseWebSearchToolFilters",
-        "type": "object"
-      },
-      "ResponseWebSearchToolUserLocation": {
-        "additionalProperties": false,
-        "description": "The approximate location of the user.",
-        "properties": {
-          "city": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "City"
-          },
-          "country": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Country"
-          },
-          "region": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Region"
-          },
-          "timezone": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Timezone"
-          },
-          "type": {
-            "anyOf": [
-              {
-                "const": "approximate",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Type"
-          }
-        },
-        "title": "ResponseWebSearchToolUserLocation",
         "type": "object"
       },
       "SourcePolicy": {
@@ -11967,7 +10030,7 @@
             },
             "type": "array",
             "title": "Include Domains",
-            "description": "List of domains or domain/path prefixes to restrict results to. If specified, only matching sources will be included. Accepts plain domains (e.g., wikipedia.org), domain/path prefixes (e.g., docs.python.org/3), or bare domain extensions (e.g., .gov, .edu, .co.uk). The combined number of entries in include_domains and exclude_domains cannot exceed 200.",
+            "description": "List of domains or domain/path prefixes to restrict results to. If specified, only matching sources will be included and exclude_domains will be ignored. Accepts plain domains (e.g., wikipedia.org), domain/path prefixes (e.g., docs.python.org/3), or bare domain extensions (e.g., .gov, .edu, .co.uk). The combined number of entries in include_domains and exclude_domains cannot exceed 200.",
             "examples": [
               [
                 "wikipedia.org",
@@ -11982,7 +10045,7 @@
             },
             "type": "array",
             "title": "Exclude Domains",
-            "description": "List of domains or domain/path prefixes to exclude from results. If specified, matching sources will be excluded, also inside include_domains. Accepts plain domains (e.g., reddit.com), domain/path prefixes (e.g., youtube.com/shorts), or bare domain extensions (e.g., .gov, .edu, .co.uk). The combined number of entries in include_domains and exclude_domains cannot exceed 200.",
+            "description": "List of domains or domain/path prefixes to exclude from results. Applied only when include_domains is empty. If specified, matching sources will be excluded. Accepts plain domains (e.g., reddit.com), domain/path prefixes (e.g., youtube.com/shorts), or bare domain extensions (e.g., .gov, .edu, .co.uk). The combined number of entries in include_domains and exclude_domains cannot exceed 200.",
             "examples": [
               [
                 "reddit.com",
@@ -12010,7 +10073,7 @@
         },
         "type": "object",
         "title": "SourcePolicy",
-        "description": "Source policy for web search results.\n\nPlain domains match that domain and its subdomains. Domain/path entries use\ncase-sensitive path matching at segment boundaries; trailing slashes are ignored,\ndot segments are normalized, and other percent-encoded path spelling is preserved.\nEntries omit schemes, ports, query strings, and fragments. A source must match\ninclude_domains, when set, and must not match exclude_domains. Use exclude_domains\nto block a subdomain or path of an allowed domain. Only the same entry in both\nlists fails validation, compared after lowercasing the domain and dropping a\nleading www. and a trailing slash."
+        "description": "Source policy for web search results.\n\nPlain domains match that domain and its subdomains. Domain/path entries use\ncase-sensitive path matching at segment boundaries; trailing slashes are ignored,\ndot segments are normalized, and other percent-encoded path spelling is preserved.\nEntries omit schemes, ports, query strings, and fragments. When include_domains is\nnon-empty, it defines the complete allowlist and exclude_domains is ignored."
       },
       "TaskAdvancedSettings": {
         "properties": {
@@ -12042,17 +10105,6 @@
               }
             ],
             "description": "Optional partner data sources to enable for this task run. Supported on standard processors only; a selected partner name must not collide with an `mcp_servers` entry."
-          },
-          "fetch_policy": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/FetchPolicy"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Optional fetch policy for every page the task run extracts. Pages cached longer than max_age_seconds are fetched live. Values below 600 seconds are raised to 600. Search results are not affected."
           }
         },
         "type": "object",
@@ -13339,6 +11391,75 @@
         "title": "UsageItem",
         "description": "Usage item for a single operation."
       },
+      "UserLocation": {
+        "additionalProperties": true,
+        "description": "The approximate location of the user.",
+        "properties": {
+          "city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "City"
+          },
+          "country": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Country"
+          },
+          "region": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Region"
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Timezone"
+          },
+          "type": {
+            "anyOf": [
+              {
+                "const": "approximate",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Type"
+          }
+        },
+        "title": "UserLocation",
+        "type": "object"
+      },
       "V1ExcerptSettings": {
         "properties": {
           "max_chars_per_result": {
@@ -13559,7 +11680,7 @@
               }
             ],
             "title": "Publish Date",
-            "description": "Estimated publish date of the webpage in YYYY-MM-DD format, if available."
+            "description": "Publish date of the webpage in YYYY-MM-DD format, if available."
           },
           "excerpts": {
             "items": {
@@ -13711,7 +11832,7 @@
                 "type": "null"
               }
             ],
-            "description": "Advanced configuration for source policy, fetch policy, location, and result count. May impact result quality and latency unless used carefully. When omitted, excerpts are enabled by default."
+            "description": "Advanced configuration for source policy, fetch policy, and excerpt settings. May impact result quality and latency unless used carefully. When omitted, excerpts are enabled by default."
           }
         },
         "additionalProperties": false,
@@ -13814,7 +11935,7 @@
               }
             ],
             "title": "Publish Date",
-            "description": "Estimated publish date of the webpage in YYYY-MM-DD format, if available."
+            "description": "Publish date of the webpage in YYYY-MM-DD format, if available."
           },
           "excerpts": {
             "items": {
@@ -14180,19 +12301,8 @@
       },
       "ChoiceDelta": {
         "additionalProperties": true,
-        "description": "A chat completion delta generated by streamed model responses.\nStreamed audio can arrive in partial updates with an ID, base64 data, or\ntranscript text. The final audio update contains only its expiry timestamp.",
+        "description": "A chat completion delta generated by streamed model responses.",
         "properties": {
-          "audio": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/ChoiceDeltaAudio"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null
-          },
           "content": {
             "anyOf": [
               {
@@ -14264,62 +12374,6 @@
           }
         },
         "title": "ChoiceDelta",
-        "type": "object"
-      },
-      "ChoiceDeltaAudio": {
-        "additionalProperties": true,
-        "description": "A partial audio response.\n\nAudio chunks may carry an ID, base64 data, or\ntranscript text; the final audio update contains only its expiry timestamp.",
-        "properties": {
-          "id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Id"
-          },
-          "data": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Data"
-          },
-          "expires_at": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Expires At"
-          },
-          "transcript": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Transcript"
-          }
-        },
-        "title": "ChoiceDeltaAudio",
         "type": "object"
       },
       "ChoiceDeltaFunctionCall": {
@@ -14569,8 +12623,7 @@
                   "default",
                   "flex",
                   "scale",
-                  "priority",
-                  "fast"
+                  "priority"
                 ],
                 "type": "string"
               },
@@ -15612,7 +13665,15 @@
   "tags": [
     {
       "name": "Search",
-      "description": "Search returns ranked URLs with extended excerpts suitable for LLM consumption. Inputs are a natural-language objective and optional keyword queries. Source policies allow including or excluding specific domains and have configurable output sizes. The returned extended snippets contain dense, relevant information from relevant pages.\n- Result: ranked list with URL, title, and long text excerpts\n\nImages, Places, Shopping, Hotels and Flights return typed results for one kind of content.\n- The Images API returns ranked images from the web. Inputs are keyword queries and an optional natural-language objective. `fast`: lowest latency and cost. `advanced` (default): slower, with higher-quality results. Result: title, direct image URL, source page URL, and dimensions.\n- The Places API finds places such as restaurants, shops and attractions near a location. Inputs are a query, and a location name or coordinates. `fast`: lowest latency, with fewer results. `advanced` (default): slower, with more complete results. Result: name, website, address, phone, coordinates, rating tier, price level, and opening hours.\n- The Shopping API finds products for sale at online stores. Inputs are keyword queries, an optional natural-language objective, and optional price and condition filters. Result: title, store page URL, merchant, price, rating, availability, and other stores' offers.\n- The Hotels API finds hotels and vacation rentals with live prices. Inputs are a location, check-in and check-out dates, and guests, with optional price, rating and star class filters. Result: name, website or booking page, address, coordinates, star class, rating tier, nightly and total price, and each seller's offer.\n- The Flights API finds itineraries with live fares. Inputs are origin and destination airports, travel dates, and passengers, with optional cabin, stop, price, airline and time filters. Result: total price, a booking link, and each leg's flights, times, stops and layovers."
+      "description": "Search returns ranked URLs with extended excerpts suitable for LLM consumption. Inputs are a natural-language objective and optional keyword queries. Source policies allow including or excluding specific domains and have configurable output sizes. The returned extended snippets contain dense, relevant information from relevant pages.\n- Result: ranked list with URL, title, and long text excerpts"
+    },
+    {
+      "name": "Image Search",
+      "description": "Image Search returns ranked images from the web. Inputs are keyword queries and an optional natural-language objective. `fast`: lowest latency and cost. `advanced` (default): slower, with higher-quality results.\n- Result: title, direct image URL, source page URL, and dimensions"
+    },
+    {
+      "name": "Place Search",
+      "description": "Place Search finds places such as restaurants, shops and attractions near a location. Inputs are a query, and a location name or coordinates. `fast`: lowest latency, with fewer results. `advanced` (default): slower, with more complete results.\n- Result: name, website, address, phone, coordinates, rating tier, price level, and opening hours"
     },
     {
       "name": "Extract",

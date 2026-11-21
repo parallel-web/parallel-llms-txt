@@ -37,7 +37,7 @@ Parallel returns the relevant passage from the page body in the first response, 
 
 Ten Serper searches cost a cent at the entry pack. Fetching five pages per search and feeding even trimmed content to a frontier model costs multiples of that in input tokens, before the model has produced a single output token. On a single agent step the search line is the smallest number in the equation, which is why optimizing it on its own does so little to the total.
 
-Serper isn't in the current runs on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026), which test Parallel against Exa, Tavily, and Perplexity, and it isn't on Openbenchmarks' latency boards, so there's no head-to-head number to quote.
+Serper isn't in the current runs on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026), which test Parallel against Exa, Tavily, and Perplexity, and it isn't on Openbenchmarks' latency boards, so there's no head-to-head number to quote. Serper isn't on the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) either. Parallel Search (advanced) ranks #1 there at 83 among 26 search API products (November 2026 data).
 
 ## **Throughput**
 

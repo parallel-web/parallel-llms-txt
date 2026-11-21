@@ -16,7 +16,7 @@ The second category got its first neutral measurement for company research in Au
 
 ## What the Openbenchmarks company search benchmark measures
 
-[Openbenchmarks](https://openbenchmarks.com/multi-turn-company-search) is an independent benchmark hub that publishes its harness, its scoring code, and every raw vendor response under a CC-BY license. Its multi-turn company search board, first published August 22, 2026 and last updated September 26, is the closest thing the category has to a controlled experiment.
+[Openbenchmarks](https://openbenchmarks.com/multi-turn-company-search) is an independent benchmark hub that publishes its harness, its scoring code, and every raw vendor response under a CC-BY license. Its multi-turn company search board, first published August 22, 2026 and last updated October 2, is the closest thing the category has to a controlled experiment.
 
 Everything is held constant except the search provider. A fixed research agent (gpt-5.6-sol at medium reasoning effort) gets one of 45 hand-labelled questions. Each question combines three or four constraints drawn from investor backing, accelerator participation, headquarters geography, founding era, and funding history. The agent may take up to 8 model turns and 14 searches, two per turn, with 10 results per search, and must return a strict JSON set of companies with cited URLs. Its native web search is swapped for the vendor's API, and provider responses are normalized into the same title, URL, and snippet shape before the model sees them. Every provider runs each question three times in each mode, and the board now reports 5,536 completed agent runs across 20 configurations.
 
@@ -26,32 +26,32 @@ Two boards are reported separately. In search-only mode the agent reads titles, 
 
 ## The results
 
-On the search-only board, Parallel Search in basic mode ranks first with an F1 of 50.2, and it posts the highest precision on that board at 90.0. Exa deep is second at 45.5, Exa instant third at 43.6, and Parallel advanced fourth at 43.4. Tavily advanced, both Linkup depths, and Parallel fast sit between 39 and 42, with You.com and Perplexity just behind and Parallel turbo at 32.8. Firecrawl, Nimble, Brave, and TinyFish land between 24 and 31. Seltz, the one vendor on the board that markets a companies-specific search scope, scores 14.4, and a Google SERP feed through RapidAPI scores 0.4.
+On the search-only board, Parallel Search in basic mode ranks first with an F1 of 46.5, and it posts the highest precision on that board at 88.7. Exa deep is second at 45.4, Parallel advanced third at 44.2, and Exa instant fourth at 43.3. Tavily advanced and both Linkup depths sit between 40 and 42, with You.com, Parallel fast, and Perplexity between 37 and 39, Tavily basic at 36.5, and Parallel turbo at 34.7. Nimble, Firecrawl, Brave, and TinyFish land between 25 and 31. Seltz, the one vendor on the board that markets a companies-specific search scope, scores 14.5, and a Google SERP feed through RapidAPI scores 0.4.
 
 | Configuration | F1 | Precision | Recall | Median time | Cost per agent run |
 | --- | --- | --- | --- | --- | --- |
-| Parallel Search, basic | 50.2 | 90.0 | 38.4 | 69.1s | $1.180 |
-| Exa, deep | 45.5 | 82.9 | 33.9 | 89.6s | $0.717 |
-| Exa, instant | 43.6 | 81.9 | 32.5 | 49.4s | $0.627 |
-| Parallel Search, advanced | 43.4 | 86.6 | 31.2 | 85.8s | $0.615 |
-| Tavily, advanced | 42.0 | 84.6 | 30.6 | 92.1s | $1.032 |
-| Linkup, fast | 41.3 | 82.7 | 30.4 | 63.8s | $0.923 |
-| Linkup, standard | 40.8 | 83.8 | 30.0 | 72.4s | $0.941 |
-| Parallel Search, fast | 39.0 | 81.6 | 27.9 | 54.8s | $0.469 |
+| Parallel Search, basic | 46.5 | 88.7 | 34.4 | 67.6s | $1.120 |
+| Exa, deep | 45.4 | 83.2 | 33.7 | 89.5s | $0.717 |
+| Parallel Search, advanced | 44.2 | 87.6 | 32.0 | 83.4s | $0.625 |
+| Exa, instant | 43.3 | 82.6 | 32.2 | 49.8s | $0.652 |
+| Linkup, fast | 41.1 | 82.8 | 30.3 | 64.2s | $0.923 |
+| Tavily, advanced | 41.1 | 83.7 | 29.8 | 92.2s | $1.029 |
+| Linkup, standard | 40.6 | 84.0 | 29.7 | 72.3s | $0.937 |
 | You.com, highlights | 38.6 | 79.3 | 28.3 | 48.2s | $0.971 |
 | You.com, highlights + core | 38.1 | 80.9 | 27.4 | 47.6s | $0.895 |
+| Parallel Search, fast | 38.0 | 79.9 | 27.5 | 53.9s | $0.460 |
 | Perplexity, low context | 37.8 | 79.3 | 26.8 | 48.9s | $0.334 |
 | Tavily, basic | 36.5 | 82.5 | 25.7 | 63.0s | $0.615 |
-| Parallel Search, turbo | 32.8 | 76.7 | 22.9 | 47.0s | $0.420 |
-| Firecrawl | 30.8 | 77.4 | 21.1 | 75.0s | $0.281 |
+| Parallel Search, turbo | 34.7 | 80.0 | 24.8 | 46.4s | $0.419 |
 | Nimble, standard | 30.7 | 70.3 | 21.3 | 53.0s | $0.467 |
-| Brave Search | 26.9 | 64.5 | 18.4 | 43.4s | $0.265 |
+| Firecrawl | 30.4 | 77.3 | 20.7 | 75.0s | $0.282 |
+| Brave Search | 28.0 | 66.9 | 19.3 | 43.5s | $0.268 |
 | TinyFish | 26.6 | 64.7 | 17.9 | 64.2s | $0.212 |
-| Nimble, lite | 24.1 | 65.2 | 16.1 | 67.2s | $0.222 |
-| Seltz, companies | 14.4 | 40.6 | 9.2 | 55.9s | $1.751 |
-| Google SERP (RapidAPI) | 0.4 | 0.8 | 0.3 | 31.4s | $0.103 |
+| Nimble, lite | 25.3 | 62.8 | 17.6 | 67.9s | $0.234 |
+| Seltz, companies | 14.5 | 40.0 | 9.4 | 55.2s | $1.751 |
+| Google SERP (RapidAPI) | 0.4 | 0.7 | 0.3 | 31.4s | $0.103 |
 
-Source: Openbenchmarks multi-turn company search, search-only board, last updated September 26, 2026. F1, precision, and recall are three-trial means in percentage points; the trial-to-trial spread is one to four points for most rows. Cost per agent run is the median of model-token cost plus vendor list price.
+Source: Openbenchmarks multi-turn company search, search-only board, last updated October 2, 2026. F1, precision, and recall are three-trial means in percentage points; the trial-to-trial spread is one to four points for most rows. Cost per agent run is the median of model-token cost plus vendor list price.
 
 The order changes once the agent has a fetch tool. On the search-plus-fetch board Exa deep leads at 49.2, Perplexity is second at 46.6, Exa instant third at 44.4, and Parallel advanced fourth at 43.8, while Parallel basic drops to seventh at 41.2. Linkup standard records the highest precision on that board at 90.3. The likely reading is that Exa's contents extraction adds more to Exa's search than a fetch step adds to ours, since our basic-mode excerpts already carry much of the page text the agent needs. If your agent fetches pages through the provider's own extraction endpoint, that is the board to read.
 
@@ -61,7 +61,7 @@ Recall is low for everyone: the best configuration finds under two-fifths of the
 
 ### Two related boards
 
-The same hub runs two other measurements that touch company research. On the [company news factual lookup](https://openbenchmarks.com/company-news) board (300 questions about recent funding rounds, acquisitions, layoffs, and leadership changes, last run September 12, 2026), Exa fast answers 99.3% correctly, Exa instant 97.7%, and Perplexity 97.3%. Parallel basic answers 93.3%, and Parallel fast, at 86.0%, is the cheapest paid option per correct answer at $1.16 per 1,000. The strongest dedicated news index, Seltz's news scope, reaches 58.3% on the identical questions. On the [lookalike benchmark](https://openbenchmarks.com/lookalikes), which asks nine vendors for up to 100 similar companies per seed across 48 seeds, Seltz leads long-list precision at 63.4% Precision@100, ahead of Extruct at 61.1% and Ocean.io at 59.5%. Parallel is fourth at 56.9%, and PredictLeads leads top-of-list precision at 89.8% Precision@10.
+The same hub runs two other measurements that touch company research. On the [company news factual lookup](https://openbenchmarks.com/company-news) board (300 questions about recent funding rounds, acquisitions, layoffs, and leadership changes, last measured October 21, 2026), Exa fast answers 99.3% correctly, Exa instant 97.7%, and Perplexity 97.3%. Parallel isn't in that run. The strongest dedicated news index, Seltz's news scope, reaches 58.3% on the identical questions. On the [lookalike benchmark](https://openbenchmarks.com/lookalikes), which asks nine vendors for up to 100 similar companies per seed across 48 seeds, Seltz leads long-list precision at 63.4% Precision@100, ahead of Extruct at 61.1% and Ocean.io at 59.5%. Parallel is fourth at 56.9%, and PredictLeads leads top-of-list precision at 89.8% Precision@10.
 
 The three boards agree with the hub's own FAQ that no single web search API is best across tasks. Exa fast is the accuracy leader for single-fact company news. Parallel basic is the leader for multi-constraint company discovery when the agent works from search results alone.
 
@@ -84,7 +84,7 @@ Parallel Fast's FinSearchComp run answers with GPT-6 Luna; every other cell uses
 
 ### Parallel
 
-We built Parallel for agents, so the pieces relevant to company research are spread across several endpoints. The [Search API](https://parallel.ai/products/search) is what the benchmark measured. It takes a natural-language objective plus optional keyword queries and returns ranked URLs with excerpts compressed for a context window. Basic and advanced modes are $5 per 1,000 requests with 10 results included, fast returns in under a second, and turbo is $1 per 1,000 at roughly 200ms p50.
+We built Parallel for agents, so the pieces relevant to company research are spread across several endpoints. The [Search API](https://parallel.ai/products/search) is what the benchmark measured. It takes a natural-language objective plus optional keyword queries and returns ranked URLs with excerpts compressed for a context window. Basic and advanced modes are $5 per 1,000 requests with 10 results included, fast returns in under a second, and turbo is $1 per 1,000 at roughly 200ms p50. On the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (November 2026 data), advanced ranks #1 of 26 search API products at 83, and fast scores 82.
 
 For discovery, [Entity Search](https://docs.parallel.ai/findall-api/entity-search) is the endpoint built for the job. You pass the entity type "companies" and an objective like "AI startups that raised Series A in 2024" and get back a ranked list of name, URL, and description in seconds. It costs $5 per 1,000 requests with 100 results included and supports up to 1,000 results per call. It is tuned for recall over precision, so treat the tail of the list as candidates still to be verified. Entity Search is in public beta.
 
@@ -96,7 +96,7 @@ For discovery, [Entity Search](https://docs.parallel.ai/findall-api/entity-searc
 
 ### Exa
 
-Exa is the closest competitor on both company search boards and wins the search-plus-fetch board and the company news board. Its search endpoint is $7 per 1,000 requests, deep modes run $12 to $15 per 1,000 with latencies from about 4 to 40 seconds, and its contents endpoint pulls full page text at $1 per 1,000 pages. New accounts get $20 in credits and $10 more each month. Exa deep took first on search-plus-fetch at 49.2 F1, Exa fast leads the company news board at 99.3%, and Exa instant is the fastest accurate row on that board at 398ms.
+Exa is the closest competitor on both company search boards and wins the search-plus-fetch board and the company news board. Its search endpoint is $7 per 1,000 requests, deep modes run $12 to $15 per 1,000 with latencies from about 4 to 40 seconds, and its contents endpoint pulls full page text at $1 per 1,000 pages. New accounts get $20 in credits and $10 more each month. Exa deep took first on search-plus-fetch at 48.2 F1, Exa fast leads the company news board at 99.3%, and Exa instant is the fastest accurate row on that board at 398ms.
 
 Exa also sells list building. The Agent API does asynchronous research, list building, and enrichment, with fixed-effort runs from $0.012 to $1.00 per request and metered runs capped at $5 by default. Websets, the list-building product, has its own dashboard plans starting at $49 a month for 8,000 credits. Our [Websets vs. FindAll comparison](https://parallel.ai/articles/exa-vs-parallel-findall) goes deeper on that pair.
 
@@ -177,7 +177,7 @@ for company in candidates.entities[:5]:
 
 ## Frequently asked questions
 
-**What is the best API for company research?** For multi-constraint company discovery, the independent Openbenchmarks board ranks Parallel Search basic first on search-only F1 (50.2) and Exa deep first when the agent can also fetch pages (49.2). For single-fact company news, Exa fast leads at 99.3%. For domain-keyed firmographic lookups, a database is the right tool: on Openbenchmarks' enrichment board, People Data Labs returns the most correct fields (89.0%) and Apollo the fewest wrong ones.
+**What is the best API for company research?** For multi-constraint company discovery, the independent Openbenchmarks board ranks Parallel Search basic first on search-only F1 (46.5) and Exa deep first when the agent can also fetch pages (48.2). For single-fact company news, Exa fast leads at 99.3%. For domain-keyed firmographic lookups, a database is the right tool: on Openbenchmarks' enrichment board, People Data Labs returns the most correct fields (89.0%) and Apollo the fewest wrong ones.
 
 **Is a company data API the same as a company research API?** No. A data API returns a stored record in a fixed schema. A research API searches the live web and assembles an answer, so it handles criteria the data vendor never anticipated and facts newer than the last database refresh, at higher latency and cost per question.
 

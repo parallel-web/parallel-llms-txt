@@ -19,6 +19,8 @@ Parallel charges per request at a flat rate per mode, with no plan and no credit
 
 Tavily's auto_parameters flag can promote a search to advanced depth on its own, which doubles the credit cost of that request. If you have it enabled and have not explicitly pinned search_depth to basic, your real per-search cost is somewhere between the two rows above.
 
+The lower price doesn't cost accuracy. On the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (November 2026 data), Parallel Search (advanced) ranks #1 of 26 search API products at 83 and Fast scores 82, against 66 for Tavily basic in its August run. On [Openbenchmarks' multi-turn company search board](https://openbenchmarks.com/multi-turn-company-search) (last updated October 2, 2026), Parallel Basic scored 46.5 F1 from search results alone, against 41.1 for Tavily Advanced and 36.5 for Tavily Basic.
+
 _Note: For the latest pricing, always check official documentation._
 
 ## **Parameter mapping**

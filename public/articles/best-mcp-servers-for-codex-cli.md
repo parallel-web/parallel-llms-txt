@@ -27,7 +27,7 @@ codex mcp add parallel --url 'https://mcp.parallel.ai/mcp?login'
 codex mcp add parallel --url https://mcp.parallel.ai/mcp --bearer-token-env-var PARALLEL_API_KEY
 ```
 
-On Openbenchmarks' [coding-agent board](https://openbenchmarks.com/web-search-for-coding-agents) (100 documentation tickets, September 2026), fast mode completed 66.7% from search alone, third of 14 behind Perplexity (77.3%) and Firecrawl (70.3%), and turbo had the fastest searches at 333ms. Restart Codex after adding the server and the tools appear.
+Parallel Search (advanced) ranks #1 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 26 search API products across 14 providers (November 2026 data), at 83, and fast mode scores 82. On Openbenchmarks' [coding-agent board](https://openbenchmarks.com/web-search-for-coding-agents) (100 documentation tickets, September 2026), fast mode completed 66.7% from search alone, third of 14 behind Perplexity (77.3%) and Firecrawl (70.3%), and turbo had the fastest searches at 333ms. Restart Codex after adding the server and the tools appear.
 
 **Best for:** grounding Codex in current docs, errors, and releases without leaving the terminal.
 

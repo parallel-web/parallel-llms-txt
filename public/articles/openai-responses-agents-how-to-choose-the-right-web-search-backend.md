@@ -204,7 +204,7 @@ At high query volumes, the price gap is large. Built-in web search at $10 per 1,
 
 **Does switching search backends require changing my agent's prompts or logic?** No. You swap the tool definition and add a handler function. Your system prompt and agent logic stay the same.
 
-**What accuracy benchmarks should I look at when evaluating search APIs?** Focus on SimpleQA Verified, [BrowseComp](https://openai.com/index/browsecomp/), and WideSearch, which measure the scenarios agents encounter: fact lookup, multi-hop research, and gathering many facts across sources. FRAMES and HLE add multi-source reasoning and expert-level questions.
+**What accuracy benchmarks should I look at when evaluating search APIs?** Focus on SimpleQA Verified, [BrowseComp](https://openai.com/index/browsecomp/), and WideSearch, which measure the scenarios agents encounter: fact lookup, multi-hop research, and gathering many facts across sources. FRAMES and HLE add multi-source reasoning and expert-level questions. For an independent comparison of search APIs, the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) runs DeepSearchQA, BrowseComp, and AA-Omniscience through one fixed agent. Parallel Search (advanced) ranks #1 there at 83, against 74 for OpenAI Web Search (November 2026 data).
 
 ## Key takeaways
 

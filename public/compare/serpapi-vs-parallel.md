@@ -6,7 +6,7 @@ SerpApi returns a parsed copy of a search results page. Parallel returns ranked 
 
 [Search price per 1,000, self-serve plans: $1 vs. $1.96 to $25](#cost) [BrowseComp, same GPT-5.4 agent: 51% vs. 23.3%](#accuracy) [Search latency p50, BrowseComp run: 216ms vs. 999ms](#speed)
 
-Last updated November 6, 2026
+Last updated November 20, 2026
 
 ## What does Parallel do?
 
@@ -363,7 +363,7 @@ Not in Parallel’s July 2026 run. Turbo’s median search call took 216 to 240m
 * **Where does SerpApi still win?**  
 Engine and vertical coverage, exact Google results pages with positions and SERP features, and city-level geo targeting. It also offers U.S. Legal Shield indemnity, free cached repeats, more client libraries, ISO 27001, and higher hourly caps on its largest plans. Its search-only agent cost less than Turbo on three of five suites in Parallel’s July run.
 * **Has an independent evaluator compared them?**  
-Not that this review found. Artificial Analysis and Openbenchmarks do not test SerpApi, and Openbenchmarks’ Google SERP row is a different vendor. The figures here come from Parallel’s own July 2026 run, which publishes its method and test dates. Run both on your own queries before you decide.
+Not that this review found. Artificial Analysis and Openbenchmarks do not test SerpApi, and Openbenchmarks’ Google SERP row is a different vendor. Parallel ranks #1 on Artificial Analysis (November 2026). The figures here come from Parallel’s own July 2026 run, which publishes its method and test dates. Run both on your own queries before you decide.
 * **Does SerpApi offer EU data residency?**  
 Not as of October 16, 2026\. SerpApi is a Texas company that covers international transfers with Standard Contractual Clauses. ZeroTrace mode stores no search data. Parallel’s EU endpoint serves Search (basic mode) and Extract (cache-only). Other APIs aren’t served there. Billing, metrics, and edge logs (no content) go to the US, and Extract sends only URLs to its page cache outside the EU.
 * **How current is this comparison?**  

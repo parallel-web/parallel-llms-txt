@@ -22,6 +22,8 @@ Search costs 2 credits per 10 results. Scrape, crawl, map, and monitor cost 1 cr
 
 Plain extraction is a tie, and highlights-only search is close. The two rows that move the decision are search with content attached and the expiry column. Agent traffic is spiky by nature, so a quiet month on a subscription is money spent on nothing, and a spike past the allowance means upgrading a plan rather than paying an overage.
 
+On quality, the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (November 2026 data) ranks Parallel Search (advanced) #1 of 26 search API products at 83, with Fast at 82 and Firecrawl Search at 73, and Firecrawl took 61.4 seconds per task against 15.5 for Parallel Fast. On [Openbenchmarks' multi-turn company search board](https://openbenchmarks.com/multi-turn-company-search) (last updated October 2, 2026), Parallel Basic scored 46.5 F1 from search results alone against 30.4 for Firecrawl. Firecrawl led Parallel Fast on Openbenchmarks' coding-agent board, 70.3% to 66.7% of tickets from search alone.
+
 _Note: For the latest pricing, always check official documentation._
 
 ## **Parameter mapping**

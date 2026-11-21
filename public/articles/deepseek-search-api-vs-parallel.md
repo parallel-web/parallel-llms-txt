@@ -10,7 +10,7 @@ The reason to pay more is model independence. Parallel Search is a REST API, an 
 
 DeepSeek’s privacy policy says it stores personal data in China and may use personal data, including inputs, to train its models, and it doesn’t mention Search or Fetch. Parallel stores data in US data centers by default and offers zero data retention under an enterprise agreement. Its optional EU data residency covers Search API requests in Basic mode sent to its EU endpoint. EU residency doesn’t cover Extract, and Parallel is a US company, so it doesn’t change Parallel’s jurisdiction.
 
-We don’t know which API returns better results. We made no authenticated DeepSeek calls for this comparison and found no independent benchmark of the DeepSeek Search API as of October 17, 2026, so this article makes no quality claim in either direction.
+We don’t know which API returns better results. We made no authenticated DeepSeek calls for this comparison and found no independent benchmark of the DeepSeek Search API as of October 17, 2026, so this article makes no quality claim in either direction. Since then, the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) has added it: DeepSeek Search (summary) scores 69 (October 2026 run), and Parallel Search (advanced) ranks #1 of 26 search API products at 83 (November 2026 run).
 
 ## What does the DeepSeek Search API cost?
 
@@ -189,9 +189,9 @@ DeepSeek uses `Authorization: Bearer <key>` with a key from the DeepSeek platfor
 
 ## Is there an independent benchmark of the DeepSeek Search API?
 
-No. DeepSeek publishes no quality numbers for its Search API, and we found no independent benchmark of it as of October 17, 2026.
+No. DeepSeek publishes no quality numbers for its Search API, and we found no independent benchmark of it as of October 17, 2026. The Artificial Analysis Search Index added DeepSeek Search (summary) after that date: it scores 69 there, against 83 for Parallel Search (advanced).
 
-Parallel’s [benchmarks page](https://parallel.ai/benchmarks) reports SimpleQA Verified, BrowseComp, and WideSearch results from runs on September 9, 2026 that pair a GPT-5.6 agent with each provider. DeepSeek isn’t in those runs. Until someone runs the DeepSeek Search API through the same harness as other providers, its answer quality relative to Parallel is unmeasured.
+Parallel’s [benchmarks page](https://parallel.ai/benchmarks) reports SimpleQA Verified, BrowseComp, and WideSearch results from runs on September 9, 2026 that pair a GPT-5.6 agent with each provider. DeepSeek isn’t in those runs. The independent Artificial Analysis Search Index does run both through one harness: DeepSeek Search (summary) scores 69, and Parallel Search (advanced) ranks #1 at 83 (November 2026 data).
 
 ## When to pick DeepSeek
 
@@ -256,7 +256,7 @@ It allows 5 requests per second for Search and 5 for Fetch, counted per account,
 
 ### Which API returns better results?
 
-No public evidence answers that yet. No independent benchmark covers the DeepSeek Search API, and we made no authenticated DeepSeek calls for this comparison.
+On the independent Artificial Analysis Search Index, Parallel Search (advanced) scores 83 and ranks #1 (November 2026 data), against 69 for DeepSeek Search (summary). We made no authenticated DeepSeek calls for this comparison.
 
 **Related reading: **[The best DeepSeek Search API alternatives](https://parallel.ai/articles/deepseek-search-api-alternatives) / [Web search APIs with EU data residency](https://parallel.ai/articles/best-web-search-apis-eu-data-residency) / [Data residency vs. data sovereignty](https://parallel.ai/articles/data-residency-vs-data-sovereignty) / [How to add better web search to DeepSeek Harness](https://parallel.ai/articles/deepseek-harness-web-search) / [Claude’s web search tool vs. Parallel](https://parallel.ai/articles/claude-web-search-vs-parallel) / [Brave Search API vs. Parallel](https://parallel.ai/compare/brave-vs-parallel).
 

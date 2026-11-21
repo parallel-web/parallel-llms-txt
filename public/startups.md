@@ -69,7 +69,7 @@ Pick your accelerator or investor below to see its offer.
 2. ### Redeem  
 YC and a16z speedrun founders redeem in their program's portal. Everyone else, use the [form below](#apply).
 
-Your credits land within 24 hours of redeeming.
+Your credits land within minutes of redeeming.
 
 [Find your offer](#find-your-offer) [Not in a program? Apply for credits →](#apply)
 
@@ -89,7 +89,7 @@ Two ways in: Y Combinator, a16z speedrun, or apply directly.
 1. Open Bookface deals
 2. Find Parallel in the perks list
 3. Redeem there
-4. We'll email you within 24 hours to get your org ID. YC sends us your redemption automatically
+4. We'll email you within minutes to get your org ID. YC sends us your redemption automatically
 
 Redeem through Y Combinator: <https://deals.ycombinator.com/deals/7177>
 
@@ -98,7 +98,7 @@ Redeem through Y Combinator: <https://deals.ycombinator.com/deals/7177>
 1. Open the speedrun partner portal
 2. Find Parallel in the perks list
 3. Redeem there
-4. Send your Parallel org ID to startups@parallel.ai and we'll add your credits within 24 hours
+4. Send your Parallel org ID to startups@parallel.ai and we'll add your credits within minutes
 
 Redeem through a16z speedrun: <https://srpartners.a16z.com>
 
@@ -109,7 +109,7 @@ For: Neo, Entrepreneurs First, Founders Inc, Null Fellows, Another accelerator o
 Redeem through the form below and we'll add the credits straight to your Parallel org.
 
 1. Submit the form below - we've already filled in what you picked here.
-2. You'll hear from us within 24 hours.
+2. You'll hear from us within minutes.
 
 Program not listed? [Apply below.](#apply)
 
@@ -119,7 +119,7 @@ Tell us what you're building and we'll get you set up with credits.
 
 1. Create a Parallel account. Credits go to your Parallel org, so you'll need your org ID. [Sign up](https://platform.parallel.ai/)
 2. Tell us about your startup. A few details and a line or two on what you're building.
-3. Hear back within 24 hours. Once you're approved, the credits land in your org.
+3. Hear back within minutes. Once you're approved, the credits land in your org.
 
 Email [startups@parallel.ai](mailto:startups@parallel.ai) with:
 
@@ -148,7 +148,7 @@ A Parallel [account](https://platform.parallel.ai/) and your org ID.
 * **Where do I find my org ID?**  
 In your [Organization settings](https://platform.parallel.ai/settings?tab=organization).
 * **Do credits expire?**  
-Six months from the issue date, with the exception of Founders Inc credits, which don't expire.
+Six months from the issue date, with the exception of select partners, which don't expire.
 * **Can I combine offers?**  
 One program offer per company.
 * **What happens when my credits run out?**  

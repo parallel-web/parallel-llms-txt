@@ -40,9 +40,13 @@ _Note: For the latest pricing, always check official documentation._
 
 Parallel documents latencies per mode: roughly 200ms for Turbo, ~700ms for Fast, 1 second for Basic, and 3 seconds for Advanced. Its default rate limit is 600 requests per minute for Search and Extract, with GET polling excluded and custom limits on enterprise plans.
 
-Perplexity doesn't publish a latency figure for either search type, but it does publish a [Search API rate limit](https://docs.perplexity.ai/docs/admin/rate-limits-usage-tiers): 50 query units per second on every usage tier, with a burst of 50, where each query in a multi-query request uses one unit. That's about 3,000 single-query requests per minute, well above Parallel's 600 default. [Openbenchmarks' independent speed boards](https://openbenchmarks.com/web-search/fastest-search-api) (September 2026) supply a latency number: Perplexity's low context setting measured 1.38s mean on factual lookup against 348ms for Parallel turbo, though on multi-hop search with fetch Perplexity's high setting came out ahead of turbo once time is divided by answer quality.
+Perplexity doesn't publish a latency figure for either search type, but it does publish a [Search API rate limit](https://docs.perplexity.ai/docs/admin/rate-limits-usage-tiers): 50 query units per second on every usage tier, with a burst of 50, where each query in a multi-query request uses one unit. That's about 3,000 single-query requests per minute, well above Parallel's 600 default.
 
 ## **Accuracy on current benchmarks**
+
+On the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (November 2026 data), which holds one model and harness fixed and swaps only the search API, Parallel Search (advanced) ranks #1 at 83 and Parallel Fast scores 82, against 80 for Perplexity Search (medium), 79 at high, and 77 at low. Parallel Fast also took less time per task, 15.5 seconds against 30.9 for Perplexity at medium.
+
+Openbenchmarks, which publishes its harness and raw responses, gives an outside read that splits the same way. On its [coding-agent board](https://openbenchmarks.com/web-search-for-coding-agents) (100 documentation tickets, last updated September 26, 2026), Perplexity at low context completed 77.3% of tickets from search alone, first of 14, against 66.7% for Parallel Fast. On [multi-turn company search](https://openbenchmarks.com/multi-turn-company-search) (last updated October 2, 2026), Parallel Basic leads search-only at 46.5 F1 against Perplexity’s 37.8, though Perplexity at high context rises to 46.6 when the agent can fetch pages.
 
 We run Perplexity's Search API against ours inside the same agent on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026), at two tiers: a GPT-5.6 Sol agent (frontier) with Parallel Basic or Advanced, and a GPT-5.6 Luna agent (low-cost) with Parallel Fast or Turbo. Perplexity ran search-only, and Parallel had search and extract. Costs are USD per 1,000 questions, including LLM tokens and tool calls.
 
@@ -53,8 +57,6 @@ We run Perplexity's Search API against ours inside the same agent on [parallel.a
 | WideSearch (partial-credit score) | 53.5 at $547 | 57.6 at $692 | 47.0 at $24.80 | 45.5 at $10.50 |
 
 Perplexity comes out ahead on BrowseComp: it ties Advanced at 74% for about two-thirds of the cost and edges Fast at the low-cost tier. It also edges Fast on WideSearch at that tier, and its frontier runs cost less than Advanced on all three benchmarks. Parallel leads SimpleQA Verified and WideSearch at the frontier tier, and at the low-cost tier Fast matches Perplexity on SimpleQA Verified for $2.00 per 1,000 against $5.50. These are our runs on our harness, so test both on your own queries.
-
-Openbenchmarks, which publishes its harness and raw responses, gives an outside read that splits the same way. On its [coding-agent board](https://openbenchmarks.com/web-search-for-coding-agents) (100 documentation tickets, September 2026), Perplexity at low context completed 77.3% of tickets from search alone, first of 14, against 66.7% for Parallel Fast. On [multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), Parallel Basic leads search-only at 50.2 F1 against Perplexity’s 37.8, though Perplexity at high context rises to 46.6 when the agent can fetch pages.
 
 ### Finance benchmarks
 

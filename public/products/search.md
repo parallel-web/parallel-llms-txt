@@ -6,6 +6,12 @@ The highest accuracy web search API, built from the ground up for AIs
 
 [Get Started ](https://platform.parallel.ai/)[Get a Demo](https://contact.parallel.ai/)
 
+Scored onArtificial Analysis
+
+Parallel ranks #1 on the Artificial Analysis Search Index
+
+[See the report](https://artificialanalysis.ai/agents/search-api)
+
 ## Search modes for every job
 
 Control latency and depth to optimize your agents

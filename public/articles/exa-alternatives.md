@@ -8,6 +8,10 @@ Parallel is the best Exa alternative for most AI agents. It had the highest answ
 
 Parallel makes one of the APIs on this list. Every price below comes from the vendor's own pricing page or docs, read on November 14 and 15, 2026, and each section links to its source.
 
+On the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (November 2026 data), which runs 26 search API products through the same agent, Parallel Search (advanced) ranks #1 at 83 and Parallel Fast scores 82, against 80 for Exa (auto, dynamic highlights) and 79 for Exa (lite).
+
+On the [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) (updated November 17, 2026), which swaps only the search tool on expert-written finance and legal research tasks, Claude Opus 5.5 with Parallel Search (fast) ranks first at 57.5%. With the same GPT-5.6 Sol model on both, Parallel Advanced scored 48.3% at $2.27 per task, against 45.2% for Exa at $18.97. On [Openbenchmarks' multi-turn company search board](https://openbenchmarks.com/multi-turn-company-search) (last updated October 2, 2026), Parallel Basic scored 46.5 F1 from search results alone against 45.4 for Exa Deep, inside the board's trial-to-trial noise, and Exa Deep leads once the agent can fetch pages, 48.2 against 42.3.
+
 ## What Exa costs today
 
 Per [Exa's pricing page](https://exa.ai/pricing), search costs $4 per 1,000 requests on Lite, $7 on Auto, and $12 on Deep, each with up to 10 results and $1 per 1,000 for each extra result. Contents costs $1 per 1,000 pages per content type, Answer $5 per 1,000, Monitors $2 per 1,000, and the asynchronous Agent $0.012 to $1.00 per run. The free plan gives $10 of credits a month plus a $10 onboarding bonus with no payment method. Zero data retention needs an Enterprise plan with a $12,000 annual commitment.
@@ -39,7 +43,7 @@ Result counts differ. Exa, Parallel, and Firecrawl prices cover 10 results per r
 
 ### 1. Parallel
 
-[Parallel Search](https://parallel.ai/products/search) takes a natural-language objective plus optional keyword queries and returns ranked URLs with excerpts compressed for a model's context window. Four modes trade latency for depth: Turbo (about 200ms, English and Japanese only) and Fast (about 700ms) cost $1 per 1,000 requests, and Basic (about 1s) and Advanced (about 3s) cost $5, with 10 results included ([modes docs](https://docs.parallel.ai/search/modes)). The same key covers the [Extract API](https://parallel.ai/products/extract) at $1 per 1,000 URLs, the [Task API](https://docs.parallel.ai/task-api/task-quickstart) for deep research and enrichment at $5 to $2,400 per 1,000 runs, FindAll for entity discovery, and Monitor.
+[Parallel Search](https://parallel.ai/products/search) takes a natural-language objective plus optional keyword queries and returns ranked URLs with excerpts compressed for a model's context window. Four modes trade latency for depth: Turbo (about 200ms, English and Japanese only) and Fast (about 700ms) cost $1 per 1,000 requests, and Basic (about 1s) and Advanced (about 3s) cost $5, with 10 results included ([modes docs](https://docs.parallel.ai/search/modes)). The same key covers the [Extract API](https://parallel.ai/products/extract) at $1 per 1,000 URLs, the [Task API](https://docs.parallel.ai/task-api/task-quickstart) for deep research and enrichment at $5 to $2,400 per 1,000 runs, FindAll for entity discovery, and Monitor. On the Artificial Analysis Search Index, Advanced ranks #1 at 83 and Fast scores 82, against Exa auto's 80.
 
 On [AIMultiple's agentic search benchmark](https://aimultiple.com/agentic-search), which tested 24 configurations from six search APIs, Parallel Advanced had the highest answer accuracy at 87.0%, ahead of every Exa configuration, including Exa Fast at 82.6% and Exa Deep at 76.5%. Parallel Fast cost $0.0063 per correct answer, about a third of Exa Fast's $0.0193, and Parallel Advanced scored 78.9% on questions that needed current facts. [Parallel MCP](https://parallel.ai/mcp) works with no key, so you can try it in Claude, Cursor, or any MCP client in a minute.
 
@@ -55,7 +59,7 @@ Keenable sells search and fetch, plus SELECT, an SQL interface to the web. It ha
 
 ### 3. Brave Search API
 
-[Brave's Search API](https://brave.com/search/api/) serves results from Brave's own independent index at $5 per 1,000 requests, with LLM-ready context included. Each plan includes $5 in free credits a month, and Brave asks for a card to prevent abuse. Brave says it's SOC 2 Type II attested and keeps zero data retention by design. Its Answers endpoint costs $4 per 1,000 requests plus $5 per million tokens, and its [MCP server](https://github.com/brave/brave-search-mcp-server) is open source and runs locally with your key. At $5 per 1,000 requests, Brave costs five times Parallel's Fast and Turbo price per search. [Brave Search API vs. Parallel](https://parallel.ai/articles/brave-search-api-vs-parallel) goes deeper.
+[Brave's Search API](https://brave.com/search/api/) serves results from Brave's own independent index at $5 per 1,000 requests, with LLM-ready context included. Each plan includes $5 in free credits a month, and Brave asks for a card to prevent abuse. Brave says it's SOC 2 Type II attested and keeps zero data retention by design. Its Answers endpoint costs $4 per 1,000 requests plus $5 per million tokens, and its [MCP server](https://github.com/brave/brave-search-mcp-server) is open source and runs locally with your key. At $5 per 1,000 requests, Brave costs five times Parallel's Fast and Turbo price per search. [Brave Search API vs. Parallel](https://parallel.ai/articles/brave-search-api-vs-parallel) goes deeper. Brave LLM Context scores 75 on the Artificial Analysis index.
 
 **Best for: **teams that need an index independent of Google and Bing, with strict data handling.
 
@@ -93,7 +97,7 @@ Tavily is the default search tool in many agent frameworks, and it adds Extract,
 
 ### 9. Firecrawl
 
-Firecrawl started as a scraper, and its search endpoint can return scraped markdown with each result. A search of 10 results costs 2 credits from the same balance as scrape and crawl, which works out to about $1.98 per 1,000 searches on the $99 Standard plan (100,000 credits, per [Firecrawl's pricing page](https://www.firecrawl.dev/pricing)). The free plan gives 1,000 credits a month. [The best Firecrawl alternatives](https://parallel.ai/articles/firecrawl-alternatives) covers its tradeoffs.
+Firecrawl started as a scraper, and its search endpoint can return scraped markdown with each result. A search of 10 results costs 2 credits from the same balance as scrape and crawl, which works out to about $1.98 per 1,000 searches on the $99 Standard plan (100,000 credits, per [Firecrawl's pricing page](https://www.firecrawl.dev/pricing)). The free plan gives 1,000 credits a month. Firecrawl scores 73 on the Artificial Analysis index. [The best Firecrawl alternatives](https://parallel.ai/articles/firecrawl-alternatives) covers its tradeoffs.
 
 **Best for: **searches that turn into scraping or crawling whole sites.
 

@@ -4,7 +4,7 @@ Choosing between Keenable and Parallel comes down to scope: a keyword search ind
 
 ## Quick answer
 
-Keenable offers a realtime search mode built for speed, a recurring free allowance of 100,000 requests a month, point-in-time search, and on-premises deployment. Parallel searches from a natural-language objective, costs less per request once you pass Keenable's free allowance, and adds a research layer above search. Pick Keenable when per-call latency, a big free tier, or on-premises deployment decides the project. Pick Parallel when objective-driven retrieval, cost at volume, and a research layer above search decide it.
+Keenable offers a realtime search mode built for speed, a recurring free allowance of 100,000 requests a month, point-in-time search, and on-premises deployment. Parallel searches from a natural-language objective, costs less per request once you pass Keenable's free allowance, and adds a research layer above search. On the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (November 2026), Parallel Search (advanced) ranks #1 at 83, narrowly ahead of Keenable Search (pro), and Parallel Fast completes agent tasks for less money and slightly sooner than either Keenable mode. On the [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) (November 17, 2026), Claude Opus 5.5 with Parallel Fast ranks first at 57.5%, while with the same GPT-5.6 Sol model Keenable edges Parallel Advanced, 49.1% to 48.3%, at about four times the cost per task. Pick Keenable when per-call latency, a big free tier, or on-premises deployment decides the project. Pick Parallel when objective-driven retrieval, cost at volume, and a research layer above search decide it.
 
 ## Who Keenable is
 
@@ -22,6 +22,19 @@ Parallel Search takes a natural-language objective alongside optional keyword qu
 
 Keenable's `query_time` has no Parallel equivalent. It rewinds both the corpus and the ranking to a past instant, which you need for backtesting, for building evaluation sets without answer leakage, and for training-data work. For those jobs, Keenable is the better fit.
 
+## Accuracy and cost inside an agent loop
+
+The [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) is the one independent benchmark that has tested both providers. It runs the same answer model, GPT-5.6 Luna (medium), through the same harness with only the search provider changed, and scores DeepSearchQA, BrowseComp, and AA-Omniscience. Parallel's rows were measured on November 19, 2026 and Keenable's on November 9.
+
+| Configuration | Index | Search + model cost per 1,000 tasks | Time per task |
+| --- | --- | --- | --- |
+| Parallel Search (advanced) | 83 | $30.05 | 24.3s |
+| Keenable Search (pro) | 83 | $40.22 | 16.4s |
+| Keenable Search (realtime) | 82 | $40.46 | 15.8s |
+| Parallel Search (fast) | 82 | $14.03 | 15.5s |
+
+Parallel advanced ranks #1 on the index, ahead of Keenable pro on unrounded scores. Keenable realtime has the quickest individual search call of the four, at 0.33 seconds against 0.83 for Parallel Fast, but Parallel Fast finishes tasks slightly sooner because the model makes fewer calls. Search cost is AA's figure per 1,000 benchmark tasks at list price, not a per-request price.
+
 ## Keenable's NEEDLE benchmark
 
 Keenable publishes [NEEDLE](https://keenableai.github.io/needle/), a live benchmark that regenerates its queries every hour for news and every day for scholar, finance, legal, and rare-entity lookups. The code, prompts, judgments, and raw results are public, and every run executes in GitHub Actions. Few vendor benchmarks in this category publish that much, and you can run it yourself.
@@ -35,9 +48,9 @@ On the [October 19 results](https://keenableai.github.io/needle/results/), Keena
 
 ## The Vals AI Web Search Index
 
-Vals AI runs an independent [Web Search Index](https://www.vals.ai/benchmarks/web_search) that measures end-task accuracy: an agent answers expert-written finance and legal research tasks with one search tool as its only source, and Vals changes only the tool. Keenable Pro, run with GPT-5.6 Sol, took first place on October 21, 2026 at 49.1% and $8.84 per task. In the November 4 update, Claude Opus 5.5 with Parallel Search in Fast mode ranked first at 57.5% ($2.27 per task), with Parallel Advanced second at 54.1%; Keenable is now fourth.
+Vals AI runs an independent [Web Search Index](https://www.vals.ai/benchmarks/web_search) that measures end-task accuracy: an agent answers expert-written finance and legal research tasks with one search tool as its only source, and Vals changes only the tool. Keenable Pro, run with GPT-5.6 Sol, took first place on October 21, 2026 at 49.1% and $8.84 per task. In the November 17 update, Claude Opus 5.5 with Parallel Search in Fast mode ranked first at 57.5% ($2.27 per task), with Parallel Advanced second at 54.1%; Keenable is now fourth.
 
-Vals has not run the two providers with the same model, so the gap between them mixes model and search tool. Two results hold within a single model: Keenable lifted GPT-5.6 Sol 5.5 points above OpenAI's native search, and Parallel Fast lifted Claude Opus 5.5 3.8 points above Anthropic's native search at lower cost per task. Keenable returned results faster per call, with a median of 0.27 seconds in finance against 1.13 seconds for Parallel Fast.
+The November 17 update adds a same-model comparison, and it narrowly favors Keenable: with GPT-5.6 Sol, Keenable scored 49.1% at $8.84 per task, against 48.3% for Parallel Advanced at $2.27 and 48.0% for Parallel Fast at $2.05. That is a point less accuracy for about a quarter of the cost per task. Two more results hold within a single model: Keenable lifted GPT-5.6 Sol 5.5 points above OpenAI's native search, and Parallel Fast lifted Claude Opus 5.5 3.8 points above Anthropic's native search at lower cost per task. Keenable returned results faster per call, with a median of 0.27 seconds in finance against 1.13 seconds for Parallel Fast.
 
 ## Pricing and free tiers
 

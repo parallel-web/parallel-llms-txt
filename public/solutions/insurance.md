@@ -6,6 +6,12 @@ Automate claims, submission, and renewal research at volume, with confidence-sco
 
 [Start building for free](https://platform.parallel.ai/)[Contact us](https://contact.parallel.ai/)
 
+Scored onArtificial Analysis
+
+Parallel ranks #1 on the Artificial Analysis Search Index
+
+[See the report](https://artificialanalysis.ai/agents/search-api)
+
 Use Cases
 
 ## Decisions you can automate and audit

@@ -21,16 +21,16 @@ This table uses each vendor’s published pages as of September 28, 2026. Benchm
 | Published price | $1 per 1K (Turbo, Fast); $5 per 1K (Basic, Advanced) | $25/mo for 1,000 up to $2,750/mo for 500,000; Cloud 1M at $3,750/mo | $5 per 1K requests (Search plan) | $14 per 1K transactions |
 | Free tier | $5 in credits monthly (up to 5,000 Turbo or Fast searches) | 250 searches a month | $5 in credits monthly (1,000 requests) | None; free-credit Azure subscriptions aren’t eligible |
 | Rate limits | 600 requests/min | 50 to 100,000 searches/hr by plan | 50 requests/sec | 150 transactions/sec, 1M/day |
-| Latency evidence (Openbenchmarks, mean) | Turbo 348ms, Fast 942ms | Not tested | LLM Context 601ms, web 630ms | Not tested |
+| Latency evidence (Openbenchmarks developer board, average search time) | Turbo 333ms, Fast 953ms | Not tested | LLM Context 523ms | Not tested |
 | Terms to check | ZDR on Enterprise plans | Legal Shield from Production up; Google lawsuit pending | Storing results needs a storage-rights plan | Must display citations and Bing query link; DPA doesn’t apply |
 
 Neither SerpApi nor Bing appears in our own [/benchmarks](https://parallel.ai/benchmarks) runs (September 2026), which test Parallel against Exa, Tavily, and Perplexity, so we have no in-house head-to-head for them.
 
 ## What the independent benchmarks show
 
-Openbenchmarks covers Brave and Parallel, and it doesn’t cover SerpApi or Bing.
+The [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (November 2026 data) covers Brave and Parallel: Parallel Search (advanced) ranks #1 of 26 search API products at 83, Brave LLM Context scores 75, and Brave’s web search 65. Openbenchmarks covers Brave and Parallel, and it doesn’t cover SerpApi or Bing.
 
-[Openbenchmarks’ fastest search API board](https://openbenchmarks.com/web-search/fastest-search-api) (300 questions, last measured September 12, 2026) reports mean latency from its own client. Parallel Turbo ranks first at 348ms, and Brave’s LLM Context and web endpoints come in at 601ms and 630ms. The same board also scores accuracy, and there Brave leads our faster modes: Brave LLM Context 94.0% and Brave web 93.3%, against Parallel Turbo 71.3%, Fast 86.0%, and Basic 93.3%. On its 100-question developer search board, Parallel Turbo reached 64.7 task completion at 333ms average search time, and Brave LLM Context reached 38.0 at 523ms. The “SERP (RapidAPI)” row on these boards is a Google search API resold on RapidAPI, and it isn’t SerpApi.
+[Openbenchmarks’ developer search board](https://openbenchmarks.com/web-search-for-coding-agents) (100 documentation tickets, last updated September 26, 2026) reports average search time from its own client. Parallel Turbo ranks first at 333ms with 64.7 task completion, and Brave LLM Context comes in at 523ms with 38.0. Openbenchmarks’ factual-lookup board, re-measured October 21, 2026, doesn’t include Parallel. There Brave LLM Context scored 94.0% accuracy and Brave web 93.3%. The “SERP (RapidAPI)” row on these boards is a Google search API resold on RapidAPI, and it isn’t SerpApi.
 
 Our docs quote ~200ms for Turbo and ~700ms for Fast. Openbenchmarks measures a client-side mean over its own queries and network path, so its figures run higher.
 
@@ -135,7 +135,7 @@ Brave’s Search plan costs $5 per 1,000 requests and covers web, LLM Context, n
 
 ### Is Brave or Parallel more accurate?
 
-It depends on the test. On Openbenchmarks’ factual-lookup board, Brave LLM Context scored 94.0% against Parallel Turbo’s 71.3% and Fast’s 86.0%, while Parallel Turbo led its developer search board at 64.7 task completion against Brave’s 38.0.
+It depends on the test. On Openbenchmarks’ factual-lookup board, Brave LLM Context scored 94.0% in a run that doesn’t include Parallel, while Parallel Turbo led its developer search board at 64.7 task completion against Brave’s 38.0. On the Artificial Analysis Search Index, Parallel Search (advanced) scores 83 and Brave LLM Context 75.
 
 ### Is SerpApi legal to use?
 

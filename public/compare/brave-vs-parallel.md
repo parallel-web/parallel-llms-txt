@@ -1,12 +1,12 @@
 # Parallel vs. Brave
 
-On Openbenchmarks, Parallel Fast completed 66.7% of coding-agent retrieval tasks against 38.0% for Brave, at a fifth of the price per search. Brave takes less time per task on Artificial Analysis’s benchmark and allows more searches per minute.
+On Openbenchmarks, Parallel Fast completed 66.7% of coding-agent retrieval tasks against 38.0% for Brave, at a fifth of the price per search. In November 2026 data, Parallel also ranks #1 on the Artificial Analysis Search Index, at 83 against 75 for Brave LLM Context. Brave allows more searches per minute.
 
 [Start building for free](https://platform.parallel.ai/) 
 
-[Coding-agent retrieval, search only: 66.7% vs. 38.0%](#accuracy) [Multi-hop company search F1, search only: 46.5 vs. 28.0](#accuracy) [Lowest search list price, per 1,000 requests: $1 vs. $5](#cost)
+[Artificial Analysis Search Index, November 2026: 83 vs. 75](#accuracy) [Coding-agent retrieval, search only: 66.7% vs. 38.0%](#accuracy) [Multi-hop company search F1, search only: 46.5 vs. 28.0](#accuracy) [Lowest search list price, per 1,000 requests: $1 vs. $5](#cost)
 
-Last updated November 11, 2026
+Last updated November 20, 2026
 
 ## What does Parallel do?
 
@@ -24,35 +24,46 @@ Parallel is one developer platform covering search, extraction, research, entity
 
 ## Parallel vs. Brave at a glance
 
-Published list prices, documented capabilities, terms, and dated benchmark results as of November 3, 2026.
+Published list prices, documented capabilities, terms, and dated benchmark results as of November 20, 2026.
 
 __Parallel and Brave compared at a glance__
 | Dimension                                              | Parallel                                                     | Brave                                                                               |
 | ------------------------------------------------------ | ------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
 | Search list price, per 1,000 requests                  | $1 (Turbo or Fast), $5 (Basic or Advanced) (Leads)           | $5 (Web Search or LLM Context)                                                      |
+| Artificial Analysis Search Index, November 2026        | 83 (Advanced), 82 (Fast) (Leads)                             | 75 (LLM Context), 65 (Web Search)                                                   |
 | Coding-agent retrieval, Openbenchmarks, September 2026 | 66.7% (Fast, search only) (Leads)                            | 38.0% (LLM Context, search only)                                                    |
 | Building on results                                    | Derivative works allowed, one end customer per query (Leads) | No derivative works, transient storage only                                         |
 | Research, monitoring, and entity discovery             | Task, Monitor, FindAll, and Entity Search APIs (Leads)       | Answers, with a multi-search research mode                                          |
 | Published index size                                   | Billions of pages, no exact count                            | 40+ billion pages on its API page, 20 billion+ indexed in its security docs (Leads) |
 | Search rate limit, default                             | 600 requests per minute                                      | 50 per second, about 3,000 per minute (Leads)                                       |
 
-Sources: [Parallel pricing](https://parallel.ai/pricing), [Openbenchmarks Brave Search vs. Parallel](https://openbenchmarks.com/web-search/brave-vs-parallel), [Parallel Customer Terms, effective August 11, 2026](https://parallel.ai/customer-terms), [Parallel Web Index](https://parallel.ai), [Parallel rate limits](https://docs.parallel.ai/getting-started/rate-limits)
+Sources: [Artificial Analysis Search API benchmark](https://artificialanalysis.ai/agents/search-api), [Parallel pricing](https://parallel.ai/pricing), [Openbenchmarks Brave Search vs. Parallel](https://openbenchmarks.com/web-search/brave-vs-parallel), [Parallel Customer Terms, effective August 11, 2026](https://parallel.ai/customer-terms), [Parallel Web Index](https://parallel.ai), [Parallel rate limits](https://docs.parallel.ai/getting-started/rate-limits)
 
-## More retrieval tasks completed for coding and multi-hop agents
+## #1 on Artificial Analysis in November 2026, and more retrieval tasks completed
+
+Parallel Search ranks #1 on the independent Artificial Analysis Search Index, in data dated November 19, 2026\. Artificial Analysis holds one model (GPT-5.6 Luna) and one harness fixed, swaps only the search API, and averages DeepSearchQA, BrowseComp, and AA-Omniscience across 26 search products. Parallel Advanced scores 83 and Parallel Fast 82, against 75 for Brave LLM Context and 65 for Brave Web Search.
 
 Openbenchmarks is an independent hub that publishes its harness and every raw vendor response. Its coding-agent board gives a fixed agent 100 documentation tickets and passes a ticket only when the answer cites a source from that run. Searching alone, Parallel Fast completed 66.7% and Parallel Turbo 64.7%, against 38.0% for Brave LLM Context. Brave documents no page fetch endpoint, so it has no search and fetch result on that board.
 
 On multi-turn company search, a fixed agent hunts for every company that matches three or four constraints. From search results alone, Parallel Basic scored 46.5 F1 against 28.0 for Brave Web Search. Its precision was 88.7 against 66.9, and its recall 34.4 against 19.3.
 
-Openbenchmarks has flagged a timing bias on its company news board and is re-running every vendor, so this page leaves those results out until the re-run is published.
+Parallel isn’t in Openbenchmarks’ October 21, 2026 run of its company news board, so this page leaves that board out.
 
 AIMultiple, an independent research publisher, ran one fixed agent (GPT-5.6 Luna) on 120 questions through Brave LLM Context at three context budgets and through Parallel’s four modes. In its benchmark updated November 10, 2026, Parallel Advanced scored 87.0% answer accuracy and Parallel Fast 79.7% at $0.0063 per correct answer. Brave LLM Context at its default 8,192 token budget scored 77.9% at $0.0178, and its larger budgets scored lower. Brave did better on source support: 96.8% of its returned excerpts were supported by their source pages, against 93.5% for Parallel Advanced.
 
 Parallel’s own published runs and OpenRouter’s search boards do not include Brave, so this page reports neither.
 
-Sources: [Openbenchmarks Brave Search vs. Parallel](https://openbenchmarks.com/web-search/brave-vs-parallel), [Openbenchmarks web search for coding agents](https://openbenchmarks.com/web-search-for-coding-agents), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [AIMultiple agentic search benchmark](https://aimultiple.com/agentic-search)
+Sources: [Artificial Analysis Search API benchmark](https://artificialanalysis.ai/agents/search-api), [Openbenchmarks Brave Search vs. Parallel](https://openbenchmarks.com/web-search/brave-vs-parallel), [Openbenchmarks web search for coding agents](https://openbenchmarks.com/web-search-for-coding-agents), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [AIMultiple agentic search benchmark](https://aimultiple.com/agentic-search)
 
 +28.7 points of coding-agent task completion, search only
+
+Artificial Analysis Search Index
+
+Higher is better
+
+Parallel: 83 (Advanced)
+
+Brave: 75 (LLM Context)
 
 Coding-agent task completion, search only
 
@@ -70,7 +81,7 @@ Parallel: 46.5
 
 Brave: 28.0
 
-Coding-agent row: Openbenchmarks web search for coding agents, board updated September 26, 2026, 100 tickets over three runs, Parallel Fast against Brave LLM Context. Company search row: Openbenchmarks multi-turn company search, board updated October 2, 2026, 45 questions over three runs, Parallel Basic against Brave Web Search. Both boards read November 3, 2026.
+Artificial Analysis row: Search Index data dated November 19, 2026 for Parallel and August 27, 2026 for Brave, a GPT-5.6 Luna (medium) agent with the same harness for every provider, the mean of DeepSearchQA F1, BrowseComp accuracy, and AA-Omniscience accuracy. Coding-agent row: Openbenchmarks web search for coding agents, board updated September 26, 2026, 100 tickets over three runs, Parallel Fast against Brave LLM Context. Company search row: Openbenchmarks multi-turn company search, board updated October 2, 2026, 45 questions over three runs, Parallel Basic against Brave Web Search. Both boards read November 3, 2026.
 
 ## Snippets, page chunks, or excerpts: what your agent reads
 
@@ -80,7 +91,7 @@ Parallel Search takes a natural-language objective of up to 5,000 characters plu
 
 A median coding-agent task on Openbenchmarks read 12,460 tokens with Parallel Fast against 14,103 with Brave.
 
-What the model reads shows up in its bill. Artificial Analysis measured model token spend per 1,000 tasks at $10.67 for Parallel advanced, $16.95 for Brave LLM Context, and $20.76 for Parallel basic.
+What the model reads shows up in its bill. Artificial Analysis measured model token spend per 1,000 tasks at $7.04 for Parallel Advanced, $9.40 for Parallel Fast, and $16.95 for Brave LLM Context.
 
 Brave’s Goggles go further than Parallel’s domain filters. They re-rank and filter results by custom rules, and they work on LLM Context too.
 
@@ -108,11 +119,11 @@ Model token spend per 1,000 Artificial Analysis tasks
 
 Lower is better
 
-Parallel: $10.67 (advanced)
+Parallel: $7.04 (Advanced)
 
 Brave: $16.95
 
-Sources row: documented maximums, checked October 14, 2026\. Parallel includes 10 results and bills each extra one at $1 per 1,000\. Brave LLM Context returns up to 50 URLs at one price. Tokens row: Openbenchmarks coding-agent board, updated September 26, 2026, search only, Parallel Fast against Brave LLM Context. Spend row: Artificial Analysis runs of August 17 (Parallel) and August 27 (Brave LLM Context), 2026\. Parallel basic spent $20.76.
+Sources row: documented maximums, checked October 14, 2026\. Parallel includes 10 results and bills each extra one at $1 per 1,000\. Brave LLM Context returns up to 50 URLs at one price. Tokens row: Openbenchmarks coding-agent board, updated September 26, 2026, search only, Parallel Fast against Brave LLM Context. Spend row: Artificial Analysis runs of November 19 (Parallel) and August 27 (Brave LLM Context), 2026.
 
 ## Cost per useful answer, not just per call
 
@@ -120,7 +131,7 @@ Brave charges $5 per 1,000 requests for Web Search and LLM Context alike. Parall
 
 List price is half the bill. On Openbenchmarks’ coding-agent board, a median Parallel Fast task cost $0.054 in search and model tokens and completed 66.7% of tickets. A median Brave task cost $0.082 and completed 38.0%.
 
-Artificial Analysis reports search and model spend per 1,000 benchmark tasks. Parallel advanced cost $47.93 in search and $10.67 in model tokens, $58.60 in all. Brave LLM Context cost $61.96 in search and $16.95 in model tokens, $78.91 in all. Brave took less time per task, 18.8 seconds against 36.6.
+Artificial Analysis reports search and model spend per 1,000 benchmark tasks. Parallel Advanced cost $23.00 in search and $7.04 in model tokens, $30.04 in all. Parallel Fast cost $14.03 in all. Brave LLM Context cost $61.96 in search and $16.95 in model tokens, $78.91 in all. Parallel Fast also took less time per task, 15.5 seconds against 22.3 for Brave LLM Context.
 
 Brave is cheaper per run on multi-hop company search. A median Brave Web Search run cost $0.268 against $0.419 for Parallel Turbo and $1.12 for Parallel Basic. Both Parallel modes found more of the right companies, at 34.7 F1 for Turbo and 46.5 for Basic against 28.0.
 
@@ -148,11 +159,11 @@ Search plus model cost, per 1,000 Artificial Analysis tasks
 
 Lower is better
 
-Parallel: $58.60
+Parallel: $30.04 (Advanced)
 
 Brave: $78.91
 
-List prices checked November 3, 2026\. Brave has one search price, so both Parallel tiers are set against it. Per-task row: Artificial Analysis runs of August 17 and 27, 2026, search spend plus candidate model tokens per 1,000 tasks, Parallel advanced against Brave LLM Context. Enterprise pricing differs on both platforms.
+List prices checked November 3, 2026\. Brave has one search price, so both Parallel tiers are set against it. Per-task row: Artificial Analysis runs of November 19 (Parallel) and August 27 (Brave), 2026, search spend plus candidate model tokens per 1,000 tasks, Parallel Advanced against Brave LLM Context. Enterprise pricing differs on both platforms.
 
 ## How much does the Brave Search API cost?
 
@@ -248,16 +259,16 @@ Sources: [Parallel Search docs](https://docs.parallel.ai/search/search-quickstar
 
 ### Performance and scale
 
-Brave took less time per Artificial Analysis task, 18.8 seconds against 36.6 for Parallel advanced. Brave allows five times the default search rate.
+Parallel Fast took less time per Artificial Analysis task in November 2026 data, 15.5 seconds against 22.3 for Brave LLM Context. Brave allows five times the default search rate.
 
 __Performance and scale: Parallel compared with Brave__
-| Feature                             | Parallel                           | Brave                                                     |
-| ----------------------------------- | ---------------------------------- | --------------------------------------------------------- |
-| Search latency, advertised          | About 200ms Turbo, 700ms Fast      | No figure published                                       |
-| Artificial Analysis time per task   | 36.6s advanced, 19.7s basic        | 18.8s LLM Context (Leads)                                 |
-| Search rate limit, default          | 600 per minute                     | 50 per second, about 3,000 per minute (Leads)             |
-| Research rate limit, default        | 2,000 Task runs per minute (Leads) | 2 Answers requests per second                             |
-| Query languages at the lowest price | Turbo handles English and Japanese | Country and language settings at its one $5 price (Leads) |
+| Feature                                          | Parallel                           | Brave                                                     |
+| ------------------------------------------------ | ---------------------------------- | --------------------------------------------------------- |
+| Search latency, advertised                       | About 200ms Turbo, 700ms Fast      | No figure published                                       |
+| Artificial Analysis time per task, November 2026 | 15.5s Fast, 24.3s Advanced (Leads) | 22.3s LLM Context                                         |
+| Search rate limit, default                       | 600 per minute                     | 50 per second, about 3,000 per minute (Leads)             |
+| Research rate limit, default                     | 2,000 Task runs per minute (Leads) | 2 Answers requests per second                             |
+| Query languages at the lowest price              | Turbo handles English and Japanese | Country and language settings at its one $5 price (Leads) |
 
 Sources: [Artificial Analysis Search API benchmark](https://artificialanalysis.ai/agents/search-api), [Parallel Search modes](https://docs.parallel.ai/search/modes), [Parallel rate limits](https://docs.parallel.ai/getting-started/rate-limits)
 
@@ -331,21 +342,21 @@ New accounts earn up to $80 at signup plus $5 in credits every month. That cover
 ## FAQ
 
 * **Is Parallel better than Brave?**  
-For agents that do multi-step retrieval, yes. On Openbenchmarks, Parallel Fast completed 66.7% of coding-agent tickets against 38.0% for Brave, and Parallel Basic scored 46.5 F1 on multi-hop company search against 28.0\. Brave took less time per Artificial Analysis task, 18.8 seconds against 36.6.
+For agents that do multi-step retrieval, yes. Parallel Search ranks #1 on Artificial Analysis (November 2026), 83 to 75\. On Openbenchmarks, Parallel Fast completed 66.7% of coding-agent tickets against 38.0% for Brave, and Parallel Basic scored 46.5 F1 on multi-hop company search against 28.0.
 * **How much does the Brave Search API cost?**  
 Brave’s Search plan costs $5 per 1,000 requests for Web Search, LLM Context, news, video, image, and place search, at 50 requests per second. Answers costs $4 per 1,000 searches plus $5 per million input and output tokens, at 2 requests per second. Every plan includes $5 in free credits a month. Parallel Search costs $1 per 1,000 on Turbo or Fast and $5 on Basic or Advanced.
 * **Parallel vs. Brave: which is cheaper?**  
-Parallel Turbo and Fast cost a fifth of Brave’s $5 per 1,000 searches. Basic and Advanced cost the same. On Artificial Analysis’s benchmark, Parallel advanced cost $58.60 per 1,000 tasks in search and model tokens, against $78.91 for Brave LLM Context. Brave includes more results per call and was cheaper per run on multi-hop company search, at a lower F1.
+Parallel Turbo and Fast cost a fifth of Brave’s $5 per 1,000 searches. Basic and Advanced cost the same. On Artificial Analysis’s benchmark, Parallel Advanced cost $30.04 per 1,000 tasks in search and model tokens, against $78.91 for Brave LLM Context. Brave includes more results per call and was cheaper per run on multi-hop company search, at a lower F1.
 * **What does each API return to an agent?**  
 Brave Web Search returns titles, URLs, and short snippets. Brave LLM Context returns page chunks ranked under a token budget, 8,192 tokens by default. Parallel Search returns 10 ranked URLs with excerpts compressed toward your objective, and Parallel Extract returns any page as excerpts or full markdown. Brave documents no fetch endpoint.
 * **Does Brave run its own index?**  
 Yes. Brave crawls and ranks the web itself rather than reselling Google or Bing. Its API page describes an index of more than 40 billion pages, and its security docs describe 20 billion or more indexed pages out of 100 billion known URLs. Parallel also runs its own index, and publishes no page count.
 * **Where does Brave still win?**  
-Brave publishes its index size and serves news, video, image, and place search. It allows about 3,000 search requests a minute against Parallel’s 600, includes up to 50 sources per call, and offers Goggles rules that reorder its results. It finished Artificial Analysis tasks in less time, and its terms license your queries only to serve results.
+Brave publishes its index size and serves news, video, image, and place search. It allows about 3,000 search requests a minute against Parallel’s 600, includes up to 50 sources per call, and offers Goggles rules that reorder its results. Its terms license your queries only to serve results.
 * **Does Brave offer EU data residency?**  
 Not as of October 16, 2026\. Brave’s API privacy notice names Brave Software Inc. in the US as the provider. Enterprise customers get zero data retention. Parallel’s EU endpoint serves Search (basic mode) and Extract (cache-only). Other APIs aren’t served there. Billing, metrics, and edge logs (no content) go to the US, and Extract sends only URLs to its page cache outside the EU.
 * **How current is this comparison?**  
-Parallel reviewed Brave’s docs, prices, terms, and privacy notice on November 3, 2026\. Artificial Analysis cost and time figures come from runs it measured in August 2026\. Openbenchmarks figures come from its coding-agent board of September 26 and company search board of October 2\. AIMultiple figures come from its November 10 benchmark. Parallel’s own runs and OpenRouter’s boards do not include Brave.
+Parallel reviewed Brave’s docs, prices, terms, and privacy notice on November 3, 2026\. Artificial Analysis figures come from its November 19 data. Openbenchmarks figures come from its coding-agent board of September 26 and company search board of October 2\. AIMultiple figures come from its November 10 benchmark. Parallel’s own runs and OpenRouter’s boards do not include Brave.
 
 Trusted by
 

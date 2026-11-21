@@ -20,8 +20,6 @@ Parallel's Search API takes an objective plus optional explicit queries and retu
 
 Brave has no content extraction endpoint. If your agent needs full page text, that is a second vendor or your own fetcher.
 
-For an independent comparison, AIMultiple's [Agentic Search API Benchmark](https://aimultiple.com/agentic-search) (updated November 10, 2026) runs one fixed agent, GPT-5.6 Luna, on 120 questions through Brave's LLM Context endpoint at three context budgets and through Parallel's four modes. Parallel Advanced had the highest answer accuracy of the 24 configurations tested, at 87.0%, and Parallel Fast scored 79.7% at $0.0063 per correct answer. Brave's best result came from its default 8,192-token budget, at 77.9% and $0.0178, and its larger budgets scored lower. Brave led on one measure: 96.8% of its returned excerpts were supported by their source pages, against 93.5% for Parallel Advanced, the next highest.
-
 ## **Generated answers**
 
 Brave's Answers plan is a separate product on a separate meter. It exposes an OpenAI-compatible chat completions endpoint that grounds a generated answer on one search or several, returns citations, and supports streaming. Pricing is $4 per 1,000 queries plus $5 per million input tokens and $5 per million output tokens. Note that Summarizer Search, which older tutorials still point at, is deprecated in favour of Answers and remains available only to customers on the discontinued Pro AI plan.
@@ -29,6 +27,16 @@ Brave's Answers plan is a separate product on a separate meter. It exposes an Op
 Parallel covers the same ground with the Responses API: OpenAI-compatible agentic research that returns a synthesized, cited answer, priced by reasoning effort at $10 per 1,000 requests for low, $50 for medium, and $250 for high, with latencies of roughly 5 to 10 seconds, 15 to 20 seconds, and 30 to 60 seconds respectively.
 
 Both providers offer OpenAI-compatible interfaces, but Brave’s cited answer endpoint uses Chat Completions while Parallel’s cited research endpoint uses Responses. Validate request parameters, streaming events, and citation handling when integrating. Brave’s token-based billing and Parallel’s fixed effort-tier pricing produce different economics depending on answer length and research depth.
+
+## Accuracy and cost inside an agent loop
+
+On the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (November 2026 data), Parallel Search (advanced) ranks #1 of 26 search API products at 83, and Parallel Fast scores 82. Brave LLM Context scores 75, and Brave's web search 65 in its August run. Per 1,000 benchmark tasks, search plus model tokens came to $14.03 for Parallel Fast and $30.04 for Parallel Advanced, against $78.91 for Brave LLM Context. Brave LLM Context took 22.3 seconds per task, against 15.5 for Parallel Fast and 24.3 for Parallel Advanced. These are costs per benchmark task, not prices per API call.
+
+This is an independent Artificial Analysis evaluation, not a Parallel-run benchmark. It uses the same answer model and agent harness across providers, with a shared text-only web_fetch tool. Reported task time combines measured search time and derived model time; it is not latency for one API request.
+
+Openbenchmarks, an independent hub that publishes its harness and raw vendor responses, runs both on two boards. On [multi-turn company search](https://openbenchmarks.com/multi-turn-company-search) (last updated October 2, 2026), Parallel Basic scored 46.5 F1 from search results alone, against 28.0 for Brave Search. On [web search for coding agents](https://openbenchmarks.com/web-search-for-coding-agents) (last updated September 26, 2026), Parallel Fast completed 66.7% of 100 documentation tickets from search alone, against 38.0% for Brave LLM Context, at a median task cost of $0.054 against $0.082.
+
+AIMultiple's [Agentic Search API Benchmark](https://aimultiple.com/agentic-search) (updated November 10, 2026) is a further independent check. It runs one fixed agent, GPT-5.6 Luna, on 120 questions through Brave's LLM Context endpoint at three context budgets and through Parallel's four modes. Parallel Advanced had the highest answer accuracy of the 24 configurations tested, at 87.0%, and Parallel Fast scored 79.7% at $0.0063 per correct answer. Brave's best result came from its default 8,192-token budget, at 77.9% and $0.0178, and its larger budgets scored lower. Brave led on one measure: 96.8% of its returned excerpts were supported by their source pages, against 93.5% for Parallel Advanced, the next highest.
 
 ## **Pricing**
 

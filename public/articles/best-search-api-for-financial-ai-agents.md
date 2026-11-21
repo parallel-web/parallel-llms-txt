@@ -6,7 +6,7 @@ For a financial AI agent that has to find exact, dated facts on the open web, Pa
 
 The other three benchmarks are closer. On FinSearchComp T2, Parallel Advanced posts the top score by 0.2 points over Perplexity, at half the cost of the cheapest alternative. On FrontierFinance, Exa Auto leads by 0.4 points in a single run, and Parallel is 38% cheaper. On PWS-Finance, our held-out benchmark, Parallel Advanced edges OpenAI's native search by 0.6 points at 30% lower cost. We make Parallel and ran these evaluations; the methodology and charts are on [/benchmarks](/benchmarks).
 
-An independent benchmark puts Parallel first as well. On the [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) (updated November 4, 2026), which Vals runs itself on expert-written finance and legal tasks, Claude Opus 5.5 with Parallel Search in Fast mode ranked first of 12 model and search-tool combinations at 57.5%, and first on the finance split at 60.7% for $1.28 per task.
+An independent benchmark puts Parallel first as well. On the [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) (updated November 17, 2026), which Vals runs itself on expert-written finance and legal tasks, Claude Opus 5.5 with Parallel Search in Fast mode ranked first of 14 model and search-tool combinations at 57.5%, and first on the finance split at 60.7% for $1.28 per task. On the general-purpose [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (November 2026 data), Parallel Search (advanced) also ranks #1 of 26 search API products at 83.
 
 ## What do finance agents need from a search API?
 

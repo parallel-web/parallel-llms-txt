@@ -288,7 +288,7 @@ At minimum, you need search and extraction. Add deep research for synthesis task
 Costs depend on query volume and task complexity. A basic agent running 1,000 searches (Basic or Advanced mode) and 1,000 extractions daily costs approximately $6/day with Parallel APIs, or about $2/day with Fast or Turbo search. Deep research tasks add $5-$2,400/1K depending on processor tier.
 
 How do I evaluate search API accuracy for AI agents?
-Compare provider performance on published benchmarks (HLE, BrowseComp, SimpleQA) at equivalent price points. Request accuracy numbers at your expected budget level, not top-tier performance.
+Compare provider performance on published benchmarks (HLE, BrowseComp, SimpleQA) at equivalent price points. Request accuracy numbers at your expected budget level, not top-tier performance. For an independent baseline, the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) runs 26 search API products through the same agent and changes only the search API. Its November 2026 data ranks Parallel Search (advanced) #1 at 83.
 
 **How do I keep my research agent's data fresh?**
 Monitor APIs track web changes and deliver webhook notifications. Set hourly, daily, or weekly cadences based on how fast your domain moves. Chain monitor events to extraction and enrichment APIs for continuous intelligence pipelines.

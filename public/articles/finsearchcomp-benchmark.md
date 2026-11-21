@@ -172,7 +172,7 @@ T1 also rewards a different capability. The paper found that products with dedic
 
 FinSearchComp grades short answers. Much finance work is long-form, like an earnings preview or a comp set with reasoning. Samaya's FrontierFinance ([arXiv 2608.11683](https://arxiv.org/abs/2608.11683)) covers that side with 220 expert-written research queries graded against rubrics by three judges. Our results for it are in [our guide to the best search API for financial AI agents](/articles/best-search-api-for-financial-ai-agents) and the [Parallel for Finance launch post](/blog/parallel-for-finance).
 
-Vals AI's Finance Agent Benchmark v2 is another expert-written finance set, built from equity-research workflows such as comparables, earnings analysis, and financial modeling. Vals uses 450 of its questions in its independent [Web Search Index](https://www.vals.ai/benchmarks/web_search), which holds the agent fixed, swaps the search tool, and removes SEC EDGAR. In the November 4, 2026 update, Claude Opus 5.5 with Parallel Search in Fast mode scored 60.7% on that finance split, the top result, and ranked first overall.
+Vals AI's Finance Agent Benchmark v2 is another expert-written finance set, built from equity-research workflows such as comparables, earnings analysis, and financial modeling. Vals uses 450 of its questions in its independent [Web Search Index](https://www.vals.ai/benchmarks/web_search), which holds the agent fixed, swaps the search tool, and removes SEC EDGAR. In the November 17, 2026 update, Claude Opus 5.5 with Parallel Search in Fast mode scored 60.7% on that finance split, the top result, and ranked first overall.
 
 ## How to run FinSearchComp yourself
 

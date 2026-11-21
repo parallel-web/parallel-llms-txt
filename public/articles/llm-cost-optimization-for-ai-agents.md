@@ -25,21 +25,22 @@ Prices are from each provider’s pricing page as of October 7, 2026: [OpenAI](h
 
 ## What independent benchmarks measured per task
 
-The [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) runs the same GPT-5.6 Luna agent against each search provider and reports search cost and model cost per 1,000 tasks. It’s the only independent board we know of that puts a built-in search tool next to standalone search APIs. Selected cost rows from the September 28, 2026 data:
+The [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) runs the same GPT-5.6 Luna agent against each search provider and reports search cost and model cost per 1,000 tasks. It’s the only independent board we know of that puts a built-in search tool next to standalone search APIs. Selected cost rows, from the latest run for each configuration as of November 19, 2026:
 
 | Configuration | Search cost per 1,000 tasks | Model cost per 1,000 tasks | Total |
 | --- | --- | --- | --- |
 | Perplexity Search (medium) | $62.30 | $8.04 | $70.34 |
-| Octen Search (highlights) | $9.07 | $14.92 | $23.99 |
-| Parallel Search (advanced) | $47.93 | $11.29 | $59.22 |
+| Octen Search (highlights) | $9.07 | $14.50 | $23.57 |
+| Parallel Search (advanced) | $23.00 | $7.04 | $30.04 |
+| Parallel Search (fast) | $4.63 | $9.40 | $14.03 |
 | OpenAI Web Search (medium) | $40.19 | $9.40 | $49.59 |
-| Exa Search (auto) | $65.57 | $17.73 | $83.30 |
-| Parallel Search (basic) | $45.14 | $21.65 | $66.79 |
+| Exa Search (auto) | $53.17 | $10.60 | $63.78 |
+| Parallel Search (basic) | $45.14 | $20.76 | $65.91 |
 | Model only, no search | n/a | $2.92 | $2.92 |
 
 Search fees are the larger cost line for most configurations on a cheap model. Our Advanced and Basic modes cost more per task than OpenAI’s tool on this board, so if cost is your goal, they’re the wrong modes to switch to.
 
-The modes to compare are Turbo and Fast at $1 per 1,000. Fast isn’t on the current board, but in AA’s September 8 data it recorded $8.41 in search cost per 1,000 tasks, about a fifth of OpenAI’s $40.19 search line in the later snapshot. We publish our own runs at the low-cost tier on [our benchmarks page](https://parallel.ai/benchmarks): with a GPT-5.6 Luna agent, Fast answered 94% of SimpleQA Verified at $2.00 per 1,000 questions, search and tokens included. Openbenchmarks measures the same trade on single-fact lookups: on its [company news board](https://openbenchmarks.com/company-news/metric/cost-per-1k-correct) (300 questions, September 2026), Fast answered 86.0% correctly and cost $1.16 per 1,000 correct answers, the cheapest paid option, against $7.05 for Exa Fast at 99.3% accuracy. A low price per call doesn’t guarantee a low price per correct answer, so check accuracy beside price.
+The modes to compare are Turbo and Fast at $1 per 1,000. On AA’s November 19 data, Fast recorded $4.63 in search cost per 1,000 tasks, under an eighth of OpenAI’s $40.19 search line, and scored 82 on the index against OpenAI’s 74. Parallel Search (advanced) ranks #1 on the same index at 83. We publish our own runs at the low-cost tier on [our benchmarks page](https://parallel.ai/benchmarks): with a GPT-5.6 Luna agent, Fast answered 94% of SimpleQA Verified at $2.00 per 1,000 questions, search and tokens included. A low price per call doesn’t guarantee a low price per correct answer, so check accuracy beside price. Part of the gap is how much the model has to read: in AA’s data, Parallel Search (advanced) used about 82,000 model tokens per task, the fewest of any third-party search API, against 118,000 for Keenable Search (pro) and 155,000 for Exa (auto).
 
 ## The levers, in the order to apply them
 

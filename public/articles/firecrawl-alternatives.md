@@ -8,6 +8,8 @@ Parallel is the best Firecrawl alternative for AI agents. Its Search API returns
 
 Parallel makes one of the tools on this list. Every price and limit below comes from the vendor's own pricing page or docs, read on November 14, 2026, and each one links to its source.
 
+On search quality, Firecrawl Search scores 73 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (November 2026 data), against 80 for Exa auto and 83 for Parallel Search (advanced), which ranks #1 of 26 search API products. On [Openbenchmarks' multi-turn company search board](https://openbenchmarks.com/multi-turn-company-search) (last updated October 2, 2026), Parallel Basic scored 46.5 F1 from search results alone against 30.4 for Firecrawl, though on its [coding-agent board](https://openbenchmarks.com/web-search-for-coding-agents) Firecrawl search completed 70.3% of tickets from search alone against 66.7% for Parallel Fast.
+
 ## What Firecrawl offers, and where it falls short
 
 Firecrawl is an open-source web data API under the AGPL-3.0 license, with endpoints for scrape, crawl, map, search, structured JSON extraction, browser interaction, and monitoring, all billed from one credit balance. A scraped or crawled page costs 1 credit, search costs 2 credits per 10 results, and JSON extraction adds 4 credits a page. Per [Firecrawl's pricing page](https://www.firecrawl.dev/pricing), the free plan gives 1,000 credits a month with no card, Hobby is $19 a month for 5,000 credits, Standard $99 for 100,000, Growth $399 for 500,000, and Scale $749 for 1,000,000. You can call search and scrape without an API key at lower rate limits.

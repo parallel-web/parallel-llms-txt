@@ -12,29 +12,31 @@ Server URL: `https://mcp.parallel.ai/mcp`. [Parallel MCP](https://parallel.ai/mc
 
 It's also built to be configured. Signed-in connections can pin settings in an `x-parallel-mcp-config` header (search mode from turbo, fast, basic, or advanced, the maximum number of results, and domains to include or exclude), and `?tools=` trims the tool list. [parallel.ai/mcp](https://parallel.ai/mcp) has one-click installs for Claude, ChatGPT, Cursor, VS Code, Grok Bot, Antigravity, OpenCode, and Hermes, plus a setup prompt you can paste into any other agent; the [installation docs](https://docs.parallel.ai/integrations/mcp/installation) cover the rest. Keyless calls are free and rate limited, with nothing billed past the limit. Signed-in calls bill at Search API rates: $1 per 1,000 for fast and turbo, $5 per 1,000 for basic and advanced. The [launch post](https://parallel.ai/blog/parallel-mcp-2) covers what changed in version 2.0.
 
+On the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 26 search API products across 14 providers (November 2026 data), Parallel Search (advanced) ranks #1 at 83, and fast mode scores 82, ahead of Exa (auto, dynamic highlights) and Perplexity Search (medium) at 80.
+
 **Best for:** the default choice when you want free entry and search, fetching, and research in one server. **Tradeoffs:** we're the vendor. Keyless calls run the low-latency fast mode, and switching modes, filtering domains, and `web_research` need sign-in or a key. For asynchronous deep research and list enrichment, our separate [Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp) is still the better fit.
 
 ## 2. Exa MCP
 
-Server URL: `https://mcp.exa.ai/mcp`, open source, with `web_search_exa` and `web_fetch_exa` enabled by default and extras (code search, advanced search with filters, the usage-based Exa Agent) enabled via URL parameters. The free plan covers casual use; an `x-api-key` header lifts the limits. Exa's embeddings-based retrieval is genuinely good at semantic discovery, and it's the engine behind OpenCode's built-in websearch tool. We keep a [dedicated head-to-head](https://parallel.ai/articles/parallel-search-mcp-vs-exa-mcp) if this is your shortlist.
+Server URL: `https://mcp.exa.ai/mcp`, open source, with `web_search_exa` and `web_fetch_exa` enabled by default and extras (code search, advanced search with filters, the usage-based Exa Agent) enabled via URL parameters. The free plan covers casual use; an `x-api-key` header lifts the limits. Exa's embeddings-based retrieval is genuinely good at semantic discovery, and it's the engine behind OpenCode's built-in websearch tool. We keep a [dedicated head-to-head](https://parallel.ai/articles/parallel-search-mcp-vs-exa-mcp) if this is your shortlist. On the Artificial Analysis Search Index (November 2026 data), Exa (auto, dynamic highlights) scores 80 and Exa (lite) 79.
 
 **Best for:** semantic, find-things-like-this discovery and teams already in Exa's ecosystem. **Tradeoffs:** the more powerful tools require authentication.
 
 ## 3. Firecrawl MCP
 
-Server URL: `https://mcp.firecrawl.dev/v2/mcp`. Firecrawl's identity is scraping-first: the keyless tier exposes search, scrape, and parse, while crawl, map, and its agent need an API key or OAuth. If your workload is "turn this specific site into clean data," that tool surface is the draw. Note the keyless tier's daily limits are shared by everyone on the same public IP, so treat it as a trial rather than a dependable free tier for offices or CI.
+Server URL: `https://mcp.firecrawl.dev/v2/mcp`. Firecrawl's identity is scraping-first: the keyless tier exposes search, scrape, and parse, while crawl, map, and its agent need an API key or OAuth. If your workload is "turn this specific site into clean data," that tool surface is the draw. Note the keyless tier's daily limits are shared by everyone on the same public IP, so treat it as a trial rather than a dependable free tier for offices or CI. On the Artificial Analysis Search Index (November 2026 data) it scores 73.
 
 **Best for:** agents whose real job is scraping and site crawling, with search as a supporting tool.** Tradeoffs:** search is not its center of gravity, the free tier is IP-shared, and the full surface is credit-metered.
 
 ## 4. Tavily MCP
 
-Server URL: `https://mcp.tavily.com/mcp/`, with `tavily-search` and `tavily-extract` as the core tools. Tavily is popular in RAG stacks and framework integrations, and its docs are developer-friendly. Normal use wants a Tavily API key (in the URL or via OAuth sign-in), with a limited keyless option for trying it out.
+Server URL: `https://mcp.tavily.com/mcp/`, with `tavily-search` and `tavily-extract` as the core tools. Tavily is popular in RAG stacks and framework integrations, and its docs are developer-friendly. Normal use wants a Tavily API key (in the URL or via OAuth sign-in), with a limited keyless option for trying it out. On the Artificial Analysis Search Index, Tavily (basic) scored 66 in its August 2026 run.
 
 **Best for:** teams standardized on Tavily in RAG pipelines who want the same engine in their agents. **Tradeoffs:** effectively key-required for real use.
 
 ## 5. Brave Search MCP
 
-Brave's MCP servers wrap the Brave Search API and require a `BRAVE_API_KEY` (the API has a free tier). The draw is the index: independent crawl, no reselling, and privacy-forward positioning. The results are formatted as general search results rather than agent-ready dense excerpts, so your agent does more fetching and parsing itself.
+Brave's MCP servers wrap the Brave Search API and require a `BRAVE_API_KEY` (the API has a free tier). The draw is the index: independent crawl, no reselling, and privacy-forward positioning. On the Artificial Analysis Search Index (November 2026 data), Brave's LLM context mode scores 75. The results are formatted as general search results rather than agent-ready dense excerpts, so your agent does more fetching and parsing itself.
 
 **Best for:** teams that specifically want an independent, privacy-oriented index.** Tradeoffs:** key setup required, and output tuned for humans-reading-SERPs more than models-reading-context.
 
@@ -47,6 +49,8 @@ Brave's MCP servers wrap the Brave Search API and require a `BRAVE_API_KEY` (the
 | Brave Search MCP | Web/news search | API key required (free API tier) |
 | Firecrawl MCP | search, scrape, parse (+keyed: crawl, map, agent) | Keyless, limits shared per IP |
 | Tavily MCP | tavily-search, tavily-extract | Limited keyless; key for real use |
+
+Index scores in this guide are from the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (November 19, 2026 data): the equal-weighted mean of DeepSearchQA, BrowseComp, and AA-Omniscience scores, measured with the same GPT-5.6 Luna agent harness for every provider so the search API is the only variable. It's independent of us; still, treat it as a starting point and test on your own queries.
 
 ## How to actually decide
 

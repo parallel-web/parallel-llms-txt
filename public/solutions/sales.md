@@ -18,6 +18,12 @@ Trusted by
 * AirOps
 * Modal
 
+Scored onArtificial Analysis
+
+Parallel ranks #1 on the Artificial Analysis Search Index
+
+[See the report](https://artificialanalysis.ai/agents/search-api)
+
 Use Cases
 
 ## From cold list to closed deal

@@ -29,7 +29,7 @@ These constraints come from DeepSeek’s own documentation.
 - **Throughput.** Search and Fetch are each capped at 5 requests per second per account, with no documented way to raise the limit.
 - **Query length.** Search queries are capped at 128 characters.
 - **Data handling.** The privacy policy says DeepSeek stores personal data in the People’s Republic of China and may use personal data, including inputs, to train its models. Retention, training, and storage terms specific to Search and Fetch are not documented, and neither is a zero-retention option.
-- Evidence. We found no independent benchmark of the DeepSeek Search API.
+- Evidence. On the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), DeepSeek Search (summary) scores 69 (October 2026 run), against 83 for Parallel Search (advanced), which ranks #1.
 
 The [DeepSeek Search API vs. Parallel](https://parallel.ai/articles/deepseek-search-api-vs-parallel) comparison covers each of these in detail.
 
@@ -56,21 +56,21 @@ Parallel Search takes a natural language objective, with optional keyword querie
 
 The argument for Parallel is model independence. The same call works from any model that supports tool use, and [Parallel MCP](https://parallel.ai/mcp) at `https://mcp.parallel.ai/mcp` works with any MCP client without a key, with a research tool added when you sign in. In a test on October 17, 2026, DeepSeek-V4.1-Flash-1017 called Parallel Search as a function tool through OpenRouter and answered from the results. That was a single smoke test.
 
-Parallel’s [benchmarks page](https://parallel.ai/benchmarks) publishes its own results with methodology and dates.
+Parallel’s [benchmarks page](https://parallel.ai/benchmarks) publishes its own results with methodology and dates. On the independent Artificial Analysis Search Index (November 2026 data), Parallel Search (advanced) ranks #1 of 26 search API products at 83 and Parallel fast scores 82, against 69 for DeepSeek Search (summary).
 
 On the downside, Parallel costs more per call than DeepSeek. Turbo supports English and Japanese queries and no other languages. Search has an `after_date` filter but no before-date filter, and there is no crawl endpoint. The default limit is 600 requests per minute for Search.
 
 ### Exa
 
-Exa searches its own index with embeddings and returns page text and highlights. Instant search costs $4 per 1,000 requests, Fast and Auto cost $7, and Deep and Deep-Reasoning cost $12 and $15, each with up to 10 results. Contents cost $1 per 1,000 pages per content type. Exa supports category filters such as people, company, and publication, plus includeDomains, excludeDomains, and startPublishedDate. The Starter plan allows 10 queries per second, and pay as you go allows up to 25. The Enterprise plan lists zero data retention.
+Exa searches its own index with embeddings and returns page text and highlights. Instant search costs $4 per 1,000 requests, Fast and Auto cost $7, and Deep and Deep-Reasoning cost $12 and $15, each with up to 10 results. Contents cost $1 per 1,000 pages per content type. Exa supports category filters such as people, company, and publication, plus includeDomains, excludeDomains, and startPublishedDate. The Starter plan allows 10 queries per second, and pay as you go allows up to 25. The Enterprise plan lists zero data retention. Exa Search (auto, dynamic highlights) scores 80 on the Artificial Analysis index.
 
 ### Brave Search API
 
-Brave serves results from its own independent index and says every result comes from that index with no fallback to another search engine. Search costs $5 per 1,000 requests and covers web search, LLM Context, news, videos, images, and places, at 50 requests per second. LLM Context returns extracted page chunks with configurable token and URL limits, and Goggles lets you re-rank or filter by source rules. Brave’s own FreshQA comparison reports Brave at 85.3% for $18 per 1,000 questions and Parallel Advanced at 79.0% for $49, a vendor-run result. The downsides are that $5 per 1,000 is more than DeepSeek’s price, storing results needs a plan with storage rights, and the free credit requires a card. Brave describes zero data retention as built in for its Enterprise plan.
+Brave serves results from its own independent index and says every result comes from that index with no fallback to another search engine. Search costs $5 per 1,000 requests and covers web search, LLM Context, news, videos, images, and places, at 50 requests per second. LLM Context returns extracted page chunks with configurable token and URL limits, and Goggles lets you re-rank or filter by source rules. Brave’s own FreshQA comparison reports Brave at 85.3% for $18 per 1,000 questions and Parallel Advanced at 79.0% for $49, a vendor-run result. The downsides are that $5 per 1,000 is more than DeepSeek’s price, storing results needs a plan with storage rights, and the free credit requires a card. Brave describes zero data retention as built in for its Enterprise plan. Brave Search (LLM Context) scores 75 on the Artificial Analysis index.
 
 ### Perplexity Search API
 
-Perplexity’s Search API returns raw ranked web results at $5 per 1,000 requests, or $1 with Fast Search. It bills each successful request once, even when the request carries up to five queries. The API has controls for domains, languages, and regions, and country takes an ISO code. The pricing page lists no free allowance, and neither it nor the Search docs list zero data retention terms.
+Perplexity’s Search API returns raw ranked web results at $5 per 1,000 requests, or $1 with Fast Search. It bills each successful request once, even when the request carries up to five queries. The API has controls for domains, languages, and regions, and country takes an ISO code. The pricing page lists no free allowance, and neither it nor the Search docs list zero data retention terms. Perplexity Search (medium) scores 80 on the Artificial Analysis index.
 
 ### Tavily
 
@@ -82,7 +82,7 @@ Linkup charges per request with no credit conversion. A search costs $0.005 to $
 
 ### Firecrawl
 
-Firecrawl treats search and scraping as one product. A search of 10 results costs 2 credits, and adding scrapeOptions returns full-page Markdown, HTML, links, or screenshots for each result. The free plan includes 1,000 credits a month with no card, and the Hobby plan costs $16 a month on annual billing for 5,000 credits. Zero data retention for search is limited to Enterprise plans. Credits are shared across endpoints, so cost per search depends on what you scrape, and pure search is not its focus.
+Firecrawl treats search and scraping as one product. A search of 10 results costs 2 credits, and adding scrapeOptions returns full-page Markdown, HTML, links, or screenshots for each result. The free plan includes 1,000 credits a month with no card, and the Hobby plan costs $16 a month on annual billing for 5,000 credits. Zero data retention for search is limited to Enterprise plans. Credits are shared across endpoints, so cost per search depends on what you scrape, and pure search is not its focus. Firecrawl Search scores 73 on the Artificial Analysis index.
 
 ## Data handling at a glance
 
@@ -136,6 +136,10 @@ Yes, as an optional feature with commitments set out in the customer’s DPA. It
 ### Does DeepSeek offer EU data residency or a zero data retention option?
 
 Neither is documented. DeepSeek’s privacy policy says it stores personal data in the People’s Republic of China, and neither the privacy policy nor the Open Platform Terms mentions Search or Fetch.
+
+### Which alternative has the best accuracy?
+
+On the Artificial Analysis Search Index (November 2026 data), Parallel Search (advanced) ranks #1 at 83, narrowly ahead of Keenable Search (pro), and Parallel fast scores 82. Exa (auto) and Perplexity Search (medium) score 80, Brave LLM Context 75, Firecrawl 73, and DeepSeek Search (summary) 69.
 
 ### Is there a free alternative to the DeepSeek Search API?
 

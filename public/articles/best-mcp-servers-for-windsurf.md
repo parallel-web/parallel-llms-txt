@@ -30,7 +30,7 @@ Your Windsurf setup carries over. Devin Local [imports MCP servers](https://docs
 
 Or run `devin mcp add -s user parallel https://mcp.parallel.ai/mcp`. If you added Parallel to the old Windsurf file with `serverUrl`, Devin Local imports that entry, so there's nothing to redo.
 
-For an IDE agent, the day-to-day value of web search is current docs and error research in the flow of coding, with web_fetch keeping long pages from flooding context.
+The underlying API ranks #1 on the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the independent benchmark of 26 search API products (November 2026 data): advanced mode scores 83 and fast mode 82. For an IDE agent, the day-to-day value of web search is current docs and error research in the flow of coding, with web_fetch keeping long pages from flooding context.
 
 Best for: grounding Devin Local in the current web at zero cost. Tradeoffs: we're the vendor; keyless rate limits suit personal use, and signing in or adding a key lifts them, with those calls billed at the underlying API rates. Those connections can also pin a search mode or include and exclude domains through an x-parallel-mcp-config header.
 

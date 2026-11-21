@@ -166,6 +166,8 @@ If your agent speaks MCP, [Parallel MCP](https://parallel.ai/mcp) at `https://mc
 | Page fetch | No | Extract API ($1 per 1K URLs) and MCP web_fetch |
 | Billing and logs | AI Gateway credits or BYOK, in gateway logs | Parallel billing; gateway logs via the provider proxy |
 
+On quality, the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (November 2026 data) ranks Parallel Search (advanced) #1 at 83 and scores Exa’s auto mode, the setting Cloudflare uses, at 80. Ceramic isn’t on that index, so we can’t compare it there.
+
 You can use both. Ceramic through Cloudflare suits cheap, high-volume keyword lookups, and Parallel handles objective-driven searches, filtered searches, and page extraction.
 
 ## Frequently asked questions

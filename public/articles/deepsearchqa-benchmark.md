@@ -100,6 +100,8 @@ Parallel Ultra4x has the top score, but the margin over the best frontier model 
 
 The [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) uses DeepSearchQA differently. It gives the same model, harness, and settings to every provider and swaps only the search API, so it isolates the search layer. DeepSearchQA is one of its three components, run on the full 900-task public set and reported as F1, alongside BrowseComp and AA-Omniscience. Those numbers don't line up with the Task API table above, which uses a 100-question subset, reports accuracy rather than F1, and scores complete research agents.
 
+On the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (November 19, 2026 data), Parallel Search (advanced) has the highest DeepSearchQA F1 at 89, level with Parallel fast, followed by Keenable Search (pro and realtime) at 88 and Exa (auto, dynamic highlights) at 86. The same model with no search tool scores 45. Parallel Search (advanced) also ranks #1 on the overall index at 83.
+
 ## Running DeepSearchQA yourself
 
 The data loads with standard tools, and the official starter notebook with the grading prompt is on [Kaggle](https://www.kaggle.com/code/andrewmingwang/deepsearchqa-starter-code). Use that notebook's autorater prompt with Gemini 2.5 Flash if you want numbers comparable to the paper or the Kaggle leaderboard.

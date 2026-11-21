@@ -25,9 +25,9 @@ BrowseComp, created by OpenAI, is a set of 1,266 questions that require persiste
 
 At the frontier tier, Parallel Advanced ties Perplexity at 74%, but Perplexity gets there for $275 per 1,000 questions against our $399. Exa (70%) and Tavily (66%) trail at more than three times Perplexity's cost. At the low-cost tier, Perplexity leads at 46% and Parallel Fast sits two points behind at 44% for about a third of the cost. Which engine wins depends on your query mix, your budget per question, and how much latency your surface can absorb.
 
-For independent speed data, [Openbenchmarks' fastest-search-API boards](https://openbenchmarks.com/web-search/fastest-search-api) (September 2026) put Parallel turbo first on factual lookup at 348ms mean latency and first on hard retrieval at 333ms, though Exa Instant, about 50ms behind on both, edges it on multi-hop search once time is divided by answer quality.
+For an independent check on quality, the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (November 2026 data) runs 26 search API products across 14 providers on a fixed agent harness and ranks Parallel Search (advanced) #1 at 83, with Parallel fast at 82. For independent speed data, [Openbenchmarks' coding-agent board](https://openbenchmarks.com/web-search-for-coding-agents) (last updated September 26, 2026) puts Parallel turbo first on average search time at 333ms, about 110ms ahead of Exa Instant, though Exa Instant edges it on multi-hop search once time is divided by answer quality. On the same index, Parallel fast cost $14.03 per 1,000 tasks in search and model tokens, the lowest of any product scoring above 72, and Parallel Search (advanced) used the fewest model tokens per task of any third-party search API, about 82,000 against 155,000 for Exa (auto).
 
-For independent accuracy data, the [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) (updated November 4, 2026) grades agents on expert-written finance and legal research tasks with only the search tool swapped. Claude Opus 5.5 with Parallel Search in Fast mode ranked first of 12 model and search-tool combinations at 57.5% and $2.27 per task, with Parallel Advanced second at 54.1%.
+For independent accuracy data, the [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) (updated November 17, 2026) grades agents on expert-written finance and legal research tasks with only the search tool swapped. Claude Opus 5.5 with Parallel Search in Fast mode ranked first of 14 model and search-tool combinations at 57.5% and $2.27 per task, with Parallel Advanced second at 54.1%.
 
 ## **The contenders**
 
@@ -57,7 +57,7 @@ On BrowseComp (September 2026), Perplexity scored 74% at the frontier tier for $
 
 Exa is a neural, embeddings-based web search API with fast and deep tiers, plus websets and research products alongside the core search tool. It exposes an extract step, which the evaluation used.
 
-On BrowseComp (September 2026), Exa Auto scored 70% at the frontier tier for $971 per 1,000 questions and 36% at the low-cost tier for $53.4. On speed, [Openbenchmarks](https://openbenchmarks.com/web-search/fastest-search-api) measured Exa Instant at 398ms mean latency on factual lookup, second to Parallel Turbo.
+On BrowseComp (September 2026), Exa Auto scored 70% at the frontier tier for $971 per 1,000 questions and 36% at the low-cost tier for $53.4. On speed, [Openbenchmarks](https://openbenchmarks.com/web-search-for-coding-agents) measured Exa Instant at 447ms average search time on its coding-agent board, second to Parallel Turbo.
 
 **Best for:** Semantic discovery where vector ranking is the priority.
 
@@ -71,13 +71,13 @@ On BrowseComp (September 2026), Tavily scored 66% at the frontier tier for $935 
 
 **Best for:** Simple RAG grounding and simpler agent lookups.
 
-**Tradeoffs:** On hard multistep browsing, it posts the lowest frontier-tier accuracy in the table, and [Openbenchmarks](https://openbenchmarks.com/web-search/fastest-search-api) measured Tavily basic at 1.88s mean latency on factual lookup (September 2026), among the slower engines on that board.
+**Tradeoffs:** On hard multistep browsing, it posts the lowest frontier-tier accuracy in the table, and [Openbenchmarks](https://openbenchmarks.com/web-search-for-coding-agents) measured Tavily basic at 1.72s average search time on its coding-agent board (September 2026), among the slower engines on that board.
 
 ### **Brave Search**
 
 Brave serves results from its own independent crawl of the web, news, and more, with a privacy focus.
 
-Brave isn't in our current benchmark runs. On independent data, [Openbenchmarks](https://openbenchmarks.com/web-search/fastest-search-api) measured Brave at 601 to 630ms mean latency on factual lookup.
+Brave isn't in our current benchmark runs. On independent data, [Openbenchmarks](https://openbenchmarks.com/web-search-for-coding-agents) measured Brave's LLM context endpoint at 523ms average search time on its coding-agent board, with 38.0% task completion.
 
 **Best for:** Privacy-minded lookups from teams that don't need the fastest response or deep multistep reasoning.
 

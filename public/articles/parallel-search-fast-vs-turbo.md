@@ -31,7 +31,7 @@ On simple lookups, Fast and Turbo land within a few points of each other; on har
 
 Cost here covers LLM tokens plus tool calls per 1,000 questions, so it isn’t the search price alone. On BrowseComp, Turbo cost more per question than Fast even though both modes charge the same per request, which means the agent spent more on tokens or extra calls per question. Other providers win some of these rows: at the same tier, Perplexity scored 46% on BrowseComp and Exa Auto scored 53.0 on WideSearch.
 
-Openbenchmarks runs an independent check with its own client and reports mean latency. On its [fastest-search-API board](https://openbenchmarks.com/web-search/fastest-search-api) (last measured September 12, 2026), Parallel Turbo had the lowest mean latency on factual lookup at 348ms (315ms median) but answered 71.3% of the 300 questions correctly from its results; Fast measured 942ms mean at 86.0%, and Exa Instant measured 398ms at 97.7%. On the board’s 100-question developer search set, Turbo averaged 333ms per search with 64.7% task completion and a 19s median task, against Fast’s 953ms, 66.7%, and 22s. On the multi-search company-discovery set, Exa Instant ranked first on time per unit of task quality, ahead of Turbo and Fast.
+Openbenchmarks runs an independent check with its own client and reports average search time. On its [coding-agent board](https://openbenchmarks.com/web-search-for-coding-agents) (last updated September 26, 2026), which gives a fixed agent 100 documentation tickets, Turbo averaged 333ms per search, the lowest of any search-only configuration and ahead of Exa Instant at 447ms. Turbo completed 64.7% of tasks with a 19s median task, against Fast’s 953ms, 66.7%, and 22s. Openbenchmarks’ factual lookup board, re-measured October 21, 2026, doesn’t include Parallel. On the multi-search company-discovery set, Exa Instant ranked first on time per unit of task quality, ahead of Turbo and Fast.
 
 AIMultiple's [Agentic Search API Benchmark](https://aimultiple.com/agentic-search) (updated November 10, 2026) tested both modes with a fixed GPT-5.6 Luna agent on 120 questions. Fast scored 79.7% answer accuracy and Turbo 76.5%, close enough that their confidence intervals overlap, at nearly the same cost per correct answer ($0.0063 and $0.0064). Turbo's median API latency was 0.38 seconds against Fast's 0.78.
 
@@ -47,7 +47,7 @@ At documented latencies, Fast adds about 0.5s per sequential call over Turbo, an
 
 At 1,000 tasks of 15 searches each, Turbo and Fast both cost $15 in search fees, and Basic and Advanced both cost $75. The 7.5s gap between Turbo and Fast at 15 calls only shows up if the calls run one after another. When your agent fires several searches in the same turn, they overlap, and the turn waits for the slowest one.
 
-Model time also hides part of the gap. A loop’s wall time is roughly N × (model time per step + search time per step), and model time is often the bigger term. Artificial Analysis shows the scale: its model-only baseline, which runs no searches at all, takes 19.8s per task. AA’s methodology note adds that a provider can be fast per call and still add total time if the model searches against it more often. That matches the Openbenchmarks developer set above, where Turbo’s 620ms-per-search advantage over Fast shrank to a 3s gap in median task time.
+Model time also hides part of the gap. A loop’s wall time is roughly N × (model time per step + search time per step), and model time is often the bigger term. Artificial Analysis shows the scale: its model-only baseline, which runs no searches at all, takes 26.1s per task. AA’s methodology note adds that a provider can be fast per call and still add total time if the model searches against it more often. That matches the Openbenchmarks developer set above, where Turbo’s 620ms-per-search advantage over Fast shrank to a 3s gap in median task time. On the Artificial Analysis index (November 2026 data), Fast scores 82 against 83 for Advanced, which ranks #1, and takes 15.5 seconds per task against 24.3. Turbo scored 67 in an August run.
 
 Escalation changes the cost picture too. A 15-call Fast loop that retries its 3 hardest sub-questions in Advanced costs $0.030 and about 19.5s of search time, against $0.075 and 45s for running every call in Advanced.
 
@@ -126,7 +126,7 @@ You get $5 in free credits every month, enough for up to 5,000 Turbo or Fast sea
 
 ### Is Parallel Search Turbo faster than Fast?
 
-Yes. The docs list Turbo at about 200ms and Fast at about 700ms per request, and Openbenchmarks measured means of 348ms and 942ms from its own client in September 2026.
+Yes. The docs list Turbo at about 200ms and Fast at about 700ms per request, and Openbenchmarks measured average search times of 333ms and 953ms from its own client on its coding-agent board (September 2026).
 
 ### Do Turbo and Fast cost the same?
 

@@ -66,7 +66,7 @@ On a single-fact benchmark, one decent search usually finds the answer and the m
 - **Excerpt quality.** Agents read excerpts, not whole pages. Excerpts that contain the constraining detail (a birth year, an undergraduate school) let the agent confirm or discard a candidate without an extra fetch.
 - **Cost per call.** Persistence means many calls, so search price and the tokens each result adds to context both multiply.
 
-This is why BrowseComp separates search providers more than SimpleQA-style benchmarks do.
+This is why BrowseComp separates search providers more than SimpleQA-style benchmarks do. In the [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api), the same model scores 17 on BrowseComp with no search tool and up to 87 with a search API.
 
 ## How search APIs compare on BrowseComp
 
@@ -106,6 +106,23 @@ The Task API is a different product. It runs a full research agent behind one ca
 | GPT-5.6 Sol PTC (max) | 85% | $791.1 |
 | Exa Agent Max | 78% | $1,043.5 |
 | Gemini 3.1 Pro (high) | 72% | $194.4 |
+
+### Independent: Artificial Analysis Search Index (November 2026 data)
+
+Artificial Analysis holds the model, harness, and settings fixed and swaps only the search API. Its BrowseComp column uses a hard 200-question subset and feeds a composite index alongside DeepSearchQA and AA-Omniscience, where Parallel Search (advanced) ranks #1 at 83. On BrowseComp alone, three products tie at the top on AA's rounded scores:
+
+| Search API (AA setting) | BrowseComp |
+| --- | --- |
+| Keenable Search (pro) | 87 |
+| Parallel Search (advanced) | 87 |
+| Perplexity Search (medium) | 87 |
+| Keenable Search (realtime) | 86 |
+| Octen Search (highlights) | 86 |
+| Perplexity Search (high) | 86 |
+| Parallel Search (fast) | 84 |
+| Exa Search (auto, dynamic highlights) | 83 |
+| Exa Search (lite, dynamic highlights) | 81 |
+| Model only, no search | 17 |
 
 ### Read small samples with care
 

@@ -5452,6 +5452,22 @@
             "title": "Disable Cache Fallback",
             "description": "If false, fallback to cached content older than max-age if live fetch fails or times out. If true, returns an error instead.",
             "default": false
+          },
+          "as_of": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "format": "date-time",
+            "title": "As Of",
+            "description": "Accepts an ISO 8601 date or timestamp. A date is treated as 00:00 UTC. Timestamps without an offset are treated as UTC. Timestamps are rounded down to the start of the UTC hour. Serves the latest available version of each page captured at or before that cutoff. Contact sales for access.",
+            "examples": [
+              "2026-07-01T12:00:00Z"
+            ]
           }
         },
         "type": "object",
@@ -12052,7 +12068,7 @@
                 "type": "null"
               }
             ],
-            "description": "Optional fetch policy for every page the task run extracts. Pages cached longer than max_age_seconds are fetched live. Values below 600 seconds are raised to 600. Search results are not affected."
+            "description": "Optional fetch policy for every page the task run extracts. Pages cached longer than max_age_seconds are fetched live. Values below 600 seconds are raised to 600. Search results are not affected. as_of is not supported."
           }
         },
         "type": "object",

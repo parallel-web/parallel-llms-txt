@@ -4,7 +4,7 @@ A web search API is the retrieval layer that grounds every answer your AI applic
 
 A [web search API](https://parallel.ai/articles/what-is-a-web-search-api) gives an AI application live access to the open web. Your app sends a query, the API searches the web, and it returns ranked results and text your model can read. For [AI agents](https://parallel.ai/articles/what-is-an-ai-agent), this is the retrieval layer that grounds every answer. Agents chain many search calls inside a single task, so the speed and accuracy of each call compound across the whole system.
 
-We compared five web search APIs using our September 2026 runs on three benchmarks (BrowseComp, SimpleQA Verified, and WideSearch), plus Openbenchmarks' independent latency boards. On BrowseComp, the hardest of the three, accuracy ran from 66% to 74% with a frontier agent and from 32% to 46% with a low-cost agent. Cost varied more than accuracy did: at the low-cost tier, BrowseComp spend ran from $11.80 to $176 per 1,000 questions. No engine led everywhere. Parallel Advanced tied Perplexity on BrowseComp at a higher cost, Perplexity edged Parallel Fast at the low-cost tier, and Exa beat Fast on WideSearch.
+We compared five web search APIs using our September 2026 runs on three benchmarks (BrowseComp, SimpleQA Verified, and WideSearch), plus Openbenchmarks' independent latency boards. On BrowseComp, the hardest of the three, accuracy ran from 66% to 74% with a frontier agent and from 32% to 46% with a low-cost agent. Cost varied more than accuracy did: at the low-cost tier, BrowseComp spend ran from $11.80 to $176 per 1,000 questions. No engine led everywhere. Parallel Advanced tied Perplexity on BrowseComp at a higher cost, Perplexity edged Parallel Fast at the low-cost tier, and Exa beat Fast on WideSearch. The independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (November 2026 data) ranks Parallel Search (advanced) #1 of 26 search API products at 83, with Parallel fast at 82, Perplexity Search (medium) and Exa (auto) at 80, and Brave's LLM context mode at 75.
 
 This report covers web search APIs: the search endpoint that returns URLs and excerpts for an agent to use as a tool call.
 
@@ -20,7 +20,7 @@ We publish this benchmark and we're biased toward our own product, so read every
 
 Our [September 2026 runs](https://parallel.ai/benchmarks) (evals run September 9, 2026) test each search API as a tool inside an agent at two price tiers. The frontier tier uses a GPT-5.6 Sol agent at high reasoning effort, paired with Parallel Basic or Advanced; the low-cost tier uses a GPT-5.6 Luna agent at low reasoning effort, paired with Parallel Fast or Turbo. Every competitor runs at both tiers with the same agent. Parallel, Exa, and Tavily get search and extract tools, and Perplexity runs search-only. An LLM judge grades the answers, and cost covers LLM tokens plus tool calls per 1,000 questions. The benchmarks are BrowseComp (OpenAI's persistent-browsing benchmark, 50-question sample), SimpleQA Verified (Google DeepMind's refinement of SimpleQA, 100-question sample), and WideSearch (ByteDance Seed's broad information-gathering benchmark, 100 tasks, scored with partial credit). Brave isn't in these runs, so its section relies on third-party data.
 
-Before the per-engine detail, one independent data point on speed: [Openbenchmarks' fastest-search-API boards](https://openbenchmarks.com/web-search/fastest-search-api) (September 2026) measure latency from a single client. Parallel turbo had the lowest mean latency of the 20 configurations tested on factual lookup at 348ms, with Exa Instant at 398ms, Brave at 601 to 630ms, and Tavily Basic at 1.88s. Our September runs report accuracy and cost but not latency, so the latency figures in this report are those Openbenchmarks means, measured from its own client.
+Before the per-engine detail, one independent data point on speed: [Openbenchmarks' coding-agent board](https://openbenchmarks.com/web-search-for-coding-agents) (last updated September 26, 2026) measures search time from a single client. Parallel turbo had the lowest average search time of the search-only configurations at 333ms, with Exa Instant at 447ms, Brave at 523ms, Perplexity at 957ms, and Tavily Basic at 1.72s. Our September runs report accuracy and cost but not latency, so the latency figures in this report are those Openbenchmarks averages, measured from its own client. Measured per agent task instead of per call, the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (November 2026 data) has Parallel Fast at 15.5 seconds per task, the quickest of any product scoring 80 or higher.
 
 AIMultiple's independent [Agentic Search API Benchmark](https://aimultiple.com/agentic-search) (updated November 10, 2026) measures accuracy, cost, and latency together, with one fixed agent, GPT-5.6 Luna, answering 120 questions across 24 configurations of these five providers plus Firecrawl. Parallel Advanced had the highest answer accuracy at 87.0%, with Exa Fast at 82.6% and Parallel Fast at 79.7%. Perplexity Fast had the lowest median API latency (0.18 seconds) and the lowest cost per correct answer ($0.0058), just ahead of Parallel Fast ($0.0063).
 
@@ -30,7 +30,7 @@ AIMultiple's independent [Agentic Search API Benchmark](https://aimultiple.com/a
 
 We built Parallel Search as web search designed for agents rather than people, with four modes from [Turbo](https://parallel.ai/blog/parallel-search-turbo) (~200ms) to Advanced (~3s). Your agent declares an objective in natural language, and we return URLs ranked by token relevancy plus compressed, dense excerpts sized for the context window. It runs on [its own web index](https://parallel.ai/articles/what-is-a-web-index), a proprietary web-scale index of billions of pages with intelligent recrawling for freshness. It's also available through [Parallel MCP](https://parallel.ai/mcp), free with no API key.
 
-At the frontier tier, Parallel Advanced scored 74% on BrowseComp, level with Perplexity but at $399 per 1,000 questions against Perplexity's $275, and led SimpleQA Verified (97%) and WideSearch (57.6). At the low-cost tier, Fast scored 94% on SimpleQA Verified at $2 per 1,000 questions, the lowest cost in the run, and 44% on BrowseComp at $11.80, two points behind Perplexity. On Openbenchmarks' factual-lookup board, Turbo had the lowest mean latency at 348ms; Fast (documented at ~700ms) measured 942ms.
+At the frontier tier, Parallel Advanced scored 74% on BrowseComp, level with Perplexity but at $399 per 1,000 questions against Perplexity's $275, and led SimpleQA Verified (97%) and WideSearch (57.6). At the low-cost tier, Fast scored 94% on SimpleQA Verified at $2 per 1,000 questions, the lowest cost in the run, and 44% on BrowseComp at $11.80, two points behind Perplexity. On Openbenchmarks' coding-agent board, Turbo had the lowest average search time at 333ms; Fast (documented at ~700ms) measured 953ms.
 
 **Best for:** AI agents and LLM apps that need fast, efficient web retrieval as a tool call across single-hop and multi-hop workloads.
 
@@ -52,7 +52,7 @@ Perplexity was the strongest competitor in our runs. At the frontier tier it tie
 
 Brave Search serves results from its own independent crawl, with no dependence on Google and a privacy posture that avoids query tracking during API use. It returns SERP-style JSON.
 
-Brave isn't in our current benchmark runs, so this section relies on third-party data. On Openbenchmarks' factual-lookup board, Brave measured 601 to 630ms mean latency, behind Parallel Turbo (348ms) and Exa Instant (398ms), and 523ms on the hard-retrieval search-only board. On AIMultiple's independent [Agentic Search API Benchmark](https://aimultiple.com/agentic-search) (November 2026), Brave's LLM Context endpoint at its default 8,192-token budget scored 77.9% answer accuracy with a 0.95-second median API latency, and had the highest share of source-supported excerpts of any configuration (96.8%).
+Brave isn't in our current benchmark runs, so this section relies on third-party data. On the Artificial Analysis Search Index (November 2026 data), Brave's LLM context mode scores 75, against 83 for Parallel Search (advanced). On Openbenchmarks' coding-agent board, Brave's LLM context endpoint averaged 523ms per search, behind Parallel Turbo (333ms) and Exa Instant (447ms). On AIMultiple's independent [Agentic Search API Benchmark](https://aimultiple.com/agentic-search) (November 2026), Brave's LLM Context endpoint at its default 8,192-token budget scored 77.9% answer accuracy with a 0.95-second median API latency, and had the highest share of source-supported excerpts of any configuration (96.8%).
 
 **Best for:** privacy-sensitive applications that want an independent index and can handle their own content extraction.
 
@@ -64,7 +64,7 @@ Brave isn't in our current benchmark runs, so this section relies on third-party
 
 Exa is a search API built for AI that blends "neural", embedding-based search with keyword search, and adds content retrieval and vertical indexes for domains like companies, people, and research. Its instant tier targets low latency, and it offers official Model Context Protocol support.
 
-In our runs, Exa (auto mode) scored 70% on BrowseComp at the frontier tier, at $971 per 1,000 questions, and 36% at the low-cost tier, at $53.40. Its strongest result was WideSearch: 55.9 at the frontier tier and 53.0 at the low-cost tier, where it beat Parallel Fast (45.5), though at $41.20 per 1,000 tasks against Fast's $10.50. It scored 91% on SimpleQA Verified at both tiers. On Openbenchmarks, Exa Instant measured 398ms mean latency on factual lookup, second to Parallel Turbo, and ranked first on the multi-hop time-to-task-quality board, ahead of Turbo.
+In our runs, Exa (auto mode) scored 70% on BrowseComp at the frontier tier, at $971 per 1,000 questions, and 36% at the low-cost tier, at $53.40. Its strongest result was WideSearch: 55.9 at the frontier tier and 53.0 at the low-cost tier, where it beat Parallel Fast (45.5), though at $41.20 per 1,000 tasks against Fast's $10.50. It scored 91% on SimpleQA Verified at both tiers. On Openbenchmarks, Exa Instant measured 447ms average search time on the coding-agent board, second to Parallel Turbo, and ranked first on the multi-hop time-to-task-quality board, ahead of Turbo.
 
 **Best for:** semantic and exploratory retrieval where descriptive queries matter.
 
@@ -86,15 +86,15 @@ In our runs, Tavily scored 66% on BrowseComp at the frontier tier, the lowest of
 
 The table below puts accuracy, cost, and latency together. Read them as a set, because any one number alone hides the tradeoff between task success, spend, and response time.
 
-| Engine | BrowseComp % (frontier / low-cost) | BrowseComp cost per 1K (frontier / low-cost) | SimpleQA Verified % (frontier / low-cost) | Mean latency, factual lookup | Strongest fit |
+| Engine | BrowseComp % (frontier / low-cost) | BrowseComp cost per 1K (frontier / low-cost) | SimpleQA Verified % (frontier / low-cost) | Average search time, coding-agent board | Strongest fit |
 | --- | --- | --- | --- | --- | --- |
-| Parallel (Advanced / Fast) | 74 / 44 | $399 / $11.80 | 97 / 94 | 348 ms (Turbo), 942 ms (Fast) | Agent retrieval with dense excerpts; lowest low-cost-tier spend |
-| Brave Search | Not in our runs | Not in our runs | Not in our runs | 601 to 630 ms | Independent index with an LLM context mode |
-| Exa (Auto) | 70 / 36 | $971 / $53.40 | 91 / 91 | 398 ms (Instant) | Semantic retrieval; strong WideSearch coverage |
-| Tavily | 66 / 32 | $935 / $176 | 92 / 94 | 1.88 s (Basic) | LangChain and LlamaIndex grounding |
-| Perplexity Search | 74 / 46 | $275 / $37.10 | 95 / 94 | 1.38 s (low) | Hard multi-hop questions at the frontier tier |
+| Parallel (Advanced / Fast) | 74 / 44 | $399 / $11.80 | 97 / 94 | 333 ms (Turbo), 953 ms (Fast) | Agent retrieval with dense excerpts; lowest low-cost-tier spend |
+| Brave Search | Not in our runs | Not in our runs | Not in our runs | 523 ms (LLM context) | Independent index with an LLM context mode |
+| Exa (Auto) | 70 / 36 | $971 / $53.40 | 91 / 91 | 447 ms (Instant) | Semantic retrieval; strong WideSearch coverage |
+| Tavily | 66 / 32 | $935 / $176 | 92 / 94 | 1.72 s (Basic) | LangChain and LlamaIndex grounding |
+| Perplexity Search | 74 / 46 | $275 / $37.10 | 95 / 94 | 957 ms (low) | Hard multi-hop questions at the frontier tier |
 
-Accuracy and cost from [parallel.ai/benchmarks](https://parallel.ai/benchmarks), evals run September 9, 2026. Frontier tier: GPT-5.6 Sol agent (Parallel Advanced). Low-cost tier: GPT-5.6 Luna agent (Parallel Fast). Cost is LLM tokens plus tool calls, in USD per 1,000 BrowseComp questions. Latency is Openbenchmarks' mean from its own client on the factual-lookup board (September 15, 2026), for the configuration named. Brave isn't in our runs.
+Accuracy and cost from [parallel.ai/benchmarks](https://parallel.ai/benchmarks), evals run September 9, 2026. Frontier tier: GPT-5.6 Sol agent (Parallel Advanced). Low-cost tier: GPT-5.6 Luna agent (Parallel Fast). Cost is LLM tokens plus tool calls, in USD per 1,000 BrowseComp questions. Latency is Openbenchmarks' mean from its own client on the factual-lookup board (September 15, 2026), for the configuration named. Brave isn't in our runs. Index scores are from the Artificial Analysis Search Index, November 19, 2026 data.
 
 ## **Run the benchmark yourself**
 

@@ -6,7 +6,7 @@ If you're choosing a web search MCP server in 2026, your shortlist is probably t
 
 ## The short version
 
-Parallel optimizes for answer-ready context: declarative objectives in, ranked token-dense excerpts out. Exa optimizes for semantic retrieval breadth: embeddings-based discovery, category and domain filters, code search, and an agent product on top. Fact-heavy agent loops favor Parallel; find-me-things-like-this discovery favors Exa.
+Parallel optimizes for answer-ready context: declarative objectives in, ranked token-dense excerpts out. The underlying Search API ranks #1 on the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (November 2026 data) at 83, against 80 for Exa (auto, dynamic highlights). On the [Vals AI Web Search Index](https://www.vals.ai/benchmarks/web_search) (updated November 17, 2026), with the same GPT-5.6 Sol model, Parallel Advanced scored 48.3% against 45.2% for Exa, at $2.27 per task against $18.97. Exa optimizes for semantic retrieval breadth: embeddings-based discovery, category and domain filters, code search, and an agent product on top. Fact-heavy agent loops favor Parallel; find-me-things-like-this discovery favors Exa.
 
 ## Tools and setup
 
