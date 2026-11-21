@@ -19,6 +19,12 @@ Trusted by
 * Greptile
 * Composio
 
+Scored onArtificial Analysis
+
+Parallel ranks #1 on the Artificial Analysis Search Index
+
+[See the report](https://artificialanalysis.ai/agents/search-api)
+
 Use Cases
 
 ## Ground every builder & coding agent with the live web

@@ -15,6 +15,12 @@ Trusted by
 * Tomo
 * Aside
 
+Scored onArtificial Analysis
+
+Parallel ranks #1 on the Artificial Analysis Search Index
+
+[See the report](https://artificialanalysis.ai/agents/search-api)
+
 Use Cases
 
 ## The web layer for category-leading agents

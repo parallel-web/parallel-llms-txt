@@ -2,7 +2,7 @@
 
 Give your AI the highest-quality web search tools available
 
-When building applications that rely on web data to make decisions or answer questions, nothing matters more than accuracy. These benchmarks help to measure different web search offerings on their ability to answer prompts accurately. By obsessing over accuracy, we consistently lead the market with state-of-the-art quality. In addition to leading in accuracy, Parallel often leads in pricing. 
+Agents that act on web data need search that is accurate, cost-efficient, token-efficient, and fast. Accuracy comes first, because a wrong answer costs more than a slow one. These benchmarks compare web search APIs on accuracy against cost per request, running the same prompts for every provider. Parallel consistently leads on accuracy, often at a lower price.
 
 ## Parallel Search API
 
@@ -280,3 +280,198 @@ Cost is end-to-end per answer at list price: the answer model's tokens plus ever
 **Testing dates**
 
 Evals were run on October 27, 2026.
+
+## Parallel for Healthcare
+
+### PWS-Health
+
+| Series   | Model                | Cost (CPM) | Accuracy (%) |
+| -------- | -------------------- | ---------- | ------------ |
+| Parallel | Parallel Fast        | 104        | 85.2         |
+| Parallel | Parallel Advanced    | 85.3       | 83.7         |
+| Others   | Exa                  | 124.6      | 82.5         |
+| Others   | Perplexity           | 116.2      | 80.5         |
+| Others   | Tavily               | 154.3      | 77.2         |
+| Others   | Claude native search | 646        | 66.9         |
+
+CPM: USD per 1,000 questions, end to end (answer-model tokens plus search and fetch calls at list price).
+
+**Dataset**
+
+PWS-Health is Parallel's private healthcare benchmark: 133 held-out questions with verified answers. 83 are adapted from questions healthcare teams ask Parallel across 10 workflows, and 50 are drawn from recent open-access randomized trials and meta-analyses in PubMed Central. The questions and answers are not published anywhere online.
+
+**Evaluation methodology**
+
+Every search API runs in the same agent loop with the same questions and the same LLM judge, so the search layer is the only variable. Every arm answers with Claude Opus 5.5 (high effort). Claude native search is Claude Opus 5.5's built-in web search. Scores are the mean of three runs.
+
+Cost is end-to-end per answer at list price: the answer model's tokens plus every search and fetch the agent makes, shown per 1,000 questions.
+
+**Testing dates**
+
+Evals were run in November 2026.
+
+### LitQA3
+
+| Series   | Model                | Cost (CPM) | Accuracy (%) |
+| -------- | -------------------- | ---------- | ------------ |
+| Parallel | Parallel Fast        | 58.8       | 86.7         |
+| Parallel | Parallel Advanced    | 48.8       | 86.7         |
+| Others   | Exa                  | 126.3      | 81           |
+| Others   | Tavily               | 117.7      | 79.2         |
+| Others   | Perplexity           | 73.7       | 79           |
+| Others   | Claude native search | 352.3      | 78.2         |
+
+CPM: USD per 1,000 questions, end to end (answer-model tokens plus search and fetch calls at list price).
+
+**Dataset**
+
+LitQA3 is part of FutureHouse's LAB-Bench 2\. Each of its 168 questions asks for a specific detail from a recent biomedical paper, such as an effect size in a results table or a step in a methods section, so the engine has to find the right paper and pinpoint the answer.
+
+**Evaluation methodology**
+
+Every search API runs in the same agent loop with the same questions and the same grader, so the search layer is the only variable. Every arm answers with Claude Opus 5.5 (high effort). Claude native search is Claude Opus 5.5's built-in web search. The benchmark's own grader fails on some biology answers, so we re-graded those with the benchmark's prompt for every arm. Answers that reached a published answer key count as wrong. Scores are the mean of three runs.
+
+Cost is end-to-end per answer at list price: the answer model's tokens plus every search and fetch the agent makes, shown per 1,000 questions.
+
+**Testing dates**
+
+Evals were run in November 2026.
+
+### TrialQA
+
+| Series   | Model                | Cost (CPM) | Accuracy (%) |
+| -------- | -------------------- | ---------- | ------------ |
+| Parallel | Parallel Fast        | 57.7       | 96.3         |
+| Parallel | Parallel Advanced    | 46.9       | 95.2         |
+| Others   | Perplexity           | 69.3       | 95.2         |
+| Others   | Exa                  | 66.1       | 94.1         |
+| Others   | Tavily               | 146.8      | 91.2         |
+| Others   | Claude native search | 498.7      | 79.7         |
+
+CPM: USD per 1,000 questions, end to end (answer-model tokens plus search and fetch calls at list price).
+
+**Dataset**
+
+TrialQA, also from LAB-Bench 2, asks for details teams look up in the ClinicalTrials.gov registry, such as a study's control arm, primary endpoint or planned enrollment. Two answer keys no longer matched the registry, so we updated them; two ambiguous questions were set aside, leaving 118.
+
+**Evaluation methodology**
+
+Every search API runs in the same agent loop with the same questions and the same grader, so the search layer is the only variable. Every arm answers with Claude Opus 5.5 (high effort). Claude native search is Claude Opus 5.5's built-in web search. Scores are the mean of three runs.
+
+Cost is end-to-end per answer at list price: the answer model's tokens plus every search and fetch the agent makes, shown per 1,000 questions.
+
+**Testing dates**
+
+Evals were run in November 2026.
+
+### MedBrowseComp
+
+| Series   | Model                | Cost (CPM) | Accuracy (%) |
+| -------- | -------------------- | ---------- | ------------ |
+| Parallel | Parallel Fast        | 131.9      | 78.8         |
+| Parallel | Parallel Advanced    | 107.9      | 79.3         |
+| Others   | Perplexity           | 141.2      | 76.6         |
+| Others   | Exa                  | 118.9      | 74.3         |
+| Others   | Tavily               | 187.2      | 72.7         |
+| Others   | Claude native search | 703.3      | 66.7         |
+
+CPM: USD per 1,000 questions, end to end (answer-model tokens plus search and fetch calls at list price).
+
+**Dataset**
+
+MedBrowseComp asks multi-hop questions about FDA drug approvals that take several searches across regulatory, clinical and corporate sources. Company questions were re-keyed against FDA records to accept either reading of "latest approval", and patent and exclusivity questions with more than one valid answer were set aside, leaving 363 questions.
+
+**Evaluation methodology**
+
+Every search API runs in the same agent loop with the same questions and the same grader, so the search layer is the only variable. Every arm answers with Claude Opus 5.5 (high effort). Claude native search is Claude Opus 5.5's built-in web search; answers that reached the published answer file count as wrong. Scores are the mean of three runs.
+
+Cost is end-to-end per answer at list price: the answer model's tokens plus every search and fetch the agent makes, shown per 1,000 questions.
+
+**Testing dates**
+
+Evals were run in November 2026.
+
+## Parallel for Legal
+
+### PWS-Legal
+
+| Series   | Model             | Cost (CPM) | Accuracy (%) |
+| -------- | ----------------- | ---------- | ------------ |
+| Parallel | Parallel Fast     | 230.1      | 85.4         |
+| Parallel | Parallel Advanced | 194.2      | 83.1         |
+| Others   | OpenAI            | 440.8      | 80.5         |
+| Others   | Firecrawl         | 314.4      | 77.3         |
+| Others   | Exa Auto          | 318.9      | 75.6         |
+| Others   | Tavily            | 425.7      | 75.4         |
+| Others   | Perplexity        | 248        | 73.4         |
+
+CPM: USD per 1,000 questions, end to end (answer-model tokens plus search and fetch calls at list price).
+
+**Dataset**
+
+PWS-Legal is Parallel's private legal benchmark: 238 held-out questions with verified answers. 98 cover the companies, laws, regulations and IP rights legal researchers look up (60 about jurisdictions outside the US, 33 in 12 languages other than English), and 140 cover court decisions and legal documents on sites that general web search reaches poorly. The questions and answers are not published anywhere online.
+
+**Evaluation methodology**
+
+Every search API runs in the same agent loop with the same questions and the same LLM judge, with a budget of 20 tool calls per question, so the search layer is the only variable. Every arm answers with GPT-6 Astra (reasoning: high). Each API uses its own published tool definition at default settings, with 10 results per search; Perplexity is the Search API only. Firecrawl uses Firecrawl's own MCP search and scrape tools. Strict scoring: an answer is correct only if every required fact is right. Scores are the mean of three runs (Firecrawl is a single run).
+
+Cost is end-to-end per answer at list price: the answer model's tokens plus every search and fetch the agent makes, shown per 1,000 questions. Firecrawl is priced at Standard-plan credits at one credit per scraped page; PDFs bill per page, so its real cost is higher.
+
+**Testing dates**
+
+Evals were run in November 2026.
+
+### Legal Hallucinations
+
+| Series   | Model             | Cost (CPM) | Accuracy (%) |
+| -------- | ----------------- | ---------- | ------------ |
+| Parallel | Parallel Fast     | 20.01      | 96.5         |
+| Parallel | Parallel Advanced | 21.69      | 96.8         |
+| Others   | Exa Auto          | 28.12      | 96.8         |
+| Others   | OpenAI            | 43.79      | 97.5         |
+| Others   | Perplexity        | 20.11      | 94           |
+| Others   | Firecrawl         | 22.47      | 95.4         |
+| Others   | Tavily            | 86.64      | 90.1         |
+
+CPM: USD per 1,000 questions, end to end (answer-model tokens plus search and fetch calls at list price).
+
+**Dataset**
+
+Stanford RegLab's [Legal Hallucinations](https://arxiv.org/abs/2401.01301) dataset (Dahl et al., 2024) asks verifiable questions about real federal court cases, such as the citation, the court, the author, and whether the case exists. The original study found that LLMs answering without search hallucinated 58–88% of the time. Results are reported on a 284-question sample.
+
+**Evaluation methodology**
+
+Multi-step agentic evaluation: every search API runs in the same agent loop with the same questions and the same LLM judge, so the search layer is the only variable. The agent calls the provider's search tool plus its fetch tool as often as needed, and every arm answers with GPT-6 Sol (reasoning: high). Each API uses its own published tool definition at default settings, with 10 results per search; Exa runs in auto mode with an objective. Firecrawl uses Firecrawl's own MCP search tools, including its Government Index of US law. Results that copy the benchmark are removed before the model sees them; OpenAI native search can't be filtered this way, so its results were audited afterwards. Scores are from a single run.
+
+Cost is end-to-end per answer at list price: the answer model's tokens plus every search and fetch the agent makes, shown per 1,000 questions. Firecrawl is priced at Standard-plan credits.
+
+**Testing dates**
+
+Evals were run in November 2026.
+
+### LegalBench Citation
+
+| Series   | Model             | Cost (CPM) | Accuracy (%) |
+| -------- | ----------------- | ---------- | ------------ |
+| Parallel | Parallel Fast     | 15.02      | 93.6         |
+| Parallel | Parallel Advanced | 16.54      | 93.8         |
+| Others   | Perplexity        | 16.52      | 87.2         |
+| Others   | Exa Auto          | 23.17      | 79.7         |
+| Others   | Tavily            | 27.92      | 74.7         |
+| Others   | Firecrawl         | 8.05       | 63.1         |
+
+CPM: USD per 1,000 questions, end to end (answer-model tokens plus search and fetch calls at list price).
+
+**Dataset**
+
+[LegalBench](https://arxiv.org/abs/2308.11462) (Guha et al., 2023) is a benchmark of 162 legal reasoning tasks designed by legal professionals at Stanford and other institutions. We ran the 161 questions in its citation tasks, which ask which case a federal appeals court cited for a legal proposition, and whether a given case supports it.
+
+**Evaluation methodology**
+
+One-search evaluation: every search API gets a single search call per question, then the model answers, with the same questions and the same LLM judge, so the search layer is the only variable. Every arm answers with GPT-6 Sol (reasoning: high). Each API uses its own published tool definition at default settings, with 10 results per search; Exa runs in auto mode with an objective. Firecrawl uses Firecrawl's own MCP search tools, including its Government Index of US law. Results that copy the benchmark are removed before the model sees them. Scores are the mean of three runs.
+
+Cost is end-to-end per answer at list price: the answer model's tokens plus the search call, shown per 1,000 questions. Firecrawl is priced at Standard-plan credits.
+
+**Testing dates**
+
+Evals were run in November 2026.
