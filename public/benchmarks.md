@@ -4,6 +4,12 @@ Give your AI the highest-quality web search tools available
 
 Agents that act on web data need search that is accurate, cost-efficient, token-efficient, and fast. Accuracy comes first, because a wrong answer costs more than a slow one. These benchmarks compare web search APIs on accuracy against cost per request, running the same prompts for every provider. Parallel consistently leads on accuracy, often at a lower price.
 
+## External evals
+
+* [#1 on the Artificial Analysis Search Index (November 19, 2026 data)](https://artificialanalysis.ai/agents/search-api). Parallel Search scores 83.4, the highest of 26 search products. Updated November 19, 2026.
+* [#1 on the Vals AI Web Search Index](https://www.vals.ai/benchmarks/web%5Fsearch). Claude Opus 5.5 with Parallel Search scores 57.54%, the top result. Updated November 17, 2026.
+* [#1 on OB multi-turn company search (search-only)](https://openbenchmarks.com/multi-turn-company-search). Parallel leads the search-only board at 46.5 F1 across 45 questions. Updated October 2, 2026.
+
 ## Parallel Search API
 
 ### SimpleQA Verified
