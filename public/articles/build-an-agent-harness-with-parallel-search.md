@@ -313,7 +313,7 @@ options = ClaudeAgentOptions(
 )
 ```
 
-Parallel MCP is free without a key at lower rate limits; anonymous calls run in fast mode with excerpts capped around 25,000 characters per call. A Bearer key raises limits, adds `web_research`, and lets you pin the search mode, domain filters, and result count with the `x-parallel-mcp-config` header ([override settings](https://docs.parallel.ai/integrations/mcp/quickstart#override-settings)). Prefer MCP for prototypes and Agent SDK agents, where the harness already exists. Prefer the direct API when you need per-call mode choice, your own excerpt caps, a ledger that sees every request, or citation IDs you control. [What is MCP?](https://parallel.ai/articles/what-is-mcp) explains the protocol, and [remote vs. local MCP servers](https://parallel.ai/articles/remote-vs-local-mcp-servers) covers deployment.
+Parallel MCP is free without a key at lower rate limits; anonymous calls run in fast mode with excerpts capped around 25,000 characters per call. A Bearer key raises limits, adds `web_research`, and lets you pin the search mode, domain filters, and result count with the `x-parallel-mcp-config` header ([override settings](https://docs.parallel.ai/integrations/mcp/quickstart#override-settings)). Prefer MCP for prototypes and Agent SDK agents, where the harness already exists. Prefer the direct API when you need per-call mode choice, your own excerpt caps, a ledger that sees every request, or citation IDs you control. [What is MCP?](https://parallel.ai/learn/model-context-protocol) explains the protocol, and [remote vs. local MCP servers](https://parallel.ai/articles/remote-vs-local-mcp-servers) covers deployment.
 
 ## Get started
 

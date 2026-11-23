@@ -40,7 +40,7 @@ Parallel runs a proprietary web-scale index built for agent consumption: ranking
 
 ## When Exa is the right call
 
-Choose Exa when your workload is semantic discovery: competitor mapping, similar-page hunting, and category-filtered research, where embeddings retrieval does well. Its code search is also a real differentiator for agents that live in GitHub. (For the adjacent list-building comparison, Exa Websets versus our FindAll API, we keep a [separate deep dive](https://parallel.ai/articles/exa-vs-parallel-findall).) Choose Parallel when the job is grounding an agent loop: fact lookups, docs, current events, research pipelines, anywhere accuracy compounds across thousands of calls.
+Choose Exa when your workload is semantic discovery: competitor mapping, similar-page hunting, and category-filtered research, where embeddings retrieval does well. Its code search is also a real differentiator for agents that live in GitHub. (For the adjacent list-building comparison, Exa Websets versus our FindAll API, we keep a [separate deep dive](https://parallel.ai/articles/exa-vs-parallel-findall).) Choose Parallel when the job is grounding an agent loop: fact lookups, docs, current events, research pipelines, anywhere accuracy compounds across thousands of calls. To see Exa against more than one alternative, read our guide to [the best Exa alternatives](https://parallel.ai/articles/exa-alternatives).
 
 ## Frequently asked questions
 

@@ -7,11 +7,11 @@ AI agent ideas are easier to judge by capability tier than by industry, because 
 - The data capabilities an AI agent needs predict whether you can build it, how much it costs, and how you sell it.
 - Agents that rely on real-time web data are more useful and more defensible than agents running on static knowledge.
 - Deep research agents, competitive intelligence agents, and market monitoring agents are high-value, underbuilt categories with clear startup potential.
-- You can build most of these ideas today with a [web search API](https://parallel.ai/articles/what-is-a-web-search-api), an extraction layer, and a monitoring layer.
+- You can build most of these ideas today with a [web search API](https://parallel.ai/learn/web-search-api), an extraction layer, and a monitoring layer.
 
 Most lists organize AI agent ideas by industry, which tells you who the customer is but not whether you can build the thing. Capability tier answers that question.
 
-This list sorts 13 [AI agent ideas](https://parallel.ai/articles/what-is-an-ai-agent) by what they need to function: **real-time web search**, **deep multi-source research**, **continuous monitoring**, and **structured data extraction**. Each tier has a distinct latency profile, cost model, and go-to-market viability. Grand View Research [projects the US AI agents market](https://www.grandviewresearch.com/horizon/outlook/ai-agents-market/united-states) to reach $46.3 billion by 2033, but the capability tier an idea sits in determines whether you can ship it at all. A search-tier agent can respond in under five seconds. A deep research agent produces citation-backed reports but runs for minutes. A monitoring agent watches the web and fires events when something changes.
+This list sorts 13 [AI agent ideas](https://parallel.ai/learn/ai-agent) by what they need to function: **real-time web search**, **deep multi-source research**, **continuous monitoring**, and **structured data extraction**. Each tier has a distinct latency profile, cost model, and go-to-market viability. Grand View Research [projects the US AI agents market](https://www.grandviewresearch.com/horizon/outlook/ai-agents-market/united-states) to reach $46.3 billion by 2033, but the capability tier an idea sits in determines whether you can ship it at all. A search-tier agent can respond in under five seconds. A deep research agent produces citation-backed reports but runs for minutes. A monitoring agent watches the web and fires events when something changes.
 
 ## Agents that need real-time web search
 
@@ -66,7 +66,7 @@ Hiring is a leading indicator. A company posting fifteen ML engineering roles is
 
 Recruiters, investors, and B2B sales teams all act on this. Revelio Labs and TalentNeuron sell workforce intelligence to large enterprises (TalentNeuron says 60% of the Fortune 100 use it), so a sector-focused agent competes on price and setup time instead of coverage.
 
-## Agents that need [deep multi-source research](https://parallel.ai/articles/what-is-deep-research)
+## Agents that need [deep multi-source research](https://parallel.ai/learn/deep-research)
 
 Agents in this tier synthesize information from dozens of sources, cross-reference conflicting claims, and produce structured, citation-backed outputs that no individual web page contains, which a single search query can't do. Runs take minutes to hours, so async delivery is standard.
 
@@ -92,7 +92,7 @@ An analyst covering 15 companies at 20 to 30 minutes per report spends five to s
 
 ### Customer and product review synthesis agent
 
-Nobody should have to read 400 reviews to learn which features customers love. A review synthesis agent finds a product's pages on G2, Capterra, Trustpilot, Reddit, the App Store, and Google Play with the Search API, pulls the text with the Extract API, and runs a Task API pass that groups recurring themes and tags sentiment. [Scraping product reviews](https://parallel.ai/articles/what-is-web-scraping) has limits, though. Some review sites block automated traffic, and Extract doesn't get past CAPTCHAs or anti-bot walls, so plan on official APIs or licensed data for those sources.
+Nobody should have to read 400 reviews to learn which features customers love. A review synthesis agent finds a product's pages on G2, Capterra, Trustpilot, Reddit, the App Store, and Google Play with the Search API, pulls the text with the Extract API, and runs a Task API pass that groups recurring themes and tags sentiment. [Scraping product reviews](https://parallel.ai/learn/web-scraping) has limits, though. Some review sites block automated traffic, and Extract doesn't get past CAPTCHAs or anti-bot walls, so plan on official APIs or licensed data for those sources.
 
 Mid-market product teams at SaaS companies, restaurant chains, or hotel brands will pay $200 to $500 a month for the recurring report.
 

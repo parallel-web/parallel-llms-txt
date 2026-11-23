@@ -30,9 +30,9 @@ First, you need an LLM for reasoning. The model interprets user intent, synthesi
 
 Second, you maintain a context window for conversation history. The assistant must track what the user said three turns ago and reference it appropriately.
 
-Third, you connect a retrieval system for external knowledge. This system surfaces relevant information the model cannot access from its training data. An [AI agent](https://parallel.ai/articles/what-is-an-ai-agent) architecture provides a useful mental model for how these components interact.
+Third, you connect a retrieval system for external knowledge. This system surfaces relevant information the model cannot access from its training data. An [AI agent](https://parallel.ai/learn/ai-agent) architecture provides a useful mental model for how these components interact.
 
-Fourth, you implement [tool-calling capability](https://parallel.ai/articles/what-is-mcp). The LLM must decide when to search, formulate the right query, and incorporate results into its response.
+Fourth, you implement [tool-calling capability](https://parallel.ai/learn/model-context-protocol). The LLM must decide when to search, formulate the right query, and incorporate results into its response.
 
 Fifth, you format responses appropriately. Citations need URLs. Lists need structure.
 
@@ -54,7 +54,7 @@ You also carry infrastructure cost. Vector databases need hosting. Embedding pip
 
 ### Direct web scraping
 
-An alternative approach crawls web pages on demand. When a user asks about Apple's stock price, you fetch finance.yahoo.com, parse the HTML, and extract the number. Building your own [web crawler](https://parallel.ai/articles/what-is-a-web-crawler) for this purpose introduces significant complexity.
+An alternative approach crawls web pages on demand. When a user asks about Apple's stock price, you fetch finance.yahoo.com, parse the HTML, and extract the number. Building your own [web crawler](https://parallel.ai/learn/web-crawler) for this purpose introduces significant complexity.
 
 Latency is the first obstacle. A single page fetch takes two to ten seconds, JavaScript-rendered content requires headless browsers, and complex pages need multiple requests.
 
@@ -64,7 +64,7 @@ Token efficiency is the third. A typical web page contains navigation menus, adv
 
 ### External search APIs
 
-A [search API](https://parallel.ai/articles/what-is-a-web-search-api) accepts a query and returns ranked URLs with token-dense excerpts. The pattern inverts the scraping model: instead of you maintaining crawling infrastructure, a specialized service continuously indexes the web and serves pre-processed results.
+A [search API](https://parallel.ai/learn/web-search-api) accepts a query and returns ranked URLs with token-dense excerpts. The pattern inverts the scraping model: instead of you maintaining crawling infrastructure, a specialized service continuously indexes the web and serves pre-processed results.
 
 Latency drops: pre-indexed content returns in a few hundred milliseconds to a few seconds, because you skip the crawling, rendering, and parsing steps entirely.
 
@@ -74,7 +74,7 @@ Reliability shifts from your infrastructure to the API provider. They handle CAP
 
 Freshness depends on the provider's indexing velocity. Parallel maintains a web-scale index with millions of pages added daily, continuously updated to capture recent content.
 
-We built the Search API specifically for this use case. You describe your search objective in natural language, and we return URLs ranked by relevance along with dense excerpts optimized for LLM consumption. **Declarative ****[semantic search](https://parallel.ai/articles/what-is-semantic-search)** means you state what you need and the API works out how to find it.
+We built the Search API specifically for this use case. You describe your search objective in natural language, and we return URLs ranked by relevance along with dense excerpts optimized for LLM consumption. **Declarative ****[semantic search](https://parallel.ai/learn/semantic-search)** means you state what you need and the API works out how to find it.
 
 ## Building the assistant: architecture and code
 
@@ -214,7 +214,7 @@ A chatbot follows scripted flows or pattern matching. A conversational AI assist
 
 **Can I use multiple search APIs together?**
 
-You can compose multiple data sources by defining separate tools for each API. Parallel's suite (Search, Extract, Task) covers different retrieval patterns you can wire into a single assistant. For complex multi-source workflows, explore [deep research](https://parallel.ai/articles/what-is-deep-research) capabilities.
+You can compose multiple data sources by defining separate tools for each API. Parallel's suite (Search, Extract, Task) covers different retrieval patterns you can wire into a single assistant. For complex multi-source workflows, explore [deep research](https://parallel.ai/learn/deep-research) capabilities.
 
 **How fresh is the data from a search API?**
 

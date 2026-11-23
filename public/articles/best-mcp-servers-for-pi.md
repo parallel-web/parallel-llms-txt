@@ -4,7 +4,7 @@ Pi added built-in MCP support in version 0.99, so the answer to the title questi
 
 [Pi](https://pi.dev/) is the minimal coding harness: a small, hackable agent you adapt to your workflows through extensions, skills, and packages, rather than a product that decides your workflow for you. It's also the harness underneath OpenClaw, which is a large part of why it's everywhere in 2026.
 
-For most of Pi's life the answer to "does Pi support [Model Context Protocol (MCP)](https://parallel.ai/articles/what-is-mcp)?" was no, by design. That changed with [Pi 0.99](https://pi.dev/changelog/releases/0.99.0) on September 29, 2026, which added MCP support, codemode, and tool search as built-in extensions. This guide covers how both MCP routes work today, which servers are worth connecting, and when Pi's native patterns serve you better. Disclosure: we make Parallel, one of the servers recommended below, and we'll show numbers rather than ask for trust.
+For most of Pi's life the answer to "does Pi support [Model Context Protocol (MCP)](https://parallel.ai/learn/model-context-protocol)?" was no, by design. That changed with [Pi 0.99](https://pi.dev/changelog/releases/0.99.0) on September 29, 2026, which added MCP support, codemode, and tool search as built-in extensions. This guide covers how both MCP routes work today, which servers are worth connecting, and when Pi's native patterns serve you better. Disclosure: we make Parallel, one of the servers recommended below, and we'll show numbers rather than ask for trust.
 
 ## How Pi got MCP support
 

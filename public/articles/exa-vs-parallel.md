@@ -178,10 +178,10 @@ Parallel is SOC 2 Type 2 certified and offers a Data Processing Addendum. Under 
 
 ## **When to use each**
 
-Choose Exa when its retrieval options, category filters, or persistent Websets collections fit the workflow you want to build. Its search variants trade quality, cost, and latency. Evaluate the specific variant you intend to use: neither an advertised request latency nor one benchmark establishes a universal speed advantage.
+Choose Exa when its retrieval options, category filters, or persistent Websets collections fit the workflow you want to build. Its search variants trade quality, cost, and latency. Evaluate the specific variant you intend to use: neither an advertised request latency nor one benchmark establishes a universal speed advantage. If you're weighing more than these two, our guide to [the best Exa alternatives](https://parallel.ai/articles/exa-alternatives) compares 11 search APIs on price and accuracy.
 
 Choose Parallel when you need low-cost retrieval alongside structured research, database enrichment, entity discovery, and monitoring. Research Basis lets you inspect the supporting evidence for Task output fields. Search starts at $1 per 1,000 requests in Turbo or Fast, while Monitor costs $3 per 1,000 executions on Lite or $10 on Base. Choose the mode and processor against the accuracy and elapsed time your application requires. [Parallel pricing](https://docs.parallel.ai/getting-started/pricing)
 
 Evaluate both providers on your own questions. Keep the answer model and harness fixed for a retrieval comparison, test relevant search variants, and grade final answers and source support. Include model tokens, extraction, retries, and failed requests in cost and latency measurements. Compare managed research products separately from retrieval tools. [How to evaluate Parallel Search](https://docs.parallel.ai/search/evaluating-search)
 
-**Related reading: **[Switching from Exa to Parallel](https://parallel.ai/articles/exa-to-parallel-search-api) / [Tavily vs. Parallel](https://parallel.ai/compare/tavily-vs-parallel) / [Linkup vs. Parallel](https://parallel.ai/articles/linkup-vs-parallel).
+**Related reading: **[Switching from Exa to Parallel](https://parallel.ai/articles/exa-to-parallel-search-api) / [Tavily vs. Parallel](https://parallel.ai/compare/tavily-vs-parallel) / [Linkup vs. Parallel](https://parallel.ai/articles/linkup-vs-parallel) / [The best Exa alternatives](https://parallel.ai/articles/exa-alternatives).

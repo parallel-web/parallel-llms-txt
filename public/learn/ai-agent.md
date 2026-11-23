@@ -1,6 +1,6 @@
 # What is an AI agent?
 
-An AI agent perceives its environment, plans, and acts toward a goal without step-by-step supervision, which is what separates it from a chatbot answering prompts. This guide covers how agents differ from chatbots, the end-to-end loop from goal to reflection, the core architecture components, the types of agent in practice, the benefits and the risks, best practices for reliability, and enterprise considerations.
+An AI agent perceives its environment, plans, and acts toward a goal without step-by-step supervision, which is what separates it from a chatbot answering prompts. This guide covers how agents differ from chatbots, the end-to-end loop from goal to reflection, the types of agent in practice, and the risks.
 
 ## **What is an AI agent?**
 
@@ -48,32 +48,6 @@ The agent performs planned actions in its environment: API calls, database updat
 
 The agent checks whether each action achieved the intended outcome, notes what worked and what didn't, and adjusts its approach. This feedback loop lets agents refine their behavior over time.
 
-## **Core components of AI agent architecture**
-
-This section covers the basics. Our guide to [AI agent architecture](/articles/ai-agent-architecture-patterns-components-and-how-to-build-for-web-access) goes deeper on the four main patterns and on designing the retrieval layer.
-
-Most agents are built from five components.
-
-### **Foundation model**
-
-A large language model (LLM) provides the reasoning capabilities that power agent decisions. The model processes natural language instructions, generates plans, and determines which actions to take based on available information.
-
-### **Memory store**
-
-Persistent storage maintains conversation history, learned patterns, and contextual information across interactions. Without memory, an agent forgets previous decisions and repeats failed approaches.
-
-### **Planning module**
-
-This component breaks down goals into actionable steps. It handles task sequencing, manages decision trees, and determines when to pursue alternative approaches if initial plans fail.
-
-### **Retrieval layer with verifiable web data**
-
-Agents operating in the real world get current, accurate information through a retrieval layer. Systems built on [verifiable web data](https://parallel.ai/blog/introducing-basis-with-calibrated-confidences) with transparent attribution produce more trustworthy outputs than unstructured scraping or outdated indexes.
-
-### **Tool interfaces**
-
-Connections to external APIs, databases, and services let agents perform actions beyond text generation, which is how a plan turns into completed work.
-
 ## **Types of AI agents in practice**
 
 AI agents range from simple reactive systems to learning architectures, and they are usually grouped into six types.
@@ -89,16 +63,6 @@ AI agents range from simple reactive systems to learning architectures, and they
 **Learning agents** improve performance through experience, adapting behavior based on feedback and results. A learning agent handling customer inquiries gets better at resolution over time by identifying which approaches work best for different issue types.
 
 **Multi-agent systems** involve multiple agents collaborating or competing to handle complex scenarios. One agent might specialize in research while another focuses on writing, with a coordinator managing their interactions.
-
-## **Benefits of agent-based AI systems**
-
-Agents handle repetitive workflows without human intervention. Unlike robotic process automation that breaks when interfaces change, agents adapt to variations in data formats, website structures, and process flows.
-
-Because agents can process far more information than a person working under time pressure, they can make better-informed decisions. An agent qualifying leads can research dozens of data points per prospect: recent funding, technology stack, hiring patterns, competitive positioning. It synthesizes in minutes what would take hours of manual research.
-
-The savings show up at scale. An individual agent operation might cost more than a simple API call, but it replaces manual work and cuts errors, and teams running thousands of agent tasks daily see costs drop as they optimize their implementations.
-
-Agents can also personalize their work. Rather than applying one-size-fits-all automation, they tailor their approach to user preferences, historical interactions, and situational factors.
 
 ## **Challenges and risks of AI agents**
 
@@ -119,34 +83,6 @@ Complex reasoning requires significant processing power, especially when agents 
 ### **Hallucination from poor retrieval**
 
 Agents generate inaccurate information when working from unreliable sources or insufficient context. An agent researching company information might confidently present outdated leadership data or confuse similarly named organizations. Verifiable retrieval systems with clear source attribution help agents distinguish reliable information from speculation.
-
-## **Best practices for building reliable agents**
-
-Getting an agent from prototype to production takes more than connecting an LLM to some tools.
-
-Start with comprehensive activity logging. Track every decision, action, and result your agent produces, so that when something goes wrong you can find the cause and ship a fix quickly.
-
-Implement human-in-the-loop controls for high-stakes decisions. Agents handling routine tasks can operate autonomously, but actions with significant business impact benefit from human review. Design approval workflows that don't create bottlenecks while maintaining appropriate oversight.
-
-Use verifiable web sources for agent research and reasoning. Agents deciding from accurate, attributable information produce more reliable outputs than agents working from unstructured web scraping or stale data.
-
-Assign unique identifiers to different agent instances. When running multiple agents or versions, clear identification helps you track which agent performed which actions, enabling better debugging and performance analysis.
-
-## **Enterprise considerations: security, compliance, and cost**
-
-Deploying AI agents in enterprise environments introduces requirements beyond technical functionality. Business stakeholders care about risk management, predictability, and support.
-
-### **SOC 2 and SLAs**
-
-Enterprise agents handling sensitive data require security certifications and performance guarantees. SOC 2 Type 2 compliance shows that security controls have been independently audited, while service level agreements provide recourse when systems underperform. Regulated industries and large organizations usually require the certification.
-
-### **Predictable pricing models**
-
-Cost transparency prevents budget overruns as agent usage scales. Token-based pricing is unpredictable: a single complex task might consume 10x the tokens of a simple one. Per-task or per-query pricing lets you forecast and budget accurately.
-
-### **Dedicated support channels**
-
-When agents power critical business processes, community forums aren't enough. Dedicated support channels, technical account management, and implementation assistance get issues answered quickly and deployments into production sooner.
 
 ## **Future outlook and start building with Parallel**
 

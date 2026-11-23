@@ -20,7 +20,7 @@ A weekend prototype that chains a search API with an LLM feels close to producti
 
 ## What a deep research API does
 
-A _[deep research API](https://parallel.ai/articles/what-is-deep-research)_ accepts a complex question, plans sub-queries, searches the web, reasons across multiple sources, and returns a structured report with citations. That planning and cross-source reasoning is what separates it from a [search API](https://parallel.ai/articles/what-is-a-web-search-api).
+A _[deep research API](https://parallel.ai/learn/deep-research)_ accepts a complex question, plans sub-queries, searches the web, reasons across multiple sources, and returns a structured report with citations. That planning and cross-source reasoning is what separates it from a [search API](https://parallel.ai/learn/web-search-api).
 
 A search API returns ranked links and snippets for a query. A deep research API takes a research objective, decomposes it into sub-queries, retrieves and extracts relevant pages, then resolves conflicts across sources and delivers structured JSON with per-field citations.
 

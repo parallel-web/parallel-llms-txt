@@ -6,7 +6,7 @@ Hallucination rates of 15% to 25% on factual queries are common without groundin
 
 Connecting your LLM app to real-time web search reduces hallucinations because the model answers from retrieved sources it can cite instead of from memory. On OpenAI’s SimpleQA benchmark, GPT-4o answered [38%](https://arxiv.org/abs/2411.04368) of questions correctly without browsing, and GPT-4o search preview scored [90%](https://openai.com/index/new-tools-for-building-agents). Search doesn’t remove every error, so filter results by freshness and domain, and verify facts before your agent acts on them.
 
-These are LLM hallucinations: confident outputs unsupported by evidence. In production, [hallucination rates of 15-25%](https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/) on factual queries are common without grounding. For [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) that take actions based on their outputs, a single hallucinated fact can trigger real-world consequences.
+These are LLM hallucinations: confident outputs unsupported by evidence. In production, [hallucination rates of 15-25%](https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/) on factual queries are common without grounding. For [AI agents](https://parallel.ai/learn/ai-agent) that take actions based on their outputs, a single hallucinated fact can trigger real-world consequences.
 
 You can treat hallucinations as an engineering problem. The most effective fix is web grounding: connecting your LLM to real-time web search so it retrieves current facts rather than generating them from static training data.
 
@@ -67,7 +67,7 @@ def live_web_rag(query):
 
 For questions requiring current information, competitive intelligence, or coverage beyond your curated corpus, use live web search.
 
-## How [web search APIs](https://parallel.ai/articles/what-is-a-web-search-api) ground LLM responses in real-time facts
+## How [web search APIs](https://parallel.ai/learn/web-search-api) ground LLM responses in real-time facts
 
 ### From keyword search to semantic objectives
 
@@ -75,7 +75,7 @@ Traditional search engines accept keyword queries and return ranked links. You t
 
 AI-native search APIs work differently. You express intent in natural language: "Columbus-based corporate law firms specializing in disability care." The API interprets the semantic objective and returns relevant excerpts with their source links.
 
-Keyword matching finds pages containing those terms. [Semantic search](https://parallel.ai/articles/what-is-semantic-search) finds pages that answer the underlying question. You receive excerpts already filtered for relevance, reducing noise in the LLM's context window.
+Keyword matching finds pages containing those terms. [Semantic search](https://parallel.ai/learn/semantic-search) finds pages that answer the underlying question. You receive excerpts already filtered for relevance, reducing noise in the LLM's context window.
 
 [Parallel's Search API](https://parallel.ai/products/search) works this way:
 
@@ -155,7 +155,7 @@ Select your pattern based on latency requirements, cost constraints, and the acc
 
 Hallucinations cost more in agentic applications, because the LLM acts on its own outputs.
 
-Multi-hop reasoning compounds the problem. Each reasoning step has some probability of hallucination. Chain five steps together, and small per-step error rates multiply into significant end-to-end failure rates. An agent planning a [deep research](https://parallel.ai/articles/what-is-deep-research) task might hallucinate an intermediate fact, then build correct reasoning on that false foundation.
+Multi-hop reasoning compounds the problem. Each reasoning step has some probability of hallucination. Chain five steps together, and small per-step error rates multiply into significant end-to-end failure rates. An agent planning a [deep research](https://parallel.ai/learn/deep-research) task might hallucinate an intermediate fact, then build correct reasoning on that false foundation.
 
 Ground each reasoning step before the agent uses it. Verification loops cross-reference claims before your agent acts on them. If step three produces a fact your agent will use in step four, verify that fact against a fresh search before proceeding.
 

@@ -87,7 +87,7 @@ There's also a second cost the tiers don't show. When an agent researches an API
 
 [Coding agents look things up constantly](https://parallel.ai/articles/what-is-an-agent-harness). They check API docs, confirm a library version, parse an error message, and reach for current best practices that shift month to month. Much of that information lives on the web, outside the model's training data and outside your repository.
 
-Cursor and Claude Code each support MCP, the [Model Context Protocol](https://parallel.ai/articles/what-is-mcp), an [open standard](https://www.anthropic.com/news/model-context-protocol) for connecting an agent to external tools and data sources. Neither ships a high-accuracy web layer by default, so retrieval is left to you.
+Cursor and Claude Code each support MCP, the [Model Context Protocol](https://parallel.ai/learn/model-context-protocol), an [open standard](https://www.anthropic.com/news/model-context-protocol) for connecting an agent to external tools and data sources. Neither ships a high-accuracy web layer by default, so retrieval is left to you.
 
 When an agent guesses at an API it can't verify, it invents method signatures that don't exist or answers from a version that shipped two years ago. You review the diff, it looks plausible, and the bug only surfaces at runtime. The model can be excellent and the output still wrong, because the context feeding it was stale or thin.
 

@@ -107,7 +107,7 @@ In Claude Code, it’s one command:
 claude mcp add --transport http parallel https://mcp.parallel.ai/mcp
 ```
 
-Both register the server over Streamable HTTP with no key: `web_search` returns ranked results with excerpts, and `web_fetch` reads full page content on demand. To add `web_research` and higher rate limits, add an `Authorization: Bearer` header with your Parallel API key, or in Claude Code connect to `https://mcp.parallel.ai/mcp?login` and sign in. The [installation docs](https://docs.parallel.ai/integrations/mcp/installation) cover other clients.
+Both register the server over Streamable HTTP with no key: `web_search` returns ranked results with excerpts, and `web_fetch` reads full page content on demand. To add `web_research` and higher rate limits, add an `Authorization: Bearer` header with your Parallel API key, or in Claude Code connect to `https://mcp.parallel.ai/mcp?login` and sign in. For other clients, [parallel.ai/mcp](https://parallel.ai/mcp) has one-click installs and a setup prompt you can paste into any agent.
 
 ## When to use which
 

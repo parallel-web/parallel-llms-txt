@@ -2,7 +2,7 @@
 
 Five hosted MCP servers give agents web search: Parallel, Exa, Firecrawl, Tavily, and Brave. We compare their tools, free tiers, and auth models, and explain how to test them on your own queries.
 
-Web search is the first [MCP server](https://parallel.ai/articles/what-is-mcp) most people add to an agent, because it fixes the most visible failure: a model reasoning confidently from a world that ended at its training cutoff. Five hosted servers dominate the category in 2026, and they differ more than their marketing suggests, in what tools they expose, what's actually free, and how accurate the results are.
+Web search is the first [MCP server](https://parallel.ai/learn/model-context-protocol) most people add to an agent, because it fixes the most visible failure: a model reasoning confidently from a world that ended at its training cutoff. Five hosted servers dominate the category in 2026, and they differ more than their marketing suggests, in what tools they expose, what's actually free, and how accurate the results are.
 
 Disclosure up front: we make Parallel and it's our first pick, so weigh that and test on your own queries. If you're calling a search API from code rather than configuring an agent, our [web search API comparison](https://parallel.ai/articles/best-web-search-api) covers that side.
 

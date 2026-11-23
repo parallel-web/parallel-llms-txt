@@ -28,7 +28,7 @@ Vector databases work well for **stable, internal corpora**. Product documentati
 
 ## Web RAG: use the live web as your retrieval layer
 
-_Web RAG_ replaces the vector database with a [web search API](https://parallel.ai/articles/what-is-a-web-search-api) call. At query time, you search the live web, retrieve relevant pages with structured excerpts, and pass those excerpts to the LLM as context. You don't need an ingestion pipeline, an embedding model, or an index to keep fresh.
+_Web RAG_ replaces the vector database with a [web search API](https://parallel.ai/learn/web-search-api) call. At query time, you search the live web, retrieve relevant pages with structured excerpts, and pass those excerpts to the LLM as context. You don't need an ingestion pipeline, an embedding model, or an index to keep fresh.
 
 The core architecture looks like this:
 
@@ -42,7 +42,7 @@ Researchers have found that agentic keyword search achieves over 90% of vector-R
 
 - Real-time information (news, pricing, and competitive intelligence)
 - Broad coverage beyond a fixed corpus
-- Research [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) that explore topics without pre-indexed boundaries
+- Research [AI agents](https://parallel.ai/learn/ai-agent) that explore topics without pre-indexed boundaries
 - Queries where freshness determines answer quality
 
 **Vector RAG still wins when you need:**
@@ -212,7 +212,7 @@ def route_query(query: str, vector_results) -> str:
 
 The function uses three routing signals. First, freshness keywords ("latest," "current," "today") indicate the user wants recent information that a static index can't provide. Second, low confidence scores from your vector store suggest the indexed corpus doesn't cover the query well. Third, you route queries with no vector results to web search as a fallback.
 
-Vector retrieval costs fractions of a cent at sub-50ms latency. Web RAG costs ~$0.001 per query with Parallel's Fast mode (~700ms) or Turbo mode (~200ms median), or ~$0.005 per query at 1-3 seconds with the Basic and Advanced modes. Most queries in a typical application go to the vector store, so your blended cost stays low. Web search handles the long tail of queries where vector retrieval falls short. For complex multi-source research queries, you can escalate to Parallel's Task API for [deep research](https://parallel.ai/articles/what-is-deep-research) with built-in citations and confidence scoring.
+Vector retrieval costs fractions of a cent at sub-50ms latency. Web RAG costs ~$0.001 per query with Parallel's Fast mode (~700ms) or Turbo mode (~200ms median), or ~$0.005 per query at 1-3 seconds with the Basic and Advanced modes. Most queries in a typical application go to the vector store, so your blended cost stays low. Web search handles the long tail of queries where vector retrieval falls short. For complex multi-source research queries, you can escalate to Parallel's Task API for [deep research](https://parallel.ai/learn/deep-research) with built-in citations and confidence scoring.
 
 ## Production considerations
 

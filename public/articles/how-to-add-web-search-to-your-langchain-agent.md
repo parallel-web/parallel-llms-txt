@@ -14,13 +14,13 @@ Adding web search to a LangChain agent means wrapping a search API in the Tool i
 
 Large language models (LLMs) have a knowledge cutoff. They can tell you about events from their training data, but they know nothing about what happened last week. Ask about a recent security vulnerability, live pricing, or the current version of a library, and you'll get stale answers or hallucinated ones.
 
-[Web search APIs](https://parallel.ai/articles/what-is-a-web-search-api) solve this by connecting your agent to real-time information during inference. The agent decides when it needs fresh data, issues a search query, receives results, and synthesizes them into its response.
+[Web search APIs](https://parallel.ai/learn/web-search-api) solve this by connecting your agent to real-time information during inference. The agent decides when it needs fresh data, issues a search query, receives results, and synthesizes them into its response.
 
-This pattern shows up across production use cases. [Research agents](https://parallel.ai/articles/what-is-deep-research) pull multiple sources to answer complex questions. RAG pipelines augment retrieval with live search when the vector store doesn't have current data. Support bots reference up-to-date documentation instead of answering from a frozen snapshot.
+This pattern shows up across production use cases. [Research agents](https://parallel.ai/learn/deep-research) pull multiple sources to answer complex questions. RAG pipelines augment retrieval with live search when the vector store doesn't have current data. Support bots reference up-to-date documentation instead of answering from a frozen snapshot.
 
 LangChain's Tool abstraction handles the integration. A Tool has three components: a name the agent references, a description the LLM reads to decide when to call it, and a callable function that executes the search. You define the tool once, bind it to your agent, and the LLM decides when to call it.
 
-If you're building production [AI agents](https://parallel.ai/articles/what-is-an-ai-agent), the search API behind your tool determines the quality of your agent's real-time knowledge, and picking it deserves the same attention you give to choosing your LLM provider.
+If you're building production [AI agents](https://parallel.ai/learn/ai-agent), the search API behind your tool determines the quality of your agent's real-time knowledge, and picking it deserves the same attention you give to choosing your LLM provider.
 
 ## How the LangChain tool interface works
 
@@ -58,7 +58,7 @@ Evaluate candidates across these criteria: structured output (parsed titles, exc
 
 **Google Custom Search** gave direct access to Google's index through a programmable search engine, with 100 free queries per day, then $5 per 1,000 queries. Google has closed the JSON API to new customers and will cut off existing ones on January 1, 2027, and new engines can't search the whole web, so it isn't an option for a new agent.
 
-**Brave Search API** serves privacy-conscious deployments. It maintains an independent index (not reselling Google results), offers structured JSON responses, and provides a free tier of 2,000 queries per month. Results are clean but the index is smaller than Google's.
+**Brave Search API** serves privacy-conscious deployments. It maintains an independent index (not reselling Google results), offers structured JSON responses, and includes a $5 monthly credit on its Search plan (checked November 22, 2026). Results are clean but the index is smaller than Google's.
 
 **[Parallel Search API](https://docs.parallel.ai/search-api/search-quickstart)** is built for AI agents from the ground up. Instead of keyword queries, you describe a [search objective in natural language](https://docs.parallel.ai/search/search), and the API returns ranked URLs with compressed, token-dense excerpts optimized for LLM context windows. Pricing starts from $1 per 1,000 requests with Turbo mode (~200ms median latency), or $5 per 1,000 for Basic and Advanced (10 results included), with SOC 2 Type 2 certification and zero data retention. Parallel maintains its own proprietary web-scale index.
 

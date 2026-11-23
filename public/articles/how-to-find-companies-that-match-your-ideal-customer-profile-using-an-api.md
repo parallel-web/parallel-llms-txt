@@ -46,7 +46,7 @@ Because static providers deliver snapshots, teams either over-filter and miss op
 
 ## How deep research APIs change ICP discovery
 
-With [deep research](https://parallel.ai/articles/what-is-deep-research) APIs, you search the live web in real time instead of querying a pre-indexed database, and the API applies multi-hop reasoning to find entities matching your criteria.
+With [deep research](https://parallel.ai/learn/deep-research) APIs, you search the live web in real time instead of querying a pre-indexed database, and the API applies multi-hop reasoning to find entities matching your criteria.
 
 Independent measurement of this kind of query is new. Openbenchmarks’ [multi-turn company search board](https://openbenchmarks.com/multi-turn-company-search) gives a fixed agent 45 questions that each stack three or four constraints, swaps in each vendor’s search API, and scores the returned companies against a hand-labelled set. Precision there runs from under 1% for a Google SERP feed to 88.7% for Parallel’s Search API in basic mode, the highest, which matters when every false positive costs a rep’s time. Recall is under 40% for every provider, which is why FindAll verifies each candidate against every condition rather than trusting one search pass.
 
@@ -130,7 +130,7 @@ The citation structure looks like this: if FindAll reports that a company "raise
 
 After FindAll returns a list of ICP-matching companies, you need deeper context for prioritization and outreach: decision-maker contacts, technology stack details, recent funding history, and competitive positioning.
 
-You handle [data enrichment](https://parallel.ai/articles/what-is-data-enrichment) through Parallel's [Task API](https://parallel.ai/products/task). You define a custom schema specifying the exact fields your sales team needs, then run enrichment across your discovered list.
+You handle [data enrichment](https://parallel.ai/learn/data-enrichment) through Parallel's [Task API](https://parallel.ai/products/task). You define a custom schema specifying the exact fields your sales team needs, then run enrichment across your discovered list.
 
 Here is a Python example that enriches a discovered company:
 

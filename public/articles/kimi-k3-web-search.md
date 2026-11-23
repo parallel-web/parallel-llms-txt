@@ -182,7 +182,7 @@ opencode mcp add parallel --url https://mcp.parallel.ai/mcp
 
 We tested the endpoint directly with a JSON-RPC client and no key on October 10. `tools/list` returned `web_search` and `web_fetch`, and a `web_search` call returned about 13,000 characters of results in 0.97 seconds, with the Kimi K3 license file on Hugging Face as the top hit. The response metadata reported $0.001 for the search.
 
-For more clients, see [the best free web search MCP servers](https://parallel.ai/articles/best-free-web-search-mcp) and [what a web search MCP is](https://parallel.ai/articles/what-is-a-web-search-mcp).
+For more clients, see [the best free web search MCP servers](https://parallel.ai/articles/best-free-web-search-mcp) and [what a web search MCP is](https://parallel.ai/learn/web-search-mcp).
 
 ## Frequently asked questions
 

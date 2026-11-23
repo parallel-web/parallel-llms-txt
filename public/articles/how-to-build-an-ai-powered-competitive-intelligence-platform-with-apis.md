@@ -2,7 +2,7 @@
 
 A competitive intelligence platform reduces to four API layers: entity discovery, deep research, continuous monitoring, and real-time search. This guide covers each layer in turn with the capabilities that matter for CI, shows how to compose them into an end-to-end workflow, and compares the cost with the $20K to $100K platforms teams buy instead.
 
-Engineering-led teams have different requirements. You want CI data flowing into your own [AI agents](https://parallel.ai/articles/what-is-an-ai-agent), CRMs, deal rooms, and internal tools. That means structured JSON instead of PDFs, webhooks instead of weekly email digests, and an API layer you can program rather than a SaaS dashboard you log into.
+Engineering-led teams have different requirements. You want CI data flowing into your own [AI agents](https://parallel.ai/learn/ai-agent), CRMs, deal rooms, and internal tools. That means structured JSON instead of PDFs, webhooks instead of weekly email digests, and an API layer you can program rather than a SaaS dashboard you log into.
 
 A production-grade competitive intelligence stack requires four capabilities:
 
@@ -35,7 +35,7 @@ A discovery layer should accept natural-language queries and return structured e
 
 ### The manual alternative doesn't scale
 
-Teams without discovery automation resort to Crunchbase exports and PitchBook searches. An analyst might spend 20 hours building a list of 50 competitors, then repeat the process quarterly as the list goes stale. Traditional [web scraping](https://parallel.ai/articles/what-is-web-scraping) approaches require maintaining custom crawlers for each data source. Automation turns that 20-hour project into a 30-second API call.
+Teams without discovery automation resort to Crunchbase exports and PitchBook searches. An analyst might spend 20 hours building a list of 50 competitors, then repeat the process quarterly as the list goes stale. Traditional [web scraping](https://parallel.ai/learn/web-scraping) approaches require maintaining custom crawlers for each data source. Automation turns that 20-hour project into a 30-second API call.
 
 ### Parallel FindAll API for entity discovery
 
@@ -58,13 +58,13 @@ Generator tiers let you trade off cost against thoroughness. Preview mode tests 
 
 ## Layer 2: Deep research and enrichment
 
-A research layer accepts a competitor entity and an objective, then returns structured JSON with exactly the fields you requested. You might ask: "Extract this company's pricing model, target customer segments, and key product differentiators." The API returns structured data with per-field citations. This [data enrichment](https://parallel.ai/articles/what-is-data-enrichment) process turns basic entity records into comprehensive competitive profiles.
+A research layer accepts a competitor entity and an objective, then returns structured JSON with exactly the fields you requested. You might ask: "Extract this company's pricing model, target customer segments, and key product differentiators." The API returns structured data with per-field citations. This [data enrichment](https://parallel.ai/learn/data-enrichment) process turns basic entity records into comprehensive competitive profiles.
 
 ### Processor tiers match compute to complexity
 
 **Lightweight enrichment** handles basic metadata: company summary, employee count, headquarters location, founding year. These fields exist on company websites and databases. Extraction takes seconds.
 
-**[Deep research](https://parallel.ai/articles/what-is-deep-research)** handles complex, multi-source synthesis: full pricing tier breakdowns, feature comparison matrices, technology stack analysis, recent product launches with dates and descriptions. These fields require traversing multiple pages, cross-referencing sources, and reasoning about conflicting information.
+**[Deep research](https://parallel.ai/learn/deep-research)** handles complex, multi-source synthesis: full pricing tier breakdowns, feature comparison matrices, technology stack analysis, recent product launches with dates and descriptions. These fields require traversing multiple pages, cross-referencing sources, and reasoning about conflicting information.
 
 ### Citations and confidence scores are non-negotiable
 
@@ -162,7 +162,7 @@ Monitoring catches the signals you know to watch for. Search handles the questio
 
 **Ad-hoc queries** let analysts investigate specific questions as they arise. The sales team asks about a competitor's recent product launch. An executive wants context on an acquisition rumor. Search provides immediate answers with sources.
 
-**LLM context injection** feeds relevant web data into AI pipelines. Your internal chatbot needs current information about competitors. A [web search API](https://parallel.ai/articles/what-is-a-web-search-api) retrieves the most relevant articles and feeds them into the context window.
+**LLM context injection** feeds relevant web data into AI pipelines. Your internal chatbot needs current information about competitors. A [web search API](https://parallel.ai/learn/web-search-api) retrieves the most relevant articles and feeds them into the context window.
 
 **Event enrichment** supplements monitoring alerts with background. A monitor detects that Competitor X acquired Widget Inc. Search retrieves analyst reactions, market commentary, and strategic implications. An LLM synthesizes everything into a briefing.
 

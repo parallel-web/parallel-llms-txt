@@ -6,7 +6,7 @@ An autonomous research agent runs search, extraction, and synthesis without supe
 
 Research agents operate differently than chatbots. They run [multi-step workflows](https://parallel.ai/articles/what-is-an-agent-harness) without human supervision: search, extract, synthesize, verify. Each step feeds the next, so a weak link anywhere in the chain degrades the final output.
 
-[Generic search APIs](https://parallel.ai/articles/what-is-a-web-search-api) return keyword-matched links designed for humans to click. An agent needs semantically relevant content it can reason over, and dense, relevant content produces more accurate research at lower cost.
+[Generic search APIs](https://parallel.ai/learn/web-search-api) return keyword-matched links designed for humans to click. An agent needs semantically relevant content it can reason over, and dense, relevant content produces more accurate research at lower cost.
 
 **You control cost and quality through token efficiency.** Most web pages contain 80% boilerplate: navigation, ads, footers, cookie banners. When that noise fills an agent's context window, you pay for tokens that don't inform the answer, and the relevant content competes with noise for the model's attention.
 
@@ -79,7 +79,7 @@ After search identifies relevant URLs, agents need full-page content, and in raw
 3. **Cost.** Price per URL extracted.
 4. **Reliability.** Failure rate across diverse site architectures.
 
-DIY extraction using [Puppeteer or Playwright](https://parallel.ai/articles/what-is-web-scraping) looks simple at first, until you hit anti-bot systems, CAPTCHA walls, dynamic rendering, and site-specific parsing requirements. Maintaining extraction infrastructure becomes a full-time job.
+DIY extraction using [Puppeteer or Playwright](https://parallel.ai/learn/web-scraping) looks simple at first, until you hit anti-bot systems, CAPTCHA walls, dynamic rendering, and site-specific parsing requirements. Maintaining extraction infrastructure becomes a full-time job.
 
 Managed extraction APIs maintain browser farms, solve CAPTCHAs, render JavaScript, and return clean output.
 
@@ -107,7 +107,7 @@ At $1 per 1,000 URLs, extraction costs stay predictable even at scale.
 
 Some questions require more than search and extraction. "Compare the competitors in the AI search API market" demands decomposing the question, searching multiple sources, cross-referencing findings, and synthesizing a coherent answer with citations.
 
-In this stack, [deep research APIs](https://parallel.ai/articles/what-is-deep-research) act as the "brain" of your autonomous research agent. They orchestrate multi-step reasoning: break down the question, search iteratively, extract relevant content, synthesize findings, and cite sources.
+In this stack, [deep research APIs](https://parallel.ai/learn/deep-research) act as the "brain" of your autonomous research agent. They orchestrate multi-step reasoning: break down the question, search iteratively, extract relevant content, synthesize findings, and cite sources.
 
 **Evaluation criteria:**
 

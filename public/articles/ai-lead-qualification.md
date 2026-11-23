@@ -217,4 +217,4 @@ These combine well. Many teams keep an enrichment provider for contacts and use 
 
 Paste one of your recent inbound leads into the [Decisions playground](https://platform.parallel.ai/play/decisions) (5,000 free requests) with your own segment and ICP rubric, then wire the request into your form handler using the [quickstart](https://docs.parallel.ai/decisions/decisions-quickstart). To see which go-to-market workflows could run on web-grounded decisions for your company, try the [use-case demo](https://webjev-use-cases.paralleldemos.com/).
 
-Related reading: [What is a decisions API?](https://parallel.ai/articles/what-is-a-decisions-api) / [AI lead scoring](https://parallel.ai/articles/ai-lead-scoring) / [AI lead routing](https://parallel.ai/articles/ai-lead-routing) / [Entity matching](https://parallel.ai/articles/entity-matching)
+Related reading: [What is a decisions API?](https://parallel.ai/articles/what-is-a-decisions-api) / [AI lead scoring](https://parallel.ai/articles/ai-lead-scoring) / [AI lead routing](https://parallel.ai/articles/ai-lead-routing) / [Entity matching](https://parallel.ai/learn/entity-matching)

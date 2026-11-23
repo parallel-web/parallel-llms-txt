@@ -31,10 +31,10 @@ The assistant passes those passages to a large language model (LLM), which write
 
 ## Related terms
 
-- [Web search API](https://parallel.ai/articles/what-is-a-web-search-api): a retrieval API that queries the live web.
-- [Semantic search](https://parallel.ai/articles/what-is-semantic-search): the matching technique behind it.
-- [Deep research](https://parallel.ai/articles/what-is-deep-research): chained multi-source retrieval.
-- [AI agents](https://parallel.ai/articles/what-is-an-ai-agent): common consumers of retrieval APIs.
+- [Web search API](https://parallel.ai/learn/web-search-api): a retrieval API that queries the live web.
+- [Semantic search](https://parallel.ai/learn/semantic-search): the matching technique behind it.
+- [Deep research](https://parallel.ai/learn/deep-research): chained multi-source retrieval.
+- [AI agents](https://parallel.ai/learn/ai-agent): common consumers of retrieval APIs.
 
 ## FAQ
 

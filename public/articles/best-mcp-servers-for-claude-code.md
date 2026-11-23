@@ -2,7 +2,7 @@
 
 Claude Code MCP servers connect the agent to tools it doesn't ship with, from live web search to your database, issue tracker, and browser. This guide covers twelve servers worth installing in 2026, the exact claude mcp add command and auth for each, a side-by-side comparison, and how to keep the set small enough that it doesn't eat your context.
 
-Claude Code is Anthropic’s agentic coding harness, and the [Model Context Protocol (MCP)](https://parallel.ai/articles/what-is-mcp) is its extension surface: one config entry connects the agent to a documentation index, your issue tracker, a browser, or the live web. Tool search now defers most tool definitions until Claude needs them, but every server still adds tool names to each session, results to the context window, and one more option for the agent to choose from. Out of the thousands that exist, the useful question is which ones earn their place.
+Claude Code is Anthropic’s agentic coding harness, and the [Model Context Protocol (MCP)](https://parallel.ai/learn/model-context-protocol) is its extension surface: one config entry connects the agent to a documentation index, your issue tracker, a browser, or the live web. Tool search now defers most tool definitions until Claude needs them, but every server still adds tool names to each session, results to the context window, and one more option for the agent to choose from. Out of the thousands that exist, the useful question is which ones earn their place.
 
 Below are the twelve we’d consider, with the exact setup for each. Disclosure up front: we make Parallel, Parallel MCP is the first pick, and we cite the benchmark numbers so you can discount our bias.
 

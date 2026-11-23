@@ -4,9 +4,9 @@ Whatever your agent can retrieve sets the ceiling on how good its answers get, w
 
 Your AI agent just told a customer that a discontinued product is in stock. The model didn't hallucinate in the way you'd expect: it read the pages it was handed, reasoned over them, and answered in good faith. The pages were wrong, stale, or off-topic, so the failure sat one layer down, in retrieval.
 
-Retrieval sets the ceiling on agent quality, since a [large language model (LLM)](https://parallel.ai/articles/what-is-an-ai-agent) can only reason over the context it receives, and a [semantic search API](https://parallel.ai/articles/what-is-semantic-search) raises that ceiling. Instead of matching keywords, it reads an agent's natural-language objective, works out the intent behind it, and returns ranked, LLM-ready results in a single tool call, which means fewer round trips and lower cost.
+Retrieval sets the ceiling on agent quality, since a [large language model (LLM)](https://parallel.ai/learn/ai-agent) can only reason over the context it receives, and a [semantic search API](https://parallel.ai/learn/semantic-search) raises that ceiling. Instead of matching keywords, it reads an agent's natural-language objective, works out the intent behind it, and returns ranked, LLM-ready results in a single tool call, which means fewer round trips and lower cost.
 
-Throughout, the product under review is each vendor's fast, real-time [web search API](https://parallel.ai/articles/what-is-a-web-search-api), meaning the endpoint an agent calls mid-task to retrieve fresh, ranked web context in a single request. These are agent retrieval tools rather than SEO tools built on Google’s ranked positions or SERP features.
+Throughout, the product under review is each vendor's fast, real-time [web search API](https://parallel.ai/learn/web-search-api), meaning the endpoint an agent calls mid-task to retrieve fresh, ranked web context in a single request. These are agent retrieval tools rather than SEO tools built on Google’s ranked positions or SERP features.
 
 ## The 5 fast search APIs, reviewed
 
@@ -22,7 +22,7 @@ We built the [Parallel Search API](https://parallel.ai/products/search) from the
 
 Ranking is done by how useful a page is for the agent's next reasoning step, and each result is compressed into query-relevant excerpts that keep noise out of the context window. Those two choices are why an agent needs fewer round trips to reach a confident answer, and fewer round trips lower both token spend and latency.
 
-For most agent loops the fast mode is the one to reach for: $1 per 1,000 requests and a documented ~700ms latency. On the independent Artificial Analysis Search Index (November 2026), Fast scores 82 against 83 for advanced, so it keeps nearly all of advanced's quality. The [Fast Mode launch](https://parallel.ai/blog/parallel-search-fast) has the launch details. On Openbenchmarks' coding-agent board, Turbo has the lowest average search time at 333ms and completed 64.7% of tasks, against 66.7% for Fast at 953ms, so Turbo trades a little completion for speed. The two sit close on our runs too: on our [benchmarks](https://parallel.ai/benchmarks) at the low-cost tier, Fast scored 94% on SimpleQA Verified and Turbo 91%, both at $2.00 per 1,000 questions, the lowest cost in that tier. On BrowseComp, Perplexity's 46% edged Fast's 44%. The API also ships as a tool through the [Model Context Protocol](https://parallel.ai/articles/what-is-mcp) (MCP), which drops it into existing agent frameworks, and we hold SOC 2 Type 2 certification, with zero data retention available for enterprise teams.
+For most agent loops the fast mode is the one to reach for: $1 per 1,000 requests and a documented ~700ms latency. On the independent Artificial Analysis Search Index (November 2026), Fast scores 82 against 83 for advanced, so it keeps nearly all of advanced's quality. The [Fast Mode launch](https://parallel.ai/blog/parallel-search-fast) has the launch details. On Openbenchmarks' coding-agent board, Turbo has the lowest average search time at 333ms and completed 64.7% of tasks, against 66.7% for Fast at 953ms, so Turbo trades a little completion for speed. The two sit close on our runs too: on our [benchmarks](https://parallel.ai/benchmarks) at the low-cost tier, Fast scored 94% on SimpleQA Verified and Turbo 91%, both at $2.00 per 1,000 questions, the lowest cost in that tier. On BrowseComp, Perplexity's 46% edged Fast's 44%. The API also ships as a tool through the [Model Context Protocol](https://parallel.ai/learn/model-context-protocol) (MCP), which drops it into existing agent frameworks, and we hold SOC 2 Type 2 certification, with zero data retention available for enterprise teams.
 
 **Best for:** single-hop fact lookups, multi-hop research pipelines, and agent tool calls where context quality and token efficiency drive both accuracy and cost. Fast at $1 per 1,000 and a documented ~700ms is the Parallel speed tier for cheap, fast web context.
 
@@ -34,7 +34,7 @@ For most agent loops the fast mode is the one to reach for: $1 per 1,000 request
 
 Exa built its search around embeddings rather than keyword matching, marketing it as "neural" web search for AI, and splits the product into an instant tier for fast lookups and deeper tiers for research and datasets. Developer adoption has been solid, and it's the tool prospective customers ask us to compare against most often.
 
-Exa Instant was the fastest mode on Openbenchmarks' factual lookup board to clear 95% accuracy, at 398ms and 97.7%, and Exa Fast posted the board's top accuracy, 99.3% at 652ms. Both list at $7 per 1,000 requests. In our low-cost-tier agent runs, Exa Auto scored 91% on SimpleQA Verified at $7.90 per 1,000 questions and led WideSearch at 53.0 to Parallel Fast's 45.5, so a workload where those gaps matter should measure them on its own traffic rather than take ours.
+Exa Instant was the fastest mode on Openbenchmarks' factual lookup board to clear 95% accuracy, at 398ms and 97.7%, and Exa Fast posted the board's top accuracy, 99.3% at 652ms. Both list at $7 per 1,000 requests. In our low-cost-tier agent runs, Exa Auto scored 91% on SimpleQA Verified at $7.90 per 1,000 questions and led WideSearch at 53.0 to Parallel Fast's 45.5, so a workload where those gaps matter should measure them on its own traffic rather than take ours. Our guide to [the best Exa alternatives](https://parallel.ai/articles/exa-alternatives) compares Exa with 10 other search APIs.
 
 **Best for:** teams that want embeddings-style semantic discovery paired with a mature API that spans fast and deep search tiers.
 
@@ -128,7 +128,7 @@ A credible head-to-head takes about a day. What follows is the short version of 
 
 **How should I judge accuracy across these tools?** Start with a public benchmark like SimpleQA to shortlist candidates, then validate on your own queries and measure whether the agent finished the task.
 
-**How does pricing usually work?** Most providers charge per request or per credit, usually with a free tier, and unit costs drop on committed plans. Published rates shift often enough that the number worth comparing is cost per successful task on your own traffic.
+**How does pricing usually work?** Most providers charge per request or per credit, usually with a [free tier](https://parallel.ai/articles/best-free-web-search-api), and unit costs drop on committed plans. Published rates shift often enough that the number worth comparing is cost per successful task on your own traffic.
 
 **How often should I re-evaluate my choice?** Quarterly is a reasonable cadence. Indexes grow, models change, and prices move, so a tool that lost by a point last quarter may lead this one.
 

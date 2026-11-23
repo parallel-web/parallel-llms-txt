@@ -2,7 +2,7 @@
 
 OpenCode configures MCP servers in opencode.json and lets you scope any server's tools to specific agents. Here are the five servers worth installing in 2026, including how Parallel MCP fits next to OpenCode's built-in websearch tool, which can now run on Exa, Parallel, and other providers.
 
-OpenCode is the open-source, provider-agnostic coding agent that's become the default [alternative to Claude Code](https://parallel.ai/articles/opencode-vs-claude-code-a-2026-comparison-for-developers), and [MCP](https://parallel.ai/articles/what-is-mcp) is how you extend it. Its config has a feature worth knowing before you install anything: per-agent tool patterns, which let you connect a heavy server but expose its tools only to the agents that need them.
+OpenCode is the open-source, provider-agnostic coding agent that's become the default [alternative to Claude Code](https://parallel.ai/articles/opencode-vs-claude-code-a-2026-comparison-for-developers), and [MCP](https://parallel.ai/learn/model-context-protocol) is how you extend it. Its config has a feature worth knowing before you install anything: per-agent tool patterns, which let you connect a heavy server but expose its tools only to the agents that need them.
 
 This guide covers how MCP works in OpenCode, how Parallel MCP fits next to OpenCode's built-in websearch tool, and the five servers we'd actually install. Disclosure: we make Parallel, so read our first pick knowing the vendor wrote it.
 

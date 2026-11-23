@@ -6,7 +6,7 @@ Automated market mapping replaces the quarterly SaaS dashboard with a pipeline t
 
 - Traditional market mapping tools lock you into rigid SaaS dashboards that go stale within weeks.
 - AI-native APIs let you build automated pipelines that discover, enrich, and monitor entire market segments programmatically.
-- A composable stack (entity discovery + web extraction + [deep research](https://parallel.ai/articles/what-is-deep-research) + continuous monitoring) replaces manual quarterly reviews with real-time competitive intelligence.
+- A composable stack (entity discovery + web extraction + [deep research](https://parallel.ai/learn/deep-research) + continuous monitoring) replaces manual quarterly reviews with real-time competitive intelligence.
 - Teams with engineering resources can build more flexible, lower-cost market mapping systems than any single SaaS platform offers.
 - The shift from periodic reports to event-driven monitoring changes how fast you can respond to competitor moves.
 
@@ -50,7 +50,7 @@ A complete market mapping system needs four capabilities.
 
 **Entity discovery.** Find every company that matches your criteria. Turn "AI startups in healthcare that raised Series A in the last 12 months" into a structured list of company names, URLs, and metadata. For a sense of how hard this is, Openbenchmarks’ [multi-turn company search board](https://openbenchmarks.com/multi-turn-company-search) asks a fixed agent for every company matching three or four constraints, and the best of 20 search configurations, Parallel’s Search API in basic mode, recovered 34.4% of the valid companies with 88.7% precision.
 
-**[Data enrichment](https://parallel.ai/articles/what-is-data-enrichment)****.** For each discovered entity, extract structured information from their website: product descriptions, pricing tiers, team size signals, technology stack, recent news.
+**[Data enrichment](https://parallel.ai/learn/data-enrichment)****.** For each discovered entity, extract structured information from their website: product descriptions, pricing tiers, team size signals, technology stack, recent news.
 
 **Structured analysis.** Synthesize your enriched data into competitive intelligence: rank companies by funding, compare product positioning, identify market gaps, generate a competitive brief with citations.
 
@@ -102,7 +102,7 @@ The output is a dataset you control (company names, URLs, descriptions, funding 
 
 ### Step 2. Enrich each company with structured data
 
-For each discovered entity, [extract structured information from their website](https://docs.parallel.ai/extract/extract-quickstart). You specify what you want in plain language. The API handles [JavaScript rendering, CAPTCHAs, and dynamic content](https://parallel.ai/articles/what-is-web-scraping), so you don't write CSS selectors or maintain site-specific scraping logic.
+For each discovered entity, [extract structured information from their website](https://docs.parallel.ai/extract/extract-quickstart). You specify what you want in plain language. The API handles [JavaScript rendering, CAPTCHAs, and dynamic content](https://parallel.ai/learn/web-scraping), so you don't write CSS selectors or maintain site-specific scraping logic.
 
 This code extracts pricing and enterprise features from a competitor's pricing page:
 

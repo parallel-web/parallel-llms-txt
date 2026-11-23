@@ -23,9 +23,9 @@ A team wants to know whether its research agent could have predicted the outcome
 
 ## Related terms
 
-- [Web index](https://parallel.ai/articles/what-is-a-web-index): the stored copy of the web that a search API answers from.
-- [Web crawler](https://parallel.ai/articles/what-is-a-web-crawler): the system that captures pages and decides how often to revisit them.
-- [AI search API](https://parallel.ai/learn/ai-search-api): the search layer an agent calls for web data.
+- [Web index](https://parallel.ai/learn/web-index): the stored copy of the web that a search API answers from.
+- [Web crawler](https://parallel.ai/learn/web-crawler): the system that captures pages and decides how often to revisit them.
+- [AI search API](https://parallel.ai/learn/web-search-api): the search layer an agent calls for web data.
 - [How to benchmark web search APIs](https://parallel.ai/articles/how-to-benchmark-web-search-apis): building evals for search, including keeping answers out of reach.
 
 ## FAQ

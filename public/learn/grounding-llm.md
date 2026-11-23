@@ -33,9 +33,9 @@ With grounding, the agent calls the [Parallel Search API](https://parallel.ai/pr
 
 - Learn to [reduce LLM hallucinations](https://parallel.ai/articles/how-to-reduce-llm-hallucinations-by-connecting-your-app-to-real-time-web-search) by connecting your model to real-time data.
 - Build a [live-data RAG pipeline](https://parallel.ai/articles/how-to-build-a-rag-pipeline-with-live-web-data) that grounds answers in fresh sources.
-- Understand what a [web search API](https://parallel.ai/articles/what-is-a-web-search-api) does for grounding.
-- Explore [semantic search](https://parallel.ai/articles/what-is-semantic-search) and how it finds relevant passages.
-- See how [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) use grounded context to act.
+- Understand what a [web search API](https://parallel.ai/learn/web-search-api) does for grounding.
+- Explore [semantic search](https://parallel.ai/learn/semantic-search) and how it finds relevant passages.
+- See how [AI agents](https://parallel.ai/learn/ai-agent) use grounded context to act.
 
 ## FAQ
 

@@ -16,7 +16,7 @@ A market intelligence API provides programmatic building blocks for searching, e
 
 Two categories of tools exist for gathering market intelligence. Finished SaaS platforms (AlphaSense, Klue, Similarweb) handle the entire workflow, crawling, analyzing, and presenting insights through dashboards. You pay subscription fees, get pre-built reports, and work within their constraints. General-purpose AI APIs (OpenAI, Anthropic) provide reasoning but no data acquisition infrastructure: they can analyze text you provide, but they can't search the live web or monitor competitor websites for changes.
 
-Market intelligence APIs occupy the middle ground. They give developers raw data infrastructure: [web search endpoints](https://parallel.ai/articles/what-is-a-web-search-api), extraction services, monitoring webhooks. You control the pipeline, own the data, and build workflows that match your specific competitive intelligence needs.
+Market intelligence APIs occupy the middle ground. They give developers raw data infrastructure: [web search endpoints](https://parallel.ai/learn/web-search-api), extraction services, monitoring webhooks. You control the pipeline, own the data, and build workflows that match your specific competitive intelligence needs.
 
 SaaS platforms work when their pre-built reports match your questions. APIs fit when you need custom workflows, proprietary data pipelines, or agent-native integrations. A product team tracking 50 competitors' pricing pages needs a different system than an analyst running quarterly industry reports, and you can build either one from the same APIs.
 
@@ -28,7 +28,7 @@ A complete market intelligence system needs five capability layers, each coverin
 
 ### Web search
 
-Programmatic search surfaces competitor mentions, industry news, and market signals from across the web, and it needs more than keyword matching. [Semantic search](https://parallel.ai/articles/what-is-semantic-search) matches on intent, freshness controls let you filter by publication date, and domain filtering restricts results to trusted sources like [TechCrunch](https://techcrunch.com/), [Reuters](https://www.reuters.com/), or industry publications.
+Programmatic search surfaces competitor mentions, industry news, and market signals from across the web, and it needs more than keyword matching. [Semantic search](https://parallel.ai/learn/semantic-search) matches on intent, freshness controls let you filter by publication date, and domain filtering restricts results to trusted sources like [TechCrunch](https://techcrunch.com/), [Reuters](https://www.reuters.com/), or industry publications.
 
 Traditional search APIs return links, which you then fetch and parse one by one. AI-native search APIs return links with dense excerpts containing the relevant content, which saves processing time and tokens.
 
@@ -66,11 +66,11 @@ You often need datasets, not individual pages. Entity discovery APIs find and st
 
 Parallel's FindAll API accepts natural language queries and returns structured entity datasets. Ask for "all Series A fintech startups founded after 2022," and it discovers, verifies, and structures matching companies with funding data, headcount, and descriptions. You can build prospect lists, market maps, and competitor overviews through code. The API runs in the background, returning results as they're discovered rather than blocking until completion.
 
-### Deep research and [enrichment](https://parallel.ai/articles/what-is-data-enrichment)
+### Deep research and [enrichment](https://parallel.ai/learn/data-enrichment)
 
 Some questions require multi-step research. Building a competitor profile means searching for funding history, extracting product information, finding leadership team details, and synthesizing everything into a coherent report. One search or extraction call can't cover that, and orchestrating multiple calls by hand adds engineering overhead.
 
-Task APIs orchestrate these workflows. You submit a research objective, and the API handles decomposition, execution, and synthesis. Parallel's Task API runs structured [deep research](https://parallel.ai/articles/what-is-deep-research) with citations, returning enriched profiles you can feed into your own systems or LLM pipelines. Pricing scales with complexity: simple enrichment runs $5 per 1,000 tasks; deep research with extensive web coverage costs more.
+Task APIs orchestrate these workflows. You submit a research objective, and the API handles decomposition, execution, and synthesis. Parallel's Task API runs structured [deep research](https://parallel.ai/learn/deep-research) with citations, returning enriched profiles you can feed into your own systems or LLM pipelines. Pricing scales with complexity: simple enrichment runs $5 per 1,000 tasks; deep research with extensive web coverage costs more.
 
 ### Monitoring
 
@@ -135,11 +135,11 @@ Monitor API pricing runs $3 per 1,000 executions. Tracking 100 competitors daily
 
 ## Using AI agents for autonomous market research
 
-[AI agents](https://parallel.ai/articles/what-is-an-ai-agent) built on Claude, GPT-6, or open-source models can conduct market research tasks without human intervention. They need APIs that return structured, LLM-consumable data.
+[AI agents](https://parallel.ai/learn/ai-agent) built on Claude, GPT-6, or open-source models can conduct market research tasks without human intervention. They need APIs that return structured, LLM-consumable data.
 
 ### The data format problem
 
-Most [web scraping tools](https://parallel.ai/articles/what-is-web-scraping) return raw HTML, and an AI agent wastes tokens on markup, navigation elements, and scripts. A 50KB HTML page might contain 500 words of relevant content, so the agent pays for the noise and reasons worse over it.
+Most [web scraping tools](https://parallel.ai/learn/web-scraping) return raw HTML, and an AI agent wastes tokens on markup, navigation elements, and scripts. A 50KB HTML page might contain 500 words of relevant content, so the agent pays for the noise and reasons worse over it.
 
 Market intelligence APIs built for agents return clean formats: markdown for prose content, JSON for structured data. Parallel's Extract API outputs token-efficient markdown with dense excerpts. The Search API returns ranked URLs with summary content already extracted. Agents can consume results and take action without preprocessing.
 
@@ -193,7 +193,7 @@ Your agent receives a complete company profile, with citations, from a single AP
 
 ### MCP integration for native tool access
 
-[Model Context Protocol (MCP)](https://parallel.ai/articles/what-is-mcp) lets agents use APIs as native tools without custom integration code. Parallel's MCP server exposes Search, Extract, and Monitor capabilities to any MCP-compatible agent framework.
+[Model Context Protocol (MCP)](https://parallel.ai/learn/model-context-protocol) lets agents use APIs as native tools without custom integration code. Parallel's MCP server exposes Search, Extract, and Monitor capabilities to any MCP-compatible agent framework.
 
 If you're building with [Claude Agent SDK](https://docs.anthropic.com/en/docs/agents-and-tools/claude-agent-sdk), [LangChain](https://www.langchain.com/), or [CrewAI](https://www.crewai.com/), you connect the MCP server once, and your agents can then search the web, extract pages, and set up monitors through natural tool calls without custom wrappers.
 

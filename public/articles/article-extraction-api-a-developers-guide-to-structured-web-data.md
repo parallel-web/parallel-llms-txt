@@ -2,7 +2,7 @@
 
 Extraction APIs turn web pages into clean, LLM-ready text, which removes the per-site parsing logic that breaks whenever a layout changes. This guide compares traditional scraping with modern extraction APIs, covers the output formats that suit RAG pipelines, evaluates the leading providers, and walks through building an extraction pipeline and controlling its cost.
 
-Web pages hold valuable content buried in HTML noise. Navigation menus, ads, sidebars, and tracking scripts compete for attention alongside the article text you need. Traditional [web scraping](https://parallel.ai/articles/what-is-web-scraping) returns all of this raw HTML, forcing you to write per-site parsing logic and maintain brittle selectors as layouts change.
+Web pages hold valuable content buried in HTML noise. Navigation menus, ads, sidebars, and tracking scripts compete for attention alongside the article text you need. Traditional [web scraping](https://parallel.ai/learn/web-scraping) returns all of this raw HTML, forcing you to write per-site parsing logic and maintain brittle selectors as layouts change.
 
 LLMs and RAG systems need clean, structured text. Feeding raw HTML into a context window wastes tokens on boilerplate and confuses the model with irrelevant markup. An article extraction API handles this in a single call: you send a URL, and you receive clean markdown, JSON, or structured data containing the title, author, publication date, and body text.
 
@@ -93,7 +93,7 @@ The API handles JavaScript-rendered pages, CAPTCHA-protected content, and PDFs a
 
 Pricing is $1 per 1,000 URLs ($0.001 per URL), with no tiered plans or volume commitments.
 
-Parallel Extract integrates with our [web search API](https://parallel.ai/articles/what-is-a-web-search-api). Search finds relevant URLs across our web-scale index; Extract retrieves content from those URLs. Together they power RAG pipelines, research workflows, and data enrichment systems.
+Parallel Extract integrates with our [web search API](https://parallel.ai/learn/web-search-api). Search finds relevant URLs across our web-scale index; Extract retrieves content from those URLs. Together they power RAG pipelines, research workflows, and data enrichment systems.
 
 ```python
 import requests
@@ -138,7 +138,7 @@ Monitor quality continuously. Sample extracted content and verify accuracy. Trac
 
 ### Example: Extract API for RAG systems
 
-RAG systems need clean, chunked content from web sources. A typical workflow: discover relevant URLs, extract content, chunk into passages, generate embeddings, store in a vector database. Parallel's [Search API](https://docs.parallel.ai/search/search-quickstart) and Extract APIs handle the first two steps. For broader context on how [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) use these pipelines, including [deep research](https://parallel.ai/articles/what-is-deep-research) workflows, see our related guides.
+RAG systems need clean, chunked content from web sources. A typical workflow: discover relevant URLs, extract content, chunk into passages, generate embeddings, store in a vector database. Parallel's [Search API](https://docs.parallel.ai/search/search-quickstart) and Extract APIs handle the first two steps. For broader context on how [AI agents](https://parallel.ai/learn/ai-agent) use these pipelines, including [deep research](https://parallel.ai/learn/deep-research) workflows, see our related guides.
 
 ```python
 import requests

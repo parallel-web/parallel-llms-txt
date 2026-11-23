@@ -90,7 +90,7 @@ You need clean extraction because raw HTML carries noise: navigation elements, a
 
 An alert that says "something changed on this page" doesn't tell you what to do. Enrichment adds analysis, cross-references, and structured output.
 
-The [Task API](https://parallel.ai/products/task) runs structured research on extracted content. Define an output schema specifying the fields you need: event type, affected parties, financial impact, and a confidence-scored summary. Task performs multi-source research, adds citations, and returns data matching your schema. This [data enrichment](https://parallel.ai/articles/what-is-data-enrichment) step turns a notification into something an analyst can act on.
+The [Task API](https://parallel.ai/products/task) runs structured research on extracted content. Define an output schema specifying the fields you need: event type, affected parties, financial impact, and a confidence-scored summary. Task performs multi-source research, adds citations, and returns data matching your schema. This [data enrichment](https://parallel.ai/learn/data-enrichment) step turns a notification into something an analyst can act on.
 
 ### Stage 4: Act
 
@@ -173,7 +173,7 @@ def handle_monitor_event(event):
 
 ### Step 5: Enrich with structured research
 
-Pass extracted content to the Task API with an output schema. Define the fields you need for your analysis workflow. The [deep research](https://parallel.ai/articles/what-is-deep-research) step turns raw filings into structured records.
+Pass extracted content to the Task API with an output schema. Define the fields you need for your analysis workflow. The [deep research](https://parallel.ai/learn/deep-research) step turns raw filings into structured records.
 
 ```python
 def enrich_filing(extracted_content):

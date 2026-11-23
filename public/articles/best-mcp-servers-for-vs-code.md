@@ -2,7 +2,7 @@
 
 GitHub Copilot MCP setup in VS Code works differently since the Copilot harness became the default: servers can live in a portable file shared with Copilot CLI, and GitHub-managed connectors cover popular services with no config at all. This guide picks nine servers worth adding, gives the exact connector route or config for each, and explains the tool cap and org policies that decide what loads.
 
-VS Code is the editor most closely tied to GitHub Copilot, and it's where Copilot's [MCP](https://parallel.ai/articles/what-is-mcp) support has the most moving parts. A server can reach your agent three ways: as a Copilot connector that GitHub hosts and authorizes for you, as an entry in a config file, or bundled inside an extension or agent plugin. Which route you pick decides whether the same server also shows up in Copilot CLI and on github.com, so it's worth choosing on purpose.
+VS Code is the editor most closely tied to GitHub Copilot, and it's where Copilot's [MCP](https://parallel.ai/learn/model-context-protocol) support has the most moving parts. A server can reach your agent three ways: as a Copilot connector that GitHub hosts and authorizes for you, as an entry in a config file, or bundled inside an extension or agent plugin. Which route you pick decides whether the same server also shows up in Copilot CLI and on github.com, so it's worth choosing on purpose.
 
 We make Parallel, and it's our first pick below. The other eight are servers we'd install in our own setup, with the connector or config route that VS Code's current docs recommend for each.
 

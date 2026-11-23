@@ -109,7 +109,7 @@ The Monitor API handles continuous scanning across press releases, news sites, c
 
 ### Enrich and deduplicate incoming events
 
-Raw funding events need [data enrichment](https://parallel.ai/articles/what-is-data-enrichment) before they're actionable. Your sales team needs employee count, tech stack, and decision-maker contacts. Your investment team needs revenue estimates, competitor analysis, and growth signals.
+Raw funding events need [data enrichment](https://parallel.ai/learn/data-enrichment) before they're actionable. Your sales team needs employee count, tech stack, and decision-maker contacts. Your investment team needs revenue estimates, competitor analysis, and growth signals.
 
 **Deterministic deduplication** prevents alert fatigue. Hash on `company_name + announced_date + round_type`. Store hashes in Redis or your database. Skip events with matching hashes. A single funding round generates multiple news articles, and your pipeline should turn them into one record.
 

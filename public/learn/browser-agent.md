@@ -6,7 +6,7 @@ A browser agent is an AI system that autonomously controls a web browser to comp
 
 ## What is a browser agent?
 
-A browser agent pairs a large language model with a real web browser so it can act on the web the way a person would. You describe the outcome, and the agent figures out the steps. It's a type of AI agent, so it helps to understand [what an AI agent is](https://parallel.ai/articles/what-is-an-ai-agent) before you build one.
+A browser agent pairs a large language model with a real web browser so it can act on the web the way a person would. You describe the outcome, and the agent figures out the steps. It's a type of AI agent, so it helps to understand [what an AI agent is](https://parallel.ai/learn/ai-agent) before you build one.
 
 This matters because autonomous agent activity on the web is rising. HUMAN Security's 2026 report found 7,851% [year-over-year growth in agentic AI traffic](https://humansecurity.com/learn/resources/2026-state-of-ai-traffic-cyberthreat-benchmarks/).
 
@@ -16,20 +16,20 @@ This matters because autonomous agent activity on the web is rising. HUMAN Secur
 - **Page perception:** it reads the document object model (DOM), accessibility tree, or a screenshot to find elements and decide the next action.
 - **Autonomous, adaptive actions:** it clicks, types, scrolls, and navigates, then adapts when a pop-up, a bot check (CAPTCHA), or a layout shift appears.
 - **Benchmark-measured reliability:** teams measure performance on web navigation tests. OpenAI reported its Computer-Using Agent scored [87% on WebVoyager](https://openai.com/index/computer-using-agent/) in January 2025.
-- **A different path than an API:** an application programming interface (API) returns clean, structured web data without a browser, so [a web search API](https://parallel.ai/articles/what-is-a-web-search-api) or [the Extract API](https://parallel.ai/products/extract) skips it.
+- **A different path than an API:** an application programming interface (API) returns clean, structured web data without a browser, so [a web search API](https://parallel.ai/learn/web-search-api) or [the Extract API](https://parallel.ai/products/extract) skips it.
 
 ## Example
 
 A browser agent can fill forms across web portals, including insurance quotes, government forms, and job applications. Form filling is a common job, and also one of the hardest. On Skyvern's open Web Bench, agents scored lowest on [write-heavy tasks like form filling](https://www.skyvern.com/blog/web-bench-a-new-way-to-compare-ai-browser-agents/), such as logging in and submitting forms.
 
-Teams choosing a web access layer weigh browser automation against API access. If you want to [build a research agent](https://parallel.ai/articles/how-to-build-an-ai-research-agent-that-actually-works), that decision shapes your speed and cost. Our explainer on [when AI agents need a web search API](https://parallel.ai/articles/what-is-a-web-search-api) covers the API side of that choice.
+Teams choosing a web access layer weigh browser automation against API access. If you want to [build a research agent](https://parallel.ai/articles/how-to-build-an-ai-research-agent-that-actually-works), that decision shapes your speed and cost. Our explainer on [when AI agents need a web search API](https://parallel.ai/learn/web-search-api) covers the API side of that choice.
 
 ## Related terms
 
-- [what an AI agent is](https://parallel.ai/articles/what-is-an-ai-agent)
-- [a web search API](https://parallel.ai/articles/what-is-a-web-search-api)
-- [deep research](https://parallel.ai/articles/what-is-deep-research)
-- [a web crawler](https://parallel.ai/articles/what-is-a-web-crawler)
+- [what an AI agent is](https://parallel.ai/learn/ai-agent)
+- [a web search API](https://parallel.ai/learn/web-search-api)
+- [deep research](https://parallel.ai/learn/deep-research)
+- [a web crawler](https://parallel.ai/learn/web-crawler)
 
 ## FAQ
 

@@ -26,7 +26,7 @@ The reason custom connectors are possible at all is the machine Muse runs on. Me
 
 ## What Muse does when you give it an MCP server
 
-The Muse app has no "add MCP server" setting. When we asked it to connect to a [Model Context Protocol](https://parallel.ai/articles/what-is-mcp) server, it said so directly: it does not have a one-click integration the way Claude Desktop does, but it could build a small bridge on its machine that connects to the server as a client and then call the server's tools whenever needed.
+The Muse app has no "add MCP server" setting. When we asked it to connect to a [Model Context Protocol](https://parallel.ai/learn/model-context-protocol) server, it said so directly: it does not have a one-click integration the way Claude Desktop does, but it could build a small bridge on its machine that connects to the server as a client and then call the server's tools whenever needed.
 
 It then asked two questions. Is the server reachable over HTTP at a URL, or does it run over stdio as a command it would need to launch? And does it need any auth, such as an API key or a header? Those are the only two things you have to know about a server before you start.
 
@@ -112,4 +112,4 @@ Muse is available in the US only and to adults only at launch, on iOS, Android, 
 
 _Note: Muse is new and Meta is changing it quickly. Check Meta's Help Center for the current connector list and settings._
 
-Related reading: [The best MCP servers and connectors for Meta Muse in 2026](https://parallel.ai/articles/best-mcp-servers-for-meta-muse) / [What is MCP: Model Context Protocol fundamentals](https://parallel.ai/articles/what-is-mcp) / [Remote vs. local MCP servers](https://parallel.ai/articles/remote-vs-local-mcp-servers) / [MCP servers vs. agent skills vs. CLIs](https://parallel.ai/articles/mcp-vs-skills-vs-clis)
+Related reading: [The best MCP servers and connectors for Meta Muse in 2026](https://parallel.ai/articles/best-mcp-servers-for-meta-muse) / [What is MCP: Model Context Protocol fundamentals](https://parallel.ai/learn/model-context-protocol) / [Remote vs. local MCP servers](https://parallel.ai/articles/remote-vs-local-mcp-servers) / [MCP servers vs. agent skills vs. CLIs](https://parallel.ai/articles/mcp-vs-skills-vs-clis)

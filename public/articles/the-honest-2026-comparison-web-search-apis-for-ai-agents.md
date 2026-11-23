@@ -40,7 +40,7 @@ For AI applications, that extraction step carries a hidden cost: token bloat. Wh
 
 ### AI-native search APIs
 
-_AI-native search APIs_ return LLM-ready content in a single call. You send a query, often in natural language, and get back ranked results with extracted text, markdown, or structured JSON. Many run a proprietary index instead of wrapping Google or Bing, and many use [semantic search](https://parallel.ai/articles/what-is-semantic-search) rather than keyword matching to read intent. Parallel, Exa, Tavily, Brave Search, You.com, and Firecrawl fall here, each with a different architecture. This is the right category for RAG pipelines, agent tool calls, and multi-hop reasoning where you need content ready for the context window.
+_AI-native search APIs_ return LLM-ready content in a single call. You send a query, often in natural language, and get back ranked results with extracted text, markdown, or structured JSON. Many run a proprietary index instead of wrapping Google or Bing, and many use [semantic search](https://parallel.ai/learn/semantic-search) rather than keyword matching to read intent. Parallel, Exa, Tavily, Brave Search, You.com, and Firecrawl fall here, each with a different architecture. This is the right category for RAG pipelines, agent tool calls, and multi-hop reasoning where you need content ready for the context window.
 
 ### Native LLM-provider search tools
 
@@ -150,7 +150,7 @@ SerpAPI is the most mature SERP option here, covering Google, Bing, Yahoo, DuckD
 
 **RAG pipelines that need full page content.** You want extracted text or markdown in the same call. Parallel, You.com (livecrawl), Brave (LLM Context API), and Firecrawl handle this without a separate call.
 
-**Multi-hop research agents.** Your agent makes sequential calls, each informed by the last, so latency and quality compound. Parallel's semantic objectives let the agent describe what it needs at each step, and Advanced mode resolves more per call to cut those round trips and bring down end-to-end latency. For deeper autonomous work, [multi-step research workflows](https://parallel.ai/articles/what-is-deep-research) on the Task API go even further.
+**Multi-hop research agents.** Your agent makes sequential calls, each informed by the last, so latency and quality compound. Parallel's semantic objectives let the agent describe what it needs at each step, and Advanced mode resolves more per call to cut those round trips and bring down end-to-end latency. For deeper autonomous work, [multi-step research workflows](https://parallel.ai/learn/deep-research) on the Task API go even further.
 
 **Real-time and voice agents.** Every millisecond of retrieval latency lands in the conversation. Parallel's Turbo mode returns in about 200ms at $1 per 1,000 requests, fast and cheap enough to ground every turn without awkward pauses.
 
@@ -186,4 +186,4 @@ SerpAPI is the most mature SERP option here, covering Google, Bing, Yahoo, DuckD
 
 **How should I benchmark search APIs for my use case?** Run 50 to 100 queries from your production distribution against two or three APIs, and compare result quality, latency, and cost at your expected concurrency.
 
-**Related reading: **[Best free web search APIs](/articles/best-free-web-search-api) / [What is a web search API?](/articles/what-is-a-web-search-api) / [What is a web crawler?](/articles/what-is-a-web-crawler) / [Tavily vs Parallel](/compare/tavily-vs-parallel) / [Exa vs Parallel](/articles/exa-vs-parallel) / [SerpApi vs Parallel](/compare/serpapi-vs-parallel) / [Firecrawl vs Parallel](/compare/firecrawl-vs-parallel) / [Brave vs Parallel](/compare/brave-vs-parallel) / [Linkup vs Parallel](/articles/linkup-vs-parallel) / [Benchmarks](/benchmarks).
+**Related reading: **[Best free web search APIs](/articles/best-free-web-search-api) / [What is a web search API?](/learn/web-search-api) / [What is a web crawler?](/learn/web-crawler) / [Tavily vs Parallel](/compare/tavily-vs-parallel) / [Exa vs Parallel](/articles/exa-vs-parallel) / [SerpApi vs Parallel](/compare/serpapi-vs-parallel) / [Firecrawl vs Parallel](/compare/firecrawl-vs-parallel) / [Brave vs Parallel](/compare/brave-vs-parallel) / [Linkup vs Parallel](/articles/linkup-vs-parallel) / [Benchmarks](/benchmarks) / [The best Exa alternatives](https://parallel.ai/articles/exa-alternatives).

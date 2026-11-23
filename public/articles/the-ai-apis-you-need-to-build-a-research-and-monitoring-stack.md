@@ -24,7 +24,7 @@ LLMs carry a knowledge cutoff: training ends at a fixed date, and the model has 
 
 _Retrieval-augmented generation_ (RAG) patterns address this by placing a data pipeline upstream of the LLM. The model receives fresh content at inference time rather than relying on stale training data. RAG is now standard architecture for any AI product that needs current information.
 
-The gap in most implementation guides is the data-layer APIs themselves. A typical "machine learning API" or "AI agent API" guide will survey ten LLM providers in detail and dedicate a single line to "and you'll also need a search tool." It doesn't name which one, explain what makes a search API suitable for [AI agents](https://parallel.ai/articles/what-is-an-ai-agent), or address extraction, entity discovery, or monitoring at all.
+The gap in most implementation guides is the data-layer APIs themselves. A typical "machine learning API" or "AI agent API" guide will survey ten LLM providers in detail and dedicate a single line to "and you'll also need a search tool." It doesn't name which one, explain what makes a search API suitable for [AI agents](https://parallel.ai/learn/ai-agent), or address extraction, entity discovery, or monitoring at all.
 
 Without web search and extraction APIs, LLM outputs are ungrounded, citations can be hallucinated, and there's nothing to verify against. We built Parallel to close this gap by building the _Programmatic Web_, infrastructure purpose-built for AI that unifies data, compute, and reasoning into a single layer.
 
@@ -34,9 +34,9 @@ Each of the five categories solves a different problem, and they run in sequence
 
 ### Web search APIs
 
-[Web search APIs](https://parallel.ai/articles/what-is-a-web-search-api) return ranked URLs and excerpts from live web data. They're the entry point for any agent that needs current information.
+[Web search APIs](https://parallel.ai/learn/web-search-api) return ranked URLs and excerpts from live web data. They're the entry point for any agent that needs current information.
 
-Search APIs built for human browsers optimize for clicks, ads, and SEO signals. AI agents need dense excerpts that pack maximum information into minimal tokens, [semantic search](https://parallel.ai/articles/what-is-semantic-search) understanding of the agent's intent, and structured output the model can reason over directly.
+Search APIs built for human browsers optimize for clicks, ads, and SEO signals. AI agents need dense excerpts that pack maximum information into minimal tokens, [semantic search](https://parallel.ai/learn/semantic-search) understanding of the agent's intent, and structured output the model can reason over directly.
 
 AI-native search APIs like our Search API are built for that. Instead of submitting keyword queries, agents declare a natural-language objective. Search API ranks results based on token relevancy to that objective rather than traditional SEO signals. Every result includes a compressed, query-relevant excerpt designed to maximize useful context per token in the agent's context window.
 
@@ -83,7 +83,7 @@ response = requests.post("https://api.parallel.ai/v1/extract",
 
 ### Deep research APIs
 
-_[Deep research](https://parallel.ai/articles/what-is-deep-research)__ APIs_ plan, search iteratively, synthesize findings across sources, and output structured results with citations and confidence levels.
+_[Deep research](https://parallel.ai/learn/deep-research)__ APIs_ plan, search iteratively, synthesize findings across sources, and output structured results with citations and confidence levels.
 
 Where a single search query returns URLs, a deep research API takes an open-ended question and produces a cited answer. It executes multiple search and extraction steps internally, reasons over the results, and keeps provenance attached so every claim traces back to a source.
 
@@ -117,7 +117,7 @@ response = requests.post("https://api.parallel.ai/v1/task",
 
 _Entity discovery APIs_ generate, evaluate, and enrich entity lists from the open web using natural language queries. A single query like "AI startups founded in 2025 with Series A funding" returns a structured dataset instead of a list of links.
 
-The pipeline runs in three stages. First, candidate generation searches the web for entities that might match the criteria. Second, evaluation validates each candidate against the stated match conditions, including multi-hop conditions that require synthesizing information from multiple sources. Third, [data enrichment](https://parallel.ai/articles/what-is-data-enrichment) adds structured fields to matched entities using deep research.
+The pipeline runs in three stages. First, candidate generation searches the web for entities that might match the criteria. Second, evaluation validates each candidate against the stated match conditions, including multi-hop conditions that require synthesizing information from multiple sources. Third, [data enrichment](https://parallel.ai/learn/data-enrichment) adds structured fields to matched entities using deep research.
 
 Our FindAll API replaces manual aggregation from sources like Crunchbase, LinkedIn, and SEC filings, generating datasets on demand from the live web. See the [FindAll API quickstart](https://docs.parallel.ai/findall-api/findall-quickstart) to get started.
 
@@ -139,7 +139,7 @@ Composed, these APIs handle workflows that would otherwise require significant c
 
 **Pattern 3: Monitor → Extract → Task** drives continuous monitoring into automated research. When Monitor detects a new event, Extract retrieves the full content, and Task produces a structured analysis with citations. The entire pipeline runs without human intervention.
 
-We designed our seven APIs (Search API, Extract API, Task API, Responses API, FindAll API, Entity Search API, and Monitor API) as a suite built for composition. Agents can also use [Model Context Protocol](https://parallel.ai/articles/what-is-mcp) (MCP) to integrate these APIs as tools in their orchestration layer.
+We designed our seven APIs (Search API, Extract API, Task API, Responses API, FindAll API, Entity Search API, and Monitor API) as a suite built for composition. Agents can also use [Model Context Protocol](https://parallel.ai/learn/model-context-protocol) (MCP) to integrate these APIs as tools in their orchestration layer.
 
 ```python
 # Step 1: Search for relevant sources

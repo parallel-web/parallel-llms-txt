@@ -2,7 +2,7 @@
 
 A chatbot that cites its sources needs retrieval in the request path, which is a design decision at the API layer rather than a prompt you add later. This guide covers what to look for in a chatbot API with web search, how five providers compare on accuracy, latency, citations, and cost predictability, and how to ship a web-grounded chatbot in under 20 lines of Python.
 
-A chatbot API with live [web search API](https://parallel.ai/articles/what-is-a-web-search-api) capabilities retrieves current information from the open web instead of relying on frozen training data, synthesizes it into a response, and cites its sources. Parallel, which builds web search and research APIs for AI agents, offers one such API: the Parallel Responses API, an OpenAI-compatible endpoint that this guide’s code example uses.
+A chatbot API with live [web search API](https://parallel.ai/learn/web-search-api) capabilities retrieves current information from the open web instead of relying on frozen training data, synthesizes it into a response, and cites its sources. Parallel, which builds web search and research APIs for AI agents, offers one such API: the Parallel Responses API, an OpenAI-compatible endpoint that this guide’s code example uses.
 
 ## Key takeaways
 
@@ -16,7 +16,7 @@ A chatbot API with live [web search API](https://parallel.ai/articles/what-is-a-
 
 A chatbot API is a programmatic interface for sending user messages and receiving AI-generated responses without managing model infrastructure. You send a prompt and the API returns a completion, with no GPUs to provision, model weights to download, or inference stack to maintain.
 
-Modern chatbot APIs also support conversation history, so the model understands context across multiple turns. They stream tokens as they're generated so users see responses building in real time. Many expose function calling or tool use, letting the model invoke external services mid-conversation, a pattern central to how [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) interact with the world.
+Modern chatbot APIs also support conversation history, so the model understands context across multiple turns. They stream tokens as they're generated so users see responses building in real time. Many expose function calling or tool use, letting the model invoke external services mid-conversation, a pattern central to how [AI agents](https://parallel.ai/learn/ai-agent) interact with the world.
 
 Most chatbot APIs wrap a large language model behind a REST or WebSocket interface. OpenAI's Chat Completions API set the pattern; Anthropic, Google, and others followed. The core abstraction is the same: an array of messages in, a message out.
 
@@ -32,7 +32,7 @@ Users expect current information. A developer asking about the latest version of
 
 Web search gives chatbots access to live data and source citations. The model can retrieve current information, ground its response in that information, and tell users exactly where the answer came from, so they can click through to the source and verify the claim.
 
-Retrieval-augmented generation (RAG) over a static corpus helps for internal documentation but doesn't solve freshness for open-domain questions. If the corpus isn't updated in real time, the same staleness problem persists. Web search is the only way to ground answers in the current state of the internet. For complex research tasks, teams are turning to [deep research](https://parallel.ai/articles/what-is-deep-research) workflows that chain multiple searches together.
+Retrieval-augmented generation (RAG) over a static corpus helps for internal documentation but doesn't solve freshness for open-domain questions. If the corpus isn't updated in real time, the same staleness problem persists. Web search is the only way to ground answers in the current state of the internet. For complex research tasks, teams are turning to [deep research](https://parallel.ai/learn/deep-research) workflows that chain multiple searches together.
 
 A chatbot that returns a wrong API endpoint breaks a developer's integration. One that quotes an old price point erodes customer trust, and one that misrepresents a regulation exposes the business to compliance risk.
 

@@ -14,7 +14,7 @@ A data enrichment API adds firmographic, technographic, and contact fields to sp
 
 Say your CRM holds 10,000 company records. Half of them have a name and domain, maybe a third include an industry field, and the rest of the fields sit empty: employee count, revenue range, tech stack, funding history, headquarters location. Enrichment fills those gaps.
 
-New to the concept? Start with [what data enrichment is and how the process works](/articles/what-is-data-enrichment).
+New to the concept? Start with [what data enrichment is and how the process works](/learn/data-enrichment).
 
 A _data enrichment API_ is a programmatic interface that takes sparse input (typically a company name or domain) and returns structured fields as JSON, with no browser tabs, copy-paste, or waiting on a vendor to refresh a quarterly CSV.
 
@@ -26,7 +26,7 @@ The main problem is data decay. B2B records lose [30% or more of their accuracy 
 
 ## How data enrichment APIs work under the hood
 
-Most [data enrichment](https://parallel.ai/articles/what-is-data-enrichment) APIs follow the same basic pattern: accept an identifier, match it against a database, and return fields with confidence scores. Each step is a place where providers differ and where integrations break.
+Most [data enrichment](https://parallel.ai/learn/data-enrichment) APIs follow the same basic pattern: accept an identifier, match it against a database, and return fields with confidence scores. Each step is a place where providers differ and where integrations break.
 
 **Input identifier.** You provide the company domain (acmecorp.com), name, or both. Some APIs accept company URLs or CRM record IDs mapped to internal datasets. Domain is the most reliable identifier because it's unique and structured. Company names introduce ambiguity: "Apple" could match dozens of entities worldwide.
 
@@ -176,7 +176,7 @@ Enrichment assumes you start with a list. Sometimes you need to build the list i
 
 With a traditional provider, you query a provider's API with fixed filters: industry equals "SaaS," employee count between 50 and 200, headquarters in "North America." The provider returns matching companies from its static database, so coverage depends on whether it indexed the companies you care about. Complex criteria like "adopted Kubernetes in the last 12 months" or "has a dedicated DevOps team" fall outside standard filter options.
 
-_Entity discovery_ works the other way around: you describe your criteria in natural language, and the API [searches the web for matching entities](https://parallel.ai/articles/what-is-a-web-search-api). That lets you build a list of companies matching specific criteria programmatically, without starting from a pre-built database.
+_Entity discovery_ works the other way around: you describe your criteria in natural language, and the API [searches the web for matching entities](https://parallel.ai/learn/web-search-api). That lets you build a list of companies matching specific criteria programmatically, without starting from a pre-built database.
 
 Parallel's [FindAll API](https://parallel.ai/products/findall) implements a three-stage pipeline:
 

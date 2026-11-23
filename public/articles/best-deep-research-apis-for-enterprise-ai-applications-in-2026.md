@@ -4,15 +4,15 @@ Enterprise selection among deep research APIs comes down to five factors: benchm
 
 ## Key takeaways
 
-- Deep research APIs automate multi-step web investigation and return structured, cited outputs that [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) consume through a programmatic interface.
+- Deep research APIs automate multi-step web investigation and return structured, cited outputs that [AI agents](https://parallel.ai/learn/ai-agent) consume through a programmatic interface.
 - Enterprise evaluation comes down to five factors: accuracy on published benchmarks, cost predictability at scale, latency profiles, structured output quality, and security certifications.
 - Purpose-built search infrastructure outperforms model wrappers that rely on third-party search: on the DeepSearchQA subset on [parallel.ai/benchmarks](https://parallel.ai/benchmarks), Parallel Task API Pro scores 83% at $100 per 1,000 queries, ahead of Perplexity (high) at 68% and Exa Agent Max at 65%.
 - Nine Processor tiers let you match compute to task complexity, from $5 for simple lookups to $2,400 for exhaustive investigation.
 - The right choice depends on your use case: match processor tier to task complexity rather than defaulting to the most expensive option.
 
-A [deep research](https://parallel.ai/articles/what-is-deep-research) API takes a question, plans a multi-step investigation across the web, reads and reasons over dozens of sources, and returns a structured, cited answer through a REST endpoint. Your AI agent calls it the same way it calls any other service, and it gets back verified facts with source attribution instead of raw search snippets.
+A [deep research](https://parallel.ai/learn/deep-research) API takes a question, plans a multi-step investigation across the web, reads and reasons over dozens of sources, and returns a structured, cited answer through a REST endpoint. Your AI agent calls it the same way it calls any other service, and it gets back verified facts with source attribution instead of raw search snippets.
 
-Enterprise AI agents in 2026 need web-grounded answers for competitive intelligence, due diligence, compliance monitoring, and [data enrichment](https://parallel.ai/articles/what-is-data-enrichment). Consumer deep research tools (the "Deep Research" buttons in ChatGPT and Gemini) work for one-off queries but break down at scale: they don't offer API access, output schema control, or data retention enforcement, which puts them out of reach for production pipelines.
+Enterprise AI agents in 2026 need web-grounded answers for competitive intelligence, due diligence, compliance monitoring, and [data enrichment](https://parallel.ai/learn/data-enrichment). Consumer deep research tools (the "Deep Research" buttons in ChatGPT and Gemini) work for one-off queries but break down at scale: they don't offer API access, output schema control, or data retention enforcement, which puts them out of reach for production pipelines.
 
 Multiple providers now offer deep research as an API-first product. Some built their own search infrastructure; others wrap existing models with third-party search. That choice determines your cost, accuracy, latency, and control over the data pipeline. The [AI agents market](https://www.marketsandmarkets.com/Market-Reports/ai-agents-market-15761548.html) continues to grow as more organizations move from experimental to production-grade [enterprise AI adoption](https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html).
 
@@ -45,7 +45,7 @@ The four main deep research API options for enterprise teams in 2026 differ in a
 
 The infrastructure-first approach gives us control over freshness, recall, and cost. On the DeepSearchQA subset on parallel.ai/benchmarks (August 2026), our Task API Pro tier scored 83% at $100 per 1,000 queries, and Gemini 3.1 Pro (high) scored 77% at $123.90. Google reports 66.1% on the full DeepSearchQA set for its Gemini Deep Research agent, which bills by tokens and tool calls, so its per-query cost varies with research depth.
 
-**Gemini Deep Research** integrates with Google's ecosystem and supports [Model Context Protocol](https://parallel.ai/articles/what-is-mcp) for tool orchestration. It works well for teams already on Google Cloud that need deep research as part of a larger Vertex AI pipeline, though per-query cost is high and output schema control is limited.
+**Gemini Deep Research** integrates with Google's ecosystem and supports [Model Context Protocol](https://parallel.ai/learn/model-context-protocol) for tool orchestration. It works well for teams already on Google Cloud that need deep research as part of a larger Vertex AI pipeline, though per-query cost is high and output schema control is limited.
 
 **OpenAI Deep Research** is available in the API as the o3-deep-research and o4-mini-deep-research models through the Responses API. It offers multi-step reasoning, and token-based pricing makes cost forecasting difficult at enterprise scale.
 
@@ -55,7 +55,7 @@ The infrastructure-first approach gives us control over freshness, recall, and c
 
 ## How Parallel Task API works
 
-The Task API combines LLM inference with Parallel's proprietary [web search](https://parallel.ai/articles/what-is-a-web-search-api) and live crawling to automate structured research. You define your research objective in natural language or as a JSON schema. The API plans the investigation, searches across its index, synthesizes findings from multiple sources, and returns structured output with citations.
+The Task API combines LLM inference with Parallel's proprietary [web search](https://parallel.ai/learn/web-search-api) and live crawling to automate structured research. You define your research objective in natural language or as a JSON schema. The API plans the investigation, searches across its index, synthesizes findings from multiple sources, and returns structured output with citations.
 
 **Processor tiers** let you match compute to complexity:
 

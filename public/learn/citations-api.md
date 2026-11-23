@@ -8,7 +8,7 @@ A citations API attaches source references to an output so you can verify where 
 
 Two flavors are common. Citation APIs for AI responses tie a large language model (LLM) or agent answer to verifiable web sources. Scholarly data citation APIs connect research papers to the datasets behind them.
 
-Citations matter because models can invent facts. Citations give you a way to check every claim, and they power the reliable web access that [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) depend on. Google defines [grounding](https://docs.cloud.google.com/gemini-enterprise-agent-platform/reference/models/grounding) as the ability to connect model output to verifiable sources. That connection reduces the chances of inventing content.
+Citations matter because models can invent facts. Citations give you a way to check every claim, and they power the reliable web access that [AI agents](https://parallel.ai/learn/ai-agent) depend on. Google defines [grounding](https://docs.cloud.google.com/gemini-enterprise-agent-platform/reference/models/grounding) as the ability to connect model output to verifiable sources. That connection reduces the chances of inventing content.
 
 ## Key characteristics
 
@@ -30,8 +30,8 @@ _Parallel’s quality benchmarks measure how well search and research APIs answe
 ## Related terms
 
 - [grounding](https://docs.cloud.google.com/gemini-enterprise-agent-platform/reference/models/grounding) connects model output to verifiable sources.
-- [deep research API](https://parallel.ai/articles/what-is-deep-research) produces cited answers from web research across many steps.
-- [web search API](https://parallel.ai/articles/what-is-a-web-search-api) returns ranked sources and excerpts that feed citations.
+- [deep research API](https://parallel.ai/learn/deep-research) produces cited answers from web research across many steps.
+- [web search API](https://parallel.ai/learn/web-search-api) returns ranked sources and excerpts that feed citations.
 - [Basis framework](https://parallel.ai/blog/introducing-basis-with-calibrated-confidences) delivers citations, reasoning, and confidence for each Parallel output field.
 
 ## FAQ

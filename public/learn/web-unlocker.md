@@ -30,7 +30,7 @@ The [Parallel Extract API](https://parallel.ai/products/extract) is built for th
 
 ## Related terms
 
-- [web scraping](https://parallel.ai/articles/what-is-web-scraping): the wider process of collecting and parsing data from web pages.
+- [web scraping](https://parallel.ai/learn/web-scraping): the wider process of collecting and parsing data from web pages.
 - [headless browser API](https://parallel.ai/learn/headless-browser-api): the rendering technology unlockers use to load JavaScript-heavy pages.
 - [web scraper vs. web extraction](https://parallel.ai/articles/web-scraper-vs-web-extraction): how retrieval and extraction differ.
 - [web data API](https://parallel.ai/learn/web-data-api): getting structured data through an interface instead of a page.

@@ -2,7 +2,7 @@
 
 Windsurf now ships as Devin Desktop, and MCP setup moved with it: the Devin Local agent reads servers from Devin CLI config files, and the old Windsurf file still gets imported. This guide covers the five MCP servers worth installing in 2026 and the exact config for each.
 
-Windsurf has a new name. Cognition [renamed it Devin Desktop](https://cognition.com/blog/introducing-devin-desktop) on June 2, 2026, and the September 8 release [removed the Cascade agent](https://docs.devin.ai/desktop/changelog), leaving Devin Local as the only agent in the editor. [MCP](https://parallel.ai/articles/what-is-mcp) support came along, but it now lives in the Devin CLI config files, so a few habits from the Windsurf days need updating. The picks below are the ones we'd install either way, with setup that matches the current docs.
+Windsurf has a new name. Cognition [renamed it Devin Desktop](https://cognition.com/blog/introducing-devin-desktop) on June 2, 2026, and the September 8 release [removed the Cascade agent](https://docs.devin.ai/desktop/changelog), leaving Devin Local as the only agent in the editor. [MCP](https://parallel.ai/learn/model-context-protocol) support came along, but it now lives in the Devin CLI config files, so a few habits from the Windsurf days need updating. The picks below are the ones we'd install either way, with setup that matches the current docs.
 
 We make Parallel and our search server is the first pick here, so weigh that as you read; we link the benchmark numbers so you can check them yourself.
 

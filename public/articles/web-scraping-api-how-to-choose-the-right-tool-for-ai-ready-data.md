@@ -16,7 +16,7 @@ A web scraping API fetches a URL, handles JavaScript and anti-bot defenses, and 
 
 ## What a web scraping API does (and why the old approach breaks down for AI)
 
-A _web scraping API_ is a hosted service that fetches, renders, and returns web page data through a standard HTTP interface. You send a request with a URL and get structured content back. Behind that request, the service handles browser rendering, JavaScript execution, proxy management, CAPTCHA solving, and rate limiting. Our guide on [web scraping](https://parallel.ai/articles/what-is-web-scraping) covers the fundamentals if you're starting from scratch.
+A _web scraping API_ is a hosted service that fetches, renders, and returns web page data through a standard HTTP interface. You send a request with a URL and get structured content back. Behind that request, the service handles browser rendering, JavaScript execution, proxy management, CAPTCHA solving, and rate limiting. Our guide on [web scraping](https://parallel.ai/learn/web-scraping) covers the fundamentals if you're starting from scratch.
 
 If you are deciding between a dedicated scraper and a retrieval API, start with [Firecrawl vs Parallel](https://parallel.ai/compare/firecrawl-vs-parallel), [Jina AI Reader vs Parallel](https://parallel.ai/articles/jina-ai-reader-vs-parallel), [ScrapingBee vs Parallel](https://parallel.ai/articles/scrapingbee-vs-parallel), or [Apify vs Parallel](https://parallel.ai/articles/apify-vs-parallel).
 
@@ -63,9 +63,9 @@ A traditional web scraping API and an _AI-native extraction API_ differ in archi
 
 For product specifications on a page with a complex layout (tabbed sections, expandable accordions, embedded PDFs), a traditional scraper returns the HTML blob, and you write parsing logic for each layout pattern. An AI-native extractor returns the specs as clean markdown, however the page arranges them on screen.
 
-**Search as a first-class primitive.** Traditional scrapers require you to know the URL before you start. AI-native APIs include [semantic search](https://parallel.ai/articles/what-is-semantic-search), so you can begin from a question rather than a URL list. Parallel's Search API accepts a natural-language objective and returns ranked URLs with dense, token-efficient excerpts. To learn more about how this works under the hood, see our guide on [web search APIs](https://parallel.ai/articles/what-is-a-web-search-api). From $1 per 1,000 requests with Turbo mode, or $5 per 1,000 for Basic and Advanced, you get discovery and extraction in one step.
+**Search as a first-class primitive.** Traditional scrapers require you to know the URL before you start. AI-native APIs include [semantic search](https://parallel.ai/learn/semantic-search), so you can begin from a question rather than a URL list. Parallel's Search API accepts a natural-language objective and returns ranked URLs with dense, token-efficient excerpts. To learn more about how this works under the hood, see our guide on [web search APIs](https://parallel.ai/learn/web-search-api). From $1 per 1,000 requests with Turbo mode, or $5 per 1,000 for Basic and Advanced, you get discovery and extraction in one step.
 
-**Deep research and structured output.** Some questions require synthesizing information across dozens of sources. Parallel's Task API handles this as an asynchronous [deep research](https://parallel.ai/articles/what-is-deep-research) operation. You submit a research objective and receive structured output with citations and confidence scores. Behind that call, the system searches the web, reads multiple pages, and synthesizes findings. Pricing scales from $5 to $2,400 per 1,000 runs depending on the depth of research required.
+**Deep research and structured output.** Some questions require synthesizing information across dozens of sources. Parallel's Task API handles this as an asynchronous [deep research](https://parallel.ai/learn/deep-research) operation. You submit a research objective and receive structured output with citations and confidence scores. Behind that call, the system searches the web, reads multiple pages, and synthesizes findings. Pricing scales from $5 to $2,400 per 1,000 runs depending on the depth of research required.
 
 **Index-backed reliability.** Parallel maintains a proprietary index of billions of pages, with millions added each day. Your requests draw from this index rather than depending on real-time crawling for every call. This reduces latency and improves coverage for pages that traditional crawlers struggle to reach.
 
@@ -74,7 +74,7 @@ The two approaches compare like this:
 - **Scrape-then-parse approach:** Input is a URL. Output is HTML. You handle parsing, anti-bot logic, and structuring.
 - **Extract-and-structure approach:** Input is a URL or a query. Output is markdown, JSON, or cited research. Rendering, parsing, structuring, and compliance are handled for you.
 
-Parallel's Extract API handles single-page data retrieval, the Search API handles discovery, and the Task API handles multi-source research and synthesis. All three return AI-ready output, and all three sit on top of the same proprietary index. Teams building [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) use these APIs as the retrieval layer that connects reasoning steps to real-world data.
+Parallel's Extract API handles single-page data retrieval, the Search API handles discovery, and the Task API handles multi-source research and synthesis. All three return AI-ready output, and all three sit on top of the same proprietary index. Teams building [AI agents](https://parallel.ai/learn/ai-agent) use these APIs as the retrieval layer that connects reasoning steps to real-world data.
 
 ## How to extract web data with a single API call
 

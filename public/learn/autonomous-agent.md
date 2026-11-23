@@ -6,7 +6,7 @@ An autonomous agent is an AI system that plans and acts toward a goal set by a p
 
 ## What is an autonomous agent?
 
-An autonomous agent is software that pursues a goal on its own, choosing its steps and taking actions to reach it. It keeps working until it meets the goal instead of waiting for a new prompt each time. It builds on [what an AI agent is](https://parallel.ai/articles/what-is-an-ai-agent) by adding independence and persistence.
+An autonomous agent is software that pursues a goal on its own, choosing its steps and taking actions to reach it. It keeps working until it meets the goal instead of waiting for a new prompt each time. It builds on [what an AI agent is](https://parallel.ai/learn/ai-agent) by adding independence and persistence.
 
 A spring 2025 [MIT Sloan survey](https://mitsloan.mit.edu/ideas-made-to-matter/agentic-ai-explained) measured the rise. MIT SMR and BCG found that 35% of respondents had adopted AI agents by 2023, with another 44% planning to deploy them.
 
@@ -32,7 +32,7 @@ _Parallel's agentic web research benchmark results, comparing accuracy and cost 
 
 - **AI agent:** the broader category an agent belongs to.
 - **[Agent harness](https://parallel.ai/articles/what-is-an-agent-harness)****:** the framework that runs an agent's loop.
-- **[Deep research](https://parallel.ai/articles/what-is-deep-research)****:** the multi-step research an agent can produce.
+- **[Deep research](https://parallel.ai/learn/deep-research)****:** the multi-step research an agent can produce.
 - **[Web search API for agents](https://parallel.ai/products/search)****:** the live search layer agents call.
 
 ## FAQ

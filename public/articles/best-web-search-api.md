@@ -6,7 +6,7 @@ The fastest web search API is not automatically the best one for your agent. Lat
 
 We compared five web search APIs using our own September 2026 runs plus Openbenchmarks' independent latency boards, and paired every latency figure with the accuracy behind it. This guide walks through the results, then shows you how to run the same test on your own traffic.
 
-This guide covers the web search endpoint, the search call that returns ranked URLs and excerpts for an [AI agent](https://parallel.ai/articles/what-is-an-ai-agent). If you want the fundamentals first, see [what a web search API is](https://parallel.ai/articles/what-is-a-web-search-api).
+This guide covers the web search endpoint, the search call that returns ranked URLs and excerpts for an [AI agent](https://parallel.ai/learn/ai-agent). If you want the fundamentals first, see [what a web search API is](https://parallel.ai/learn/web-search-api).
 
 ## Where these numbers come from
 
@@ -40,7 +40,7 @@ AIMultiple's [Agentic Search API Benchmark](https://aimultiple.com/agentic-searc
 
 ![](https://cdn.sanity.io/images/5hzduz3y/production/a4ba72cdbd32509be5745e8c8ac9b26c485cced0-3586x1814.png)
 
-Parallel is an AI-native web search API built for agents rather than human browsing. Agents declare a natural-language objective instead of assembling keyword queries, and [Parallel's Search API](https://parallel.ai/products/search) returns URLs ranked by token relevancy alongside compressed, information-dense excerpts sized for the context window. It runs on [its own web index](https://parallel.ai/articles/what-is-a-web-index) of billions of pages with intelligent recrawling, and it handles JS-heavy sites and PDFs. Latency stays under 5 seconds, with source inclusion controls, freshness policies, SOC 2 Type 2, and zero data retention available.
+Parallel is an AI-native web search API built for agents rather than human browsing. Agents declare a natural-language objective instead of assembling keyword queries, and [Parallel's Search API](https://parallel.ai/products/search) returns URLs ranked by token relevancy alongside compressed, information-dense excerpts sized for the context window. It runs on [its own web index](https://parallel.ai/learn/web-index) of billions of pages with intelligent recrawling, and it handles JS-heavy sites and PDFs. Latency stays under 5 seconds, with source inclusion controls, freshness policies, SOC 2 Type 2, and zero data retention available.
 
 On BrowseComp in our September 2026 runs on [parallel.ai/benchmarks](https://parallel.ai/benchmarks), Parallel Advanced scored 74% with a GPT-5.6 Sol agent, ahead of Exa (70%) and Tavily (66%), at $399 per 1,000 questions against their $971 and $935. Perplexity, which we also ran, tied it at 74% for $275. At the low-cost tier, Fast scored 44% at $11.80 per 1,000, and Turbo posted the lowest average search time on Openbenchmarks' coding-agent board at 333ms. It is also available as a tool through [Parallel MCP](https://parallel.ai/mcp).
 
@@ -52,9 +52,9 @@ On BrowseComp in our September 2026 runs on [parallel.ai/benchmarks](https://par
 
 ![](https://cdn.sanity.io/images/5hzduz3y/production/822171992c22fe22cc55126fce2dee3229414367-3588x1816.png)
 
-Exa is a "neural" web search API built on embeddings, offering fast and deep tiers plus adjacent research products. It leans on [semantic search](https://parallel.ai/articles/what-is-semantic-search) to retrieve pages by meaning rather than keyword overlap, which makes it a frequent comparison point for AI-native search.
+Exa is a "neural" web search API built on embeddings, offering fast and deep tiers plus adjacent research products. It leans on [semantic search](https://parallel.ai/learn/semantic-search) to retrieve pages by meaning rather than keyword overlap, which makes it a frequent comparison point for AI-native search.
 
-In our September 2026 BrowseComp runs, Exa Auto scored 70% at the frontier tier ($971 per 1,000 questions) and 36% at the low-cost tier ($53.40), behind Parallel at both. It did better on broad list-building: on WideSearch at the low-cost tier, Exa's 53.0 beat Parallel Fast's 45.5. Exa Instant is quick too, at 398ms mean on Openbenchmarks' factual-lookup board, second to Parallel Turbo.
+In our September 2026 BrowseComp runs, Exa Auto scored 70% at the frontier tier ($971 per 1,000 questions) and 36% at the low-cost tier ($53.40), behind Parallel at both. It did better on broad list-building: on WideSearch at the low-cost tier, Exa's 53.0 beat Parallel Fast's 45.5. Exa Instant is quick too, at 398ms mean on Openbenchmarks' factual-lookup board, second to Parallel Turbo. If Exa is your current provider, our guide to [the best Exa alternatives](https://parallel.ai/articles/exa-alternatives) covers 11 replacements.
 
 **Best for:** teams that want neural, semantic retrieval with a choice between speed and depth tiers.
 
@@ -128,7 +128,7 @@ If your agent works in finance, check domain results too, since rankings move wi
 
 ### **What is a web search API?**
 
-A web search API is an endpoint your application calls to search the web and receive ranked results, usually URLs, titles, and text excerpts. Agents use it as a tool call to ground answers in live web data. See [what a web search API is](https://parallel.ai/articles/what-is-a-web-search-api) for a fuller explanation.
+A web search API is an endpoint your application calls to search the web and receive ranked results, usually URLs, titles, and text excerpts. Agents use it as a tool call to ground answers in live web data. See [what a web search API is](https://parallel.ai/learn/web-search-api) for a fuller explanation.
 
 ### **How do web search APIs differ from web scraping?**
 
@@ -144,7 +144,7 @@ Often, yes. Search returns ranked URLs and excerpts, and an extract API converts
 
 ### **How does an agent connect to a search API?**
 
-Most search APIs expose a REST endpoint, and some also publish a tool interface through the [Model Context Protocol](https://parallel.ai/articles/what-is-mcp) so agent frameworks can call them directly. Check that your framework supports the integration path the provider offers.
+Most search APIs expose a REST endpoint, and some also publish a tool interface through the [Model Context Protocol](https://parallel.ai/learn/model-context-protocol) so agent frameworks can call them directly. Check that your framework supports the integration path the provider offers.
 
 ### **How often should I re-evaluate my choice?**
 

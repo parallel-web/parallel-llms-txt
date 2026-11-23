@@ -2,7 +2,7 @@
 
 Raw accuracy alone doesn't settle which search API is the most powerful for AI. We compared four of them on BrowseComp at two price tiers, reported cost next to every accuracy figure, and added independent latency data.
 
-A [web search API](https://parallel.ai/articles/what-is-a-web-search-api) gives [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) a way to query the live web and pull back results they can reason over. On simple lookups, most engines clear the bar. The gap opens on hard, multi-hop questions, where an agent has to chase a fact across several pages and hold the thread. Those are the queries that separate strong retrieval from weak, and they match the research work "most powerful" implies.
+A [web search API](https://parallel.ai/learn/web-search-api) gives [AI agents](https://parallel.ai/learn/ai-agent) a way to query the live web and pull back results they can reason over. On simple lookups, most engines clear the bar. The gap opens on hard, multi-hop questions, where an agent has to chase a fact across several pages and hold the thread. Those are the queries that separate strong retrieval from weak, and they match the research work "most powerful" implies.
 
 The most powerful search API for AI in 2026 isn't the one with the single highest accuracy score. That number hides how fast the engine answers and how many round trips your agent makes before it lands an answer.
 
@@ -57,7 +57,7 @@ On BrowseComp (September 2026), Perplexity scored 74% at the frontier tier for $
 
 Exa is a neural, embeddings-based web search API with fast and deep tiers, plus websets and research products alongside the core search tool. It exposes an extract step, which the evaluation used.
 
-On BrowseComp (September 2026), Exa Auto scored 70% at the frontier tier for $971 per 1,000 questions and 36% at the low-cost tier for $53.4. On speed, [Openbenchmarks](https://openbenchmarks.com/web-search-for-coding-agents) measured Exa Instant at 447ms average search time on its coding-agent board, second to Parallel Turbo.
+On BrowseComp (September 2026), Exa Auto scored 70% at the frontier tier for $971 per 1,000 questions and 36% at the low-cost tier for $53.4. On speed, [Openbenchmarks](https://openbenchmarks.com/web-search-for-coding-agents) measured Exa Instant at 447ms average search time on its coding-agent board, second to Parallel Turbo. We compare Exa with 10 other search APIs in our guide to [the best Exa alternatives](https://parallel.ai/articles/exa-alternatives).
 
 **Best for:** Semantic discovery where vector ranking is the priority.
 

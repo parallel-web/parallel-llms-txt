@@ -18,7 +18,7 @@ Real AI lead generation requires live access to the open web: an agent that can 
 
 ## What AI lead generation actually means (and what it doesn't)
 
-AI lead generation is the use of [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) to automate the discovery, qualification, enrichment, and monitoring of potential customers. The key word is _automate_: the agent does the work end to end instead of assisting a rep who does it.
+AI lead generation is the use of [AI agents](https://parallel.ai/learn/ai-agent) to automate the discovery, qualification, enrichment, and monitoring of potential customers. The key word is _automate_: the agent does the work end to end instead of assisting a rep who does it.
 
 This excludes most products marketed as "AI-powered lead generation." Auto-sending cold emails isn't AI lead generation. Scoring leads inside a CRM based on engagement history isn't either. Adding a chatbot to your website captures demand; it doesn't generate it. Research shows [58% of sales teams now use AI for prospect research](https://sopro.io/resources/blog/ai-sales-and-marketing-statistics/), but most still rely on static data sources that limit what AI can do.
 
@@ -107,7 +107,7 @@ Specific signals to target include job postings on LinkedIn and Indeed, press re
 
 ## Phase 2: Enriching leads with real-time web data
 
-Discovery surfaces companies; enrichment fills in the context you need to qualify and personalize outreach. For background, see how [data enrichment](https://parallel.ai/articles/what-is-data-enrichment) works.
+Discovery surfaces companies; enrichment fills in the context you need to qualify and personalize outreach. For background, see how [data enrichment](https://parallel.ai/learn/data-enrichment) works.
 
 ### Extracting structured data from company websites
 

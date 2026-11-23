@@ -2,7 +2,7 @@
 
 MCP servers come in two shapes: local stdio processes your harness spawns, and remote Streamable HTTP endpoints it connects to. The choice affects setup, security, credentials, and where your agent can run. This guide covers what each type is, the differences that matter, a rule for choosing, and security notes for both.
 
-Every [MCP server](https://parallel.ai/articles/what-is-mcp) you add to an agent is one of two things: a local process your harness spawns and talks to over stdio, or a remote endpoint it connects to over Streamable HTTP. The protocol is the same; almost everything operational about them differs. Picking wrong costs you either capability (a remote server can't touch your filesystem) or maintenance (a local server is another dependency to install, update, and secure on every machine).
+Every [MCP server](https://parallel.ai/learn/model-context-protocol) you add to an agent is one of two things: a local process your harness spawns and talks to over stdio, or a remote endpoint it connects to over Streamable HTTP. The protocol is the same; almost everything operational about them differs. Picking wrong costs you either capability (a remote server can't touch your filesystem) or maintenance (a local server is another dependency to install, update, and secure on every machine).
 
 ## What each one is
 

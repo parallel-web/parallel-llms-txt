@@ -35,7 +35,7 @@ A production competitive intelligence pipeline connects four stages: discovery, 
 
 ### Discovery: finding competitor content and new market entrants
 
-Discovery starts with finding the right pages. Traditional [web scraping](https://parallel.ai/articles/what-is-web-scraping) forces you to maintain lists of known URLs. [Semantic search](https://parallel.ai/articles/what-is-semantic-search) lets you describe what you're looking for in natural language instead, and the [web search API](https://parallel.ai/articles/what-is-a-web-search-api) returns ranked, relevant results with [benchmark-leading accuracy](https://parallel.ai/blog/search-api-benchmark).
+Discovery starts with finding the right pages. Traditional [web scraping](https://parallel.ai/learn/web-scraping) forces you to maintain lists of known URLs. [Semantic search](https://parallel.ai/learn/semantic-search) lets you describe what you're looking for in natural language instead, and the [web search API](https://parallel.ai/learn/web-search-api) returns ranked, relevant results with [benchmark-leading accuracy](https://parallel.ai/blog/search-api-benchmark).
 
 Use the Search API with a natural language objective to find competitor product pages, blog posts, press releases, and job postings:
 
@@ -89,7 +89,7 @@ Monitoring targets include competitor blog RSS equivalents, product changelog pa
 
 Raw competitor data needs structuring. A product announcement contains claims, positioning statements, and feature descriptions. A pricing page reveals tier structures, value metrics, and competitive positioning.
 
-The Task API runs structured [deep research](https://parallel.ai/articles/what-is-deep-research) with per-field citations and calibrated confidence scores. The _Basis framework_ provides citations, rationale, and confidence levels for every output field. [Data enrichment](https://parallel.ai/articles/what-is-data-enrichment) turns those raw records into fields your team can act on.
+The Task API runs structured [deep research](https://parallel.ai/learn/deep-research) with per-field citations and calibrated confidence scores. The _Basis framework_ provides citations, rationale, and confidence levels for every output field. [Data enrichment](https://parallel.ai/learn/data-enrichment) turns those raw records into fields your team can act on.
 
 ```python
 task = client.task.create(
@@ -148,7 +148,7 @@ Any public web page: pricing, product features, blog posts, job postings, press 
 **How do I handle compliance when scraping competitor websites?**
 Respect [robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro) ([RFC 9309](https://datatracker.ietf.org/doc/html/rfc9309)), honor rate limits, and use APIs with [SOC 2 compliance](https://www.imperva.com/learn/data-security/soc-2-compliance/) and zero data retention. Automated collection of public web data is standard practice. Rate-limit your requests, cache responses, and document your collection methodology.
 
-**Can I use ****[AI agents](https://parallel.ai/articles/what-is-an-ai-agent)**** for competitive intelligence?**
+**Can I use ****[AI agents](https://parallel.ai/learn/ai-agent)**** for competitive intelligence?**
 Yes. AI agents orchestrate multi-step research workflows (search, extract, enrich, deliver) autonomously. Parallel's APIs work as tool calls within agent frameworks.
 
 ## Start building your CI pipeline

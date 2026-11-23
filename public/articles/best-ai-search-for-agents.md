@@ -4,7 +4,7 @@ On BrowseComp, agents scored from 32% to 74% depending on the search API and pri
 
 On [BrowseComp](https://openai.com/index/browsecomp/), agentic-search accuracy in our current runs on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026) ranged from 32% to 74%, depending on the search API and the agent paired with it. That spread often decides whether an agent finishes its task or stalls halfway through. BrowseComp is a benchmark of 1,266 questions that require persistent, multi-step browsing to locate hard-to-find, entangled information on the web, so it maps closely to how autonomous agents behave.
 
-An agentic web search API is a tool your [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) call mid-reasoning to fetch live information from the web. The agent issues a query, reads the results, and decides its next move, sometimes across a dozen or more calls for one hard question. Thin or noisy context makes the agent burn tokens, add round trips, and answer worse; dense, relevant context lets it resolve the question faster and for less.
+An agentic web search API is a tool your [AI agents](https://parallel.ai/learn/ai-agent) call mid-reasoning to fetch live information from the web. The agent issues a query, reads the results, and decides its next move, sometimes across a dozen or more calls for one hard question. Thin or noisy context makes the agent burn tokens, add round trips, and answer worse; dense, relevant context lets it resolve the question faster and for less.
 
 This guide evaluates each vendor's web search API as a single tool in an agent's loop: the call an agent makes mid-reasoning to fetch live web context, measured on exactly that job.
 
@@ -68,7 +68,7 @@ Brave isn't in our current benchmark runs. On the independent Artificial Analysi
 
 Exa is a neural, embeddings-based search API that matches on meaning rather than exact keywords, with a fast Exa Instant tier for latency-sensitive calls. Only its Search endpoint is in scope here. It's popular across AI developer tooling for semantic discovery.
 
-On BrowseComp on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026), Exa Auto scored 70% at the frontier tier and 36% at the low-cost tier. It does better on breadth: at the low-cost tier on WideSearch, Exa scored 53.0 against 45.5 for Parallel Fast, the best low-cost result on that benchmark. So its ranking depends heavily on the kind of question you throw at it.
+On BrowseComp on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026), Exa Auto scored 70% at the frontier tier and 36% at the low-cost tier. It does better on breadth: at the low-cost tier on WideSearch, Exa scored 53.0 against 45.5 for Parallel Fast, the best low-cost result on that benchmark. So its ranking depends heavily on the kind of question you throw at it. For a wider field, see our roundup of [the best Exa alternatives](https://parallel.ai/articles/exa-alternatives).
 
 **Best for:** semantic discovery and single-hop lookups where meaning-based matching shines.
 
@@ -132,7 +132,7 @@ If you want a starting scaffold, our cookbook shows how to [build a search agent
 
 ## Common questions about AI search for agents
 
-**What is an agentic web search API?** It's a web search endpoint your agent calls as a tool during its reasoning loop. The agent sends a query, reads the returned URLs and excerpts, and decides its next step, often chaining many calls to answer one hard question. Our explainer covers [what a web search API does](https://parallel.ai/articles/what-is-a-web-search-api) in more depth.
+**What is an agentic web search API?** It's a web search endpoint your agent calls as a tool during its reasoning loop. The agent sends a query, reads the returned URLs and excerpts, and decides its next step, often chaining many calls to answer one hard question. Our explainer covers [what a web search API does](https://parallel.ai/learn/web-search-api) in more depth.
 
 **How is it different from a SERP API?** A SERP API returns the structured contents of a search-engine results page, built for humans and rank tracking. An agentic search API returns results shaped for a model's context window, favoring dense, relevant excerpts over blue-link snippets, so your agent parses less and reasons more.
 

@@ -6,7 +6,7 @@ The visibility value gap is the difference between how often AI agents surface a
 
 The visibility value gap is the distance between how much exposure something gets and how much value it contributes. On the agentic web, we measure it for each domain as the difference between two ranks. One rank tracks AI visibility, and the other tracks value: the domain’s Shapley value based on its marginal contribution to answers.
 
-Visibility counts the times a domain’s pages surface as [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) look for answers. AI agents are software systems that use AI models to plan and act toward a goal, such as researching a question on the web. Value is the domain’s attributed share of the value those answers create.
+Visibility counts the times a domain’s pages surface as [AI agents](https://parallel.ai/learn/ai-agent) look for answers. AI agents are software systems that use AI models to plan and act toward a goal, such as researching a question on the web. Value is the domain’s attributed share of the value those answers create.
 
 In [Parallel’s Visibility-Value Gap research](https://index.parallel.ai/the-visibility-value-gap), we ranked domains both ways and found the two lists overlap less than you’d expect. Some sites show up across a large share of results and add little at the margin. Others rank low on traffic leaderboards and carry outsized weight in agent answers.
 
@@ -51,7 +51,7 @@ Our research notes that agents reason in parallel and work in the background. Be
 
 In June 2025, Cloudflare measured Google crawling sites about 14 times for every referral, according to [Cloudflare’s crawl-to-referral data](https://blog.cloudflare.com/control-content-use-for-ai-training/). OpenAI’s ratio was 1,700 to 1 and Anthropic’s was 73,000 to 1. These ratios move month to month, so read them as a dated snapshot.
 
-For background on the fetch side, read our explainer on [how AI crawlers work](https://parallel.ai/articles/what-is-a-web-crawler).
+For background on the fetch side, read our explainer on [how AI crawlers work](https://parallel.ai/learn/web-crawler).
 
 The web’s primary user is shifting to machines, and we built Parallel for [the web’s second user](https://parallel.ai/about). Business models that run on attention can’t serve that user, so publishers need a second measure of what their content is worth.
 

@@ -2,7 +2,7 @@
 
 Claude MCP servers turn the chat app into a workspace that can search the web, file a Jira ticket, or pull last week's meeting notes. This guide picks nine worth connecting in claude.ai, Claude Desktop, and the mobile apps, with the directory or custom-connector route for each, the plan limits that apply, and a side-by-side table.
 
-In Claude's apps, an [MCP](https://parallel.ai/articles/what-is-mcp) server is called a connector. You add it once to your Claude account, and it follows you from claude.ai to Claude Desktop to the iOS and Android apps, because Anthropic's cloud makes the connection rather than your laptop. That makes the choice of servers different from a coding agent's: chat users want their docs, tickets, designs, and meeting notes, plus a way to read the current web. If you work in the terminal, our [Claude Code list](https://parallel.ai/articles/best-mcp-servers-for-claude-code) covers that client instead.
+In Claude's apps, an [MCP](https://parallel.ai/learn/model-context-protocol) server is called a connector. You add it once to your Claude account, and it follows you from claude.ai to Claude Desktop to the iOS and Android apps, because Anthropic's cloud makes the connection rather than your laptop. That makes the choice of servers different from a coding agent's: chat users want their docs, tickets, designs, and meeting notes, plus a way to read the current web. If you work in the terminal, our [Claude Code list](https://parallel.ai/articles/best-mcp-servers-for-claude-code) covers that client instead.
 
 We make Parallel, so the first pick is ours. Every other pick is a vendor's own hosted server that's listed in Claude's Connectors Directory.
 
@@ -38,7 +38,7 @@ URL:  https://mcp.parallel.ai/mcp
 URL:  https://mcp.parallel.ai/mcp?login
 ```
 
-The `?login` URL runs an OAuth sign-in when you connect and adds `web_research`, which researches one question and returns a cited answer in the same call, with `reasoning_effort` set to low, medium, high, or auto. Signed-in calls bill to your Parallel account at the underlying API rates (Search fast mode is $1 per 1,000 requests), and new accounts get up to $80 in free credits plus $5 a month with a card on file. Our [installation docs](https://docs.parallel.ai/integrations/mcp/installation) cover every client.
+The `?login` URL runs an OAuth sign-in when you connect and adds `web_research`, which researches one question and returns a cited answer in the same call, with `reasoning_effort` set to low, medium, high, or auto. Signed-in calls bill to your Parallel account at the underlying API rates (Search fast mode is $1 per 1,000 requests), and new accounts get up to $80 in free credits plus $5 a month with a card on file. For other clients, [parallel.ai/mcp](https://parallel.ai/mcp) has one-click installs and a setup prompt you can paste into any agent.
 
 Claude already has web search built in, and for most everyday questions it does the job well. Teams that want web lookups to run through Parallel, for consistent sourcing or to attribute every call to one account, have an admin lever: web search is a workspace capability that Owners turn on or off in **Organization settings > Capabilities** ([Claude's web search guide](https://support.claude.com/en/articles/10684626-enabling-and-using-web-search)). Leave it off, add Parallel at the `?login` URL as an org connector, and web lookups go through Parallel. If you're a member without custom connector access, Desktop's config file works:
 

@@ -30,7 +30,7 @@ The Custom Search JSON API was designed to power a search box on a website, and 
 
 ## What to look for in a Google Custom Search API alternative
 
-Any replacement has to clear a different bar than a website search box, so start from [the criteria that matter for AI workloads](https://parallel.ai/articles/what-is-a-web-search-api). Run each candidate against this list:
+Any replacement has to clear a different bar than a website search box, so start from [the criteria that matter for AI workloads](https://parallel.ai/learn/web-search-api). Run each candidate against this list:
 
 - **Content, not just metadata.** The response should carry page content or focused excerpts you can hand straight to a model.
 - **Built for AI consumption.** Outputs should be token-efficient and ready for a large language model (LLM) to read, so they fit inside a context window without a cleanup pass.

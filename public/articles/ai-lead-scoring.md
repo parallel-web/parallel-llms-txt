@@ -44,7 +44,7 @@ Seven widely used tools, described from their own documentation. Pricing is list
 | Demandbase | Machine-learning Qualification and Pipeline Predict scores | Firmographics, CRM and email activity, intent, website visits | Pipeline Predict needs opportunities from at least 50 distinct accounts in the past 12 months | Platform fee plus per-user fee; no list price |
 | MadKudu | Fit and Likelihood to Buy combined into a Lead Grade (A to E) | Firmographic, demographic, and technographic data plus behavior across channels | Your CRM and engagement data | Not listed |
 
-If you already run one of these, keep it for engagement and intent. The gap most teams feel is narrower: the fit fields that feed every one of these models (headcount, industry, who the buyer is, whether they're hiring) come from [enrichment](https://parallel.ai/articles/what-is-data-enrichment) snapshots that can be months old, and for a new lead they're often blank.
+If you already run one of these, keep it for engagement and intent. The gap most teams feel is narrower: the fit fields that feed every one of these models (headcount, industry, who the buyer is, whether they're hiring) come from [enrichment](https://parallel.ai/learn/data-enrichment) snapshots that can be months old, and for a new lead they're often blank.
 
 ## Build an ICP fit score with the Decisions API
 
@@ -155,7 +155,7 @@ What it missed or overstated:
 
 - **LaunchDarkly's hiring came back `unknown`.** Its Greenhouse board lists US-remote engineering roles. When we asked that single question with the board URL in `state`, it answered `yes` at 1.00 in 527 ms, citing the job postings. Hiring is the kind of fact to ask in its own request with a careers URL.
 - **Linear's headcount band is overconfident.** It answered `under_200` at 0.99, but published estimates range from about 141 (PitchBook) to about 303 (LinkedIn). The sources disagree, and the model picked a side. Its `unknown` on US hiring was also cautious: Linear lists remote engineering roles open across North America.
-- **Domain-only state pulled in noise.** With only `linear.app` and the ICP text in `state`, half the citations were generic articles about ICP frameworks and `primary_buyer` dropped to 0.84. Adding the company name and website fixed the retrieval. Pass the company name whenever you have it, and resolve ambiguous domains first (see [entity matching](https://parallel.ai/articles/entity-matching)).
+- **Domain-only state pulled in noise.** With only `linear.app` and the ICP text in `state`, half the citations were generic articles about ICP frameworks and `primary_buyer` dropped to 0.84. Adding the company name and website fixed the retrieval. Pass the company name whenever you have it, and resolve ambiguous domains first (see [entity matching](https://parallel.ai/learn/entity-matching)).
 - **PostHog sits on a boundary.** Trackers put it at roughly 213 to 234 people, so `200_1000` at 0.89 is right but close to the line. Rubric levels with hard numeric edges will always have leads near the edge.
 
 ## Combine the fit score with your engagement score

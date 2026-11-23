@@ -33,7 +33,7 @@ In a live-data RAG pipeline, the retrieval step queries the web directly instead
 The revised pipeline looks like this:
 
 1. User submits a query
-2. [Web search API](https://parallel.ai/articles/what-is-a-web-search-api) receives the query and returns ranked results with excerpts
+2. [Web search API](https://parallel.ai/learn/web-search-api) receives the query and returns ranked results with excerpts
 3. LLM generates a response using retrieved web content as context
 4. Response includes citations to source URLs
 
@@ -43,7 +43,7 @@ This architecture removes the ingest, embed, and store stages entirely. You don'
 
 A purpose-built web search API returns structured, LLM-optimized content. Parallel's [Search API](https://parallel.ai/products/search), for example, returns dense excerpts in markdown format, publication dates, and source URLs. The excerpts are compressed and query-relevant, with a configurable character cap per result, rather than entire pages that waste context window budget on irrelevant content.
 
-**Declarative ****[semantic search](https://parallel.ai/articles/what-is-semantic-search)** is the other difference. Traditional keyword search makes you construct the right query syntax, while a semantic search API lets you describe what information you need in natural language. Instead of building `"Kubernetes" AND "autoscaling" AND "best practices" AND "2026"`, you specify an objective: "Find current best practices for Kubernetes pod autoscaling."
+**Declarative ****[semantic search](https://parallel.ai/learn/semantic-search)** is the other difference. Traditional keyword search makes you construct the right query syntax, while a semantic search API lets you describe what information you need in natural language. Instead of building `"Kubernetes" AND "autoscaling" AND "best practices" AND "2026"`, you specify an objective: "Find current best practices for Kubernetes pod autoscaling."
 
 The API handles query construction, result ranking, and excerpt extraction, and ranks content by relevance to your objective rather than by SEO signals or keyword density.
 
@@ -95,7 +95,7 @@ Both architectures solve real problems, and the right choice depends on your req
 
 **Live-data RAG wins when:**
 
-- Information changes frequently. News, market data, competitive intelligence, and regulatory updates require current sources. These use cases often extend into [deep research](https://parallel.ai/articles/what-is-deep-research) patterns where agents synthesize across many sources.
+- Information changes frequently. News, market data, competitive intelligence, and regulatory updates require current sources. These use cases often extend into [deep research](https://parallel.ai/learn/deep-research) patterns where agents synthesize across many sources.
 - You need coverage beyond your own corpus, for questions about entities, events, or topics you haven't anticipated and pre-indexed. Recent [corpus-level reasoning benchmarks](https://arxiv.org/html/2510.26205v2) show retrieval coverage affecting answer quality.
 - You want to drop re-indexing overhead: crawling pipelines, embedding jobs, and index maintenance.
 

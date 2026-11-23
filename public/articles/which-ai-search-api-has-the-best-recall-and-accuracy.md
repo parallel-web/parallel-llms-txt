@@ -2,7 +2,7 @@
 
 Recall and accuracy are the two metrics that decide whether an agent sees the sources it needs or burns tokens on noise. This guide evaluates Parallel, Exa, Tavily, Brave Search, and Perplexity on both, covers how to benchmark a search API yourself, and compares pricing, output quality, and production readiness side by side.
 
-For developers building LLM-powered applications, the [web search API](https://parallel.ai/articles/what-is-a-web-search-api) you choose decides what web content your agents see, how fresh it is, and what each search costs at your volume.
+For developers building LLM-powered applications, the [web search API](https://parallel.ai/learn/web-search-api) you choose decides what web content your agents see, how fresh it is, and what each search costs at your volume.
 
 ## Why recall and accuracy define AI search quality
 
@@ -122,9 +122,9 @@ At 100,000 requests per month, you'd spend $500 with Parallel ($100 with Turbo o
 
 **RAG pipelines** need high precision and clean excerpts. You get better answers from fewer, higher-quality tokens than from a high volume of irrelevant results. Both Parallel and Tavily suit this use case. Our dense excerpts pack more useful information per token, which reduces the number of retrieval calls your pipeline needs to achieve a complete answer.
 
-**Deep research tasks** need maximum recall across diverse sources. A single search call can't cover a multi-step research workflow. Our FindAll API and [Task API](https://parallel.ai/blog/parallel-task-api) extend beyond the Search API for workflows that require entity discovery, multi-hop reasoning, [deep research](https://parallel.ai/articles/what-is-deep-research), and structured output with citations. On the DeepSearchQA subset on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (August 2026), the Task API's Pro processor scored 83% at $100 per 1,000 runs, and Gemini 3.1 Pro (high) scored 77% at $123.90 per 1,000 queries.
+**Deep research tasks** need maximum recall across diverse sources. A single search call can't cover a multi-step research workflow. Our FindAll API and [Task API](https://parallel.ai/blog/parallel-task-api) extend beyond the Search API for workflows that require entity discovery, multi-hop reasoning, [deep research](https://parallel.ai/learn/deep-research), and structured output with citations. On the DeepSearchQA subset on [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (August 2026), the Task API's Pro processor scored 83% at $100 per 1,000 runs, and Gemini 3.1 Pro (high) scored 77% at $123.90 per 1,000 queries.
 
-**Budget-sensitive prototyping** benefits from generous free tiers. Brave's $5 monthly credit and Exa's $10 monthly credit work for early-stage testing. Our $5 in monthly free credits covers up to 5,000 Turbo searches, more than three times the roughly 1,400 standard searches Exa's $10 buys at $7 per 1,000, to evaluate before committing to a paid plan.
+**Budget-sensitive prototyping** benefits from generous [free search API tiers](https://parallel.ai/articles/best-free-web-search-api). Brave's $5 monthly credit and Exa's $10 monthly credit work for early-stage testing. Our $5 in monthly free credits covers up to 5,000 Turbo searches, more than three times the roughly 1,400 standard searches Exa's $10 buys at $7 per 1,000, to evaluate before committing to a paid plan.
 
 **Enterprise deployments** require SOC 2 certification, SLAs, and strict data handling. If your compliance team needs zero data retention and a SOC 2 Type 2 report, that narrows the field. We offer both, with zero data retention on Enterprise plans.
 
@@ -152,4 +152,4 @@ You can evaluate our Search API with $5 in free credits every month, applied aut
 
 [Start Building](https://docs.parallel.ai/home)
 
-**Deeper comparisons: **[Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel) / [Linkup vs. Parallel](https://parallel.ai/articles/linkup-vs-parallel) / [Perplexity Search API vs. Parallel Search API](https://parallel.ai/compare/perplexity-vs-parallel).
+**Deeper comparisons: **[Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel) / [Linkup vs. Parallel](https://parallel.ai/articles/linkup-vs-parallel) / [Perplexity Search API vs. Parallel Search API](https://parallel.ai/compare/perplexity-vs-parallel) / [The best Exa alternatives](https://parallel.ai/articles/exa-alternatives).

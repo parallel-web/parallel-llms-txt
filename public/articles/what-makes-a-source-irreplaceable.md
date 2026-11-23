@@ -158,7 +158,7 @@ If you want agents to depend on your content, aim for uniqueness: publish origin
 
 Google asks the same of publishers. [Google’s people-first content guidance](https://developers.google.com/search/docs/fundamentals/creating-helpful-content) asks, “Does the content provide original information, reporting, research, or analysis?” Google’s May 15, 2026 resource, [Google’s guidance for generative AI features](https://developers.google.com/search/blog/2026/05/a-new-resource-for-optimizing), stresses “valuable, unique, non-commodity content.”
 
-Make your content easy for AI systems to reach and parse. Our explainer on [what llms.txt does](https://parallel.ai/articles/llms-txt) covers a plain text file that gives language models a map of your key pages.
+Make your content easy for AI systems to reach and parse. Our explainer on [what llms.txt does](https://parallel.ai/learn/llms-txt) covers a plain text file that gives language models a map of your key pages.
 
 You can [check your domain on Index](https://index.parallel.ai/) to see which queries your content answers and how unique its contribution is. The same check counts the times agents reference your content.
 

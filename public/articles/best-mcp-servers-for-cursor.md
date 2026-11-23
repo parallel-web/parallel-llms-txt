@@ -2,7 +2,7 @@
 
 Cursor MCP servers live in mcp.json, and Cursor's Marketplace installs the popular ones in one click. Here are the eleven that earn their context cost in 2026, from web search and library docs to Linear, Sentry, Supabase, and Figma, plus the one server most lists recommend that Cursor doesn't need, with exact config for each.
 
-Cursor made [MCP](https://parallel.ai/articles/what-is-mcp) mainstream for IDE users: servers install from a one-click deeplink or a few lines of `mcp.json`, and its agent uses them alongside the editor's own context. That convenience cuts both ways, because Cursor users accumulate servers fast, and every one of them spends context on every agent turn. This guide is the short list that earns the cost, plus the popular recommendation you can skip.
+Cursor made [MCP](https://parallel.ai/learn/model-context-protocol) mainstream for IDE users: servers install from a one-click deeplink or a few lines of `mcp.json`, and its agent uses them alongside the editor's own context. That convenience cuts both ways, because Cursor users accumulate servers fast, and every one of them spends context on every agent turn. This guide is the short list that earns the cost, plus the popular recommendation you can skip.
 
 Disclosure: we make Parallel, Parallel MCP is the first pick, and we cite the benchmark numbers so you can discount our bias.
 

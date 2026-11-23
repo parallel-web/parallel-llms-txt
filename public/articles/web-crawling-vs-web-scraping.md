@@ -8,7 +8,7 @@ A web crawler discovers pages by following links from one URL to the next and bu
 
 ## What web crawling does
 
-A crawler starts from a set of seed URLs, fetches each page, pulls out every link it contains, and adds the new links to a queue called the frontier. Then it repeats. Along the way it decides which links are worth following, how often to come back to a page that changes, and how fast it can hit one host without causing trouble. Our [web crawler guide](https://parallel.ai/articles/what-is-a-web-crawler) covers the selection, revisit, and politeness policies in depth.
+A crawler starts from a set of seed URLs, fetches each page, pulls out every link it contains, and adds the new links to a queue called the frontier. Then it repeats. Along the way it decides which links are worth following, how often to come back to a page that changes, and how fast it can hit one host without causing trouble. Our [web crawler guide](https://parallel.ai/learn/web-crawler) covers the selection, revisit, and politeness policies in depth.
 
 Crawling runs at a scale scraping rarely approaches. Common Crawl's July 2026 archive, gathered between July 7 and July 25, holds 2.14 billion pages from 40.5 million hosts, including 603 million URLs never seen in any earlier crawl. Google describes the web as "a nearly infinite space" that exceeds its ability to index every URL, which is why it assigns each site a crawl budget made of two parts: a crawl capacity limit, meaning how many parallel connections it will open without overloading the server, and crawl demand, meaning how much it wants to recrawl based on popularity, staleness, and page quality.
 
@@ -16,7 +16,7 @@ The output of a crawl is a corpus and a link graph. Search engines rank that cor
 
 ## What web scraping does
 
-A scraper begins with pages it already wants and ends with data. It fetches each page, parses the HTML, selects the elements that hold the target values, and writes them somewhere structured. The selectors are usually written per site, because the element that holds a product price on one retailer is meaningless on another. Modern scrapers often render JavaScript with a headless browser first and increasingly hand the parsing step to a model instead of hand-written rules. [What is web scraping](https://parallel.ai/articles/what-is-web-scraping) walks through each step, and [web scraper vs. web extraction](https://parallel.ai/articles/web-scraper-vs-web-extraction) covers where the parsing step ends and extraction begins.
+A scraper begins with pages it already wants and ends with data. It fetches each page, parses the HTML, selects the elements that hold the target values, and writes them somewhere structured. The selectors are usually written per site, because the element that holds a product price on one retailer is meaningless on another. Modern scrapers often render JavaScript with a headless browser first and increasingly hand the parsing step to a model instead of hand-written rules. [What is web scraping](https://parallel.ai/learn/web-scraping) walks through each step, and [web scraper vs. web extraction](https://parallel.ai/articles/web-scraper-vs-web-extraction) covers where the parsing step ends and extraction begins.
 
 Scraping is targeted. It might touch one page or a million, but each page was chosen. A scraper does not need to discover anything if the URL list comes from a database, a sitemap, a product feed, or a previous job.
 

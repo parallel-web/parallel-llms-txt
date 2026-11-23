@@ -8,7 +8,7 @@ An MCP server is a software service that exposes tools, data resources, and prom
 
 An MCP server is a software service that gives AI models a standard way to reach tools, data, and prompts through the _Model Context Protocol_. It sits between the model and your APIs, databases, or files, and it translates requests into structured, model-ready responses.
 
-Anthropic open-sourced the [Model Context Protocol](https://parallel.ai/articles/what-is-mcp) in November 2024. The standard lets [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) connect to many systems through one shared interface instead of a separate connector for each service.
+Anthropic open-sourced the [Model Context Protocol](https://parallel.ai/learn/model-context-protocol) in November 2024. The standard lets [AI agents](https://parallel.ai/learn/ai-agent) connect to many systems through one shared interface instead of a separate connector for each service.
 
 ## Key characteristics
 
@@ -30,9 +30,9 @@ Parallel's [Search API](https://parallel.ai/products/search) powers the `web_sea
 
 ## Related terms
 
-- [Model Context Protocol](https://parallel.ai/articles/what-is-mcp): the open standard every MCP server implements.
-- [AI agents](https://parallel.ai/articles/what-is-an-ai-agent): the systems that use MCP servers to reach tools and data.
-- [Web search API](https://parallel.ai/articles/what-is-a-web-search-api): a common capability an MCP server can expose to a model.
+- [Model Context Protocol](https://parallel.ai/learn/model-context-protocol): the open standard every MCP server implements.
+- [AI agents](https://parallel.ai/learn/ai-agent): the systems that use MCP servers to reach tools and data.
+- [Web search API](https://parallel.ai/learn/web-search-api): a common capability an MCP server can expose to a model.
 
 ## FAQ
 

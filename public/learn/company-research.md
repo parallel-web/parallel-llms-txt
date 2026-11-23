@@ -50,9 +50,9 @@ For more on these workflows, see [AI agents in finance](/learn/ai-agents-in-fina
 
 ## Related terms
 
-- [data enrichment](https://parallel.ai/articles/what-is-data-enrichment)
-- [deep research](https://parallel.ai/articles/what-is-deep-research)
-- [web scraping](https://parallel.ai/articles/what-is-web-scraping)
+- [data enrichment](https://parallel.ai/learn/data-enrichment)
+- [deep research](https://parallel.ai/learn/deep-research)
+- [web scraping](https://parallel.ai/learn/web-scraping)
 - [company due diligence](https://parallel.ai/articles/how-investment-firms-use-ai-apis-for-deal-sourcing-and-research)
 
 ## FAQ

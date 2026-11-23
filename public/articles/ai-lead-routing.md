@@ -209,7 +209,7 @@ What didn't go cleanly:
 
 Lead to account matching connects a new lead to an account already in your CRM, so account-based routing can send it to the owner. Routing tools use domain matching, fuzzy name matching, and parent-account lookups, which handle most leads. The cases it can't settle are the ones where the relationship isn't in your data: a brand with its own domain (GitHub and Microsoft), a regional entity (Toyota Motor North America), or an ownership change (Ben & Jerry's).
 
-A `choice` question with your customer accounts as options settles those directly, and a choice question accepts up to 255 options. For larger account lists, narrow first: use your routing tool's fuzzy match or a domain lookup to pull a short list of candidate accounts, then ask about those. For pairwise checks ("is company X a subsidiary or brand of account Y?") and how to treat parents versus subsidiaries in your data model, see [entity matching](https://parallel.ai/articles/entity-matching).
+A `choice` question with your customer accounts as options settles those directly, and a choice question accepts up to 255 options. For larger account lists, narrow first: use your routing tool's fuzzy match or a domain lookup to pull a short list of candidate accounts, then ask about those. For pairwise checks ("is company X a subsidiary or brand of account Y?") and how to treat parents versus subsidiaries in your data model, see [entity matching](https://parallel.ai/learn/entity-matching).
 
 ## When rules are enough
 
@@ -231,4 +231,4 @@ Cost is per request: $1 per 1,000 requests with search included, up to 100 quest
 
 Run your last ten inbound leads through the [Decisions playground](https://platform.parallel.ai/play/decisions), which includes 5,000 free requests, with your own regions, segments, and customer accounts as options. The [quickstart](https://docs.parallel.ai/decisions/decisions-quickstart) covers the request format. To test from an AI assistant first, the free `web_decisions` tool in [Parallel MCP](https://parallel.ai/mcp) needs no key: ask it to "use Parallel Decisions to check whether Ben & Jerry's is owned by Unilever today."
 
-Related reading: [AI lead qualification](https://parallel.ai/articles/ai-lead-qualification) / [Entity matching](https://parallel.ai/articles/entity-matching) / [What is a decisions API?](https://parallel.ai/articles/what-is-a-decisions-api) / [Enrich and triage inbound leads with the Task API](https://parallel.ai/blog/enrich-triage-inbound-leads-parallel-task-api)
+Related reading: [AI lead qualification](https://parallel.ai/articles/ai-lead-qualification) / [Entity matching](https://parallel.ai/learn/entity-matching) / [What is a decisions API?](https://parallel.ai/articles/what-is-a-decisions-api) / [Enrich and triage inbound leads with the Task API](https://parallel.ai/blog/enrich-triage-inbound-leads-parallel-task-api)

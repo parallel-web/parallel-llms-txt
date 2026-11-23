@@ -33,10 +33,10 @@ Retrieval quality shapes grounding quality. Parallel maintains its own web index
 
 ## Related terms
 
-- [web search API](https://parallel.ai/articles/what-is-a-web-search-api): the tool an agent calls to fetch grounding sources.
-- [semantic search](https://parallel.ai/articles/what-is-semantic-search): the retrieval method that matches meaning rather than keywords.
-- [AI agents](https://parallel.ai/articles/what-is-an-ai-agent): systems that use grounded context to act and answer.
-- [deep research](https://parallel.ai/articles/what-is-deep-research): tasks across many sources that depend on grounded, cited retrieval.
+- [web search API](https://parallel.ai/learn/web-search-api): the tool an agent calls to fetch grounding sources.
+- [semantic search](https://parallel.ai/learn/semantic-search): the retrieval method that matches meaning rather than keywords.
+- [AI agents](https://parallel.ai/learn/ai-agent): systems that use grounded context to act and answer.
+- [deep research](https://parallel.ai/learn/deep-research): tasks across many sources that depend on grounded, cited retrieval.
 
 ## FAQ
 

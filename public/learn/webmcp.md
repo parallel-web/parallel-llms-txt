@@ -142,7 +142,7 @@ For a purchase, deletion, or account change, do not copy the auto-submit choice 
 
 **Choose WebMCP when the open application is important to the task.** A support agent could prepare a ticket in the form the user is viewing. A developer assistant could retrieve diagnostic information for the selected project. An analytics assistant could change a report's filters and show the result. Chrome's [user-journey examples](https://developer.chrome.com/docs/ai/webmcp/use-cases) describe this kind of collaboration between users, agents, and websites.
 
-**Choose MCP when the capability should be available outside that page.** A service that searches documents, reads a database, or runs an overnight enrichment job should not depend on someone keeping a tab open. MCP's local and remote server model fits that requirement. For the underlying concepts, see [what MCP is and how it works](https://parallel.ai/articles/what-is-mcp).
+**Choose MCP when the capability should be available outside that page.** A service that searches documents, reads a database, or runs an overnight enrichment job should not depend on someone keeping a tab open. MCP's local and remote server model fits that requirement. For the underlying concepts, see [what MCP is and how it works](https://parallel.ai/learn/model-context-protocol).
 
 **Use both when the product has both kinds of interaction.** In a CRM, for instance, a backend integration could support scheduled account research while a WebMCP tool prepares an update in the account page for a salesperson to review. That example is hypothetical; we aren't claiming any particular CRM supports WebMCP today.
 

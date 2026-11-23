@@ -175,4 +175,4 @@ OpenAI deep research is available in ChatGPT, with usage limits that vary by pla
 
 ### **How is deep research different from a web search API?**
 
-A web search API returns ranked results. Deep research runs a multi-step loop (plan, search, reason, report) and returns a cited answer. See [What is a web search API?](https://parallel.ai/articles/what-is-a-web-search-api).
+A web search API returns ranked results. Deep research runs a multi-step loop (plan, search, reason, report) and returns a cited answer. See [What is a web search API?](https://parallel.ai/learn/web-search-api).

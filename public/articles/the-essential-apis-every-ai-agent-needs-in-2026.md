@@ -10,7 +10,7 @@ The web's primary consumer is shifting from humans to machines. Every week, more
 
 Traditional APIs return what browsers need. An LLM extracting a company's founding date from raw HTML wastes tokens on `<div>` soup. A SERP wrapper returning ten blue links forces the agent to make ten more requests. An ad-hoc query API with no structure pushes all the synthesis work back onto the model. Recent [maximum effective context window research](https://arxiv.org/pdf/2509.21361) confirms that token efficiency directly impacts agent reasoning quality.
 
-_AI-native_ APIs invert this. They accept semantic objectives instead of keywords, return token-dense structured outputs instead of raw HTML, and attach verifiable sources to every claim. That shift from keyword search to objective retrieval, from HTML scraping to structured extraction, from ad-hoc queries to continuous monitoring, cuts inference costs, reduces errors, and makes [AI agents in production](https://parallel.ai/articles/what-is-an-ai-agent) meaningfully more capable.
+_AI-native_ APIs invert this. They accept semantic objectives instead of keywords, return token-dense structured outputs instead of raw HTML, and attach verifiable sources to every claim. That shift from keyword search to objective retrieval, from HTML scraping to structured extraction, from ad-hoc queries to continuous monitoring, cuts inference costs, reduces errors, and makes [AI agents in production](https://parallel.ai/learn/ai-agent) meaningfully more capable.
 
 We built Parallel's web index and API suite specifically for this shift. The six API categories below cover what production agents need from the web.
 
@@ -26,7 +26,7 @@ Search is the entry point for most web intelligence workflows. An agent needs to
 
 Traditional SERP wrappers scrape Google or Bing results and return URLs. The agent then has to fetch, parse, and extract content from each link, spending tokens on boilerplate and spending time on round trips. AI-native search APIs take a different approach: accept a semantic objective, return ranked URLs with compressed, information-dense excerpts ready for LLM consumption.
 
-Key capabilities to evaluate in any [web search API](https://parallel.ai/articles/what-is-a-web-search-api) include semantic and objective-based queries (natural language, not boolean keyword strings), freshness controls that let you specify how recent results must be, domain inclusion and exclusion filters, extraction quality for JavaScript-heavy or CAPTCHA-protected pages, and sub-5-second synchronous latency for real-time agent workflows.
+Key capabilities to evaluate in any [web search API](https://parallel.ai/learn/web-search-api) include semantic and objective-based queries (natural language, not boolean keyword strings), freshness controls that let you specify how recent results must be, domain inclusion and exclusion filters, extraction quality for JavaScript-heavy or CAPTCHA-protected pages, and sub-5-second synchronous latency for real-time agent workflows.
 
 On [parallel.ai/benchmarks](https://parallel.ai/benchmarks) (September 2026), which runs each search API as a tool inside the same agent at two price tiers, Parallel Advanced scored 97% on SimpleQA Verified and 74% on BrowseComp with a GPT-5.6 Sol agent, level with Perplexity on BrowseComp but at higher cost. At the low-cost tier, with a GPT-5.6 Luna agent, Fast scored 94% on SimpleQA Verified at $2 per 1,000 questions, the lowest cost in the run, though Perplexity edged it on BrowseComp and Exa on WideSearch. Pricing starts at $0.001 per request with Turbo or Fast mode (roughly 200ms and 700ms median latency), with Basic and Advanced modes at $0.005 per request for 10 results. For a comparison with legacy providers, see our [Bing API alternatives](https://parallel.ai/articles/bing-api-comparison) analysis.
 
@@ -51,7 +51,7 @@ The `objective` parameter replaces boolean query construction: you declare inten
 
 Search finds pages; extraction gets their content. Treating them as one operation leads to fragile, expensive pipelines.
 
-Given a URL, an extraction API returns clean markdown: no HTML parsing, no Puppeteer setup, no site-specific [web scraping](https://parallel.ai/articles/what-is-web-scraping) code to maintain.
+Given a URL, an extraction API returns clean markdown: no HTML parsing, no Puppeteer setup, no site-specific [web scraping](https://parallel.ai/learn/web-scraping) code to maintain.
 
 Parallel's Extract API handles JavaScript-rendered single-page applications, dynamic content, and PDFs. You can request objective-driven extraction (focused excerpts aligned to a natural-language goal) or full-page conversion to markdown. Both modes strip boilerplate, navigation, and ads automatically.
 
@@ -72,7 +72,7 @@ Search and Extract compose naturally: use Search to identify the five most relev
 
 ### Deep research APIs, multi-step investigation at scale
 
-Some questions require more than a single search. Answering "what is this company's latest funding round, founding date, and employee count?" requires finding multiple sources, cross-referencing them, and structuring the result. [Deep research](https://parallel.ai/articles/what-is-deep-research) APIs handle that entire pipeline.
+Some questions require more than a single search. Answering "what is this company's latest funding round, founding date, and employee count?" requires finding multiple sources, cross-referencing them, and structuring the result. [Deep research](https://parallel.ai/learn/deep-research) APIs handle that entire pipeline.
 
 You define a research objective and an output schema. The API runs multiple searches, extracts content from relevant pages, synthesizes findings across sources, and returns structured data with per-field citations and confidence scores.
 
@@ -94,7 +94,7 @@ task = client.tasks.create(
 )
 ```
 
-A concrete use case: enrich a list of Series A startups with founding date from [Crunchbase](https://www.crunchbase.com), latest funding from [TechCrunch](https://techcrunch.com), and employee count from [LinkedIn](https://www.linkedin.com). The Task API runs all three lookups per company, cross-references the results, and returns one structured record per row. This kind of [data enrichment](https://parallel.ai/articles/what-is-data-enrichment) used to take a researcher days and now runs in minutes.
+A concrete use case: enrich a list of Series A startups with founding date from [Crunchbase](https://www.crunchbase.com), latest funding from [TechCrunch](https://techcrunch.com), and employee count from [LinkedIn](https://www.linkedin.com). The Task API runs all three lookups per company, cross-references the results, and returns one structured record per row. This kind of [data enrichment](https://parallel.ai/learn/data-enrichment) used to take a researcher days and now runs in minutes.
 
 Task runs asynchronously and delivers results via webhooks or SSE streaming, so bulk enrichment workflows don't block your application on a 2-minute research run.
 
@@ -142,7 +142,7 @@ Most production agent architectures use one of three integration patterns.
 
 **Function/tool calling** lets the LLM decide when to invoke external tools based on the conversation. You define the available tools and their schemas; the model determines which to call and when. This is the standard pattern for multi-tool agents and works well with any major LLM framework: LangChain, LlamaIndex, AutoGen, or custom implementations.
 
-MCP (Model Context Protocol) comes from Anthropic, which [introduced MCP as an open standard](https://www.anthropic.com/news/model-context-protocol) for connecting AI models to external tools and data sources. Rather than hardcoding tool schemas, agents discover available tools dynamically through the MCP server. The [MCP specification](https://modelcontextprotocol.io/specification/2025-06-18) defines the protocol, and the [MCP open-source ecosystem](https://github.com/modelcontextprotocol) provides SDKs in 10+ languages. For more, see our guide on [Model Context Protocol fundamentals](https://parallel.ai/articles/what-is-mcp). [Parallel MCP](https://parallel.ai/mcp) lets agent frameworks plug in web search, page fetch, and research without writing integration code.
+MCP (Model Context Protocol) comes from Anthropic, which [introduced MCP as an open standard](https://www.anthropic.com/news/model-context-protocol) for connecting AI models to external tools and data sources. Rather than hardcoding tool schemas, agents discover available tools dynamically through the MCP server. The [MCP specification](https://modelcontextprotocol.io/specification/2025-06-18) defines the protocol, and the [MCP open-source ecosystem](https://github.com/modelcontextprotocol) provides SDKs in 10+ languages. For more, see our guide on [Model Context Protocol fundamentals](https://parallel.ai/learn/model-context-protocol). [Parallel MCP](https://parallel.ai/mcp) lets agent frameworks plug in web search, page fetch, and research without writing integration code.
 
 Start with function calling for most multi-tool agents. Add MCP when you need dynamic tool discovery or want plug-and-play access across multiple models. Reserve direct API calls for simple, single-purpose workflows where the overhead of tool schema management isn't worth it.
 

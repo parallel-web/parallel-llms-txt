@@ -65,8 +65,8 @@ _Parallel's guide to using __[Search as a tool in OpenAI's function calling](htt
 
 - [MCP servers](https://parallel.ai/articles/mcp-vs-skills-vs-clis): the Model Context Protocol for exposing tools to a model.
 - [Agent harness](https://parallel.ai/articles/what-is-an-agent-harness): the runtime loop that manages an agent's tool calls.
-- [AI agents](https://parallel.ai/articles/what-is-an-ai-agent): systems that use tools to plan and complete multi-step tasks.
-- [Agent skills](https://parallel.ai/articles/what-are-agent-skills): packaged capabilities an agent can load and use.
+- [AI agents](https://parallel.ai/learn/ai-agent): systems that use tools to plan and complete multi-step tasks.
+- [Agent skills](https://parallel.ai/learn/agent-skills): packaged capabilities an agent can load and use.
 
 ## FAQ
 

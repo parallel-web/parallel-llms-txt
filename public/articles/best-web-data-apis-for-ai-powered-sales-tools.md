@@ -19,17 +19,17 @@ Web data APIs for sales intelligence fall into four categories:
 - **Deep research APIs** combine search, extraction, and AI reasoning to produce comprehensive profiles from multiple sources
 - **Decision APIs** answer a closed question about a company, such as yes or no, one option from a list, or a score, from current web evidence
 
-Each category serves a different stage in your sales [data enrichment](https://parallel.ai/articles/what-is-data-enrichment) pipeline.
+Each category serves a different stage in your sales [data enrichment](https://parallel.ai/learn/data-enrichment) pipeline.
 
 ## Types of web data APIs for sales
 
 ### Search APIs
 
-[Search APIs](https://parallel.ai/articles/what-is-a-web-search-api) return ranked results and excerpts for queries you submit. You ask a question; the API returns pages that answer it. The best search APIs for AI workloads accept natural-language _objectives_ rather than keyword strings.
+[Search APIs](https://parallel.ai/learn/web-search-api) return ranked results and excerpts for queries you submit. You ask a question; the API returns pages that answer it. The best search APIs for AI workloads accept natural-language _objectives_ rather than keyword strings.
 
 **Sales use case:** Prospect discovery, competitive intelligence, market research. Find companies that match specific criteria, surface news about target accounts, identify market trends.
 
-**Key differentiator:** [Semantic search](https://parallel.ai/articles/what-is-semantic-search) with objective-driven queries. An objective-driven search for "fintech companies that raised Series B funding in the last 90 days" understands intent and returns relevant results even when pages don't use your exact phrasing.
+**Key differentiator:** [Semantic search](https://parallel.ai/learn/semantic-search) with objective-driven queries. An objective-driven search for "fintech companies that raised Series B funding in the last 90 days" understands intent and returns relevant results even when pages don't use your exact phrasing.
 
 **Example:** You need to identify prospects who recently expanded their engineering teams. A semantic search API lets you query: "B2B SaaS companies that announced significant engineering hiring in Q1 2026." The API searches TechCrunch, company blogs, LinkedIn posts, and press releases, then returns ranked results with excerpts.
 
@@ -39,13 +39,13 @@ Extraction APIs convert any URL into clean, structured data. You provide a page;
 
 **Sales use case:** Pull detailed information from target account websites, job postings, press releases, and SEC filings. Build prospect profiles from primary sources rather than aggregated databases.
 
-**Key differentiator:** Objective-driven extraction versus CSS selector [web scraping](https://parallel.ai/articles/what-is-web-scraping). Traditional scraping requires you to specify exactly which HTML elements to extract. Objective-driven extraction lets you state what you want ("extract the leadership team and their titles") and the API figures out where that information lives on the page.
+**Key differentiator:** Objective-driven extraction versus CSS selector [web scraping](https://parallel.ai/learn/web-scraping). Traditional scraping requires you to specify exactly which HTML elements to extract. Objective-driven extraction lets you state what you want ("extract the leadership team and their titles") and the API figures out where that information lives on the page.
 
 **Example:** You've identified a target account. You want their leadership team, recent product announcements, and open job postings. An extraction API pulls all three from their website, careers page, and press section in one call, returning structured JSON ready for your CRM.
 
 ### Deep research APIs
 
-[Deep research APIs](https://parallel.ai/articles/what-is-deep-research) combine search, extraction, and AI reasoning into multi-step research workflows. You define what you want to know; the API orchestrates the entire research process across multiple web sources.
+[Deep research APIs](https://parallel.ai/learn/deep-research) combine search, extraction, and AI reasoning into multi-step research workflows. You define what you want to know; the API orchestrates the entire research process across multiple web sources.
 
 **Sales use case:** Build comprehensive prospect profiles, run custom enrichment workflows with any data schema, generate account intelligence reports that synthesize information from [Crunchbase](https://www.crunchbase.com/), TechCrunch, BuiltWith, and SEC EDGAR.
 
@@ -109,7 +109,7 @@ The right API depends on your workflow: some excel at high-volume search, others
 
 ### Parallel
 
-Parallel is a single API suite built for [AI agents](https://parallel.ai/articles/what-is-an-ai-agent). The Search API accepts natural-language objectives and returns ranked results with token-dense excerpts optimized for LLM context windows. The Extract API converts any URL to clean markdown. The Decisions API answers yes-or-no, multiple-choice, and score questions about a company from live web evidence, with citations. The Task API handles multi-step research workflows with custom schemas.
+Parallel is a single API suite built for [AI agents](https://parallel.ai/learn/ai-agent). The Search API accepts natural-language objectives and returns ranked results with token-dense excerpts optimized for LLM context windows. The Extract API converts any URL to clean markdown. The Decisions API answers yes-or-no, multiple-choice, and score questions about a company from live web evidence, with citations. The Task API handles multi-step research workflows with custom schemas.
 
 **Sales-specific strengths:** You can discover prospects with Search, pull detailed profiles with Extract, qualify and route leads with Decisions, and run batch enrichment with Task, all through one platform. The Basis framework provides per-field citations, reasoning traces, and calibrated confidence scores, so your sales team can verify any data point before acting on it.
 

@@ -28,10 +28,10 @@ _Parallel's __[Search API](https://parallel.ai/products/search)__ returns ranked
 
 ## Related terms
 
-- [semantic search](https://parallel.ai/articles/what-is-semantic-search): how vector based retrieval finds passages by meaning.
-- [web search API](https://parallel.ai/articles/what-is-a-web-search-api): one way RAG retrieves current context at query time.
-- [AI agents](https://parallel.ai/articles/what-is-an-ai-agent): systems that rely on RAG to ground their decisions.
-- [deep research](https://parallel.ai/articles/what-is-deep-research): extends retrieval across many sources beyond a single lookup.
+- [semantic search](https://parallel.ai/learn/semantic-search): how vector based retrieval finds passages by meaning.
+- [web search API](https://parallel.ai/learn/web-search-api): one way RAG retrieves current context at query time.
+- [AI agents](https://parallel.ai/learn/ai-agent): systems that rely on RAG to ground their decisions.
+- [deep research](https://parallel.ai/learn/deep-research): extends retrieval across many sources beyond a single lookup.
 
 ## FAQ
 

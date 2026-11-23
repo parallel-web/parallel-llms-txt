@@ -10,7 +10,7 @@ A headless browser API gives your code programmatic access to a browser that run
 
 A headless browser is a full web browser with no screen to look at. The API wraps that browser so you can drive it through requests rather than clicks. You send a URL, the browser renders the page, and you get back the result.
 
-This matters for developers and [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) that need the live web without running browser infrastructure themselves. Many sites build their content with JavaScript, so a plain request returns an empty page. A headless browser API runs that JavaScript first, then hands back the real content.
+This matters for developers and [AI agents](https://parallel.ai/learn/ai-agent) that need the live web without running browser infrastructure themselves. Many sites build their content with JavaScript, so a plain request returns an empty page. A headless browser API runs that JavaScript first, then hands back the real content.
 
 ## Key characteristics
 
@@ -49,8 +49,8 @@ Parallel’s Extract API handles this rendering behind one call. It turns any pu
 ## Related terms
 
 - [article extraction API](https://parallel.ai/articles/article-extraction-api-a-developers-guide-to-structured-web-data): a developer’s guide to structured web data.
-- [web search API](https://parallel.ai/articles/what-is-a-web-search-api): how web search works for AI agents.
-- [web scraping](https://parallel.ai/articles/what-is-web-scraping): the basics of pulling data from pages.
+- [web search API](https://parallel.ai/learn/web-search-api): how web search works for AI agents.
+- [web scraping](https://parallel.ai/learn/web-scraping): the basics of pulling data from pages.
 
 ## FAQ
 

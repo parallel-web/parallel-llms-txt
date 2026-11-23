@@ -221,7 +221,7 @@ Profound integrated our Search and Task APIs into Profound Agents. Marketers use
 
 You can read [how Profound grounds content](https://parallel.ai/blog/case-study-profound) in our customer story, which reports that research-grounded content generation went from days to minutes. Dylan Babbs, co-founder of Profound, says that before Profound Agents, “it took weeks to produce the well-researched, authoritative content that answer engines actually cite.”
 
-If you’re new to research agents that work through many steps and sources, start with [what deep research involves](https://parallel.ai/articles/what-is-deep-research).
+If you’re new to research agents that work through many steps and sources, start with [what deep research involves](https://parallel.ai/learn/deep-research).
 
 ## Common mistakes and how to avoid them
 

@@ -1,50 +1,56 @@
 # TinyFish vs Parallel: operating websites or retrieving the web
 
-TinyFish sells web agents that operate live websites, and it gives away the search and fetch calls underneath them, while Parallel sells retrieval and research priced per request. Which one you want depends on whether your agent has to act on a site or read the open web.
+TinyFish sells web agents that operate live websites and gives away the search and fetch calls underneath them, and since fall 2026 it also sells research, monitoring, and dataset products. Parallel sells retrieval and research priced per request. Which one you want depends on whether your agent has to act on a site or read the open web.
 
 ## **Quick answer**
 
-TinyFish sells web agents that operate live websites. Search and Fetch on that platform cost $0.00 per call, with a default of 30 searches per minute. Parallel sells retrieval and research priced per request, and none of its APIs click a button or hold a logged-in session. Use TinyFish when the job is acting on a site. Use Parallel when the job is reading the open web.
+TinyFish sells web agents that operate live websites, and TinySearch and TinyFetch on that platform cost $0.00 per call within daily limits, with a default of 30 searches per minute. Parallel sells retrieval and research priced per request, and none of its APIs click a button or hold a logged-in session. Since TinyFish's fall 2026 launches, the two also overlap on research, monitoring, and list building. Use TinyFish when the job is acting on a site. Use Parallel when the job is reading the open web at volume.
 
 ## **What TinyFish sells**
 
-TinyFish came out of stealth in August 2025 with a $47 million Series A led by ICONIQ Growth. It was founded in 2024, sits in Palo Alto, and is run by Sudheesh Nair, previously president of Nutanix. At launch it was an enterprise web agent company with no self-serve product and no public price list, and that has since changed: today you can sign up, take a key, and call four APIs against a wallet balance.
+TinyFish came out of stealth in August 2025 with a $47 million Series A led by ICONIQ Growth. It was founded in 2024, sits in Palo Alto, and is run by Sudheesh Nair, previously president of Nutanix. At launch it was an enterprise web agent company with no self-serve product and no public price list, and that has since changed: today you can sign up, take a key, and call its APIs against a wallet balance.
 
-The four are Agent, Browser, Search, and Fetch. Agent takes a natural-language goal and a starting URL, drives a real browser to completion, and streams back what it did over SSE or a webhook. Browser hands you the session itself, with persistent context profiles, stealth mode, and residential proxy routing, while Search and Fetch are the read-only primitives underneath: a keyword query returning ranked results, and a URL-to-content call that takes up to ten URLs at a time.
+TinyFish renamed its four core APIs in October 2026: TinyAgent, TinyBrowser, TinySearch, and TinyFetch. TinyAgent takes a natural-language goal and a starting URL, drives a real browser to completion, and streams back what it did over SSE or a webhook. TinyBrowser hands you the session itself, a cloud Chromium you drive over CDP with persistent profiles and residential proxy routing, while TinySearch and TinyFetch are the read-only primitives underneath: a keyword query returning ranked results, and a URL-to-content call that takes up to ten URLs at a time.
 
-Mako, announced in July 2026, is TinyFish’s own web agent model, fine-tuned from a Qwen base on production run data and now the default behind Agent. AgentQL, the natural-language query language that was the company’s original product, is still live on its own domain with its own billing and a $99 per month plan. TinyFish’s current marketing does not mention AgentQL, and no deprecation notice has been posted, so it remains available.
+On top of the core APIs sit three products. TinyMonitor, launched in September 2026, checks a page or a search topic on a schedule and alerts you by email or webhook when a change matches a condition you write. TinyResearch and TinySet, launched in November 2026, turn a question into a cited report, or a prompt into a structured dataset assembled from many pages.
+
+Mako, announced in July 2026, is TinyFish’s own web agent model, fine-tuned from a Qwen base on production run data and now the default behind TinyAgent. AgentQL, the natural-language query language that was the company’s original product, is still live on its own domain with its own billing and a $99 per month plan. TinyFish’s current marketing does not mention AgentQL, and no deprecation notice has been posted, so it remains available.
 
 Parallel's surface is Search, Extract, Task, Responses, FindAll, Entity Search, and Monitor. All of it is retrieval and research for models. No Parallel API clicks a button, fills a form, or holds a logged-in session.
 
 ## **Where the overlap actually is**
 
-Only two of the four TinyFish products compete with anything Parallel sells: TinyFish Search lines up against Parallel Search, and TinyFish Fetch against Parallel Extract. Everything else is uncontested in both directions. Agent and Browser have no Parallel equivalent, and Task, Responses, FindAll, Entity Search, and Monitor have no TinyFish equivalent. The overlapping pair is also the pair TinyFish gives away.
+TinySearch lines up against Parallel Search, and TinyFetch against Parallel Extract. Until September 2026 that was the whole overlap. Since then, TinyFish's three products have added three more pairs: TinyMonitor against Parallel Monitor, TinyResearch against the deep research processors of Parallel's Task API, and TinySet against FindAll with enrichment. TinyAgent and TinyBrowser still have no Parallel equivalent, and Parallel's Responses, Entity Search, and Decisions APIs have no TinyFish equivalent. The retrieval pair is the one TinyFish gives away; on research, monitoring, and datasets, both vendors charge.
 
 ## **Pricing: a free half and a metered half**
 
 |  | TinyFish | Parallel |
 | --- | --- | --- |
-| Search | $0.00 per request | $1 per 1,000 (turbo, fast); $5 per 1,000 (basic, advanced) |
-| Page content | $0.00 per URL | $1 per 1,000 URLs (Extract) |
-| Browser agent | $0.016 per step | Not offered |
-| Raw browser session | $0.002 per minute | Not offered |
-| Research and enrichment | Not offered | Task $5 to $2,400 per 1,000 runs; Responses $10 to $250 per 1,000 |
-| Billing | Wallet top-up, $10 minimum | Pay as you go, per request |
-| Free entry | $8 in wallet funds at signup; account and API key required | $5 in credits every month, applied automatically; Parallel MCP free with no account |
+| Search | TinySearch: $0.00 per request, up to 12,000 a day | $1 per 1,000 (turbo, fast); $5 per 1,000 (basic, advanced) |
+| Page content | TinyFetch: $0.00 per URL, up to 1,000 a day | $1 per 1,000 URLs (Extract) |
+| Browser agent | TinyAgent: $0.016 per step | Not offered |
+| Raw browser session | TinyBrowser: $0.002 per minute | Not offered |
+| Deep research | TinyResearch: $2.00 per report, $3.00 in Max mode | Task: $5 to $2,400 per 1,000 runs; Responses: $10 to $250 per 1,000 |
+| Monitoring | TinyMonitor: $0.005 per check | Monitor: $3 to $10 per 1,000 checks |
+| Datasets and lists | TinySet: $0.10 per row | FindAll: fixed fee per run plus $0.03 to $1.00 per match |
+| Billing | Wallet top-up, no subscription | Pay as you go, per request; Scale plan from $1,000 a month |
+| Free entry | $8 in wallet funds at signup; account and API key required | Up to $80 at signup plus $5 a month with a card on file; Parallel MCP free with no account |
 
-The zero is real: TinyFish Search and Fetch cost nothing per call, they do not draw down the wallet, and they keep working at a zero balance. If your workload is search and page fetching and it fits inside the rate limits, nothing in the category beats that on price, Parallel's metered API included.
+The zero is real, within limits. TinySearch is free up to 12,000 requests a day (500 an hour), and TinyFetch up to 1,000 URLs a day, at any wallet balance. Past the daily allowance, requests stop until the 00:00 UTC reset, or draw on the wallet if you turn wallet spending on. If your search and fetch volume fits inside those limits, nothing in the category beats that on price, Parallel's metered API included.
 
-What the zero buys TinyFish is the agent meter. Revenue is $0.016 per agent step, and an agent run is many steps. Free retrieval brings developers in, and its rate limits are sized for that funnel rather than for production throughput.
+What the zero buys TinyFish is the paid meter: $0.016 per agent step, and now $2 to $3 per research report and $0.10 per dataset row. Free retrieval brings developers in, and its rate limits are sized for that funnel rather than for production throughput.
 
 The homepage also runs a cost comparison, putting 10,000 agent steps at $24,000 on a competing stack against $160 on TinyFish. No comparator is named and no methodology is given, so there is no way to check the figure.
 
 Parallel charges per request against one meter, with nothing prepaid. Search turbo and fast are **$1 per 1,000 requests** with 10 results and excerpts included, basic and advanced $5 per 1,000, and additional results $1 per 1,000. Extract is $1 per 1,000 URLs. Above that sit Task at $5 to $2,400 per 1,000 runs, Responses at $10 to $250 per 1,000 charged only on success, Monitor at $3 to $10 per 1,000 executions, Entity Search at $5 per 1,000 with 100 results, and FindAll at a fixed cost plus $0.03 to $1.00 per match.
 
+On the products that now overlap, per-unit prices are close at the low end and diverge at the top. A TinyMonitor check costs $0.005, inside Parallel Monitor's range of $0.003 to $0.010. A TinyResearch report is a flat $2, or $3 in Max mode, while a Task run costs from $0.005 on the lightest processor to $2.40 on the heaviest, so Parallel is far cheaper for light enrichment at volume, and the two sit in the same range for deep reports. TinySet bills $0.10 per row, and FindAll a fixed fee per run plus $0.03 to $1.00 per match. Neither vendor publishes a head-to-head on these products, so test both on your own questions.
+
 ## **Rate limits and throughput**
 
-TinyFish Search allows 30 requests per minute per key, and Fetch allows 150 URLs per minute at no more than ten per request. Agent runs default to two concurrent, Browser to five concurrent sessions. Parallel's defaults are 600 requests per minute for Search and Extract, 300 per minute for Responses and Monitor, 2,000 per minute for Task, and 25 FindAll runs per hour.
+TinySearch allows 30 requests per minute and 500 per hour, and TinyFetch allows 150 URLs per minute and 1,000 per day, at no more than ten per request. TinyAgent runs default to two concurrent, TinyBrowser to five concurrent sessions. Parallel's defaults on the pay-as-you-go Build plan are 600 requests per minute for Search and Extract (1,500 on the Scale plan), 300 per minute for Responses and Monitor, 2,000 per minute for Task, and 25 FindAll runs per hour.
 
-One agent doing multi-hop research can spend 30 searches in well under a minute, so a single active user can saturate the TinyFish limit, and Parallel's default Search limit is twenty times higher. Both vendors raise limits on enterprise plans, and TinyFish’s cap is per key rather than per account.
+One agent doing multi-hop research can spend 30 searches in well under a minute, so a single active user can saturate the TinyFish limit, and Parallel's default Search limit is twenty times higher. Both vendors raise limits on enterprise plans. TinyFish applies its limits per person, or per organization when you belong to one.
 
 ## **Developer experience**
 
@@ -92,7 +98,7 @@ The two hold different certifications, and neither implies more rigor than the o
 
 ## **When to use each**
 
-Choose TinyFish when the job requires acting on a site. Logging in, filling a form, holding a session, clicking through a booking flow, reading a price that only exists behind an interface: Parallel does none of that, and TinyFish has built real infrastructure for it. If your search and fetch volume fits inside 30 requests per minute, taking that for free alongside is a good deal.
+Choose TinyFish when the job requires acting on a site. Logging in, filling a form, holding a session, clicking through a booking flow, reading a price that only exists behind an interface: Parallel does none of that, and TinyFish has built real infrastructure for it. If your search and fetch volume fits inside 30 requests per minute and 12,000 a day, taking that for free alongside is a good deal.
 
 Choose Parallel when the target is the open web and the consumer is a model. Retrieval is the product here rather than a feeder for one, and that shows up in the throughput defaults, in four search modes that trade latency against depth from 200ms to three seconds, and in the research layer sitting above search: Task for deep research and enrichment, Responses for cited answers, FindAll for list building, Entity Search for people and companies, and Monitor for tracking change over time. [Openbenchmarks' coding-agent board](https://openbenchmarks.com/web-search-for-coding-agents) (last updated September 26, 2026) measured the gap: Parallel turbo had the lowest average search time at 333ms, against 2.15s for TinyFish Search. On the independent [Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api) (November 2026 data), Parallel Fast scores 82 against 71 for TinyFish Search and takes 15.5 seconds per task against 57.7, while TinyFish's free search keeps its cost per 1,000 tasks lower, $8.62 against $14.03.
 
@@ -100,16 +106,20 @@ In practice the two combine more often than they compete. A reasonable architect
 
 ## **FAQ**
 
-### Do TinyFish Search and Parallel Search compete?
+### Do TinyFish and Parallel compete?
 
-Only Search and Fetch overlap. TinyFish Agent and Browser have no Parallel equivalent. Parallel Task, Responses, FindAll, Entity Search, and Monitor have no TinyFish equivalent.
+On five pairs: TinySearch and Parallel Search, TinyFetch and Extract, TinyMonitor and Monitor, TinyResearch and the Task API, and TinySet and FindAll. TinyAgent and TinyBrowser have no Parallel equivalent. Parallel's Responses, Entity Search, and Decisions APIs have no TinyFish equivalent.
 
-### Is TinyFish Search free?
+### Is TinySearch free?
 
-Per call, yes. Search is $0.00 per request and Fetch is $0.00 per URL. They do not draw down the wallet, and they keep working at a zero balance. The default cap is 30 Search requests per minute per key, and 150 Fetch URLs per minute.
+Within limits, yes. TinySearch is $0.00 per request up to 12,000 a day and TinyFetch is $0.00 per URL up to 1,000 a day, at any wallet balance. The default caps are 30 searches per minute and 500 per hour, and 150 fetched URLs per minute. Past the daily allowance, requests stop until the 00:00 UTC reset unless you turn wallet spending on.
 
 ### Can I use both?
 
 Yes. A common architecture puts Parallel on open-web research and monitoring, and TinyFish on anything that only exists on the far side of an interaction.
 
-**Related reading: **[Apify vs. Parallel](https://parallel.ai/articles/apify-vs-parallel) / [Firecrawl vs. Parallel](https://parallel.ai/compare/firecrawl-vs-parallel) / [AI data extraction at scale](https://parallel.ai/articles/ai-data-extraction-how-to-extract-structured-data-from-websites-at-scale).
+### Is Parallel a TinyFish alternative?
+
+For reading the open web, yes: search, page extraction, deep research, monitoring, and list building, with higher default rate limits and per-request pricing. For acting on websites, no. Parallel has no equivalent to TinyAgent or TinyBrowser, so teams that need both often run them side by side.
+
+**Related reading: **[Apify vs. Parallel](https://parallel.ai/articles/apify-vs-parallel) / [Firecrawl vs. Parallel](https://parallel.ai/compare/firecrawl-vs-parallel) / [AI data extraction at scale](https://parallel.ai/articles/ai-data-extraction-how-to-extract-structured-data-from-websites-at-scale) / [Keenable vs. Parallel](https://parallel.ai/articles/keenable-vs-parallel) / [The best free web search APIs](https://parallel.ai/articles/best-free-web-search-api).

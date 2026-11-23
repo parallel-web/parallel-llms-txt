@@ -6,7 +6,7 @@ The gap between a research agent demo and one that holds up in production is mos
 
 A research agent operates as an autonomous loop. You give it an objective ("Find the top five competitors to Company X and summarize their pricing models"), and it executes a cycle: plan, search, extract, reflect, iterate, synthesize.
 
-This differs from _static RAG_ systems that query a fixed, pre-indexed corpus. [Retrieval-augmented generation](https://www.ibm.com/think/topics/retrieval-augmented-generation) works when your answers exist in documents you control. Research agents tackle questions where the relevant information lives across the open web, changes frequently, and requires synthesis from multiple sources. An [agentic RAG survey](https://arxiv.org/html/2501.09136v4) from researchers at Cleveland State and Northeastern captures the distinction: agentic systems embed autonomous [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) into the retrieval pipeline, dynamically managing search strategies and iterating on context.
+This differs from _static RAG_ systems that query a fixed, pre-indexed corpus. [Retrieval-augmented generation](https://www.ibm.com/think/topics/retrieval-augmented-generation) works when your answers exist in documents you control. Research agents tackle questions where the relevant information lives across the open web, changes frequently, and requires synthesis from multiple sources. An [agentic RAG survey](https://arxiv.org/html/2501.09136v4) from researchers at Cleveland State and Northeastern captures the distinction: agentic systems embed autonomous [AI agents](https://parallel.ai/learn/ai-agent) into the retrieval pipeline, dynamically managing search strategies and iterating on context.
 
 Research agents also differ from chat assistants, which handle single-turn queries. A research agent pursues multi-step investigations, adjusts its search strategy based on findings, identifies gaps in its knowledge, and iterates until it reaches a satisfactory answer or hits a stopping condition. [AI agents in scientific research](https://www.nature.com/articles/d41586-025-03246-7) are already handling complex workflows that span dozens of sources and multiple reasoning steps.
 
@@ -19,7 +19,7 @@ Collapsed into four phases, the cycle looks like this:
 
 Use cases span competitive analysis, market research, lead enrichment, due diligence, and regulatory monitoring. In each one, accuracy depends on the web data the agent can access, and prompt engineering can't compensate for weak retrieval. [McKinsey's analysis of the agentic organization](https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/the-agentic-organization-contours-of-the-next-paradigm-for-the-ai-era) highlights how enterprises are deploying AI agents along a spectrum from simple tool augmentation to end-to-end workflow automation.
 
-Take a due diligence workflow, where an analyst needs to verify a company's SOC 2 certification status, identify recent funding rounds, check for regulatory actions, and map competitors. A human researcher spends 4-6 hours on this task. A well-built research agent completes it in 2-3 minutes. The agent searches for certification announcements, extracts details from press releases, cross-references regulatory databases, and synthesizes findings with source citations. Companies like Profound are already using Parallel's APIs to power [marketing agents conducting multi-source research](https://parallel.ai/blog/case-study-profound) at this level of [deep research](https://parallel.ai/articles/what-is-deep-research).
+Take a due diligence workflow, where an analyst needs to verify a company's SOC 2 certification status, identify recent funding rounds, check for regulatory actions, and map competitors. A human researcher spends 4-6 hours on this task. A well-built research agent completes it in 2-3 minutes. The agent searches for certification announcements, extracts details from press releases, cross-references regulatory databases, and synthesizes findings with source citations. Companies like Profound are already using Parallel's APIs to power [marketing agents conducting multi-source research](https://parallel.ai/blog/case-study-profound) at this level of [deep research](https://parallel.ai/learn/deep-research).
 
 ## The five components every research agent needs
 
@@ -51,7 +51,7 @@ We've seen teams spend months refining prompts and orchestration logic while usi
 
 ## Why the web access layer is the decision that matters most
 
-Most agent tutorials treat web search as interchangeable: add a search tool to your agent and you're done. In practice, the [web search API](https://parallel.ai/articles/what-is-a-web-search-api) layer determines the upper bound on your agent's accuracy.
+Most agent tutorials treat web search as interchangeable: add a search tool to your agent and you're done. In practice, the [web search API](https://parallel.ai/learn/web-search-api) layer determines the upper bound on your agent's accuracy.
 
 There are three common approaches:
 
@@ -69,7 +69,7 @@ This doubles your API calls: one search to find URLs, then separate requests to 
 
 **Agent-native search APIs (****[Parallel Search API](https://parallel.ai/products/search)****)**
 
-These are purpose-built for LLM consumption. You send a natural language objective, and the API returns ranked URLs with dense, query-relevant excerpts already extracted as token-efficient markdown, with no separate fetch or HTML parsing step. Parallel's index delivers [benchmark-proven accuracy](https://parallel.ai/blog/search-api-benchmark) against alternatives, with [semantic search](https://parallel.ai/articles/what-is-semantic-search) that understands the intent behind your agent's queries.
+These are purpose-built for LLM consumption. You send a natural language objective, and the API returns ranked URLs with dense, query-relevant excerpts already extracted as token-efficient markdown, with no separate fetch or HTML parsing step. Parallel's index delivers [benchmark-proven accuracy](https://parallel.ai/blog/search-api-benchmark) against alternatives, with [semantic search](https://parallel.ai/learn/semantic-search) that understands the intent behind your agent's queries.
 
 In practice, the call looks like this:
 

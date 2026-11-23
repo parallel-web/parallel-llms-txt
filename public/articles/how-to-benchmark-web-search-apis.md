@@ -2,7 +2,7 @@
 
 Vendor benchmark tables, ours included, tell you how a fixed test scored on a fixed day. This guide is the full method for settling the question on your own traffic: a query set with correctness criteria, a fixed harness, an LLM judge you spot-check, and scoring with error bars. It takes about a day, most of it unattended.
 
-Every vendor in this category publishes benchmark numbers, and we're one of them. A benchmark table tells you how a fixed set of tools scored on a fixed dataset during one testing window, on a harness the vendor chose. It cannot tell you how any of those tools will perform on your workload. The only test that settles which [web search API](https://parallel.ai/articles/what-is-a-web-search-api) belongs in your stack runs your real production queries through each candidate and measures whether your agent finished the job.
+Every vendor in this category publishes benchmark numbers, and we're one of them. A benchmark table tells you how a fixed set of tools scored on a fixed dataset during one testing window, on a harness the vendor chose. It cannot tell you how any of those tools will perform on your workload. The only test that settles which [web search API](https://parallel.ai/learn/web-search-api) belongs in your stack runs your real production queries through each candidate and measures whether your agent finished the job.
 
 This guide is that test, written out end to end: the query set, the harness, the judge, and the scoring, including the statistics that tell you when a gap is real. It takes about a day, most of it unattended. We make the [Parallel Search API](https://parallel.ai/products/search), we run evals of our own, and we want you to choose us, so treat our tables the way you'd treat any vendor's, as a starting point.
 
@@ -18,7 +18,7 @@ Domain benchmarks narrow the gap between a public leaderboard and your traffic. 
 
 ## What you need before you start
 
-An API key for every candidate, most of which have free tiers that cover an evaluation. A model to run the agent loop and a model to judge, which can be the same one. A repository for the harness, because you'll rerun this next quarter and diff the results. And a budget: most of the spend is LLM tokens for the agent loop and the judge rather than the search calls themselves, so the model you pick sets the price of the eval more than the search providers do, and free tiers pull the search side toward zero.
+An API key for every candidate, most of which have [free tiers](https://parallel.ai/articles/best-free-web-search-api) that cover an evaluation. A model to run the agent loop and a model to judge, which can be the same one. A repository for the harness, because you'll rerun this next quarter and diff the results. And a budget: most of the spend is LLM tokens for the agent loop and the judge rather than the search calls themselves, so the model you pick sets the price of the eval more than the search providers do, and free tiers pull the search side toward zero.
 
 ## Step 1: Build the query set
 

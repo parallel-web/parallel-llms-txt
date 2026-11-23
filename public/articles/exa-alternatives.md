@@ -179,7 +179,7 @@ One run on one query tells you little about quality, so swap in 20 to 50 queries
 
 ## Frequently asked questions
 
-### What is the best Exa alternative?
+### What is the best alternative to Exa?
 
 Parallel Search. It had the highest answer accuracy of 24 configurations on AIMultiple's agentic search benchmark, at 87.0% against 82.6% for Exa Fast. It returns excerpts sized for a model, costs $1 per 1,000 requests in Fast mode against $4 to $7 for Exa Lite and Auto, and adds extraction, deep research, and monitoring on the same key.
 

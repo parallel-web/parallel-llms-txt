@@ -24,7 +24,7 @@ To set up web monitoring for an AI agent, use a monitoring API that pushes event
 
 **Programmatic web monitoring APIs** represent the newest category. These services accept natural language queries, scan the web on a schedule, and deliver structured events via webhooks or API callbacks. Instead of watching one page, they report anything across the web that matches your criteria.
 
-Traditional tools notify humans; programmatic APIs notify machines. When the primary consumer shifts from a person checking email to an [AI agent](https://parallel.ai/articles/what-is-an-ai-agent) processing JSON, dashboards stop mattering and structured payloads become a requirement. This article focuses on the third category.
+Traditional tools notify humans; programmatic APIs notify machines. When the primary consumer shifts from a person checking email to an [AI agent](https://parallel.ai/learn/ai-agent) processing JSON, dashboards stop mattering and structured payloads become a requirement. This article focuses on the third category.
 
 ## Types of web monitoring tools
 
@@ -46,7 +46,7 @@ Performance monitoring tracks [Core Web Vitals](https://web.dev/articles/vitals)
 
 Business intelligence monitoring tracks the changes that matter to your operations: competitor pricing, regulatory filings, job postings, news mentions, and product launches. This category requires semantic filtering: the ability to tell a price increase from a timestamp update.
 
-You need structured, actionable data that downstream systems can process. Natural language query definition lets you describe what you want to detect ("Has the Enterprise plan price changed?") rather than specifying XPath selectors and regex patterns. [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) depend on this category. They need event-driven triggers with machine-readable payloads rather than email digests designed for human review, which makes the monitoring tool part of the data pipeline.
+You need structured, actionable data that downstream systems can process. Natural language query definition lets you describe what you want to detect ("Has the Enterprise plan price changed?") rather than specifying XPath selectors and regex patterns. [AI agents](https://parallel.ai/learn/ai-agent) depend on this category. They need event-driven triggers with machine-readable payloads rather than email digests designed for human review, which makes the monitoring tool part of the data pipeline.
 
 ## Why traditional web monitoring falls short for AI agents
 
@@ -78,7 +78,7 @@ The setup has three components:
 
 **2. A webhook endpoint that receives events.** Your application exposes an HTTP endpoint. The monitoring service POSTs structured JSON to this endpoint whenever it detects relevant changes. The payload includes summaries, source URLs, event timestamps, and identifiers for grouping related events.
 
-**3. Downstream processing logic.** Your agent consumes the webhook payload and takes action. It might analyze the content with an LLM, fetch additional context via [search APIs](https://parallel.ai/articles/what-is-a-web-search-api), update a database, or post to Slack. The monitoring event triggers the rest of the workflow.
+**3. Downstream processing logic.** Your agent consumes the webhook payload and takes action. It might analyze the content with an LLM, fetch additional context via [search APIs](https://parallel.ai/learn/web-search-api), update a database, or post to Slack. The monitoring event triggers the rest of the workflow.
 
 **Natural language queries vs URL and selector configurations** are the main architectural difference. Traditional tools require you to specify "watch this exact element on this exact page." API-based tools let you specify "track Series A funding announcements in fintech" and handle the discovery themselves.
 

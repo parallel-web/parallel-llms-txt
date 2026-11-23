@@ -16,7 +16,7 @@ Search "ai sourcing" and you'll find page after page of recruiting content from 
 
 Traditional deal sourcing relies on banker networks, industry conferences, and static databases (the global M&A market totaled $3.2 trillion in 2023, per [Bain's Global M&A Report](https://www.bain.com/insights/topics/m-and-a-report/)). You log into your market data platform, apply filters for industry codes and revenue ranges, export a list, and start the manual research grind. You're reacting to what vendors have indexed, filtered through taxonomies they've defined, updated on schedules they control.
 
-AI sourcing flips this. You define your investment thesis in natural language, and an [AI agent](https://parallel.ai/articles/what-is-an-ai-agent) queries the live web, applies [semantic understanding](https://parallel.ai/articles/what-is-semantic-search) to match companies against your criteria, and returns structured profiles with citations.
+AI sourcing flips this. You define your investment thesis in natural language, and an [AI agent](https://parallel.ai/learn/ai-agent) queries the live web, applies [semantic understanding](https://parallel.ai/learn/semantic-search) to match companies against your criteria, and returns structured profiles with citations.
 
 [McKinsey's M&A trends report](https://www.mckinsey.com/capabilities/m-and-a/our-insights/top-m-and-a-trends-in-2024-blueprint-for-success-in-the-next-wave-of-deals) found that programmatic acquirers delivered 2.3% excess TSR over a decade. If you source from the same databases your competitors use, you can only compete on speed of outreach and relationship quality. Sourcing from the live web with custom criteria surfaces targets others haven't seen.
 
@@ -115,7 +115,7 @@ A company counts as a match only after it satisfies every condition. When the ru
 
 ### Step 2: Discover targets from the live web
 
-A [web search API](https://parallel.ai/articles/what-is-a-web-search-api) queries the open web in real time: company websites, press releases, job boards, funding announcements, regulatory filings, and news coverage. This live-web discovery captures companies that are too new, too niche, or too international for traditional databases.
+A [web search API](https://parallel.ai/learn/web-search-api) queries the open web in real time: company websites, press releases, job boards, funding announcements, regulatory filings, and news coverage. This live-web discovery captures companies that are too new, too niche, or too international for traditional databases.
 
 Timing is the first advantage. A fintech startup that closed its Series B three days ago appears in your results right away, instead of after your database vendor's next update cycle, which might be weeks away. You can make contact before competitors see the company in their static data.
 
@@ -125,7 +125,7 @@ Each target in the results maps to your schema fields, with a source citation fo
 
 ### Step 3: Enrich and validate each target
 
-Discovery gives you a longlist. [Enrichment](https://parallel.ai/articles/what-is-data-enrichment) gives you depth.
+Discovery gives you a longlist. [Enrichment](https://parallel.ai/learn/data-enrichment) gives you depth.
 
 For each company on your list, you need detailed information: financial metrics, leadership bios, tech stack, competitive landscape, recent news, customer reviews, and regulatory status. Researching 50 companies by hand takes days. An enrichment API completes the same work in minutes.
 
@@ -165,7 +165,7 @@ response = requests.post(
 run_id = response.json()["run_id"]
 ```
 
-The processor tier controls depth and latency. Use "lite" for basic metadata lookups. Use "pro" for [comprehensive research that synthesizes multiple sources](https://parallel.ai/articles/what-is-deep-research). Each field in the response includes citations linking back to source material.
+The processor tier controls depth and latency. Use "lite" for basic metadata lookups. Use "pro" for [comprehensive research that synthesizes multiple sources](https://parallel.ai/learn/deep-research). Each field in the response includes citations linking back to source material.
 
 Enrichment is composable. You choose which fields to extract per company, feed results into your scoring model or CRM, and trigger follow-up research on high-priority targets.
 

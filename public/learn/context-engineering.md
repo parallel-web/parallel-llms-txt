@@ -1,18 +1,8 @@
 # What is context engineering? A guide for AI agent builders
 
-Context engineering is how AI agent builders control what a model sees on every call, from tool definitions to live web search results. This guide covers where the term came from, how it differs from prompt engineering, the ways a context window breaks down, and the techniques that keep it lean, including how search results should enter the window.
+Context engineering is how AI agent builders control what a model sees on every call, from tool definitions to live web search results. This guide covers how it differs from prompt engineering, what goes into an agent’s context, the ways a context window breaks down, and the techniques that keep it lean, including how search results should enter the window.
 
 Context engineering is the practice of deciding which tokens a language model sees on each call: the instructions, tool definitions, retrieved documents, memory, conversation history, and tool results that fill its context window. Anthropic defines it as “the set of strategies for curating and maintaining the optimal set of tokens (information) during LLM inference.” For an agent that runs dozens of model calls in a loop, that curation happens again on every turn, and it decides more about output quality than the wording of any single prompt.
-
-## Where the term came from
-
-The phrase had been in use among agent builders before it went mainstream. On June 12, 2025, Walden Yan of Cognition wrote in [Don’t Build Multi-Agents](https://cognition.com/blog/dont-build-multi-agents) that context engineering “is effectively the #1 job of engineers building AI agents,” describing it as prompt engineering done “automatically in a dynamic system.”
-
-A week later, on June 19, 2025, Shopify CEO Tobi Lütke [posted on X](https://x.com/tobi/status/1935533422589399127) that he preferred “context engineering” over prompt engineering because it “describes the core skill better: the art of providing all the context for the task to be plausibly solvable by the LLM.” Andrej Karpathy [followed on June 25](https://x.com/karpathy/status/1937902205765607626), calling it “the delicate art and science of filling the context window” with the right information for the next step. Too little and the model lacks what it needs; too much, he wrote, and “costs might go up and performance might come down.”
-
-The vocabulary filled in over the next few months. Drew Breunig published [How Long Contexts Fail](https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html) on June 22, naming four failure modes. LangChain’s [Context Engineering](https://www.langchain.com/blog/context-engineering-for-agents) post on July 2 grouped techniques into write, select, compress, and isolate. Chroma’s [Context Rot](https://research.trychroma.com/context-rot) report on July 14 tested 18 models and found that performance “grows increasingly unreliable as input length grows.” Anthropic’s [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents), published September 29, 2025, pulled these threads into the most cited guide on the subject.
-
-The term then picked up an academic branch and a product layer. The paper [Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models](https://arxiv.org/abs/2510.04618) (Zhang et al., first posted October 6, 2025, and published at ICLR 2026) introduced ACE, a framework that treats an agent’s context as an “evolving playbook” that improves through generation, reflection, and curation instead of weight updates. It reported gains of 10.6% on agent benchmarks and 8.6% on finance tasks over strong baselines. On the product side, Anthropic shipped context editing and a memory tool on [September 29, 2025](https://www.anthropic.com/news/context-management), a [tool search tool](https://www.anthropic.com/engineering/advanced-tool-use) on November 24, 2025, and server-side [compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) in 2026. A March 20, 2026 [cookbook](https://platform.claude.com/cookbook/tool-use-context-engineering-context-engineering-tools) shows how they compose.
 
 ## Context engineering vs. prompt engineering
 
@@ -75,7 +65,7 @@ A sub-agent explores in its own clean window and returns a summary. Anthropic no
 
 ### Load tools on demand
 
-Tool search keeps definitions out of the window until the model asks for them. With Anthropic’s tool search tool, you mark tools `defer_loading: true` and the model searches the catalog when it needs a capability; Anthropic reports an 85% reduction in token usage on its example tool library. [Agent skills](https://parallel.ai/articles/what-are-agent-skills) use a related pattern, progressive disclosure, where only a short description loads until the skill is needed.
+Tool search keeps definitions out of the window until the model asks for them. With Anthropic’s tool search tool, you mark tools `defer_loading: true` and the model searches the catalog when it needs a capability; Anthropic reports an 85% reduction in token usage on its example tool library. [Agent skills](https://parallel.ai/learn/agent-skills) use a related pattern, progressive disclosure, where only a short description loads until the skill is needed.
 
 ### Take structured notes and keep memory
 
@@ -134,23 +124,6 @@ We ran it on November 5, 2026. Your numbers will vary by query and run.
 ```
 
 Excerpts from ten sources came in smaller than the single full page for the top result, which was Anthropic’s own context engineering post.
-
-### Example: a context budget for one research turn
-
-The table below is **illustrative**, not a benchmark. It sketches how a web research agent might allot a 200,000-token window on one turn. Only the search row comes from a measurement (the run above); the other rows are round planning numbers.
-
-| Block | Tokens (illustrative) | How it’s controlled |
-| --- | --- | --- |
-| System instructions | 2,000 | Short, sectioned prompt |
-| Tool definitions | 3,000 | Search and fetch loaded; other tools deferred behind tool search |
-| Memory and notes | 1,500 | NOTES.md read back at turn start |
-| Conversation history | 8,000 | Compacted summary plus the last few turns |
-| Earlier tool results | 0 | Cleared after their findings went into notes |
-| This turn’s search results | about 5,300 | Ten results as excerpts (measured above) |
-| Reserved for reasoning and answer | 16,000 | Headroom for thinking and output |
-| Total in use | about 35,800 | Leaves room for several more search turns |
-
-Swap the search row for ten full pages and it grows by an order of magnitude. If each were the size of the page we measured, that’s roughly 60,000 tokens on one turn, before the agent has read anything twice. Over a long session, uncleared tool results and an uncompacted history do the same damage more slowly.
 
 ## Frequently asked questions
 

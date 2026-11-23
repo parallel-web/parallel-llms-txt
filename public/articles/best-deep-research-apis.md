@@ -4,7 +4,7 @@ We compared five deep research offerings on the same fixed 100-question subsets 
 
 Five deep research APIs all describe themselves the same way: multi-step web research, many sources, synthesized answers with citations. We put the same fixed question sets through each one. On DeepSearchQA, accuracy ran from 65% to 86%, a 21-point spread despite near-identical marketing copy, and cost per 1,000 questions ran from $5 to about $1,500.
 
-The spread matters because agents chain research into downstream steps. One wrong fact early cascades into a wrong report, a wrong enrichment, or a wrong decision. If you're building on top of a deep research layer, accuracy on hard multi-hop questions is the number that predicts real-world reliability. To understand [what deep research means for agents](https://parallel.ai/articles/what-is-deep-research), start with how these systems reason across sources rather than retrieve single pages.
+The spread matters because agents chain research into downstream steps. One wrong fact early cascades into a wrong report, a wrong enrichment, or a wrong decision. If you're building on top of a deep research layer, accuracy on hard multi-hop questions is the number that predicts real-world reliability. To understand [what deep research means for agents](https://parallel.ai/learn/deep-research), start with how these systems reason across sources rather than retrieve single pages.
 
 This guide evaluates one offering per vendor: the specific product it fields for deep research, tested on the same question subsets. For Parallel, we report each plotted Task API tier.
 
@@ -119,7 +119,7 @@ A deep research API takes a question or a structured request, searches and reads
 
 ### How does a deep research API differ from a search API?
 
-A [web search API](https://parallel.ai/articles/what-is-a-web-search-api) returns ranked results and excerpts for a query, and your application decides what to do with them. A deep research API goes further: it runs multiple search and reasoning steps, reads across sources, and returns a synthesized answer rather than a list of links. Search suits single-hop lookups, and deep research suits complex questions that need synthesis across many pages.
+A [web search API](https://parallel.ai/learn/web-search-api) returns ranked results and excerpts for a query, and your application decides what to do with them. A deep research API goes further: it runs multiple search and reasoning steps, reads across sources, and returns a synthesized answer rather than a list of links. Search suits single-hop lookups, and deep research suits complex questions that need synthesis across many pages.
 
 ### How should you evaluate deep research accuracy?
 

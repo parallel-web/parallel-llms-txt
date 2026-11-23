@@ -2,7 +2,7 @@
 
 ClawHub hosts over 67,000 skills for OpenClaw, so you need a short list and a vetting habit. This guide covers the skills worth installing in 2026, the web-research stack, and the security rules the ClawHavoc attack taught everyone.
 
-ClawHub (`hub.openclaw.ai`) hosts over 67,000 [skills](https://parallel.ai/articles/what-are-agent-skills) for OpenClaw: plain-text `SKILL.md` packages that teach your agent new capabilities, installed with a single `clawhub install` command. A registry that large is a blessing and an attack surface, so this guide does two jobs: the short list of skills that have earned their install counts, and the vetting habits that keep a skill registry from becoming your breach.
+ClawHub (`hub.openclaw.ai`) hosts over 67,000 [skills](https://parallel.ai/learn/agent-skills) for OpenClaw: plain-text `SKILL.md` packages that teach your agent new capabilities, installed with a single `clawhub install` command. A registry that large is a blessing and an attack surface, so this guide does two jobs: the short list of skills that have earned their install counts, and the vetting habits that keep a skill registry from becoming your breach.
 
 Disclosure: Parallel publishes four skills on ClawHub, they're in this list, and we mark them clearly so you can weigh our bias.
 

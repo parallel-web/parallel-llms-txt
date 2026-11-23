@@ -2,7 +2,7 @@
 
 Hermes Agent treats MCP as a first-class feature, with a curated catalog and per-tool filtering. This guide covers how its MCP support works, the six servers worth installing, and where a bundled skill beats a server.
 
-[Hermes Agent](https://hermes-agent.nousresearch.com/) is Nous Research's open-source personal agent. It lives on Telegram, Discord, Slack, WhatsApp, Signal, email, and the CLI, keeps persistent memory, learns skills, and lets you pick your model provider. It also treats the [Model Context Protocol (MCP)](https://parallel.ai/articles/what-is-mcp) as a first-class feature, with a curated catalog, OAuth support, and per-tool filtering built in.
+[Hermes Agent](https://hermes-agent.nousresearch.com/) is Nous Research's open-source personal agent. It lives on Telegram, Discord, Slack, WhatsApp, Signal, email, and the CLI, keeps persistent memory, learns skills, and lets you pick your model provider. It also treats the [Model Context Protocol (MCP)](https://parallel.ai/learn/model-context-protocol) as a first-class feature, with a curated catalog, OAuth support, and per-tool filtering built in.
 
 This guide explains how Hermes handles MCP and which servers are worth your config space. Disclosure first: we make Parallel, our search server is our top pick, and we show the numbers so you can discount our bias accordingly.
 

@@ -10,7 +10,7 @@ You face a higher [hallucination risk](https://www.lakera.ai/blog/guide-to-hallu
 
 Many teams reach for _retrieval-augmented generation_ (RAG) with static document stores. That helps with internal knowledge, but it doesn't solve the live web problem. Your documents reflect the state of the world when someone last uploaded them.
 
-The fix is _web grounding_: feeding fresh, structured web data into your LLM at inference time. Instead of hoping the model's training data covers the question, you give it current sources to reason over. Grounding is especially important for [AI agents that need real-time web access](https://parallel.ai/articles/what-is-an-ai-agent) to make informed decisions.
+The fix is _web grounding_: feeding fresh, structured web data into your LLM at inference time. Instead of hoping the model's training data covers the question, you give it current sources to reason over. Grounding is especially important for [AI agents that need real-time web access](https://parallel.ai/learn/ai-agent) to make informed decisions.
 
 ## Three approaches to adding real-time data
 
@@ -37,7 +37,7 @@ This approach works well for prototypes and simple Q&A bots where you need somet
 
 ### Search API + LLM (external RAG)
 
-This approach separates retrieval from generation. You query a [web search API](https://parallel.ai/articles/what-is-a-web-search-api), get structured results back, and inject those results into the LLM's prompt as context. It's RAG with live web data instead of static documents. An [agentic RAG survey](https://arxiv.org/html/2501.09136v4) published in early 2025 describes this as the dominant production pattern for web-grounded AI systems.
+This approach separates retrieval from generation. You query a [web search API](https://parallel.ai/learn/web-search-api), get structured results back, and inject those results into the LLM's prompt as context. It's RAG with live web data instead of static documents. An [agentic RAG survey](https://arxiv.org/html/2501.09136v4) published in early 2025 describes this as the dominant production pattern for web-grounded AI systems.
 
 You control what goes into the context window: you can inspect, filter, and reformat search results before the model sees them, swap search providers without changing your generation pipeline, and budget tokens precisely. You can see this pattern in production in an AWS guide on [dynamic web content integration](https://aws.amazon.com/blogs/machine-learning/integrate-dynamic-web-content-in-your-generative-ai-application-using-a-web-search-api-and-amazon-bedrock-agents/).
 
@@ -139,7 +139,7 @@ Evaluate these factors before you commit to a web search API.
 
 **Freshness.** How recently did the provider update its index? Can you trigger a live crawl for time-sensitive queries? A search API that returns week-old results defeats the purpose of real-time grounding. Look for freshness controls that let you set recency thresholds and force live fetches when you need them.
 
-**Accuracy.** You need results that are relevant and authoritative, not pages that rank well because of SEO tactics. Test with specific, verifiable queries and check whether the top results contain the answer. [Semantic search](https://parallel.ai/articles/what-is-semantic-search) capabilities and benchmark scores on datasets like HLE, BrowseComp, FRAMES, and SimpleQA give you an objective comparison across providers. A recent [RAG chatbot evaluation study](https://ai.jmir.org/2026/1/e83206) confirms that retrieval quality is the single biggest factor in chatbot response accuracy.
+**Accuracy.** You need results that are relevant and authoritative, not pages that rank well because of SEO tactics. Test with specific, verifiable queries and check whether the top results contain the answer. [Semantic search](https://parallel.ai/learn/semantic-search) capabilities and benchmark scores on datasets like HLE, BrowseComp, FRAMES, and SimpleQA give you an objective comparison across providers. A recent [RAG chatbot evaluation study](https://ai.jmir.org/2026/1/e83206) confirms that retrieval quality is the single biggest factor in chatbot response accuracy.
 
 **Output format.** Raw HTML wastes tokens and confuses models. You want structured output optimized for LLM consumption: token-dense excerpts, clean markdown, and metadata like publish dates and source URLs.
 
@@ -159,7 +159,7 @@ Parallel's Search API meets these criteria with a proprietary index (billions of
 
 **Ignoring latency.** Web search adds time to every response. Use [real-time streaming protocols](https://platform.openai.com/docs/guides/realtime-webrtc) to show partial responses while the search completes. Set timeout thresholds so your chatbot can respond when a search takes too long, rather than hanging.
 
-**Relying on a single data source.** Combine web search with your own knowledge base for the best results. Use your internal documents for domain-specific questions and live web data for current events and external information. You get broader coverage without sacrificing accuracy on your core domain. For complex research tasks, consider [deep research workflows](https://parallel.ai/articles/what-is-deep-research) that synthesize information from multiple web sources.
+**Relying on a single data source.** Combine web search with your own knowledge base for the best results. Use your internal documents for domain-specific questions and live web data for current events and external information. You get broader coverage without sacrificing accuracy on your core domain. For complex research tasks, consider [deep research workflows](https://parallel.ai/learn/deep-research) that synthesize information from multiple web sources.
 
 **Failing to handle search errors.** Search APIs fail sometimes, from network timeouts to rate limits. When your search layer fails, your chatbot should tell the user it couldn't retrieve current information. Admitting "I don't have current data right now" is always better than a hallucinated answer.
 

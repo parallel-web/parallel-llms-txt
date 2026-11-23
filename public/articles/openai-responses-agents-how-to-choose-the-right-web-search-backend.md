@@ -12,7 +12,7 @@ Built-in tools that ship with the API include `web_search`, `file_search`, and `
 
 Custom function tools plug into that same loop. You define a function with a name, description, and JSON schema; when the model calls it, you execute whatever logic you want and return the result. The model treats your function's output the same way it treats built-in tool output. For teams migrating existing apps, OpenAI published a [migration guide](https://developers.openai.com/api/docs/guides/migrate-to-responses) covering the transition from Chat Completions. A [comprehensive community guide](https://github.com/Dicklesworthstone/guide_to_openai_response_api_and_agents_sdk) also covers the full API surface.
 
-In this architecture, the model handles reasoning and orchestration, and you control the tools that feed it information. For [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) that need live web data, the tool that matters most is web search: the mechanism your agent uses to access current, real-world information. Understanding the [agent harness](https://parallel.ai/articles/what-is-an-agent-harness) pattern helps clarify how tool execution fits into the broader agent lifecycle.
+In this architecture, the model handles reasoning and orchestration, and you control the tools that feed it information. For [AI agents](https://parallel.ai/learn/ai-agent) that need live web data, the tool that matters most is web search: the mechanism your agent uses to access current, real-world information. Understanding the [agent harness](https://parallel.ai/articles/what-is-an-agent-harness) pattern helps clarify how tool execution fits into the broader agent lifecycle.
 
 ## OpenAI's built-in web search: capabilities and constraints
 
@@ -86,7 +86,7 @@ Remove `web_search` from the tools array, add your function tool definition, and
 
 ## Comparing web search backends for Responses API agents
 
-The table compares six [web search APIs](https://parallel.ai/articles/what-is-a-web-search-api) you can use with Responses API agents, each with a different set of trade-offs.
+The table compares six [web search APIs](https://parallel.ai/learn/web-search-api) you can use with Responses API agents, each with a different set of trade-offs.
 
 | Provider | Best for | Key strengths | Key consideration |
 | --- | --- | --- | --- |

@@ -32,7 +32,7 @@ Cowork is available on paid Claude plans, including Pro, Max, Team, and Enterpri
 
 ## One engine, two sets of hands
 
-Both tools run on the same Claude model, and both wrap that model in the same agentic architecture. At Parallel, we build infrastructure for [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) and write often about [agent harnesses](https://parallel.ai/articles/what-is-an-agent-harness), so this shared design is familiar territory.
+Both tools run on the same Claude model, and both wrap that model in the same agentic architecture. At Parallel, we build infrastructure for [AI agents](https://parallel.ai/learn/ai-agent) and write often about [agent harnesses](https://parallel.ai/articles/what-is-an-agent-harness), so this shared design is familiar territory.
 
 A harness is the scaffolding around a model. The model generates text and decides what to do next. The harness manages context, calls tools, feeds results back, and verifies the work. Claude Code and Cowork share that harness design, including the tool-call proxy that routes each action the model requests. That’s why they behave alike on multi-step work: both draft a plan, take an action, read the result, and adjust.
 
@@ -98,7 +98,7 @@ Cowork's enterprise governance is catching up. Cowork sessions are now [captured
 
 Both tools can research the web, and both are only as accurate as the data they pull back. A generic web fetch returns cluttered HTML that burns tokens and buries the useful facts, which drags down the agent’s answer and forces extra round trips.
 
-Both Claude Code and Cowork extend through the [Model Context Protocol](https://parallel.ai/articles/what-is-mcp), so you can add a [dedicated web research tool](https://parallel.ai/articles/what-is-a-web-search-api) to either. At Parallel, we build web search and research APIs purpose-built for AI agents. Our [Search API](https://parallel.ai/products/search) returns ranked URLs and dense, token-efficient excerpts with citations, so the agent gets more signal per token and makes fewer trips back to the web. Our Basis framework attaches citations and calibrated confidence to every result, and we’re SOC 2 Type 2 certified with zero data retention available for enterprises.
+Both Claude Code and Cowork extend through the [Model Context Protocol](https://parallel.ai/learn/model-context-protocol), so you can add a [dedicated web research tool](https://parallel.ai/learn/web-search-api) to either. At Parallel, we build web search and research APIs purpose-built for AI agents. Our [Search API](https://parallel.ai/products/search) returns ranked URLs and dense, token-efficient excerpts with citations, so the agent gets more signal per token and makes fewer trips back to the web. Our Basis framework attaches citations and calibrated confidence to every result, and we’re SOC 2 Type 2 certified with zero data retention available for enterprises.
 
 We ship [Parallel MCP](https://parallel.ai/mcp), a production MCP server that gives any MCP-aware client, including Claude Code and Cowork, free web_search, web_fetch, and web_decisions tools, plus web_research for cited answers to single research questions once you sign in or add an API key. Adding it takes a few lines of config:
 

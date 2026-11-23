@@ -30,7 +30,7 @@ These are the default behaviors. Google Alerts is fine for personal use and casu
 
 **Type 1: Brand monitoring and social listening tools.** These products (Mention, Brand24, Awario, Talkwalker, Semrush Brand Monitoring, and Meltwater) target marketing and PR teams. They offer dashboards, sentiment analysis, social media coverage, and competitive share-of-voice reporting. Where API access exists, it's built for data export and reporting rather than event-driven automation.
 
-**Type 2: Programmatic and API-native monitoring tools.** These tools deliver events via webhook, run on schedules you define, and produce structured output you can feed directly into downstream systems. They're built for developers, AI agents, and automated pipelines. If you're new to this category, our guide on [web search API](https://parallel.ai/articles/what-is-a-web-search-api) fundamentals covers the basics.
+**Type 2: Programmatic and API-native monitoring tools.** These tools deliver events via webhook, run on schedules you define, and produce structured output you can feed directly into downstream systems. They're built for developers, AI agents, and automated pipelines. If you're new to this category, our guide on [web search API](https://parallel.ai/learn/web-search-api) fundamentals covers the basics.
 
 Most search results show only Type 1. If you're building an automated workflow, skip ahead to the API-native section.
 

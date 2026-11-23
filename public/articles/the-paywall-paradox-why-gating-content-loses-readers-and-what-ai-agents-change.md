@@ -121,7 +121,7 @@ BuzzStream, which first published the study on December 18, 2025, found that 14%
 
 Harry Clarkson-Bennett, director of search engine optimization (SEO) at The Telegraph, gave BuzzStream the publisher’s reasoning. “Publishers are blocking AI bots using the robots.txt because there’s almost no value exchange,” he said.
 
-A robots.txt file states a request, and crawlers that ignore it face no technical barrier. Our explainer on [how web crawlers work](https://parallel.ai/articles/what-is-a-web-crawler) covers that limit and the other tools sites use to manage bots. Blocking a retrieval bot has a second effect, because a bot that honors the rule can’t fetch your page for a live AI answer.
+A robots.txt file states a request, and crawlers that ignore it face no technical barrier. Our explainer on [how web crawlers work](https://parallel.ai/learn/web-crawler) covers that limit and the other tools sites use to manage bots. Blocking a retrieval bot has a second effect, because a bot that honors the rule can’t fetch your page for a live AI answer.
 
 Crawlers that behave well identify themselves and honor these rules. Our crawler, ShapBot, builds Parallel’s index, and you can manage it with a `User-agent: ShapBot` directive, as [Parallel’s crawler documentation](https://parallel.ai/parallel-web-systems-bots) describes. Blocking stays your choice.
 
@@ -178,7 +178,7 @@ Google says the markup “helps Google differentiate paywalled content from the 
 
 The same documentation states that AI Overviews and AI Mode follow Search preview controls such as `nosnippet`. Pair the markup with the metering limits in Google’s sampling guidance, which links lower satisfaction to paywalls on more than 10% of visits.
 
-Agents outside Google need their own signals. An [llms.txt file](https://parallel.ai/articles/llms-txt) at your site root can point agents to the open pages you want them to read.
+Agents outside Google need their own signals. An [llms.txt file](https://parallel.ai/learn/llms-txt) at your site root can point agents to the open pages you want them to read.
 
 These signals let you gate and stay visible with systems that honor them. They tell an agent where to look but say nothing about how much your page adds to an answer.
 
@@ -270,7 +270,7 @@ In the [Copyright Office’s Section 1201 FAQ](https://www.copyright.gov/1201/20
 
 Publishers have pressed the issue, as the [News/Media Alliance on 12ft.io](https://www.newsmediaalliance.org/takedown-of-12ftio/) statement from July 2025 shows. The trade group said it secured the takedown of the site and called it “illegal circumvention technology.” That characterization is the Alliance’s own, and the sources we reviewed show a takedown by the site’s web host with no court ruling.
 
-We won’t recommend a bypass tool. For free access to gated journalism, check your public library’s digital subscriptions, a site’s monthly free allowance, or a gift link from a subscriber. If your agents fetch pages at scale, our overview of the [legal picture for web scraping](https://parallel.ai/articles/what-is-web-scraping) covers the questions to raise with counsel.
+We won’t recommend a bypass tool. For free access to gated journalism, check your public library’s digital subscriptions, a site’s monthly free allowance, or a gift link from a subscriber. If your agents fetch pages at scale, our overview of the [legal picture for web scraping](https://parallel.ai/learn/web-scraping) covers the questions to raise with counsel.
 
 ### Can ChatGPT read articles behind a paywall?
 

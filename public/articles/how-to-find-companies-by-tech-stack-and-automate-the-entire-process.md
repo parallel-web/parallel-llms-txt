@@ -123,11 +123,11 @@ Generator tiers let you match research depth to query complexity. Use `base` for
 
 ## Enrich your results with deep research
 
-Raw tech stack matches need [data enrichment](https://parallel.ai/articles/what-is-data-enrichment) before you can qualify leads and prioritize outreach. Knowing that a company uses Snowflake matters less than knowing they use Snowflake, raised Series B last quarter, have 200 employees, and posted three data engineering roles this month.
+Raw tech stack matches need [data enrichment](https://parallel.ai/learn/data-enrichment) before you can qualify leads and prioritize outreach. Knowing that a company uses Snowflake matters less than knowing they use Snowflake, raised Series B last quarter, have 200 employees, and posted three data engineering roles this month.
 
 The [Task API](https://parallel.ai/products/task) takes each matched company and extracts custom attributes: funding status, recent leadership changes, compliance certifications, competitive tools in use, recent press mentions, or executive contact information. You define the output schema instead of settling for pre-built fields that may not match your qualification criteria.
 
-Enrichment outputs include per-field citations and confidence scores using Parallel's Basis framework. You'll see the source URL, the relevant excerpt, and a confidence level for each attribute, so you can trace any discrepancy back to its source. Learn more about how [deep research](https://parallel.ai/articles/what-is-deep-research) powers these enrichment workflows.
+Enrichment outputs include per-field citations and confidence scores using Parallel's Basis framework. You'll see the source URL, the relevant excerpt, and a confidence level for each attribute, so you can trace any discrepancy back to its source. Learn more about how [deep research](https://parallel.ai/learn/deep-research) powers these enrichment workflows.
 
 Here's a brief code example:
 

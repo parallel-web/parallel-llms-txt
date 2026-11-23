@@ -12,7 +12,7 @@ A web-capable agent needs three distinct capabilities, and each one fails differ
 
 ## What a web-capable AI agent does
 
-A web-capable [AI agent](https://parallel.ai/articles/what-is-an-ai-agent) accesses, processes, and acts on live web data without human intervention. Instead of answering questions from static training data, it gathers fresh information, tracks changes over time, and extracts structured data from pages across the internet.
+A web-capable [AI agent](https://parallel.ai/learn/ai-agent) accesses, processes, and acts on live web data without human intervention. Instead of answering questions from static training data, it gathers fresh information, tracks changes over time, and extracts structured data from pages across the internet.
 
 An LLM trained on data from six months ago knows nothing about this week's funding announcements, regulatory changes, or product launches. A web-capable agent retrieves that information in real time and incorporates it into its responses.
 
@@ -53,7 +53,7 @@ Parallel's APIs slot into the capabilities layer. They return LLM-optimized outp
 
 ### Why traditional scraping fails for agents
 
-Building your own [web scraping infrastructure](https://parallel.ai/articles/what-is-web-scraping) runs into several problems at scale.
+Building your own [web scraping infrastructure](https://parallel.ai/learn/web-scraping) runs into several problems at scale.
 
 BeautifulSoup and Selenium require site-specific parsing logic. You write a parser for one website, and it breaks when that site changes its HTML structure. Cloudflare's bot detection blocks your requests. JavaScript-rendered content never loads in your headless browser. CAPTCHAs demand human intervention.
 
@@ -65,7 +65,7 @@ The maintenance burden compounds as you add sources. Ten sites means ten parsers
 
 ### Implementing semantic web search
 
-[Semantic search APIs](https://parallel.ai/articles/what-is-a-web-search-api) solve these problems by letting agents describe what they need in natural language.
+[Semantic search APIs](https://parallel.ai/learn/web-search-api) solve these problems by letting agents describe what they need in natural language.
 
 Instead of constructing keyword queries, the agent specifies an objective: "Find Columbus-based corporate law firms specializing in disability care." The API returns URLs ranked by how useful each page's content is for that specific objective.
 
@@ -180,7 +180,7 @@ Parallel Monitor API turns web search into an always-on feed that triggers downs
 
 ### When simple search isn't enough
 
-Some questions require multiple searches, cross-referencing, and synthesis. "Find the CEO of Acme Corp, their career background, recent news mentions, and probable contact information" is a [deep research](https://parallel.ai/articles/what-is-deep-research) project that requires:
+Some questions require multiple searches, cross-referencing, and synthesis. "Find the CEO of Acme Corp, their career background, recent news mentions, and probable contact information" is a [deep research](https://parallel.ai/learn/deep-research) project that requires:
 
 1. Finding the company's leadership page
 2. Identifying the CEO's name

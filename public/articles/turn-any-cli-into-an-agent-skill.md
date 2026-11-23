@@ -2,7 +2,7 @@
 
 The most popular agent skills are one-page SKILL.md files that teach an agent an existing CLI. This tutorial builds one end to end, using the Parallel CLI as the worked example, and covers what makes a CLI agent-friendly in the first place.
 
-Most of the [most-installed agent skills](https://parallel.ai/articles/best-clawhub-skills-for-openclaw) follow the same shape: a page of markdown teaching the agent an existing CLI. Gog wraps a Google Workspace CLI, Wacli wraps WhatsApp, the GitHub skill drives `gh`. The CLI carries the capability; the [skill](https://parallel.ai/articles/what-are-agent-skills) tells the agent when and how to use it. This tutorial builds one end to end, using our own Parallel CLI as the example, and the same steps apply to any tool you want your agent to use well.
+Most of the [most-installed agent skills](https://parallel.ai/articles/best-clawhub-skills-for-openclaw) follow the same shape: a page of markdown teaching the agent an existing CLI. Gog wraps a Google Workspace CLI, Wacli wraps WhatsApp, the GitHub skill drives `gh`. The CLI carries the capability; the [skill](https://parallel.ai/learn/agent-skills) tells the agent when and how to use it. This tutorial builds one end to end, using our own Parallel CLI as the example, and the same steps apply to any tool you want your agent to use well.
 
 ## Why this pattern wins
 

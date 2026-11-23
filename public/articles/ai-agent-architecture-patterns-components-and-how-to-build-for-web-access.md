@@ -14,7 +14,7 @@ AI agent architecture is the design of how an autonomous system perceives its en
 
 AI agent architecture is the structural design governing how an autonomous system perceives inputs, reasons, plans, acts, and learns. It decides whether your agent completes complex tasks or collapses under real-world conditions.
 
-An [AI agent](https://parallel.ai/articles/what-is-an-ai-agent) pursues goals, while a chatbot responds to prompts. When you ask a chatbot to "find the best flights to Tokyo," it returns search results. When you ask an agent, it compares prices across airlines, checks your calendar for conflicts, and books the optimal option.
+An [AI agent](https://parallel.ai/learn/ai-agent) pursues goals, while a chatbot responds to prompts. When you ask a chatbot to "find the best flights to Tokyo," it returns search results. When you ask an agent, it compares prices across airlines, checks your calendar for conflicts, and books the optimal option.
 
 That difference in behavior comes from architecture. Agents need planning modules that decompose goals into subtasks, memory systems that persist context across sessions, tool interfaces that translate text generation into real-world actions, and retrieval layers that ground reasoning in current, accurate information.
 
@@ -32,7 +32,7 @@ Every AI agent has five core components, and how you implement each one sets wha
 
 **Planning module.** The planning module decomposes goals into subtasks, usually in one of two ways. _[ReAct](https://arxiv.org/abs/2210.03629)_ (Yao et al., 2022) interleaves reasoning and action: the agent reasons about its next step, executes it, observes the result, and reasons again. _Plan-and-solve_ approaches generate an upfront decomposition before execution begins. ReAct adapts better to unexpected results. Plan-and-solve reduces token costs for predictable workflows.
 
-**[Tool interfaces](https://parallel.ai/articles/what-is-mcp)****.** Tools turn text generation into real-world action. Connections to external APIs, databases, code execution environments, and web search let your agent send emails, update records, execute code, and retrieve current information. Tool design matters: clear function signatures and predictable return types reduce errors. You should also consider tool sandboxing for security, rate limiting to prevent runaway costs, and fallback strategies when tools fail. The number and complexity of available tools set how much your agent can do.
+**[Tool interfaces](https://parallel.ai/learn/model-context-protocol)****.** Tools turn text generation into real-world action. Connections to external APIs, databases, code execution environments, and web search let your agent send emails, update records, execute code, and retrieve current information. Tool design matters: clear function signatures and predictable return types reduce errors. You should also consider tool sandboxing for security, rate limiting to prevent runaway costs, and fallback strategies when tools fail. The number and complexity of available tools set how much your agent can do.
 
 **Retrieval layer.** The retrieval layer determines how your agent accesses current, accurate information, and it's the component most architectures underspecify. Without reliable retrieval, agents hallucinate or reason over stale training data. A lead qualification agent working from six-month-old company data misses recent funding rounds, leadership changes, and technology adoptions.
 
@@ -87,17 +87,17 @@ The [Masterman et al. survey](https://arxiv.org/abs/2404.11584) (arXiv 2404.1158
 
 Most agent tutorials treat web access as "add a search tool." In production, the retrieval layer decides whether your agent hallucinates or gives answers you can verify.
 
-There are two common approaches. The first combines a SERP API with a separate scraper: one call retrieves URLs, another fetches content. This approach requires more infrastructure, introduces higher latency, and creates failure modes at each integration point. The second approach uses an [AI-native search API](https://parallel.ai/articles/what-is-a-web-search-api) that returns LLM-ready content with source attribution in a single call.
+There are two common approaches. The first combines a SERP API with a separate scraper: one call retrieves URLs, another fetches content. This approach requires more infrastructure, introduces higher latency, and creates failure modes at each integration point. The second approach uses an [AI-native search API](https://parallel.ai/learn/web-search-api) that returns LLM-ready content with source attribution in a single call.
 
-**Search objective vs. keyword queries.** Traditional search forces agents to construct keyword queries: `"Columbus" AND "corporate law" AND "disability"`. Declarative [semantic search](https://parallel.ai/articles/what-is-semantic-search) lets agents state objectives in natural language: "Columbus-based corporate law firms specializing in disability care." That matches how agents reason and cuts prompt engineering.
+**Search objective vs. keyword queries.** Traditional search forces agents to construct keyword queries: `"Columbus" AND "corporate law" AND "disability"`. Declarative [semantic search](https://parallel.ai/learn/semantic-search) lets agents state objectives in natural language: "Columbus-based corporate law firms specializing in disability care." That matches how agents reason and cuts prompt engineering.
 
-**Token-density of returned content.** Raw [web pages](https://parallel.ai/articles/what-is-a-web-crawler) waste tokens on navigation, ads, and boilerplate. Dense excerpts maximize information per token, giving your agent more useful context within its context window.
+**Token-density of returned content.** Raw [web pages](https://parallel.ai/learn/web-crawler) waste tokens on navigation, ads, and boilerplate. Dense excerpts maximize information per token, giving your agent more useful context within its context window.
 
 **Source attribution for verifiability.** Agents making decisions from unattributed web content produce unauditable outputs. With source attribution, reviewers can check claims, and compliance-sensitive workflows get an audit trail. When your agent claims a competitor raised $50M last month, stakeholders need a link to verify that claim.
 
 **Freshness controls.** Your retrieval layer needs controls for page age triggers, live crawl thresholds, and caching policies that balance freshness against latency.
 
-**[Multi-hop research](https://parallel.ai/articles/what-is-deep-research)****.** Complex questions require multiple retrieval rounds with synthesis. An agent researching "Which AI infrastructure companies raised Series B in the last quarter?" can't answer in one search. The architecture must support iterative search loops where each retrieval informs the next query.
+**[Multi-hop research](https://parallel.ai/learn/deep-research)****.** Complex questions require multiple retrieval rounds with synthesis. An agent researching "Which AI infrastructure companies raised Series B in the last quarter?" can't answer in one search. The architecture must support iterative search loops where each retrieval informs the next query.
 
 Here is an example using the Parallel Search API with declarative semantic search:
 

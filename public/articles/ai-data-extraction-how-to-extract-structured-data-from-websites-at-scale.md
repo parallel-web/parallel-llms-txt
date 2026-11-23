@@ -16,7 +16,7 @@ AI data extraction, often called AI web scraping, uses a model to read a page an
 
 ## What AI data extraction is (and how it differs from traditional scraping)
 
-_[Traditional web scraping](https://parallel.ai/articles/what-is-web-scraping)_ means writing CSS selectors or XPath expressions that target specific elements in a page's DOM. A selector like `div.product-price > span.value` works until the site redesigns its layout, at which point the selector returns nothing or the wrong value without warning. Maintaining a scraper across dozens of sources means updating selectors every time a site changes its markup, which happens more often than most teams anticipate.
+_[Traditional web scraping](https://parallel.ai/learn/web-scraping)_ means writing CSS selectors or XPath expressions that target specific elements in a page's DOM. A selector like `div.product-price > span.value` works until the site redesigns its layout, at which point the selector returns nothing or the wrong value without warning. Maintaining a scraper across dozens of sources means updating selectors every time a site changes its markup, which happens more often than most teams anticipate.
 
 _AI data extraction_ takes a different approach. You send a URL and a plain-English objective to an API. The model reads the page's content, identifies the information matching your objective, and returns it in a structured format. There are no selectors to maintain. A price is still a price whether the site puts it in a `<span>, a <div class="pricing-block">`, or a JavaScript-rendered component. Research published in Scientific Reports confirms that AI-driven extraction [outperforms conventional rule-based crawlers](https://www.nature.com/articles/s41598-025-25616-x) by 35% in accuracy and 40% in processing efficiency across benchmark datasets.
 
@@ -131,7 +131,7 @@ The schema supports strings, numbers, booleans, arrays, and nested objects. For 
 
 The Task API returns two additional signals alongside the extracted values: **confidence levels** and **citations**. Confidence is a per-field rating of low, medium, or high that tells you how certain the model is about each extracted value. A `company_name` rated high came from clear, unambiguous text. A `funding_stage` rated low came from inferred or ambiguous content. You use confidence as a quality gate before records enter your database: send low-confidence fields to human review rather than letting uncertain data propagate downstream.
 
-Citations are source URLs attached to each field. When a Task API response tells you a company raised $12M in a Series A, it also tells you which URL that claim came from. This supports auditability in regulated industries and gives compliance teams a traceable chain from extracted claim to source. Provenance also matters in [data enrichment](https://parallel.ai/articles/what-is-data-enrichment) workflows and [sales enrichment](https://parallel.ai/articles/ai-web-enrichment-for-sales) pipelines, where you need to know which source each value came from.
+Citations are source URLs attached to each field. When a Task API response tells you a company raised $12M in a Series A, it also tells you which URL that claim came from. This supports auditability in regulated industries and gives compliance teams a traceable chain from extracted claim to source. Provenance also matters in [data enrichment](https://parallel.ai/learn/data-enrichment) workflows and [sales enrichment](https://parallel.ai/articles/ai-web-enrichment-for-sales) pipelines, where you need to know which source each value came from.
 
 Here's a Task API call that passes the schema and an objective, then prints confidence scores and citations:
 
@@ -190,7 +190,7 @@ A single Extract API call runs in 1 to 20 seconds synchronously. A for-loop iter
 | 100,000 | $100.00 | $1,000.00 |
 | 1,000,000 | $1,000.00 | $10,000.00 |
 
-Extract API pricing is $0.001 per URL, flat. Task API [pricing scales by processor tier](https://parallel.ai/pricing): lite at $5 per 1,000, base at $10 per 1,000, core at $25 per 1,000. For product price monitoring, the Extract API alone handles most use cases since you need clean markdown output rather than [deep research](https://parallel.ai/articles/what-is-deep-research) synthesis.
+Extract API pricing is $0.001 per URL, flat. Task API [pricing scales by processor tier](https://parallel.ai/pricing): lite at $5 per 1,000, base at $10 per 1,000, core at $25 per 1,000. For product price monitoring, the Extract API alone handles most use cases since you need clean markdown output rather than [deep research](https://parallel.ai/learn/deep-research) synthesis.
 
 Use Extract for high-volume, simpler structured output: product catalogs, directory listings, pricing pages, and any case where you need clean markdown at scale. Use Task when you need deep research, multi-source synthesis, per-field confidence levels, and citations, typically at lower volume and higher accuracy requirements.
 
@@ -233,11 +233,11 @@ Monitoring extraction quality at scale requires a sampling strategy. Check 1% of
 
 ## Using AI extraction in agent pipelines
 
-[AI agents](https://parallel.ai/articles/what-is-an-ai-agent) need fresh, structured, web-grounded facts. Static datasets go stale. Raw HTML is too token-expensive to pass directly to an LLM. A 10-page website as raw HTML can exceed 50,000 tokens. The same content as clean markdown often fits in under 5,000 tokens. That 10x reduction matters when you're paying per token and managing context window limits across thousands of agent calls.
+[AI agents](https://parallel.ai/learn/ai-agent) need fresh, structured, web-grounded facts. Static datasets go stale. Raw HTML is too token-expensive to pass directly to an LLM. A 10-page website as raw HTML can exceed 50,000 tokens. The same content as clean markdown often fits in under 5,000 tokens. That 10x reduction matters when you're paying per token and managing context window limits across thousands of agent calls.
 
 The **three-API pipeline** solves the agent data problem in three steps:
 
-1. **[Search API](https://parallel.ai/articles/what-is-a-web-search-api)** takes a natural language query and returns ranked URLs with titles and compressed excerpts. You get the right pages without manually curating a URL list.
+1. **[Search API](https://parallel.ai/learn/web-search-api)** takes a natural language query and returns ranked URLs with titles and compressed excerpts. You get the right pages without manually curating a URL list.
 2. **Extract API** converts each URL to clean, token-efficient markdown scoped to your objective. You pass this to the next step rather than raw HTML.
 3. **Task API** structures the markdown into a JSON schema with per-field confidence levels and citations. The output slots directly into your agent's structured memory or tool call response schema.
 

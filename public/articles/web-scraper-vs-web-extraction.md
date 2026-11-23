@@ -10,7 +10,7 @@ The distinction matters when a job fails. A pipeline can reach every URL it was 
 
 ## What a web scraper does
 
-A scraper handles the mechanics of getting a page and getting data off it. The classic loop has four steps, and [our guide to web scraping](https://parallel.ai/articles/what-is-web-scraping) walks through each in detail:
+A scraper handles the mechanics of getting a page and getting data off it. The classic loop has four steps, and [our guide to web scraping](https://parallel.ai/learn/web-scraping) walks through each in detail:
 
 - **Request.** Send an HTTP request for a URL, or drive a headless browser when the page builds itself with JavaScript.
 - **Parse.** Load the response into a DOM tree so it can be queried.
@@ -102,7 +102,7 @@ No. Scraping collects content from websites and usually includes an extraction s
 
 ### Is a web crawler a scraper?
 
-A crawler discovers pages by following links. A scraper collects content from pages. Many tools do both, but crawling is about coverage and scraping is about content. See [what a web crawler is](https://parallel.ai/articles/what-is-a-web-crawler) for the full picture.
+A crawler discovers pages by following links. A scraper collects content from pages. Many tools do both, but crawling is about coverage and scraping is about content. See [what a web crawler is](https://parallel.ai/learn/web-crawler) for the full picture.
 
 ### Do I need a scraper if I use an LLM for extraction?
 

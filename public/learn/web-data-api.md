@@ -10,7 +10,7 @@ A web data API is an application programming interface (API) that acts as a stan
 
 APIs now carry most of the traffic online, so nearly every modern app leans on them to move data. Cloudflare reports that APIs make up [over half of internet traffic](https://www.cloudflare.com/2024-api-security-management-report/), at 57%.
 
-At Parallel, we build web data APIs purpose-built for AI agents. Our [web search API](https://parallel.ai/articles/what-is-a-web-search-api) returns token-efficient markdown of dense page excerpts that large language models (LLMs) can read directly.
+At Parallel, we build web data APIs purpose-built for AI agents. Our [web search API](https://parallel.ai/learn/web-search-api) returns token-efficient markdown of dense page excerpts that large language models (LLMs) can read directly.
 
 ## Key characteristics
 
@@ -34,9 +34,9 @@ An AI agent calls Parallel's [Search API](https://parallel.ai/products/search) t
 
 ## Related terms
 
-- [web scraping](https://parallel.ai/articles/what-is-web-scraping): Pulling data straight from a page's HTML rather than through a structured API.
-- [semantic search](https://parallel.ai/articles/what-is-semantic-search): Retrieving results by meaning and intent instead of exact keyword matches.
-- [deep research APIs](https://parallel.ai/articles/what-is-deep-research): Running multi-step research across many sources to return cited, structured findings.
+- [web scraping](https://parallel.ai/learn/web-scraping): Pulling data straight from a page's HTML rather than through a structured API.
+- [semantic search](https://parallel.ai/learn/semantic-search): Retrieving results by meaning and intent instead of exact keyword matches.
+- [deep research APIs](https://parallel.ai/learn/deep-research): Running multi-step research across many sources to return cited, structured findings.
 
 ## FAQ
 

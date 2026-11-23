@@ -1,6 +1,6 @@
 # What is semantic search and how does it work?
 
-Semantic search is a retrieval method that matches the meaning and intent of a query rather than its exact words. It turns queries and documents into vector embeddings, finds the closest matches, and often reranks them with a language model. This guide covers how it works, how it compares with keyword and hybrid search, the components of a semantic retrieval engine, why it matters for AI agents, examples across industries, and a five-step workflow for building one.
+Semantic search is a retrieval method that matches the meaning and intent of a query rather than its exact words. It turns queries and documents into vector embeddings, finds the closest matches, and often reranks them with a language model. This guide covers how it works, how it compares with keyword and hybrid search, and why it matters for AI agents.
 
 ## **What is semantic search?**
 
@@ -50,32 +50,6 @@ Keyword search excels when you know exactly what you're looking for: a specific 
 
 Most production systems don't pick one approach. Hybrid search runs a keyword method such as BM25 and a vector search side by side, merges the two ranked lists (often with reciprocal rank fusion), and then lets a reranker order the final results. The keyword side catches exact terms like product codes and names, and the vector side catches paraphrases. For a new system, hybrid is usually the safer default.
 
-## **Core components of semantic retrieval engines**
-
-### **Vector embeddings**
-
-Vector embeddings are numerical representations that encode meaning into hundreds or thousands of dimensions. Words with similar meanings end up close together in this mathematical space. The embedding for "car" sits near "automobile" and "vehicle," while "bicycle" is nearby but not identical, and "airplane" is further away.
-
-Embedding models also capture relationships between concepts. "Paris" relates to "France" in the same way "Tokyo" relates to "Japan", and that geographic relationship is encoded in the vectors.
-
-![France - Paris, Germany - Berlin](https://cdn.sanity.io/images/5hzduz3y/production/0cdf6a093cf4ca3ab29152de6a0f1402018308a5-1920x1793.png)
-
-### **Knowledge graph augmentation**
-
-Many semantic search systems incorporate _knowledge graphs_, which are structured databases mapping relationships between entities. When you search for "Tesla," a knowledge graph helps the system figure out whether you mean the car company, the inventor Nikola Tesla, or the unit of magnetic flux density.
-
-Knowledge graphs connect entities with explicit relationships: "Elon Musk" founded "Tesla," which produces "electric vehicles," which compete with "traditional automakers."
-
-### **Transformer rerankers**
-
-After initial retrieval, transformer-based neural networks rerank results by analyzing how well each document actually answers your query. Transformers can consider word order, sentence structure, and contextual nuances that simpler matching algorithms miss. A document might contain all your query terms but still rank low if a transformer determines it doesn't actually address your question.
-
-![Embedding model vs. reranker model](https://cdn.sanity.io/images/5hzduz3y/production/4dab4b4dbf7fca0b8f55697a1b88432ae282579b-1178x717.png)
-
-### **Feedback loops and reinforcement**
-
-Semantic search systems learn from user behavior over time. When people click certain results, spend time reading them, and don't reformulate their queries, the system learns those results were relevant. When users immediately hit back and try a different query, the system learns the results missed the mark.
-
 ## **Why semantic search matters for AI**
 
 AI agents process information as tokens (numerical representations of text), while traditional search engines return snippet previews and blue links optimized for human clicking behavior. Agents need dense, information-rich passages they can reason over.
@@ -88,39 +62,7 @@ For complex reasoning tasks, semantic search enables AI agents to synthesize inf
 
 Semantic search can also reduce hallucination. When it returns verifiable information with transparent attribution to source documents, AI agents can ground their outputs in evidence rather than generating plausible-sounding fabrications.
 
-For the retrieval layer behind this, see [what a web search API is](/articles/what-is-a-web-search-api) and [how a web index works](/articles/what-is-a-web-index). To put live search results into a retrieval pipeline, see [how to build a RAG pipeline with live web data](/articles/how-to-build-a-rag-pipeline-with-live-web-data).
-
-## **Semantic search examples across industries**
-
-In e-commerce, semantic product search helps shoppers find items through natural descriptions. Someone searching for "waterproof hiking boots for wide feet" gets relevant results even when product listings say "water-resistant trail footwear with spacious toe box."
-
-Enterprise knowledge management systems let employees search internal documentation using conversational queries. Instead of guessing exact keywords in a policy document, they ask "What's our remote work policy for international contractors?" and semantic search surfaces relevant sections across multiple documents.
-
-Healthcare researchers use semantic search to discover relevant studies across millions of publications. A search for "immune response to mRNA vaccines" returns papers discussing "adaptive immunity following nucleoside-modified RNA immunization", related research that keyword search would miss.
-
-Financial analysts extract insights from earnings reports and regulatory filings using semantic queries. Searching for "supply chain disruption impact" surfaces relevant passages even when documents use terms like "logistics challenges," "procurement delays," or "inventory constraints."
-
-## **Building AI semantic search workflows**
-
-### **1. Collect and clean high-quality content**
-
-Start by gathering the documents, web pages, or data sources you want to make searchable. Remove duplicates, fix formatting issues, and filter out low-quality content.
-
-### **2. Select an embedding model or LLM**
-
-Choose an embedding model based on your domain and performance requirements. General-purpose models like OpenAI's text-embedding-3 work well for broad applications. Specialized models trained on medical, legal, or technical text perform better in those specific domains.
-
-### **3. Index vectors and metadata**
-
-Process your documents through the embedding model to generate vector representations, then store them in a vector database like Pinecone, Weaviate, or Qdrant. Include metadata (publication dates, source URLs, document types) to enable filtering and attribution later.
-
-### **4. Evaluate with task-specific metrics**
-
-Test your semantic search system against real queries from your use case. Measure whether top results are actually useful, whether the system finds all relevant documents, and how fast results return.
-
-### **5. Iterate for latency and cost**
-
-Optimize your system by experimenting with smaller embedding models, adjusting the number of results retrieved, or implementing caching for common queries. Balance accuracy against the computational costs of running inference on every search.
+For the retrieval layer behind this, see [what a web search API is](/learn/web-search-api) and [how a web index works](/learn/web-index). To put live search results into a retrieval pipeline, see [how to build a RAG pipeline with live web data](/articles/how-to-build-a-rag-pipeline-with-live-web-data).
 
 ## **FAQs about semantic search**
 
@@ -131,14 +73,6 @@ No. Semantic search complements structured queries but doesn't replace database 
 ### **Can semantic search run on private data only?**
 
 Yes, semantic search works entirely within private environments without external data sharing. You can deploy vector databases and embedding models on your own infrastructure, keeping all data and queries internal.
-
-### **What models work best for low-resource languages?**
-
-Multilingual embedding models like mBERT or XLM-RoBERTa show strong performance across languages with limited training data. Cross-lingual transfer learning, training on high-resource languages then fine-tuning on low-resource ones, also yields good results.
-
-### **How large does my vector index need to be?**
-
-Index size depends on your use case scope. A customer support system might index thousands of help articles, while a research tool could index millions of papers. Smaller focused indexes often outperform massive general ones because they contain less noise.
 
 ### Is semantic search the same as vector search?
 

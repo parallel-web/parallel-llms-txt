@@ -78,7 +78,7 @@ Both agents deliver a strong terminal experience, and they diverge on surfaces a
 
 On raw speed, Claude Code generally finishes tasks faster in head-to-head runs. OpenCode can be slower on the same task, though [Builder.io's comparison](https://www.builder.io/blog/opencode-vs-claude-code) notes that it often generates more tests along the way, which shifts some verification work off your plate. Neither pattern wins for every workflow, so weigh speed against test coverage for the code you actually ship.
 
-Extensibility is where the two agents converge. [Both support MCP servers](https://parallel.ai/articles/what-is-mcp), both support subagents, and both support skills or plugins.
+Extensibility is where the two agents converge. [Both support MCP servers](https://parallel.ai/learn/model-context-protocol), both support subagents, and both support skills or plugins.
 
 Because MCP is a shared standard, an MCP server you configure works in either agent, so the tools you attach through MCP, including your web data tools, carry over if you switch.
 
@@ -124,7 +124,7 @@ In OpenCode, add it to `opencode.json` in your project or `~/.config/opencode/op
 }
 ```
 
-Both connect without an API key, so the agent can search the live web and read pages as tool calls. For `web_research` and higher rate limits, connect to `https://mcp.parallel.ai/mcp?login` to sign in, or send your API key in an `Authorization: Bearer` header. The [installation docs](https://docs.parallel.ai/integrations/mcp/installation) cover other clients.
+Both connect without an API key, so the agent can search the live web and read pages as tool calls. For `web_research` and higher rate limits, connect to `https://mcp.parallel.ai/mcp?login` to sign in, or send your API key in an `Authorization: Bearer` header. For other clients, [parallel.ai/mcp](https://parallel.ai/mcp) has one-click installs and a setup prompt you can paste into any agent.
 
 Before writing code against a library, the agent looks up the latest API from the official documentation instead of guessing at a method signature.
 
@@ -162,6 +162,6 @@ No, Claude Code runs Anthropic models only. If you need GPT or Gemini in a termi
 
 ### How do I give Claude Code or OpenCode live web access?
 
-Add a web search MCP server, since both agents support MCP. Parallel MCP gives either agent accurate, current web results and page fetch with no key, and the Task and FindAll APIs extend that into [deep research](https://parallel.ai/articles/what-is-deep-research) and entity discovery.
+Add a web search MCP server, since both agents support MCP. Parallel MCP gives either agent accurate, current web results and page fetch with no key, and the Task and FindAll APIs extend that into [deep research](https://parallel.ai/learn/deep-research) and entity discovery.
 
 [Start Building](https://docs.parallel.ai/home) with Parallel's APIs for accurate web search and research.

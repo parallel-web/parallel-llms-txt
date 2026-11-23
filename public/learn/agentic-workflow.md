@@ -32,10 +32,10 @@ _Parallel's benchmarks show how its APIs compare on accuracy, latency, and cost 
 
 ## Related terms
 
-- [what is an AI agent](https://parallel.ai/articles/what-is-an-ai-agent)
-- [AI deep research](https://parallel.ai/articles/what-is-deep-research)
-- [web search API](https://parallel.ai/articles/what-is-a-web-search-api)
-- [semantic search](https://parallel.ai/articles/what-is-semantic-search)
+- [what is an AI agent](https://parallel.ai/learn/ai-agent)
+- [AI deep research](https://parallel.ai/learn/deep-research)
+- [web search API](https://parallel.ai/learn/web-search-api)
+- [semantic search](https://parallel.ai/learn/semantic-search)
 - [agent harness](https://parallel.ai/articles/what-is-an-agent-harness)
 
 ## FAQ

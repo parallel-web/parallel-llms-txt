@@ -126,7 +126,7 @@ We built the [Parallel Search API](https://docs.parallel.ai/search/search-quicks
 
 Our Basis framework returns citations, reasoning, and calibrated confidence on every result, so your agent can check a claim before using it. The service is SOC 2 Type 2 certified and offers zero data retention on Enterprise plans, which excludes training. Under our standard [Customer Terms](https://parallel.ai/customer-terms), we may use inputs and outputs, not linked to any individual, to train and improve the models behind our services.
 
-You can [improve retrieval without switching agents](https://parallel.ai/articles/openclaw-best-practices-web-search) at all. Most of these tools support the [Model Context Protocol (MCP)](https://parallel.ai/articles/what-is-mcp), [an open standard for connecting agents to external tools](https://modelcontextprotocol.io/introduction). Add [Parallel MCP](https://parallel.ai/mcp), our hosted MCP server, and your existing agent gains purpose-built `web_search` and `web_fetch` tools, plus `web_decisions`, with no API key.
+You can [improve retrieval without switching agents](https://parallel.ai/articles/openclaw-best-practices-web-search) at all. Most of these tools support the [Model Context Protocol (MCP)](https://parallel.ai/learn/model-context-protocol), [an open standard for connecting agents to external tools](https://modelcontextprotocol.io/introduction). Add [Parallel MCP](https://parallel.ai/mcp), our hosted MCP server, and your existing agent gains purpose-built `web_search` and `web_fetch` tools, plus `web_decisions`, with no API key.
 
 ```json
 {

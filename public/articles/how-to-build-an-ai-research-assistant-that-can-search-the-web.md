@@ -14,7 +14,7 @@ Research also needs verifiable sources and honest uncertainty, and an LLM can't 
 
 An inaccurate search result feeds an inaccurate summary, which feeds an inaccurate report, and each layer of reasoning amplifies errors from the layer below. When your search layer returns irrelevant content, your LLM wastes tokens reasoning over noise and produces weaker outputs at higher cost.
 
-You need a search layer: a [web search API](https://parallel.ai/articles/what-is-a-web-search-api) built for machines that returns structured excerpts your model can consume in a single context window, instead of raw HTML or link lists.
+You need a search layer: a [web search API](https://parallel.ai/learn/web-search-api) built for machines that returns structured excerpts your model can consume in a single context window, instead of raw HTML or link lists.
 
 ## The core architecture of a web research agent
 
@@ -32,7 +32,7 @@ Query → Search API → Scraper → Parser → Chunker → Re-ranker → LLM �
 Query → AI-Native Search API → LLM → Response with Citations
 ```
 
-The AI-native approach cuts pipeline latency, eliminates scraper maintenance, and reduces token consumption because the model reads compact excerpts instead of full pages. You trade fine-grained control over each pipeline step for a single, optimized call that handles [web crawling](https://parallel.ai/articles/what-is-a-web-crawler) and excerpt generation in one step. This architecture pattern powers [deep research](https://parallel.ai/articles/what-is-deep-research) systems that synthesize information across dozens of sources into cited reports.
+The AI-native approach cuts pipeline latency, eliminates scraper maintenance, and reduces token consumption because the model reads compact excerpts instead of full pages. You trade fine-grained control over each pipeline step for a single, optimized call that handles [web crawling](https://parallel.ai/learn/web-crawler) and excerpt generation in one step. This architecture pattern powers [deep research](https://parallel.ai/learn/deep-research) systems that synthesize information across dozens of sources into cited reports.
 
 For production agents, the single-call approach reduces operational burden in two areas: infrastructure (no scraper fleet to maintain) and reliability (one integration point instead of five).
 

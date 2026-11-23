@@ -4,7 +4,7 @@ Deep research takes longer than search because it does more work, so the real qu
 
 ## What makes a deep research API "fast"
 
-For background, start with [what deep research means](https://parallel.ai/articles/what-is-deep-research). When you evaluate deep research APIs for speed, track three metrics.
+For background, start with [what deep research means](https://parallel.ai/learn/deep-research). When you evaluate deep research APIs for speed, track three metrics.
 
 **Response latency** measures the wall-clock time between sending a request and receiving a complete answer. Deep research agents that optimize for thoroughness run for minutes: Google says most [Gemini Deep Research](https://ai.google.dev/gemini-api/docs/interactions/deep-research) tasks finish within 20 minutes, with a 60-minute cap. Research APIs built for agents in the loop return in seconds to a few minutes.
 
@@ -42,7 +42,7 @@ A Task API call takes an input, a processor, and an optional output schema, and 
 
 ## When you need a search API vs. a deep research API
 
-Developers building [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) often conflate fast search with fast deep research, but the two solve different problems: pick the wrong one and you lose either time or quality.
+Developers building [AI agents](https://parallel.ai/learn/ai-agent) often conflate fast search with fast deep research, but the two solve different problems: pick the wrong one and you lose either time or quality.
 
 **Search APIs** return ranked web results with excerpts in milliseconds to a few seconds. Our [Search API](https://parallel.ai/products/search), Exa, and similar tools handle single-hop fact retrieval, real-time chat grounding, and simple lookups. You ask a direct question, and you get a set of relevant URLs with extracted content. Your agent can read and synthesize those results on its own.
 

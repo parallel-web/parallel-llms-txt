@@ -2,7 +2,7 @@
 
 OpenClaw MCP support runs through the gateway config, so adding a server takes one openclaw mcp command. This guide covers how MCP works in OpenClaw, the ten servers worth installing, the free Parallel web search provider you can enable instead, and when a skill is the better choice.
 
-OpenClaw is the open-source personal agent that lives in your messaging apps. You talk to it on WhatsApp, Telegram, Discord, or Slack, and it runs on your own machine with access to your files, your schedule, and your tools. That reach is exactly why the [Model Context Protocol (MCP)](https://parallel.ai/articles/what-is-mcp) matters here: MCP servers are how you hand OpenClaw new capabilities without writing an integration yourself.
+OpenClaw is the open-source personal agent that lives in your messaging apps. You talk to it on WhatsApp, Telegram, Discord, or Slack, and it runs on your own machine with access to your files, your schedule, and your tools. That reach is exactly why the [Model Context Protocol (MCP)](https://parallel.ai/learn/model-context-protocol) matters here: MCP servers are how you hand OpenClaw new capabilities without writing an integration yourself.
 
 This guide covers how MCP support works in OpenClaw, the servers that earn a place in its config, and the cases where OpenClaw's own skills system is the better tool. One disclosure up front: we make Parallel, and our search server is our first pick. We'll show the numbers and the tradeoffs so you can judge it on the merits.
 

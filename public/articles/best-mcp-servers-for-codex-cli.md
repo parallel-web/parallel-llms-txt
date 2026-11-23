@@ -2,7 +2,7 @@
 
 Codex CLI reads MCP servers from one config.toml shared with the IDE extension and desktop app. Here are the five servers worth that config space in 2026, with the exact codex mcp add command for each.
 
-Codex CLI is OpenAI's terminal coding agent, and its [MCP](https://parallel.ai/articles/what-is-mcp) setup has a property the other harnesses don't: one config file, `~/.codex/config.toml`, is shared by the CLI, the IDE extension, and the ChatGPT desktop app. Configure a server once and it follows you across all three surfaces. The flip side is that a TOML syntax error breaks all three at once, so it pays to use the CLI commands rather than hand-editing.
+Codex CLI is OpenAI's terminal coding agent, and its [MCP](https://parallel.ai/learn/model-context-protocol) setup has a property the other harnesses don't: one config file, `~/.codex/config.toml`, is shared by the CLI, the IDE extension, and the ChatGPT desktop app. Configure a server once and it follows you across all three surfaces. The flip side is that a TOML syntax error breaks all three at once, so it pays to use the CLI commands rather than hand-editing.
 
 Here are the five servers we'd give that config space to, with the exact command for each. Disclosure: we make Parallel, Parallel MCP is the first pick, and the benchmark numbers are cited so you can discount our bias.
 

@@ -2,7 +2,7 @@
 
 Free means three different things in the MCP ecosystem: no key at all, free tier with an account, or free software you run yourself. This list covers the seven best free MCP servers in 2026, sorted by which kind of free they are.
 
-"Free [MCP server](https://parallel.ai/articles/what-is-mcp)" hides three different deals, and knowing which one you're getting saves surprises later. Keyless-free means you paste a URL and it works, no account. Free-tier means it's free after signup, within limits. Free-software means the server costs nothing because you run it on your own machine. All three are legitimate, but each fails differently when you scale.
+"Free [MCP server](https://parallel.ai/learn/model-context-protocol)" hides three different deals, and knowing which one you're getting saves surprises later. Keyless-free means you paste a URL and it works, no account. Free-tier means it's free after signup, within limits. Free-software means the server costs nothing because you run it on your own machine. All three are legitimate, but each fails differently when you scale.
 
 These are the seven servers we'd install, grouped by category. Disclosure: the first one is ours, and we explain exactly what its free tier is and isn't so you can hold us to the same standard as everyone else on the list.
 

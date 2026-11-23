@@ -14,7 +14,7 @@ You can swap in a stronger model, tune your prompts, or add reasoning loops, and
 
 [Benchmark data](https://parallel.ai/benchmarks) from our September 2026 runs shows how much the search layer alone moves results. With the same GPT-5.6 agent and only the search provider swapped, BrowseComp accuracy ranged from 32% to 46% at the low-cost tier and from 66% to 74% at the frontier tier.
 
-Developers building [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) face two failure modes that prompt engineering can't fix. The first is stale web results that produce plausible but outdated answers: your agent tells a user that interest rates are 4.5% when they're 5.25%, with perfect grammar and full confidence. The second is shallow coverage that misses domain-specific sources like SEC filings, clinical guidelines, and technical documentation behind JavaScript rendering or paywalls.
+Developers building [AI agents](https://parallel.ai/learn/ai-agent) face two failure modes that prompt engineering can't fix. The first is stale web results that produce plausible but outdated answers: your agent tells a user that interest rates are 4.5% when they're 5.25%, with perfect grammar and full confidence. The second is shallow coverage that misses domain-specific sources like SEC filings, clinical guidelines, and technical documentation behind JavaScript rendering or paywalls.
 
 Both are infrastructure problems in the search layer, and model tuning won't resolve them. That makes where retrieval lives in your stack an architectural decision.
 
@@ -156,4 +156,4 @@ Parallel's Search API and Responses API give you benchmark-leading accuracy, tok
 
 [Start Building](https://docs.parallel.ai/home)
 
-**Related reading: **[Claude's web search tool vs. Parallel](https://parallel.ai/articles/claude-web-search-vs-parallel) / [Switching from OpenAI web search](https://parallel.ai/articles/openai-to-parallel-search-api).
+**Related reading: **[Claude's web search tool vs. Parallel](https://parallel.ai/articles/claude-web-search-vs-parallel) / [Switching from OpenAI web search](https://parallel.ai/articles/openai-to-parallel-search-api) / [The best Exa alternatives](https://parallel.ai/articles/exa-alternatives).

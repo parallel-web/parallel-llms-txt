@@ -243,7 +243,7 @@ A finance agent is a model plus a small set of tools, each matched to one job, s
 
 1. Pick the Search mode per step. Fast or turbo suits quick lookups in a chat flow; advanced suits the hard multi-hop questions where T3-style accuracy matters.
 2. Attach a source URL and an as-of date to every fact the agent writes, and keep them through to the final output.
-3. Use deep research ([what deep research is](/articles/what-is-deep-research)) for batch jobs that can wait minutes, and Search plus Extract for anything a user is waiting on.
+3. Use deep research ([what deep research is](/learn/deep-research)) for batch jobs that can wait minutes, and Search plus Extract for anything a user is waiting on.
 4. Keep a person on the decision, as most firms in the BoE survey already do.
 
 At peak, Rogo makes hundreds of thousands of Parallel requests a day with error rates under 0.002%. For the research layer in depth, see [company research](/learn/company-research) and [the best API for company research](/articles/best-api-for-company-research).

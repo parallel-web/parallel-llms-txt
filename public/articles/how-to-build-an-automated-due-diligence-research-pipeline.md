@@ -12,7 +12,7 @@ AI due diligence uses agents to search public sources, pull out structured facts
 
 AI due diligence exists because diligence has a scale problem: the number of targets, vendors, and counterparties that organizations need to evaluate keeps growing, but the analyst bench stays flat, so coverage quality slips.
 
-An AI due diligence pipeline takes over the retrieval work. You issue API calls that retrieve results from a [web search API](https://parallel.ai/articles/what-is-a-web-search-api), extract structured data from raw content, cross-reference findings, and return a cited, confidence-scored research report.
+An AI due diligence pipeline takes over the retrieval work. You issue API calls that retrieve results from a [web search API](https://parallel.ai/learn/web-search-api), extract structured data from raw content, cross-reference findings, and return a cited, confidence-scored research report.
 
 ## Manual due diligence breaks under pressure
 
@@ -36,7 +36,7 @@ A due diligence research pipeline accepts a research target and produces a struc
 
 **Layer 2: Extraction and enrichment.** Raw search results are URLs, not data. This layer converts those pages into structured JSON. A Crunchbase company profile becomes fields: funding total, last round date, lead investors, headcount range, founding year. An SEC 10-K filing becomes a set of extracted financial metrics. The Extract API pulls clean page content; you define the schema, and the Task API returns data against it.
 
-**Layer 3: Analysis and synthesis.** Individual data points don't constitute due diligence. This layer cross-references extracted data across all sources, detects contradictions, and identifies red flags. [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) handle this using the _Basis framework_, which produces paragraph-level citations, rationale chains, and calibrated confidence scores alongside the output.
+**Layer 3: Analysis and synthesis.** Individual data points don't constitute due diligence. This layer cross-references extracted data across all sources, detects contradictions, and identifies red flags. [AI agents](https://parallel.ai/learn/ai-agent) handle this using the _Basis framework_, which produces paragraph-level citations, rationale chains, and calibrated confidence scores alongside the output.
 
 **Layer 4: Output and verification.** The pipeline returns a structured report where you can trace each claim to a specific source URL, with a confidence rating attached. Analysts review flagged areas, not every finding. High-confidence findings need little human time. Thin or contradictory evidence escalates for review.
 

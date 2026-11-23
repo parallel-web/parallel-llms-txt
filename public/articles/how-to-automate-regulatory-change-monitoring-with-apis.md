@@ -50,7 +50,7 @@ But page-change detectors lack semantic understanding. They flag CSS updates alo
 
 ### API-first monitoring
 
-The third approach treats regulatory monitoring as infrastructure. You define tracking needs in natural language, and a [web search API](https://parallel.ai/articles/what-is-a-web-search-api) continuously searches for relevant changes across the web. When new content matches your criteria, you receive structured webhook events containing summaries, source URLs, timestamps, and deduplication IDs.
+The third approach treats regulatory monitoring as infrastructure. You define tracking needs in natural language, and a [web search API](https://parallel.ai/learn/web-search-api) continuously searches for relevant changes across the web. When new content matches your criteria, you receive structured webhook events containing summaries, source URLs, timestamps, and deduplication IDs.
 
 This model is composable: monitor for changes, extract the full content when something fires, then analyze and route the structured output to your existing systems. You build monitoring into your compliance tooling rather than adopting a separate platform.
 
@@ -147,7 +147,7 @@ extract_response = requests.post(
 markdown_content = extract_response.json()["results"][0]["full_content"]
 ```
 
-Parallel's [Extract API](https://parallel.ai/blog/introducing-parallel-extract) converts HTML and PDF regulatory pages into clean markdown optimized for downstream analysis. [Federal Register](https://www.govinfo.gov) documents, [SEC EDGAR filings](https://www.sec.gov/cgi-bin/browse-edgar), [EU EUR-Lex publications](https://eur-lex.europa.eu), and UK legislation.gov.uk pages all render as structured text. The API handles JavaScript-rendered content, CAPTCHAs, and complex page layouts that would break [traditional web scrapers](https://parallel.ai/articles/what-is-web-scraping).
+Parallel's [Extract API](https://parallel.ai/blog/introducing-parallel-extract) converts HTML and PDF regulatory pages into clean markdown optimized for downstream analysis. [Federal Register](https://www.govinfo.gov) documents, [SEC EDGAR filings](https://www.sec.gov/cgi-bin/browse-edgar), [EU EUR-Lex publications](https://eur-lex.europa.eu), and UK legislation.gov.uk pages all render as structured text. The API handles JavaScript-rendered content, CAPTCHAs, and complex page layouts that would break [traditional web scrapers](https://parallel.ai/learn/web-scraping).
 
 Parse key fields from the extracted content: effective date, affected entities, compliance deadline, and penalty provisions. Build extraction templates for common regulatory formats. SEC rule releases follow predictable structures. FDA guidance documents have standard sections for scope, recommendations, and effective dates. Once you identify these patterns, you can extract structured data at scale.
 
@@ -167,7 +167,7 @@ Close the loop by logging the full chain: detection timestamp, extracted content
 
 The full chain looks like this: Monitor API detects a change, Extract API pulls the content, Task API assesses impact, and your routing logic delivers structured alerts to the right team with the right urgency. Each step produces structured data that feeds the next.
 
-You can extend this pipeline with [deep research](https://parallel.ai/articles/what-is-deep-research), using the Task API's multi-hop reasoning to cross-reference new regulations against existing compliance obligations and generate impact assessments.
+You can extend this pipeline with [deep research](https://parallel.ai/learn/deep-research), using the Task API's multi-hop reasoning to cross-reference new regulations against existing compliance obligations and generate impact assessments.
 
 ## What to look for in a regulatory monitoring API
 

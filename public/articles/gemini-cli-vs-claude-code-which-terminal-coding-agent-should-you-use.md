@@ -50,7 +50,7 @@ Speed wins when you're exploring an idea or fixing something small and self-cont
 
 ## Integrations: MCP, GitHub Actions, and automation
 
-Both agents extend well beyond their default behavior, and they share the key integration points. Each one supports the [Model Context Protocol (MCP)](https://parallel.ai/articles/what-is-mcp), [an open standard](https://modelcontextprotocol.io/) that lets you connect external tools to the agent through a common interface. Each also runs in headless mode for scripting and slots into continuous integration and delivery pipelines, including GitHub Actions, so you can trigger the agent on a pull request or a scheduled job.
+Both agents extend well beyond their default behavior, and they share the key integration points. Each one supports the [Model Context Protocol (MCP)](https://parallel.ai/learn/model-context-protocol), [an open standard](https://modelcontextprotocol.io/) that lets you connect external tools to the agent through a common interface. Each also runs in headless mode for scripting and slots into continuous integration and delivery pipelines, including GitHub Actions, so you can trigger the agent on a pull request or a scheduled job.
 
 Because both Gemini CLI and Claude Code speak MCP, any MCP tool you build or adopt works with either agent. A database connector or a web search tool plugs into both the same way. That portability narrows the practical gap between the two products. If you standardize your tooling on MCP, you can switch between the agents without rebuilding your integrations.
 
@@ -58,7 +58,7 @@ Once both agents reach the same external tools, the tools you give them matter a
 
 ## Giving either CLI reliable web access
 
-Every model has a training cutoff. Beyond that date it knows nothing, and it will often invent details rather than admit the gap. Ask a coding agent about a library's latest release and it may confidently describe an API that changed months ago or suggest a fix for an error it has never actually seen. This is the single most common way [an otherwise capable agent produces broken code](https://parallel.ai/articles/what-is-an-ai-agent).
+Every model has a training cutoff. Beyond that date it knows nothing, and it will often invent details rather than admit the gap. Ask a coding agent about a library's latest release and it may confidently describe an API that changed months ago or suggest a fix for an error it has never actually seen. This is the single most common way [an otherwise capable agent produces broken code](https://parallel.ai/learn/ai-agent).
 
 A web search tool solves this, and MCP is how you add one. Instead of reasoning from memory, the agent queries the live web mid-task and works from verifiable sources. Say an agent is about to edit code that depends on a library: before it writes anything, it looks up the latest release notes, spots a breaking change, and adjusts, rather than guessing from stale training data.
 
@@ -78,7 +78,7 @@ Choose Gemini CLI when cost is the deciding factor or when you're prototyping an
 
 Many developers don't choose at all. They install both, run Gemini CLI for fast everyday work, and switch to Claude Code when a job turns intricate. Because both speak MCP, your external tools follow you across the two, so running a pair costs you little in setup.
 
-Whichever you pick, a terminal agent is only as accurate as the information it reasons from, so [give it a web search tool](https://parallel.ai/articles/what-is-a-web-search-api) for any task that depends on current data. Add [Parallel MCP](https://parallel.ai/mcp), and both agents work from live, verifiable sources instead of memory.
+Whichever you pick, a terminal agent is only as accurate as the information it reasons from, so [give it a web search tool](https://parallel.ai/learn/web-search-api) for any task that depends on current data. Add [Parallel MCP](https://parallel.ai/mcp), and both agents work from live, verifiable sources instead of memory.
 
 [Start Building](https://docs.parallel.ai/home) with Parallel's Search API and give either CLI reliable web access.
 

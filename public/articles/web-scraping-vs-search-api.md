@@ -58,7 +58,7 @@ Scraping makes you own every stage from URL to prompt. A search API owns discove
 | Anti-bot | Your problem (or an unlocker’s) | Provider’s crawler and its limits | Same limits; no CAPTCHA solving |
 | Maintenance | Selectors break when layouts change | API versioning only | API versioning only |
 
-Everything in the scraping column is doable, and all of it is yours to run. A [web scraping API](https://parallel.ai/articles/web-scraping-api-how-to-choose-the-right-tool-for-ai-ready-data) takes fetching and rendering off your plate, and an unlocker adds anti-bot handling; our guide to [unlockers, scrapers, and fetch APIs](https://parallel.ai/articles/web-unlocker-vs-scraper-vs-fetch) covers where each layer stops. Discovery, chunking, and ranking still sit with you. For the basics of the scraping side, start with [what web scraping is](https://parallel.ai/articles/what-is-web-scraping); for crawling a whole site, see [web crawling vs. web scraping](https://parallel.ai/articles/web-crawling-vs-web-scraping).
+Everything in the scraping column is doable, and all of it is yours to run. A [web scraping API](https://parallel.ai/articles/web-scraping-api-how-to-choose-the-right-tool-for-ai-ready-data) takes fetching and rendering off your plate, and an unlocker adds anti-bot handling; our guide to [unlockers, scrapers, and fetch APIs](https://parallel.ai/articles/web-unlocker-vs-scraper-vs-fetch) covers where each layer stops. Discovery, chunking, and ranking still sit with you. For the basics of the scraping side, start with [what web scraping is](https://parallel.ai/learn/web-scraping); for crawling a whole site, see [web crawling vs. web scraping](https://parallel.ai/articles/web-crawling-vs-web-scraping).
 
 ## What each approach costs at list price
 
@@ -101,7 +101,7 @@ In these cases the URL list is known and stable, and you want deterministic outp
 
 Use a search API when the question comes first and the URLs don’t exist yet in your code. Open-ended questions, discovery across unfamiliar sources, freshness across many sites, and agent loops that call a tool dozens of times per task all fit here.
 
-Agent loops show the difference most clearly. An agent that scrapes has to guess URLs, fetch whole pages, and spend context on navigation and footers. An agent with a search tool gets ranked sources and excerpts in one call. Our [Fast mode](https://parallel.ai/articles/parallel-search-fast-vs-turbo) is documented at about 700ms per call and Turbo at about 200ms, both $1 per 1,000 requests. For more on how these APIs work, see [what a web search API is](https://parallel.ai/articles/what-is-a-web-search-api).
+Agent loops show the difference most clearly. An agent that scrapes has to guess URLs, fetch whole pages, and spend context on navigation and footers. An agent with a search tool gets ranked sources and excerpts in one call. Our [Fast mode](https://parallel.ai/articles/parallel-search-fast-vs-turbo) is documented at about 700ms per call and Turbo at about 200ms, both $1 per 1,000 requests. For more on how these APIs work, see [what a web search API is](https://parallel.ai/learn/web-search-api).
 
 ## A hybrid pattern: search, then extract
 
@@ -163,4 +163,4 @@ No. Extract handles JavaScript-rendered pages and PDFs, but it doesn’t solve C
 
 Fetching is cheap either way, from about $0.13 to $16 per 1,000 pages on scraping APIs and $1 per 1,000 on our Search and Extract APIs. On a frontier model, the tokens you send usually cost more than either.
 
-**Related reading: **[Web scraper vs. web extraction](https://parallel.ai/articles/web-scraper-vs-web-extraction) / [Web unlocker vs. scraper vs. fetch](https://parallel.ai/articles/web-unlocker-vs-scraper-vs-fetch) / [Firecrawl vs. Parallel](https://parallel.ai/compare/firecrawl-vs-parallel) / [What is a web search API?](https://parallel.ai/articles/what-is-a-web-search-api)
+**Related reading: **[Web scraper vs. web extraction](https://parallel.ai/articles/web-scraper-vs-web-extraction) / [Web unlocker vs. scraper vs. fetch](https://parallel.ai/articles/web-unlocker-vs-scraper-vs-fetch) / [Firecrawl vs. Parallel](https://parallel.ai/compare/firecrawl-vs-parallel) / [What is a web search API?](https://parallel.ai/learn/web-search-api)

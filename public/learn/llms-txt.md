@@ -1,6 +1,6 @@
 # Understanding llms.txt: The new standard for AI-friendly website optimization
 
-llms.txt is a proposed standard for telling language models which pages on your site matter, and adopting it is still a judgment call rather than a default. This guide covers what the file is, why AI crawlers need one, how it differs from robots.txt and sitemap.xml, the specification and format, where /llms.txt and /llms-full.txt belong, how to create and validate one, how to generate it in CI, and whether to adopt it now.
+llms.txt is a proposed standard for telling language models which pages on your site matter, and adopting it is still a judgment call rather than a default. This guide covers what the file is, why AI crawlers need one, how it differs from robots.txt and sitemap.xml, the specification and format, where /llms.txt and /llms-full.txt belong, how to create one, and the common mistakes.
 
 ## **What is llms.txt?**
 
@@ -92,26 +92,6 @@ If you're using a content management system or static site generator, you might 
 
 Several online validators, like [https://llmtext.com/](https://llmtext.com/), can check your file's formatting and structure. The validators verify that your file follows the specification, sits at your root domain, is served as plain text or markdown, links to pages that return markdown rather than HTML, and stays under size limits. Testing catches common issues like broken links or malformed markdown before AI systems encounter them.
 
-## **Validating and updating your llms.txt file**
-
-Update your llms.txt file as your site changes: when new documentation launches, products change, or content priorities shift.
-
-Review the file on the same schedule you publish content. When you release major updates or new features, update your llms.txt file to reflect the changes. Version control systems like Git make it easy to track modifications over time.
-
-## **Automating llms.txt generation in CI/CD pipelines**
-
-For sites with frequently changing content, manual updates become impractical. Generating the file in your deployment workflow keeps it current without manual edits.
-
-Scripts can scan your content management system, identify high-priority pages based on predefined rules, and generate properly formatted llms.txt files automatically. This approach works particularly well for documentation sites where content structure follows consistent patterns. You might write a script that pulls from your docs navigation, extracts page titles and descriptions from frontmatter, and outputs valid llms.txt markdown. The generated file then deploys with each content update, so it stays in sync.
-
-## **Should you adopt llms.txt now?**
-
-Major AI providers haven't officially committed to supporting llms.txt, but adoption keeps growing among technical organizations and AI-focused companies.
-
-The case for adopting early is that it costs little: you're creating a single text file. The potential upside includes better AI representation, more accurate citations, and improved discoverability for AI-powered tools. Even without universal support, some systems already consume the files.
-
-The main cost is your time. If creating and maintaining an llms.txt file takes an hour and there's even a modest chance it improves how AI systems represent your content, the expected value favors doing it.
-
 ## **Common mistakes and how to avoid them**
 
 Three mistakes show up often in first llms.txt files:
@@ -121,14 +101,6 @@ Three mistakes show up often in first llms.txt files:
 - **Poor organization:** Dumping links without logical grouping makes the file harder to parse; use clear section headers that reflect content categories
 
 Audit the file regularly and hold it to the same quality standards as your public-facing documentation.
-
-## **The path forward for AI-friendly web content**
-
-As AI agents become primary consumers of web information alongside humans, content creators need new tools to communicate structure, priority, and context. We're likely to see the standard evolve: future versions might include semantic markup for different content types, versioning information, or integration with other structured data formats.
-
-Giving AI systems explicit guidance works better than making them infer structure from HTML. 
-
-For AI agents that work with web content: [Start building](https://platform.parallel.ai/home) with Parallel's APIs for retrieving information from the open web.
 
 ## FAQs about llms.txt
 

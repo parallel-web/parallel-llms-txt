@@ -8,7 +8,7 @@ Disclosure up front: we make Parallel, and our search server is our first pick. 
 
 ## How MCP works in Muse
 
-There is no MCP menu. You describe the server to Muse and it builds a bridge on its VM using the official [Model Context Protocol](https://parallel.ai/articles/what-is-mcp) SDK, connects over streamable HTTP, and calls the server's tools as needed. It will ask whether the server is reachable at a URL or runs as a command, and whether it needs a key. Credentials go into Muse's Secure Credentials Store through a prompt separate from the chat, and every outbound request passes through Sentinel, the approval agent on the same machine.
+There is no MCP menu. You describe the server to Muse and it builds a bridge on its VM using the official [Model Context Protocol](https://parallel.ai/learn/model-context-protocol) SDK, connects over streamable HTTP, and calls the server's tools as needed. It will ask whether the server is reachable at a URL or runs as a command, and whether it needs a key. Credentials go into Muse's Secure Credentials Store through a prompt separate from the chat, and every outbound request passes through Sentinel, the approval agent on the same machine.
 
 Remote servers are the easy case. A server that only runs on your laptop is out of reach, because the VM is not on your home network. Our companion guide on [how to create custom integrations with Meta Muse](https://parallel.ai/articles/meta-muse-custom-integrations) walks through the whole flow, including what Muse said when we asked it to install a server.
 

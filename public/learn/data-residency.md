@@ -29,7 +29,7 @@ Parallel offers EU data residency as an optional feature, with the commitments s
 - [data residency vs. data sovereignty](https://parallel.ai/articles/data-residency-vs-data-sovereignty): why location and jurisdiction lead to different vendor answers.
 - [GDPR and AI agents](https://parallel.ai/articles/gdpr-ai-agents-web-search-extraction): what web search and extraction change for compliance.
 - [web search APIs with EU data residency](https://parallel.ai/articles/best-web-search-apis-eu-data-residency): which providers document an EU processing option.
-- [AI search API](https://parallel.ai/learn/ai-search-api): the search layer an agent calls for live web data.
+- [AI search API](https://parallel.ai/learn/web-search-api): the search layer an agent calls for live web data.
 
 ## FAQ
 

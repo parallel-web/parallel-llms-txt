@@ -6,19 +6,19 @@ Automated competitor analysis pairs continuous monitoring with the step most CI 
 
 To automate competitor analysis with AI agents, chain Parallel’s APIs into one pipeline that keeps competitor data current. The FindAll API finds companies that match your market criteria and returns structured records with citations. The Extract API pulls pricing, features, and positioning from each company’s pages. The Monitor API sends changes that match your query to your webhook, so your workflow can update a CRM or post to Slack.
 
-Your team can now build [AI agents](https://parallel.ai/articles/what-is-an-ai-agent) that search the web, extract structured data, and monitor changes continuously. Competitive intelligence updates itself rather than decaying in a shared drive.
+Your team can now build [AI agents](https://parallel.ai/learn/ai-agent) that search the web, extract structured data, and monitor changes continuously. Competitive intelligence updates itself rather than decaying in a shared drive.
 
 ## Key takeaways
 
 - Most competitor analysis tools help you monitor known rivals, but they skip the harder problem: discovering who your competitors are in the first place.
-- AI agents can search the web, extract [structured data](https://parallel.ai/articles/what-is-data-enrichment), and build a competitive landscape from a natural language query.
+- AI agents can search the web, extract [structured data](https://parallel.ai/learn/data-enrichment), and build a competitive landscape from a natural language query.
 - The gap between SaaS CI dashboards and API-powered discovery pipelines determines whether your intel is stale or real-time.
 - Automated competitor discovery works best when you combine web search, structured extraction, and continuous monitoring in a single pipeline.
 - You can start with a single API call that returns every company matching your market segment criteria, then layer monitoring on top.
 
 ## What automated competitor analysis actually means
 
-Automated competitor analysis is the use of software to identify, track, and extract intelligence about competitive companies without manual research. The software ranges from simple Google Alerts to AI agents that [reason about market positioning](https://parallel.ai/articles/what-is-deep-research) across hundreds of sources.
+Automated competitor analysis is the use of software to identify, track, and extract intelligence about competitive companies without manual research. The software ranges from simple Google Alerts to AI agents that [reason about market positioning](https://parallel.ai/learn/deep-research) across hundreds of sources.
 
 Two capabilities get conflated in these conversations. The first is **competitor monitoring**: tracking known rivals for changes. You pick five companies, set up alerts, and receive notifications when they update their pricing page or announce a funding round. Most CI tools do this.
 
@@ -55,7 +55,7 @@ This assumption breaks down in predictable situations:
 
 The traditional approach to discovery is manual. You ask your sales team who they lose deals to. You browse [G2 categories](https://www.g2.com/categories/competitive-intelligence). You Google around. This approach misses indirect competitors, emerging startups, and companies that compete on specific features rather than full products.
 
-The automated approach uses an AI agent or [web research API](https://parallel.ai/articles/what-is-a-web-search-api) to search the web with a natural language query describing your market segment. The agent evaluates candidates against match conditions, then returns structured data on every matching company.
+The automated approach uses an AI agent or [web research API](https://parallel.ai/learn/web-search-api) to search the web with a natural language query describing your market segment. The agent evaluates candidates against match conditions, then returns structured data on every matching company.
 
 A discovery query with our FindAll API:
 
@@ -94,7 +94,7 @@ A CI pipeline has three stages, each feeding the next: Discover, Extract, Monito
 
 **Stage 1: Discover.** Start with a broad query describing your market segment and match criteria. An AI agent searches the web, evaluates candidates, and returns a structured list with company names, URLs, descriptions, and metadata.
 
-**Stage 2: Extract.** For each discovered competitor, [extract structured intelligence](https://parallel.ai/articles/what-is-web-scraping). Pricing pages, product features, job postings, executive team, recent press, tech stack. The goal is converting unstructured web pages into structured data your systems can process.
+**Stage 2: Extract.** For each discovered competitor, [extract structured intelligence](https://parallel.ai/learn/web-scraping). Pricing pages, product features, job postings, executive team, recent press, tech stack. The goal is converting unstructured web pages into structured data your systems can process.
 
 You can extract pricing data from a competitor URL in one call:
 

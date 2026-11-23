@@ -8,9 +8,9 @@ Those are all reasonable choices, because the right mechanism depends on the too
 
 ## The three mechanisms in one paragraph each
 
-**MCP servers.** The [Model Context Protocol](https://parallel.ai/articles/what-is-mcp) is an open standard for connecting agents to tools: a server declares typed tools with JSON schemas, the client discovers them, and the model calls them like native functions. Servers run locally over stdio or remotely over HTTP, and remote servers can handle OAuth so the agent never touches your credentials.
+**MCP servers.** The [Model Context Protocol](https://parallel.ai/learn/model-context-protocol) is an open standard for connecting agents to tools: a server declares typed tools with JSON schemas, the client discovers them, and the model calls them like native functions. Servers run locally over stdio or remotely over HTTP, and remote servers can handle OAuth so the agent never touches your credentials.
 
-**Agent skills.** A [skill](https://parallel.ai/articles/what-are-agent-skills) is a folder with a `SKILL.md` file: YAML frontmatter naming the capability, then markdown instructions, often plus scripts or templates. The agent scans the metadata cheaply and loads the full instructions only when a task calls for them. Anthropic published the format as an open standard, and Claude Code, Codex CLI, Cursor, OpenCode, OpenClaw, and Hermes all read it.
+**Agent skills.** A [skill](https://parallel.ai/learn/agent-skills) is a folder with a `SKILL.md` file: YAML frontmatter naming the capability, then markdown instructions, often plus scripts or templates. The agent scans the metadata cheaply and loads the full instructions only when a task calls for them. Anthropic published the format as an open standard, and Claude Code, Codex CLI, Cursor, OpenCode, OpenClaw, and Hermes all read it.
 
 **CLIs.** Any command-line program the agent can invoke through bash, with no protocol or manifest: the agent reads `--help` or gets told the commands in its instructions. Skills and CLIs pair naturally: many of the most popular skills are a page of instructions teaching the agent an existing CLI.
 
