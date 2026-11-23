@@ -1,12 +1,20 @@
+1. [Compare](/ai/compare)
+2. /
+3. Parallel vs. Perplexity
+
 # Parallel vs. Perplexity
 
-In Parallel’s August 2026 run, the Task API scored higher than Perplexity’s high effort level on BrowseComp and DeepSearchQA for under a tenth of the measured cost. Parallel also adds per-field evidence, monitoring, and entity discovery on one platform.
+Search list prices match at $1 and $5 per 1,000 requests, so the real split is deep research and platform scope. Parallel’s Task API outscored Perplexity’s high effort level on BrowseComp and DeepSearchQA for under a tenth of the cost, adding per-field citations, monitoring, and entity discovery. Perplexity offers 50 QPS search, multi-lab model selection, embeddings, and a code sandbox.
 
 [Start building for free](https://platform.parallel.ai/) 
 
 [Artificial Analysis Search Index, November 2026: 83 vs. 80](#accuracy) [Multi-hop company search F1, search only: 46.5 vs. 37.8](#accuracy) [DeepSearchQA, deep research APIs: 76% vs. 68%](#research) [BrowseComp deep research, per 1,000 questions: $5 vs. $441.50](#research)
 
-Last updated November 20, 2026
+Last updated November 22, 2026
+
+## What is Perplexity API?
+
+Perplexity’s developer platform combines its Search API ($1 Fast Search, $5 standard per 1,000 requests), an Agent API that pairs multi-lab frontier models with web search and URL fetching, a token-billed Decisions classifier, embeddings, and a code sandbox. Sonar Chat Completions support ended on September 27, 2026 in favor of the Agent API.
 
 ## What does Parallel do?
 
@@ -17,13 +25,13 @@ Parallel is one developer platform covering search, extraction, research, entity
 * [Research](#research)
 * [Evidence](#evidence)
 * [Monitor and FindAll](#monitoring)
-* [EU residency](#eu-data-residency)
+* [Prices](#perplexity-pricing)
 * [Features](#features)
 * [Which to pick](#decision)
 
 ## Parallel vs. Perplexity at a glance
 
-Published list prices, documented capabilities, and dated benchmark results as of November 2026.
+List prices, capabilities, and dated benchmark scores as of November 2026.
 
 __Parallel and Perplexity compared at a glance__
 | Dimension                                               | Parallel                                                              | Perplexity                                                              |
@@ -39,21 +47,17 @@ __Parallel and Perplexity compared at a glance__
 
 Sources: [Artificial Analysis search API leaderboard](https://artificialanalysis.ai/agents/search-api), [Parallel benchmarks, August and September 2026](https://parallel.ai/benchmarks), [Openbenchmarks Perplexity vs. Parallel](https://openbenchmarks.com/web-search/perplexity-vs-parallel), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel pricing](https://parallel.ai/pricing), [Parallel rate limits](https://docs.parallel.ai/getting-started/rate-limits), [Perplexity Sonar vs. Parallel](https://parallel.ai/articles/perplexity-sonar-vs-parallel)
 
-## #1 on Artificial Analysis in November 2026, and higher F1 on company search
+## Higher on Artificial Analysis (November 2026) and company search, split on OpenRouter
 
-Parallel Search ranks #1 on the independent Artificial Analysis Search Index, in data dated November 19, 2026\. Artificial Analysis holds one model (GPT-5.6 Luna) and one harness fixed, swaps only the search API, and averages DeepSearchQA, BrowseComp, and AA-Omniscience across 26 search products. Parallel Advanced scores 83 and Parallel Fast 82, against 80 for Perplexity at medium, 79 at high, and 77 at low. On the BrowseComp column the two scored 87 each, and on DeepSearchQA Parallel scored 89 against 81\. Parallel Fast also took less time per task, 15.5 seconds against 30.9 for Perplexity at medium.
+On the Artificial Analysis Search Index (November 19, 2026 data), Parallel Search ranks #1 at 83 (Advanced) and 82 (Fast) against 80 for Perplexity medium, 79 high, and 77 low. In that November 2026 data, both scored 87 on BrowseComp, Parallel scored 89 to 81 on DeepSearchQA, and Parallel Fast finished tasks in 15.5 seconds against 30.9 for Perplexity medium.
 
-Openbenchmarks is an independent hub that publishes its harness and every raw vendor response. Its company search and coding-agent boards run both APIs with the same agent. On multi-turn company search, a fixed agent hunts for every company that matches three or four constraints. From search results alone, Parallel Basic scored 46.5 F1 against 37.8 for Perplexity. Its precision was 88.7 against 79.3, and its recall was 34.4 against 26.8.
+Openbenchmarks splits by setup. On October 2 search-only company search, Parallel Basic scored 46.5 F1 (88.7 precision, 34.4 recall) to Perplexity’s 37.8 (79.3 precision, 26.8 recall), though Perplexity spent less per median run ($0.334 vs. $1.12). Once page fetching was enabled, Perplexity scored 46.6 F1 against 42.3 for Parallel Basic and completed 77.7% of coding-agent tickets against 77.0% for Parallel Advanced.
 
-Perplexity won on coding-agent tickets and on company search with page fetching. With search and fetch, it completed 77.7% of coding-agent documentation tickets against 77.0% for Parallel Advanced. When the company search agent could also fetch pages, Perplexity scored 46.6 F1 against 42.3 for Parallel Basic. Perplexity’s median search-only company task also cost less, $0.334 against $1.12\. Parallel isn’t in Openbenchmarks’ October 21, 2026 run of its company news board, so this page leaves that board out.
+On AIMultiple (November 10, 2026), Parallel Advanced reached 87.0% accuracy against 76.5% for Perplexity Fast with high context, while Perplexity Fast returned in 0.18s median latency and cost less per correct answer with low context ($0.0058 vs. $0.0063 for Parallel Fast at 79.7%). In Parallel’s September 2026 search runs (GPT-5.6 Sol), Parallel Advanced scored 57.6 on WideSearch against 53.5 and 97% on SimpleQA Verified against 95%. Both scored 74% on BrowseComp, and Perplexity spent less ($275 vs. $399 per 1,000).
 
-AIMultiple, an independent research publisher, ran one fixed agent (GPT-5.6 Luna) on 120 questions and swapped only the search configuration. In its benchmark updated November 10, 2026, Parallel Advanced scored 87.0% answer accuracy against 76.5% for Perplexity’s strongest configuration, Fast with high context. Perplexity returned results faster and cost less per correct answer. Its Fast mode had a 0.18 second median API latency, and with low context it cost $0.0058 per correct answer against $0.0063 for Parallel Fast, which scored 79.7%.
+OpenRouter’s August and September 2026 25-turn benchmarks favor Perplexity: with Claude Opus 5, Perplexity scored 89.0% on BrowseComp against 86.3% and 77.4% on Humanity’s Last Exam against 68.6%. With a GPT-5.6 Sol agent, it scored 84.0% on WideSearch against 80.6%, while DeepSearchQA sat within noise (77.0% Parallel vs. 76.5% Perplexity).
 
-Parallel’s own September 2026 search runs gave both providers the same agent. With a GPT-5.6 Sol agent, Parallel Advanced scored 57.6 on WideSearch against 53.5 and 97% on SimpleQA Verified against 95%. Both scored 74% on BrowseComp, and Perplexity spent less to get there, $275 per 1,000 questions against $399.
-
-OpenRouter’s August and September 2026 search benchmarks also favor Perplexity. Each run used a 25-turn search budget. With Claude Opus 5, Perplexity scored 89.0% on BrowseComp against 86.3% for Parallel, and 77.4% on Humanity’s Last Exam against 68.6%. With a GPT-5.6 Sol agent, it scored 84.0% on WideSearch against 80.6%. On DeepSearchQA the two were inside the margin of error, 77.0% for Parallel against 76.5%.
-
-Sources: [Artificial Analysis search API leaderboard](https://artificialanalysis.ai/agents/search-api), [Openbenchmarks Perplexity vs. Parallel](https://openbenchmarks.com/web-search/perplexity-vs-parallel), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Openbenchmarks company news search](https://openbenchmarks.com/company-news), [Parallel benchmarks, August and September 2026](https://parallel.ai/benchmarks), [OpenRouter search benchmarks](https://openrouter.ai/benchmarks), [AIMultiple agentic search benchmark](https://aimultiple.com/agentic-search)
+Sources: [Artificial Analysis search API leaderboard](https://artificialanalysis.ai/agents/search-api), [Openbenchmarks Perplexity vs. Parallel](https://openbenchmarks.com/web-search/perplexity-vs-parallel), [Openbenchmarks multi-turn company search](https://openbenchmarks.com/multi-turn-company-search), [Parallel benchmarks, August and September 2026](https://parallel.ai/benchmarks), [OpenRouter search benchmarks](https://openrouter.ai/benchmarks), [AIMultiple agentic search benchmark](https://aimultiple.com/agentic-search)
 
 +8.7 F1 points on multi-turn company search, search only
 
@@ -89,15 +93,17 @@ Parallel: 97%
 
 Perplexity: 95%
 
-Artificial Analysis row: Search Index data dated November 19, 2026, which reports Parallel runs from that date and Perplexity runs from August 27, a GPT-5.6 Luna (medium) agent with the same harness for every provider, the mean of DeepSearchQA F1, BrowseComp accuracy, and AA-Omniscience accuracy. Company search row: Openbenchmarks, board last run October 2, 2026, 45 questions over three runs, scored as mean F1\. WideSearch and SimpleQA Verified rows: Parallel-run evaluation, September 9, 2026, a GPT-5.6 Sol agent on 100-question samples, with partial-credit scoring on WideSearch. Perplexity ran search only, and Parallel had search and extract.
+Artificial Analysis: November 19, 2026 (Parallel) and August 27, 2026 (Perplexity), fixed GPT-5.6 Luna (medium) agent, mean of DeepSearchQA F1, BrowseComp, and AA-Omniscience. Company search: Openbenchmarks October 2, 2026 board, 45 questions over three runs. WideSearch and SimpleQA Verified: Parallel-run eval, September 9, 2026, GPT-5.6 Sol on 100 questions (Perplexity ran search only, Parallel had search and extract).
 
-## Deep research for under a tenth of the cost
+Reproduce on your own queries[parallel-search-evals](https://github.com/parallel-web/parallel-search-evals)
 
-Parallel ran its Task API and Perplexity’s Agent API on the same fixed 100-question subsets on August 26, 2026\. On BrowseComp, Task Lite scored 88% at $5 per 1,000 questions, and Task Core scored 91% at $25\. Perplexity’s high effort level, as configured that day, scored 86% at $441.50\. On DeepSearchQA, Task Lite scored 76% at $5 and Task Pro 83% at $100\. Perplexity high scored 68% at $371.90.
+Run our MIT-licensed benchmark harness on DeepSearchQA and HLE using your own dataset files and API keys to inspect answers, scores, and costs.
 
-Perplexity publishes higher numbers from its own harness. It reports BrowseComp scores of 78.0 for high and 85.33 for xhigh. It reports DeepSearchQA F1 of 89.6 for high and 93.0 for xhigh. F1 gives partial credit, so it is a different measure from the accuracy in Parallel’s run.
+## Fixed-price deep research for under a tenth of the cost
 
-Every Task processor has a fixed price, from $5 to $2,400 per 1,000 runs. You know the cost of a run before it starts. Perplexity’s Agent API bills model tokens plus each tool call. The cost of a run depends on how many searches and fetches the agent makes.
+On August 26, 2026, Parallel ran its Task API and Perplexity’s Agent API on fixed 100-question subsets. On BrowseComp, Task Lite hit 88% at $5 per 1,000 questions and Task Core 91% at $25, compared with 86% at $441.50 for Perplexity’s high effort level. On DeepSearchQA, Task Lite hit 76% at $5 and Task Pro 83% at $100, against 68% at $371.90 for Perplexity high.
+
+Perplexity reports higher numbers on its own harness: BrowseComp at 78.0 for high and 85.33 for xhigh, and DeepSearchQA F1 at 89.6 for high and 93.0 for xhigh (F1 grants partial credit, so it is a different measure from strict accuracy). Every Parallel Task processor bills a fixed price ($5 to $2,400 per 1,000 runs), whereas Perplexity’s Agent API meters model tokens plus each tool call.
 
 Sources: [Parallel benchmarks, August and September 2026](https://parallel.ai/benchmarks), [Parallel Task docs](https://docs.parallel.ai/task-api/task-quickstart), [Parallel pricing](https://parallel.ai/pricing), [Perplexity Sonar vs. Parallel](https://parallel.ai/articles/perplexity-sonar-vs-parallel)
 
@@ -135,15 +141,13 @@ Parallel: $5
 
 Perplexity: $371.90
 
-Parallel-run evaluation, August 26, 2026, on fixed 100-question subsets of BrowseComp and DeepSearchQA held constant across every configuration. Cost is measured end-to-end spend per 1,000 questions. Perplexity ran through the Agent API at the high effort level, which Perplexity then called the high preset. On October 28, 2026, Perplexity moved high to a different model and raised its step limit from 15 to 40, so a re-run may differ. Perplexity’s own figures come from its Agent API benchmarks page, on a different harness.
+Parallel-run evaluation, August 26, 2026, on fixed 100-question subsets of BrowseComp and DeepSearchQA, end-to-end spend per 1,000 questions. Perplexity ran through the Agent API high effort level (then called the high preset). On October 28, 2026 Perplexity moved high to a different model and raised its step limit from 15 to 40, so a rerun may differ.
 
-## A citation and a confidence score on every field
+## Per-field citations, webhooks, and 2,000 runs per minute
 
-Both APIs return structured output against a JSON Schema. Parallel also returns a Research Basis for each field. It holds the source URLs, the supporting excerpts, the reasoning, and a confidence rating. A pipeline can send low-confidence values to review and accept the rest. Perplexity’s Agent API cites sources inline in the answer, with no per-field confidence.
+Both APIs output JSON against your schema, and Parallel adds a Research Basis per field containing source URLs, supporting excerpts, reasoning, and a confidence score so downstream code can flag weak fields. Perplexity’s Agent API cites sources inline without per-field confidence.
 
-Task Groups run thousands of rows over one Task Spec and stream progress as runs complete. A finished run can post to your webhook. Perplexity’s background mode runs long jobs asynchronously, and you poll or stream each response by its id. Perplexity lists completion webhooks on its roadmap.
-
-Parallel accepts 2,000 Task runs per minute on every account by default. Perplexity’s Agent API allows 1 to 33 requests per second, set by lifetime spend. That is 60 per minute for a new account and 1,980 per minute after $1,000 in purchases.
+Parallel Task Groups fan thousands of rows over one Task Spec with completion webhooks and a default limit of 2,000 runs per minute on every account. Perplexity’s Agent API supports async background polling and lists completion webhooks on its roadmap, starting at 1 request per second (60 per minute) on new accounts and scaling to 33 per second (1,980 per minute) after $1,000 in lifetime spend.
 
 Sources: [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel Task Group docs](https://docs.parallel.ai/task-api/group-api), [Parallel Task webhook docs](https://docs.parallel.ai/task-api/webhooks), [Parallel rate limits](https://docs.parallel.ai/getting-started/rate-limits), [Perplexity Sonar vs. Parallel](https://parallel.ai/articles/perplexity-sonar-vs-parallel)
 
@@ -157,35 +161,48 @@ Parallel: 2,000
 
 Perplexity: 60
 
-Default limits from each provider’s documentation, October 2026\. Parallel counts Task runs created, and GET polling does not count. Perplexity counts Agent API requests per second per organization, from 1 at Tier 0 to 33 at Tier 4 and above.
+Default limits from each provider’s documentation, October 2026\. Parallel counts Task runs created (GET polling excluded). Perplexity scales Agent API throughput from 1 RPS at Tier 0 to 33 RPS at Tier 4 and above.
 
-## Monitoring and entity discovery as endpoints
+## Dedicated endpoints for scheduled monitoring and entity lists
 
-Monitor runs a query on a schedule and posts new events to your webhook. You pick hourly, daily, or weekly checks. You define the query once and skip the cron jobs and deduplication. Monitor costs $3 to $10 per 1,000 checks. Perplexity documents no monitoring endpoint. Its cookbook builds a news monitor from repeated Search API calls.
+Monitor runs queries hourly, daily, or weekly ($3 to $10 per 1,000 checks) and posts deduplicated events to your webhook. Perplexity has no monitoring endpoint and relies on cookbook scripts calling Search on a schedule.
 
-FindAll turns a description into a verified, structured list of matching entities. Each run costs a fixed fee plus $0.03 to $1 per match, set by the generator you pick. Entity Search returns candidate entities in one call. Perplexity offers people search and finance search as Agent API tools. It has no endpoint that builds a verified entity list.
+FindAll turns natural-language criteria into a verified entity list (fixed fee plus $0.03 to $1 per match by generator), alongside Entity Search for single-call candidate lookups. Perplexity offers people and finance tools inside its Agent API without a list-building endpoint.
 
 Sources: [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [Parallel FindAll docs](https://docs.parallel.ai/findall-api/findall-quickstart), [Parallel Entity Search docs](https://docs.parallel.ai/findall-api/entity-search), [Parallel pricing](https://parallel.ai/pricing)
 
-## EU data residency for search, which Perplexity doesn’t document
+## How much does the Perplexity API cost?
 
-Parallel serves its Search and Extract APIs from the EU at eu.parallel.ai, under an enterprise agreement. The API, SDKs, and keys are the same as api.parallel.ai, and only the base URL changes. Search runs in basic mode only, with up to 20 results per request, answered from the EU index with no live fetching. Extract takes up to 20 URLs per request. Queries, objectives, results, excerpts, and model inference stay in the EU, and request and response content is not retained.
+Perplexity bills per request on Search ($1 per 1,000 on Fast Search, $5 on standard) and per token plus tool calls on its Agent API. Decisions, Embeddings, and the code sandbox are metered separately, with no documented general API free credit.
 
-The EU endpoint has limits. Billing, metrics, and edge logs, which contain no content, go to the US. Extract looks up each URL in Parallel’s cache of public web pages, which is hosted outside the EU. Only the URL is sent, and under zero data retention it isn’t saved. Extract is cache-only when advanced\_settings.fetch\_policy.timeout\_seconds is 0, and uncached URLs then return an error. Other Search modes, Task, FindAll, Monitor, Chat, Responses, and MCP aren’t served in the EU. They return an error and are never forwarded to the US. Our [guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency) compares every vendor’s documented option.
+__Perplexity API list prices by endpoint__
+| Endpoint or tool             | List price           | Billed per      | Notes                                            |
+| ---------------------------- | -------------------- | --------------- | ------------------------------------------------ |
+| Fast Search                  | $1                   | 1,000 requests  | Up to 20 results, 50 queries per second          |
+| Standard Search              | $5                   | 1,000 requests  | Up to 20 results, 50 queries per second          |
+| Agent API fetch\_url         | $0.50                | 1,000 URLs      | Plus Agent API model tokens                      |
+| Agent API research           | Model tokens + tools | Run             | Varies with step count and chosen model          |
+| Decisions API (v1.2 / flash) | $0.02 / $0.01        | 1M input tokens | Output tokens free, classifies sent content only |
+| Embeddings API               | From $0.004          | 1M tokens       | Separate text embedding endpoint                 |
+| Code sandbox tool            | $0.03                | Session         | Inside Agent API runs                            |
 
-Perplexity doesn’t document an EU processing option. Its API FAQ says compute is hosted on Amazon Web Services in North America. By default the API keeps no prompt data, so retention is covered but location isn’t. Perplexity’s position was read from its own documentation on October 16, 2026.
+Rates from Perplexity API documentation, checked November 3, 2026\. Enterprise pricing is custom.
 
-Sources: [Parallel privacy policy](https://parallel.ai/privacy-policy), [Parallel guide to EU search APIs](https://parallel.ai/articles/best-web-search-apis-eu-data-residency)
+Perplexity’s Agent API scales rate limits by lifetime spend, starting at 1 request per second (60 per minute) on Tier 0 and reaching 33 per second after $1,000 in purchases. Search runs at 50 queries per second across tiers.
+
+Parallel matches Search list prices ($1 Turbo or Fast, $5 Basic or Advanced per 1,000) and gives every deep research processor a fixed upfront price ($5 to $2,400 per 1,000 runs) at 2,000 runs per minute from day one, with up to $80 at signup and $5 each month.
+
+Sources: [docs.perplexity.ai](https://docs.perplexity.ai/getting-started/pricing), [parallel.ai/pricing](https://parallel.ai/pricing), [docs.parallel.ai/getting-started/pricing](https://docs.parallel.ai/getting-started/pricing), checked November 3, 2026.
 
 ## Feature by feature
 
-Pricing, capabilities, performance, integrations, and enterprise readiness, side by side.
+Pricing, capabilities, performance, integrations, and compliance side by side.
 
-### Pricing and total cost
+### Pricing and billing
 
-Search list prices match at $1 and $5 per 1,000\. Perplexity is cheaper for page fetches. Parallel prices deep research per processor, so you know the cost before a run starts.
+Search list prices match at $1 and $5 per 1,000\. Perplexity includes more results per search and charges less per URL fetch inside Agent runs, while Parallel fixes deep research prices per processor upfront.
 
-__Pricing and total cost: Parallel compared with Perplexity__
+__Pricing and billing: Parallel compared with Perplexity__
 | Feature                                 | Parallel                                         | Perplexity                                                 |
 | --------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------- |
 | Search, per 1,000 requests              | $1 Turbo or Fast, $5 Basic or Advanced           | $1 Fast Search, $5 standard                                |
@@ -199,7 +216,7 @@ Sources: [Parallel pricing](https://parallel.ai/pricing), [Perplexity Sonar vs. 
 
 ### Core capabilities
 
-Both platforms cover search, page fetching, cited answers, and agentic research. Both also offer a Decisions API that returns probabilities. Parallel’s version retrieves evidence from the live web, and Perplexity’s reads only the content you send. Perplexity adds embeddings and code execution. Parallel adds per-field evidence, batch orchestration, monitoring, and entity discovery.
+Both offer search, page fetches, cited answers, agentic research, and a Decisions API (Parallel grounds Decisions in the live web, while Perplexity classifies inputs you send). Perplexity adds embeddings and code execution, while Parallel adds per-field citations, Task Groups, webhooks, Monitor, and FindAll.
 
 __Core capabilities: Parallel compared with Perplexity__
 | Feature                      | Parallel                                                                                       | Perplexity                                                                  |
@@ -215,11 +232,11 @@ __Core capabilities: Parallel compared with Perplexity__
 | Embeddings                   | Not offered                                                                                    | Embeddings API from $0.004 per 1M tokens (Leads)                            |
 | Code execution               | Not offered                                                                                    | Sandbox tool at $0.03 per session (Leads)                                   |
 
-Sources: [Parallel Search docs](https://docs.parallel.ai/search/search-quickstart), [Parallel Extract docs](https://docs.parallel.ai/extract/extract-quickstart), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel Task Group docs](https://docs.parallel.ai/task-api/group-api), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [Parallel FindAll docs](https://docs.parallel.ai/findall-api/findall-quickstart), [Perplexity Sonar vs. Parallel](https://parallel.ai/articles/perplexity-sonar-vs-parallel), [Perplexity Search API vs. Parallel Search API](https://parallel.ai/articles/perplexity-search-api-vs-parallel-search-api)
+Sources: [Parallel Search docs](https://docs.parallel.ai/search/search-quickstart), [Parallel Extract docs](https://docs.parallel.ai/extract/extract-quickstart), [Research Basis docs](https://docs.parallel.ai/task-api/guides/access-research-basis), [Parallel Task Group docs](https://docs.parallel.ai/task-api/group-api), [Parallel Monitor docs](https://docs.parallel.ai/monitor-api/monitor-quickstart), [Parallel FindAll docs](https://docs.parallel.ai/findall-api/findall-quickstart), [Perplexity Sonar vs. Parallel](https://parallel.ai/articles/perplexity-sonar-vs-parallel)
 
 ### Performance and scale
 
-Perplexity allows far more search requests per minute. Parallel allows more research runs on a new account.
+Perplexity permits 3,000 search queries per minute on every tier and publishes 160ms median latency on Fast Search. In November 2026 Artificial Analysis data, Parallel finished tasks in 15.5s on Fast against 30.9s for Perplexity medium, and Parallel allows 2,000 research runs per minute from day one.
 
 __Performance and scale: Parallel compared with Perplexity__
 | Feature                                          | Parallel                           | Perplexity                                    |
@@ -234,7 +251,7 @@ Sources: [Parallel benchmarks, August and September 2026](https://parallel.ai/be
 
 ### Integrations and ecosystem
 
-Both ship Python and TypeScript SDKs, a hosted MCP server, and an OpenAI-compatible route. Perplexity lets you pick models from several labs behind one key. Parallel connects to data warehouses and spreadsheets for enrichment.
+Both provide Python/TypeScript SDKs, hosted MCP servers, and OpenAI-compatible routes. Perplexity lets you route across third-party frontier models under one key, while Parallel connects directly to Snowflake, BigQuery, DuckDB, and Google Sheets.
 
 __Integrations and ecosystem: Parallel compared with Perplexity__
 | Feature                      | Parallel                                                          | Perplexity                                                   |
@@ -248,11 +265,11 @@ __Integrations and ecosystem: Parallel compared with Perplexity__
 
 Sources: [Parallel Responses docs](https://docs.parallel.ai/responses-api/responses-quickstart), [Parallel MCP docs](https://docs.parallel.ai/integrations/mcp/quickstart), [Parallel integrations](https://docs.parallel.ai/integrations/developer-quickstart), [Perplexity Sonar vs. Parallel](https://parallel.ai/articles/perplexity-sonar-vs-parallel)
 
-### Security, compliance, and support
+### Security, compliance, and EU residency
 
-Both hold SOC 2 Type II. Parallel is HIPAA compliant. Perplexity lists a 2025 HIPAA gap assessment and states zero data retention for its Chat Completions API.
+Both hold SOC 2 Type II. Parallel is HIPAA compliant, while Perplexity lists a 2025 HIPAA gap assessment and scopes its stated zero data retention to the Chat Completions API. On EU residency, On enterprise plans, Parallel’s eu.parallel.ai endpoint serves Search (basic mode, up to 20 results from the EU index) and cache-only Extract (up to 20 URLs) in the EU without retaining content. Extract sends only the URL to Parallel’s page cache outside the EU without saving it, other APIs return an error instead of forwarding to the US, and content-free billing, metrics, and edge logs go to the US. Perplexity documents no EU processing option (checked October 16, 2026) and hosts API compute on AWS in North America. See our [EU search APIs guide](/ai/articles/best-web-search-apis-eu-data-residency).
 
-__Security, compliance, and support: Parallel compared with Perplexity__
+__Security, compliance, and EU residency: Parallel compared with Perplexity__
 | Feature                  | Parallel                                             | Perplexity                          |
 | ------------------------ | ---------------------------------------------------- | ----------------------------------- |
 | SOC 2 Type II            | Yes                                                  | Yes                                 |
@@ -266,55 +283,83 @@ Sources: [Parallel pricing](https://parallel.ai/pricing), [Parallel Trust Center
 
 ## Which one should you pick?
 
-Parallel suits research pipelines where cost per run, evidence per field, and monitoring decide. Perplexity suits apps that want quick cited answers, model choice, and per-token classification of content they already hold.
+Search list prices are identical, so pick based on what sits around search: fixed-price batch research and monitoring on Parallel, or multi-model routing, embeddings, and high search RPM on Perplexity.
 
 ### Pick Parallel when
 
-* You run deep research at volume and want a fixed price per run, known before it starts.
-* You need a citation, reasoning, and a confidence score on every field of a research result.
-* You want to monitor the web on a schedule and receive new events by webhook.
-* You need verified lists of companies or people that match your criteria.
-* You handle protected health information and need a HIPAA-compliant provider.
+* You run deep research at volume and want fixed per-run pricing instead of metered token plus tool bills.
+* You need per-field citations, excerpts, reasoning, and confidence scores, plus completion webhooks.
+* You want scheduled web monitoring (Monitor) or verified entity discovery (FindAll) on the same API.
+* You need HIPAA compliance or EU data residency for search.
 
 ### Pick Perplexity when
 
-* You need to classify text or images you already hold, priced per input token.
-* You want embeddings, code execution, and models from several labs behind one key.
-* You serve quick cited answers at high volume and per-request cost matters most.
-* You need more than 600 search requests per minute or 20 results per call.
+* You need to classify text or images you already hold, billed per input token.
+* You want embeddings, a code sandbox, and frontier models from several labs behind one key.
+* You serve high-volume cited answers or need more than 600 search RPM and 20 results per call.
 
 ## Switching from Perplexity
 
-Search, page fetches, and agentic research have direct Parallel counterparts. Decisions moves to Parallel’s Decisions API when the answer depends on the live web. The Embeddings API has no Parallel counterpart, so keep Perplexity for that and port the rest.
+Search, fetch\_url, and Agent research map cleanly to Parallel endpoints. Keep Perplexity if you rely on its Embeddings API or code sandbox.
 
 [Start your migration](https://platform.parallel.ai/) [Talk to our team](https://contact.parallel.ai/)
 
 1. 01  
-### Map the calls you already make  
-The Search API becomes Parallel Search, and fetch\_url becomes Extract. Agent API research runs become Task runs when you want a schema, or Responses calls when you want a chat-shaped answer. Sonar calls that moved to Agent API effort levels map the same way.
+### Map endpoints and retired Sonar calls  
+Perplexity Search moves to Parallel Search, fetch\_url moves to Extract, and Agent research (or migrated Sonar calls) moves to Task for schema output or Responses for conversational answers. Live-web Decisions move to Parallel’s Decisions API.
 2. 02  
-### Translate the parameters  
-Fast Search maps to Turbo or Fast, and standard search to Basic or Advanced. Domain filters move into the source policy. Effort levels map to processors, from Lite for quick lookups to Pro and Ultra for exhaustive research.
+### Match tiers and filters  
+Fast Search maps to Turbo or Fast, standard search to Basic or Advanced, domain filters to source policy, and effort levels to Task processors from Lite up to Ultra8x.
 3. 03  
-### Validate before you commit  
-New accounts earn up to $80 at signup plus $5 in credits every month. That covers a real evaluation on your own query mix before anything moves to production.
+### Test on your own workload  
+New accounts receive up to $80 at signup plus $5 each month, letting you compare accuracy and end-to-end cost on your own queries first.
+
+### Before (Perplexity Agent) (JSON: Per-field Research Basis on Parallel Task vs. inline citations)
+
+```json
+{
+  "output_text": "Company X holds SOC 2 Type II [1] and ISO 27001 [2].",
+  "citations": [
+    "https://companyx.com/security",
+    "https://companyx.com/trust"
+  ]
+}
+```
+
+### After (Parallel Task) (JSON: Per-field Research Basis on Parallel Task vs. inline citations)
+
+```json
+{
+  "output": { "soc2_type_2": true, "iso_27001": true },
+  "basis": [
+    {
+      "field": "soc2_type_2",
+      "citations": [{ "url": "https://companyx.com/security", "excerpts": ["SOC 2 Type II certified"] }],
+      "reasoning": "Security page states active SOC 2 Type II certification.",
+      "confidence": "high"
+    }
+  ]
+}
+```
 
 ## FAQ
 
 * **Is Parallel better than Perplexity?**  
-For deep research and multi-hop search, yes. Parallel Search ranks #1 on Artificial Analysis (November 2026). In Parallel’s August 2026 run, Task Lite scored higher than Perplexity’s high effort level on BrowseComp and DeepSearchQA at $5 per 1,000 questions against $441.50 and $371.90\. On Openbenchmarks, Parallel scored 46.5 F1 on multi-hop company search against 37.8\. Perplexity scored higher on OpenRouter’s BrowseComp, WideSearch, and HLE runs.
+For deep research cost and batch throughput, yes. Parallel Search ranks #1 on Artificial Analysis (November 2026) at 83 to 80, and Task Lite outscored Perplexity high on BrowseComp and DeepSearchQA at $5 per 1,000 questions versus $441.50 and $371.90\. Perplexity scored higher on OpenRouter’s BrowseComp, WideSearch, and HLE runs.
 * **What is Perplexity’s Decisions API?**  
-It’s a classifier, not a web API, and never fetches a URL. You ask yes or no, choice, or rubric questions about text, JSON, or images, and it returns probabilities. It costs $0.02 per million input tokens (pplx-decider-v1.2) or $0.01 (pplx-decider-flash-v1.2), with free output and 10 requests per second. Parallel’s Decisions API answers from live web evidence with sources, at $1 per 1,000 requests.
+It is a classifier, not a web API, and never fetches a URL. You send yes/no, choice, or rubric questions over text, JSON, or images and pay $0.02 per million input tokens (pplx-decider-v1.2) or $0.01 (flash) with free output. Parallel’s Decisions API answers from live web evidence with sources at $1 per 1,000 requests.
 * **What replaced Perplexity Sonar?**  
-Perplexity ended Sonar Chat Completions support on September 27, 2026\. Synchronous Sonar calls are being reformulated as Agent API requests, and async calls must move to background mode. On Parallel, the closest counterparts are the Responses API for quick cited answers and the Task API for structured research.
+Perplexity ended Sonar Chat Completions support on September 27, 2026, routing synchronous calls to the Agent API and async calls to background mode. On Parallel, the Responses API handles quick cited answers and the Task API handles structured deep research.
 * **Parallel vs. Perplexity: which is cheaper?**  
-Search costs the same, $1 per 1,000 on the fast tiers and $5 on standard. Perplexity is cheaper for page fetches. Parallel was far cheaper on deep research in its August run, at $5 per 1,000 BrowseComp questions against $441.50, and its processors have fixed prices.
+Search list prices tie at $1 (fast) and $5 (standard) per 1,000 requests. Perplexity charges less per fetched URL inside Agent runs ($0.50 plus tokens). On deep research, Parallel’s August run cost $5 per 1,000 BrowseComp questions on Task Lite against $441.50 on Perplexity high, with fixed processor prices.
 * **Where does Perplexity still win?**  
-Perplexity scored higher on OpenRouter’s BrowseComp, WideSearch, and HLE runs. It offers embeddings, a code sandbox, and model choice, and its Decisions API is cheaper for classifying content you already have. Its search rate limit is about 3,000 requests a minute against Parallel’s 600.
+Perplexity outscored Parallel on OpenRouter’s BrowseComp, WideSearch, and HLE runs. It also provides embeddings, a code sandbox, multi-lab model selection, per-token classification over content you already hold, up to 20 results per search, and 50 search QPS (about 3,000 RPM) versus Parallel’s 600 RPM.
 * **Does Perplexity offer EU data residency?**  
-Not as of October 16, 2026\. Perplexity’s API FAQ says its compute is hosted on Amazon Web Services in North America. Parallel’s EU endpoint serves Search (basic mode) and Extract (cache-only). Other APIs aren’t served there. Billing, metrics, and edge logs (no content) go to the US, and Extract sends only URLs to its page cache outside the EU.
-* **How current is this comparison?**  
-Parallel reviewed Perplexity’s docs, pricing, and changelog on November 3, 2026\. Deep research figures come from Parallel’s August 26 run, search figures from its September 9 run. Openbenchmarks figures come from its October 2 company search and September 26 coding-agent boards, AIMultiple’s from its November 10 benchmark. Artificial Analysis figures from its November 19 data, OpenRouter runs from August and September. Check the linked sources.
+Not as of October 16, 2026\. Perplexity’s API FAQ says compute runs on AWS in North America. Parallel’s EU endpoint serves Search (basic mode) and cache-only Extract, never forwarding other APIs to the US. Extract sends only URLs to its page cache outside the EU, and content-free billing, metrics, and edge logs go to the US.
+
+> “We built Kepler to be audit-ready at every step. That standard applies to discovery too. Parallel’s accuracy and coverage are what made it the only search API we trusted in that role.”
+
+Vinoo Ganesh, CEO, Kepler[Read the Kepler case study →](/ai/blog/case-study-kepler)
 
 Trusted by
 
@@ -326,6 +371,16 @@ Trusted by
 * Attio
 * Granola
 * Manus
+
+## Compare other search APIs
+
+[View all comparisons →](/ai/compare)
+
+* [Parallel vs. Brave](https://parallel.ai/compare/brave-vs-parallel)
+* [Parallel vs. Exa](https://parallel.ai/compare/exa-vs-parallel)
+* [Parallel vs. Tavily](https://parallel.ai/compare/tavily-vs-parallel)
+* [Parallel vs. Firecrawl](https://parallel.ai/compare/firecrawl-vs-parallel)
+* [Parallel vs. SerpApi](https://parallel.ai/compare/serpapi-vs-parallel)
 
 ## Where agents find answers
 
