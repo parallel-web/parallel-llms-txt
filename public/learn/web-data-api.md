@@ -1,53 +1,71 @@
 # Web data API
 
-A web data API is an application programming interface (API) that acts as a standardized bridge between software systems across the web. You send a request, and you get structured data back without needing to know how the other system stores or builds that data.
+A web data API is an HTTP interface that delivers data from an application database or the public web in structured, machine-readable formats like JSON or markdown without requiring custom HTML scraping.
 
-A web data API is an interface that lets software applications request and exchange data with other systems over the internet, usually through HTTP requests and responses in formats like JSON or XML.
+A web data API is an HTTP interface that delivers data from the internet or a remote software system in a structured, machine-readable format (typically JSON, NDJSON, or clean markdown) without requiring your code to scrape HTML or inspect the provider's internal database. In modern software, web data APIs fall into two broad camps: **first-party application APIs** (exposing one company's own records over REST or GraphQL) and **open-web data APIs** (indexing, fetching, and structuring content from across the public internet for analytics and [AI agents](/learn/ai-agent)).
 
-## What is a web data API?
+**First-party API vs. open-web data API**
 
-A web data API is an application programming interface (API) that acts as a standardized bridge between software systems across the web. You send a request, and you get structured data back without needing to know how the other system stores or builds that data.
+```text
+FIRST-PARTY DATA API
+  Client ──▶ GET /v1/orders/42 ──▶ Auth / Rate Limit ──▶ App DB
+                                                           │
+  Client ◀── 200 OK {order_id, total_cents, status} ◀──────┘
 
-APIs now carry most of the traffic online, so nearly every modern app leans on them to move data. Cloudflare reports that APIs make up [over half of internet traffic](https://www.cloudflare.com/2024-api-security-management-report/), at 57%.
+OPEN-WEB DATA API (for AI agents & pipelines)
+  Agent  ──▶ POST /v1/search {objective, queries} ──▶ Web Index /
+                                                      Extract Engine
+  Agent  ◀── 200 OK {results: [{url, excerpts}]}  ◀────────┘
+```
 
-At Parallel, we build web data APIs purpose-built for AI agents. Our [web search API](https://parallel.ai/learn/web-search-api) returns token-efficient markdown of dense page excerpts that large language models (LLMs) can read directly.
+According to Cloudflare's [API Security & Management Report](https://www.cloudflare.com/2024-api-security-management-report/), API traffic accounts for more than half of dynamic internet traffic, and Postman's [State of the API report](https://www.postman.com/state-of-api/2025/) shows REST over HTTP/JSON remains the dominant architectural style at over 90% adoption.
 
-## Key characteristics
+## Core contract of a web data API
 
-- **Requests over HTTP:** A client sends a Hypertext Transfer Protocol (HTTP) request to an endpoint, and the server returns data or an error.
-- **Standard data formats:** Responses come back in machine-readable formats, most often JavaScript Object Notation (JSON) or Extensible Markup Language (XML).
-- **Architectural styles:** Most web data APIs follow Representational State Transfer (REST), which dominates at 93% per Postman's [2025 State of the API report](https://www.postman.com/state-of-api/2025/). Others use GraphQL or WebSocket.
-- **Access control with keys:** An API key authenticates each request and lets the provider secure and track usage.
-- **Abstraction:** The API exposes only the data and actions the provider chooses, and it hides the underlying database.
+Regardless of whether the underlying data lives in a SaaS Postgres database or a multi-billion-page [web index](/learn/web-index), production web data APIs share five HTTP mechanics:
 
-We measure quality in the open. Parallel reaches 91% accuracy on the SimpleQA benchmark and leads fast web search providers on BrowseComp.
+- **Stateless HTTP verbs and endpoints:** Clients send `GET` (reads) or `POST` (complex queries, search payloads, batch jobs) to versioned paths such as `/v1/search` or `/v1/extract`.
+- **Authentication and scoping:** Requests pass credentials via headers (`Authorization: Bearer ...` or `x-api-key`), keeping secrets out of URL query strings and server logs.
+- **Structured serialization:** Responses return deterministic schemas in `application/json` (or clean markdown strings embedded inside JSON for LLM consumption), avoiding brittle HTML parsing.
+- **Pagination and rate limits:** Large result sets stream via cursors (`next_cursor`) and enforce quotas with `429 Too Many Requests` and `Retry-After` headers.
+- **Idempotency and timeouts:** Well-behaved clients set explicit timeouts, respect retry-after backoff on `429`/`503`, and avoid retrying non-idempotent writes without an idempotency key.
 
-![Parallel web search API accuracy benchmarks](https://cdn.sanity.io/images/5hzduz3y/production/50aa4294bd61a539e76907fcb537c7db5266ebd7-1920x1080.png)
+```bash
+curl -sS https://api.parallel.ai/v1/search \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: $PARALLEL_API_KEY" \
+  -d '{
+    "mode": "fast",
+    "objective": "Find the latest release notes for PostgreSQL 18",
+    "search_queries": ["PostgreSQL 18 release notes postgresql.org"]
+  }'
+```
 
-_Parallel's __[published accuracy benchmarks](https://parallel.ai/benchmarks)__ compare web search APIs on accuracy and latency._
+## Categories of open-web data APIs for AI systems
 
-## Example
+When teams ask for a "web data API" to feed an LLM or [data enrichment](/learn/data-enrichment) pipeline, they usually mean one of four specialized layers:
 
-A travel booking company uses airline web data APIs to request live fares from several carriers, and its site shows the results in one view. Each carrier keeps its own pricing system, yet the company reads every fare through the same request pattern.
+| Category | Input | Output | When to choose it |
+| --- | --- | --- | --- |
+| [Web search API](/learn/web-search-api) | Natural-language objective / keyword queries | Ranked URLs + dense excerpts | Discovering pages and grounding [agentic search](/learn/agentic-search) |
+| Web extraction API (e.g., [Parallel Extract](/products/extract)) | Specific URLs | Clean markdown / structured excerpts | Reading known pages without maintaining a [web scraper](/learn/web-scraping) |
+| [Headless browser API](/learn/headless-browser-api) | URL + browser script / wait rules | Hydrated HTML, PNG, PDF | Custom DOM rendering or scripted UI interactions |
+| Structured research / [citations API](/learn/citations-api) | Schema + entity / question | Typed JSON fields + per-field citations | Automated [company research](/learn/company-research), [KYB](/learn/kyb), and enrichment |
 
-An AI agent calls Parallel's [Search API](https://parallel.ai/products/search) to find relevant pages for a research question. It then uses the [Extract API](https://parallel.ai/products/extract) to turn any public URL into clean markdown in a single call.
+## Why AI agents prefer APIs over raw scraping
 
-## Related terms
+Scraping arbitrary websites directly mixes discovery, proxy rotation, JS rendering, anti-bot retries, and HTML boilerplate stripping into your application code. Even after rendering succeeds, raw HTML inflates [context window](/learn/context-window) token counts by 10x–30x. Purpose-built open-web data APIs absorb the crawling, indexing, and extraction layer so the calling service receives clean, attributable data in one HTTP round-trip.
 
-- [web scraping](https://parallel.ai/learn/web-scraping): Pulling data straight from a page's HTML rather than through a structured API.
-- [semantic search](https://parallel.ai/learn/semantic-search): Retrieving results by meaning and intent instead of exact keyword matches.
-- [deep research APIs](https://parallel.ai/learn/deep-research): Running multi-step research across many sources to return cited, structured findings.
+## Frequently asked questions
 
-## FAQ
+**What is the difference between a web data API and web scraping?**
 
-**What is the difference between a web API and a data API?**
+A web data API delivers structured data directly over a documented HTTP contract (returning JSON or markdown). [Web scraping](/learn/web-scraping) fetches raw HTML meant for human browsers and parses it with selectors—requiring ongoing maintenance whenever page layouts or anti-bot rules change.
 
-A web API is any interface that works over the internet using web protocols. A data API is a web API focused on accessing and exchanging data between systems.
+**Are all web data APIs REST APIs?**
 
-**What format does a web data API return?**
+No. Most use REST over HTTP with JSON payloads, but some expose GraphQL (for client-specified field graphs), gRPC (for low-latency internal services), WebSockets/SSE (for streaming updates), or JSON-RPC 2.0 (used by [MCP servers](/learn/mcp-server)).
 
-Most return data in JSON or XML, machine-readable formats that any programming language can parse.
+**How should an application handle web data API errors?**
 
-**Do web data APIs have real business value?**
-
-Yes, they do. In Postman's 2025 State of the API report, 65% of organizations now generate revenue from their APIs.
+Always inspect HTTP status codes: treat `400`/`401`/`403` as non-retryable client or credential bugs, and retry `429` and `5xx` responses using exponential backoff with jitter (honoring any `Retry-After` header).

@@ -1,8 +1,25 @@
-# Entity matching: how to tell if two company records are the same, a subsidiary, or unrelated
+# Entity matching
 
 Entity matching is the step in a data pipeline that decides whether two records describe the same real-world thing, and for company records the hardest pairs turn on facts about the outside world, not on how similar the names look. This guide covers how entity resolution pipelines work, which cases need outside knowledge, and a web-grounded decision step tested live on six real company pairs.
 
 Entity matching, also called entity resolution or record linkage, decides whether two records refer to the same entity. A typical pipeline standardizes fields, uses blocking to limit which pairs get compared, scores each candidate pair with string similarity and a statistical or machine-learned model, and clusters the matches. That settles most pairs. The ambiguous remainder for company data (renames, parent and subsidiary, regional entities, acquisitions) needs facts that aren't in either record, and a web-grounded decision step can answer "same entity, parent or subsidiary, unrelated, or unknown" for $0.001 a pair, so 100,000 hard pairs cost about $100.
+
+**Five-stage entity matching with web-grounded tie-breaking**
+
+```text
+Raw Records ──▶ [1. Standardize] ──▶ [2. Block Candidate Pairs]
+                                                 │
+                                                 ▼
+                                      [3. String / ML Score]
+                                                 │
+            ┌───────────────────────────┬────────┴────────┐
+            ▼ high                      ▼ ambiguous       ▼ low
+      [Auto-Match]         [4. Web-Grounded Decision]  [No Match]
+            │               (same / sub / different)
+            └───────────────────┬───────┘
+                                ▼
+                     [5. Cluster & Canonical ID]
+```
 
 We build [Parallel's Decisions API](https://parallel.ai/products/decisions), which we use for that last step below. The results are from live calls on Nov 6, 2026, reported as they came back.
 

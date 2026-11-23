@@ -241,11 +241,11 @@ In production, [Rogo](https://parallel.ai/blog/case-study-rogo) uses Parallel as
 
 ### Exa
 
-Exa Auto has the top FrontierFinance score, 0.4 points ahead of Parallel in a single run, and it placed third on T3. It's a reasonable pick for long-form research answers, especially if you already use Exa. Exa lists Auto search at [$7 per 1,000 requests](https://exa.ai/pricing) with up to 10 results, plus $1 per 1,000 pages for contents. In our runs it cost 1.4x to 1.6x more per answer than Parallel Advanced on T3 and FrontierFinance. See [Exa vs. Parallel](/articles/exa-vs-parallel) for a broader comparison.
+Exa Auto has the top FrontierFinance score, 0.4 points ahead of Parallel in a single run, and it placed third on T3. It's a reasonable pick for long-form research answers, especially if you already use Exa. Exa lists Auto search at [$7 per 1,000 requests](https://exa.ai/pricing) with up to 10 results, plus $1 per 1,000 pages for contents. In our runs it cost 1.4x to 1.6x more per answer than Parallel Advanced on T3 and FrontierFinance. See [Exa vs. Parallel](/compare/exa-vs-parallel) for a broader comparison.
 
 ### Perplexity
 
-Perplexity Finance + Web scored 79.7% on T2, within 0.2 of the top, so for simple historical lookups it's essentially tied with Parallel Advanced. It cost about three times as much per answer there, and on T3 it trailed by 7.4 points at 2.2x the cost. Perplexity prices its [Search API](https://docs.perplexity.ai/docs/getting-started/pricing) at $5 per 1,000 requests ($1 with Fast Search), and its Agent API offers a `finance_search` tool at $5 per 1,000 invocations. More detail is in [Perplexity Search API vs. Parallel](/articles/perplexity-search-api-vs-parallel-search-api).
+Perplexity Finance + Web scored 79.7% on T2, within 0.2 of the top, so for simple historical lookups it's essentially tied with Parallel Advanced. It cost about three times as much per answer there, and on T3 it trailed by 7.4 points at 2.2x the cost. Perplexity prices its [Search API](https://docs.perplexity.ai/docs/getting-started/pricing) at $5 per 1,000 requests ($1 with Fast Search), and its Agent API offers a `finance_search` tool at $5 per 1,000 invocations. More detail is in [Perplexity Search API vs. Parallel](/compare/perplexity-vs-parallel).
 
 ### OpenAI native search
 
@@ -253,7 +253,7 @@ OpenAI's built-in web search came within 0.6 points of Parallel Advanced on PWS-
 
 ### Tavily
 
-Tavily stayed within 2.7 points of the leader on T2 but finished last on T3 and FrontierFinance, and it was the most expensive arm on T3, T2, and FrontierFinance in our runs. Tavily bills by credit: a basic search costs 1 credit and an advanced search costs 2, at [$0.008 per credit](https://docs.tavily.com/documentation/api-credits) on pay-as-you-go. It fits simple lookups in stacks already built on Tavily. See [Tavily vs. Parallel](/articles/tavily-vs-parallel-search).
+Tavily stayed within 2.7 points of the leader on T2 but finished last on T3 and FrontierFinance, and it was the most expensive arm on T3, T2, and FrontierFinance in our runs. Tavily bills by credit: a basic search costs 1 credit and an advanced search costs 2, at [$0.008 per credit](https://docs.tavily.com/documentation/api-credits) on pay-as-you-go. It fits simple lookups in stacks already built on Tavily. See [Tavily vs. Parallel](/compare/tavily-vs-parallel).
 
 ## Search APIs vs. finance research APIs
 

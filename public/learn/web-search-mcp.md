@@ -1,8 +1,19 @@
-# What is a web search MCP? How AI agents search the live web
+# Web search MCP
 
 A web search MCP is how an AI agent reaches the live web from Claude Code, Cursor, Codex, or any other MCP client, and the server you connect shapes what the model reads, what it costs, and how much context it uses. This guide covers how a web search MCP works, what a tool call returns, how five popular servers differ, and how to choose and install one.
 
 A web search MCP is a Model Context Protocol (MCP) server that exposes web search, and usually page fetching, as tools an AI model can call. The client lists the server’s tools, the model decides when it needs current information, and the server runs the query and returns ranked results with text the model can read and cite.
+
+**How a web search MCP connects any client to live web results**
+
+```text
+[IDE / Agent Host] ──1. tools/list──▶ [Web Search MCP Server]
+        │                                       │
+  2. LLM emits                                  │ 3. Query index +
+     web_search_preview                         │    extract pages
+        │                                       ▼
+        └◀──── 4. Ranked URLs + Excerpts ── [Search / Extract API]
+```
 
 MCP is the open standard underneath. Anthropic open-sourced it on November 25, 2024, and donated it to the [Agentic AI Foundation](https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-agentic-ai-foundation), a directed fund under the Linux Foundation, on December 9, 2025. Because every client speaks the same protocol, one web search server works in Claude Code, Cursor, Codex, VS Code, Gemini CLI, and most other agent clients without any integration code. For the protocol itself, see [What is MCP](https://parallel.ai/learn/model-context-protocol).
 

@@ -1,8 +1,27 @@
-# AI agents in finance: what they do and how they find facts
+# AI agents in finance
 
 AI in finance has moved from scoring models and chatbots to agents that research companies, verify business customers, and watch markets on their own, then hand a cited result to a person who decides. This guide covers the main use cases, why those agents depend on web data, how to evaluate the search layer under them, and how to put the pieces together.
 
 AI agents in finance are software systems that use a large language model to plan and carry out multi-step financial work, such as researching a company, verifying a business customer, or monitoring a portfolio, by calling tools like web search, page extraction, and internal databases. They return a sourced work product that an analyst, banker, or compliance officer reviews before anyone acts on it.
+
+**Evidence-backed financial agent architecture**
+
+```text
+Analyst Mandate (buyer list / KYB / earnings brief)
+       │
+       ▼
+┌──────────────────────────────────────────────────────────┐
+│ Financial Agent Loop                                     │
+│  Plan ──▶ [Web Search + Filings + Internal DB] ──▶ Check │
+│   ▲                                                  │   │
+│   └───────────── resolve gaps / conflicts ───────────┘   │
+└───────────────────────────┬──────────────────────────────┘
+                            ▼
+    Cited Work Product (URLs + excerpts + confidence)
+                            │
+                            ▼
+              Human Analyst / Compliance Sign-off
+```
 
 ## What are AI agents in finance?
 

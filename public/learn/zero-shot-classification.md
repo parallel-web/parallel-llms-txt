@@ -1,8 +1,19 @@
-# Zero-shot classification in 2026: from NLI models to decision models
+# Zero-shot classification
 
 Zero-shot classification lets you sort text into labels you name at runtime, without collecting a single labeled training example first. This guide covers how the NLI approach behind Hugging Face's pipeline works, where embeddings and LLM prompts fit, what the 2026 decision models changed, and what to do when the right label depends on facts that aren't in the text.
 
 Zero-shot classification assigns a text to one of a set of labels that the model never saw during training, so you can change the label set without retraining. The classic recipe, from Yin, Hay, and Roth (2019), turns each label into a hypothesis like "This example is about sports." and asks a natural language inference (NLI) model whether the text entails it; `facebook/bart-large-mnli` in the transformers `zero-shot-classification` pipeline is the implementation Hugging Face's own docs use. In 2026 you can also use embedding similarity, a prompted LLM, or a decision model (System One model) that returns a probability for every label in one pass. When the label depends on facts outside the text, such as "is this company publicly traded?", you need a model that can look them up.
+
+**Four zero-shot classification paradigms**
+
+```text
+Input Text + Unseen Labels ["billing", "bug", "feature"]
+       │
+       ├──▶ NLI (e.g. BART-MNLI)   ──▶ P(text entails label)
+       ├──▶ Embedding Similarity   ──▶ cos(vec(text), vec(label))
+       ├──▶ Prompted LLM           ──▶ structured label output
+       └──▶ Decision Model         ──▶ calibrated probs in 1 pass
+```
 
 ## What zero-shot classification means
 

@@ -11136,7 +11136,7 @@
               }
             ],
             "title": "Tools",
-            "description": "OpenAI tools. Web grounding is always on, so no tool is needed to search; a `web_search` tool's `filters` restrict the domains searched and cited (`allowed_domains` maps to Parallel's `source_policy.include_domains`, `blocked_domains` to `exclude_domains`). An `mcp` tool gives the model a remote MCP server to call; at most 10 per request. Every other tool is accepted and ignored."
+            "description": "OpenAI tools. Web grounding is always on, so no tool is needed to search; a `web_search` tool's `filters` restrict the domains searched and cited (`allowed_domains` maps to Parallel's `source_policy.include_domains`, `blocked_domains` to `exclude_domains`). An `mcp` tool gives the model a remote MCP server to call; at most 10 per request. A tool of any other `type` is accepted and ignored. A tool whose `type` is missing or not a string is rejected."
           },
           "data_sources": {
             "anyOf": [
@@ -11156,7 +11156,7 @@
           "input"
         ],
         "title": "ResponseCreateRequest",
-        "description": "Request body for the Responses API (`POST /v1/responses`).\n\nOpenAI-Responses-compatible: point a standard OpenAI client at\n`https://api.parallel.ai/v1` with your Parallel API key and set `model` to\n`parallel`. The fields below are the ones Parallel acts on. Web grounding\nis always on, so no tool is needed to search; a `web_search` tool only\nrestricts the searched domains through its `filters`. An `mcp` tool gives\nthe model a remote MCP server to call, and each call is executed and\nreported as an `mcp_call` output item. Every other tool is accepted and\nignored. `data_sources` enables data partners in addition to web search.\nOther OpenAI request fields (`tool_choice`, `temperature`, `top_p`,\n`max_output_tokens`, `parallel_tool_calls`, `truncation`, `store`, `user`,\n`include`) are accepted for compatibility but have no effect."
+        "description": "Request body for the Responses API (`POST /v1/responses`).\n\nOpenAI-Responses-compatible: point a standard OpenAI client at\n`https://api.parallel.ai/v1` with your Parallel API key and set `model` to\n`parallel`. The fields below are the ones Parallel acts on. Web grounding\nis always on, so no tool is needed to search; a `web_search` tool only\nrestricts the searched domains through its `filters`. An `mcp` tool gives\nthe model a remote MCP server to call, and each call is executed and\nreported as an `mcp_call` output item. A tool of any other `type` is\naccepted and ignored. A tool whose `type` is missing or not a string is\nrejected. `data_sources` enables data partners in addition to web search.\nOther OpenAI request fields (`tool_choice`, `temperature`, `top_p`,\n`max_output_tokens`, `parallel_tool_calls`, `truncation`, `store`, `user`,\n`include`) are accepted for compatibility but have no effect."
       },
       "ResponseError": {
         "additionalProperties": true,
@@ -11767,7 +11767,7 @@
       },
       "ResponseTextConfig": {
         "additionalProperties": true,
-        "description": "Text output configuration. By default the response is plain text; for\nstructured output set `format` to\n`{\"type\": \"json_schema\", \"name\": ..., \"schema\": {...}}`. On `/v1/responses`\nthe `json_object` format is accepted for compatibility but produces plain\ntext.",
+        "description": "Text output configuration. By default the response is plain text; for\nstructured output set `format` to\n`{\"type\": \"json_schema\", \"name\": ..., \"schema\": {...}}`. On `/v1/responses`\nthe `json_object` format produces plain text and may be refused with a 400;\nuse `json_schema` instead.",
         "properties": {
           "format": {
             "anyOf": [
@@ -12024,6 +12024,7 @@
             ]
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "title": "SourcePolicy",
         "description": "Source policy for web search results.\n\nPlain domains match that domain and its subdomains. Domain/path entries use\ncase-sensitive path matching at segment boundaries; trailing slashes are ignored,\ndot segments are normalized, and other percent-encoded path spelling is preserved.\nEntries omit schemes, ports, query strings, and fragments. A source must match\ninclude_domains, when set, and must not match exclude_domains. Use exclude_domains\nto block a subdomain or path of an allowed domain. Only the same entry in both\nlists fails validation, compared after lowercasing the domain and dropping a\nleading www. and a trailing slash."

@@ -1,6 +1,6 @@
-[](https://parallel.ai/blog/decisions-api)
+[](https://artificialanalysis.ai/agents/search-api)
 
-Introducing Parallel Decisions API: the first decision engine with world knowledge built in. [Learn more.](https://parallel.ai/blog/decisions-api) [[Learn more.] (https://parallel.ai/blog/decisions-api)](https://parallel.ai/ai/blog/decisions-api) Introducing Parallel Decisions API. [Learn more.](https://parallel.ai/blog/decisions-api)
+Parallel ranks #1 on the Artificial Analysis Search Index. [See the leaderboard.](https://artificialanalysis.ai/agents/search-api) [[See the leaderboard.] (https://artificialanalysis.ai/agents/search-api)](https://artificialanalysis.ai/agents/search-api) Parallel ranks #1 on the Artificial Analysis Search Index. [See the leaderboard.](https://artificialanalysis.ai/agents/search-api)
 
 Contents
 

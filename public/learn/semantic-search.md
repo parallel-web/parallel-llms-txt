@@ -1,83 +1,65 @@
-# What is semantic search and how does it work?
+# Semantic search
 
-Semantic search is a retrieval method that matches the meaning and intent of a query rather than its exact words. It turns queries and documents into vector embeddings, finds the closest matches, and often reranks them with a language model. This guide covers how it works, how it compares with keyword and hybrid search, and why it matters for AI agents.
+Semantic search retrieves documents by matching query intent and meaning using dense vector embeddings and nearest-neighbor search rather than requiring exact keyword overlap.
 
-## **What is semantic search?**
+Semantic search retrieves documents by comparing the _meaning_ of a query against the meaning of indexed passages rather than matching exact words. Under the hood, a neural bi-encoder maps both queries and documents into dense [vector embeddings](/learn/vector-embeddings), an Approximate Nearest Neighbor (ANN) index finds the closest vectors in milliseconds, and a [reranker](/learn/reranking) often refines the final order.
 
-Semantic search is an AI-powered search technique that understands the meaning and intent behind your query instead of just matching keywords. When you search for "Italian food," a semantic search system knows you're also interested in "Tuscan cuisine" or "Mediterranean restaurants", even though you didn't type those exact words.
+**Semantic search architecture (bi-encoder + ANN)**
 
-Traditional search engines work like a ctrl+F function across the entire web. They look for pages containing your exact search terms. Semantic search goes further by analyzing relationships between words, understanding context, and interpreting what you're actually trying to find.
+```text
+OFFLINE INGEST
+  Docs ──▶ [Chunking] ──▶ [Embedding Model] ──▶ [ANN Vector Index]
+                                                        │
+ONLINE QUERY                                            ▼ cosine / dot
+  Query ─▶ [Same Embedding Model] ──▶ Query Vector ─▶ Top-k Passages
+                                                        │
+                                                        ▼ (optional)
+                                                [Cross-Encoder Rerank]
+```
 
-A keyword search for "best laptops for students" only returns pages with those specific words. A semantic search understands you're looking for affordable, portable computers suitable for academic work, so it might surface results about "top notebooks for college" or "budget-friendly devices for education."
+## How semantic search works step by step
 
-## **How does semantic search work?**
+1. **Chunking and encoding (offline):** Source documents are split via [document chunking](/learn/document-chunking) into focused 300–800 token passages so each vector represents one coherent idea. Every chunk passes through a bi-encoder transformer to produce a fixed-length vector (e.g., 768–3072 floats), stored in an HNSW or IVF-PQ index.
+2. **Query encoding (online):** At search time, the exact same embedding model encodes the user's query into a vector in the same coordinate space.
+3. **Nearest-neighbor retrieval:** The vector index returns the top-k passages with the highest cosine similarity or dot product, matching conceptually equivalent phrasing (`"reduce LLM latency"` -> `"prefix KV caching and TTFT optimization"`) with zero overlapping keywords.
+4. **Reranking (recommended):** Because compressing a passage into one vector loses fine-grained word interactions, production stacks pass the top 50–100 hits to a cross-encoder [reranker](/learn/reranking) to pick the sharpest 5–10 results.
 
-First, the system converts your search query into a mathematical representation called a _vector embedding_. In effect, your words become coordinates in a high-dimensional space where similar meanings cluster together. "Happy," "joyful," and "delighted" sit close to each other in this space, while "sad" lives far away.
+```python
+import numpy as np
 
-At the same time, the search engine has already processed millions of documents and web pages into the same vector format. When your query arrives, the system compares your query vector against its document vectors to find the closest semantic matches.
+def semantic_search(query_vec: np.ndarray, doc_matrix: np.ndarray, doc_ids: list[str], k: int = 5):
+    # Assume rows of doc_matrix and query_vec are L2-normalized
+    scores = doc_matrix @ query_vec
+    top_idx = np.argsort(scores)[::-1][:k]
+    return [(doc_ids[i], round(float(scores[i]), 4)) for i in top_idx]
+```
 
-### **Understanding user intent**
+## Semantic search vs. lexical search vs. hybrid search
 
-The system analyzes what you're actually looking for beyond the literal words you typed. A query like "best laptop for creative work" gets encoded with context about professional use, performance requirements, and software compatibility. The system reads it as a request for recommendations tailored to creative professionals, not for pages that put the word "best" next to "laptop".
+Pure semantic search is rarely optimal on its own. Dense embeddings shine on paraphrases, multilingual queries, and conceptual questions, while [lexical search](/learn/lexical-search) (BM25 over an [inverted index](/learn/inverted-index)) dominates exact identifiers, error codes, legal citations, and newly coined names. Combining both via [hybrid search](/learn/hybrid-search) consistently beats either retriever alone.
 
-### **Semantic indexing and vector storage**
+| Capability | [Lexical search](/learn/lexical-search) (BM25) | Semantic search (dense) | [Hybrid search](/learn/hybrid-search) |
+| --- | --- | --- | --- |
+| Paraphrases & intent matching | Weak without [query expansion](/learn/query-expansion) | Strong | Strong |
+| Exact codes, SKUs, proper nouns | Strong | Weak (embedding drift) | Strong |
+| Negation & subtle logic ("not X") | Weak | Weak (needs cross-encoder) | Strong with [reranking](/learn/reranking) |
+| Zero-shot new jargon/entities | Works immediately | Degrades until model updates | Works immediately |
+| Infrastructure cost | Low (CPU + compressed disk) | Higher (RAM-heavy vector index + GPU encode) | Moderate |
 
-Before you ever search, the system has already converted web pages and documents into searchable vector representations. Content about "affordable smartphones" and "budget-friendly mobile devices" ends up near each other in vector space because they mean the same thing. When your query vector arrives, the search engine calculates which document vectors sit closest to it mathematically.
+## Why semantic search matters for AI agents
 
-### **Context-aware ranking**
+An [AI agent](/learn/ai-agent) querying the live web or an enterprise knowledge base rarely knows the exact terminology an author used on the target page. Semantic retrieval lets a [web search API](/learn/web-search-api) like [Parallel Search](/products/search) accept a natural-language `objective`—combining dense semantic matching, lexical precision, and neural reranking over a live [web index](/learn/web-index)—and return compact, relevant excerpts sized for the agent's [context window](/learn/context-window).
 
-Many semantic search systems also weigh context signals: where you are, what you've searched before, what device you're using, and even what time it is. If you search for "pizza" at 7 PM on your phone, that context tells the engine you probably want nearby restaurants rather than recipes or the history of Italian cuisine.
+## Frequently asked questions
 
-### **LLM reranking and answer generation**
+**Is semantic search the same as RAG?**
 
-After retrieving potentially relevant documents, a large language model (LLM) evaluates which ones best answer your specific question. Some semantic search systems then synthesize information across multiple sources to generate a direct answer rather than just showing you links.
+No. Semantic search is a _retrieval_ technique (finding relevant passages via vector similarity). [RAG](/learn/rag-retrieval-augmented-generation) is the full retrieve-augment-generate pipeline that feeds retrieved passages into an LLM to generate a grounded answer.
 
-## **Semantic search vs keyword search**
+**Why does semantic search sometimes return topically similar but wrong answers?**
 
-The table below shows how keyword and semantic search differ in practice:
+Bi-encoders compress an entire passage into a single point in vector space. Two passages about `"Stripe pricing in 2024"` and `"Stripe pricing in 2026"` sit almost on top of each other geometrically. Adding metadata date filters, [hybrid search](/learn/hybrid-search), and a cross-encoder [reranker](/learn/reranking) fixes this.
 
-| Feature | Keyword Search | Semantic Search |
-| --- | --- | --- |
-| Primary function | Matches keywords literally | Interprets intent and meaning behind queries |
-| Approach | Lexical matching | Contextual and relational understanding |
-| Example | "best laptops for students" only shows pages with those exact words | "best laptops for students" returns "top notebooks for graphic design majors" because it understands contextual similarity |
-| Handling synonyms | Requires exact terms or manually added synonyms | Automatically recognizes semantic relationships |
-| Query flexibility | Users adapt language to match expected keywords | Users ask questions naturally |
+**Can I run semantic search without a vector database?**
 
-Keyword search excels when you know exactly what you're looking for: a specific product code, a person's name, or an exact phrase. Semantic search works better when you're exploring a topic, asking questions, or don't know the precise terminology.
-
-## Semantic search vs hybrid search
-
-Most production systems don't pick one approach. Hybrid search runs a keyword method such as BM25 and a vector search side by side, merges the two ranked lists (often with reciprocal rank fusion), and then lets a reranker order the final results. The keyword side catches exact terms like product codes and names, and the vector side catches paraphrases. For a new system, hybrid is usually the safer default.
-
-## **Why semantic search matters for AI**
-
-AI agents process information as tokens (numerical representations of text), while traditional search engines return snippet previews and blue links optimized for human clicking behavior. Agents need dense, information-rich passages they can reason over.
-
-When an AI agent uses traditional search, it has to scrape full web pages, parse HTML, extract relevant content, and summarize everything down to fit in its context window. This multi-step process adds latency, costs tokens, and introduces failure points at every stage.
-
-[Semantic search designed for AI agents](/products/search) removes most of those steps. It returns extended passages optimized for LLM consumption, ranked and ready to slot directly into a context window, so the agent doesn't have to guess which links to follow.
-
-For complex reasoning tasks, semantic search enables AI agents to synthesize information across different domains and time periods. An agent researching competitive intelligence can search for "enterprise AI adoption trends," "competitor pricing changes," and "recent funding announcements", conceptually related queries that would require completely different keyword formulations in traditional search.
-
-Semantic search can also reduce hallucination. When it returns verifiable information with transparent attribution to source documents, AI agents can ground their outputs in evidence rather than generating plausible-sounding fabrications.
-
-For the retrieval layer behind this, see [what a web search API is](/learn/web-search-api) and [how a web index works](/learn/web-index). To put live search results into a retrieval pipeline, see [how to build a RAG pipeline with live web data](/articles/how-to-build-a-rag-pipeline-with-live-web-data).
-
-## **FAQs about semantic search**
-
-### **Does semantic search replace traditional SQL queries?**
-
-No. Semantic search complements structured queries but doesn't replace database operations for transactional data. Use SQL when you know exactly what you're looking for in structured tables. Use semantic search when exploring unstructured text or when you don't know the precise query parameters.
-
-### **Can semantic search run on private data only?**
-
-Yes, semantic search works entirely within private environments without external data sharing. You can deploy vector databases and embedding models on your own infrastructure, keeping all data and queries internal.
-
-### Is semantic search the same as vector search?
-
-Not quite. Vector search is the mechanism: finding the stored embeddings nearest to a query embedding. Semantic search is the broader goal of matching meaning, and it usually combines vector search with reranking, metadata filters and often keyword matching.
-
-## Semantic search built for AI agents
-
-Parallel's [semantic web search API](/products/search) lets an agent declare an objective in natural language, then returns ranked URLs with token-dense excerpts ready for a context window. You don’t host an embedding model or maintain a vector database.
+For small corpora under ~50,000 chunks, an in-memory NumPy matrix multiply or SQLite/Postgres (`pgvector`) handles exact search in milliseconds without a dedicated vector database. Dedicated ANN indexes (HNSW, IVF-PQ) pay off once corpora grow into millions of passages.

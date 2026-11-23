@@ -59,7 +59,7 @@ Keenable sells search and fetch, plus SELECT, an SQL interface to the web. It ha
 
 ### 3. Brave Search API
 
-[Brave's Search API](https://brave.com/search/api/) serves results from Brave's own independent index at $5 per 1,000 requests, with LLM-ready context included. Each plan includes $5 in free credits a month, and Brave asks for a card to prevent abuse. Brave says it's SOC 2 Type II attested and keeps zero data retention by design. Its Answers endpoint costs $4 per 1,000 requests plus $5 per million tokens, and its [MCP server](https://github.com/brave/brave-search-mcp-server) is open source and runs locally with your key. At $5 per 1,000 requests, Brave costs five times Parallel's Fast and Turbo price per search. [Brave Search API vs. Parallel](https://parallel.ai/articles/brave-search-api-vs-parallel) goes deeper. Brave LLM Context scores 75 on the Artificial Analysis index.
+[Brave's Search API](https://brave.com/search/api/) serves results from Brave's own independent index at $5 per 1,000 requests, with LLM-ready context included. Each plan includes $5 in free credits a month, and Brave asks for a card to prevent abuse. Brave says it's SOC 2 Type II attested and keeps zero data retention by design. Its Answers endpoint costs $4 per 1,000 requests plus $5 per million tokens, and its [MCP server](https://github.com/brave/brave-search-mcp-server) is open source and runs locally with your key. At $5 per 1,000 requests, Brave costs five times Parallel's Fast and Turbo price per search. [Brave Search API vs. Parallel](https://parallel.ai/compare/brave-vs-parallel) goes deeper. Brave LLM Context scores 75 on the Artificial Analysis index.
 
 **Best for: **teams that need an index independent of Google and Bing, with strict data handling.
 
@@ -73,7 +73,7 @@ The limits are the catch. One agent doing multi-hop research can use 30 searches
 
 ### 5. Perplexity Search API
 
-Perplexity's [Search API](https://docs.perplexity.ai/docs/getting-started/pricing) returns ranked results as JSON, with page text extracted into each result, for $5 per 1,000 successful requests, or $1 with Fast Search. One request can carry up to five queries and still bills once, and the pricing page lists no free allowance. There's no generated answer and no token billing. See [Perplexity Search API vs. Parallel](https://parallel.ai/articles/perplexity-search-api-vs-parallel-search-api).
+Perplexity's [Search API](https://docs.perplexity.ai/docs/getting-started/pricing) returns ranked results as JSON, with page text extracted into each result, for $5 per 1,000 successful requests, or $1 with Fast Search. One request can carry up to five queries and still bills once, and the pricing page lists no free allowance. There's no generated answer and no token billing. See [Perplexity Search API vs. Parallel](https://parallel.ai/compare/perplexity-vs-parallel).
 
 **Best for: **cheap raw results that your own model will rank and read.
 
@@ -203,4 +203,4 @@ Parallel, Keenable, and You.com all run hosted MCP servers that answer without a
 
 Add [Parallel MCP](https://parallel.ai/mcp) to your MCP client with no key, or [get an API key](https://platform.parallel.ai) and run the script above against your own queries. [Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel) has the full head-to-head.
 
-**Related reading: **[Keenable vs. Parallel](https://parallel.ai/articles/keenable-vs-parallel) / [TinyFish vs. Parallel](https://parallel.ai/articles/tinyfish-vs-parallel) / [Brave Search API vs. Parallel](https://parallel.ai/articles/brave-search-api-vs-parallel) / [The best Tavily alternatives](https://parallel.ai/articles/tavily-alternatives) / [The honest 2026 comparison of web search APIs](https://parallel.ai/articles/the-honest-2026-comparison-web-search-apis-for-ai-agents).
+**Related reading: **[Keenable vs. Parallel](https://parallel.ai/articles/keenable-vs-parallel) / [TinyFish vs. Parallel](https://parallel.ai/articles/tinyfish-vs-parallel) / [Brave Search API vs. Parallel](https://parallel.ai/compare/brave-vs-parallel) / [The best Tavily alternatives](https://parallel.ai/articles/tavily-alternatives) / [The honest 2026 comparison of web search APIs](https://parallel.ai/articles/the-honest-2026-comparison-web-search-apis-for-ai-agents).

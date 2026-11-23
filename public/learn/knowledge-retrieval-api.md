@@ -1,53 +1,84 @@
 # Knowledge retrieval API
 
-A knowledge retrieval API is a service that takes a query and returns the most relevant content from a knowledge source, with relevance scores and source references rather than a generated answer.
+A knowledge retrieval API takes a query and returns ranked passages, relevance scores, and source provenance from an indexed corpus without running generative synthesis—separating retrieval quality from model choice.
 
-## What is a knowledge retrieval API?
+A knowledge retrieval API accepts a natural-language query or structured filter and returns ranked passages, metadata, and source pointers from an indexed corpus—without running a generative LLM over the results. Separating retrieval from generation gives engineering teams independent control over corpus freshness, access permissions, latency, [reranking](/learn/reranking), and which model synthesizes the final answer.
 
-It queries organizational or web knowledge sources and returns ranked, relevant passages with citations. It hands your application the source content it needs rather than a finished answer from a model.
+**Knowledge retrieval API inside a RAG stack**
 
-A general search API matches keywords and returns links. It adds semantic understanding, a backing knowledge base, reranking, and source references, so results stay accurate and easy to audit.
+```text
+┌──────────────────┐   POST /retrieve {query, top_k, filters}
+│   Application /  │ ──────────────────────────────────────────▶
+│    AI Agent      │
+└────────┬─────────┘ ◀──────────────────────────────────────────
+         │             [{text, score, source_uri, metadata}, ...]
+         │
+         ▼ inject top passages + system instructions
+┌──────────────────┐   ┌────────────────────────────────────────┐
+│   Any LLM API    │   │ Inside the Retrieval API               │
+│ (model-agnostic) │   │  [Hybrid Search] ─▶ [Reranker] ─▶ ACLs │
+└──────────────────┘   └────────────────────────────────────────┘
+```
 
-This matters because it grounds AI apps in verified content. Retrieval-augmented generation, or RAG, is now common in production. [RAG reached 51% adoption](https://menlovc.com/2024-the-state-of-generative-ai-in-the-enterprise/) among enterprises in late 2024, up from 31%, per a Menlo Ventures survey of 600 U.S. IT decision-makers.
+## What a knowledge retrieval API returns
 
-## Key characteristics
+Unlike an answer engine that hides its sources inside generated prose, a retrieval API exposes raw, inspectable evidence so your application can filter by score threshold, enforce tenant access controls, and pass exact excerpts into a [context window](/learn/context-window):
 
-- **Semantic matching:** It reads the intent behind a query rather than matching exact keywords, a technique known as semantic search.
-- **Knowledge source backing:** It draws results from indexes, stored documents, or the live web.
-- **Relevance scoring and reranking:** It scores each candidate passage and returns only results that clear a reranker threshold.
-- **Source references:** It attaches citations to every passage so you can trace where an answer came from.
+- **Ranked passages or excerpts:** Pre-chunked or query-focused slices of text sized for LLM prompts rather than full multi-megabyte documents.
+- **Relevance scores:** Numeric scores (cosine similarity, BM25, or cross-encoder logits) allowing your code to abstain when `max_score < threshold`.
+- **Source provenance:** Canonical URL, document ID, section title, or `publish_date` for [source grounding](/learn/source-grounding) and audit trails.
+- **Metadata filters:** Hard pre- or post-filters by tenant ID, domain, document type, or date range so unauthorized or stale records never reach the model.
 
-![Parallel web search API accuracy benchmarks](https://cdn.sanity.io/images/5hzduz3y/production/50aa4294bd61a539e76907fcb537c7db5266ebd7-1920x1080.png)
+```json
+{
+  "request": {
+    "query": "EU data residency retention window for audit logs",
+    "top_k": 5,
+    "filters": {
+      "region": "eu",
+      "doc_type": "policy"
+    }
+  },
+  "results": [
+    {
+      "doc_id": "pol_eu_2026_04",
+      "title": "EU Data Processing Addendum",
+      "url": "https://example.com/legal/eu-dpa",
+      "score": 0.914,
+      "excerpt": "Audit logs for EU workspace traffic remain in Frankfurt (eu-central-1) for 90 days before automated deletion."
+    }
+  ]
+}
+```
 
-_Retrieval quality sets the ceiling on how well grounded AI answers can be. Parallel’s __[benchmarks page](https://parallel.ai/benchmarks)__ compares web search API accuracy across providers._
+## Internal knowledge retrieval vs. web knowledge retrieval
 
-## Example
+The same API contract serves two distinct corpora—and production [AI agents](/learn/ai-agent) often query both in the same turn:
 
-Picture a support assistant built as one of your AI agents. A user asks how to rotate an API key. The assistant sends that question to a retrieval API, which returns the three most relevant passages from your docs with links.
+| Dimension | Internal knowledge retrieval API | Web knowledge retrieval ([Web search API](/learn/web-search-api)) |
+| --- | --- | --- |
+| Backing corpus | Private docs, wikis, tickets, SQL/PDFs | Public live [web index](/learn/web-index) |
+| Ingestion | Push webhooks, connectors, batch chunking | Continuous [web crawling](/learn/web-crawler) + deduplication |
+| Access control | Row-/document-level ACLs per user/tenant | Public web + domain/date policies |
+| Retrieval stack | [Hybrid search](/learn/hybrid-search) + [reranking](/learn/reranking) | Multi-stage web index + neural reranking + excerpting |
+| Example use | Support bots, enterprise Q&A, code search | Live market research, [KYB](/learn/kyb), [agentic search](/learn/agentic-search) |
 
-The assistant passes those passages to a large language model (LLM), which writes a short reply and cites each source. Your user gets a grounded answer, and your team can trace every claim to a document (or web page).
+For the public web half of the stack, [Parallel Search](/products/search) exposes this retrieval-only pattern directly: you send an `objective` and `search_queries`, and get back ranked URLs and dense excerpts without being locked to a single LLM vendor.
 
-[Parallel’s Search API](https://parallel.ai/products/search) is one example of a real retrieval API that AI agents call this way.
+## Why retrieval quality sets the ceiling for RAG
 
-## Related terms
+A [Stanford RegLab study on legal RAG](https://dho.stanford.edu/wp-content/uploads/Legal_RAG_Hallucinations.pdf) demonstrated that even retrieval-augmented systems still hallucinate when retrieval returns wrong, incomplete, or misranked passages. In practice, improving retrieval recall and precision—via [hybrid search](/learn/hybrid-search), domain/date filtering, and [reranking](/learn/reranking)—moves end-to-end answer accuracy more reliably than swapping the generator model alone.
 
-- [Web search API](https://parallel.ai/learn/web-search-api): a retrieval API that queries the live web.
-- [Semantic search](https://parallel.ai/learn/semantic-search): the matching technique behind it.
-- [Deep research](https://parallel.ai/learn/deep-research): chained multi-source retrieval.
-- [AI agents](https://parallel.ai/learn/ai-agent): common consumers of retrieval APIs.
-
-## FAQ
+## Frequently asked questions
 
 **How is a knowledge retrieval API different from RAG?**
 
-Retrieval is the first step, finding relevant content. RAG adds a generation step where an LLM writes an answer from that content, a pattern [NIST describes](https://csrc.nist.gov/glossary/term/retrieval_augmented_generation).
+A knowledge retrieval API is the _R_ (retrieval) step of [RAG](/learn/rag-retrieval-augmented-generation) exposed as a standalone service. You still pair it with an LLM (or [agentic search](/learn/agentic-search) loop) to synthesize an answer.
 
-**Does a knowledge retrieval API stop AI from making things up?**
+**Why not just query a vector database directly?**
 
-It reduces errors by grounding answers in real sources, though it doesn’t remove them entirely. A [Stanford legal research study](https://dho.stanford.edu/wp-content/uploads/Legal_RAG_Hallucinations.pdf) found general LLMs hallucinate on legal queries 58% to 82%, versus 17% to 33% for retrieval tools built for law.
+A raw vector database only runs approximate nearest-neighbor lookup on embeddings you chunked and embedded yourself. A managed knowledge retrieval API bundles ingestion, chunking, [lexical search](/learn/lexical-search) + vector [hybrid search](/learn/hybrid-search), metadata filtering, and [reranking](/learn/reranking) behind one endpoint.
 
-**What can a knowledge retrieval API query?**
+**When should you use a retrieval API instead of an end-to-end answer API?**
 
-It can query search indexes, stored documents, and web sources, returning ranked passages with references.
-
-[Start Building](https://docs.parallel.ai/home)
+Use a retrieval API when you want control over the generator model, prompt template, multi-turn [tool calling](/learn/tool-calling), score-based abstention, or combining internal and live web evidence in one prompt.

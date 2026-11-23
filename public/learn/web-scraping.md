@@ -1,143 +1,90 @@
-# What is web scraping?
+# Web scraping
 
-Scraping is still how most teams get web data into a database, and it sits behind price monitoring, market research, and AI training sets. This guide covers how scrapers work step by step, the main tool categories, high-value use cases, the legal and compliance picture, the anti-scraping defenses sites use, and why legacy scrapers create friction for AI systems that need verifiable data.
+Web scraping is the automated extraction of structured fields from public web pages by fetching HTML or rendered DOMs and parsing embedded JSON or selectors into typed records.
 
-## **What is web scraping?**
+Web scraping is the automated extraction of structured data—prices, product specs, filings, listings, or article text—from public web pages by downloading their HTML (or rendered DOM) and parsing target fields into JSON, CSV, or a database. Unlike [web crawling](/learn/web-crawler), which discovers and indexes pages broadly across the internet, scraping targets known page layouts to pull specific records on demand.
 
-Web scraping is the automated process of extracting data from websites and converting it into a structured format like a spreadsheet or database. Instead of manually copying and pasting information, web scraping uses software, often called scrapers or bots, to systematically collect information from web pages at scale.
+**Three-stage web scraping pipeline**
 
-The scraper starts by sending an **HTTP request** to a website, as your browser does when you visit a page. The server responds with **HTML, **the code that structures the webpage. The scraper then parses this HTML into a **DOM** (Document Object Model), which maps out where everything lives on the page. From there, it uses **selectors** to pinpoint specific elements, like product prices in a <span class="price"> tag or contact details in a <div class="contact-info"> block, and extracts the fields you requested.
+```text
+Target URLs ──▶ ┌─────────────────────┐
+                │   1. Fetch Layer    │ (HTTP client, headless browser,
+                │  (proxies / retries)│  or web unlocker)
+                └──────────┬──────────┘
+                           ▼ raw / hydrated HTML
+                ┌─────────────────────┐
+                │   2. Parse Layer    │ (CSS / XPath / embedded JSON
+                │  (extract fields)   │  or HTML -> markdown)
+                └──────────┬──────────┘
+                           ▼ typed records
+                ┌─────────────────────┐
+                │ 3. Clean & Validate │ (dedup, schema check, store)
+                └─────────────────────┘
+```
 
-After extraction, the scraper cleans up the raw data and stores it in formats like CSV, JSON, or databases. You'll hear terms like "web harvesting" and "web data extraction" used interchangeably; they all describe the same fundamental activity of programmatically collecting data from the internet. For where the terms do differ, see our comparisons of [web scrapers vs. web extraction](https://parallel.ai/articles/web-scraper-vs-web-extraction) and [web crawling vs. web scraping](https://parallel.ai/articles/web-crawling-vs-web-scraping).
+## How scrapers parse pages under the hood
 
-## **How web scrapers work behind the scenes**
+Most production scrapers avoid fragile regexes and rely on one of three extraction strategies, in order of reliability:
 
-Web scrapers automate what humans do manually when they visit websites and copy information. The process has four stages.
+1. **Embedded JSON / hydration payloads:** Many modern sites embed their full structured state inside `<script id="__NEXT_DATA__" type="application/json">`, `<script type="application/ld+json">`, or an internal XHR endpoint. Parsing that JSON is faster and far less brittle than scraping visual HTML.
+2. **DOM selectors (CSS / XPath):** Libraries such as BeautifulSoup, `lxml`, Cheerio, or Scrapy parse the HTML tree and extract text/attributes from semantic selectors (`[data-testid]`, table rows, headings).
+3. **Headless browser rendering:** When data only appears after JavaScript runs or user clicks, scrapers run Playwright/Puppeteer or call a [headless browser API](/learn/headless-browser-api).
 
-### **1. Send HTTP request**
+```python
+import json
+import requests
+from bs4 import BeautifulSoup
 
-First, the scraper sends an HTTP request to the target website. The web server responds with the page's HTML code, the raw markup that contains all the visible content, metadata, and structure you see in a browser.
+def scrape_product_metadata(url: str) -> dict:
+    resp = requests.get(url, headers={"User-Agent": "CatalogSync/1.0"}, timeout=15)
+    resp.raise_for_status()
+    soup = BeautifulSoup(resp.text, "html.parser")
 
-### **2. Parse HTML DOM**
+    # Prefer structured JSON-LD when the site publishes it
+    for script in soup.find_all("script", type="application/ld+json"):
+        try:
+            payload = json.loads(script.string or "")
+        except json.JSONDecodeError:
+            continue
+        if isinstance(payload, dict) and payload.get("@type") == "Product":
+            return {
+                "name": payload.get("name"),
+                "price": (payload.get("offers") or {}).get("price"),
+                "currency": (payload.get("offers") or {}).get("priceCurrency"),
+                "source_url": url,
+            }
 
-Next, the scraper parses the HTML into a DOM tree. This step creates a blueprint of the page's structure (headings, paragraphs, tables, and links) so the scraper can target specific elements.
+    # Fallback: minimal DOM extraction
+    title = soup.find("h1")
+    return {"name": title.get_text(strip=True) if title else None, "source_url": url}
+```
 
-### **3. Extract target data**
+## Web scraping vs. extraction APIs vs. web search APIs
 
-Using selectors like CSS selectors or XPath expressions, the scraper locates the exact elements containing the data you want. It might pull product prices, contact details, article text, or any other content. The scraper extracts only the relevant information, discarding navigation menus, ads, and other irrelevant markup.
+Traditional scrapers break whenever a site redesigns its markup or tightens WAF rules. For [AI agents](/learn/ai-agent) that read arbitrary unfamiliar domains at runtime, writing per-site selectors is impossible (see [web scraper vs. web extraction](/articles/web-scraper-vs-web-extraction)).
 
-### **4. Clean and store results**
+| Approach | Needs per-site selectors? | Handles arbitrary new URLs? | Output shape | Best fit |
+| --- | --- | --- | --- | --- |
+| Custom scraper (Scrapy / Playwright) | Yes | No | Exact domain schema (CSV/DB) | High-volume monitoring of a small fixed list of sites |
+| [Web unlocker](/learn/web-unlocker) | Yes (still returns raw HTML) | Partial | Raw HTML | Protected sites where you already maintain custom parsers |
+| Web extraction API ([Parallel Extract](/products/extract)) | No | Yes | Clean markdown / query-focused excerpts | Feeding known URLs into LLMs and [RAG](/learn/rag-retrieval-augmented-generation) |
+| [Web search API](/learn/web-search-api) | No | Yes (discovers URLs too) | Ranked URLs + excerpts | Open-web [agentic search](/learn/agentic-search) and [data enrichment](/learn/data-enrichment) |
 
-Raw extracted data often contains formatting inconsistencies, extra whitespace, or encoding issues. The scraper cleans this data (removing HTML tags, normalizing text, converting data types) and then stores it in a structured format.
+## Anti-scraping defenses and legal boundaries
 
-## **Main types of web scraping tools**
+- **Common technical defenses:** Rate limiting (`429`), IP/ASN blocking against datacenter ranges, TLS/HTTP2 fingerprinting (`JA3`/`JA4`), JavaScript challenges, and honeypot links.
+- **Legal and compliance landscape:** Public, logged-off factual data has generally fared better under US computer-access law (for example, _hiQ Labs v. LinkedIn_ and _Meta v. Bright Data_ on logged-off public pages), while bypassing authentication, violating copyright/database rights, harvesting personal data under GDPR/CCPA, or breaching contractual terms carry real legal risk. Always verify compliance with counsel, honor rate limits, and prefer official APIs or licensed web-data providers when available.
 
-Which tool fits depends on your technical expertise, data volume, site complexity, and budget.
+## Frequently asked questions
 
-### **Browser extensions**
+**What is the difference between web scraping and web crawling?**
 
-Browser extensions run directly in Chrome, Firefox, or Edge and let you scrape visible data with minimal setup. You click elements on the page to define what data to extract, and the extension generates a scraper automatically. They work well for one-off tasks or small datasets, though they're limited to what you can see and interact with manually.
+[Web crawling](/learn/web-crawler) discovers and fetches pages broadly by following links to build an index. Web scraping targets specific pages to extract structured fields. Many pipelines crawl first to find URLs, then scrape each URL.
 
-### **Local libraries**
+**Why do traditional web scrapers struggle in AI agent workflows?**
 
-Programming frameworks like Python's Beautiful Soup, Scrapy, or JavaScript's Puppeteer and Playwright give developers full control. You write custom code that defines exactly how to fetch, parse, and extract data. This approach can handle complex logic, authentication, pagination, and error handling, but it requires coding skills and ongoing maintenance as websites change.
+An AI agent rarely knows in advance which domains it will encounter, so pre-written CSS selectors cannot cover the open web—and raw scraped HTML floods the model's [context window](/learn/context-window) with boilerplate. Extraction and search APIs that output clean, query-focused excerpts solve both problems.
 
-### **Cloud-hosted crawlers**
+**When is a custom scraper still the right choice?**
 
-Managed services like ParseHub, Octoparse, or Apify handle the infrastructure for you, running scrapers on cloud servers with built-in scheduling, proxy rotation, and data storage. They're ideal when you're scraping large volumes of data, need reliable uptime, or want to avoid managing servers and proxies yourself.
-
-### **Headless browser automation**
-
-Tools like Selenium, Puppeteer, Playwright, and new entrants like Browserbase (and its open-source Stagehand framework) control real browsers programmatically, without displaying a visible window, to scrape JavaScript-heavy sites that load content dynamically. Modern web applications often render data client-side after the initial page load, which means traditional HTTP-based scrapers only see empty HTML shells. Headless browsers execute JavaScript as real users do, waiting for content to appear before extracting it.
-
-### **AI-powered document parsers**
-
-Modern systems use machine learning to interpret page content without depending on rigid HTML patterns. They can adapt to layout changes and extract relationships from unstructured text. This approach helps on sites with inconsistent templates or tasks that require meaning rather than raw text. Parallel’s Extract API is one example: you pass up to 20 URLs and an objective, and it returns the relevant excerpts or the full page as markdown, with no selectors to maintain.
-
-## **High-value use cases for scraping the internet**
-
-Organizations use scraping most often in these areas:
-
-- **Price intelligence:** E-commerce companies monitor competitor pricing, product availability, and promotional strategies in real time across dozens or hundreds of competitor sites
-- **Market research:** Consumer insights live across forums, review sites, social media platforms, and news outlets; scraping aggregates sentiment, trends, and competitor positioning at scale
-- **Sentiment and news monitoring:** Organizations track media coverage, industry news, and brand mentions across thousands of publications to detect breaking news, monitor crises, and identify opportunities
-- **Lead generation:** Sales and marketing teams scrape business directories, professional networks, and company websites to build prospect lists enriched with contact information and company details
-- **Training data for LLMs:** AI companies collect web content to train large language models, though this raises questions about data quality, licensing, and provenance
-
-## **Is web scraping legal and compliant?**
-
-The legality of web scraping depends on what you scrape, how you scrape it, and what you do with the data. No universal law governs web scraping, but several principles guide responsible practice. For search engines specifically, see our guide to [whether scraping Google is legal](https://parallel.ai/articles/is-scraping-google-legal).
-
-**Public data:** Scraping publicly accessible information (data anyone can view without logging in) is generally acceptable, though not without limits. Courts in various jurisdictions have upheld the right to collect public data, particularly when it's factual rather than creative content. However, "public" doesn't mean "free to use however you want." Search engines are a special case: Google sued SerpApi in December 2025 over scraping its results. The court dismissed Google’s first complaint in July 2026 with leave to amend, and SerpApi’s motion to dismiss the amended complaint was still undecided at the end of October 2026. Our explainer on [whether scraping Google is legal](https://parallel.ai/articles/is-scraping-google-legal) covers that case.
-
-**Terms of service:** Website terms of service often explicitly prohibit automated data collection, and violating those terms can create legal risk even if the data itself is public. While the enforceability of ToS provisions varies, ignoring them entirely is risky. Some sites grant limited scraping permissions in their robots.txt files or API terms.
-
-**Rate limiting:** Even when scraping is permitted, overwhelming a server with requests can constitute a denial-of-service attack. Respectful scraping includes reasonable delays between requests, honoring robots.txt directives, and backing off if the site shows signs of strain.
-
-Personal data brings its own rules. Regulations like GDPR in Europe and CCPA in California impose strict requirements on collecting and processing personal information, even from public sources.
-
-## **Common anti-scraping defenses sites use**
-
-Websites use several measures to detect and block automated data collection and protect their infrastructure and data from abuse.
-
-### **Robots.txt and terms of service**
-
-The robots.txt file lives at the root of a website (example.com/robots.txt) and specifies which paths bots can access and how frequently. It's a policy declaration rather than a technical barrier: scrapers can ignore it, but doing so signals clear disregard for the site's wishes.
-
-### **CAPTCHAs and rate limits**
-
-Interactive challenges like "Select all images with traffic lights" verify that a human is browsing rather than a bot. CAPTCHAs appear when sites detect suspicious patterns like rapid requests from a single IP address. Server-side rate limiting throttles requests from any client that exceeds defined thresholds, slowing down or blocking aggressive scrapers.
-
-### **Dynamic rendering**
-
-Modern web applications increasingly rely on JavaScript frameworks like React, Vue, or Angular that render content client-side after the initial page load. When you scrape with traditional HTTP requests, you receive nearly empty HTML: the actual data loads via subsequent JavaScript execution and API calls. The architecture wasn't built to block scrapers, but it has that side effect.
-
-### **IP blocking and fingerprinting**
-
-Detection systems analyze traffic patterns to identify bots. They track IP addresses, user agent strings, request headers, cookie behavior, and timing patterns. If your scraper makes requests too quickly, lacks typical browser headers, or exhibits other non-human characteristics, the site may block your IP or serve fake data.
-
-## **Limitations of legacy scrapers for AI applications**
-
-Traditional web scraping was built for human analysis workflows, and its output causes three problems when you feed it to AI systems and large language models.
-
-**Token inefficiency:** Raw HTML is mostly irrelevant markup (navigation menus, ads, styling code, and tracking scripts) that wastes LLM context window space. When you scrape a product page, you might extract 50,000 characters of HTML but only need 2,000 characters of actual product information.
-
-**Quality issues:** Scraped data often lacks verification and provenance. You know you extracted text from a webpage, but you don't know if that information is accurate, current, or authoritative. LLMs trained or prompted with unverified scraped content can propagate misinformation, outdated facts, or contradictory claims.
-
-**Maintenance overhead:** Custom scrapers break often as websites redesign layouts, change class names, or restructure their HTML. A scraper that works today might fail completely next week when the site updates. Maintaining a fleet of scrapers across dozens or hundreds of sites becomes a full-time engineering job.
-
-Traditional scraping was designed for human consumption: extract data, put it in a spreadsheet, let people analyze it. AI agents need high-density, semantically structured, verifiable information that slots directly into reasoning pipelines.
-
-## **An AI-native alternative with verifiable data**
-
-The alternative is structured, verified web data designed for LLM consumption. Evidence-based search APIs deliver information that's already processed, cross-referenced, and ready for reasoning.
-
-These systems can aggregate several authoritative sources, identify points of agreement, flag contradictions, and attach source links. When an AI agent asks "Who is the current CEO of Acme Corp?" it receives a name plus confirmation from multiple reliable sources, along with links to those sources.
-
-This addresses each of the problems above. Token efficiency improves because the API returns only relevant information, without HTML markup, boilerplate, or navigation cruft. Quality and provenance become explicit properties of the data rather than post-processing concerns. Maintenance shifts from the developer to the API provider, who keeps data fresh and accurate across thousands of sources.
-
-## **FAQs about web scraping**
-
-### **How do I choose the right data web scraper for my project?**
-
-Match your tool choice to your technical skills, data volume, site complexity, and budget. Browser extensions work well for quick, one-off tasks with small datasets. Programming libraries offer maximum flexibility if you have coding skills and want custom logic. Cloud-hosted services make sense for large-scale scraping or when you want managed infrastructure. AI-powered tools help with unstructured content or sites with inconsistent layouts.
-
-### **What's the difference between screen scraping and web scraping?**
-
-Screen scraping captures visual elements from any application interface, desktop software, terminal windows, or legacy systems by analyzing what's displayed on screen. Web scraping specifically targets website data via HTTP requests and HTML parsing. Web scraping accesses the underlying data structure directly, while screen scraping only sees the rendered output.
-
-### **Can scraping a website get my IP address banned?**
-
-Yes, aggressive or non-compliant scraping frequently triggers IP blocks. Websites monitor request patterns and block addresses that make too many requests too quickly, ignore robots.txt, or exhibit bot-like behavior. Respectful scraping practices (reasonable rate limiting, honoring robots.txt, rotating user agents) minimize this risk.
-
-### **Does ChatGPT scrape websites in real time for answers?**
-
-Not in the traditional sense. ChatGPT's underlying model learns from a training dataset with a cutoff date, but ChatGPT also has built-in web search: when a question needs current information, it searches the web during the conversation and cites the pages it used. That's targeted retrieval for one answer, not bulk scraping of whole sites.
-
-## **Build reliable data pipelines today with Parallel**
-
-Developers building AI agents and applications can use Parallel's Search API for web data ingestion. Instead of maintaining fragile scrapers or processing raw HTML, you specify what information you want: "Find the current CTO of this company" or "Research recent funding rounds for startups in healthcare", and receive token-dense, ranked excerpts with sources.
-
-Parallel's API collapses the traditional scraping pipeline (searching, crawling, parsing, cleaning, and verifying) into a single fast call optimized for LLM consumption. The service handles freshness, accuracy, and infrastructure so you can focus on building your application.
-
-[Explore Parallel's Developer Platform](https://platform.parallel.ai/home) to see how Parallel Search and Extract APIs replace complex web scraping pipelines.
+When you pull millions of structured rows per week from a handful of known sites (such as your own suppliers or a fixed catalog) where maintaining a handful of dedicated parsers is cheaper than per-URL API pricing.

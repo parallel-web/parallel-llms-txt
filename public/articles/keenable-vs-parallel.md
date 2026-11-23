@@ -137,4 +137,4 @@ Below 100,000 requests a month, yes: Keenable's free allowance covers it. Above 
 
 No. Keenable sells Search, Fetch, SELECT, and point-in-time search. It has no deep research, cited-answer, entity search, or monitoring API.
 
-Related reading: [Brave Search API vs. Parallel](https://parallel.ai/articles/brave-search-api-vs-parallel) / [Exa vs. Parallel](https://parallel.ai/articles/exa-vs-parallel) / [TinyFish vs. Parallel](https://parallel.ai/articles/tinyfish-vs-parallel) / [Fast vs. Turbo](https://parallel.ai/articles/parallel-search-fast-vs-turbo)
+Related reading: [Brave Search API vs. Parallel](https://parallel.ai/compare/brave-vs-parallel) / [Exa vs. Parallel](https://parallel.ai/compare/exa-vs-parallel) / [TinyFish vs. Parallel](https://parallel.ai/articles/tinyfish-vs-parallel) / [Fast vs. Turbo](https://parallel.ai/articles/parallel-search-fast-vs-turbo)

@@ -1,51 +1,92 @@
 # MCP server
 
-An MCP server is a software service that gives AI models a standard way to reach tools, data, and prompts through the Model Context Protocol. It sits between the model and your APIs, databases, or files, and it translates requests into structured, model-ready responses.
+An MCP server is a local process or remote HTTP service that exposes tools, read-only resources, and prompt templates to AI clients over JSON-RPC 2.0 using the Model Context Protocol.
 
-An MCP server is a software service that exposes tools, data resources, and prompt templates to AI models through the Model Context Protocol, so an AI agent can use external systems without a custom integration for each one.
+An MCP server is a process or remote HTTP service that exposes tools, read-only data resources, and prompt templates to AI clients over the [Model Context Protocol](/learn/model-context-protocol) (MCP). Instead of writing a bespoke integration for every combination of model client and external API, you implement one MCP server and any MCP-compatible host—Claude Code, Cursor, Codex, or your own [AI agent](/learn/ai-agent) runtime—discovers and invokes its capabilities over JSON-RPC 2.0.
 
-## What is an MCP server?
+**MCP client-server architecture**
 
-An MCP server is a software service that gives AI models a standard way to reach tools, data, and prompts through the _Model Context Protocol_. It sits between the model and your APIs, databases, or files, and it translates requests into structured, model-ready responses.
+```text
+┌─────────────────────┐   JSON-RPC 2.0    ┌───────────────────────┐
+│   Host / AI Agent   │  (stdio or HTTP)  │      MCP Server       │
+│ ┌─────────────────┐ │ ────────────────▶ │ • tools/list & call   │
+│ │   MCP Client    │ │                   │ • resources/read      │
+│ └─────────────────┘ │ ◀──────────────── │ • prompts/get         │
+└─────────────────────┘  structured data  └───────────┬───────────┘
+                                                      │ auth & calls
+                                                      ▼
+                                            ┌───────────────────┐
+                                            │ APIs / DBs / Web  │
+                                            └───────────────────┘
+```
 
-Anthropic open-sourced the [Model Context Protocol](https://parallel.ai/learn/model-context-protocol) in November 2024. The standard lets [AI agents](https://parallel.ai/learn/ai-agent) connect to many systems through one shared interface instead of a separate connector for each service.
+Anthropic open-sourced MCP in November 2024 and later donated the protocol to the Linux Foundation's [Agentic AI Foundation](https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation), turning the `N x M` integration problem (every client wired to every service) into `N + M`.
 
-## Key characteristics
+## The three primitives an MCP server exposes
 
-- **Standardized interface:** one open protocol (JSON-RPC 2.0), so any MCP-compatible model connects without bespoke code. Databricks explains that MCP works by requiring each client and each MCP server to implement the protocol just once, [reducing integrations to N+M](https://www.databricks.com/blog/what-is-model-context-protocol) instead of N×M.
-- **Three capabilities:** servers expose tools (actions the model can run), resources (data and files for context), and prompts (reusable instruction templates).
-- **Discoverable at runtime:** a client connects, negotiates the protocol version, and discovers available tools rather than hard-coding endpoints.
-- **Local or remote:** a server can run locally over standard input/output or remotely over HTTP, and it manages its own authentication and permissions.
-- **Growing ecosystem:** Anthropic reported [more than 10,000 servers](https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation) that were active and public as of December 2025.
+Every MCP server declares its capabilities during the `initialize` handshake. Most servers focus on **tools**, though the specification defines three distinct primitives:
 
-## Example
+1. **Tools (**`**tools/list**`**, **`**tools/call**`**):** Model-controlled actions backed by JSON Schema input definitions—identical in concept to native [tool calling](/learn/tool-calling), but discovered dynamically at runtime rather than hard-coded in the client.
+2. **Resources (**`**resources/list**`**, **`**resources/read**`**):** Application-controlled, URI-addressed data objects (files, database rows, logs, API snapshots) that a host can attach to the [context window](/learn/context-window) without invoking an action.
+3. **Prompts (**`**prompts/list**`**, **`**prompts/get**`**):** User-controlled instruction templates with named arguments, often surfaced as slash commands in coding agents.
 
-Say you ask an AI assistant to find the latest sales report and email it to your team. The assistant calls a database MCP server to pull the report, then calls an email MCP server to send it, choosing each tool on its own.
+```json
+{
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 2,
+    "method": "tools/call",
+    "params": {
+      "name": "web_search",
+      "arguments": {
+        "objective": "Find the latest MCP Streamable HTTP transport spec",
+        "search_queries": ["modelcontextprotocol Streamable HTTP spec"]
+      }
+    }
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 2,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Streamable HTTP replaces legacy SSE with a single /mcp endpoint..."
+        }
+      ],
+      "isError": false
+    }
+  }
+}
+```
 
-You can see this pattern in production today. [Parallel MCP](https://parallel.ai/mcp) packages [Parallel's Search API](https://parallel.ai/products/search) and its fetch and research APIs as one MCP server for grounding agents in real-time data from the open web.
+## Local (`stdio`) vs. remote (`Streamable HTTP`) transports
 
-![Parallel's Search API product page, which is available as an MCP server for AI agents.](https://cdn.sanity.io/images/5hzduz3y/production/3c7ad24e4f405fa3ae721808476c976aa6549578-1920x1080.png)
+MCP servers run in two deployment topologies:
 
-Parallel's [Search API](https://parallel.ai/products/search) powers the `web_search` tool in Parallel MCP, so agents can add web search through the same standard.
+| Transport | How it runs | Auth model | Best fit |
+| --- | --- | --- | --- |
+| `stdio` | Spawned as a local child process by the host; messages travel over `stdin`/`stdout` | Local env vars, OS keychain, filesystem permissions | Local repos, developer CLIs, private desktop tools |
+| `Streamable HTTP` | Hosted remote endpoint (e.g., `https://mcp.parallel.ai/mcp`) supporting POST + optional SSE streaming | OAuth 2.1 or bearer / API-key headers (or keyless free tiers) | Shared SaaS tools, cloud agents, [web search MCP](/learn/web-search-mcp) servers |
 
-## Related terms
+For live web access, remote servers like [Parallel MCP](/mcp) eliminate local installs and credential plumbing—an agent connects to a single HTTPS endpoint and immediately gets ranked, excerpted search and page-extraction tools.
 
-- [Model Context Protocol](https://parallel.ai/learn/model-context-protocol): the open standard every MCP server implements.
-- [AI agents](https://parallel.ai/learn/ai-agent): the systems that use MCP servers to reach tools and data.
-- [Web search API](https://parallel.ai/learn/web-search-api): a common capability an MCP server can expose to a model.
+## Security and context trade-offs
 
-## FAQ
+- **Schema token tax:** Every tool returned by `tools/list` is injected into the model's system context on every turn. Connecting five verbose MCP servers can burn 15K+ tokens before the user types a word—a classic [context engineering](/learn/context-engineering) failure mode. Prefer focused servers with compact tool schemas.
+- **Permission boundary:** An MCP server enforces its own authentication, scopes, and rate limits, while the host enforces user confirmation before destructive writes.
+- **Untrusted tool outputs:** Any server that reads external web pages, tickets, or emails can return prompt-injection text inside tool results. Treat `tools/call` output as untrusted data, never as privileged instructions.
 
-**Is an MCP server a real server?**
+## Frequently asked questions
 
-It's a software service rather than a physical machine, and it can run locally on your computer or remotely in the cloud.
+**What is the difference between an MCP server and a REST API?**
 
-**What is the difference between an MCP server and an API?**
+A REST API is built for human developers writing static client code against documented endpoints. An MCP server wraps one or more APIs (or local systems) in a self-describing JSON-RPC protocol so an LLM host can discover schemas via `tools/list` and call them dynamically.
 
-A traditional API exposes fixed endpoints you call with hard-coded logic, while an MCP server exposes tools the model can discover and choose on its own at runtime.
+**Can an MCP server run without an API key?**
 
-**Who created MCP?**
+Yes. Local `stdio` servers run directly against local files or tools, and some remote servers—including [Parallel MCP](/mcp)—expose rate-limited keyless search tools alongside authenticated tiers.
 
-Anthropic [open-sourced MCP](https://www.anthropic.com/news/model-context-protocol) in November 2024, and it's now a founding project of the [Agentic AI Foundation](https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-agentic-ai-foundation) under the Linux Foundation.
+**How does an MCP server differ from an agent skill?**
 
-Ready to give your agents web search and research through the same standard? [Start Building](https://docs.parallel.ai/home) with Parallel.
+An MCP server runs executable code and exposes live tools over JSON-RPC. An [agent skill](/learn/agent-skills) is a portable markdown file (`SKILL.md`) teaching an agent _how_ to combine tools for a specific workflow.

@@ -1,79 +1,106 @@
 # Agentic search
 
-Agentic search is a pattern where an AI agent plans, runs, reads, and refines web searches in a reasoning loop, deciding what to query next based on what it finds, rather than making a single fixed retrieval call.
+Agentic search is a retrieval loop in which a language model writes its own search queries, reads the returned evidence, identifies gaps or contradictions, and issues follow-up queries until it has enough grounded facts to answer.
 
-## What is agentic search?
+Classic retrieval pipelines—like single-shot [RAG](/learn/rag-retrieval-augmented-generation)—run one fixed query against an index and pass the top-k chunks into one generation call. That breaks down whenever the answer depends on information you cannot name up front, spans multiple documents, or requires verifying a claim against a primary source. Agentic search turns retrieval into a control loop: the model plans queries, calls a [web search API](/learn/web-search-api) via [tool calling](/learn/tool-calling), inspects the returned evidence, and decides whether to rewrite the query, fetch a full page, or stop and synthesize a cited answer.
 
-An artificial intelligence (AI) agent turns research into a loop instead of a single lookup. The agent reads a goal, runs a search, studies the results, and picks its next query. Anthropic describes capable agents as [generating their own search queries](https://www.anthropic.com/engineering/building-effective-agents) instead of following a fixed script.
+**Single-shot RAG vs. agentic search loop**
 
-A system that runs one query, such as basic retrieval-augmented generation (RAG), returns a fixed set of results. The agent keeps looping until it gathers enough to answer. This helps AI agents that work through questions with several steps.
+```text
+SINGLE-SHOT RAG (1 fixed retrieval pass)
+  [User Query] ──▶ [Retrieve top-k] ──▶ [Generate Answer]
 
-The loop moves through four stages: plan, search, read, and refine. The agent scores each result and decides whether to answer or search again. This search, read, and reason cycle separates the pattern from a plain lookup.
+AGENTIC SEARCH (iterative, model-directed loop)
+  ┌─────────────┐  queries  ┌──────────────┐  excerpts
+  │ Plan/Write  │ ────────▶ │ Web Search   │ ────────────┐
+  │ Next Queries│           │ API / Index  │             │
+  └─────────────┘           └──────────────┘             ▼
+        ▲                                       ┌────────────────┐
+        │    YES: refine / drill down           │ Inspect & Check│
+        └───────────────────────────────────────┤ Evidence Gaps? │
+                                                └───────┬────────┘
+                                                        │ NO
+                                                        ▼
+                                                ┌────────────────┐
+                                                │ Synthesize &   │
+                                                │ Cite Sources   │
+                                                └────────────────┘
+```
 
-The agent pulls live web data, so it works from current pages instead of a frozen snapshot. When a first search misses, the agent rewrites the query and tries again. That recovery step is hard to copy with one static retrieval call.
+Anthropic highlighted this shift in _[Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents)_: instead of executing a hard-coded retrieval script, capable agents generate their own queries and react to what comes back. On multi-hop question-answering benchmarks, iterative agent-directed retrieval consistently outperforms single-pass RAG because the agent can follow chains of newly discovered facts across turns.
 
-Depth is the point. A single lookup answers one question, while the loop works through a chain of linked questions. The agent trades a little speed for answers that hold up under review.
+## How the four-stage loop works
 
-You’ll find this pattern inside deep research assistants, coding agents, and market analysis tools. Each one needs current facts that a training set cannot hold. The agent fetches those facts on demand and reasons over them in the same turn.
+Every round of an agentic search loop passes through four operations, repeating until the evidence is sufficient or a step budget runs out:
 
-The work scales with the task. A simple question may need one loop, while a research-heavy question may need many. The agent matches its effort to the goal in front of it.
+1. **Decompose and plan:** The model breaks a compound question into sub-questions and writes targeted queries. For a multi-hop question ("Did the acquirer of Company X launch an EU endpoint this year?"), hop 1 resolves the acquirer's name before hop 2 searches that company's changelog and docs.
+2. **Search and fan out:** The runtime executes one or more queries against a live [web index](/learn/web-index) or internal corpus—often issuing independent sub-queries in parallel to keep wall-clock latency low.
+3. **Read and selectively fetch:** The model inspects ranked snippets or query-focused excerpts. When an excerpt confirms a lead but truncates the table or clause needed to verify it, the agent selectively fetches the underlying URL (for example via [Extract](/products/extract) or a [headless browser API](/learn/headless-browser-api)).
+4. **Check stopping criteria and refine:** The model checks whether all sub-questions are answered, whether primary sources agree, and whether facts are current. If gaps or conflicts remain, it rewrites the query with tighter terms, domain filters, or date constraints and runs another hop.
 
-## Key characteristics
+## What an agentic search loop looks like in code
 
-Agentic search shares a few defining traits across implementations.
+In practice, an agentic search loop is a bounded [agentic workflow](/learn/agentic-workflow) wired to a search endpoint that returns token-efficient excerpts rather than raw HTML. Passing full web pages on every hop exhausts the context window within a few turns; returning compressed, query-relevant excerpts (as in [Parallel Search](/products/search)) keeps each round lean enough for 5–10 hops.
 
-- **Autonomous querying:** the agent writes and issues its own searches instead of running one preset query.
-- **Iterative loops:** the agent runs several rounds and refines each search, a process researchers call [iterative and agent-directed](https://arxiv.org/pdf/2605.15184).
-- **Higher multi-hop accuracy:** on closed-corpus multi-hop question-answering (QA) benchmarks, agentic retrieval has shown [multi-hop accuracy gains](https://arxiv.org/html/2602.03442v1) over single-shot RAG.
-- **Built for agents:** the agent needs dense, compact excerpts sized for an LLM context window, delivered through a [web search API for agents](https://parallel.ai/products/search).
-- **Measurable quality:** teams score this pattern on benchmarks that reward heavy browsing and multiple rounds of research.
+```python
+import os
+import requests
 
-Autonomy is the biggest shift. The agent decides how many searches to run and when the answer is complete. Stronger reasoning models plan better queries and catch weak sources sooner.
+def search_web(objective: str, search_queries: list[str], mode: str = "fast") -> list[dict]:
+    resp = requests.post(
+        "https://api.parallel.ai/v1/search",
+        headers={"x-api-key": os.environ["PARALLEL_API_KEY"]},
+        json={
+            "mode": mode,
+            "objective": objective,
+            "search_queries": search_queries,
+        },
+        timeout=30,
+    )
+    resp.raise_for_status()
+    return [
+        {
+            "title": r["title"],
+            "url": r["url"],
+            "publish_date": r.get("publish_date"),
+            "excerpts": r.get("excerpts", [])[:2],
+        }
+        for r in resp.json().get("results", [])[:5]
+    ]
+```
 
-Each extra loop adds latency and cost, so a good agent balances depth against budget. It reuses what it learns, skips repeat queries, and stops once the answer holds. Compact results keep every round affordable inside a limited context window.
+Wrap `search_web` inside a [tool-calling](/learn/tool-calling) loop with a `max_steps` ceiling and a `seen_queries` set. On hop 1, the model calls `search_web` to identify the entity or primary domain; on hop 2, it narrows `search_queries` to official filings, documentation, or recent announcements; once the evidence settles the question, it stops calling tools and writes a grounded answer citing the exact URLs returned in earlier observations.
 
-A good agent knows when to stop. It checks whether its sources agree, whether key facts are missing, and whether another query would help. Clear stopping rules keep the loop from running long or wasting tokens on weak leads.
+## Single-shot RAG vs. agentic search vs. deep research
 
-Grounding is part of the pattern. The agent keeps the pages it read and links each claim to a source. That trail lets a person verify the answer instead of trusting the model alone.
+Agentic search sits between single-pass retrieval and long-running [deep research](/learn/deep-research) systems. Choosing the right tier is a latency-versus-recall trade-off.
 
-Conflicting sources are common on the open web. The agent can weigh a primary filing against a news summary and prefer the original document. When two pages disagree, it runs another search to break the tie before it answers.
+| Pattern | Retrieval passes | Typical latency | Best fit | Main failure mode |
+| --- | --- | --- | --- | --- |
+| Single-shot [RAG](/learn/rag-retrieval-augmented-generation) | 1 fixed query | Sub-second to ~2s | Direct lookups over a known, clean corpus | Misses multi-hop facts or poorly phrased queries |
+| Agentic search | 2–8 model-directed hops | 2–20s | Live Q&A, coding agents, support, entity verification | Looping on dead ends or blowing context budget |
+| [Deep research](/learn/deep-research) | Dozens of queries + full-page synthesis | Minutes | Due diligence, market reports, exhaustive audits | Too slow and expensive for interactive turns |
 
-Freshness matters as much as accuracy. The agent can favor recent pages when a topic shifts fast, such as pricing, staffing, or litigation. It can re-run a search later to catch updates a first pass missed.
+## Production constraints and tuning
 
-Parallel measures agentic search quality in its Agentic Web Research benchmark category, using tests such as DeepSearchQA and BrowseComp. These tests reward agents that chain searches, read full sources, and cite them.
+Running search inside a model loop exposes failure modes that single-shot retrieval hides:
 
-Enterprises are adopting these agents at pace. Forty percent of enterprise applications will be integrated with task-specific AI agents by the end of 2026, up from less than 5% today, according to Gartner Inc. Gartner shares this forecast in its report on [40% of enterprise apps by 2026](https://www.gartner.com/en/newsroom/press-releases/2025-08-26-gartner-predicts-40-percent-of-enterprise-apps-will-feature-task-specific-ai-agents-by-2026-up-from-less-than-5-percent-in-2025).
+- **Context budget:** Every search result appended to the transcript is re-read on every subsequent turn. Applying [context engineering](/learn/context-engineering)—limiting results per hop, capping excerpt length, and trimming stale raw pages—keeps both token cost and retrieval precision under control.
+- **Latency compounding:** Sequential hops multiply search latency by LLM round-trip time. Pairing a low-latency search tier with parallel tool calls (issuing 2–4 sub-queries in one turn) cuts total wall-clock time sharply.
+- **Source conflict and freshness:** Open-web results routinely disagree—for example, a stale blog post contradicting a current pricing page or SEC filing. Effective agent prompts instruct the model to prefer primary sources, check `publish_date`, and run a disambiguation query when two sources conflict.
+- **Hard stopping rules:** Without a `max_hops` cap and duplicate-query guard, a model chasing an unanswerable fact will burn tokens spinning on slight paraphrases. Returning a bounded "not found" state is better than letting the loop run indefinitely.
+- **Evaluation:** Static single-hop benchmarks under-test agentic loops. Multi-hop web evaluations such as BrowseComp and DeepSearchQA—tracked on [Parallel's benchmarks hub](/benchmarks)—measure whether an agent chains queries, verifies claims across pages, and preserves [source grounding](/learn/source-grounding).
 
-## Example: a research agent working in a loop
-
-Picture an analyst agent checking a supplier’s recent legal risks. The agent searches for lawsuits, reads a filing, and notices the verdict is missing. It runs a new search for the outcome and adds the source to its answer.
-
-The agent repeats this loop for each open question, such as fines, appeals, and related parties. It stops once it can respond with confidence and citations. This pattern powers [multi-step research automation](https://parallel.ai/products/task), where one agent chains many searches and reads into a single answer.
-
-A support agent can work the same way. It searches product docs, reads the closest match, and searches again when the fix does not match the user’s version. The agent returns a grounded answer with the exact page it used.
-
-In both cases the agent hands back more than a link list. It returns a short answer, the reasoning path it took, and the pages behind each fact. A reviewer can trust the result or reopen the loop.
-
-![Parallel web search API quality benchmarks, including agentic web research](https://cdn.sanity.io/images/5hzduz3y/production/1a235d3208378b5562963d35d1f678764821e54b-1920x1080.png)
-
-_Parallel’s benchmarks page compares agentic web research quality across providers. Source: __[Parallel benchmarks](https://parallel.ai/benchmarks)__._
-
-## Related terms
-
-- **[natural-language search objectives](https://docs.parallel.ai/search/search-quickstart)****:** describe intent in plain language and receive agent-ready context.
-- [search as a tool call](https://parallel.ai/mcp): let an agent invoke web search inside its own loop, for example through Parallel MCP.
-- **[Parallel developer documentation](https://docs.parallel.ai)****:** see how search, extraction, and research combine into an agentic pipeline.
-
-## FAQ
+## Frequently asked questions
 
 **Is agentic search the same as RAG?**
 
-No. RAG matches a fixed query against an existing index, while an agentic loop lets the model choose what to query and refine across rounds.
+No. Standard [RAG](/learn/rag-retrieval-augmented-generation) runs one deterministic retrieval step before generation. Agentic search puts the model inside the retrieval loop so it writes, inspects, and refines its own queries across multiple turns based on intermediate findings.
 
 **Does agentic search require a reasoning model?**
 
-No. A basic loop that searches and reads works with most large language models, though stronger reasoning helps the agent judge result quality mid-loop.
+No. Any model with reliable [tool calling](/learn/tool-calling) can execute a search-read-refine loop. Stronger reasoning models do improve query decomposition, conflict resolution, and knowing when to stop, especially on hard multi-hop questions.
 
-**Where does agentic search fit in an AI stack?**
+**When is single-shot search better than an agentic loop?**
 
-Agentic search runs as a tool call inside an agent’s loop. It gives the model live web access it can invoke and re-invoke while working through a task.
+Use a single search call when the query is unambiguous, answerable from one page, and bound by a tight latency budget (such as autocomplete, quick fact lookups, or high-volume enrichment where a single well-formed query already achieves high recall).

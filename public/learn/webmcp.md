@@ -1,8 +1,20 @@
-# What is WebMCP?
+# WebMCP
 
 WebMCP lets websites expose tools to AI agents. See how the browser API works, how it differs from MCP, and how to implement JavaScript and HTML examples.
 
 WebMCP (Web Model Context Protocol) is a proposed browser API that lets websites expose functions as tools for AI agents. A site describes what a tool does, which inputs it accepts, and how to run it. An agent can then call that tool instead of figuring out the same task through clicks and form fields. The [WebMCP specification](https://webmachinelearning.github.io/webmcp/) defines the browser-facing interface.
+
+**WebMCP (in-browser) vs. MCP (external server)**
+
+```text
+WEBMCP (page-scoped, inside the browser)
+  [Web Page JS] ─registers─▶ [Browser WebMCP API] ◀─calls─ [Agent]
+  (runs inside active tab & existing user session)
+
+MCP (service-scoped, outside the browser)
+  [Agent Host] ──stdio / Streamable HTTP──▶ [External MCP Server]
+  (runs headlessly across repos, APIs, and remote services)
+```
 
 Say a developer asks an assistant on an API dashboard, "How many requests did this account make in the past seven days?" The dashboard could expose a `get_api_usage` tool that returns the answer directly, so the assistant doesn't have to find the right chart, change its date range, and interpret the result.
 

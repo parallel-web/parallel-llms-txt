@@ -1,46 +1,79 @@
 # Browser agent
 
-A browser agent pairs a large language model with a real web browser so it can act on the web the way a person would. You describe the outcome, and the agent figures out the steps. It's a type of AI agent, so it helps to understand what an AI agent is before you build one.
+A browser agent pairs a language model with a real browser engine (typically headless Chromium via Playwright or CDP) so the model can navigate pages, click controls, fill forms, and read rendered content dynamically.
 
-A browser agent is an AI system that autonomously controls a web browser to complete tasks, navigating pages, clicking elements, filling forms, and extracting data from natural language instructions.
+A browser agent pairs a language model with a real browser engine (typically Chromium controlled via Playwright, Puppeteer, or the Chrome DevTools Protocol) so the model can navigate web pages, click buttons, fill forms, and read rendered output from a natural-language goal. Unlike a deterministic scraper that hard-codes CSS selectors, a browser agent inspects each page state in a loop and decides the next UI action dynamically.
 
-## What is a browser agent?
+**Browser agent perception-action loop**
 
-A browser agent pairs a large language model with a real web browser so it can act on the web the way a person would. You describe the outcome, and the agent figures out the steps. It's a type of AI agent, so it helps to understand [what an AI agent is](https://parallel.ai/learn/ai-agent) before you build one.
+```text
+┌──────────────────┐  DOM / a11y tree / screenshot   ┌───────────────┐
+│   Real Browser   │ ──────────────────────────────▶ │   LLM Agent   │
+│ (Chromium + CDP  │                                 │ (plans next   │
+│  / Playwright)   │ ◀────────────────────────────── │  UI action)   │
+└────────┬─────────┘  click / type / scroll / goto   └───────────────┘
+         │
+         ▼ rendered mutations, auth cookies, redirects
+   [Live Website]
+```
 
-This matters because autonomous agent activity on the web is rising. HUMAN Security's 2026 report found 7,851% [year-over-year growth in agentic AI traffic](https://humansecurity.com/learn/resources/2026-state-of-ai-traffic-cyberthreat-benchmarks/).
+## How a browser agent perceives a page
 
-## Key characteristics
+Raw HTML for a modern single-page app is noisy and too large for an LLM's [context window](/learn/context-window). Browser agents rely on three perception representations—often combining two of them:
 
-- **Natural language goals:** you describe an outcome, and the agent plans the steps instead of following a recorded script.
-- **Page perception:** it reads the document object model (DOM), accessibility tree, or a screenshot to find elements and decide the next action.
-- **Autonomous, adaptive actions:** it clicks, types, scrolls, and navigates, then adapts when a pop-up, a bot check (CAPTCHA), or a layout shift appears.
-- **Benchmark-measured reliability:** teams measure performance on web navigation tests. OpenAI reported its Computer-Using Agent scored [87% on WebVoyager](https://openai.com/index/computer-using-agent/) in January 2025.
-- **A different path than an API:** an application programming interface (API) returns clean, structured web data without a browser, so [a web search API](https://parallel.ai/learn/web-search-api) or [the Extract API](https://parallel.ai/products/extract) skips it.
+1. **Accessibility tree (a11y snapshot):** A compact semantic tree of interactive roles (`button`, `textbox`, `link`), accessible labels, and temporary element refs (`@e14`). Fast, token-light, and resistant to CSS class churn.
+2. **Screenshots (vision / computer use):** Rendered viewport pixels passed to a multimodal model that predicts `(x, y)` click coordinates (sometimes overlaid with numbered Set-of-Mark bounding boxes). Necessary for `<canvas>`, custom widgets, and visual layout checks, at higher latency and token cost.
+3. **Distilled DOM:** Pruned HTML keeping only visible interactive nodes and main text, stripped of `<script>`, `<style>`, and hidden subtrees.
 
-## Example
+```python
+async def execute_browser_action(page, action: dict) -> dict:
+    kind = action["type"]
+    if kind == "goto":
+        await page.goto(action["url"], wait_until="domcontentloaded", timeout=15_000)
+    elif kind == "click":
+        await page.locator(action["selector"]).first.click(timeout=5_000)
+    elif kind == "fill":
+        await page.locator(action["selector"]).first.fill(action["value"])
+    elif kind == "press":
+        await page.keyboard.press(action["key"])
+    else:
+        return {"error": f"Unsupported action: {kind}"}
 
-A browser agent can fill forms across web portals, including insurance quotes, government forms, and job applications. Form filling is a common job, and also one of the hardest. On Skyvern's open Web Bench, agents scored lowest on [write-heavy tasks like form filling](https://www.skyvern.com/blog/web-bench-a-new-way-to-compare-ai-browser-agents/), such as logging in and submitting forms.
+    return {
+        "url": page.url,
+        "title": await page.title(),
+        "a11y_snapshot": await page.accessibility.snapshot(),
+    }
+```
 
-Teams choosing a web access layer weigh browser automation against API access. If you want to [build a research agent](https://parallel.ai/articles/how-to-build-an-ai-research-agent-that-actually-works), that decision shapes your speed and cost. Our explainer on [when AI agents need a web search API](https://parallel.ai/learn/web-search-api) covers the API side of that choice.
+## Browser agent vs. web search API vs. headless browser API
 
-## Related terms
+Browser agents are expensive and slow compared to direct retrieval: a 10-step browsing session requires 10 LLM round-trips plus full page renders. Use a browser agent only when the task genuinely requires stateful UI interaction—logging in, clicking multi-step filters, or submitting forms where no API exists.
 
-- [what an AI agent is](https://parallel.ai/learn/ai-agent)
-- [a web search API](https://parallel.ai/learn/web-search-api)
-- [deep research](https://parallel.ai/learn/deep-research)
-- [a web crawler](https://parallel.ai/learn/web-crawler)
+| Approach | Latency | Token cost | Handles logins & form writes | Best fit |
+| --- | --- | --- | --- | --- |
+| [Web search API](/learn/web-search-api) | ~200 ms–3 s | Low (compact excerpts) | No (read-only public web) | Live research, [agentic search](/learn/agentic-search), grounding |
+| [Headless browser API](/learn/headless-browser-api) | 1–5 s | Medium | Scripted only | Rendering known JS URLs with deterministic code |
+| Browser agent | 10–90+ s | High (multi-turn DOM/vision) | Yes (adaptive UI clicks/forms) | Portals without APIs, checkout/booking, QA workflows |
 
-## FAQ
+On read-heavy research tasks, calling a [web search API](/learn/web-search-api) like [Parallel Search](/products/search) or [Extract](/products/extract) skips browser startup, rendering overhead, and visual-grounding errors altogether. Where sites explicitly expose structured actions in the browser, emerging standards like [WebMCP](/learn/webmcp) aim to replace brittle DOM clicking with typed page tools.
 
-**Is a browser agent the same as browser automation?**
+## Failure modes in production
 
-No, traditional automation tools like Playwright and Selenium follow fixed scripts, while a browser agent reasons about the page and adapts. As of late 2025, Playwright had become [the dominant tool testers want training on](https://testguild.com/podcast/a568-joe/), per TestGuild.
+- **Write-heavy UI fragility:** Benchmarks such as Skyvern's [Web Bench](https://www.skyvern.com/blog/web-bench-a-new-way-to-compare-ai-browser-agents/) show agents struggle most on write tasks—authentication flows, multi-field forms, date pickers, and validation pop-ups—compared to read-only lookups.
+- **Anti-bot defenses and session state:** Headless browsers trigger TLS/fingerprint checks and CAPTCHAs on protected sites (the domain of [web unlockers](/learn/web-unlocker)).
+- **Prompt injection via page content:** Malicious text hidden on a visited web page can instruct the agent to exfiltrate session cookies or submit unintended forms. Isolate browser profiles and gate irreversible actions (payments, deletes, external submits) behind human approval.
 
-**Is a browser agent the same as a user agent string?**
+## Frequently asked questions
 
-No. A user agent string is text a browser sends to identify itself, while a browser agent is an AI that operates the browser.
+**How is a browser agent different from Playwright or Selenium scripts?**
 
-**Do you need a browser agent to give an AI web access?**
+Playwright and Selenium execute fixed instructions written by a developer and break when a selector or flow changes. A browser agent uses those engines underneath, but lets an LLM inspect the live page and choose each step dynamically.
 
-Not always. For search and extraction, an API like the [Parallel Search API](https://parallel.ai/products/search) returns structured web data without driving a browser.
+**When should an AI agent avoid using a browser?**
+
+Skip the browser whenever you are reading public web information rather than mutating a UI. A [web search API](/learn/web-search-api) or extraction endpoint returns clean, citable text orders of magnitude faster and cheaper than driving Chromium turn by turn.
+
+**What is the difference between a browser agent and a computer-use agent?**
+
+A browser agent operates inside the web browser (DOM, accessibility tree, tabs). A computer-use agent operates at the OS desktop level over screenshots, mouse coordinates, and keyboard events across any native application.

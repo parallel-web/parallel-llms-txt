@@ -1,49 +1,102 @@
 # Autonomous agent
 
-An autonomous agent is software that pursues a goal on its own, choosing its steps and taking actions to reach it. It keeps working until it meets the goal instead of waiting for a new prompt each time. It builds on what an AI agent is by adding independence and persistence.
+An autonomous agent is an AI system that pursues a high-level goal across multiple steps without human prompting on each turn—planning actions, calling tools, verifying results, and stopping or escalating at defined boundaries.
 
-An autonomous agent is an AI system that plans and acts toward a goal set by a person, with little or no supervision at each step.
+An autonomous agent is an [AI agent](/learn/ai-agent) engineered to pursue a high-level objective across many steps without a human prompting each turn. Given a goal, a set of tools, and guardrails, it decomposes the task into sub-goals, calls external systems via [tool calling](/learn/tool-calling), evaluates whether each action moved it closer to completion, recovers from errors, and stops once its termination condition is satisfied—or escalates to a human when it hits an approval boundary.
 
-## What is an autonomous agent?
+**Autonomous agent control loop**
 
-An autonomous agent is software that pursues a goal on its own, choosing its steps and taking actions to reach it. It keeps working until it meets the goal instead of waiting for a new prompt each time. It builds on [what an AI agent is](https://parallel.ai/learn/ai-agent) by adding independence and persistence.
+```text
+                    ┌──────────────────────┐
+     Goal / Trigger │   Planner (LLM)      │◀─────────────────┐
+     ──────────────▶│ decompose + decide   │                  │
+                    └──────────┬───────────┘                  │
+                               ▼                              │
+                    ┌──────────────────────┐                  │
+                    │  Policy / Approval   │ (high-stakes     │
+                    │  Gate (Host Runtime) │  -> pause/ask)   │
+                    └──────────┬───────────┘                  │
+                               ▼                              │
+                    ┌──────────────────────┐                  │
+                    │  Tool / Environment  │                  │
+                    │  (search, code, API) │                  │
+                    └──────────┬───────────┘                  │
+                               ▼                              │
+                    ┌──────────────────────┐   not done       │
+                    │  Verify & Update     │──────────────────┘
+                    │  State / Memory      │
+                    └──────────┬───────────┘
+                               │ goal met / budget hit
+                               ▼
+                      Final Output + Trace
+```
 
-A spring 2025 [MIT Sloan survey](https://mitsloan.mit.edu/ideas-made-to-matter/agentic-ai-explained) measured the rise. MIT SMR and BCG found that 35% of respondents had adopted AI agents by 2023, with another 44% planning to deploy them.
+## What makes an agent "autonomous"
 
-## Key characteristics
+Autonomy is a spectrum, not a binary switch. Three architectural properties distinguish an autonomous agent from a scripted [agentic workflow](/learn/agentic-workflow) or single-turn assistant:
 
-An agent shares a few core traits, shaped by its [AI agent architecture](https://parallel.ai/articles/ai-agent-architecture-patterns-components-and-how-to-build-for-web-access).
+1. **Dynamic planning:** The control flow is not fixed in a static DAG. The model chooses how many steps to run, which tools to combine, and when to branch based on intermediate tool outputs.
+2. **Closed-loop error recovery:** When an API returns `404`, a unit test fails, or an [agentic search](/learn/agentic-search) query misses, the agent reads the error observation, revises its plan, and retries instead of halting.
+3. **Persistent state across steps:** The runtime tracks working state, artifacts, and checkpoints—often compacting older observations to fit inside the [context window](/learn/context-window)—so long-running tasks (such as [deep research](/learn/deep-research) or repository refactors) survive dozens of turns.
 
-- **Goal-driven:** The agent decides the steps to reach a goal you set.
-- **Tool use:** The agent calls outside tools and application programming interfaces (APIs), such as web search, code execution, and databases, to carry out plans.
-- **Memory and reasoning:** The agent remembers past steps so it can reason about what to do next.
-- **Limited supervision:** [Gartner](https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027) predicts agentic AI will make at least 15% of daily work decisions by 2028, up from 0% in 2024.
-- **Human oversight for high stakes:** The agent pauses for a human before it takes risky or costly actions.
+## Bounded autonomy in code
 
-## Example
+Unbounded autonomy fails quickly in production: loops spin on ambiguous goals, burn token budgets, or take unintended side effects. Reliable harnesses enforce explicit **budgets** (`max_steps`, `max_cost_usd`), **action policies** (auto-approve reads, gate writes), and **verifiable exit criteria**.
 
-An [autonomous research agent](https://parallel.ai/articles/best-apis-for-building-an-autonomous-ai-research-agent) shows the idea in action. You give it a question, and it searches the web, then reads and combines the best sources into an answer. It decides which pages to open and when it has gathered enough, without supervision at each step.
+```python
+READ_ONLY_TOOLS = {"search_web", "extract_url", "read_file"}
 
-![Parallel agentic web research benchmark results](https://cdn.sanity.io/images/5hzduz3y/production/9ad153f1f7dbecfdf970a99a736836a6bf92a6c4-1920x1080.png)
+def step_policy(tool_name: str, args: dict) -> str:
+    if tool_name in READ_ONLY_TOOLS:
+        return "allow"
+    if tool_name == "send_email" or tool_name == "update_crm":
+        return "require_approval"
+    return "deny"
 
-_Parallel's agentic web research benchmark results, comparing accuracy and cost across leading providers. Source: __[Parallel benchmarks](https://parallel.ai/benchmarks)__._
+def run_bounded_agent(goal: str, max_steps: int = 15, max_usd: float = 0.50):
+    state = {"steps": 0, "spend_usd": 0.0, "done": False}
+    while not state["done"] and state["steps"] < max_steps and state["spend_usd"] < max_usd:
+        action = plan_next_action(goal, state)
+        decision = step_policy(action.name, action.args)
+        if decision == "require_approval":
+            return {"status": "awaiting_human", "pending_action": action}
+        if decision == "deny":
+            record_observation(state, {"error": f"Tool {action.name} not permitted"})
+            continue
+        obs, cost = execute_tool(action)
+        state["steps"] += 1
+        state["spend_usd"] += cost
+        state["done"] = verify_goal(goal, obs, state)
+    return state
+```
 
-## Related terms
+## Autonomy spectrum: workflow vs. copilot vs. autonomous agent
 
-- **AI agent:** the broader category an agent belongs to.
-- **[Agent harness](https://parallel.ai/articles/what-is-an-agent-harness)****:** the framework that runs an agent's loop.
-- **[Deep research](https://parallel.ai/learn/deep-research)****:** the multi-step research an agent can produce.
-- **[Web search API for agents](https://parallel.ai/products/search)****:** the live search layer agents call.
+| Level | Who decides the next step | Human involvement | Typical use cases |
+| --- | --- | --- | --- |
+| Fixed pipeline | Deterministic code / DAG | None at runtime | ETL, scheduled alerts, static [RAG](/learn/rag-retrieval-augmented-generation) |
+| Human-in-the-loop copilot | Model proposes; human triggers each turn | Every turn | Interactive chat, inline code completion |
+| Bounded autonomous agent | Model plans & loops within host guardrails | At trigger + high-stakes approval gates | [Deep research](/learn/deep-research), automated [KYB](/learn/kyb) checks, coding agents, incident triage |
 
-## FAQ
+## Why autonomous agent projects fail in production
 
-**Are autonomous agents fully independent?**
-Not yet, since most still need human oversight for safety. The [2025 MIT AI Agent Index](https://aiagentindex.mit.edu/data/2025-AI-Agent-Index.pdf) found that across 30 leading deployed agents, only four provide agent-specific safety evaluations.
+Analyst forecasts highlight the gap between demos and deployment—Gartner projected in June 2025 that [over 40% of agentic AI projects](https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027) could be canceled by 2027 due to unclear ROI and weak controls. In engineering terms, failures cluster around four causes:
 
-**Why do many agent projects fail?**
-[Gartner predicts](https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027) that companies will cancel over 40% of agentic AI projects by the end of 2027. The causes include escalating costs, unclear business value, or inadequate risk controls.
+- **Compounding error rates:** A 95% per-step success rate drops to 60% over 10 sequential steps (`0.95^10`) unless intermediate steps have deterministic checks (schema validation, tests, citation verification).
+- **Stale or ungrounded inputs:** An agent reasoning over hallucinated facts compounds errors across every downstream step. Grounding web lookups with a dedicated [web search API](/learn/web-search-api) like [Parallel Search](/products/search) keeps each observation attributable.
+- **Missing observability:** Without step-level traces (prompts, tool args, latency, token spend), debugging why an agent took a wrong branch on step 11 is guesswork.
+- **Over-broad permissions:** Granting write credentials before read-only reliability is proven turns a prompt-injection bug into a production incident.
 
-**How is an agent different from a chatbot?**
-An agent takes actions and completes tasks toward a goal you set, going beyond a chatbot that only answers the questions you ask.
+## Frequently asked questions
 
-You can put these ideas to work with Parallel's web APIs built for agents. [Start Building](https://docs.parallel.ai/home) with our docs.
+**What is the difference between an AI agent and an autonomous agent?**
+
+Every autonomous agent is an [AI agent](/learn/ai-agent), but "autonomous" emphasizes multi-step independence: the system plans, invokes tools, checks intermediate outputs, and runs to completion without waiting for a human prompt between steps.
+
+**Do autonomous agents eliminate human oversight?**
+
+No. Production deployments use _bounded_ autonomy—running read-only research, drafting, and verification autonomously while routing irreversible or regulated actions (payments, legal sign-off, customer outreach) to a human reviewer with a cited audit trail.
+
+**What is an agent harness?**
+
+An [agent harness](/articles/what-is-an-agent-harness) is the outer software runtime around the model that manages the loop, [context engineering](/learn/context-engineering), tool dispatch, retries, sandboxing, and approval gates.

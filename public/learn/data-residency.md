@@ -4,6 +4,20 @@ Data residency describes where data is stored and processed, such as the EU. Thi
 
 Data residency is the location where an organization's data is stored and processed, usually stated as a country or region such as the EU.
 
+**Regional routing for EU data residency**
+
+```text
+EU Application / Agent
+       │  HTTPS (regional endpoint)
+       ▼
+┌───────────────────── EU Region Boundary ─────────────────────┐
+│  Ingress / API ──▶ Processing / Inference ──▶ Logs / Storage │
+│   (stays in EU)        (stays in EU)          (stays in EU)  │
+└──────────────────────────────────────────────────────────────┘
+  Residency   = WHERE bits are processed & stored (technical)
+  Sovereignty = WHOSE laws can compel access      (legal)
+```
+
 ## What is data residency?
 
 Data residency is a commitment about geography. A provider that offers EU residency is saying that the requests you send are processed, and any data it keeps is stored, on infrastructure in the EU. Because it describes where infrastructure runs, an engineer can check it: which endpoint you call, where the servers sit, and which parts of a request leave the region.

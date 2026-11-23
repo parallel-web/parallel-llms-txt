@@ -1,67 +1,81 @@
 # Headless browser API
 
-A headless browser API gives your code programmatic access to a browser that runs without a graphical user interface (GUI). It loads and renders web pages the way a real user’s browser would, then returns the finished content your code asks for.
+A headless browser API gives your code remote programmatic control over a browser engine with no visible UI—executing JavaScript, resolving XHR/fetch calls, and returning the hydrated DOM, screenshot, or PDF.
 
-A headless browser API lets your code control a real web browser that has no visible window and returns a page’s rendered content.
+A headless browser API gives your code remote programmatic access to a real web browser engine—typically Chromium—running without a visible window. You send a target URL (and optional wait rules, headers, or interaction steps) over HTTP, the service executes JavaScript, resolves network requests, and renders the DOM, then returns the finished HTML, extracted text, screenshot, or PDF.
 
-## What is a headless browser API?
+**Raw HTTP fetch vs. headless browser API**
 
-A headless browser API gives your code programmatic access to a browser that runs without a graphical user interface (GUI). It loads and renders web pages the way a real user’s browser would, then returns the finished content your code asks for.
+```text
+PLAIN HTTP FETCH
+  GET /pricing ──▶ Server ──▶ <div id="root"></div><script src="app.js">
+                              (missing client-rendered content)
 
-A headless browser is a full web browser with no screen to look at. The API wraps that browser so you can drive it through requests rather than clicks. You send a URL, the browser renders the page, and you get back the result.
+HEADLESS BROWSER API
+  POST /render ──▶ ┌───────────────────────────────────────────┐
+                   │ Managed Headless Chromium                 │
+                   │ 1. Fetch HTML + JS/CSS + XHR/fetch calls  │
+                   │ 2. Execute JS & wait for network/selector │
+                   │ 3. Serialize hydrated DOM / PDF / PNG     │
+                   └─────────────────────┬─────────────────────┘
+                                         ▼
+                           Rendered HTML / Markdown / Screenshot
+```
 
-This matters for developers and [AI agents](https://parallel.ai/learn/ai-agent) that need the live web without running browser infrastructure themselves. Many sites build their content with JavaScript, so a plain request returns an empty page. A headless browser API runs that JavaScript first, then hands back the real content.
+## When plain HTTP fails and headless rendering is required
 
-## Key characteristics
+Standard HTTP clients (`curl`, `requests`, `fetch`) download the initial server response without running JavaScript. That is fast and cheap for static or server-side-rendered pages, but misses content on:
 
-A headless browser API shares a few core traits. These points explain how it works and why teams reach for it.
+- **Client-side single-page apps (SPAs):** React, Vue, or Angular shells that populate tables, prices, or listings via `fetch()`/`XHR` after load.
+- **Infinite scroll and interactive tabs:** Content hidden behind click handlers, accordions, or lazy-loaded viewports.
+- **Visual artifacts:** Pixel screenshots, layout regression checks, and print-to-PDF rendering.
 
-- **No graphical interface:** Code runs a real browser with no visible window. With [Chrome’s headless mode](https://developer.chrome.com/docs/automation-and-testing/headless), Chrome 112 creates but doesn’t display any platform windows.
-- **JavaScript rendering:** It runs code inside the browser so dynamic content loads before extraction. Plain HTTP requests can’t do that.
-- **Programmatic control:** Developers drive it through libraries and endpoints. The [Puppeteer library](https://pptr.dev/) controls Chrome or Firefox and runs headless by default.
-- **Standards automation:** It builds on open browser standards. The [W3C WebDriver specification](https://www.w3.org/TR/webdriver2/) is a remote control interface that enables introspection and control of browsers.
-- **Managed or run it yourself:** You can run your own headless browsers or call a managed [web scraping API](https://parallel.ai/articles/web-scraping-api-how-to-choose-the-right-tool-for-ai-ready-data).
+Under the hood, most headless browser APIs wrap [Chrome Headless](https://developer.chrome.com/docs/automation-and-testing/headless), [Puppeteer](https://pptr.dev/), Playwright, or the W3C [WebDriver](https://www.w3.org/TR/webdriver2/) protocol behind a managed pool of isolated browser containers so your application does not have to manage memory leaks, zombie Chrome processes, or Chromium security patches.
 
-Each trait points back to one idea. A headless browser API turns a full browser into something your code can call on demand. You keep the power of a real browser without the manual work of clicking through it.
+```javascript
+import { chromium } from "playwright";
 
-## Example
+const browser = await chromium.launch({ headless: true });
+const page = await browser.newPage();
 
-Say an AI agent needs prices from a store page. A plain request returns an empty HTML shell, because the page builds itself with JavaScript. A headless browser API loads the page, runs the scripts, and returns the finished content.
+// Block heavy binary assets to cut render time and bandwidth
+await page.route("**/*.{png,jpg,jpeg,woff2,mp4}", (route) => route.abort());
 
-The flow stays simple. Your code sends the URL, and the headless browser renders the full page and returns the result. You can also capture a screenshot or save the page as a PDF in the same step.
+await page.goto("https://example.com/pricing", { waitUntil: "domcontentloaded" });
+await page.waitForSelector("[data-testid='pricing-table']", { timeout: 10_000 });
 
-Testing teams use the same setup. They point a headless browser at a new build and confirm each key flow still works. The browser reports what a real user would see, without a screen.
+const html = await page.content();
+await browser.close();
+```
 
-This is a common web scraping task. Instead of running browser servers yourself, you call a managed API that renders the page and returns clean content. You get the data without the upkeep.
+## Headless browser API vs. extraction API vs. browser agent
 
-Cost and speed vary by approach. Running your own browsers means managing crashes and updates across many pages. A managed API removes that burden and bills per request.
+Running a full browser is CPU- and RAM-intensive (~200–500 MB per instance, 1–5 seconds per page). For AI pipelines, raw rendered HTML also still carries navigation menus, footers, and markup noise that waste [context window](/learn/context-window) tokens.
 
-The result matches what a shopper would see on screen. Your code can then store it or pass it straight to a model for analysis.
+| Tool | Runs JS | Output shape | Best fit |
+| --- | --- | --- | --- |
+| Plain HTTP fetch | No | Raw initial HTML | Static docs, RSS/XML feeds, JSON APIs |
+| Headless browser API | Yes | Hydrated HTML, PNG, PDF, HAR | Custom DOM automation, screenshots, visual QA, [web scraping](/learn/web-scraping) |
+| Web extraction API (e.g., [Parallel Extract](/products/extract)) | Yes (when needed) | Clean markdown / query-focused excerpts | Feeding specific URLs directly into LLMs and [RAG](/learn/rag-retrieval-augmented-generation) |
+| [Browser agent](/learn/browser-agent) | Yes | Goal-driven multi-step UI actions | Multi-page logins and forms with no API |
 
-Developers lean on browser automation tools for this work. In the [State of JS 2023 survey](https://2023.stateofjs.com/en-US/libraries/), a developer poll whose respondents opt in, Playwright ranked first in retention at 95%, versus 30% for Selenium.
+## Operational gotchas to plan for
 
-![Parallel Extract API turns JavaScript-heavy pages into clean, AI-ready content](https://cdn.sanity.io/images/5hzduz3y/production/61534c7bb7c4bbc987a689d4c09b03af493cba81-1920x1080.png)
+- **Waiting strategy:** `networkidle` frequently hangs on sites running persistent analytics pings or WebSockets. Prefer `domcontentloaded` plus `waitForSelector` on a real content element.
+- **Resource blocking:** Aborting image, font, and video requests cuts latency and bandwidth sharply when you only need text or DOM structure.
+- **Anti-bot detection:** Default headless Chrome exposes tells (`navigator.webdriver === true`, headless user agents, datacenter IPs). Sites behind aggressive WAFs often require a [web unlocker](/learn/web-unlocker) or proxy rotation layer.
+- **Isolation:** Always run untrusted pages in fresh browser contexts (`browser.newContext()`) with strict navigation timeouts so one hostile script cannot leak cookies or stall worker pools.
 
-_Parallel’s Extract API renders pages like a headless browser and returns clean markdown. Source: __[Parallel Extract API](https://parallel.ai/products/extract)__._
+## Frequently asked questions
 
-Parallel’s Extract API handles this rendering behind one call. It turns any public URL, including pages that load with JavaScript and PDFs, into clean markdown for $1 per 1,000 URLs. Each call returns in 1 to 20 seconds.
+**Is a headless browser API the same as a web scraping API?**
 
-## Related terms
+Not quite. A headless browser API focuses on executing and rendering pages in a real browser environment (often giving you a Playwright/CDP endpoint or raw HTML/screenshot). A full [web scraping](/learn/web-scraping) or extraction API layers proxy rotation, anti-bot handling, and HTML-to-markdown/JSON parsing on top.
 
-- [article extraction API](https://parallel.ai/articles/article-extraction-api-a-developers-guide-to-structured-web-data): a developer’s guide to structured web data.
-- [web search API](https://parallel.ai/learn/web-search-api): how web search works for AI agents.
-- [web scraping](https://parallel.ai/learn/web-scraping): the basics of pulling data from pages.
+**Why not run headless Chrome inside my own serverless function?**
 
-## FAQ
+Chromium binaries exceed many serverless size limits, cold starts are slow, and concurrent tabs spike RAM rapidly. Teams typically offload rendering to a managed headless browser API—or skip raw rendering entirely with an extraction endpoint like [Parallel Extract](/products/extract) when they only need clean page text for an agent.
 
-**What is a headless browser API used for?**
+**Does headless rendering work for AI agents that need to discover pages first?**
 
-Developers use it for automated testing, web scraping, screenshots or PDFs, and giving AI agents access to pages that load with JavaScript.
-
-**How is a headless browser different from a regular browser?**
-
-It uses the same engine but shows no visible window, and code controls it instead of a person.
-
-**Can you give an example of a headless browser?**
-
-A common example is headless Chrome driven by the Puppeteer or Playwright libraries.
+No—you need a URL before you can render it. Pair a [web search API](/learn/web-search-api) for discovery with targeted extraction or rendering only for the URLs that require full-page reading.

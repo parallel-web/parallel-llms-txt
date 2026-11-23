@@ -1,8 +1,22 @@
-# What is context engineering? A guide for AI agent builders
+# Context engineering
 
 Context engineering is how AI agent builders control what a model sees on every call, from tool definitions to live web search results. This guide covers how it differs from prompt engineering, what goes into an agent’s context, the ways a context window breaks down, and the techniques that keep it lean, including how search results should enter the window.
 
 Context engineering is the practice of deciding which tokens a language model sees on each call: the instructions, tool definitions, retrieved documents, memory, conversation history, and tool results that fill its context window. Anthropic defines it as “the set of strategies for curating and maintaining the optimal set of tokens (information) during LLM inference.” For an agent that runs dozens of model calls in a loop, that curation happens again on every turn, and it decides more about output quality than the wording of any single prompt.
+
+**Anatomy of an agent's per-turn context window**
+
+```text
+┌────────────────── Context Window (per turn) ──────────────────┐
+│ [STABLE PREFIX - cacheable]                                   │
+│   System Prompt  │  Selected Tool Schemas  │  Active Skills   │
+├───────────────────────────────────────────────────────────────┤
+│ [DYNAMIC WORKING STATE - curated every turn]                  │
+│   Compacted History │ Retrieved Excerpts │ Memory │ Last Call │
+└───────────────────────────────────────────────────────────────┘
+   Controls: retrieve on demand / compact old turns / isolate
+             sub-agents / bound excerpt size
+```
 
 ## Context engineering vs. prompt engineering
 

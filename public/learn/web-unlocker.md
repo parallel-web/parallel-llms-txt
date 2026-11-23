@@ -1,52 +1,85 @@
 # Web unlocker
 
-A web unlocker is a service that retrieves pages from websites that block automated traffic. It routes each request through a proxy network, mimics a real browser, solves CAPTCHAs, and retries until the site returns a real page, then hands back the raw HTML.
+A web unlocker is a managed proxy and request-orchestration service that fetches public pages from anti-bot-protected sites by rotating residential IPs, impersonating browser TLS fingerprints, solving challenges, and returning raw HTML.
 
-A web unlocker is a managed service that fetches web pages from sites that block bots, and returns the raw HTML for you to parse.
+A web unlocker is a managed HTTP proxy and request-orchestration service built to fetch public web pages from sites protected by anti-bot defenses. You send a target URL to the unlocker's endpoint; behind the scenes, it rotates residential or ISP proxies, impersonates real browser TLS and HTTP/2 fingerprints, executes JavaScript challenges or solves CAPTCHAs when triggered, retries blocked attempts, and returns the raw HTML response for your parser to process.
 
-## What is a web unlocker?
+**How a web unlocker sits between your scraper and a protected site**
 
-A web unlocker, also sold as a "web unblocker" or "site unblocker," is a fetch service built for one job: getting a successful response from a page that tries to refuse automated requests. You send a URL. The service picks a proxy, sets headers and a browser fingerprint that look like a real user, renders JavaScript if the page needs it, solves any CAPTCHA it meets, and retries with a different setup when a request fails. The page comes back as HTML.
+```text
+┌────────────┐  GET target URL   ┌─────────────────────────────────┐
+│ Your App / │ ────────────────▶ │           Web Unlocker          │
+│  Scraper   │                   │  1. Select geo / residential IP │
+│            │ ◀──────────────── │  2. Spoof TLS (JA4) + HTTP/2    │
+└────────────┘   200 OK (HTML)   │  3. Run JS / CAPTCHA if blocked │
+                                 │  4. Retry on 403 / 429          │
+                                 └────────────────┬────────────────┘
+                                                  │ disguised request
+                                                  ▼
+                                        ┌───────────────────┐
+                                        │  WAF / Bot Guard  │
+                                        │  -> Origin Server │
+                                        └───────────────────┘
+```
 
-The category grew out of the proxy business. Rotating IP addresses used to be enough to avoid blocks. Modern bot defenses such as Cloudflare, DataDome, and PerimeterX inspect TLS signatures, browser fingerprints, and behavior, so a bare proxy no longer gets through. Vendors bundled the whole evasion stack into a single endpoint and priced it per successful page.
+## What anti-bot layers a web unlocker handles
 
-## Key characteristics
+Modern web application firewalls (Cloudflare, Akamai, DataDome, PerimeterX) inspect far more than the `User-Agent` header. A naive `requests.get()` fails at multiple layers that a web unlocker attempts to normalize:
 
-- **Single request in, HTML out:** Bright Data's documentation describes its Web Unlocker API as unlocking a public web page in one call and returning HTML or JSON. Oxylabs states that its Web Unblocker returns raw HTML only, with no parsing.
-- **Proxy rotation and fingerprinting:** The service chooses the proxy network for the target site and sets headers, cookies, and browser parameters to match real-user traffic.
-- **JavaScript rendering and CAPTCHA solving:** Pages that build themselves in the browser are rendered before return, and CAPTCHAs are solved automatically as part of the request.
-- **Pay per success:** Vendors bill only for requests that return a real page. Bright Data measures usage as the cost of 1,000 successful requests, and Oxylabs excludes failed attempts from traffic charges.
-- **Not a parser:** An unlocker stops at retrieval. Extracting fields or clean text from the HTML is a separate step you build or buy.
+- **IP reputation and ASN filtering:** Datacenter IP ranges (AWS, GCP, Hetzner) are immediately challenged or blocked with `403`. Unlockers route through rotating residential, mobile, or ISP IP pools matched to the target geography.
+- **TLS and HTTP/2 fingerprinting (**`**JA3**`** / **`**JA4**`**):** Python's `urllib3` or Go's `net/http` produce distinct TLS cipher-suite handshakes and HTTP/2 frame settings compared to Chrome. Unlockers impersonate real browser TLS stacks at the socket layer.
+- **Header ordering and Sec-Fetch metadata:** Real browsers emit deterministic header casing, ordering, and `Sec-Ch-Ua` / `Sec-Fetch-*` pairs.
+- **JavaScript proof-of-work and CAPTCHA challenges:** When a site returns an interstitial challenge page instead of `200 OK` content, the unlocker escalates to a managed browser session or solver, caches the clearance cookie, and replays the request.
 
-List pricing in September 2026 ranges from about $0.95 per 1,000 requests at Decodo to $1.50 per 1,000 pay as you go at Bright Data, with Oxylabs billing per gigabyte of traffic and Zyte pricing each request by the target site's difficulty tier. Vendors advertise success rates between 98 and 100 percent. An independent benchmark from AIMultiple, based on roughly 40,000 requests against protected sites, ranked Zyte fastest at 1.75 seconds per response, with Bright Data at 2.38 seconds.
+```python
+import os
+import requests
 
-## Example
+# Pattern A: Web unlocker proxy -> returns raw HTML (you parse selectors yourself)
+resp = requests.get(
+    "https://example.com/product/sku-42",
+    proxies={"https": os.environ["UNLOCKER_PROXY_URL"]},
+    timeout=60,
+)
+raw_html = resp.text  # Often 150 KB+ of HTML, scripts, and CSS
 
-A price-monitoring team tracks 50,000 product pages on retail sites that block datacenter IPs. Its scraper used to spend most of its time on retries. The team routes every request through an unlocker instead, gets HTML back for nearly all of them, and keeps its own parsers to pull price and stock fields out of the pages. The unlocker replaced the retrieval layer and nothing else.
+# Pattern B: Extraction API -> returns clean markdown / excerpts directly
+extract_resp = requests.post(
+    "https://api.parallel.ai/v1/extract",
+    headers={"x-api-key": os.environ["PARALLEL_API_KEY"]},
+    json={"urls": ["https://example.com/product/sku-42"], "excerpts": True},
+    timeout=30,
+)
+clean_excerpts = extract_resp.json()["results"][0]["excerpts"]
+```
 
-Compare that with an AI agent that needs to read a public news article or a documentation page. Nothing is blocking it. The agent needs the content rendered, stripped of boilerplate, and trimmed to the part that answers its question. That is a fetch problem, not an unblocking problem.
+## Web unlocker vs. headless browser API vs. extraction API
 
-The [Parallel Extract API](https://parallel.ai/products/extract) is built for that second case. It turns any public URL, including JavaScript-rendered pages and PDFs, into clean markdown for $1 per 1,000 URLs, and returns objective-focused excerpts when you tell it what you are looking for. It is not an unlocker: it does not sell residential IPs or CAPTCHA solving. For the full comparison, see [web unlocker vs. scraper vs. fetch](https://parallel.ai/articles/web-unlocker-vs-scraper-vs-fetch).
+Unlockers solve _access_ (getting a `200 OK` HTML document back), not _discovery_ or _LLM-ready formatting_. Choosing the wrong layer adds cost and latency quickly—especially for [AI agents](/learn/ai-agent) that pay per token in the [context window](/learn/context-window).
 
-## Related terms
+| Tool | What it solves | Typical output | Latency | Best fit |
+| --- | --- | --- | --- | --- |
+| Web unlocker | Anti-bot bypass, proxy rotation, CAPTCHAs | Raw HTML | 2–15 s | Large-scale [web scraping](/learn/web-scraping) on protected domains with custom parsers |
+| [Headless browser API](/learn/headless-browser-api) | JS execution, DOM interaction, screenshots | Hydrated HTML / PNG / PDF | 1–5 s | Client-rendered SPAs, scripted clicks, visual QA |
+| Web extraction API ([Parallel Extract](/products/extract)) | Fetching + JS rendering + boilerplate removal | Clean markdown / query excerpts | 1–4 s | Feeding known URLs directly into LLMs and [RAG](/learn/rag-retrieval-augmented-generation) |
+| [Web search API](/learn/web-search-api) | Query-to-URL discovery + ranked excerpts | Ranked URLs + excerpts | ~200 ms–3 s | Open-web research when you do not know the URLs up front |
 
-- [web scraping](https://parallel.ai/learn/web-scraping): the wider process of collecting and parsing data from web pages.
-- [headless browser API](https://parallel.ai/learn/headless-browser-api): the rendering technology unlockers use to load JavaScript-heavy pages.
-- [web scraper vs. web extraction](https://parallel.ai/articles/web-scraper-vs-web-extraction): how retrieval and extraction differ.
-- [web data API](https://parallel.ai/learn/web-data-api): getting structured data through an interface instead of a page.
+## Operational trade-offs and compliance
 
-## FAQ
+- **Unpredictable tail latency:** Escalating from a fast HTTP proxy to a JS-challenge solve and retry can push single-URL latency past 10–20 seconds, making unlockers a poor fit for synchronous user-facing turns.
+- **Per-GB and per-success billing:** Residential proxy bandwidth and solver escalations cost significantly more per thousand pages than datacenter fetches or indexed search APIs.
+- **Respecting site boundaries:** Unlockers are intended for public, unauthenticated pages where automated collection is lawful and permitted; they do not substitute for authorized credentials on private or paywalled portals, and production scrapers should respect `robots.txt`, rate limits, and applicable terms.
 
-**Is a web unlocker the same as a proxy?**
+## Frequently asked questions
 
-No. A proxy changes your IP address. An unlocker runs on top of a proxy network and adds fingerprinting, JavaScript rendering, CAPTCHA solving, and retries, and bills only for successful pages.
+**Does a web unlocker return clean JSON or markdown for an LLM?**
 
-**Does a web unlocker return structured data?**
+Most web unlockers return raw HTML (some offer optional markdown conversion add-ons). If your downstream consumer is an LLM rather than a custom CSS/XPath parser, an extraction endpoint like [Parallel Extract](/products/extract) or a [web search API](/learn/web-search-api) avoids shipping raw HTML and maintaining parsers altogether.
 
-Usually not. Most unlockers return raw HTML. Parsing it into fields or clean text is a separate step.
+**Why do unlockers cost more than standard proxies?**
 
-**Is using a web unlocker legal?**
+Standard proxy services only lease IP addresses—you still handle TLS spoofing, cookie jars, retries, headless escalation, and CAPTCHA solving yourself. A web unlocker bundles that entire request-success pipeline and bills per successful request or bandwidth tier.
 
-It depends on the target, the data, and your jurisdiction. US courts in Meta v. Bright Data held that logged-off collection of public data did not breach Meta's terms, but site operators are also tightening defaults, and Cloudflare now blocks AI training and agent bots on ad-supported pages for new domains. Get target-by-target legal review.
+**When do you need a web unlocker instead of a headless browser API?**
 
-**[Start Building](https://docs.parallel.ai/home)**
+Use a [headless browser API](/learn/headless-browser-api) when a site is friendly to crawlers but requires JavaScript to render the DOM. You only need a web unlocker when the site actively blocks datacenter IPs, inspects TLS fingerprints, or serves anti-bot challenges.

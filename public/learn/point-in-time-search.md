@@ -4,6 +4,20 @@ Point-in-time search returns web results as a search index stood at a chosen mom
 
 Point-in-time search is a web search that answers from the index as it existed at a chosen past moment, leaving out every page, and every version of a page, captured after that moment.
 
+**Date-filtered search vs. point-in-time search**
+
+```text
+Cutoff t0 (e.g. 2025-06-01)
+──────────────────────────────┼─────────────────────────────▶ time
+                              │
+PUBLICATION-DATE FILTER       │
+  "published <= t0" ──▶ LIVE page (leaks post-t0 edits/links)
+                              │
+POINT-IN-TIME SEARCH          │
+  "captured <= t0"  ──▶ ARCHIVED version as of t0
+  (pages & edits after t0 are invisible to the query)
+```
+
 ## What is point-in-time search?
 
 A normal search answers from the index as it stands today. A point-in-time search adds a cutoff, often called the query time or as-of time, and treats anything the index acquired after that cutoff as if it doesn't exist. The results approximate what an agent could have found on that date. Teams use it to backtest forecasting and trading research, replay past agent runs, and build evals that a model can't pass by reading later reporting.

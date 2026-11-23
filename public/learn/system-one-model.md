@@ -4,6 +4,17 @@ A System One model is an AI model that answers typed questions about an input wi
 
 A System One model is a machine learning model that reads a state, such as a support ticket, a record, or a web page, and returns calibrated probabilities over answers you define in advance.
 
+**System One decision model vs. generative LLM**
+
+```text
+SYSTEM ONE MODEL (single pass -> typed probabilities)
+  State + Typed Questions ──▶ [Decision Model] ──▶ {p_true: 0.91,
+  (ticket / page / record)                          label: "same"}
+
+GENERATIVE LLM (autoregressive tokens)
+  Prompt ──▶ [Token-by-Token Decoding] ──▶ Prose / JSON to parse
+```
+
 ## What is a System One model?
 
 TypeSafe AI coined the term when it launched Jev on Sep 15, 2026, calling Jev "the first System One model." The name comes from Daniel Kahneman's _Thinking, Fast and Slow_, which contrasts fast, intuitive System 1 thinking with slow, deliberate System 2 reasoning. Many developers now use "decision model" for the same category.

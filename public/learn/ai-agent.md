@@ -1,109 +1,76 @@
-# What is an AI agent?
+# AI agent
 
-An AI agent perceives its environment, plans, and acts toward a goal without step-by-step supervision, which is what separates it from a chatbot answering prompts. This guide covers how agents differ from chatbots, the end-to-end loop from goal to reflection, the types of agent in practice, and the risks.
+An AI agent is a software system where a language model drives a multi-step feedback loop—choosing tools, reading live observations, maintaining state, and iterating inside a harness until a goal is met.
 
-## **What is an AI agent?**
+An AI agent is a software system in which a language model acts as the decision controller inside a feedback loop—observing state, selecting external actions via [tool calling](/learn/tool-calling), reading tool results, and iterating until it reaches a goal or hits a budget limit. Unlike a single-turn chatbot that maps one prompt to one reply, an AI agent maintains control across multiple steps and interacts directly with live software environments, files, APIs, and the open web.
 
-An AI agent is a software system that uses artificial intelligence to autonomously complete tasks and achieve goals with minimal human intervention. It perceives its environment, makes decisions, and takes actions by using [tools](https://parallel.ai/products/search), reasoning, planning, and memory.
+**Core AI agent architecture (ReAct loop)**
 
-Traditional software follows predetermined instructions: if X happens, do Y. An AI agent gets a goal and works out the steps itself.
+```text
+User Goal ──▶ ┌─────────────────────────────────────────────────┐
+              │                 Agent Harness                   │
+              │  ┌──────────────┐   action    ┌──────────────┐  │
+              │  │  LLM Policy  │ ──────────▶ │ Tool Runtime │  │
+              │  │ (+ Memory &  │             │ (search, API,│  │
+              │  │   Context)   │ ◀────────── │  code, MCP)  │  │
+              │  └──────────────┘ observation └──────────────┘  │
+              └────────────────────────┬────────────────────────┘
+                                       │ stop condition met
+                                       ▼
+                             Grounded Answer / Action
+```
 
-AI agents differ from other software in three ways:
+## Five building blocks of a production AI agent
 
-- **Autonomy:** Agents operate independently, making decisions without waiting for human input at every step
-- **Goal-oriented behavior:** Agents work toward specific objectives, planning sequences of actions to achieve outcomes
-- **Environmental awareness:** Agents perceive and respond to their surroundings, whether that's a database, web interface, or collection of APIs
+Every reliable agent—whether a coding agent, support resolver, or financial researcher—combines the same five components:
 
-## **AI agent vs. chatbot: key differences**
+1. **Reasoning model (policy):** Selects the next action, writes queries, interprets observations, and decides when to stop.
+2. **Tools and protocols:** Executable functions declared via [tool calling](/learn/tool-calling) or discovered dynamically through [MCP](/learn/model-context-protocol), giving the model hands to search the web, run code, or query databases.
+3. **Working context and memory:** The active [context window](/learn/context-window) curated via [context engineering](/learn/context-engineering), backed by external [agent memory](/learn/agent-memory) and [prompt caching](/learn/prompt-caching) for multi-turn efficiency.
+4. **Control loop (harness):** The deterministic outer runtime ([agent harness](/articles/what-is-an-agent-harness)) enforcing `max_steps`, timeouts, retries, sandboxing, and human approval gates.
+5. **Grounding and verification:** Live evidence from [web search APIs](/learn/web-search-api) or internal retrieval plus [structured outputs](/learn/structured-outputs) and deterministic checks (unit tests, schema validation, [source grounding](/learn/source-grounding)).
 
-Chatbots react: you ask a question, and they provide an answer. AI agents act: you set an objective, and they figure out how to accomplish it.
+The canonical academic formulation of this interleaved thought-action-observation loop is **ReAct** ([Yao et al., 2022](https://arxiv.org/abs/2210.03629)), which showed that grounding reasoning traces in live search observations sharply reduces hallucination compared to chain-of-thought prompting alone.
 
-In customer service, a chatbot answers "What's my order status?" by looking up information and responding. An AI agent with the goal "Resolve customer issues" might detect a delayed shipment, contact the customer before they ask, offer compensation, and update internal systems.
+```python
+def run_react_agent(llm, goal: str, tools: dict, max_steps: int = 10) -> str:
+    transcript = [{"role": "user", "content": goal}]
+    for step in range(max_steps):
+        turn = llm.generate(messages=transcript, tool_schemas=list(tools.keys()))
+        transcript.append(turn.message)
+        if not turn.tool_calls:
+            return turn.text  # Model chose to finish
+        for call in turn.tool_calls:
+            fn = tools.get(call.name)
+            output = fn(**call.args) if fn else {"error": f"Unknown tool: {call.name}"}
+            transcript.append({"role": "tool", "tool_call_id": call.id, "content": str(output)})
+    return "Stopped: reached max_steps without a grounded final answer."
+```
 
-![ai agent vs. chatbots comparison across behavior, decision-making, task completion, and memory](https://cdn.sanity.io/images/5hzduz3y/production/f3b3e0c3a8099f6a2e27e54874a0984805a90827-1500x498.png)
+## AI agent vs. chatbot vs. fixed workflow
 
-If you're automating responses to requests, a chatbot works. If you're automating the accomplishment of objectives, you're building an AI agent.
+| System | Control flow | Tool execution | Best fit |
+| --- | --- | --- | --- |
+| Chatbot | Single prompt -> single reply | None (or single hard-coded lookup) | Q&A, drafting, brainstorming |
+| Fixed [AI workflow](/learn/agentic-workflow) | Deterministic DAG written in code | Fixed sequence of calls | Predictable ETL, batch pipelines, compliance checklists |
+| AI agent | Dynamic model-directed loop | Chooses tools, arguments, and hop count at runtime | Open-ended coding, [agentic search](/learn/agentic-search), triage, [deep research](/learn/deep-research) |
 
-## **How do AI agents work, end to end?**
+## Practical risks and failure modes
 
-AI agents follow a continuous loop of perception, reasoning, action, and reflection.
+- **Latency and token compounding:** Each step re-reads prior context; combine [prompt caching](/learn/prompt-caching) with compact search excerpts ([Parallel Search](/products/search)) instead of raw HTML to keep 10-step runs fast and affordable.
+- **Prompt injection across trust boundaries:** External pages, emails, or tickets read by an agent can contain adversarial instructions. Keep read-only data untrusted and enforce permissions in host code.
+- **Over-engineering simple tasks:** If a fixed 2-step script or single [RAG](/learn/rag-retrieval-augmented-generation) call solves the problem deterministically, an open-ended agent loop adds latency and variance without improving accuracy.
 
-### **1. Goal initialization**
+## Frequently asked questions
 
-The agent receives or determines its primary objective. Complex goals get broken into manageable sub-tasks. "Qualify this lead" might decompose into "Research company size," "Identify decision maker," and "Check budget signals."
+**What is the difference between an AI agent and an autonomous agent?**
 
-### **2. Planning and reasoning**
+They describe the same architecture. "[Autonomous agent](/learn/autonomous-agent)" emphasizes longer-horizon, unsupervised execution with minimal human checkpoints between steps.
 
-The agent analyzes available information and creates a step-by-step approach. Modern agents use reasoning frameworks like [ReAct](https://arxiv.org/abs/2210.03629) (Reasoning and Acting), which interleaves thought processes with actions rather than planning everything upfront. The agent thinks, acts, observes the result, then thinks again.
+**Why do AI agents need specialized web search APIs?**
 
-### **3. Tool invocation and web retrieval**
+Human search pages and raw HTML waste tens of thousands of tokens per hop. A purpose-built [web search API](/learn/web-search-api) returns ranked, query-focused excerpts and URLs directly inside the agent's tool-call budget.
 
-The agent selects appropriate tools and data sources for each step. An agent that decides based on hallucinated or outdated information produces unreliable outputs and presents false information as fact.
+**When should I use a deterministic workflow instead of an AI agent?**
 
-### **4. Action execution**
-
-The agent performs planned actions in its environment: API calls, database updates, file operations, and interactions with external systems. Each action produces results that inform subsequent decisions.
-
-### **5. Learning and reflection**
-
-The agent checks whether each action achieved the intended outcome, notes what worked and what didn't, and adjusts its approach. This feedback loop lets agents refine their behavior over time.
-
-## **Types of AI agents in practice**
-
-AI agents range from simple reactive systems to learning architectures, and they are usually grouped into six types.
-
-**Simple reflex agents** react to immediate stimuli without memory or planning, following if-then rules based on current perception: "If temperature exceeds 75°F, turn on air conditioning." They are fast and predictable, and they can't handle anything their rules don't cover.
-
-**Model-based reflex agents** maintain an internal model of their environment, tracking changes over time. A model-based agent monitoring website uptime remembers historical patterns as well as current status, so it can tell typical fluctuations from real problems.
-
-**Goal-based agents** work toward specific objectives by planning sequences of actions. Rather than reacting to conditions, they reason about which actions will achieve desired outcomes. Most practical business applications fall into this category.
-
-**Utility-based agents** optimize for the best possible outcome when multiple options exist. Instead of simply achieving a goal, they consider trade-offs: balancing speed against cost, or accuracy against resource consumption.
-
-**Learning agents** improve performance through experience, adapting behavior based on feedback and results. A learning agent handling customer inquiries gets better at resolution over time by identifying which approaches work best for different issue types.
-
-**Multi-agent systems** involve multiple agents collaborating or competing to handle complex scenarios. One agent might specialize in research while another focuses on writing, with a coordinator managing their interactions.
-
-## **Challenges and risks of AI agents**
-
-Production AI agents bring problems that traditional software doesn't have.
-
-### **Data privacy and security**
-
-Agents process sensitive information across multiple systems, which expands the attack surface and the compliance scope. An agent with access to customer data, internal systems, and external APIs is a potential vulnerability if not properly secured, so enterprise deployments need strong authentication, authorization, and audit logging.
-
-### **Infinite feedback loops**
-
-Poorly designed agents can get stuck in repetitive cycles, consuming resources without making progress. An agent tasked with "gathering comprehensive research" might continue searching indefinitely without proper termination conditions. Implementing timeouts, iteration limits, and progress monitoring prevents runaway execution.
-
-### **Compute constraints**
-
-Complex reasoning requires significant processing power, especially when agents make multiple LLM calls per task. A single agent workflow might involve dozens of model invocations: planning, tool selection, result synthesis, reflection. Managing compute costs while maintaining acceptable latency requires careful optimization.
-
-### **Hallucination from poor retrieval**
-
-Agents generate inaccurate information when working from unreliable sources or insufficient context. An agent researching company information might confidently present outdated leadership data or confuse similarly named organizations. Verifiable retrieval systems with clear source attribution help agents distinguish reliable information from speculation.
-
-## **Future outlook and start building with Parallel**
-
-AI agents are evolving from experimental projects to production infrastructure. The next generation will handle increasingly complex workflows, coordinate across multiple specialized agents, and operate with greater autonomy.
-
-Agent reliability still depends on data quality. An agent reasoning over inaccurate or unverifiable information produces unreliable outputs, however sophisticated its architecture.
-
-Parallel's web search APIs give agents accurate, attributable web data for reasoning tasks. Results come back as structured outputs with source attribution, so when your agents research companies, monitor competitors, or gather current information, each claim traces back to a source.
-
-[Start building](https://platform.parallel.ai/home) production agents on Parallel's web data APIs.
-
-## **Frequently asked questions about AI agents**
-
-### **Is ChatGPT an AI agent?**
-
-ChatGPT exhibits some agent characteristics like reasoning and tool use, but lacks autonomous goal-setting and persistent memory across sessions. It's more accurately described as an AI assistant: it responds to your prompts rather than independently pursuing objectives.
-
-### **What programming languages are best for building AI agents?**
-
-Python dominates AI agent development due to extensive libraries like LangChain, LlamaIndex, and direct LLM API support. However, JavaScript, Go, and Java are viable options depending on your existing infrastructure and team expertise.
-
-### **Do AI agents need real-time web access?**
-
-Most effective agents require current information to make informed decisions. Static training data becomes outdated quickly: a lead qualification agent working from six-month-old company data will miss recent funding rounds, leadership changes, and technology adoptions that signal buying intent.
+Use a deterministic [agentic workflow](/learn/agentic-workflow) when the steps are known in advance and auditability/repeatability matter more than flexible exploration. Reach for a full agent loop when the path depends on intermediate discoveries.

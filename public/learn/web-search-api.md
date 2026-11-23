@@ -1,8 +1,21 @@
-# What is a web search API, and when do AI agents need one?
+# Web search API
 
 A web search API is the piece of an AI agent’s stack that decides whether its answers reflect today’s web or last year’s training data, and picking one starts with knowing which kind you’re buying. This guide covers how search APIs work, the three product shapes on the market, when an agent needs live search and when it doesn’t, and what the options cost.
 
 A web search API is an HTTP endpoint that takes a query and returns web results as structured data (URLs, titles, dates, and text) that code can read without rendering a page. AI agents call one to pull current, citable facts from the public web into a model’s context window at the moment they need them.
+
+**Inside a web search API (offline index + online query)**
+
+```text
+OFFLINE PIPELINE
+  [Crawlers] ──▶ [Parse & Clean] ──▶ [Inverted + Vector Index]
+                                                 │
+ONLINE REQUEST                                   ▼
+  Agent ──▶ POST /v1/search ──▶ [Retrieve + Rank + Excerpt]
+            (objective / query)                  │
+                                                 ▼
+                         JSON: [{url, title, date, excerpts}]
+```
 
 Developers used to reach for Google or Bing for this. Microsoft [retired the Bing Search APIs on August 11, 2025](https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement) and pointed customers to Grounding with Bing Search inside Azure AI Agents. Google’s [Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) is closed to new customers, and existing customers have until January 1, 2027 to move off it. Both search giants now sell web grounding as a feature of their own agent platforms, so teams building agents on other models buy search from independent providers such as Parallel, Brave, Exa, and Tavily.
 

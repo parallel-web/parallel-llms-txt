@@ -1,179 +1,109 @@
-# What is a web crawler?
+# Web crawler
+
+A web crawler systematically discovers, downloads, and refreshes pages across the internet by following hyperlinks through a polite URL frontier so search engines can build and maintain a web index.
+
+A web crawler (also called a spider or bot) is automated software that starts from a set of seed URLs, downloads pages over HTTP, extracts outbound links, and schedules newly discovered URLs in a loop so a search engine can build and refresh a [web index](/learn/web-index). Crawling is fundamentally about **discovery and freshness at scale**—deciding which of the web's billions of URLs to fetch, how politely to hit each host, and when to revisit pages that change.
+
+**Web crawler architecture (frontier to index)**
+
+```text
+Seed URLs ──▶ ┌──────────────────────┐
+              │    URL Frontier      │◀───────────────┐
+              │ (priority + per-host │                │ new canonical
+              │  politeness queues)  │                │ URLs (seen-set
+              └──────────┬───────────┘                │ filtered)
+                         ▼                            │
+              ┌──────────────────────┐                │
+              │  DNS + robots.txt +  │                │
+              │  HTTP / JS Fetcher   │                │
+              └──────────┬───────────┘                │
+                         ▼                            │
+              ┌──────────────────────┐                │
+              │  Parse HTML & Links  │────────────────┘
+              │  + Dedup (SimHash)   │
+              └──────────┬───────────┘
+                         ▼
+               [Web Index / Storage]
+```
+
+## How a production crawler works end to end
+
+Writing a toy crawler takes 30 lines of Python; running one across tens of millions of hosts is a distributed scheduling problem governed by five subsystems:
+
+1. **URL frontier (priority + politeness):** Splits pending URLs into front queues (ordered by importance and refresh cadence) and back queues (one per hostname) so the crawler never hammers a single origin server with parallel bursts.
+2. **DNS resolution and **`**robots.txt**`** cache:** Resolves hostnames through a local caching resolver and fetches `/robots.txt` per [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309) before requesting any path on that host.
+3. **Fetcher and selective JS rendering:** Downloads pages over HTTP/2 with conditional headers (`If-None-Match` / `ETag`, `If-Modified-Since`) to skip unchanged content (`304 Not Modified`), escalating to a [headless browser](/learn/headless-browser-api) only when a page requires JavaScript execution to populate its DOM.
+4. **Canonicalization and deduplication:** Normalizes URLs (stripping tracking query params, resolving `rel="canonical"`), filters infinite calendar/facet traps, and hashes page content (using locality-sensitive hashes like **SimHash**) to avoid indexing duplicate mirrors.
+5. **Revisit scheduler:** Predicts change frequency per URL so news homepages and changelogs are recrawled in minutes while archival PDFs are revisited monthly.
+
+```python
+import time
+from collections import deque
+from urllib.parse import urljoin, urldefrag, urlparse
+from bs4 import BeautifulSoup
+import requests
+
+def crawl(seeds: list[str], max_pages: int = 50, delay_s: float = 0.5) -> dict[str, str]:
+    queue = deque(seeds)
+    seen: set[str] = set(seeds)
+    last_hit: dict[str, float] = {}
+    pages: dict[str, str] = {}
+
+    while queue and len(pages) < max_pages:
+        url = queue.popleft()
+        host = urlparse(url).netloc
+        wait = delay_s - (time.monotonic() - last_hit.get(host, 0.0))
+        if wait > 0:
+            time.sleep(wait)
+
+        resp = requests.get(url, headers={"User-Agent": "ExampleBot/1.0"}, timeout=10)
+        last_hit[host] = time.monotonic()
+        if resp.status_code != 200 or "text/html" not in resp.headers.get("Content-Type", ""):
+            continue
+
+        pages[url] = resp.text
+        soup = BeautifulSoup(resp.text, "html.parser")
+        for a in soup.find_all("a", href=True):
+            nxt, _ = urldefrag(urljoin(url, a["href"]))
+            if urlparse(nxt).scheme in ("http", "https") and nxt not in seen:
+                seen.add(nxt)
+                queue.append(nxt)
+    return pages
+```
+
+## Web crawling vs. web scraping
+
+People often conflate crawling and [web scraping](/learn/web-scraping), but they solve different problems (see our full [crawling vs. scraping breakdown](/articles/web-crawling-vs-web-scraping)):
+
+| Dimension | Web crawling | [Web scraping](/learn/web-scraping) |
+| --- | --- | --- |
+| Goal | Discover and index pages broadly by following links | Extract specific structured fields from known target pages |
+| Scope | Whole domains or the open web | Bounded URL lists or site templates |
+| Output | Raw/cleaned corpus feeding a [web index](/learn/web-index) | Tables, JSON records, CSVs, price feeds |
+| Scheduling | Continuous freshness + crawl-budget optimization | One-off batch or fixed-interval polling |
+
+## How sites govern crawler traffic
+
+Website operators control crawler access using three standard mechanisms:
+
+- `**robots.txt**`** (**[**RFC 9309**](https://www.rfc-editor.org/rfc/rfc9309)**):** Declares `User-agent`, `Allow`, and `Disallow` path rules at the domain root. Crawlers now commonly separate search/user-triggered bots from model-training bots under distinct user-agent tokens.
+- `**sitemap.xml**`** and **`**<link rel="canonical">**`**:** Advertise authoritative URLs and `<lastmod>` timestamps so crawlers spend crawl budget on real updates instead of duplicate parameter URLs.
+- **Meta robots and HTTP headers:** `<meta name="robots" content="noindex, nofollow">` or the `X-Robots-Tag` HTTP header controls indexing per page or binary file (such as PDFs). For AI-specific site maps, see [llms.txt](/learn/llms-txt).
+
+## AI-native crawlers vs. classic SEO crawlers
+
+Classic search crawlers optimize for ranking human-clickable blue links. Crawlers built for [AI agents](/learn/ai-agent) and [web search APIs](/learn/web-search-api)—like the crawling infrastructure behind [Parallel Search](/products/search) and [Extract](/products/extract)—optimize for clean content extraction, passage-level provenance, PDF/table preservation, and fresh retrieval of pages that agents query on demand.
+
+## Frequently asked questions
+
+**What is crawl budget?**
+
+Crawl budget is the combination of a host's crawl capacity limit (how fast a crawler can fetch without degrading the server) and crawl demand (how important and frequently updated the URLs are). Duplicate URLs, faceted filters, and slow `5xx` responses waste crawl budget.
 
-A web crawler downloads pages and follows links to discover content at scale. Crawlers decide what gets indexed, how often it refreshes, and how it ranks. This guide covers how crawling works end to end, how it differs from scraping, core crawling policies, crawler types and examples, SEO implications, how to manage or block crawlers, and how AI-native crawlers differ.
+**Do web crawlers obey **`**robots.txt**`** automatically?**
 
-## Quick answer
+Compliant search and AI crawlers parse and honor `robots.txt` by convention (RFC 9309), though `robots.txt` is an advisory protocol rather than a cryptographic access-control mechanism—sensitive resources should always require authentication.
 
-A web crawler is software that downloads web pages and follows links to discover and collect content at scale. Search engines use crawlers to build indexes. AI systems use them to gather fresh, attributable web data for grounding and training.
+**When should you build a crawler instead of calling a search API?**
 
-## **What is a web crawler?**
-
-A web crawler is software that systematically downloads pages and follows their links to discover content across the web. Search engines rely on crawlers to learn what exists online and where to find it when someone searches.
-
-Beyond powering search, crawlers train AI models on web content, extract specific data for analysis, monitor websites for changes, and build datasets for research.
-
-## **How web crawling works end to end**
-
-### **Seed URL discovery**
-
-Every crawl starts with seed URLs, initial web addresses that serve as entry points. Seed URLs come from sitemaps, previously indexed pages, or manually specified lists. From there, the crawler expands outward by following every link it discovers.
-
-### **Fetching and parsing pages**
-
-The crawler sends HTTP requests to download page content, then parses the HTML structure to understand page layout, extract text, identify images, and locate metadata.
-
-Modern crawlers render JavaScript to access dynamically loaded content. Without rendering, they'd miss content that only appears after JavaScript executes, which is increasingly common.
-
-### **Extracting links and data**
-
-During parsing, the crawler extracts hyperlinks from anchor tags, sitemaps, and canonical tags. Links become candidates for future crawling. Simultaneously, the crawler collects whatever data it needs: text content, images, structured data markup, or specific elements.
-
-### **Scheduling and prioritization**
-
-A scheduler manages the crawl queue, deciding which URLs to visit next based on page importance, estimated freshness, domain limits, and politeness rules. Homepages and high-authority pages get priority over deep, obscure pages. News sites get crawled more often than static documentation. Rate limits prevent any single crawler from monopolizing server resources.
-
-### **Indexing and storage**
-
-Collected content gets organized and stored in formats optimized for fast retrieval. Search engines use inverted indexes that map words to the pages containing them, along with document stores that preserve original content and metadata.
-
-Indexed data powers search results, analytics, and downstream applications. Without proper indexing, you'd have all the crawled data and no way to find anything in it.
-
-## **Web crawling vs web scraping**
-
-People use "crawling" and "scraping" interchangeably, but they describe different processes with distinct goals.
-
-**Crawling** focuses on systematic discovery and broad coverage. Crawlers follow links across domains to map large portions of the web, moving from page to page to learn what content exists and where it lives.
-
-**Scraping** targets specific data extraction from predetermined pages. Scrapers pull product prices from e-commerce sites or contact details from business directories.
-
-The techniques complement each other. You might crawl to discover relevant pages, then scrape those pages for structured data. Our guide to [web crawling vs. web scraping](https://parallel.ai/articles/web-crawling-vs-web-scraping) compares the two side by side, including where robots.txt applies.
-
-## **Core crawling policies and algorithms**
-
-Crawlers have to balance coverage, freshness, politeness, and resource limits. A few core policies govern the tradeoffs between speed, thoroughness, and politeness.
-
-### **Selection policy**
-
-This policy determines which links to follow and which pages to prioritize. Crawlers use heuristics like estimated page importance, URL patterns, per-host crawl limits, and content quality signals. A good selection policy keeps the crawler on valuable pages and out of low-quality corners of the web.
-
-### **Revisit policy**
-
-News sites update hourly, while product documentation might stay static for months. The revisit policy decides when to recrawl based on historical change frequency, last-modified timestamps, sitemap priority hints, and observed update patterns.
-
-### **Politeness and rate limiting**
-
-Respectful crawling prevents server overload and maintains good relationships with website owners. Crawlers honor robots.txt directives, observe crawl-delay hints, limit concurrent requests per host, and back off when encountering errors. Aggressive crawlers get blocked, so politeness also protects the crawler's long-term access.
-
-### **Parallelization strategy**
-
-To crawl billions of pages efficiently, crawlers use multiple threads or distributed systems to fetch many pages simultaneously. They isolate per-host queues so that, however many threads are running, each site sees controlled traffic.
-
-## **Types of web crawlers**
-
-**Search engine bots** like Googlebot and Bingbot are general-purpose crawlers that build massive searchable indexes across the public web. They prioritize breadth, freshness, and comprehensive coverage to power search engines serving billions of daily queries.
-
-**Focused or vertical crawlers** target specific topics, industries, or content types: academic papers, job postings, real estate listings. By narrowing scope, they achieve greater depth and data quality within their domain.
-
-**AI web crawlers** designed for training and powering large language models emphasize high-quality, structured, and attributable data. They extract information-dense text spans with clear provenance, supporting AI systems that require verifiable, evidence-based outputs.
-
-**Site audit crawlers** like Screaming Frog crawl individual websites to identify technical issues: broken links, duplicate content, missing metadata, performance problems. Site owners use audit crawlers to improve technical SEO and user experience.
-
-## **Popular web crawler examples**
-
-**Googlebot** is Google's primary search crawler, discovering and indexing web content for Google Search. It operates continuously, prioritizing fresh content and important pages.
-
-**Bingbot** indexes content for Bing and partner search products. It follows similar principles to Googlebot but with different prioritization algorithms and crawl patterns.
-
-**Common Crawl** performs large-scale web crawls and releases datasets publicly. Researchers and developers use Common Crawl data for analysis, training AI models, and studying web evolution without running their own crawlers.
-
-**Parallel's crawler infrastructure** is built for AI agents and applications. Our crawler, ShapBot, collects public web content to build and maintain the index behind Parallel’s Search API, and products like the [Extract API](https://docs.parallel.ai/extract/extract-quickstart) return LLM-ready page content with source URLs. Traditional search crawlers build indexes for human browsing; ours targets what AI systems need: structured data, verifiable attribution, and machine-readable formats.
-
-**Wayback Machine bot** preserves historical snapshots of web pages for the Internet Archive. It creates a time-based archive of the web, enabling researchers to access how websites looked at specific points in the past.
-
-## **Why web crawlers matter for SEO and site visibility**
-
-If a crawler can't find and index your pages, they won't appear in search results. Crawlers determine what gets discovered, how often it's refreshed, and how it ranks.
-
-Crawl budget (the number of pages a search engine will crawl on your site within a given timeframe) depends on your site's authority, server performance, and content freshness. Fast-loading pages with clear link structures get crawled more efficiently than slow, poorly organized sites.
-
-Technical SEO shapes what crawlers can reach. XML sitemaps guide crawlers to important pages, canonical tags prevent duplicate content issues, and structured data markup helps crawlers understand your content's meaning and context.
-
-## **Managing or blocking crawler site traffic**
-
-Website owners can control how crawlers access their content, balancing discoverability with resource protection.
-
-### **robots.txt directives**
-
-The robots.txt file lives at your domain root and tells crawlers which paths they can access. You can allow or disallow specific directories, set crawl-delay hints to limit request rates (Bingbot honors them; Googlebot ignores them), and point crawlers to your sitemap. Different user agents can receive different rules, so you might allow Googlebot everywhere while restricting other bots to specific sections.
-
-### **Meta robots and HTTP headers**
-
-Page-level directives give finer control than robots.txt. Meta robots tags or X-Robots-Tag HTTP headers can specify noindex (don't add to search results), nofollow (don't follow links), or noarchive (don't cache this page).
-
-robots.txt blocks access before the crawler reaches the page. Meta directives apply only after the crawler has fetched it.
-
-### **CAPTCHAs and rate limits**
-
-When facing abusive or high-volume bot traffic, you can implement challenge-response mechanisms or IP-based rate limiting. Be careful not to block legitimate crawlers; search engine bots identify themselves with verifiable user agents and IP ranges.
-
-### **Allowlisting verified crawlers**
-
-You can verify legitimate crawlers through reverse DNS lookups and known IP ranges. Googlebot's IP addresses resolve to google.com domains, for example. Verification lets you permit real search engine crawlers while blocking scrapers that spoof user agent strings.
-
-## **AI-native crawlers and structured web data**
-
-AI applications need structured, verifiable data that LLMs can reason over, which raw HTML doesn't provide.
-
-### **LLM-ready text spans**
-
-AI-native crawlers extract information-dense text spans with semantic segmentation. They remove navigation elements, ads, and boilerplate content, delivering clean passages that go straight into LLM context windows.
-
-### **Evidence links and provenance**
-
-Every extracted fact includes its source URL, specific page anchor, timestamp, and capture context. Transparent attribution enables AI systems to cite sources, allows users to verify claims, and reduces hallucination by grounding outputs in real web content.
-
-### **Multi-hop reasoning support**
-
-Complex AI tasks often require synthesizing information across multiple pages and domains. AI-native crawlers structure outputs to link related facts, track entity mentions across sources, and provide the cross-document context that multi-hop reasoning demands.
-
-## **Build vs buy: cost, scale, and compliance**
-
-### **Engineering complexity**
-
-A production crawler needs URL normalization and deduplication, JavaScript rendering, error handling and retry logic, politeness policies, distributed scheduling, storage systems, and monitoring infrastructure. Each component has edge cases that take months to handle properly at scale.
-
-### **Infrastructure and bandwidth costs**
-
-Large-scale crawling demands distributed systems with queueing infrastructure, storage for crawled content, observability tools, and significant bandwidth. Costs recur monthly and scale with your crawl volume, often exceeding the cost of equivalent API usage.
-
-### **SOC 2 Type 2 and data governance**
-
-Enterprise applications require audited security controls, access management, data residency guarantees, and clear provenance tracking. Building compliant infrastructure from scratch delays launches and diverts engineering resources from core product development.
-
-### **Time to market**
-
-An API works from day one. Building from scratch means months of development before you can test your application's core idea, and that time comes out of work on the features that differentiate your product.
-
-## **FAQs about web crawlers**
-
-**Are web crawlers illegal to use?**
-
-Web crawlers operate legally when they respect robots.txt directives and website terms of service, though regulations vary by jurisdiction and use case. Courts have generally upheld the right to crawl publicly accessible data, but accessing password-protected content or violating explicit restrictions can create legal issues.
-
-**How can I identify crawler traffic in server logs?**
-
-Look for user agent strings in HTTP request headers; legitimate crawlers identify themselves with strings like "Googlebot" or "Bingbot." You can verify claims by checking IP addresses against known crawler IP ranges or performing reverse DNS lookups to confirm the requesting domain.
-
-**What does website crawl frequency depend on?**
-
-Crawl frequency depends on your site's authority and importance, content freshness and update patterns, server responsiveness and performance, and each crawler's scheduling policies. High-authority sites with frequently updated content get crawled more often than static sites with low traffic.
-
-**Which crawler algorithms improve data freshness without wasting resources?**
-
-Scheduling algorithms prioritize frequently updated pages while downranking static content. They use change-rate models based on historical data, sitemap priority hints, last-modified timestamps, and conditional GET requests to check for changes before downloading full pages, which keeps content fresh without unnecessary downloads.
-
-## **Power reliable AI agents with fresh web data**
-
-We equip developers with accurate, verifiable, and [enterprise-grade web data designed specifically for AI agents](/products/search) and applications. Our crawler infrastructure returns structured outputs with transparent provenance.
-
-Whether you're building autonomous agents, powering research workflows, or enriching data pipelines, our APIs reduce web access to a few declarative calls. [Start building with Parallel today](https://parallel.ai/).
+Build your own crawler only when you need continuous coverage of a narrow set of niche domains with custom extraction logic. For general open-web discovery and freshness across billions of pages, calling a [web search API](/learn/web-search-api) avoids the infrastructure cost of distributed frontiers, JS rendering, and deduplication.

@@ -1,46 +1,81 @@
 # Citations API
 
-A citations API returns citations, references to the source documents or web pages behind a result, alongside a generated answer, extracted data, or metadata, so each claim traces to its origin.
+A citations API returns structured, machine-readable references to the exact source URLs, passages, and metadata supporting a generated answer or extracted field so every claim can be verified programmatically.
 
-## What is a citations API?
+A citations API returns structured, machine-readable references to the exact source documents, URLs, and text passages that support a generated answer or extracted field. Instead of returning bare prose that a reader has to trust on faith, a citations API binds individual claims (or structured JSON fields) to verifiable evidence—turning [source grounding](/learn/source-grounding) into a contract your UI and audit logs can render and verify programmatically.
 
-A citations API attaches source references to an output so you can verify where each fact came from. Each reference points to the document or web page that supports a claim, and it carries the source URL plus a short excerpt.
+**Claim-level citation binding**
 
-Two flavors are common. Citation APIs for AI responses tie a large language model (LLM) or agent answer to verifiable web sources. Scholarly data citation APIs connect research papers to the datasets behind them.
+```text
+┌──────────────────────────────┐     ┌──────────────────────────────┐
+│ Output Field / Claim         │     │ Basis / Citation Record      │
+│ "hq_city": "San Francisco"   │ ──▶ │ url: sec.gov/Archives/...    │
+│ "employees": 1420            │ ──▶ │ excerpts: ["...1,420 full-   │
+│                              │     │   time employees as of..."]  │
+│                              │     │ confidence: "high"           │
+└──────────────────────────────┘     └──────────────────────────────┘
+```
 
-Citations matter because models can invent facts. Citations give you a way to check every claim, and they power the reliable web access that [AI agents](https://parallel.ai/learn/ai-agent) depend on. Google defines [grounding](https://docs.cloud.google.com/gemini-enterprise-agent-platform/reference/models/grounding) as the ability to connect model output to verifiable sources. That connection reduces the chances of inventing content.
+## Two meanings of "citations API"
 
-## Key characteristics
+Engineers encounter the term in two different domains:
 
-- **Source references per claim:** Parallel defines a Citation as a reference to a web source that contributed to an output field, and it includes the URL and relevant excerpts.
-- **Structured, machine-readable output:** [Amazon Bedrock’s Citation object](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Citation.html) is “An object containing a segment of the generated response that is based on a source in the knowledge base, alongside information about the source,” with two key fields, generatedResponsePart and retrievedReferences.
-- **Paired with confidence and reasoning:** Parallel’s [Task API](https://parallel.ai/products/task) returns citations with reasoning and calibrated confidence for each output field through the [Basis framework](https://parallel.ai/blog/introducing-basis-with-calibrated-confidences).
-- **Access and usage limits:** [Crossref’s data citation endpoint](https://www.crossref.org/documentation/retrieve-metadata/data-citations) requires no authentication and caps at 3 requests per second, with up to 3 concurrent requests.
+1. **AI grounding & attribution APIs:** Endpoints that attach source URLs, character offsets, and supporting excerpts to LLM outputs—for example, [Amazon Bedrock's ](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Citation.html)`[Citation](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Citation.html)`[ object](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Citation.html) (`generatedResponsePart` + `retrievedReferences`), Google Cloud's [grounding metadata](https://docs.cloud.google.com/gemini-enterprise-agent-platform/reference/models/grounding) (`groundingChunks` + `groundingSupports`), and Parallel's [Task API](/products/task) and [Basis framework](/blog/introducing-basis-with-calibrated-confidences), which return per-field citations, reasoning, and calibrated confidence levels.
+2. **Scholarly citation-graph APIs:** Bibliographic services such as [Crossref's data citations endpoint](https://www.crossref.org/documentation/retrieve-metadata/data-citations), OpenAlex, and Semantic Scholar that resolve DOIs, paper-to-paper citation graphs, and paper-to-dataset links.
 
-## Example
+## What a good AI citation payload contains
 
-Picture an AI agent answering a research question. The agent calls a research or search API that returns each fact with its source. A person can click through and verify every claim against the original page.
+A list of URLs pasted at the bottom of a response is weak attribution: it does not tell a reviewer which URL backed which sentence, or whether the page actually says what the model claimed. Production citation schemas bind four elements together:
 
-The scholarly world works the same way. Crossref links a published paper to the dataset behind it, so a reader can trace the finding to its underlying data.
+- **Target pointer:** Either character/span indices (`start_index`, `end_index`) in prose, or an exact JSON field path (`field: "latest_funding_usd"`) in structured outputs.
+- **Source identifier:** Canonical `url` (or document ID + page number for PDFs and filings) plus `title`.
+- **Supporting excerpt:** The verbatim quote or passage extracted from the source so a reviewer can verify the claim without opening ten tabs.
+- **Reasoning and confidence:** Why the source supports the field and how strong the evidence is—essential for automated review queues in [finance](/learn/ai-agents-in-finance) and [KYB](/learn/kyb).
 
-![Parallel Quality Benchmarks showing web search accuracy against Exa, Tavily, Brave, and SerpAPI](https://cdn.sanity.io/images/5hzduz3y/production/50aa4294bd61a539e76907fcb537c7db5266ebd7-1920x1080.png)
+```json
+{
+  "output": {
+    "legal_name": "Acme Robotics Inc.",
+    "incorporated_state": "Delaware"
+  },
+  "basis": [
+    {
+      "field": "incorporated_state",
+      "citations": [
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/10k.htm",
+          "title": "Acme Robotics Inc. — Form 10-K",
+          "excerpts": [
+            "Acme Robotics Inc., a Delaware corporation, was incorporated in March 2019."
+          ]
+        }
+      ],
+      "reasoning": "The cover page of the FY2025 Form 10-K explicitly states Delaware incorporation.",
+      "confidence": "high"
+    }
+  ]
+}
+```
 
-_Parallel’s quality benchmarks measure how well search and research APIs answer prompts. Source: __[Parallel benchmarks](https://parallel.ai/benchmarks)__._
+## Citation verification: avoiding "citation theater"
 
-## Related terms
+Attaching a real URL does not guarantee the cited page actually supports the claim. Models frequently exhibit two citation bugs when asked to cite via prompting alone:
 
-- [grounding](https://docs.cloud.google.com/gemini-enterprise-agent-platform/reference/models/grounding) connects model output to verifiable sources.
-- [deep research API](https://parallel.ai/learn/deep-research) produces cited answers from web research across many steps.
-- [web search API](https://parallel.ai/learn/web-search-api) returns ranked sources and excerpts that feed citations.
-- [Basis framework](https://parallel.ai/blog/introducing-basis-with-calibrated-confidences) delivers citations, reasoning, and confidence for each Parallel output field.
+- **URL-claim mismatch:** The URL is real and topically related, but the specific number or date in the generated sentence does not appear on that page.
+- **Fabricated or stale links:** A model cites a URL from training memory that 404s or has since changed.
 
-## FAQ
+Reliable pipelines solve this by restricting citations strictly to sources fetched during the current run (via a [web search API](/learn/web-search-api) or [knowledge retrieval API](/learn/knowledge-retrieval-api)), mapping claims directly to retrieved excerpts, and optionally running an entailment or post-hoc verification pass to check that every cited excerpt entails the claim it backs.
 
-**What is the difference between a citations API and grounding?**
-Grounding connects a model’s output to verifiable sources, and a citations API is how those sources come back to you, as structured references you can display or check.
+## Frequently asked questions
 
-**Do citations APIs stop AI models from making things up?**
-They don’t eliminate errors, but they let you verify claims against sources. A [2024 study](https://www.jmir.org/2024/1/e53164) found that when models generated systematic review references without source grounding, hallucination rates ran from 28.6% for GPT-4 to 91.4% for Bard, in a medical reference task that used 2023-era models.
+**How is a citations API different from a web search API?**
 
-**What does a citation contain?**
-A citation includes the source URL and the relevant excerpt or metadata that supports the part of the output it’s attached to.
+A [web search API](/learn/web-search-api) returns ranked source documents and excerpts _before_ generation. A citations API returns synthesized answers or structured fields _with_ explicit links tying each claim back to the retrieved sources.
+
+**Why prefer field-level or span-level citations over a bibliography at the end?**
+
+A flat bibliography forces a human reviewer to read every source to audit one number. Field-level and span-level citations let your UI highlight the exact supporting quote inline and let code automatically flag any ungrounded field.
+
+**Can citations eliminate hallucinations?**
+
+Citations do not stop a model from misreading a passage, so they are necessary but not sufficient. Pairing citations with verbatim excerpts, calibrated confidence, and strict [grounding](/learn/grounding-llm) makes errors immediately auditable instead of silent.

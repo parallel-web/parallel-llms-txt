@@ -1,8 +1,22 @@
-# KYB (know your business): verification steps and automation
+# KYB (Know Your Business)
 
 Know your business (KYB) is how financial institutions confirm that a business customer exists, is in good standing, and is owned and controlled by the people it names. This guide covers the US, EU, UK, and FATF rules behind KYB, each verification step and where its evidence lives, and how AI agents and web research APIs automate the work.
 
 KYB (know your business) is the process a bank, fintech, or payments company uses to confirm that a business customer is real, legally registered, and owned and controlled by the people it says. A KYB check verifies the company in an official registry, identifies its beneficial owners and control persons, screens them against sanctions and adverse media, and keeps watching for changes after onboarding.
+
+**Automated KYB verification flow**
+
+```text
+Business Application (legal name, jurisdiction, officers)
+       │
+       ├──▶ 1. Registry Check (incorporation, status, filings)
+       ├──▶ 2. Ownership Trace (holding layers -> UBOs >= 25%)
+       ├──▶ 3. KYC on Individuals (IDV on UBOs + controllers)
+       └──▶ 4. Screening (sanctions, PEPs, adverse media)
+                      │
+                      ▼
+       Decision + Evidence Dossier ──▶ Ongoing Monitoring
+```
 
 ## What is KYB?
 

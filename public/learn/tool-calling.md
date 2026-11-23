@@ -1,83 +1,143 @@
 # Tool calling
 
-Tool calling lets a large language model decide when to use an external tool. The model outputs the tool name and arguments as structured data, then uses the returned result to answer. Another name for this is function calling.
+Tool calling (also called function calling) is the mechanism that lets a language model emit a structured request to invoke an external function, API, or local command. The model never executes the tool; the host runtime parses the arguments, runs the code, and feeds the result back into the context window.
 
-Tool calling is a large language model's ability to invoke external functions, APIs (application programming interfaces), or systems through a structured request that your code runs.
+Tool calling is what separates a text generator from an [AI agent](/learn/ai-agent). Left on its own, a language model can only sample tokens from its weights and whatever sits in its prompt. It cannot query a database, read a live web page, or trigger a webhook. Tool calling bridges that gap by letting the model output a structured function invocation—a tool name and typed JSON arguments—that your application validates, executes, and returns as an observation on the next turn.
 
-## What is tool calling?
+**Tool calling round-trip**
 
-Tool calling lets a large language model decide when to use an external tool. The model outputs the tool name and arguments as structured data, then uses the returned result to answer. Another name for this is function calling. 
+```text
+┌──────────────┐  1. messages + schemas  ┌──────────────┐
+│ Host Runtime │ ──────────────────────▶ │     LLM      │
+│  (your app / │                         │  (picks tool │
+│  agent loop) │ ◀────────────────────── │  + JSON args)│
+└──────┬───────┘  2. tool_call {name,    └──────────────┘
+       │             args}                       ▲
+       │ 3. validate & execute                   │ 5. append tool
+       ▼                                         │    result & call
+┌──────────────┐  4. JSON result                 │    model again
+│ External API │ ────────────────────────────────┘
+│  / Function  │
+└──────────────┘
+```
 
-A model on its own predicts text from what it saw during training. It can't check today's news, query your database, or send an email. Tool calling gives it a path to those systems.
+OpenAI popularized the pattern as "function calling" in [June 2023](https://openai.com/index/function-calling-and-other-api-updates/), shortly after Meta's [Toolformer paper](https://arxiv.org/abs/2302.04761) showed that teaching models to call external APIs more than doubled accuracy on math and QA benchmarks. Today every major model API exposes the same core contract, whether the provider names it `tools`, `tool_use`, or `function_calling`.
 
-This step turns a simple input and output into an agent capable of performing multiple actions between the input and output. The model reaches live data and takes real actions to complete real tasks.
+## How tool calling works on the wire
 
-Tools are defined with a schema. The schema lists a name, a short description, and each parameter with its type. The model reads these definitions and matches a request to the right tool at inference time. 
+A single tool call spans three payloads across two model requests. Every step stays stateless from the model's perspective; your application owns the conversation state and execution boundary.
 
-Consider a weather tool. You give it the name get_weather, a description, and one parameter for the city. The model fills in the city and calls it when a user asks about conditions.
+1. **Tool declaration:** You pass an array of tool definitions alongside the user message. Each tool carries a `name`, a natural-language `description`, and a JSON Schema (`parameters` or `input_schema`) describing its arguments and types.
+2. **Model invocation (**`**tool_use**`** / **`**tool_calls**`**):** Instead of finishing with plain text, the model stops with a tool-call finish reason (`tool_calls` or `tool_use`) and emits one or more structured calls, each tagged with a unique call ID (for example `call_01`).
+3. **Tool result (**`**tool_result**`**):** Your host runtime looks up the tool by `name`, validates the JSON arguments against the schema, runs the underlying function or HTTP request, and appends a tool-result message referencing the same `call_id`. You send the updated transcript back to the model, which either issues another call or writes the final answer.
 
-Clear tool descriptions matter here. Sharp names and parameter notes help the model pick the right tool.
+```json
+{
+  "tool_declaration": {
+    "name": "search_web",
+    "description": "Search the live web and return ranked URLs with relevant excerpts.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "objective": {
+          "type": "string",
+          "description": "What you are trying to find, in plain language."
+        },
+        "search_queries": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "2 to 3 concise keyword queries."
+        }
+      },
+      "required": ["objective", "search_queries"],
+      "additionalProperties": false
+    }
+  },
+  "assistant_tool_call": {
+    "id": "call_01",
+    "name": "search_web",
+    "arguments": {
+      "objective": "Find the latest release date and changelog highlights for SQLite 3.50",
+      "search_queries": ["SQLite 3.50 release notes", "sqlite.org releaselogs 3_50"]
+    }
+  },
+  "tool_result": {
+    "tool_call_id": "call_01",
+    "content": "[{\"url\":\"https://sqlite.org/changes.html\",\"excerpts\":[\"...\"]}]"
+  }
+}
+```
 
-The flow stays easy to follow. You describe the tools, the model picks one and fills in the arguments, and your code runs the request. Your code then returns the output to the model.
+Many providers now support grammar-constrained decoding (often toggled via `strict: true`), which compiles the tool's JSON Schema into a finite-state mask during token sampling. That guarantees syntactically valid JSON conforming to the declared keys and types, though it does not guarantee the model picked the right tool or supplied factually valid values.
 
-Most real tasks need more than one call. The model reads each result, updates its plan, then chooses the next move. Teams call this exchange an action and observation loop.
+## Parallel calls and the action-observation loop
 
-Some models can request several tools at once. They batch independent calls, read the results together, then merge them into one answer.
+Single-turn tool calls handle simple lookups, but production agents usually run a multi-turn loop—often managed by an [agent harness](/articles/what-is-an-agent-harness)—until the model stops requesting tools or hits a step limit.
 
-The value grows with the tools you connect. A model with search, a calculator, and a calendar can research, compute, and book in one session. This pattern now anchors most production AI applications, including support bots and research agents.
+Modern models also emit **parallel tool calls** in a single assistant turn: for example, calling `search_web` with two independent queries and `get_account` against an internal CRM at the same time. The host runtime executes those calls concurrently and returns one `tool_result` per `tool_call_id`, collapsing wall-clock latency from the sum of tool runtimes to the slowest call in the batch.
 
-## Key characteristics
+```python
+import json
 
-These traits define how tool calling works across models and providers.
+def run_agent(client, user_prompt: str, tools: list[dict], dispatch: dict, max_steps: int = 8):
+    messages = [{"role": "user", "content": user_prompt}]
 
-- **Model decides, code executes:** The model outputs a structured call, your code runs the action, then returns the result to the model.
-- **Structured, schema-based requests:** Each tool has a name, description, and typed parameters. The model returns arguments as JSON (JavaScript Object Notation), a pattern [introduced by OpenAI in 2023](https://openai.com/index/function-calling-and-other-api-updates/).
-- **A loop of actions and observations:** The model calls a tool, reads the result, then decides whether to call another tool or answer.
-- **Provider-neutral pattern:** OpenAI, Anthropic, and others expose the same idea, including function calling and [tool use with Claude](https://docs.parallel.ai/integrations/anthropic-tool-calling).
+    for _ in range(max_steps):
+        resp = client.respond(messages=messages, tools=tools)
+        messages.append(resp.assistant_message)
 
-## Example
+        if not resp.tool_calls:
+            return resp.text
 
-Picture an agent asked for a company's most recent funding round. The model's training ended months ago, so it can't know last week's news. It calls a web search tool to get the latest result.
+        for call in resp.tool_calls:
+            fn = dispatch.get(call.name)
+            try:
+                args = json.loads(call.arguments)
+                result = fn(**args) if fn else {"error": f"Unknown tool: {call.name}"}
+            except Exception as exc:
+                # Return errors as observations so the model can fix arguments or retry
+                result = {"error": str(exc)}
 
-Here is the sequence in practice. The agent sees it needs a fact it doesn't hold, so it selects the search tool. It writes a clear objective and waits for your code to return results.
+            messages.append({
+                "role": "tool",
+                "tool_call_id": call.id,
+                "content": json.dumps(result),
+            })
 
-Parallel's [web search tool for agents](https://parallel.ai/products/search) fits this job. The agent sends a plain-language objective, and Search returns ranked URLs with compact excerpts.
+    raise RuntimeError(f"Exceeded max_steps={max_steps}")
+```
 
-Your code passes those excerpts back to the model. The model reads them, then writes the funding figure with a source.
+Because the host runtime sits between the model and the outside world, it is the security boundary. Permissions, rate limits, argument validation, sandboxing, and human-in-the-loop approvals for write actions (sending email, mutating a database, placing an order) belong in host code, never solely in prompt instructions.
 
-You can validate the arguments before you run the tool. If the JSON is malformed, you return an error and let the model try again.
+## Tool calling vs. MCP vs. agent skills
 
-A single question can trigger several calls. The agent might search, read one page in detail, then search again to confirm a number.
+Tool calling is the low-level model primitive. Higher-level standards build on top of it to solve discovery, transport, and procedural packaging.
 
-Good error handling keeps the loop stable. A call that returns nothing useful lets the agent retry, pick another tool, or tell you it can't find the answer.
+| Mechanism | What it defines | Where schemas live | Best fit |
+| --- | --- | --- | --- |
+| Native tool calling | JSON Schema declaration + structured invocation inside an LLM API | Hard-coded in your application code | Tightly coupled product backends with a small, fixed toolset |
+| [MCP](/learn/model-context-protocol) | Client-server JSON-RPC protocol for discovering and invoking tools across processes | Exposed dynamically by an [MCP server](/learn/mcp-server) via `tools/list` | Connecting many clients to shared external tools without bespoke glue |
+| [Agent skills](/learn/agent-skills) | Portable markdown instructions (`SKILL.md`) and scripts loaded on demand | Local or registry folders read by the agent harness | Teaching repeatable multi-step workflows that compose existing tools |
 
-Grounding answers this way cuts invented facts. The agent reports what it found rather than guessing from memory.
+## Common failure modes in production
 
-Parallel maintains its own web index of billions of pages and adds millions each day. Fresh sources give the agent current facts to work from.
+Most production reliability issues in tool-using agents trace back to schema design and context management rather than the model's raw reasoning:
 
-The payoff shows up in research. [The Toolformer research](https://arxiv.org/abs/2302.04761), a 2023 study, found that allowing the model to make API calls more than doubles performance for all tasks in its math benchmark set.
+- **Tool-set bloat and selection overlap:** Passing dozens of tools with similar names inflates input tokens on every turn and degrades routing accuracy. Multi-turn selection remains noticeably harder than single-turn calls on evaluations like the [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html). Keep tool sets narrow, or load tools lazily as part of [context engineering](/learn/context-engineering).
+- **Underspecified schemas:** The model reads `description` fields and parameter names the way an engineer reads API docs. Constraining values with `enum`, marking required fields explicitly, and documenting units or date formats (`YYYY-MM-DD`) eliminates most malformed calls.
+- **Unbounded tool output:** Returning raw HTML or megabyte JSON payloads floods the context window and drowns out earlier instructions. Tools that read the live web—such as a [web search API](/learn/web-search-api) like [Parallel Search](/products/search) or [Extract](/products/extract)—work best when they return compact, query-relevant excerpts sized for multi-turn [agentic search](/learn/agentic-search) and [grounding](/learn/grounding-llm).
+- **Crashing on bad arguments:** Treating a validation error as a fatal exception kills the run. Returning a concise error object in the `tool_result` lets the model inspect what failed and self-correct on the next turn.
 
-![Parallel Search used as a tool with OpenAI's function calling](https://cdn.sanity.io/images/5hzduz3y/production/6beaad48f409e8e3cf17567ef51a434bbfde95ed-1920x1080.png)
-
-_Parallel's guide to using __[Search as a tool in OpenAI's function calling](https://docs.parallel.ai/integrations/openai-tool-calling)__._
-
-## Related terms
-
-- [MCP servers](https://parallel.ai/articles/mcp-vs-skills-vs-clis): the Model Context Protocol for exposing tools to a model.
-- [Agent harness](https://parallel.ai/articles/what-is-an-agent-harness): the runtime loop that manages an agent's tool calls.
-- [AI agents](https://parallel.ai/learn/ai-agent): systems that use tools to plan and complete multi-step tasks.
-- [Agent skills](https://parallel.ai/learn/agent-skills): packaged capabilities an agent can load and use.
-
-## FAQ
+## Frequently asked questions
 
 **Is tool calling the same as function calling?**
 
-Yes, the terms name the same capability, and different providers use different labels for the same pattern.
+Yes. "Function calling" was OpenAI's original API label in 2023, while Anthropic and newer specifications use "tool use" or "tool calling." Both describe the same contract: the model emits structured arguments against a JSON Schema and the host runtime executes the action.
 
-**Does the model run the tool itself?**
+**Does the language model execute the tool itself?**
 
-No, the model only generates the structured call with the arguments. Your application runs the function, then passes the result back for the model to use.
+No. The model only generates the tool name and JSON arguments as structured output tokens. Your host runtime—or a managed sandbox/server it talks to—runs the actual code and passes the serialized output back into the next model request.
 
-**Why do tool calls sometimes fail?**
+**How many tools should you expose in one model call?**
 
-Most failures come from malformed arguments or the model picking the wrong tool. That is why multi turn tool use stays harder than single turn calls on benchmarks like the Berkeley Function Calling Leaderboard.
+There is no single hard cap across providers, but routing accuracy and latency both degrade as tool definitions grow. Most production harnesses keep the active set under roughly 15–20 well-separated tools per turn, or use dynamic discovery and [agent skills](/learn/agent-skills) to load specialized tools only when a task calls for them.

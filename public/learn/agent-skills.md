@@ -1,8 +1,24 @@
-# What are agent skills? SKILL.md and the portable-capability standard, explained
+# Agent skills
 
 Agent skills are folders of markdown instructions an AI agent loads on demand, standardized as SKILL.md and now portable across Claude Code, OpenClaw, Hermes, Cursor, and more. What they are, how they work, where to get them, and how to install them safely.
 
 An agent skill is a folder of instructions an AI agent loads when a task calls for them: a markdown file that teaches the agent how to do something specific, optionally bundled with scripts, templates, and reference material. If the agent is a smartphone, skills are its apps, except the apps are plain text you can read before installing.
+
+**Progressive disclosure in SKILL.md loading**
+
+```text
+AT STARTUP (cheap: ~30-50 tokens per skill)
+  ~/.agents/skills/
+  ├── pdf-extract/SKILL.md    ──▶ Load YAML frontmatter only
+  ├── sql-audit/SKILL.md      ──▶ (name + description in prompt)
+  └── deploy-check/SKILL.md
+
+AT RUNTIME (on match only)
+  User Task matches "pdf-extract"
+         │
+         ▼
+  Read full SKILL.md body + optional scripts/ & references/
+```
 
 Skills went from a Claude feature to ecosystem infrastructure in about a year, and the turning point was standardization: one file format that every major harness reads. This guide covers the format, how loading works, where skills are distributed, how they relate to MCP servers, and the security lessons the ecosystem learned the hard way.
 
