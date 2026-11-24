@@ -11998,7 +11998,7 @@
             },
             "type": "array",
             "title": "Exclude Domains",
-            "description": "List of domains or domain/path prefixes to exclude from results. If specified, matching sources will be excluded, also inside include_domains. Accepts plain domains (e.g., reddit.com), domain/path prefixes (e.g., youtube.com/shorts), or bare domain extensions (e.g., .gov, .edu, .co.uk). The combined number of entries in include_domains and exclude_domains cannot exceed 200.",
+            "description": "List of domains or domain/path prefixes to exclude from results. If specified, matching sources will be excluded, also inside include_domains. Accepts plain domains (e.g., reddit.com), domain/path prefixes (e.g., youtube.com/shorts), or bare domain extensions (e.g., .gov, .edu, .co.uk). One or more trailing /* mean the whole path prefix; any other path segment that is exactly * matches one segment. -site: operators in queries follow the same rules. The combined number of entries in include_domains and exclude_domains cannot exceed 200.",
             "examples": [
               [
                 "reddit.com",
