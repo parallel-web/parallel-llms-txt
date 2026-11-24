@@ -178,6 +178,80 @@ The Parallel Task API is evaluated across nine configurations, from Task Lite th
 
 All testing was conducted on August 26, 2026.
 
+## Parallel Decisions API
+
+### PWS-Decisions
+
+| Series   | Model                  | Accuracy (%) |
+| -------- | ---------------------- | ------------ |
+| Parallel | Parallel Decisions API | 76.2         |
+| Others   | Perplexity Decisions   | 50.9         |
+| Others   | Baseten Mammoth        | 45           |
+| Others   | OpenAI Decisions API   | 41.7         |
+| Others   | TypeSafe Jev 1.14      | 33.4         |
+
+Share of all 300 questions answered correctly (100 public + 200 private), mean of three runs.
+
+**Dataset**
+
+PWS-Decisions is Parallel's benchmark of 300 closed-ended decision questions whose answers depend on current, niche or scattered facts on the public web: qualifying accounts, checking product capabilities, confirming policy rules and tracking fast-moving events. Each question gives JSON state, a question scoped to a date or version, and 2–5 mutually exclusive choices. 100 questions are public on [Hugging Face](https://huggingface.co/datasets/parallel-web/pws-decisions-benchmark) and 200 are held private. The runner is on [GitHub](https://github.com/parallel-web/pws-decisions-benchmark).
+
+**Evaluation methodology**
+
+A prediction is correct only if it exactly matches the reference choice, so no LLM judge is involved. Refusals, invalid responses and errors count as incorrect. Parallel runs the Decisions API in its default fast mode. The other APIs use their native decision endpoints with the same state, instructions and choices, without supplied web context; Perplexity is accessed through OpenRouter. Scores are the mean of three runs. Uniform random guessing scores 42.4% on the full set.
+
+On the 100 public questions alone: Parallel Decisions API 78.3%, Perplexity Decisions 51.0%, OpenAI Decisions API 42.0%, Baseten Mammoth 37.0%, TypeSafe Jev 1.14 33.3%.
+
+**Testing dates**
+
+Evals were run on October 29, 2026.
+
+### Latency vs cost
+
+| Series   | Model                                | Cost (CPM) | Median latency (s) |
+| -------- | ------------------------------------ | ---------- | ------------------ |
+| Parallel | Parallel Decisions API               | 1          | 0.56               |
+| Others   | GPT-6 Luna + native web search       | 16.52      | 7.42               |
+| Others   | Claude Haiku 5.5 + native web search | 28.11      | 6.38               |
+
+CPM: USD per 1,000 requests, including tokens and native search charges. Latency is the median (p50) across the 300-question set. Haiku 5.5 is plotted at the midpoint of its $27.43–$28.79 cost range.
+
+**Dataset**
+
+The same 300 [PWS-Decisions](https://github.com/parallel-web/pws-decisions-benchmark) questions, each a closed-ended decision whose answer depends on current facts on the public web.
+
+**Evaluation methodology**
+
+Compares one Decisions API call with a low-cost model that runs its own built-in web search. GPT-6 Luna uses the OpenAI Responses API with web search required, medium reasoning and at most five tool calls. Claude Haiku 5.5 uses the Anthropic Messages API web search tool with a five-search budget. Both have an 8,192-token output cap. Cost includes token and native search charges. Latency is time to a complete answer; p95 is 0.71 s for the Decisions API, 19.17 s for Luna and 10.95 s for Haiku 5.5.
+
+This chart measures speed and cost only. With a reasoning model and up to five searches per question, the two native-search configurations scored 97.3% (Luna) and 96.6% (Haiku 5.5) on the same 300 questions, against 76.2% for the Decisions API. All results are from three runs.
+
+**Testing dates**
+
+Evals were run on October 29, 2026.
+
+### JevBench
+
+| Series   | Model                  | Accuracy (%) |
+| -------- | ---------------------- | ------------ |
+| Parallel | Parallel Decisions API | 89.6         |
+| Others   | OpenAI Decisions API   | 90           |
+| Others   | TypeSafe Jev           | 88.3         |
+
+Share of 231 JevBench questions answered correctly.
+
+**Dataset**
+
+231 JevBench questions: classic decision tasks that can be answered from the input alone, without looking anything up on the web.
+
+**Evaluation methodology**
+
+Shown for contrast with PWS-Decisions, as reported in the [PWS-Decisions launch post](/blog/pws-decisions-benchmark). On these self-contained tasks all three decision APIs score within two points of each other. The gap opens on PWS-Decisions, where answers depend on the live web: OpenAI Decisions drops from 90.0% to 41.7% and TypeSafe Jev from 88.3% to 33.4%, while the Parallel Decisions API scores 76.2%.
+
+**Testing dates**
+
+Results published in November 2026.
+
 ## Parallel for Finance
 
 ### FinSearchComp T3

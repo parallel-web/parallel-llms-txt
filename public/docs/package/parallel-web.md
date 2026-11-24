@@ -25,17 +25,17 @@ Search
 
 TypeScript icon, indicating that this package has built-in type declarations
 
-1\.3.7 • Public • Published 13 days ago
+1\.5.0 • Public • Published 4 hours ago
 
 * [Readme](https://www.npmjs.com/package/parallel-web?activeTab=readme)
 * [Code Beta](https://www.npmjs.com/package/parallel-web?activeTab=code)
 * [0 Dependencies](https://www.npmjs.com/package/parallel-web?activeTab=dependencies)
-* [17 Dependents](https://www.npmjs.com/package/parallel-web?activeTab=dependents)
-* [26 Versions](https://www.npmjs.com/package/parallel-web?activeTab=versions)
+* [18 Dependents](https://www.npmjs.com/package/parallel-web?activeTab=dependents)
+* [28 Versions](https://www.npmjs.com/package/parallel-web?activeTab=versions)
 
 # Parallel TypeScript API Library
 
-[NPM version](https://npmjs.org/package/parallel-web) [npm bundle size](https://camo.githubusercontent.com/cccfedd121e87b4b616390bd777cbb324f4d9cb45c53b9405d029d9eb8cbd6dd/68747470733a2f2f696d672e736869656c64732e696f2f62756e646c6570686f6269612f6d696e7a69702f706172616c6c656c2d776562)
+[NPM version](https://npmjs.org/package/parallel-web) [npm bundle size](https://camo.githubusercontent.com/1e17df4a443e413a5c0d80812dede7fef7be32e845d1c2661465ffa8c871ca75/68747470733a2f2f696d672e736869656c64732e696f2f62756e646c6570686f6269612f6d696e7a69702f706172616c6c656c2d776562)
 
 This library provides convenient access to the Parallel REST API from server-side TypeScript or JavaScript.
 
@@ -392,19 +392,19 @@ Built and signed on
 
 ## GitHub Actions
 
-[View build summary](https://github.com/parallel-web/parallel-sdk-typescript/actions/runs/40787974009/attempts/1)
+[View build summary](https://github.com/parallel-web/parallel-sdk-typescript/actions/runs/45353669879/attempts/1)
 
 Source Commit
 
-[github.com/parallel-web/parallel-sdk-typescript@e802ec7](https://github.com/parallel-web/parallel-sdk-typescript/tree/e802ec7de05cac7eef6f1b3d10eecb9d7431840c)
+[github.com/parallel-web/parallel-sdk-typescript@4780bd3](https://github.com/parallel-web/parallel-sdk-typescript/tree/4780bd3b82578027ee875db003d1e5681b71cb21)
 
 Build File
 
-[.github/workflows/publish-npm.yml](https://github.com/parallel-web/parallel-sdk-typescript/actions/runs/40787974009/workflow)
+[.github/workflows/publish-npm.yml](https://github.com/parallel-web/parallel-sdk-typescript/actions/runs/45353669879/workflow)
 
 Public Ledger
 
-[Transparency log entry](https://search.sigstore.dev/?logIndex=3552131459)
+[Transparency log entry](https://search.sigstore.dev/?logIndex=4073069898)
 
 [Share feedback](https://github.com/npm/feedback)
 
@@ -424,11 +424,11 @@ Public Ledger
 
 ### Weekly Downloads
 
-512,565
+664,726
 
 ### Version
 
-1\.3.7
+1\.5.0
 
 ### License
 
@@ -436,7 +436,7 @@ MIT
 
 ### Last publish
 
-13 days ago
+4 hours ago
 
 ### Collaborators
 
@@ -446,7 +446,7 @@ MIT
 
 [**Analyze security** with Socket](https://socket.dev/npm/package/parallel-web) [**Check bundle size**](https://bundlephobia.com/package/parallel-web) [**View package health**](https://snyk.io/advisor/npm-package/parallel-web) [**Explore dependencies**](https://npmgraph.js.org/?q=parallel-web)
 
-[**Report** malware](https://www.npmjs.com/support?inquire=security&security-inquire=malware&package=parallel-web&version=1.3.7)
+[**Report** malware](https://www.npmjs.com/support?inquire=security&security-inquire=malware&package=parallel-web&version=1.5.0)
 
 ## Footer
 
@@ -474,4 +474,4 @@ MIT
 * [Code of Conduct](https://www.npmjs.com/policies/conduct)
 * [Privacy](https://www.npmjs.com/policies/privacy)
 
-Viewing parallel-web version 1.3.7
+Viewing parallel-web version 1.5.0

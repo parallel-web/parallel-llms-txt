@@ -1,6 +1,6 @@
 # The best ChatGPT plugins in 2026
 
-The best ChatGPT plugins are the ones that add something ChatGPT can't do alone: deeper research, live bookings, your own files, or alerts that arrive after you close the chat. This guide covers how to install plugins, twelve worth adding across research, travel, shopping, design, and work, and what each costs and where it's limited.
+The best ChatGPT plugins are the ones that add something ChatGPT can't do alone: deeper research, live bookings, structured flight and product search, or your own files. This guide covers how to install plugins, twelve worth adding across research, travel, shopping, design, and work, and what each costs and where it's limited.
 
 ChatGPT plugins are the add-ons you install from the Plugins directory in ChatGPT's sidebar. Each one connects ChatGPT to an outside service, such as a travel site, a design tool, or your company's documents. OpenAI renamed its app directory to Plugins on July 9, 2026. These aren't the plugins from the 2023 beta, which OpenAI retired in April 2024.
 
@@ -16,7 +16,7 @@ OpenAI says the directory is visible on every plan, from Free to Enterprise. Whe
 
 | Plugin | Best for | Notable limit |
 | --- | --- | --- |
-| Parallel | Deep research, list enrichment, price and fare alerts | Needs a Parallel sign-in; monitors run in Work chats |
+| Parallel | Deep research, list enrichment, flight and product search | Needs a Parallel sign-in; name it in the prompt |
 | Expedia | Comparing flights and hotels | Six countries; booking finishes on Expedia |
 | Booking.com | Hotels, attractions, and rental cars | Reservations finish on Booking.com |
 | Instacart | Turning a meal plan into a grocery order | North America; needs an Instacart account |
@@ -29,9 +29,9 @@ OpenAI says the directory is visible on every plan, from Free to Enterprise. Whe
 | Slack | Searching and summarizing team chat | Needs a paid ChatGPT plan |
 | Notion | Finding and writing pages in Notion | Writes anywhere your account can |
 
-## 1. Parallel: deep research, enrichment, and monitoring
+## 1. Parallel: deep research, enrichment, flights, and shopping
 
-ChatGPT already searches the web, and for a quick answer with a few links it does that well. [Parallel MCP](https://parallel.ai/mcp) is for the jobs that need more evidence: research questions that take dozens of sources, lists of companies or products that each need the same facts filled in, and prices you want watched after you close the chat. Parallel's Search API, which powers these tools, ranked #1 on the Artificial Analysis Search Index with November 2026 data.
+ChatGPT already searches the web, and for a quick answer with a few links it does that well. [Parallel MCP](https://parallel.ai/mcp) is for the jobs that need more evidence: research questions that take dozens of sources, lists of companies or products that each need the same facts filled in, and flight or product searches you want back as structured results. Parallel's Search API, which powers these tools, ranked #1 on the Artificial Analysis Search Index with November 2026 data.
 
 ### Deep research in a single reply
 
@@ -54,13 +54,18 @@ Upload a spreadsheet or paste a list and ask ChatGPT to fill in columns from the
 
 This works well for dozens of rows. For thousands, the [Task API](https://parallel.ai/products/task) runs enrichment in bulk outside ChatGPT.
 
-### Watch flight fares and prices
+### Search flights and products
 
-Parallel can also set up a monitor that keeps checking after you leave the chat. Ask ChatGPT to watch a route or a product, and say how often to check: hourly, daily, weekly, or monthly. It reports back in the same chat when something changes. Monitors run in Work chats on ChatGPT web, or in the desktop app with **Work** and **Cloud** selected. Our guides on [tracking flight prices in ChatGPT](https://parallel.ai/articles/how-to-track-flight-prices-in-chatgpt) and [price drop alerts in ChatGPT](https://parallel.ai/articles/price-drop-alerts-in-chatgpt) walk through both.
+Parallel also searches flights and products. Ask for a route and dates, or a product and a price ceiling, and it returns structured results (fare, airline, times, and stops for flights; price, seller, availability, and a link for products) that ChatGPT can compare against your rules.
 
-**How to add it:** install the [Parallel plugin](https://chatgpt.com/plugins/plugin_asdk_app_69fb9378663481919a68e8a2109644e5) from the directory, listed simply as Parallel, and sign in with your Parallel account. Calls are billed at Parallel's [API rates](https://docs.parallel.ai/getting-started/pricing): a top-effort research question costs $0.25, and a monitor check costs $3 to $10 per 1,000. Every account gets $5 in free credit each month, which resets monthly. To add Parallel as a custom MCP server instead, see our [ChatGPT MCP guide](https://parallel.ai/articles/best-mcp-servers-for-chatgpt).
+- "Use Parallel to find round-trip flights from SFO to JFK, December 20 to January 3, under $400."
+- "Use Parallel to find Sony WH-1000XM5 headphones under $300 at major US retailers."
 
-**Tradeoffs:** we're the vendor. Monitors need a Work chat, and you have to name Parallel in the prompt when you want it over ChatGPT's own search.
+To get an alert when a price moves, ChatGPT's scheduled tasks can recheck on a timer. Our guides on [tracking flight prices in ChatGPT](https://parallel.ai/articles/how-to-track-flight-prices-in-chatgpt) and [price drop alerts in ChatGPT](https://parallel.ai/articles/price-drop-alerts-in-chatgpt) walk through both.
+
+**How to add it:** install the [Parallel plugin](https://chatgpt.com/plugins/plugin_asdk_app_69fb9378663481919a68e8a2109644e5) from the directory, listed simply as Parallel, and sign in with your Parallel account. Calls are billed at Parallel's [API rates](https://docs.parallel.ai/getting-started/pricing): a top-effort research question costs $0.25, and flight and product searches cost $5 per 1,000. Every account gets $5 in free credit each month, which resets monthly. To add Parallel as a custom MCP server instead, see our [ChatGPT MCP guide](https://parallel.ai/articles/best-mcp-servers-for-chatgpt).
+
+**Tradeoffs:** we're the vendor, and you have to name Parallel in the prompt when you want it over ChatGPT's own search.
 
 ## 2. Expedia
 
@@ -108,7 +113,7 @@ Notion finds information across your workspace and creates or updates pages. It 
 
 ## Which plugins should you install first?
 
-Start with what you'd otherwise open a second tab for. For travel, install Expedia or Booking.com to search and Parallel to watch fares. For work, install Google Drive or Notion for your documents and Parallel for research that needs more sources than a normal reply. For creative work, install Canva or Adobe. Everything here can be uninstalled from the Plugins page.
+Start with what you'd otherwise open a second tab for. For travel, install Expedia or Booking.com to book and Parallel to compare fares. For work, install Google Drive or Notion for your documents and Parallel for research that needs more sources than a normal reply. For creative work, install Canva or Adobe. Everything here can be uninstalled from the Plugins page.
 
 ## Frequently asked questions
 
@@ -120,6 +125,6 @@ Start with what you'd otherwise open a second tab for. For travel, install Exped
 
 **What's the best ChatGPT plugin for deep research?** Parallel. Its `web_research` tool returns a cited answer from many sources in the same reply, and its read-only tools also work inside ChatGPT's own deep research runs.
 
-**Can a ChatGPT plugin send me alerts?** Yes. Parallel can monitor flight fares and product prices and report back in the chat. ChatGPT's scheduled tasks can also rerun a prompt on a schedule and notify you by push or email.
+**Can ChatGPT send me price alerts?** Yes, through scheduled tasks, which rerun a prompt on a schedule and notify you by push or email. That works for rechecking a flight fare or a product price.
 
 Related reading: [The best MCP servers for ChatGPT](https://parallel.ai/articles/best-mcp-servers-for-chatgpt) / [How to track flight prices in ChatGPT](https://parallel.ai/articles/how-to-track-flight-prices-in-chatgpt) / [How to get price drop alerts in ChatGPT](https://parallel.ai/articles/price-drop-alerts-in-chatgpt) / [What is deep research?](https://parallel.ai/learn/deep-research)
