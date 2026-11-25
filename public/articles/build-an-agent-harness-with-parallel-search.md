@@ -327,7 +327,7 @@ An agent harness is the software around a model that runs its tool loop, manages
 
 ### How do I add web search to a Claude agent?
 
-Define a web_search tool, call the Parallel Search API when Claude returns a matching tool_use block, and send the excerpts back as a tool_result. Or connect Parallel MCP and skip the tool code.
+Define a web_search tool, call the [Parallel Search API](https://parallel.ai/products/search) when Claude returns a matching tool_use block, and send the excerpts back as a tool_result. Or connect Parallel MCP and skip the tool code.
 
 ### Which Parallel Search mode should an agent harness use?
 

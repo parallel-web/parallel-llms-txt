@@ -31,7 +31,7 @@ OpenAI says the directory is visible on every plan, from Free to Enterprise. Whe
 
 ## 1. Parallel: deep research, enrichment, flights, and shopping
 
-ChatGPT already searches the web, and for a quick answer with a few links it does that well. [Parallel MCP](https://parallel.ai/mcp) is for the jobs that need more evidence: research questions that take dozens of sources, lists of companies or products that each need the same facts filled in, and flight or product searches you want back as structured results. Parallel's Search API, which powers these tools, ranked #1 on the Artificial Analysis Search Index with November 2026 data.
+ChatGPT already searches the web, and for a quick answer with a few links it does that well. [Parallel MCP](https://parallel.ai/mcp) is for the jobs that need more evidence: research questions that take dozens of sources, lists of companies or products that each need the same facts filled in, and flight or product searches you want back as structured results. [Parallel's Search API](https://parallel.ai/products/search), which powers these tools, ranked #1 on the Artificial Analysis Search Index with November 2026 data.
 
 ### Deep research in a single reply
 

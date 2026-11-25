@@ -40,7 +40,7 @@ Advanced settings: leave empty for keyless use
 
 Or use this [Add to Replit install link](https://replit.com/integrations?mcp=eyJkaXNwbGF5TmFtZSI6IlBhcmFsbGVsIiwiYmFzZVVybCI6Imh0dHBzOi8vbWNwLnBhcmFsbGVsLmFpL21jcCJ9), built with Replit's documented link format. To add `web_research`, which researches one question and returns a cited answer, and to raise rate limits, put `Authorization` with the value `Bearer YOUR_PARALLEL_API_KEY` in Advanced settings, using a key from [platform.parallel.ai](https://platform.parallel.ai). Signed-in calls bill at the API rates (Search fast mode is $1 per 1,000 requests), and new accounts get up to $80 in free credits plus $5 a month with a card on file.
 
-The MCP server covers the agent. If the app you're building should search the web for its own users, ask Agent to call Parallel's Search API from your backend and store the key in Replit's Secrets; the [Parallel docs](https://docs.parallel.ai) have the request shapes. Replit's catalog also lists You.com's MCP server for web search, if you want to compare. Our [web search MCP comparison](https://parallel.ai/articles/best-web-search-mcp) covers the field.
+The MCP server covers the agent. If the app you're building should search the web for its own users, ask Agent to call [Parallel's Search API](https://parallel.ai/products/search) from your backend and store the key in Replit's Secrets; the [Parallel docs](https://docs.parallel.ai) have the request shapes. Replit's catalog also lists You.com's MCP server for web search, if you want to compare. Our [web search MCP comparison](https://parallel.ai/articles/best-web-search-mcp) covers the field.
 
 ### 2. Stripe
 

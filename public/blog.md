@@ -1,7 +1,7 @@
-### \[Parallel for Healthcare: Best-in-class search for healthcare and life sciences agents\](https://parallel.ai/blog/parallel-for-healthcare)
+### \[Track holiday deals on flights and gifts with Parallel in ChatGPT\](https://parallel.ai/blog/find-holiday-deals-chatgpt)
 
 Tags:[Product](/blog?tag=product)
 
 By Parallel Web Systems
 
-November 18, 2026
+November 22, 2026

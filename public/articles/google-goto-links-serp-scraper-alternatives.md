@@ -88,7 +88,7 @@ Keep a managed SERP API for competitor and keyword-level data, because nothing e
 
 ### For AI agents and RAG
 
-Replace the scraper with a search API built for models. You remove the redirect resolution, the blocking retries, the fetch-and-clean step, and the risk that a poisoned page feeds your model. With the Parallel Search API, one call returns ranked URLs with excerpts pulled from page bodies, and the Extract API returns a full page when the agent needs more. Our comparison of [web scraping and search APIs](https://parallel.ai/articles/web-scraping-vs-search-api) covers when each fits, and [Parallel vs. SerpApi vs. Brave vs. Bing](https://parallel.ai/articles/parallel-vs-serpapi-vs-brave-vs-bing) has a worked cost example.
+Replace the scraper with a search API built for models. You remove the redirect resolution, the blocking retries, the fetch-and-clean step, and the risk that a poisoned page feeds your model. With the [Parallel Search API](https://parallel.ai/products/search), one call returns ranked URLs with excerpts pulled from page bodies, and the Extract API returns a full page when the agent needs more. Our comparison of [web scraping and search APIs](https://parallel.ai/articles/web-scraping-vs-search-api) covers when each fits, and [Parallel vs. SerpApi vs. Brave vs. Bing](https://parallel.ai/articles/parallel-vs-serpapi-vs-brave-vs-bing) has a worked cost example.
 
 ### For monitoring
 

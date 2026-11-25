@@ -174,7 +174,7 @@ Yes. Self-hosted tools like ZeroClaw and NanoClaw run on your own hardware, so y
 
 ### How do I stop my AI agent from hallucinating on web searches?
 
-Ground it in an evidence-based search layer that returns cited, ranked excerpts rather than raw snippets. Adding Parallel's Search API through MCP gives your agent sources it can verify before it answers.
+Ground it in an evidence-based search layer that returns cited, ranked excerpts rather than raw snippets. Adding [Parallel's Search API](https://parallel.ai/products/search) through MCP gives your agent sources it can verify before it answers.
 
 ## Conclusion
 

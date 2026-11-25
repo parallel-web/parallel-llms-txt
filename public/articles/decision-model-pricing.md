@@ -67,7 +67,7 @@ Parallel costs $1,000 here, between 9 and 222 times more than the token-priced o
 
 **Parallel.** One request per company with all 10 questions: 100,000 x $0.001 = **$100**. On November 6, 2026 we ran this exact shape for Linear. One 10-question request returned in 676 ms with 10 citations and answered the security questions with confidence above 0.98, but the free-plan and mobile-app questions came back uncertain (0.46 and 0.34; both are true), because the shared evidence leaned toward Linear's security pages. Splitting the product questions into a second request fixed both (0.999 and 0.9997, citing Linear's download page and the App Store) in 504 ms. If your questions span different topics like this, budget two requests per company: **$200**.
 
-**A token-priced model plus your own search call.** Run one search per company and pass the results as `state`. Using Parallel's Search API Fast mode ($1 per 1,000 requests for 10 results) as the stand-in, search costs 100,000 x $0.001 = $100. Assume 5,000 tokens of search excerpts plus 500 tokens of questions: 5,500 tokens per company, or 550M tokens.
+**A token-priced model plus your own search call.** Run one search per company and pass the results as `state`. Using [Parallel's Search API](https://parallel.ai/products/search) Fast mode ($1 per 1,000 requests for 10 results) as the stand-in, search costs 100,000 x $0.001 = $100. Assume 5,000 tokens of search excerpts plus 500 tokens of questions: 5,500 tokens per company, or 550M tokens.
 
 - With Jev: $100 + 550 x $0.042 = $100 + $23.10 = **$123.10**
 - With OpenAI Decisions, uncached: $100 + 550 x $0.10 = **$155.00**

@@ -83,7 +83,7 @@ Take a founder building fleet management software who wants to find logistics co
 
 Queries like "B2B logistics software companies expanding into the EU market" return results no static database would surface because they reflect real-time publishing activity.
 
-Parallel's Search API handles semantic prospecting at scale:
+[Parallel's Search API](https://parallel.ai/products/search) handles semantic prospecting at scale:
 
 ```python
 response = requests.post(

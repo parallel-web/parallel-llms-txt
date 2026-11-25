@@ -6,7 +6,7 @@ SimpleQA is OpenAI's short-answer factuality benchmark, and its cleaned successo
 
 SimpleQA is a factuality benchmark that OpenAI released on October 30, 2024, made up of 4,326 short, fact-seeking questions that each have a single, indisputable answer. It tests whether a language model can answer from its own trained knowledge, and whether it knows when to decline instead of guessing. SimpleQA Verified is a cleaned 1,000-prompt version that Google DeepMind and Google Research published on September 9, 2025.
 
-Both versions were built to measure what a model knows without tools. Give an agent a web search API and the scores change, which is why the benchmark matters if you're choosing a search provider. We make Parallel, a web search API for AI agents, and we publish SimpleQA Verified results on our [benchmarks page](https://parallel.ai/benchmarks), so read the comparison sections with that in mind.
+Both versions were built to measure what a model knows without tools. Give an agent a web search API and the scores change, which is why the benchmark matters if you're choosing a search provider. We make Parallel, a [web search API for AI agents](https://parallel.ai/products/search), and we publish SimpleQA Verified results on our [benchmarks page](https://parallel.ai/benchmarks), so read the comparison sections with that in mind.
 
 ## How SimpleQA was built
 

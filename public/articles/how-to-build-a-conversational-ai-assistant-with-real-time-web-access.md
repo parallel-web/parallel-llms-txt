@@ -88,7 +88,7 @@ A question like "What is the capital of France?" needs no search. A question lik
 
 OpenAI's [function calling](https://platform.openai.com/docs/guides/function-calling) provides a clean interface for tool use. You define a schema describing what the tool does, and the model decides when to invoke it.
 
-Here we define a search tool and implement the function that calls the Parallel Search API:
+Here we define a search tool and implement the function that calls the [Parallel Search API](https://parallel.ai/products/search):
 
 ```python
 import openai

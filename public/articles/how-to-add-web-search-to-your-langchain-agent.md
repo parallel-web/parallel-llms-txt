@@ -90,7 +90,7 @@ export PARALLEL_API_KEY="your-parallel-key"
 
 **Step 1: Configure the search tool.**
 
-The `langchain-parallel` package provides `ParallelWebSearchTool`, a LangChain-compatible tool that wraps Parallel's Search API.
+The `langchain-parallel` package provides `ParallelWebSearchTool`, a LangChain-compatible tool that wraps [Parallel's Search API](https://parallel.ai/products/search).
 
 ```python
 from langchain_parallel import ParallelWebSearchTool

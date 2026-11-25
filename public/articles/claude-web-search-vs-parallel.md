@@ -8,7 +8,7 @@ You add the web search tool to a Messages API request and Claude decides when to
 
 Newer versions of the tool add dynamic filtering: instead of dropping every search result into the context window, Claude writes and runs code that filters results first, so only relevant content reaches the model. That directly attacks the token-bloat problem that makes naive search expensive, and the code execution it uses is not charged separately when it runs this way.
 
-Parallel's Search API is a standalone endpoint. You send a natural-language objective, optionally with explicit search queries, and get back ranked URLs with excerpts pulled from the page bodies. Four modes set the trade: Turbo at ~200ms and $1 per 1,000 requests, Fast at under a second and the same $1 per 1,000, Basic at ~1s and $5 per 1,000, and Advanced at ~3s and $5 per 1,000. You decide when to call it and what to do with the results.
+[Parallel's Search API](https://parallel.ai/products/search) is a standalone endpoint. You send a natural-language objective, optionally with explicit search queries, and get back ranked URLs with excerpts pulled from the page bodies. Four modes set the trade: Turbo at ~200ms and $1 per 1,000 requests, Fast at under a second and the same $1 per 1,000, Basic at ~1s and $5 per 1,000, and Advanced at ~3s and $5 per 1,000. You decide when to call it and what to do with the results.
 
 ## **Pricing**
 

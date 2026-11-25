@@ -8,7 +8,7 @@ Crawl4AI takes URLs you already have and turns them into clean Markdown or struc
 
 What it does not have is an index. It cannot answer "which pages on the web are relevant to this question," because there is no corpus behind it to rank. So a Crawl4AI-based agent still needs a search provider to produce the URLs, which means the real comparison is Crawl4AI plus some search API against Parallel on its own.
 
-Parallel's Search API takes a natural-language objective and returns ranked URLs with excerpts drawn from the page bodies, across four modes: Turbo at ~200ms and $1 per 1,000 requests, Fast at under a second and the same $1 per 1,000, Basic at ~1s and $5 per 1,000, and Advanced at ~3s and $5 per 1,000. Extract handles the page-to-markdown step at $1 per 1,000 URLs when an agent needs more than an excerpt.
+[Parallel's Search API](https://parallel.ai/products/search) takes a natural-language objective and returns ranked URLs with excerpts drawn from the page bodies, across four modes: Turbo at ~200ms and $1 per 1,000 requests, Fast at under a second and the same $1 per 1,000, Basic at ~1s and $5 per 1,000, and Advanced at ~3s and $5 per 1,000. Extract handles the page-to-markdown step at $1 per 1,000 URLs when an agent needs more than an excerpt.
 
 ## **What free actually costs**
 

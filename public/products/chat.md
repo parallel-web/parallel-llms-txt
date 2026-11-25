@@ -2,7 +2,7 @@ Chat API
 
 # Web-powered chat completions API
 
-The easiest way to implement fast AI answers with web citations
+## The easiest way to implement fast AI answers with web citations
 
 [Try Chat](https://platform.parallel.ai/play/chat)[View docs](https://docs.parallel.ai/chat-api/chat-quickstart)
 
@@ -23,7 +23,7 @@ Leading inference APIs bundle in web search price on tool calls, which means flu
 * **Citations by default:** Every response includes verifiable sources. No hallucinations without receipts.
 * **Structured output ready:** Request JSON schema responses for clean integration into your product.
 
-# Powered by our own proprietary web scale index
+## Powered by our own proprietary web scale index
 
 With innovations in retrieval, crawling, indexing, and reasoning
 

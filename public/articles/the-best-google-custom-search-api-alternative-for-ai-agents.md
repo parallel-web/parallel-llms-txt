@@ -128,4 +128,4 @@ Parallel Fast. It runs on a proprietary index, returns token-efficient excerpts 
 
 ## Start building
 
-You can replace the Custom Search JSON API with [search built for AI agents](https://platform.parallel.ai/play/search) today. [Start Building](https://docs.parallel.ai/home) with Parallel's Search API.
+You can replace the Custom Search JSON API with [search built for AI agents](https://platform.parallel.ai/play/search) today. [Start Building](https://docs.parallel.ai/home) with [Parallel's Search API](https://parallel.ai/products/search).

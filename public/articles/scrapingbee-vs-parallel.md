@@ -12,7 +12,7 @@ Parallel's surface is Search, Extract, Task, Responses, FindAll, Entity Search, 
 
 ScrapingBee's Google Search API is a SERP endpoint: it runs the query, handles the rendering and unblocking, and returns structured results. What comes back is Google's ranking and Google's description snippets, which means an agent that needs to reason usually has to fetch the underlying pages next. ScrapingBee will do that too (that is its core product) but it is a second call per result, on the same credit meter.
 
-Parallel's Search API takes a natural-language objective and returns ranked URLs with excerpts pulled from the page bodies and selected against that objective, in one call. Four modes set the trade: Turbo at ~200ms and $1 per 1,000 requests, Fast at ~700ms and the same $1 per 1,000, Basic at ~1s and $5 per 1,000, and Advanced at ~3s and $5 per 1,000, which is the default. Extract handles full pages at $1 per 1,000 URLs when excerpts are not enough.
+[Parallel's Search API](https://parallel.ai/products/search) takes a natural-language objective and returns ranked URLs with excerpts pulled from the page bodies and selected against that objective, in one call. Four modes set the trade: Turbo at ~200ms and $1 per 1,000 requests, Fast at ~700ms and the same $1 per 1,000, Basic at ~1s and $5 per 1,000, and Advanced at ~3s and $5 per 1,000, which is the default. Extract handles full pages at $1 per 1,000 URLs when excerpts are not enough.
 
 ## **Pricing**
 

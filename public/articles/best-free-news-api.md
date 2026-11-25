@@ -74,7 +74,7 @@ A different route is to skip the news-only index and use a web search API with r
 
 ### Parallel Search
 
-Parallel's Search API takes a natural-language `objective` plus short keyword `search_queries` and returns ranked URLs with excerpts written for an LLM's context window. For news work, two controls matter. The `source_policy` object, set inside `advanced_settings`, takes `include_domains` and `exclude_domains` (domains or domain/path prefixes, up to 200 entries combined) and `after_date`, the earliest publication date to return in `YYYY-MM-DD` format. Results include a `publish_date` field when one is detected. The [source policy docs](https://docs.parallel.ai/search/source-policy) cover the details.
+[Parallel's Search API](https://parallel.ai/products/search) takes a natural-language `objective` plus short keyword `search_queries` and returns ranked URLs with excerpts written for an LLM's context window. For news work, two controls matter. The `source_policy` object, set inside `advanced_settings`, takes `include_domains` and `exclude_domains` (domains or domain/path prefixes, up to 200 entries combined) and `after_date`, the earliest publication date to return in `YYYY-MM-DD` format. Results include a `publish_date` field when one is detected. The [source policy docs](https://docs.parallel.ai/search/source-policy) cover the details.
 
 ```bash
 curl https://api.parallel.ai/v1/search \

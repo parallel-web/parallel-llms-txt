@@ -1,8 +1,8 @@
 Search API
 
-# The best web search for your AI agent , model, IDE, chatbot, application, workflow
+# The best web search API for AI agents
 
-The highest accuracy web search API, built from the ground up for AIs
+## Ground LLM reasoning in fresh, token-efficient results from the web
 
 [Get Started ](https://platform.parallel.ai/)[Get a Demo](https://contact.parallel.ai/)
 
@@ -157,7 +157,7 @@ Cost includes LLM token costs and tool call costs, averaged per task and shown o
 
 Evals were run on September 9, 2026.
 
-# Powered by our own proprietary web scale index 
+## Powered by our own proprietary web scale index 
 
 With innovations in retrieval, crawling, indexing, and reasoning 
 
@@ -165,7 +165,7 @@ With innovations in retrieval, crawling, indexing, and reasoning
 * Millions of pages added daily
 * Intelligently recrawled to keep data fresh
 
-# The knowledge of the entire public web
+## The knowledge of the entire public web
 
 in a single tool call 
 
@@ -212,7 +212,7 @@ Source control
 
 Pick which domains are included or excluded from your web search results
 
-# Secure and trusted
+## Secure and trusted
 
 Zero data retention
 

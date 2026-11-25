@@ -21,7 +21,7 @@ OpenAI's developer pricing page lists all three rates: $10 per 1,000 calls for w
 
 **What Parallel charges**
 
-Parallel's Search API costs **$5 per 1,000 requests** for the Basic and Advanced modes; the Turbo and Fast modes cost $1 per 1,000 requests, at ~200ms and sub-second latency respectively. For most agent workloads, Fast is the mode to reach for. Each request returns up to 10 results with compressed, query-relevant excerpts included at no extra charge. Additional results beyond 10 cost $1 per 1,000.
+[Parallel's Search API](https://parallel.ai/products/search) costs **$5 per 1,000 requests** for the Basic and Advanced modes; the Turbo and Fast modes cost $1 per 1,000 requests, at ~200ms and sub-second latency respectively. For most agent workloads, Fast is the mode to reach for. Each request returns up to 10 results with compressed, query-relevant excerpts included at no extra charge. Additional results beyond 10 cost $1 per 1,000.
 
 There are no token fees on top and no per-model pricing tiers, just one flat price per mode.
 

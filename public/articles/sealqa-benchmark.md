@@ -4,7 +4,7 @@ SealQA asks what happens when an AI agent searches the web and the web disagrees
 
 SealQA is a question-answering benchmark from researchers at Virginia Tech that tests search-augmented language models on fact-seeking questions where web search returns conflicting, noisy, or unhelpful results. The paper was first posted to arXiv on June 1, 2025 and published at ICLR 2026. The benchmark ships in three flavors: Seal-0 (111 questions), Seal-Hard (254 questions), and LongSeal (254 questions in a "needle-in-a-haystack" format). Every question was written so that a naive search surfaces misleading evidence.
 
-We make Parallel, a web search API for AI agents, so read with that in mind. This article doesn't report any Parallel SealQA scores, for reasons covered below.
+We make Parallel, a [web search API for AI agents](https://parallel.ai/products/search), so read with that in mind. This article doesn't report any Parallel SealQA scores, for reasons covered below.
 
 ## What the SealQA benchmark measures
 

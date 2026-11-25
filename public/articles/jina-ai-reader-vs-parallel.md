@@ -27,7 +27,7 @@ In production, latency is the bigger gap. Jina publishes an average of 7.9 secon
 
 Jina's s.jina.ai returns the top five results with their contents already converted to clean text, at a published average of 2.5 seconds. You can add X-Respond-With: no-content to get results without fetching the pages. Five results is a hard ceiling, and it is a low one for an agent trying to triangulate across sources.
 
-Parallel's Search API returns 10 results with excerpts as standard and more at $1 per 1,000 additional results, across four modes: Turbo at ~200ms and $1 per 1,000 requests, Fast at under a second and the same $1 per 1,000, Basic at ~1s and $5 per 1,000, and Advanced at ~3s and $5 per 1,000, the default. A Source Policy handles domains and freshness; a Fetch Policy chooses between the index and a live crawl.
+[Parallel's Search API](https://parallel.ai/products/search) returns 10 results with excerpts as standard and more at $1 per 1,000 additional results, across four modes: Turbo at ~200ms and $1 per 1,000 requests, Fast at under a second and the same $1 per 1,000, Basic at ~1s and $5 per 1,000, and Advanced at ~3s and $5 per 1,000, the default. A Source Policy handles domains and freshness; a Fetch Policy chooses between the index and a live crawl.
 
 On latency, 2.5 seconds against 200ms is an order of magnitude, enough to decide whether you can call search inside a chat turn.
 

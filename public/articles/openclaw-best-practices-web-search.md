@@ -4,7 +4,7 @@ Search quality decides how often an OpenClaw agent reasons well or invents an an
 
 ## **Why search accuracy matters for AI agents**
 
-The best web search for OpenClaw depends on what you're building. For quick prototypes, the built-in tools work fine. For production agents that need reliable, evidence-based responses, Parallel's Search API is built for accuracy on exactly that kind of query. It's purpose-built for AI reasoning rather than adapted from traditional search infrastructure.
+The best web search for OpenClaw depends on what you're building. For quick prototypes, the built-in tools work fine. For production agents that need reliable, evidence-based responses, [Parallel's Search API](https://parallel.ai/products/search) is built for accuracy on exactly that kind of query. It's purpose-built for AI reasoning rather than adapted from traditional search infrastructure.
 
 [OpenClaw](https://openclaw.ai/) (formerly ClawdBot and MoltBot) is an open-source personal AI assistant created by [Peter Steinberger](https://x.com/steipete). It runs locally on your hardware and integrates with large language models (LLMs) like Claude, GPT, and DeepSeek to execute tasks autonomously. You interact with it through messaging platforms like Telegram, WhatsApp, Signal, or Discord, and it handles everything from email management to home automation to web research.
 

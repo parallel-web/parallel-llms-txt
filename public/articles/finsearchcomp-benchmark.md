@@ -4,7 +4,7 @@ Search APIs and research products now cite FinSearchComp, ByteDance Seed's finan
 
 FinSearchComp is an open benchmark of 635 finance questions that tests whether an AI agent can search for financial data and reason over it the way an analyst does. ByteDance Seed built it with 70 financial experts and an advisor from Columbia Business School. Questions fall into three tiers (live data, single historical facts, and multi-step historical investigations), and every answer is graded right or wrong against an expert-set tolerance.
 
-We make Parallel, a web search API for AI agents, and we ran the search API evaluations reported below, so read with that in mind. The methodology is on our [benchmarks page](/benchmarks), and where research products publish higher end-to-end scores, this article says so.
+We make Parallel, a [web search API for AI agents](https://parallel.ai/products/search), and we ran the search API evaluations reported below, so read with that in mind. The methodology is on our [benchmarks page](/benchmarks), and where research products publish higher end-to-end scores, this article says so.
 
 ## What FinSearchComp measures
 

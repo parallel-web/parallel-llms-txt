@@ -99,7 +99,7 @@ There are two common approaches. The first combines a SERP API with a separate s
 
 **[Multi-hop research](https://parallel.ai/learn/deep-research)****.** Complex questions require multiple retrieval rounds with synthesis. An agent researching "Which AI infrastructure companies raised Series B in the last quarter?" can't answer in one search. The architecture must support iterative search loops where each retrieval informs the next query.
 
-Here is an example using the Parallel Search API with declarative semantic search:
+Here is an example using the [Parallel Search API](https://parallel.ai/products/search) with declarative semantic search:
 
 ```python
 from parallel import Parallel

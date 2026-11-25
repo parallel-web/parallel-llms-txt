@@ -4,7 +4,7 @@ BrowseComp is OpenAI's benchmark for whether an AI agent can track down hard-to-
 
 BrowseComp is a benchmark of 1,266 hard, fact-seeking questions that OpenAI released on April 10, 2025 to measure how well AI agents browse the web. Each question has one short answer that is easy to check but buried behind several linked constraints, so an agent has to search persistently, follow many leads, and combine clues from different pages before it can answer. The name is short for "Browsing Competition."
 
-We make Parallel, a web search API for AI agents, and we publish BrowseComp results for our own products below, so read with that in mind. Where other providers score higher, the tables say so.
+We make Parallel, a [web search API for AI agents](https://parallel.ai/products/search), and we publish BrowseComp results for our own products below, so read with that in mind. Where other providers score higher, the tables say so.
 
 ## What the BrowseComp benchmark measures
 

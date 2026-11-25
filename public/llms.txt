@@ -255,6 +255,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [How We Enrich &amp; Triage Inbound Leads with the Task API](https://llm.parallel.ai/blog/enrich-triage-inbound-leads-parallel-task-api.md): How Parallel&#x27;s own GTM team uses the Task API to enrich and triage every inbound lead: company context, size, and priority, before a person ever responds.
 - [Introducing Real-Time Entity Search](https://llm.parallel.ai/blog/entity-search-company.md): Find companies on the web with a plain-language query. Entity Search returns structured, matching results in seconds, built for latency-sensitive agents.
 - [EU Data Residency for the Parallel Search API](https://llm.parallel.ai/blog/eu-data-residency.md): Parallel now offers EU data residency for Search API requests in basic mode. The endpoint, the full index, and inference run in the EU, with zero data…
+- [Find holiday deals on flights and gifts with Parallel in ChatGPT](https://llm.parallel.ai/blog/find-holiday-deals-chatgpt.md): Ask ChatGPT to find flights and gifts with Parallel and get today&#x27;s fares and prices from the live web, with a link to book or buy.
 - [Building a Free CLI Agent with Pi, Ollama, and Gemma](https://llm.parallel.ai/blog/free-CLI-agent.md): Vibe-coding a completely free CLI research agent: a local Gemma 4 model on Ollama plus Parallel&#x27;s free Search MCP, with zero API bills and zero API keys.
 - [$5 in Free Parallel Credits, Every Month](https://llm.parallel.ai/blog/free-tier-parallel.md): Every eligible Parallel organization with a credit card now receives $5 in free credits each month, applied automatically across Parallel&#x27;s APIs and platform.
 - [Parallel Search Is Now Free for Agents via MCP](https://llm.parallel.ai/blog/free-web-search-mcp.md): Real-time, LLM-optimized web search is now free by default for agents and AI tools like Cursor, Claude Code, and OpenClaw. No account or API key required.
@@ -334,7 +335,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Data Connectors](https://llm.parallel.ai/data-connectors.md): Explore high-quality company, financial, research, life sciences, legal, news, and web data available through Parallel.
 - [Request a Data Source](https://llm.parallel.ai/data-connectors/request.md): Request a new data source for your Parallel agents, or apply to add your data to Parallel&#x27;s data connectors.
 - [Demos](https://llm.parallel.ai/demos.md): Live apps built on Parallel APIs, including earnings call tracking, company record checks, clinical trial research, and a live web voice agent.
-- [Index by Parallel · INDEX by Parallel](https://llm.parallel.ai/index.md): Index is a platform for content owners to understand how AI agents use their work and earn compensation tied to the value they contribute.
+- [Index by Parallel · INDEX by Parallel](https://llm.parallel.ai/index.md): Parallel Web Systems builds web search for AI at scale: APIs to search, read, monitor, and reason over the world&#x27;s information.
 - [Integrations](https://llm.parallel.ai/integrations.md): Use Parallel web search across your entire stack to build more powerful agents and workflows. Browse verified integrations for agent frameworks, coding agents, model platforms, data platforms, and more.
 - [Use Parallel with Anthropic](https://llm.parallel.ai/integrations/anthropic.md): Give Anthropic-powered applications live web research through tool calling, or connect Parallel to Claude Desktop over MCP.
 - [Use Parallel with AWS Marketplace](https://llm.parallel.ai/integrations/aws-marketplace.md): Procure and manage Parallel through AWS Marketplace using your existing cloud purchasing workflow.
@@ -422,7 +423,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Find All - Enterprise Deep Research Examples](https://llm.parallel.ai/products/findall.md): Explore real-world examples of enterprise deep research API queries. See how AI agents use Parallel&#x27;s structured extraction for multi-hop research.
 - [Monitor API - Continuous Web Monitoring for AI](https://llm.parallel.ai/products/monitor.md): Track changes across the web with continuous monitoring built for AI agents. Get structured, verified updates when the pages and topics you care about change.
 - [Responses API - Web Research for Your Product](https://llm.parallel.ai/products/responses.md): Build fast and accurate web research experiences into your product. The Responses API delivers cited answers from the live web through a single endpoint.
-- [Search API - The Best Web Search for Your AI](https://llm.parallel.ai/products/search.md): The highest-accuracy web search API, built from the ground up for AIs. Get ranked results with token-efficient excerpts your agents can reason over directly.
+- [Web Search API for AI Agents and LLMs](https://llm.parallel.ai/products/search.md): Ranked #1 on the Artificial Analysis Search Index (November 2026). Ground LLM reasoning in fresh, token-efficient web search results for your AI agents.
 - [Search API cost calculator for AI agents](https://llm.parallel.ai/products/search/calculator.md): Compare web search API costs for AI agents. See what Exa, Tavily, Brave, Perplexity, OpenAI and Claude search cost at your volume next to Parallel Search.
 - [Task API - Deep Web Research for AI Agents](https://llm.parallel.ai/products/task.md): Run deep web research with a single API call. The Task API returns structured, source-attributed results with calibrated confidences for AI agents.
 - [Search is the new bottleneck for AI Agents](https://llm.parallel.ai/search-is-the-new-bottleneck.md): As token prices fall, web search can account for more of the cost of running an agent. A better model costs more per call, but better search can lower the cost per correct answer.
@@ -445,7 +446,7 @@ Parallel is a Enterprise Deep Research Product with APIs for performing Web Sear
 - [Get started - Parallel](https://llm.parallel.ai/docs/index.md)
 - [parallel-web - npm](https://llm.parallel.ai/docs/package/parallel-web.md)
 - [parallel-web · PyPI](https://llm.parallel.ai/docs/project/parallel-web/index.md)
-- [OpenAPI Spec](https://llm.parallel.ai/docs/public-openapi.json.md)
+- [public-openapi](https://llm.parallel.ai/docs/public-openapi.json.md)
 
 ## SDKs
 

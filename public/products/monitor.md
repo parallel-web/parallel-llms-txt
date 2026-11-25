@@ -2,7 +2,7 @@ Monitor API
 
 # Automated web monitoring for news, products, research, filings, events, corporate development
 
-Create always-on web searches that notify you when new results become available
+## Create always-on web searches that notify you when new results become available
 
 [Try Monitor](https://platform.parallel.ai/play/monitor)[Contact us](https://contact.parallel.ai/)
 

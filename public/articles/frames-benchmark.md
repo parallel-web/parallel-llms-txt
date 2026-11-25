@@ -8,7 +8,7 @@ The FRAMES benchmark (Factuality, Retrieval, And reasoning MEasurement Set) is a
 
 The paper is "Fact, Fetch, and Reason: A Unified Evaluation of Retrieval-Augmented Generation" by Satyapriya Krishna, Kalpesh Krishna, Anhad Mohananey, Steven Schwarcz, Adam Stambler, Shyam Upadhyay, and Manaal Faruqui ([arXiv 2409.12941](https://arxiv.org/abs/2409.12941), first posted September 19, 2024, revised January 24, 2025). The dataset is public on Hugging Face as [google/frames-benchmark](https://huggingface.co/datasets/google/frames-benchmark).
 
-We make Parallel, a web search API for AI agents, and we publish benchmark results for it, so read the comparison sections with that in mind.
+We make Parallel, a [web search API for AI agents](https://parallel.ai/products/search), and we publish benchmark results for it, so read the comparison sections with that in mind.
 
 ## How FRAMES is built
 

@@ -135,4 +135,4 @@ Whichever path you take, give the agent reliable, current web access through a [
 
 ## Start building
 
-Both agents get more reliable when you ground them in accurate, current web data. [Start building](https://docs.parallel.ai/home) with Parallel's Search API, or add [Parallel MCP](https://parallel.ai/mcp) to either agent with no key.
+Both agents get more reliable when you ground them in accurate, current web data. [Start building](https://docs.parallel.ai/home) with [Parallel's Search API](https://parallel.ai/products/search), or add [Parallel MCP](https://parallel.ai/mcp) to either agent with no key.
