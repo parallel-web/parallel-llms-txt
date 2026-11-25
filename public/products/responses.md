@@ -2,7 +2,7 @@ Responses API
 
 # High-quality web research, in seconds
 
-Build fast and accurate web research experiences into your product.
+## Build fast and accurate web research experiences into your product.
 
 [View docs](https://docs.parallel.ai/responses-api/responses-quickstart)
 

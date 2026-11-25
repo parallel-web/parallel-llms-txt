@@ -2,7 +2,7 @@ FindAll API
 
 # Find the best data for your database, contact list, company directory, press list, talent list, competitive set, financial report
 
-Discover and catalogue any set of entities from a single natural language web query
+## Discover and catalogue any set of entities from a single natural language web query
 
 [Try FindAll](https://platform.parallel.ai/play/find-all)[Contact us](https://contact.parallel.ai/)
 

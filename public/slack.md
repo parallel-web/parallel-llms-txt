@@ -2,7 +2,7 @@ Slack Agent
 
 # Web monitors and live updates in Slack
 
-Tell the Parallel Slack agent what you’re interested in, and @parallel will notify you when a relevant event happens. Or ask @parallel a question, and get an answer powered by the most comprehensive web index.
+## Tell the Parallel Slack agent what you’re interested in, and @parallel will notify you when a relevant event happens. Or ask @parallel a question, and get an answer powered by the most comprehensive web index.
 
 [Add to Slack](https://slack.com/marketplace/A0AP6UAHQ4A-parallel)
 

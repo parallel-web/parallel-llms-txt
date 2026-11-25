@@ -2,7 +2,7 @@ Decisions API
 
 # Decisions grounded in the live web
 
-Fast classification grounded in live web data. Ask about your own context or anything on the web, and every answer comes back with citations.
+## Fast classification grounded in live web data. Ask about your own context or anything on the web, and every answer comes back with citations.
 
 [Get started](https://platform.parallel.ai/play/decisions)[View docs](https://docs.parallel.ai/decisions/decisions-quickstart)
 

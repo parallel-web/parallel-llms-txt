@@ -2,7 +2,7 @@ Extract API
 
 # Turn web pages into AI-friendly context
 
-Extract full or excerpted text contents from any public page with ease
+## Extract full or excerpted text contents from any public page with ease
 
 [Try Extract](https://platform.parallel.ai/play/extract)[View docs](https://docs.parallel.ai/extract/extract-quickstart)
 

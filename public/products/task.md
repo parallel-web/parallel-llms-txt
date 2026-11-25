@@ -2,7 +2,7 @@ Task API
 
 # Automate structured web research, prospecting, analysis, exploration, retrieval
 
-Transform manual workflows into programmable and repeatable operations powered by AI web search
+## Transform manual workflows into programmable and repeatable operations powered by AI web search
 
 [Create a task](https://platform.parallel.ai/play)[Contact us](https://contact.parallel.ai/)
 
