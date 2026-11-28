@@ -31,7 +31,7 @@ Search PyPI Search
 
 Search PyPI Search
 
-# parallel-web 1.3.7
+# parallel-web 1.5.0
 
 The official Python library for the Parallel API
 
@@ -453,7 +453,7 @@ PyPI data
 
 Data sourced directly from PyPI's database.
 
-* **Released:** Oct 23, 2026
+* **Released:** Nov 24, 2026
 
 Latest release
 
@@ -524,7 +524,7 @@ PyPI data
 
 Data sourced directly from PyPI's database.
 
-* **Released:** Oct 23, 2026
+* **Released:** Nov 24, 2026
 
 Latest release
 
@@ -582,7 +582,7 @@ MIT License (MIT)
   
     + [Typed](https://pypi.org/search/?c=Typing+%3A%3A+Typed)
 
-## Release files for parallel-web 1.3.7
+## Release files for parallel-web 1.5.0
 
 For a detailed explanation of source distributions (sdists) and built distributions (wheels), please see the [package formats documentation](https://packaging.python.org/en/latest/discussions/package-formats/ "External link") .
 
@@ -590,7 +590,7 @@ For a detailed explanation of source distributions (sdists) and built distributi
 
 |File |Size |Uploaded |Provenance |Actions |
 | --- | --- | --- | --- | --- |
-|[parallel\_web-1.3.7.tar.gz](https://files.pythonhosted.org/packages/a6/0d/bce4ca73561d8a676801c5ebbeb36ab4d0f2f93eb78b1fc6f4ab4c08ba52/parallel_web-1.3.7.tar.gz) |163\.7 kB |Oct 23, 2026 |Without provenance |Details for parallel\_web-1.3.7.tar.gz |
+|[parallel\_web-1.5.0.tar.gz](https://files.pythonhosted.org/packages/8d/e4/023d9432c3835b407c0d1872ccbd3c6208b8af0d4a1e6993d298779843de/parallel_web-1.5.0.tar.gz) |183\.3 kB |Nov 24, 2026 |Without provenance |Details for parallel\_web-1.5.0.tar.gz |
 
 * * *
 
@@ -598,37 +598,37 @@ For a detailed explanation of source distributions (sdists) and built distributi
 
 |File |Interpreter |ABI |Platform |Actions [Reset](https://pypi.org/project/parallel-web/) |
 | --- | --- | --- | --- | --- |
-|[parallel\_web-1.3.7-py3-none-any.whl](https://files.pythonhosted.org/packages/43/d5/adbd4732dd3204ed6dcc32241e8da302b45f9824a04b109cab2c9c9ab86f/parallel_web-1.3.7-py3-none-any.whl) 178\.3 kB Oct 23, 2026 Without provenance |Python 3 |none |any |Details for parallel\_web-1.3.7-py3-none-any.whl |
+|[parallel\_web-1.5.0-py3-none-any.whl](https://files.pythonhosted.org/packages/f1/1c/641ea54a3d67ec1ee8f555c821ba8be99f8df9f8db1beb134130fa23fa25/parallel_web-1.5.0-py3-none-any.whl) 201\.9 kB Nov 24, 2026 Without provenance |Python 3 |none |any |Details for parallel\_web-1.5.0-py3-none-any.whl |
 
 * * *
 
-**Total release size:** 342\.0 kB
+**Total release size:** 385\.2 kB
 
-## Release files / parallel\_web-1.3.7.tar.gz
+## Release files / parallel\_web-1.5.0.tar.gz
 
-|Download URL |[parallel\_web-1.3.7.tar.gz](https://files.pythonhosted.org/packages/a6/0d/bce4ca73561d8a676801c5ebbeb36ab4d0f2f93eb78b1fc6f4ab4c08ba52/parallel_web-1.3.7.tar.gz) |
+|Download URL |[parallel\_web-1.5.0.tar.gz](https://files.pythonhosted.org/packages/8d/e4/023d9432c3835b407c0d1872ccbd3c6208b8af0d4a1e6993d298779843de/parallel_web-1.5.0.tar.gz) |
 | --- | --- |
-|Size |163\.7 kB |
+|Size |183\.3 kB |
 |Tags |Source |
-|SHA-256 checksum [How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`b45076f4552f1aa8c60f7270df2a0b7f3f5f6b4bb2709d6eddeb49fe25d43405 Copy SHA-256 checksum` |
-|BLAKE2b-256 checksum [How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`a60dbce4ca73561d8a676801c5ebbeb36ab4d0f2f93eb78b1fc6f4ab4c08ba52 Copy BLAKE2b-256 checksum` |
-|Upload date |Oct 23, 2026 |
+|SHA-256 checksum [How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`a0cb895beddd485d6001cc550b18d56bca078c9a9e176e676d59a9638a00d50e Copy SHA-256 checksum` |
+|BLAKE2b-256 checksum [How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`8de4023d9432c3835b407c0d1872ccbd3c6208b8af0d4a1e6993d298779843de Copy BLAKE2b-256 checksum` |
+|Upload date |Nov 24, 2026 |
 |Uploaded using Trusted Publishing? [What is trusted publishing?](https://docs.pypi.org/trusted-publishers/) |No |
 |Uploaded via |`twine/5.1.1 CPython/3.12.9` |
 
-## Release files / parallel\_web-1.3.7-py3-none-any.whl
+## Release files / parallel\_web-1.5.0-py3-none-any.whl
 
-|Download URL |[parallel\_web-1.3.7-py3-none-any.whl](https://files.pythonhosted.org/packages/43/d5/adbd4732dd3204ed6dcc32241e8da302b45f9824a04b109cab2c9c9ab86f/parallel_web-1.3.7-py3-none-any.whl) |
+|Download URL |[parallel\_web-1.5.0-py3-none-any.whl](https://files.pythonhosted.org/packages/f1/1c/641ea54a3d67ec1ee8f555c821ba8be99f8df9f8db1beb134130fa23fa25/parallel_web-1.5.0-py3-none-any.whl) |
 | --- | --- |
-|Size |178\.3 kB |
+|Size |201\.9 kB |
 |Tags |Python 3 |
-|SHA-256 checksum [How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`a276c149d69673cb5ce101f025f74e088308053fb20e7ee9dcd35d5fb3441d35 Copy SHA-256 checksum` |
-|BLAKE2b-256 checksum [How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`43d5adbd4732dd3204ed6dcc32241e8da302b45f9824a04b109cab2c9c9ab86f Copy BLAKE2b-256 checksum` |
-|Upload date |Oct 23, 2026 |
+|SHA-256 checksum [How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`87b6637c0cf129d4087dc255ea2b85d044032d0f6d3f0605911a21e7a312edfe Copy SHA-256 checksum` |
+|BLAKE2b-256 checksum [How to use checksums](https://pip.pypa.io/en/stable/topics/secure-installs/ "External link") |`f11c641ea54a3d67ec1ee8f555c821ba8be99f8df9f8db1beb134130fa23fa25 Copy BLAKE2b-256 checksum` |
+|Upload date |Nov 24, 2026 |
 |Uploaded using Trusted Publishing? [What is trusted publishing?](https://docs.pypi.org/trusted-publishers/) |No |
 |Uploaded via |`twine/5.1.1 CPython/3.12.9` |
 
-## Security for parallel-web 1.3.7
+## Security for parallel-web 1.5.0
 
 [Report project as malware](https://pypi.org/project/parallel-web/submit-malware-report/)
 
@@ -650,7 +650,15 @@ To learn more about protecting yourself from malicious actors, visit our [packag
 
 This release
 
-### [1\.3.7](https://pypi.org/project/parallel-web/1.3.7/) This release
+### [1\.5.0](https://pypi.org/project/parallel-web/1.5.0/) This release
+
+Nov 24, 2026 [2 release files](https://pypi.org/project/parallel-web/1.5.0/) [No provenance](https://pypi.org/project/parallel-web/1.5.0/)
+
+### [1\.4.0](https://pypi.org/project/parallel-web/1.4.0/)
+
+Nov 24, 2026 [2 release files](https://pypi.org/project/parallel-web/1.4.0/) [No provenance](https://pypi.org/project/parallel-web/1.4.0/)
+
+### [1\.3.7](https://pypi.org/project/parallel-web/1.3.7/)
 
 Oct 23, 2026 [2 release files](https://pypi.org/project/parallel-web/1.3.7/) [No provenance](https://pypi.org/project/parallel-web/1.3.7/)
 
@@ -783,4 +791,4 @@ Switch to desktop version
 * "PyPI", "Python Package Index", and the blocks logos are registered [trademarks](https://pypi.org/trademarks/) of the [Python Software Foundation](https://www.python.org/psf-landing) .
 
 * [Site map](https://pypi.org/sitemap/)
-* Deployed from [`b7cf5b7`](https://github.com/pypi/warehouse/commit/b7cf5b76c10218a73c7071f5df9135afc8b9d162 "External link")
+* Deployed from [`fc0d8e6`](https://github.com/pypi/warehouse/commit/fc0d8e618fab5afbf41786529b35ff1c5b29f1c2 "External link")
